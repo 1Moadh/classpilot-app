@@ -846,6 +846,7 @@ body{background:var(--cp-background);color:var(--cp-text)}
 /* M45: the code of conduct under the deduction reason. */
 .cp-conduct-pick{margin-block:0 6px}.cp-conduct-pick .cp-ux-field{display:grid;gap:3px}.cp-conduct-pick select{inline-size:100%}
 .cp-conduct-strike{margin-block:0 6px;padding:4px 8px;border-radius:5px;background:#fff8e1;border:1px solid #fcd34d;color:#92400e;font-size:11px;font-weight:600}.cp-conduct-strike.is-full{background:#f8fafc;border-color:#cbd5e1;color:#475569}
+.cp-conduct-shared{margin-block:8px 0;padding:6px 10px;border-radius:6px;background:#eff6ff;border:1px solid #bfdbfe;color:#1e3a8a;font-size:11.5px;line-height:1.5}.cp-conduct-shared.is-local{background:#f8fafc;border-color:#cbd5e1;color:#475569}
 .cp-rule-grip{flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;inline-size:22px;block-size:26px;padding:0;border:1px solid transparent;border-radius:5px;background:transparent;color:var(--n-400,#94a3b8);fill:currentColor;cursor:grab;touch-action:none}.cp-rule-grip:hover,.cp-rule-grip:focus-visible{color:var(--n-700,#334155);background:rgba(255,255,255,.7);border-color:var(--n-300,#cbd5e1)}.cp-rule-dragging{opacity:.55}.cp-rule-dragging .cp-rule-grip{cursor:grabbing}.cp-drop-before{box-shadow:inset 0 3px 0 var(--ux-primary,#2563eb)}.cp-drop-after{box-shadow:inset 0 -3px 0 var(--ux-primary,#2563eb)}
 .cp-profile-failure{position:fixed;inset-inline:16px;bottom:16px;z-index:250;background:#fff1f2;color:#881337;border:1px solid #be123c;border-radius:8px;padding:14px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;box-shadow:0 8px 24px #0f172a33;font:12.5px system-ui}.cp-profile-failure div{display:flex;gap:8px}.cp-profile-failure button{background:#fff;color:#881337;border:1px solid #be123c;border-radius:5px;padding:6px 10px}:focus-visible,input:focus-within,select:focus-within,textarea:focus-within{outline:2px solid #1d4ed8!important;outline-offset:2px!important}</style></head>
 <body>
@@ -5384,6 +5385,8 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.conduct.label": "Reason from the code of conduct",
     "ux.conduct.choose": "Choose from the code of conduct\u2026",
     "ux.conduct.strikeTag": "strike",
+    "ux.conduct.shared": "Shared by all your classes: saved in your teacher profile. A change here applies to every class.",
+    "ux.conduct.sharedOff": "This class's own code. Link your teacher profile to use one code for all your classes.",
     "ux.conduct.drag": "Drag to reorder (or use the up and down arrow keys)",
     "ux.conduct.strikeAdds": "This rule also records strike {n} of {max}.",
     "ux.conduct.strikeFull": "Already 3 strikes: the marks are deducted, but no strike is added.",
@@ -10506,6 +10509,8 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.conduct.label": "\u0633\u0628\u0628 \u0645\u0646 \u0642\u0648\u0627\u0639\u062F \u0627\u0644\u0633\u0644\u0648\u0643",
     "ux.conduct.choose": "\u0627\u062E\u062A\u0631 \u0645\u0646 \u0642\u0648\u0627\u0639\u062F \u0627\u0644\u0633\u0644\u0648\u0643\u2026",
     "ux.conduct.strikeTag": "\u0625\u0646\u0630\u0627\u0631",
+    "ux.conduct.shared": "\u0645\u0634\u062A\u0631\u0643\u0629 \u0628\u064A\u0646 \u062C\u0645\u064A\u0639 \u0635\u0641\u0648\u0641\u0643: \u0645\u062D\u0641\u0648\u0638\u0629 \u0641\u064A \u0645\u0644\u0641\u0643 \u0627\u0644\u0634\u062E\u0635\u064A \u0643\u0645\u0639\u0644\u0645. \u0623\u064A \u062A\u063A\u064A\u064A\u0631 \u0647\u0646\u0627 \u064A\u0633\u0631\u064A \u0639\u0644\u0649 \u0643\u0644 \u0627\u0644\u0635\u0641\u0648\u0641.",
+    "ux.conduct.sharedOff": "\u0642\u0648\u0627\u0639\u062F \u062E\u0627\u0635\u0629 \u0628\u0647\u0630\u0627 \u0627\u0644\u0635\u0641. \u0627\u0631\u0628\u0637 \u0645\u0644\u0641\u0643 \u0627\u0644\u0634\u062E\u0635\u064A \u0643\u0645\u0639\u0644\u0645 \u0644\u0627\u0633\u062A\u062E\u062F\u0627\u0645 \u0642\u0648\u0627\u0639\u062F \u0648\u0627\u062D\u062F\u0629 \u0644\u062C\u0645\u064A\u0639 \u0635\u0641\u0648\u0641\u0643.",
     "ux.conduct.drag": "\u0627\u0633\u062D\u0628 \u0644\u062A\u063A\u064A\u064A\u0631 \u0627\u0644\u062A\u0631\u062A\u064A\u0628 (\u0623\u0648 \u0627\u0633\u062A\u062E\u062F\u0645 \u0645\u0641\u062A\u0627\u062D\u064E\u064A \u0627\u0644\u0633\u0647\u0645 \u0644\u0644\u0623\u0639\u0644\u0649 \u0648\u0644\u0644\u0623\u0633\u0641\u0644)",
     "ux.conduct.strikeAdds": "\u0647\u0630\u0647 \u0627\u0644\u0642\u0627\u0639\u062F\u0629 \u062A\u0633\u062C\u0651\u0644 \u0623\u064A\u0636\u064B\u0627 \u0627\u0644\u0625\u0646\u0630\u0627\u0631 {n} \u0645\u0646 {max}.",
     "ux.conduct.strikeFull": "\u0644\u062F\u0649 \u0627\u0644\u0637\u0627\u0644\u0628 3 \u0625\u0646\u0630\u0627\u0631\u0627\u062A \u0628\u0627\u0644\u0641\u0639\u0644: \u062A\u064F\u062E\u0635\u0645 \u0627\u0644\u062F\u0631\u062C\u0627\u062A \u062F\u0648\u0646 \u0625\u0636\u0627\u0641\u0629 \u0625\u0646\u0630\u0627\u0631.",
@@ -30477,6 +30482,34 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     if (!object11(p) || p.schemaVersion !== 1 || !object11(p.done) || Object.keys(p.done).length > 2e3 || Object.entries(p.done).some(([id, date5]) => id.length > 600 || !valid(date5))) fail("file.invalidNamespace");
   }
 
+  // src/core/shared-conduct.js
+  var sameConduct = (a, b) => a === b || JSON.stringify(a) === JSON.stringify(b);
+  function adoptSharedConduct(state, linked, { seed = true, previous = null } = {}) {
+    const { classDoc } = state;
+    let { profile: profile2 } = state;
+    if (!linked || !classDoc?.cp?.classId || !classDoc.settings || !profile2) return state;
+    const own = classDoc.settings.conduct;
+    if (!profile2.conduct) {
+      const before = previous?.cp?.classId && previous.cp.classId !== classDoc.cp.classId ? previous.settings?.conduct : null, source = before || own;
+      if (!seed || !source) return state;
+      profile2 = { ...profile2, conduct: source };
+      state = { ...state, profile: profile2 };
+    }
+    if (sameConduct(own, profile2.conduct)) return state;
+    const cp = classDoc.cp.conductBefore || !own ? classDoc.cp : { ...classDoc.cp, conductBefore: { savedAt: Date.now(), conduct: own } };
+    return { ...state, classDoc: { ...classDoc, cp, settings: { ...classDoc.settings, conduct: profile2.conduct } } };
+  }
+  function shareConduct(state, classDoc, linked) {
+    const next = { ...state, classDoc }, after = classDoc?.settings?.conduct;
+    if (!linked || !after || after === state.classDoc?.settings?.conduct || !classDoc.cp?.classId || classDoc.cp.classId !== state.classDoc?.cp?.classId) return next;
+    return { ...next, profile: { ...state.profile, conduct: after } };
+  }
+  function validConduct(value) {
+    if (!value || typeof value !== "object" || Array.isArray(value)) return false;
+    if (value.violations !== void 0 && (!Array.isArray(value.violations) || value.violations.some((v) => !v || typeof v !== "object" || typeof v.name !== "string"))) return false;
+    return value.expectations === void 0 || Array.isArray(value.expectations) && value.expectations.every((e) => typeof e === "string");
+  }
+
   // src/core/schema.js
   var CLASS_FORMAT = "classpilot-class";
   var PROFILE_FORMAT = "classpilot-profile";
@@ -30515,6 +30548,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     validateAiData(doc.cp, (code) => {
       throw new FileValidationError(code);
     });
+    if (doc.cp?.conductBefore !== void 0 && (!object12(doc.cp.conductBefore) || !validConduct(doc.cp.conductBefore.conduct))) throw new FileValidationError("file.invalidNamespace");
     validateReportingData(doc.cp, (code) => {
       throw new FileValidationError(code);
     });
@@ -30565,6 +30599,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     validateTerms(profile2, (code) => {
       throw new FileValidationError(code);
     });
+    if (profile2.conduct !== void 0 && !validConduct(profile2.conduct)) throw new FileValidationError("file.invalidProfile");
     if (profile2.ui?.density !== void 0 && !["comfortable", "compact"].includes(profile2.ui.density)) throw new FileValidationError("file.invalidProfile");
     if (profile2.ui?.look !== void 0 && !["gold", "aurora", "meadow", "cloud", "oasis", "classic"].includes(profile2.ui.look)) throw new FileValidationError("file.invalidProfile");
     if (profile2.ui?.fontEn !== void 0 && !["plex", "figtree", "lexend", "system"].includes(profile2.ui.fontEn)) throw new FileValidationError("file.invalidProfile");
@@ -33441,6 +33476,11 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     const count = (student?.strikes || []).length, full = count >= MAX_STRIKES;
     return /* @__PURE__ */ cpJsx("div", { className: "cp-conduct-strike" + (full ? " is-full" : ""), role: "status" }, cpRaw(full ? uxText("conduct.strikeFull") : uxText("conduct.strikeAdds").replace("{n}", String(count + 1)).replace("{max}", String(MAX_STRIKES))));
   }
+  function SharedConductNote() {
+    useProfile();
+    const linked = isProfileLinked() && !isDemoActive();
+    return /* @__PURE__ */ cpJsx("div", { className: "cp-conduct-shared" + (linked ? "" : " is-local"), role: "note" }, cpRaw(uxText(linked ? "conduct.shared" : "conduct.sharedOff")));
+  }
 
   // src/core/ux-actions.js
   var uxClick = {
@@ -35563,6 +35603,8 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "conduct.label": ["Reason from the code of conduct", "\u0633\u0628\u0628 \u0645\u0646 \u0642\u0648\u0627\u0639\u062F \u0627\u0644\u0633\u0644\u0648\u0643"],
     "conduct.choose": ["Choose from the code of conduct\u2026", "\u0627\u062E\u062A\u0631 \u0645\u0646 \u0642\u0648\u0627\u0639\u062F \u0627\u0644\u0633\u0644\u0648\u0643\u2026"],
     "conduct.strikeTag": ["strike", "\u0625\u0646\u0630\u0627\u0631"],
+    "conduct.shared": ["Shared by all your classes: saved in your teacher profile. A change here applies to every class.", "\u0645\u0634\u062A\u0631\u0643\u0629 \u0628\u064A\u0646 \u062C\u0645\u064A\u0639 \u0635\u0641\u0648\u0641\u0643: \u0645\u062D\u0641\u0648\u0638\u0629 \u0641\u064A \u0645\u0644\u0641\u0643 \u0627\u0644\u0634\u062E\u0635\u064A \u0643\u0645\u0639\u0644\u0645. \u0623\u064A \u062A\u063A\u064A\u064A\u0631 \u0647\u0646\u0627 \u064A\u0633\u0631\u064A \u0639\u0644\u0649 \u0643\u0644 \u0627\u0644\u0635\u0641\u0648\u0641."],
+    "conduct.sharedOff": ["This class's own code. Link your teacher profile to use one code for all your classes.", "\u0642\u0648\u0627\u0639\u062F \u062E\u0627\u0635\u0629 \u0628\u0647\u0630\u0627 \u0627\u0644\u0635\u0641. \u0627\u0631\u0628\u0637 \u0645\u0644\u0641\u0643 \u0627\u0644\u0634\u062E\u0635\u064A \u0643\u0645\u0639\u0644\u0645 \u0644\u0627\u0633\u062A\u062E\u062F\u0627\u0645 \u0642\u0648\u0627\u0639\u062F \u0648\u0627\u062D\u062F\u0629 \u0644\u062C\u0645\u064A\u0639 \u0635\u0641\u0648\u0641\u0643."],
     "conduct.drag": ["Drag to reorder (or use the up and down arrow keys)", "\u0627\u0633\u062D\u0628 \u0644\u062A\u063A\u064A\u064A\u0631 \u0627\u0644\u062A\u0631\u062A\u064A\u0628 (\u0623\u0648 \u0627\u0633\u062A\u062E\u062F\u0645 \u0645\u0641\u062A\u0627\u062D\u064E\u064A \u0627\u0644\u0633\u0647\u0645 \u0644\u0644\u0623\u0639\u0644\u0649 \u0648\u0644\u0644\u0623\u0633\u0641\u0644)"],
     "conduct.strikeAdds": ["This rule also records strike {n} of {max}.", "\u0647\u0630\u0647 \u0627\u0644\u0642\u0627\u0639\u062F\u0629 \u062A\u0633\u062C\u0651\u0644 \u0623\u064A\u0636\u064B\u0627 \u0627\u0644\u0625\u0646\u0630\u0627\u0631 {n} \u0645\u0646 {max}."],
     "conduct.strikeFull": ["Already 3 strikes: the marks are deducted, but no strike is added.", "\u0644\u062F\u0649 \u0627\u0644\u0637\u0627\u0644\u0628 3 \u0625\u0646\u0630\u0627\u0631\u0627\u062A \u0628\u0627\u0644\u0641\u0639\u0644: \u062A\u064F\u062E\u0635\u0645 \u0627\u0644\u062F\u0631\u062C\u0627\u062A \u062F\u0648\u0646 \u0625\u0636\u0627\u0641\u0629 \u0625\u0646\u0630\u0627\u0631."],
@@ -37479,7 +37521,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     Sec = useStableComponent(Sec);
     return ReactDOM.createPortal(/* @__PURE__ */ cpJsx("div", { onClick: bindAction("gb.08-bv.3364", "singleton", "onClick", onClose), style: { position: en_default["gb.992a93455c71fedd"], inset: 0, background: en_default["gb.31eafd28eefb6858"], zIndex: 400, display: en_default["gb.222f930b87524636"], alignItems: en_default["gb.fdf659518ed08ee4"], justifyContent: en_default["gb.f179a509d32bd92c"], padding: en_default["gb.0273c6390bcbd090"], overflowY: en_default["gb.929260ad9b9ea9fe"] }, className: en_default["gb.e16a9d4d1cf9ead8"], "data-cp-scope": _cpOrigin, "data-cp-action": "gb.08-bv.3364", "data-cp-context": "singleton" }, /* @__PURE__ */ cpJsx("div", { onClick: bindAction("gb.08-bv.3588", "singleton", "onClick", (function(e) {
       e.stopPropagation();
-    })), style: { width: en_default["gb.32e48995f98ce3b7"], maxWidth: 680, background: en_default["gb.e08de713877c54e8"], borderRadius: 14, boxShadow: en_default["gb.0dd951f42fbf501e"], padding: en_default["gb.5bf7a51b84725a2b"], fontFamily: en_default["gb.035300f3afee55ae"], fontSize: 12, maxHeight: en_default["gb.f449bc9fd39d825b"], overflowY: en_default["gb.929260ad9b9ea9fe"] }, className: en_default["gb.e16a9d4d1cf9ead8"], "data-cp-action": "gb.08-bv.3588", "data-cp-context": "singleton" }, /* @__PURE__ */ cpJsx("div", { style: { display: en_default["gb.222f930b87524636"], alignItems: en_default["gb.fdf659518ed08ee4"], gap: 12, marginBottom: 14 } }, /* @__PURE__ */ cpJsx("span", { style: { display: en_default["gb.123306850fe18564"], color: en_default["gb.2cb39091d5d3e806"], marginTop: 3 } }, /* @__PURE__ */ cpJsx(Icn, { n: en_default["gb.139d544b821b13eb"], sz: 26, _cpOrigin: "08-bv.jsx:4045" })), /* @__PURE__ */ cpJsx("div", { style: { flex: 1 } }, /* @__PURE__ */ cpJsx("div", { style: { fontSize: 17, fontWeight: 600, color: en_default["gb.0e684e516035b04c"] } }, en_default["gb.0e9825d093b1c92a"]), /* @__PURE__ */ cpJsx("div", { style: { fontSize: 11, color: en_default["gb.b5e2bc59ff0f8c39"], marginTop: 2 } }, doc.title ? doc.title + en_default["gb.588da410532073f8"] : en_default["gb.e3b0c44298fc1c14"], en_default["gb.e563d95ebd392a4a"], /* @__PURE__ */ cpJsx("strong", { style: { color: en_default["gb.833631aa325ef0ac"] } }, bMax), en_default["gb.f8ae96807b8e1f1c"], /* @__PURE__ */ cpJsx("em", null, en_default["gb.118443b1d9cafcfd"]), en_default["gb.77923f85edccee7a"])), /* @__PURE__ */ cpJsx("button", { onClick: bindAction("gb.08-bv.4520", "singleton", "onClick", (function() {
+    })), style: { width: en_default["gb.32e48995f98ce3b7"], maxWidth: 680, background: en_default["gb.e08de713877c54e8"], borderRadius: 14, boxShadow: en_default["gb.0dd951f42fbf501e"], padding: en_default["gb.5bf7a51b84725a2b"], fontFamily: en_default["gb.035300f3afee55ae"], fontSize: 12, maxHeight: en_default["gb.f449bc9fd39d825b"], overflowY: en_default["gb.929260ad9b9ea9fe"] }, className: en_default["gb.e16a9d4d1cf9ead8"], "data-cp-action": "gb.08-bv.3588", "data-cp-context": "singleton" }, /* @__PURE__ */ cpJsx("div", { style: { display: en_default["gb.222f930b87524636"], alignItems: en_default["gb.fdf659518ed08ee4"], gap: 12, marginBottom: 14 } }, /* @__PURE__ */ cpJsx("span", { style: { display: en_default["gb.123306850fe18564"], color: en_default["gb.2cb39091d5d3e806"], marginTop: 3 } }, /* @__PURE__ */ cpJsx(Icn, { n: en_default["gb.139d544b821b13eb"], sz: 26, _cpOrigin: "08-bv.jsx:4045" })), /* @__PURE__ */ cpJsx("div", { style: { flex: 1 } }, /* @__PURE__ */ cpJsx("div", { style: { fontSize: 17, fontWeight: 600, color: en_default["gb.0e684e516035b04c"] } }, en_default["gb.0e9825d093b1c92a"]), /* @__PURE__ */ cpJsx("div", { style: { fontSize: 11, color: en_default["gb.b5e2bc59ff0f8c39"], marginTop: 2 } }, doc.title ? doc.title + en_default["gb.588da410532073f8"] : en_default["gb.e3b0c44298fc1c14"], en_default["gb.e563d95ebd392a4a"], /* @__PURE__ */ cpJsx("strong", { style: { color: en_default["gb.833631aa325ef0ac"] } }, bMax), en_default["gb.f8ae96807b8e1f1c"], /* @__PURE__ */ cpJsx("em", null, en_default["gb.118443b1d9cafcfd"]), en_default["gb.77923f85edccee7a"]), /* @__PURE__ */ cpJsx(SharedConductNote, null)), /* @__PURE__ */ cpJsx("button", { onClick: bindAction("gb.08-bv.4520", "singleton", "onClick", (function() {
       sEdit(!edit);
     })), title: edit ? en_default["gb.058f24ef2d7c4513"] : en_default["gb.7dfbfe3cfe2f24ba"], style: B({ background: edit ? en_default["gb.dbd729b0a3fbcb8b"] : en_default["gb.e08de713877c54e8"], color: edit ? en_default["gb.e08de713877c54e8"] : en_default["gb.833631aa325ef0ac"], border: en_default["gb.f35c8c1246856a29"], fontSize: 11, padding: en_default["gb.0efe45cf47937992"] }), "data-cp-action": "gb.08-bv.4520", "data-cp-context": "singleton" }, edit ? en_default["gb.eed43c8f830cc1c6"] : en_default["gb.503c5c0e299132c0"]), /* @__PURE__ */ cpJsx("button", { onClick: bindAction("gb.08-bv.4789", "singleton", "onClick", onClose), style: B({ background: en_default["gb.e08de713877c54e8"], border: en_default["gb.f35c8c1246856a29"], color: en_default["gb.833631aa325ef0ac"], fontSize: 13, padding: en_default["gb.0efe45cf47937992"] }), "data-cp-action": "gb.08-bv.4789", "data-cp-context": "singleton" }, en_default["gb.be64f28a8d0a6257"])), /* @__PURE__ */ cpJsx("div", { style: { display: en_default["gb.222f930b87524636"], gap: 8, marginBottom: 12, flexWrap: en_default["gb.f0a289923ed634ac"], alignItems: en_default["gb.f179a509d32bd92c"] } }, /* @__PURE__ */ cpJsx("input", { value: q, onChange: bindAction("gb.08-bv.5086", "singleton", "onChange", (function(e) {
       sQ(e.target.value);
@@ -51125,9 +51167,12 @@ Reply with JSON only, exactly in the shape of "response_schema", one report per 
     current4.current = state;
     bindProfileStore({
       get: () => current4.current.profile,
-      set: (change2) => setState((s) => ({ ...s, profile: typeof change2 === "function" ? change2(s.profile) : { ...s.profile, ...change2 } })),
+      set: (change2) => setState((s) => {
+        const profile2 = typeof change2 === "function" ? change2(s.profile) : { ...s.profile, ...change2 };
+        return profile2.conduct !== s.profile.conduct ? adoptSharedConduct({ ...s, profile: profile2 }, isProfileLinked()) : { ...s, profile: profile2 };
+      }),
       replace: (profile2) => {
-        const next = { ...current4.current, profile: profile2 };
+        const next = adoptSharedConduct({ ...current4.current, profile: profile2 }, isProfileLinked(), { seed: false });
         current4.current = next;
         history.reset(next);
       }
@@ -51135,10 +51180,10 @@ Reply with JSON only, exactly in the shape of "response_schema", one report per 
     useEffect(() => {
       commitProfile(state.profile);
     }, [state.profile]);
-    const setClass = (next) => setState((s) => ({ ...s, classDoc: typeof next === "function" ? next(s.classDoc) : next }));
+    const setClass = (next) => setState((s) => shareConduct(s, typeof next === "function" ? next(s.classDoc) : next, isProfileLinked()));
     const setDirection = (value) => setState((s) => ({ ...s, classDoc: { ...s.classDoc, settings: { ...s.classDoc.settings, dir: value } }, profile: { ...s.profile, ui: { ...s.profile.ui, direction: value } } }));
     return [state.classDoc, setClass, { ...history, setDirection, reset: (classDoc) => {
-      const next = { classDoc, profile: current4.current.profile };
+      const next = adoptSharedConduct({ classDoc, profile: current4.current.profile }, isProfileLinked(), { previous: current4.current.classDoc });
       current4.current = next;
       history.reset(next);
     } }];
