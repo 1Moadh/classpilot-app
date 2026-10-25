@@ -839,6 +839,10 @@ body{background:var(--cp-background);color:var(--cp-text)}
 .cp-year-day[data-kind=holiday],.cp-year-key [data-kind=holiday]{background:repeating-linear-gradient(135deg,#f6c7bd 0 3px,#fbe3dd 3px 6px)}
 .cp-year-day[data-kind=off]{color:var(--cp-muted)}.cp-year-key [data-kind=off]{background:transparent;border:1px solid var(--cp-border)}
 .cp-year-day[data-kind=out]{color:var(--cp-muted)}
+.cp-year-day[data-weekend=true],.cp-year-key [data-kind=off]{background:#e2e5ea;color:#64748b}
+.cp-year-day[data-kind=noteach],.cp-year-key [data-kind=noteach]{background:#c9dcf5;color:#1c1917}
+.cp-year-days{display:grid;gap:6px}.cp-year-swatch{display:inline-block;inline-size:14px;block-size:10px;border-radius:3px}.cp-year-swatch[data-kind=holiday]{background:repeating-linear-gradient(135deg,#f6c7bd 0 3px,#fbe3dd 3px 6px)}.cp-year-swatch[data-kind=noteach]{background:#c9dcf5}.cp-year-range{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.cp-year-add{display:flex;align-items:flex-end;gap:8px;flex-wrap:wrap}
+.cp-year table.cp-year-summary{border-collapse:separate;border-spacing:4px;font-size:12px;width:auto;max-inline-size:100%;justify-self:start}.cp-year-summary th,.cp-year-summary td{background:var(--cp-surface-2,#f1ede4);border-radius:6px;padding:6px 10px;text-align:center;font-variant-numeric:tabular-nums}.cp-year-summary thead td{background:transparent}.cp-year-summary th[scope=row]{text-align:start;font-weight:600}.cp-year-summary td[data-warn=true]{background:#fde2dc;color:#991b1b;font-weight:700}
 .cp-year-day[data-today=true]{outline:2px solid var(--cp-text);outline-offset:-1px;font-weight:700}
 .cp-year-key{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--cp-muted)}.cp-year-key span{display:inline-block;inline-size:14px;block-size:10px;border-radius:3px;margin-inline-start:8px}
 .cp-term-plan{margin:0;padding:0;list-style:none;display:grid;gap:8px}.cp-term-plan>li>ul{list-style:none;margin:4px 0 0;padding-inline-start:12px;display:grid;gap:2px}
@@ -5681,17 +5685,38 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.pace.nextWeek": "Next week",
     "ux.pace.done": "Taught",
     "ux.pace.termsTitle": "Terms",
-    "ux.pace.termsLead": "The first and last school day of each term. Teaching weeks are counted from the start of the term, skipping any week that is all holiday; they match the week numbers in your lesson sheets.",
+    "ux.pace.termsLead": "The first and last school day of each term. Teaching weeks are counted from the start of the term, skipping any week that is all holiday or all days without lessons; week 7 in your lesson sheets is the 7th teaching week.",
     "ux.pace.from": "Starts",
     "ux.pace.to": "Ends",
     "ux.pace.termFrom": "Term start",
     "ux.pace.termTo": "Term end",
     "ux.pace.weeks": "{n} teaching weeks",
     "ux.pace.noDates": "Dates not set",
-    "ux.pace.holidaysTitle": "Holidays",
     "ux.pace.glance": "The year at a glance",
     "ux.pace.keyTerm": "School day",
     "ux.pace.holiday": "Holiday",
+    "ux.pace.daysTitle": "Holidays and days without lessons",
+    "ux.pace.daysLead": "Choose the type for each entry. Holiday: no school. Exams or other: a school day with no lessons; it still counts as a school day. A week made only of such days is not a teaching week.",
+    "ux.pace.daysNone": "None yet.",
+    "ux.pace.dayFrom": "First day",
+    "ux.pace.dayTo": "Last day (optional)",
+    "ux.pace.dayType": "Type",
+    "ux.pace.dayAdd": "Add to the calendar",
+    "ux.pace.dayDelete": "Delete entry",
+    "ux.pace.kind.holiday": "Holiday",
+    "ux.pace.kind.exams": "Exams",
+    "ux.pace.kind.other": "Other (no lessons)",
+    "ux.pace.keyNoTeach": "Exams / no lessons",
+    "ux.pace.examsNow": "exam week: the next teaching week is shown",
+    "ux.pace.otherNow": "no lessons this week: the next teaching week is shown",
+    "ux.pace.summaryTitle": "Compare with the school calendar",
+    "ux.pace.summaryLead": "Counted from your term dates, holidays and days without lessons. Check them against the Ministry calendar.",
+    "ux.pace.sum.weeks": "Weeks in the term",
+    "ux.pace.sum.days": "School days",
+    "ux.pace.sum.teaching": "Teaching weeks",
+    "ux.pace.sum.plan": "Weeks in this class's lesson plan",
+    "ux.pace.sum.total": "Total school days",
+    "ux.pace.sum.planLonger": "The lesson plan has more weeks than there are teaching weeks",
     "ux.pace.keyOff": "Weekend",
     "ux.pace.planTitle": "Lesson plan by week",
     "ux.pace.planLead": "Tick each lesson once it has been taught; the Home page shows where the class stands.",
@@ -10807,17 +10832,38 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.pace.nextWeek": "\u0627\u0644\u0623\u0633\u0628\u0648\u0639 \u0627\u0644\u0642\u0627\u062F\u0645",
     "ux.pace.done": "\u062F\u064F\u0631\u0650\u0651\u0633",
     "ux.pace.termsTitle": "\u0627\u0644\u0641\u0635\u0648\u0644 \u0627\u0644\u062F\u0631\u0627\u0633\u064A\u0629",
-    "ux.pace.termsLead": "\u0623\u0648\u0644 \u064A\u0648\u0645 \u062F\u0631\u0627\u0633\u064A \u0648\u0622\u062E\u0631 \u064A\u0648\u0645 \u0641\u064A \u0643\u0644 \u0641\u0635\u0644. \u062A\u064F\u062D\u0633\u0628 \u0623\u0633\u0627\u0628\u064A\u0639 \u0627\u0644\u062A\u062F\u0631\u064A\u0633 \u0645\u0646 \u0628\u062F\u0627\u064A\u0629 \u0627\u0644\u0641\u0635\u0644 \u0645\u0639 \u062A\u062E\u0637\u0651\u064A \u0623\u064A \u0623\u0633\u0628\u0648\u0639 \u0643\u0644\u0647 \u0625\u062C\u0627\u0632\u0629\u060C \u0648\u062A\u0637\u0627\u0628\u0642 \u0623\u0631\u0642\u0627\u0645 \u0627\u0644\u0623\u0633\u0627\u0628\u064A\u0639 \u0641\u064A \u0645\u0644\u0641\u0627\u062A \u0627\u0644\u062F\u0631\u0648\u0633.",
+    "ux.pace.termsLead": "\u0623\u0648\u0644 \u064A\u0648\u0645 \u062F\u0631\u0627\u0633\u064A \u0648\u0622\u062E\u0631 \u064A\u0648\u0645 \u0641\u064A \u0643\u0644 \u0641\u0635\u0644. \u062A\u064F\u062D\u0633\u0628 \u0623\u0633\u0627\u0628\u064A\u0639 \u0627\u0644\u062A\u062F\u0631\u064A\u0633 \u0645\u0646 \u0628\u062F\u0627\u064A\u0629 \u0627\u0644\u0641\u0635\u0644 \u0645\u0639 \u062A\u062E\u0637\u0651\u064A \u0623\u064A \u0623\u0633\u0628\u0648\u0639 \u0643\u0644\u0647 \u0625\u062C\u0627\u0632\u0629 \u0623\u0648 \u0623\u064A\u0627\u0645 \u0628\u0644\u0627 \u062F\u0631\u0648\u0633\u061B \u0641\u0627\u0644\u0623\u0633\u0628\u0648\u0639 \u0627\u0644\u0633\u0627\u0628\u0639 \u0641\u064A \u0645\u0644\u0641\u0627\u062A \u0627\u0644\u062F\u0631\u0648\u0633 \u0647\u0648 \u0623\u0633\u0628\u0648\u0639 \u0627\u0644\u062A\u062F\u0631\u064A\u0633 \u0627\u0644\u0633\u0627\u0628\u0639.",
     "ux.pace.from": "\u064A\u0628\u062F\u0623",
     "ux.pace.to": "\u064A\u0646\u062A\u0647\u064A",
     "ux.pace.termFrom": "\u0628\u062F\u0627\u064A\u0629 \u0627\u0644\u0641\u0635\u0644",
     "ux.pace.termTo": "\u0646\u0647\u0627\u064A\u0629 \u0627\u0644\u0641\u0635\u0644",
     "ux.pace.weeks": "{n} \u0645\u0646 \u0623\u0633\u0627\u0628\u064A\u0639 \u0627\u0644\u062A\u062F\u0631\u064A\u0633",
     "ux.pace.noDates": "\u0627\u0644\u062A\u0648\u0627\u0631\u064A\u062E \u063A\u064A\u0631 \u0645\u062D\u062F\u0651\u062F\u0629",
-    "ux.pace.holidaysTitle": "\u0627\u0644\u0625\u062C\u0627\u0632\u0627\u062A",
     "ux.pace.glance": "\u0627\u0644\u0639\u0627\u0645 \u0641\u064A \u0644\u0645\u062D\u0629",
     "ux.pace.keyTerm": "\u064A\u0648\u0645 \u062F\u0631\u0627\u0633\u064A",
     "ux.pace.holiday": "\u0625\u062C\u0627\u0632\u0629",
+    "ux.pace.daysTitle": "\u0627\u0644\u0625\u062C\u0627\u0632\u0627\u062A \u0648\u0627\u0644\u0623\u064A\u0627\u0645 \u0628\u0644\u0627 \u062F\u0631\u0648\u0633",
+    "ux.pace.daysLead": "\u0627\u062E\u062A\u0631 \u0646\u0648\u0639 \u0643\u0644 \u0625\u062F\u062E\u0627\u0644. \u0625\u062C\u0627\u0632\u0629: \u0644\u0627 \u062F\u0648\u0627\u0645. \u0627\u062E\u062A\u0628\u0627\u0631\u0627\u062A \u0623\u0648 \u0623\u062E\u0631\u0649: \u064A\u0648\u0645 \u062F\u0631\u0627\u0633\u064A \u0628\u0644\u0627 \u062F\u0631\u0648\u0633\u060C \u0648\u064A\u064F\u062D\u0633\u0628 \u064A\u0648\u0645\u064B\u0627 \u062F\u0631\u0627\u0633\u064A\u064B\u0627. \u0648\u0627\u0644\u0623\u0633\u0628\u0648\u0639 \u0627\u0644\u0645\u0643\u0648\u0651\u0646 \u0645\u0646 \u0647\u0630\u0647 \u0627\u0644\u0623\u064A\u0627\u0645 \u0648\u062D\u062F\u0647\u0627 \u0644\u0627 \u064A\u064F\u0639\u062F\u0651 \u0623\u0633\u0628\u0648\u0639 \u062A\u062F\u0631\u064A\u0633.",
+    "ux.pace.daysNone": "\u0644\u0627 \u064A\u0648\u062C\u062F \u0628\u0639\u062F.",
+    "ux.pace.dayFrom": "\u0627\u0644\u064A\u0648\u0645 \u0627\u0644\u0623\u0648\u0644",
+    "ux.pace.dayTo": "\u0627\u0644\u064A\u0648\u0645 \u0627\u0644\u0623\u062E\u064A\u0631 (\u0627\u062E\u062A\u064A\u0627\u0631\u064A)",
+    "ux.pace.dayType": "\u0627\u0644\u0646\u0648\u0639",
+    "ux.pace.dayAdd": "\u0625\u0636\u0627\u0641\u0629 \u0625\u0644\u0649 \u0627\u0644\u062A\u0642\u0648\u064A\u0645",
+    "ux.pace.dayDelete": "\u062D\u0630\u0641 \u0627\u0644\u0625\u062F\u062E\u0627\u0644",
+    "ux.pace.kind.holiday": "\u0625\u062C\u0627\u0632\u0629",
+    "ux.pace.kind.exams": "\u0627\u062E\u062A\u0628\u0627\u0631\u0627\u062A",
+    "ux.pace.kind.other": "\u0623\u062E\u0631\u0649 (\u0628\u0644\u0627 \u062F\u0631\u0648\u0633)",
+    "ux.pace.keyNoTeach": "\u0627\u062E\u062A\u0628\u0627\u0631\u0627\u062A / \u0628\u0644\u0627 \u062F\u0631\u0648\u0633",
+    "ux.pace.examsNow": "\u0623\u0633\u0628\u0648\u0639 \u0627\u062E\u062A\u0628\u0627\u0631\u0627\u062A: \u064A\u0638\u0647\u0631 \u0623\u0633\u0628\u0648\u0639 \u0627\u0644\u062A\u062F\u0631\u064A\u0633 \u0627\u0644\u062A\u0627\u0644\u064A",
+    "ux.pace.otherNow": "\u0644\u0627 \u062F\u0631\u0648\u0633 \u0647\u0630\u0627 \u0627\u0644\u0623\u0633\u0628\u0648\u0639: \u064A\u0638\u0647\u0631 \u0623\u0633\u0628\u0648\u0639 \u0627\u0644\u062A\u062F\u0631\u064A\u0633 \u0627\u0644\u062A\u0627\u0644\u064A",
+    "ux.pace.summaryTitle": "\u0645\u0642\u0627\u0631\u0646\u0629 \u0645\u0639 \u0627\u0644\u062A\u0642\u0648\u064A\u0645 \u0627\u0644\u0645\u062F\u0631\u0633\u064A",
+    "ux.pace.summaryLead": "\u0645\u062D\u0633\u0648\u0628\u0629 \u0645\u0646 \u062A\u0648\u0627\u0631\u064A\u062E \u0627\u0644\u0641\u0635\u0648\u0644 \u0648\u0627\u0644\u0625\u062C\u0627\u0632\u0627\u062A \u0648\u0627\u0644\u0623\u064A\u0627\u0645 \u0628\u0644\u0627 \u062F\u0631\u0648\u0633. \u0637\u0627\u0628\u0650\u0642\u0647\u0627 \u0645\u0639 \u062A\u0642\u0648\u064A\u0645 \u0627\u0644\u0648\u0632\u0627\u0631\u0629.",
+    "ux.pace.sum.weeks": "\u0639\u062F\u062F \u0627\u0644\u0623\u0633\u0627\u0628\u064A\u0639 \u0641\u064A \u0627\u0644\u0641\u0635\u0644 \u0627\u0644\u062F\u0631\u0627\u0633\u064A",
+    "ux.pace.sum.days": "\u0639\u062F\u062F \u0623\u064A\u0627\u0645 \u0627\u0644\u062A\u0645\u062F\u0631\u0633",
+    "ux.pace.sum.teaching": "\u0639\u062F\u062F \u0623\u0633\u0627\u0628\u064A\u0639 \u0627\u0644\u062A\u062F\u0631\u064A\u0633",
+    "ux.pace.sum.plan": "\u0639\u062F\u062F \u0623\u0633\u0627\u0628\u064A\u0639 \u062E\u0637\u0629 \u062F\u0631\u0648\u0633 \u0647\u0630\u0627 \u0627\u0644\u0635\u0641",
+    "ux.pace.sum.total": "\u0625\u062C\u0645\u0627\u0644\u064A \u0639\u062F\u062F \u0623\u064A\u0627\u0645 \u0627\u0644\u062A\u0645\u062F\u0631\u0633",
+    "ux.pace.sum.planLonger": "\u062E\u0637\u0629 \u0627\u0644\u062F\u0631\u0648\u0633 \u0641\u064A\u0647\u0627 \u0623\u0633\u0627\u0628\u064A\u0639 \u0623\u0643\u062B\u0631 \u0645\u0646 \u0623\u0633\u0627\u0628\u064A\u0639 \u0627\u0644\u062A\u062F\u0631\u064A\u0633",
     "ux.pace.keyOff": "\u0639\u0637\u0644\u0629 \u0646\u0647\u0627\u064A\u0629 \u0627\u0644\u0623\u0633\u0628\u0648\u0639",
     "ux.pace.planTitle": "\u062E\u0637\u0629 \u0627\u0644\u062F\u0631\u0648\u0633 \u0623\u0633\u0628\u0648\u0639\u064B\u0627 \u0628\u0623\u0633\u0628\u0648\u0639",
     "ux.pace.planLead": "\u0636\u0639 \u0639\u0644\u0627\u0645\u0629 \u0639\u0644\u0649 \u0643\u0644 \u062F\u0631\u0633 \u0628\u0639\u062F \u062A\u062F\u0631\u064A\u0633\u0647\u060C \u0648\u062A\u0639\u0631\u0636 \u0627\u0644\u0635\u0641\u062D\u0629 \u0627\u0644\u0631\u0626\u064A\u0633\u0629 \u0645\u0648\u0642\u0639 \u0627\u0644\u0635\u0641 \u0645\u0646 \u0627\u0644\u062E\u0637\u0629.",
@@ -27017,6 +27063,32 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       "meaning": "ux.classes.drag"
     },
     {
+      "id": "ux.pace.dayAdd",
+      "labelKey": "ux.pace.dayAdd",
+      "icon": null,
+      "shortcut": null,
+      "availability": "rendered-and-not-disabled",
+      "canonicalHome": "pace:context",
+      "events": [
+        "onClick"
+      ],
+      "source": "src/modules",
+      "meaning": "ux.pace.dayAdd"
+    },
+    {
+      "id": "ux.pace.dayDelete",
+      "labelKey": "ux.pace.dayDelete",
+      "icon": null,
+      "shortcut": null,
+      "availability": "rendered-and-not-disabled",
+      "canonicalHome": "pace:context",
+      "events": [
+        "onClick"
+      ],
+      "source": "src/modules",
+      "meaning": "ux.pace.dayDelete"
+    },
+    {
       "id": "ux.report.sort",
       "labelKey": "ux.report.sort",
       "icon": null,
@@ -29407,6 +29479,45 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       ],
       "source": "src/modules",
       "meaning": "ux.pace.planTerm"
+    },
+    {
+      "id": "ux.pace.dayFrom",
+      "labelKey": "ux.pace.dayFrom",
+      "icon": null,
+      "shortcut": null,
+      "availability": "rendered-and-not-disabled",
+      "canonicalHome": "pace:context",
+      "events": [
+        "onChange"
+      ],
+      "source": "src/modules",
+      "meaning": "ux.pace.dayFrom"
+    },
+    {
+      "id": "ux.pace.dayTo",
+      "labelKey": "ux.pace.dayTo",
+      "icon": null,
+      "shortcut": null,
+      "availability": "rendered-and-not-disabled",
+      "canonicalHome": "pace:context",
+      "events": [
+        "onChange"
+      ],
+      "source": "src/modules",
+      "meaning": "ux.pace.dayTo"
+    },
+    {
+      "id": "ux.pace.dayType",
+      "labelKey": "ux.pace.dayType",
+      "icon": null,
+      "shortcut": null,
+      "availability": "rendered-and-not-disabled",
+      "canonicalHome": "pace:context",
+      "events": [
+        "onChange"
+      ],
+      "source": "src/modules",
+      "meaning": "ux.pace.dayType"
     }
   ];
 
@@ -30492,6 +30603,12 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     if (terms === void 0) return;
     if (!Array.isArray(terms) || terms.length > TERM_IDS.length || new Set(terms.map((t2) => t2?.id)).size !== terms.length || terms.some((t2) => !object11(t2) || !TERM_IDS.includes(t2.id) || t2.from !== void 0 && !valid(t2.from) || t2.to !== void 0 && !valid(t2.to) || t2.from && t2.to && t2.to < t2.from)) fail("file.invalidProfile");
     for (const h of profile2.calendar.holidays || []) if (h?.name !== void 0 && (typeof h.name !== "string" || h.name.length > 80)) fail("file.invalidProfile");
+    validateNoTeaching(profile2, fail);
+  }
+  function validateNoTeaching(profile2, fail) {
+    const list2 = profile2?.calendar?.noTeaching;
+    if (list2 === void 0) return;
+    if (!Array.isArray(list2) || list2.length > 200 || list2.some((r) => !object11(r) || !valid(r.from) || r.to !== void 0 && (!valid(r.to) || r.to < r.from) || !["exams", "other"].includes(r.kind))) fail("file.invalidProfile");
   }
   function validatePacing(cp, fail) {
     const p = cp?.pacing;
@@ -33613,6 +33730,8 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
   Object.assign(uxClick, { "pace.openYear": "pace.openYear", "pace.openLessons": "pace.openLessons", "pace.allLessons": "pace.allLessons", "pace.yearTab": "pace.yearTab" });
   Object.assign(uxClick, { "conduct.drag": "conduct.drag", "classes.drag": "classes.drag" });
   Object.assign(uxChange, { "pace.done": "pace.done", "pace.termFrom": "pace.termFrom", "pace.termTo": "pace.termTo", "pace.planTerm": "pace.planTerm" });
+  Object.assign(uxClick, { "pace.dayAdd": "pace.dayAdd", "pace.dayDelete": "pace.dayDelete" });
+  Object.assign(uxChange, { "pace.dayFrom": "pace.dayFrom", "pace.dayTo": "pace.dayTo", "pace.dayType": "pace.dayType" });
   var uxActions = [...Object.entries(uxClick).map(([id, key4]) => [id, key4, "onClick"]), ...Object.entries(uxChange).map(([id, key4]) => [id, key4, "onChange"])].map(([id, key4, event]) => ({ id: "ux." + id, labelKey: "ux." + key4, icon: null, shortcut: null, availability: "rendered-and-not-disabled", canonicalHome: id.startsWith("nav.") ? "Workspace:sidebar" : id.startsWith("appearance.") ? "Workspace:context" : id.split(".")[0] + ":context", events: [event], source: "src/modules", meaning: "ux." + id }));
 
   // src/i18n/ux-copy.js
@@ -36357,17 +36476,38 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "pace.nextWeek": ["Next week", "\u0627\u0644\u0623\u0633\u0628\u0648\u0639 \u0627\u0644\u0642\u0627\u062F\u0645"],
     "pace.done": ["Taught", "\u062F\u064F\u0631\u0650\u0651\u0633"],
     "pace.termsTitle": ["Terms", "\u0627\u0644\u0641\u0635\u0648\u0644 \u0627\u0644\u062F\u0631\u0627\u0633\u064A\u0629"],
-    "pace.termsLead": ["The first and last school day of each term. Teaching weeks are counted from the start of the term, skipping any week that is all holiday; they match the week numbers in your lesson sheets.", "\u0623\u0648\u0644 \u064A\u0648\u0645 \u062F\u0631\u0627\u0633\u064A \u0648\u0622\u062E\u0631 \u064A\u0648\u0645 \u0641\u064A \u0643\u0644 \u0641\u0635\u0644. \u062A\u064F\u062D\u0633\u0628 \u0623\u0633\u0627\u0628\u064A\u0639 \u0627\u0644\u062A\u062F\u0631\u064A\u0633 \u0645\u0646 \u0628\u062F\u0627\u064A\u0629 \u0627\u0644\u0641\u0635\u0644 \u0645\u0639 \u062A\u062E\u0637\u0651\u064A \u0623\u064A \u0623\u0633\u0628\u0648\u0639 \u0643\u0644\u0647 \u0625\u062C\u0627\u0632\u0629\u060C \u0648\u062A\u0637\u0627\u0628\u0642 \u0623\u0631\u0642\u0627\u0645 \u0627\u0644\u0623\u0633\u0627\u0628\u064A\u0639 \u0641\u064A \u0645\u0644\u0641\u0627\u062A \u0627\u0644\u062F\u0631\u0648\u0633."],
+    "pace.termsLead": ["The first and last school day of each term. Teaching weeks are counted from the start of the term, skipping any week that is all holiday or all days without lessons; week 7 in your lesson sheets is the 7th teaching week.", "\u0623\u0648\u0644 \u064A\u0648\u0645 \u062F\u0631\u0627\u0633\u064A \u0648\u0622\u062E\u0631 \u064A\u0648\u0645 \u0641\u064A \u0643\u0644 \u0641\u0635\u0644. \u062A\u064F\u062D\u0633\u0628 \u0623\u0633\u0627\u0628\u064A\u0639 \u0627\u0644\u062A\u062F\u0631\u064A\u0633 \u0645\u0646 \u0628\u062F\u0627\u064A\u0629 \u0627\u0644\u0641\u0635\u0644 \u0645\u0639 \u062A\u062E\u0637\u0651\u064A \u0623\u064A \u0623\u0633\u0628\u0648\u0639 \u0643\u0644\u0647 \u0625\u062C\u0627\u0632\u0629 \u0623\u0648 \u0623\u064A\u0627\u0645 \u0628\u0644\u0627 \u062F\u0631\u0648\u0633\u061B \u0641\u0627\u0644\u0623\u0633\u0628\u0648\u0639 \u0627\u0644\u0633\u0627\u0628\u0639 \u0641\u064A \u0645\u0644\u0641\u0627\u062A \u0627\u0644\u062F\u0631\u0648\u0633 \u0647\u0648 \u0623\u0633\u0628\u0648\u0639 \u0627\u0644\u062A\u062F\u0631\u064A\u0633 \u0627\u0644\u0633\u0627\u0628\u0639."],
     "pace.from": ["Starts", "\u064A\u0628\u062F\u0623"],
     "pace.to": ["Ends", "\u064A\u0646\u062A\u0647\u064A"],
     "pace.termFrom": ["Term start", "\u0628\u062F\u0627\u064A\u0629 \u0627\u0644\u0641\u0635\u0644"],
     "pace.termTo": ["Term end", "\u0646\u0647\u0627\u064A\u0629 \u0627\u0644\u0641\u0635\u0644"],
     "pace.weeks": ["{n} teaching weeks", "{n} \u0645\u0646 \u0623\u0633\u0627\u0628\u064A\u0639 \u0627\u0644\u062A\u062F\u0631\u064A\u0633"],
     "pace.noDates": ["Dates not set", "\u0627\u0644\u062A\u0648\u0627\u0631\u064A\u062E \u063A\u064A\u0631 \u0645\u062D\u062F\u0651\u062F\u0629"],
-    "pace.holidaysTitle": ["Holidays", "\u0627\u0644\u0625\u062C\u0627\u0632\u0627\u062A"],
     "pace.glance": ["The year at a glance", "\u0627\u0644\u0639\u0627\u0645 \u0641\u064A \u0644\u0645\u062D\u0629"],
     "pace.keyTerm": ["School day", "\u064A\u0648\u0645 \u062F\u0631\u0627\u0633\u064A"],
     "pace.holiday": ["Holiday", "\u0625\u062C\u0627\u0632\u0629"],
+    "pace.daysTitle": ["Holidays and days without lessons", "\u0627\u0644\u0625\u062C\u0627\u0632\u0627\u062A \u0648\u0627\u0644\u0623\u064A\u0627\u0645 \u0628\u0644\u0627 \u062F\u0631\u0648\u0633"],
+    "pace.daysLead": ["Choose the type for each entry. Holiday: no school. Exams or other: a school day with no lessons; it still counts as a school day. A week made only of such days is not a teaching week.", "\u0627\u062E\u062A\u0631 \u0646\u0648\u0639 \u0643\u0644 \u0625\u062F\u062E\u0627\u0644. \u0625\u062C\u0627\u0632\u0629: \u0644\u0627 \u062F\u0648\u0627\u0645. \u0627\u062E\u062A\u0628\u0627\u0631\u0627\u062A \u0623\u0648 \u0623\u062E\u0631\u0649: \u064A\u0648\u0645 \u062F\u0631\u0627\u0633\u064A \u0628\u0644\u0627 \u062F\u0631\u0648\u0633\u060C \u0648\u064A\u064F\u062D\u0633\u0628 \u064A\u0648\u0645\u064B\u0627 \u062F\u0631\u0627\u0633\u064A\u064B\u0627. \u0648\u0627\u0644\u0623\u0633\u0628\u0648\u0639 \u0627\u0644\u0645\u0643\u0648\u0651\u0646 \u0645\u0646 \u0647\u0630\u0647 \u0627\u0644\u0623\u064A\u0627\u0645 \u0648\u062D\u062F\u0647\u0627 \u0644\u0627 \u064A\u064F\u0639\u062F\u0651 \u0623\u0633\u0628\u0648\u0639 \u062A\u062F\u0631\u064A\u0633."],
+    "pace.daysNone": ["None yet.", "\u0644\u0627 \u064A\u0648\u062C\u062F \u0628\u0639\u062F."],
+    "pace.dayFrom": ["First day", "\u0627\u0644\u064A\u0648\u0645 \u0627\u0644\u0623\u0648\u0644"],
+    "pace.dayTo": ["Last day (optional)", "\u0627\u0644\u064A\u0648\u0645 \u0627\u0644\u0623\u062E\u064A\u0631 (\u0627\u062E\u062A\u064A\u0627\u0631\u064A)"],
+    "pace.dayType": ["Type", "\u0627\u0644\u0646\u0648\u0639"],
+    "pace.dayAdd": ["Add to the calendar", "\u0625\u0636\u0627\u0641\u0629 \u0625\u0644\u0649 \u0627\u0644\u062A\u0642\u0648\u064A\u0645"],
+    "pace.dayDelete": ["Delete entry", "\u062D\u0630\u0641 \u0627\u0644\u0625\u062F\u062E\u0627\u0644"],
+    "pace.kind.holiday": ["Holiday", "\u0625\u062C\u0627\u0632\u0629"],
+    "pace.kind.exams": ["Exams", "\u0627\u062E\u062A\u0628\u0627\u0631\u0627\u062A"],
+    "pace.kind.other": ["Other (no lessons)", "\u0623\u062E\u0631\u0649 (\u0628\u0644\u0627 \u062F\u0631\u0648\u0633)"],
+    "pace.keyNoTeach": ["Exams / no lessons", "\u0627\u062E\u062A\u0628\u0627\u0631\u0627\u062A / \u0628\u0644\u0627 \u062F\u0631\u0648\u0633"],
+    "pace.examsNow": ["exam week: the next teaching week is shown", "\u0623\u0633\u0628\u0648\u0639 \u0627\u062E\u062A\u0628\u0627\u0631\u0627\u062A: \u064A\u0638\u0647\u0631 \u0623\u0633\u0628\u0648\u0639 \u0627\u0644\u062A\u062F\u0631\u064A\u0633 \u0627\u0644\u062A\u0627\u0644\u064A"],
+    "pace.otherNow": ["no lessons this week: the next teaching week is shown", "\u0644\u0627 \u062F\u0631\u0648\u0633 \u0647\u0630\u0627 \u0627\u0644\u0623\u0633\u0628\u0648\u0639: \u064A\u0638\u0647\u0631 \u0623\u0633\u0628\u0648\u0639 \u0627\u0644\u062A\u062F\u0631\u064A\u0633 \u0627\u0644\u062A\u0627\u0644\u064A"],
+    "pace.summaryTitle": ["Compare with the school calendar", "\u0645\u0642\u0627\u0631\u0646\u0629 \u0645\u0639 \u0627\u0644\u062A\u0642\u0648\u064A\u0645 \u0627\u0644\u0645\u062F\u0631\u0633\u064A"],
+    "pace.summaryLead": ["Counted from your term dates, holidays and days without lessons. Check them against the Ministry calendar.", "\u0645\u062D\u0633\u0648\u0628\u0629 \u0645\u0646 \u062A\u0648\u0627\u0631\u064A\u062E \u0627\u0644\u0641\u0635\u0648\u0644 \u0648\u0627\u0644\u0625\u062C\u0627\u0632\u0627\u062A \u0648\u0627\u0644\u0623\u064A\u0627\u0645 \u0628\u0644\u0627 \u062F\u0631\u0648\u0633. \u0637\u0627\u0628\u0650\u0642\u0647\u0627 \u0645\u0639 \u062A\u0642\u0648\u064A\u0645 \u0627\u0644\u0648\u0632\u0627\u0631\u0629."],
+    "pace.sum.weeks": ["Weeks in the term", "\u0639\u062F\u062F \u0627\u0644\u0623\u0633\u0627\u0628\u064A\u0639 \u0641\u064A \u0627\u0644\u0641\u0635\u0644 \u0627\u0644\u062F\u0631\u0627\u0633\u064A"],
+    "pace.sum.days": ["School days", "\u0639\u062F\u062F \u0623\u064A\u0627\u0645 \u0627\u0644\u062A\u0645\u062F\u0631\u0633"],
+    "pace.sum.teaching": ["Teaching weeks", "\u0639\u062F\u062F \u0623\u0633\u0627\u0628\u064A\u0639 \u0627\u0644\u062A\u062F\u0631\u064A\u0633"],
+    "pace.sum.plan": ["Weeks in this class's lesson plan", "\u0639\u062F\u062F \u0623\u0633\u0627\u0628\u064A\u0639 \u062E\u0637\u0629 \u062F\u0631\u0648\u0633 \u0647\u0630\u0627 \u0627\u0644\u0635\u0641"],
+    "pace.sum.total": ["Total school days", "\u0625\u062C\u0645\u0627\u0644\u064A \u0639\u062F\u062F \u0623\u064A\u0627\u0645 \u0627\u0644\u062A\u0645\u062F\u0631\u0633"],
+    "pace.sum.planLonger": ["The lesson plan has more weeks than there are teaching weeks", "\u062E\u0637\u0629 \u0627\u0644\u062F\u0631\u0648\u0633 \u0641\u064A\u0647\u0627 \u0623\u0633\u0627\u0628\u064A\u0639 \u0623\u0643\u062B\u0631 \u0645\u0646 \u0623\u0633\u0627\u0628\u064A\u0639 \u0627\u0644\u062A\u062F\u0631\u064A\u0633"],
     "pace.keyOff": ["Weekend", "\u0639\u0637\u0644\u0629 \u0646\u0647\u0627\u064A\u0629 \u0627\u0644\u0623\u0633\u0628\u0648\u0639"],
     "pace.planTitle": ["Lesson plan by week", "\u062E\u0637\u0629 \u0627\u0644\u062F\u0631\u0648\u0633 \u0623\u0633\u0628\u0648\u0639\u064B\u0627 \u0628\u0623\u0633\u0628\u0648\u0639"],
     "pace.planLead": ["Tick each lesson once it has been taught; the Home page shows where the class stands.", "\u0636\u0639 \u0639\u0644\u0627\u0645\u0629 \u0639\u0644\u0649 \u0643\u0644 \u062F\u0631\u0633 \u0628\u0639\u062F \u062A\u062F\u0631\u064A\u0633\u0647\u060C \u0648\u062A\u0639\u0631\u0636 \u0627\u0644\u0635\u0641\u062D\u0629 \u0627\u0644\u0631\u0626\u064A\u0633\u0629 \u0645\u0648\u0642\u0639 \u0627\u0644\u0635\u0641 \u0645\u0646 \u0627\u0644\u062E\u0637\u0629."],
@@ -46020,16 +46160,36 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     if (next.from || next.to) terms.push(next);
     return { ...profile2, calendar: { ...calendar, terms: terms.sort((a, b) => TERM_IDS.indexOf(a.id) - TERM_IDS.indexOf(b.id)) } };
   }
-  function teachingWeeks(calendar, term) {
+  var NO_TEACHING_KINDS = ["exams", "other"];
+  var noTeachingOf = (calendar) => (Array.isArray(calendar?.noTeaching) ? calendar.noTeaching : []).filter((range) => range && valid2(range.from) && (range.to === void 0 || valid2(range.to)));
+  var noTeachingOn = (calendar, day) => noTeachingOf(calendar).find((range) => day >= range.from && day <= (range.to || range.from)) || null;
+  function addNoTeaching(profile2, { from, to, kind }) {
+    if (!valid2(from) || to && !valid2(to) || to && to < from || !NO_TEACHING_KINDS.includes(kind)) throw Error("pace.invalid");
+    const calendar = profile2.calendar || {}, list2 = Array.isArray(calendar.noTeaching) ? calendar.noTeaching : [];
+    return { ...profile2, calendar: { ...calendar, noTeaching: [...list2, { from, to: to || from, kind }].sort((a, b) => a.from.localeCompare(b.from)) } };
+  }
+  var removeNoTeaching = (profile2, index) => ({ ...profile2, calendar: { ...profile2.calendar, noTeaching: (profile2.calendar?.noTeaching || []).filter((_, i) => i !== index) } });
+  function termWeeks(calendar, term) {
     const days = (calendar?.schoolDays || [1, 2, 3, 4, 5]).slice().sort((a, b) => a - b), first = days[0] ?? 1, weeks = [];
     if (!term) return weeks;
     let start = addDays(parseISO(term.from), -((parseISO(term.from).getDay() - first + 7) % 7));
     for (let guard = 0; guard < 60 && isoOf(start) <= term.to; guard++) {
       const dates = Array.from({ length: 7 }, (_, i) => isoOf(addDays(start, i))), school = dates.filter((day) => day >= term.from && day <= term.to && isSchoolDay(day, calendar));
-      if (school.length) weeks.push({ n: weeks.length + 1, start: dates[0], end: dates[6], first: school[0], last: school.at(-1), days: school });
+      if (school.length) weeks.push({ start: dates[0], end: dates[6], days: school, teaching: school.filter((day) => !noTeachingOn(calendar, day)) });
       start = addDays(start, 7);
     }
     return weeks;
+  }
+  function teachingWeeks(calendar, term) {
+    return termWeeks(calendar, term).filter((week) => week.teaching.length).map((week, i) => ({ n: i + 1, start: week.start, end: week.end, first: week.teaching[0], last: week.teaching.at(-1), days: week.teaching }));
+  }
+  function yearSummary(calendar, doc) {
+    const lessons = curriculum(doc?.cp?.curriculum).lessons, anyTerm = lessons.some((l) => l.term);
+    const terms = termsOf(calendar).map((term) => {
+      const weeks = termWeeks(calendar, term), plan = lessons.filter((l) => weekNumber(l) != null && (anyTerm ? l.term === term.id : true)).map(weekNumber);
+      return { id: term.id, weeks: weeks.length, schoolDays: weeks.reduce((n, w) => n + w.days.length, 0), teachingWeeks: weeks.filter((w) => w.teaching.length).length, planWeeks: plan.length ? Math.max(...plan) : null };
+    });
+    return { terms, schoolDays: terms.reduce((n, t2) => n + t2.schoolDays, 0) };
   }
   var weekNumber = (lesson) => {
     const match = String(lesson.week || "").match(/\d+/);
@@ -46056,11 +46216,11 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     const weeks = teachingWeeks(calendar, term), done = pacing(doc.cp?.pacing).done, anyTerm = lessons.some((l) => l.term);
     const inTerm = lessons.filter((l) => weekNumber(l) != null && (anyTerm ? l.term === term.id : true));
     const current4 = between ? weeks[0] : weeks.find((w) => date5 >= w.start && date5 <= w.end) || weeks.find((w) => w.start > date5) || weeks.at(-1);
-    const n = current4?.n || 1, holiday = !between && current4 && !(date5 >= current4.start && date5 <= current4.end);
+    const n = current4?.n || 1, holiday = !between && current4 && !(date5 >= current4.start && date5 <= current4.end), off = holiday ? noTeachingOn(calendar, date5)?.kind || "holiday" : null;
     const at = (w) => inTerm.filter((l) => weekNumber(l) === w), reached = between ? 0 : n;
     const behind = inTerm.filter((l) => weekNumber(l) < reached && !done[l.id]), ahead = inTerm.filter((l) => weekNumber(l) > reached && done[l.id]);
     const expected = inTerm.filter((l) => weekNumber(l) <= reached).length, finished = inTerm.filter((l) => done[l.id]).length;
-    return { state: between ? "beforeTerm" : "term", term, week: current4, weekNo: n, weekCount: weeks.length, holiday, thisWeek: at(n), next: at(n + 1), behind, ahead, expected, finished, total: inTerm.length, done, status: behind.length ? "behind" : ahead.length ? "ahead" : "onTrack", withoutWeek: lessons.length - lessons.filter((l) => weekNumber(l) != null).length };
+    return { state: between ? "beforeTerm" : "term", term, week: current4, weekNo: n, weekCount: weeks.length, holiday, off, thisWeek: at(n), next: at(n + 1), behind, ahead, expected, finished, total: inTerm.length, done, status: behind.length ? "behind" : ahead.length ? "ahead" : "onTrack", withoutWeek: lessons.length - lessons.filter((l) => weekNumber(l) != null).length };
   }
   function termPlan(doc, calendar, termId) {
     const lessons = curriculum(doc.cp?.curriculum).lessons, anyTerm = lessons.some((l) => l.term), weeks = /* @__PURE__ */ new Map();
@@ -46081,25 +46241,49 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     if (!terms.length) return null;
     const first = parseISO(terms[0].from), last = parseISO(terms.at(-1).to), months = [];
     for (let m = new Date(first.getFullYear(), first.getMonth(), 1); m <= last; m = new Date(m.getFullYear(), m.getMonth() + 1, 1)) months.push(m);
-    const holidays = calendar.holidays || [], weekStart = Math.min(...calendar.schoolDays?.length ? calendar.schoolDays : [1]);
+    const holidays = calendar.holidays || [], schoolDays = calendar.schoolDays?.length ? calendar.schoolDays : [1, 2, 3, 4, 5], weekStart = Math.min(...schoolDays);
     const weekNo = /* @__PURE__ */ new Map();
     for (const term of terms) for (const week of teachingWeeks(calendar, term)) for (const day of week.days) weekNo.set(day, term.id + " \xB7 " + uxText("pace.week") + " " + week.n);
     return /* @__PURE__ */ cpJsx("div", { className: "cp-year-months" }, months.map((month) => {
       const lead = (month.getDay() - weekStart + 7) % 7, days = new Date(month.getFullYear(), month.getMonth() + 1, 0).getDate();
       return /* @__PURE__ */ cpJsx("section", { key: isoOf(month), className: "cp-year-month" }, /* @__PURE__ */ cpJsx("h4", null, new Intl.DateTimeFormat(locale(), { month: "long", year: "numeric" }).format(month)), /* @__PURE__ */ cpJsx("div", { className: "cp-year-grid" }, Array.from({ length: 7 }, (_, i) => /* @__PURE__ */ cpJsx("span", { key: "h" + i, className: "cp-year-dow" }, new Intl.DateTimeFormat(locale(), { weekday: "narrow" }).format(addDays(month, ((weekStart + i - month.getDay()) % 7 + 7) % 7)))), Array.from({ length: lead }, (_, i) => /* @__PURE__ */ cpJsx("span", { key: "b" + i })), Array.from({ length: days }, (_, i) => {
-        const iso = isoOf(new Date(month.getFullYear(), month.getMonth(), i + 1)), term = terms.find((t2) => iso >= t2.from && iso <= t2.to), holiday = holidays.some((h) => iso >= h.from && iso <= (h.to || h.from)), kind = holiday && term ? "holiday" : term && isSchoolDay(iso, calendar) ? "term" : term ? "off" : "out";
-        return /* @__PURE__ */ cpJsx("span", { key: iso, className: "cp-year-day", "data-kind": kind, "data-today": iso === today ? "true" : void 0, title: [iso, holiday ? uxText("pace.holiday") : weekNo.get(iso) || ""].filter(Boolean).join(" \xB7 ") }, cpRaw(String(i + 1)));
+        const date5 = new Date(month.getFullYear(), month.getMonth(), i + 1), iso = isoOf(date5), term = terms.find((t2) => iso >= t2.from && iso <= t2.to), holiday = holidays.some((h) => iso >= h.from && iso <= (h.to || h.from)), weekend = !schoolDays.includes(date5.getDay()), school = term && isSchoolDay(iso, calendar), noLessons = school ? noTeachingOn(calendar, iso) : null, kind = holiday && term ? "holiday" : noLessons ? "noteach" : school ? "term" : term ? "off" : "out";
+        return /* @__PURE__ */ cpJsx("span", { key: iso, className: "cp-year-day", "data-kind": kind, "data-weekend": weekend ? "true" : void 0, "data-today": iso === today ? "true" : void 0, title: [iso, holiday ? uxText("pace.holiday") : noLessons ? uxText("pace.kind." + noLessons.kind) : weekNo.get(iso) || ""].filter(Boolean).join(" \xB7 ") }, cpRaw(String(i + 1)));
       })));
     }));
   }
-  function SchoolYear({ profile: profile2, today, children }) {
+  var DAY_TYPES = ["holiday", ...NO_TEACHING_KINDS];
+  function DaysOff({ calendar }) {
+    const [from, setFrom] = useState(""), [to, setTo] = useState(""), [type, setType] = useState("holiday");
+    const rows = [
+      ...(calendar.holidays || []).map((range, index) => ({ ...range, type: "holiday", key: "h:" + index, remove: (p) => ({ ...p, calendar: { ...p.calendar, holidays: p.calendar.holidays.filter((_, i) => i !== index) } }) })),
+      ...noTeachingOf(calendar).map((range, index) => ({ ...range, type: range.kind, key: "n:" + index, remove: (p) => removeNoTeaching(p, index) }))
+    ].sort((a, b) => a.from.localeCompare(b.from));
+    const add = () => {
+      const last = to || from;
+      updateProfile((p) => type === "holiday" ? { ...p, calendar: { ...p.calendar, holidays: [...p.calendar.holidays || [], { from, to: last }] } } : addNoTeaching(p, { from, to: last, kind: type }));
+      setFrom("");
+      setTo("");
+    };
+    return /* @__PURE__ */ cpJsx("div", { className: "cp-year-days" }, rows.length ? rows.map((row2) => /* @__PURE__ */ cpJsx("div", { key: row2.key, className: "cp-year-range", "data-type": row2.type }, /* @__PURE__ */ cpJsx("span", { className: "cp-year-swatch", "data-kind": row2.type === "holiday" ? "holiday" : "noteach" }), /* @__PURE__ */ cpJsx("span", null, /* @__PURE__ */ cpJsx("bdi", null, cpRaw(row2.from + (row2.to && row2.to !== row2.from ? " \u2013 " + row2.to : ""))), " \xB7 ", uxText("pace.kind." + row2.type)), /* @__PURE__ */ cpJsx(UxButton, { id: "pace.dayDelete", context: row2.key, onClick: () => updateProfile(row2.remove) }))) : /* @__PURE__ */ cpJsx("p", { className: "cp-ai3-hint" }, uxText("pace.daysNone")), /* @__PURE__ */ cpJsx("div", { className: "cp-year-add" }, /* @__PURE__ */ cpJsx(UxField, { id: "pace.dayFrom", type: "date", value: from, max: to || void 0, onChange: (e) => setFrom(e.target.value) }), /* @__PURE__ */ cpJsx(UxField, { id: "pace.dayTo", type: "date", value: to, min: from || void 0, onChange: (e) => setTo(e.target.value) }), /* @__PURE__ */ cpJsx(UxSelect, { id: "pace.dayType", value: type, onChange: (e) => setType(e.target.value) }, DAY_TYPES.map((k) => /* @__PURE__ */ cpJsx("option", { key: k, value: k }, uxText("pace.kind." + k)))), /* @__PURE__ */ cpJsx(UxButton, { id: "pace.dayAdd", disabled: !from || to && to < from, onClick: add })));
+  }
+  function Summary({ calendar, doc }) {
+    const summary = yearSummary(calendar, doc), plan = summary.terms.some((t2) => t2.planWeeks != null);
+    if (!summary.terms.length) return null;
+    const row2 = (key4, value, extra) => /* @__PURE__ */ cpJsx("tr", { key: key4 }, /* @__PURE__ */ cpJsx("th", { scope: "row" }, uxText("pace.sum." + key4)), summary.terms.map((t2) => {
+      const v = value(t2), warn = extra?.(t2);
+      return /* @__PURE__ */ cpJsx("td", { key: t2.id, "data-warn": warn ? "true" : void 0, title: warn ? uxText("pace.sum.planLonger") : void 0 }, cpRaw(v == null ? "\u2013" : String(v)));
+    }));
+    return /* @__PURE__ */ cpJsx("table", { className: "cp-year-summary" }, /* @__PURE__ */ cpJsx("thead", null, /* @__PURE__ */ cpJsx("tr", null, /* @__PURE__ */ cpJsx("td", null), summary.terms.map((t2) => /* @__PURE__ */ cpJsx("th", { key: t2.id, scope: "col" }, uxText("pace.term." + t2.id))))), /* @__PURE__ */ cpJsx("tbody", null, row2("weeks", (t2) => t2.weeks), row2("days", (t2) => t2.schoolDays), row2("teaching", (t2) => t2.teachingWeeks), plan && row2("plan", (t2) => t2.planWeeks, (t2) => t2.planWeeks != null && t2.planWeeks > t2.teachingWeeks), /* @__PURE__ */ cpJsx("tr", null, /* @__PURE__ */ cpJsx("th", { scope: "row" }, uxText("pace.sum.total")), /* @__PURE__ */ cpJsx("td", { colSpan: summary.terms.length }, cpRaw(String(summary.schoolDays))))));
+  }
+  function SchoolYear({ profile: profile2, today, doc }) {
     useLanguage();
     const calendar = profile2.calendar || {}, terms = termsOf(calendar), list2 = Array.isArray(calendar.terms) ? calendar.terms : [];
     const shown2 = TERM_IDS.filter((id, i) => i < 3 || list2.some((t2) => t2.id === id));
     return /* @__PURE__ */ cpJsx("div", { className: "cp-year" }, /* @__PURE__ */ cpJsx("section", { className: "cp-ai3-group", "aria-labelledby": "cp-year-terms" }, /* @__PURE__ */ cpJsx("h3", { id: "cp-year-terms" }, uxText("pace.termsTitle")), /* @__PURE__ */ cpJsx("p", { className: "cp-ai3-hint" }, uxText("pace.termsLead")), /* @__PURE__ */ cpJsx("div", { className: "cp-year-terms" }, shown2.map((id) => {
       const term = list2.find((t2) => t2.id === id) || {}, weeks = termsOf(calendar).some((t2) => t2.id === id) ? teachingWeeks(calendar, term).length : 0;
       return /* @__PURE__ */ cpJsx("div", { key: id, className: "cp-year-term" }, /* @__PURE__ */ cpJsx("b", null, uxText("pace.term." + id)), /* @__PURE__ */ cpJsx(UxField, { id: "pace.termFrom", label: "pace.from", type: "date", context: id, value: term.from || "", max: term.to || void 0, onChange: (e) => updateProfile((p) => setTerm(p, id, { from: e.target.value })) }), /* @__PURE__ */ cpJsx(UxField, { id: "pace.termTo", label: "pace.to", type: "date", context: id, value: term.to || "", min: term.from || void 0, onChange: (e) => updateProfile((p) => setTerm(p, id, { to: e.target.value })) }), /* @__PURE__ */ cpJsx("small", { "data-weeks": weeks }, weeks ? uxText("pace.weeks").replace("{n}", String(weeks)) : uxText("pace.noDates")));
-    }))), /* @__PURE__ */ cpJsx("section", { className: "cp-ai3-group", "aria-labelledby": "cp-year-holidays" }, /* @__PURE__ */ cpJsx("h3", { id: "cp-year-holidays" }, uxText("pace.holidaysTitle")), children), terms.length > 0 && /* @__PURE__ */ cpJsx("section", { "aria-labelledby": "cp-year-glance" }, /* @__PURE__ */ cpJsx("h3", { id: "cp-year-glance" }, uxText("pace.glance")), /* @__PURE__ */ cpJsx("p", { className: "cp-year-key" }, /* @__PURE__ */ cpJsx("span", { "data-kind": "term" }), uxText("pace.keyTerm"), /* @__PURE__ */ cpJsx("span", { "data-kind": "holiday" }), uxText("pace.holiday"), /* @__PURE__ */ cpJsx("span", { "data-kind": "off" }), uxText("pace.keyOff")), /* @__PURE__ */ cpJsx(Months, { calendar, terms, today })));
+    }))), /* @__PURE__ */ cpJsx("section", { className: "cp-ai3-group", "aria-labelledby": "cp-year-days" }, /* @__PURE__ */ cpJsx("h3", { id: "cp-year-days" }, uxText("pace.daysTitle")), /* @__PURE__ */ cpJsx("p", { className: "cp-ai3-hint" }, uxText("pace.daysLead")), /* @__PURE__ */ cpJsx(DaysOff, { calendar })), terms.length > 0 && /* @__PURE__ */ cpJsx("section", { className: "cp-ai3-group", "aria-labelledby": "cp-year-sum" }, /* @__PURE__ */ cpJsx("h3", { id: "cp-year-sum" }, uxText("pace.summaryTitle")), /* @__PURE__ */ cpJsx("p", { className: "cp-ai3-hint" }, uxText("pace.summaryLead")), /* @__PURE__ */ cpJsx(Summary, { calendar, doc })), terms.length > 0 && /* @__PURE__ */ cpJsx("section", { "aria-labelledby": "cp-year-glance" }, /* @__PURE__ */ cpJsx("h3", { id: "cp-year-glance" }, uxText("pace.glance")), /* @__PURE__ */ cpJsx("p", { className: "cp-year-key" }, /* @__PURE__ */ cpJsx("span", { "data-kind": "term" }), uxText("pace.keyTerm"), /* @__PURE__ */ cpJsx("span", { "data-kind": "noteach" }), uxText("pace.keyNoTeach"), /* @__PURE__ */ cpJsx("span", { "data-kind": "holiday" }), uxText("pace.holiday"), /* @__PURE__ */ cpJsx("span", { "data-kind": "off" }), uxText("pace.keyOff")), /* @__PURE__ */ cpJsx(Months, { calendar, terms, today })));
   }
 
   // src/modules/pacing/card.jsx
@@ -46117,7 +46301,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     if (p.state === "noTerms" || p.state === "noLessons") return /* @__PURE__ */ cpJsx("section", { className: "cp-pace", "data-state": p.state, "aria-labelledby": "cp-pace-title" }, /* @__PURE__ */ cpJsx("header", null, /* @__PURE__ */ cpJsx("div", null, /* @__PURE__ */ cpJsx("span", { className: "cp-home-kicker" }, uxText("pace.kicker"), cpRaw(name ? " \xB7 " + name : "")), /* @__PURE__ */ cpJsx("h2", { id: "cp-pace-title" }, uxText("pace.setupTitle")))), /* @__PURE__ */ cpJsx("p", { className: "cp-ai3-hint" }, uxText(p.state === "noTerms" ? "pace.needTerms" : "pace.needLessons")), p.state === "noTerms" ? /* @__PURE__ */ cpJsx(UxButton, { id: "pace.openYear", onClick: () => toYear(setView) }) : /* @__PURE__ */ cpJsx(UxButton, { id: "pace.openLessons", onClick: () => setView("module:assessments") }));
     const tick = (lesson) => onUpdate((d) => setDone(d, lesson.id, !p.done[lesson.id], date5)), item = (lesson, check = true) => /* @__PURE__ */ cpJsx("li", { key: lesson.id, "data-done": p.done[lesson.id] ? "true" : "false" }, check ? /* @__PURE__ */ cpJsx(UxCheck, { id: "pace.done", context: lesson.id, text: lessonLabel(lesson), checked: !!p.done[lesson.id], onChange: () => tick(lesson) }) : /* @__PURE__ */ cpJsx("span", null, cpRaw(lessonLabel(lesson))));
     const pct = (n) => p.total ? Math.round(n / p.total * 100) : 0, title = uxText("pace.term." + p.term.id) + " \xB7 " + uxText("pace.weekOf").replace("{n}", String(p.weekNo)).replace("{total}", String(p.weekCount));
-    return /* @__PURE__ */ cpJsx("section", { className: "cp-pace", "data-state": p.state, "data-status": p.status, "aria-labelledby": "cp-pace-title" }, /* @__PURE__ */ cpJsx("header", null, /* @__PURE__ */ cpJsx("div", null, /* @__PURE__ */ cpJsx("span", { className: "cp-home-kicker" }, uxText("pace.kicker"), cpRaw(name ? " \xB7 " + name : "")), /* @__PURE__ */ cpJsx("h2", { id: "cp-pace-title" }, cpRaw(title)), p.week && /* @__PURE__ */ cpJsx("span", { className: "cp-home-sub" }, /* @__PURE__ */ cpJsx("bdi", null, cpRaw(dayMonth(p.week.first) + " \u2013 " + dayMonth(p.week.last))), p.holiday && cpRaw(" \xB7 "), p.holiday && uxText("pace.holidayNow"), p.state === "beforeTerm" && cpRaw(" \xB7 "), p.state === "beforeTerm" && uxText("pace.comingUp"))), /* @__PURE__ */ cpJsx("span", { className: "cp-pace-status", "data-status": p.status }, p.status === "behind" ? uxText("pace.behind").replace("{n}", String(p.behind.length)) : p.status === "ahead" ? uxText("pace.ahead").replace("{n}", String(p.ahead.length)) : uxText("pace.onTrack"))), /* @__PURE__ */ cpJsx("div", { className: "cp-pace-bar", role: "img", "aria-label": uxText("pace.progress").replace("{done}", String(p.finished)).replace("{total}", String(p.total)).replace("{expected}", String(p.expected)) }, /* @__PURE__ */ cpJsx("i", { style: { inlineSize: pct(p.finished) + "%" } }), p.state === "term" && /* @__PURE__ */ cpJsx("b", { style: { insetInlineStart: pct(p.expected) + "%" } })), /* @__PURE__ */ cpJsx("p", { className: "cp-pace-count" }, uxText("pace.progress").replace("{done}", String(p.finished)).replace("{total}", String(p.total)).replace("{expected}", String(p.expected))), /* @__PURE__ */ cpJsx("div", { className: "cp-pace-cols" }, /* @__PURE__ */ cpJsx("div", null, /* @__PURE__ */ cpJsx("h3", null, uxText(p.state === "beforeTerm" ? "pace.firstWeek" : "pace.thisWeek")), p.thisWeek.length ? /* @__PURE__ */ cpJsx("ul", null, p.thisWeek.map((l) => item(l))) : /* @__PURE__ */ cpJsx("p", { className: "cp-ai3-hint" }, uxText("pace.nothingThisWeek"))), p.behind.length > 0 && /* @__PURE__ */ cpJsx("div", { className: "cp-pace-behind" }, /* @__PURE__ */ cpJsx("h3", null, uxText("pace.catchUp")), /* @__PURE__ */ cpJsx("ul", null, p.behind.map((l) => item(l)))), p.next.length > 0 && /* @__PURE__ */ cpJsx("div", { className: "cp-pace-next" }, /* @__PURE__ */ cpJsx("h3", null, uxText("pace.nextWeek")), /* @__PURE__ */ cpJsx("ul", null, p.next.map((l) => item(l, false))))), /* @__PURE__ */ cpJsx("div", { className: "cp-ai3-row" }, /* @__PURE__ */ cpJsx(UxButton, { id: "pace.allLessons", onClick: () => setView("module:assessments") }), /* @__PURE__ */ cpJsx(UxButton, { id: "pace.openYear", onClick: () => toYear(setView) })));
+    return /* @__PURE__ */ cpJsx("section", { className: "cp-pace", "data-state": p.state, "data-status": p.status, "aria-labelledby": "cp-pace-title" }, /* @__PURE__ */ cpJsx("header", null, /* @__PURE__ */ cpJsx("div", null, /* @__PURE__ */ cpJsx("span", { className: "cp-home-kicker" }, uxText("pace.kicker"), cpRaw(name ? " \xB7 " + name : "")), /* @__PURE__ */ cpJsx("h2", { id: "cp-pace-title" }, cpRaw(title)), p.week && /* @__PURE__ */ cpJsx("span", { className: "cp-home-sub" }, /* @__PURE__ */ cpJsx("bdi", null, cpRaw(dayMonth(p.week.first) + " \u2013 " + dayMonth(p.week.last))), p.holiday && cpRaw(" \xB7 "), p.holiday && uxText(p.off === "exams" ? "pace.examsNow" : p.off === "other" ? "pace.otherNow" : "pace.holidayNow"), p.state === "beforeTerm" && cpRaw(" \xB7 "), p.state === "beforeTerm" && uxText("pace.comingUp"))), /* @__PURE__ */ cpJsx("span", { className: "cp-pace-status", "data-status": p.status }, p.status === "behind" ? uxText("pace.behind").replace("{n}", String(p.behind.length)) : p.status === "ahead" ? uxText("pace.ahead").replace("{n}", String(p.ahead.length)) : uxText("pace.onTrack"))), /* @__PURE__ */ cpJsx("div", { className: "cp-pace-bar", role: "img", "aria-label": uxText("pace.progress").replace("{done}", String(p.finished)).replace("{total}", String(p.total)).replace("{expected}", String(p.expected)) }, /* @__PURE__ */ cpJsx("i", { style: { inlineSize: pct(p.finished) + "%" } }), p.state === "term" && /* @__PURE__ */ cpJsx("b", { style: { insetInlineStart: pct(p.expected) + "%" } })), /* @__PURE__ */ cpJsx("p", { className: "cp-pace-count" }, uxText("pace.progress").replace("{done}", String(p.finished)).replace("{total}", String(p.total)).replace("{expected}", String(p.expected))), /* @__PURE__ */ cpJsx("div", { className: "cp-pace-cols" }, /* @__PURE__ */ cpJsx("div", null, /* @__PURE__ */ cpJsx("h3", null, uxText(p.state === "beforeTerm" ? "pace.firstWeek" : "pace.thisWeek")), p.thisWeek.length ? /* @__PURE__ */ cpJsx("ul", null, p.thisWeek.map((l) => item(l))) : /* @__PURE__ */ cpJsx("p", { className: "cp-ai3-hint" }, uxText("pace.nothingThisWeek"))), p.behind.length > 0 && /* @__PURE__ */ cpJsx("div", { className: "cp-pace-behind" }, /* @__PURE__ */ cpJsx("h3", null, uxText("pace.catchUp")), /* @__PURE__ */ cpJsx("ul", null, p.behind.map((l) => item(l)))), p.next.length > 0 && /* @__PURE__ */ cpJsx("div", { className: "cp-pace-next" }, /* @__PURE__ */ cpJsx("h3", null, uxText("pace.nextWeek")), /* @__PURE__ */ cpJsx("ul", null, p.next.map((l) => item(l, false))))), /* @__PURE__ */ cpJsx("div", { className: "cp-ai3-row" }, /* @__PURE__ */ cpJsx(UxButton, { id: "pace.allLessons", onClick: () => setView("module:assessments") }), /* @__PURE__ */ cpJsx(UxButton, { id: "pace.openYear", onClick: () => toYear(setView) })));
   }
 
   // src/modules/home/enhancements.jsx
@@ -47898,7 +48082,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       } catch {
         return "week";
       }
-    }), [selection, setSelection] = useState(null), [printing, setPrinting] = useState(false), [from, setFrom] = useState(date5), [to, setTo] = useState(date5), [editorDay, setEditorDay] = useState("all"), [starter, setStarter] = useState(null), [notice, setNotice] = useState(false), [editing, setEditing] = useState(false), [quick, setQuick] = useState(null);
+    }), [selection, setSelection] = useState(null), [printing, setPrinting] = useState(false), [editorDay, setEditorDay] = useState("all"), [starter, setStarter] = useState(null), [notice, setNotice] = useState(false), [editing, setEditing] = useState(false), [quick, setQuick] = useState(null);
     const conflicts = periodConflicts(profile2.periods || [], profile2.calendar.schoolDays), ids = new Set(conflicts.flat()), weekday = editorDay === "all" ? null : +editorDay;
     const periods = (profile2.periods || []).filter((period) => weekday === null || periodApplies(period, weekday)), nextTimes = nextPeriodTimes(profile2, weekday);
     const numbers = periods.filter((period) => !period.break).map((period) => Number(period.label.match(/\d+\s*$/)?.[0] || 0)), number = Math.max(0, ...numbers) + 1;
@@ -47916,7 +48100,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       setSelection(null);
       setEditorDay("all");
       setNotice(true);
-    } }), notice && /* @__PURE__ */ cpJsx("p", { role: "status" }, t("tt.starterApplied")), conflicts.length > 0 && /* @__PURE__ */ cpJsx("p", { role: "alert", style: { color: "#b91c1c" } }, t("tt.overlap")), /* @__PURE__ */ cpJsx(ClassTidy, { profile: profile2 }), tab === "year" ? /* @__PURE__ */ cpJsx(SchoolYear, { profile: profile2, today: date5 }, profile2.calendar.holidays.map((holiday, index) => /* @__PURE__ */ cpJsx("div", { key: index, style: { ...row, marginBlockEnd: 6 } }, /* @__PURE__ */ cpJsx("span", null, holiday.from, "\u2013", holiday.to || holiday.from), /* @__PURE__ */ cpJsx(ToolButton, { id: "tt.deleteHoliday", context: String(index), onClick: () => updateProfile((p) => ({ ...p, calendar: { ...p.calendar, holidays: p.calendar.holidays.filter((_, i) => i !== index) } })) }, t("tt.deleteHoliday")))), /* @__PURE__ */ cpJsx("div", { style: row }, /* @__PURE__ */ cpJsx(ToolField, { id: "tt.holidayFrom", label: "tt.holidayFrom", type: "date", value: from, onChange: (e) => setFrom(e.target.value) }), /* @__PURE__ */ cpJsx(ToolField, { id: "tt.holidayTo", label: "tt.holidayTo", type: "date", value: to, onChange: (e) => setTo(e.target.value) }), /* @__PURE__ */ cpJsx(ToolButton, { id: "tt.addHoliday", disabled: !from || !to || to < from, onClick: () => updateProfile((p) => ({ ...p, calendar: { ...p.calendar, holidays: [...p.calendar.holidays, { from, to }] } })) }, t("tt.addHoliday")))) : tab === "week" ? /* @__PURE__ */ cpJsx("div", { style: { ...panel, overflow: "auto" } }, grid) : /* @__PURE__ */ cpJsx("div", { style: panel }, !isSchoolDay(date5, profile2.calendar) ? /* @__PURE__ */ cpJsx("p", null, t("tt.dayOff")) : lessonsOn(profile2, date5).map(({ period, cell: cell3 }) => /* @__PURE__ */ cpJsx("div", { key: period.id, style: { ...row, padding: 10, borderBlockEnd: "1px solid var(--n-200)" } }, /* @__PURE__ */ cpJsx("strong", null, cpRaw(period.label)), /* @__PURE__ */ cpJsx("bdi", { dir: "ltr" }, period.start, "\u2013", period.end), period.break && /* @__PURE__ */ cpJsx("span", null, t("tt.break")), cell3?.classId && /* @__PURE__ */ cpJsx(ToolButton, { id: "tt.open", context: "today:" + period.id, onClick: () => onOpenClass(cell3.classId) }, cpRaw(cellLabel(profile2, cell3))), /* @__PURE__ */ cpJsx("span", null, cpRaw([cell3?.subject, cell3?.room, cell3?.note].filter(Boolean).join(" \xB7 ")))))), quick && editing && /* @__PURE__ */ cpJsx(QuickCell, { profile: profile2, quick, onClose: () => setQuick(null), onEdit: setSelection, onOpenClass }), selection && /* @__PURE__ */ cpJsx(CellEditor, { key: selection.weekday + ":" + selection.periodId, profile: profile2, selection, onClose: () => setSelection(null) }), editing && /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx(SchedulePlanner, { key: editorDay, profile: profile2, periods, day: weekday, date: date5 }), /* @__PURE__ */ cpJsx("h2", { style: { fontSize: 14, marginBlockStart: 20 } }, t("tt.period")), /* @__PURE__ */ cpJsx("label", { style: row }, t("tt.editDay"), /* @__PURE__ */ cpJsx("select", { "aria-label": t("tt.editDay"), value: editorDay, ...controlProps("m4.tt.editorDay", (e) => setEditorDay(e.target.value)), style: field }, /* @__PURE__ */ cpJsx("option", { value: "all" }, t("tt.allPeriods")), [0, 1, 2, 3, 4, 5, 6].map((day) => /* @__PURE__ */ cpJsx("option", { key: day, value: day }, t("calendar.day" + day))))), /* @__PURE__ */ cpJsx("p", { style: { fontSize: 12, color: "var(--n-600)" } }, t("tt.addHint")), periods.map((period) => /* @__PURE__ */ cpJsx(PeriodEditor, { key: period.id + JSON.stringify(period), period, conflict: ids.has(period.id), schoolDays: profile2.calendar.schoolDays })), /* @__PURE__ */ cpJsx(ToolButton, { id: "tt.addPeriod", disabled: !nextTimes, onClick: () => updateProfile((p) => addPeriod(p, t("tt.period") + " " + number, weekday)) }, t("tt.addPeriod")), !nextTimes && /* @__PURE__ */ cpJsx("p", { role: "status" }, t("tt.endOfDay")), /* @__PURE__ */ cpJsx("h2", { style: { fontSize: 14 } }, t("tt.schoolDays")), /* @__PURE__ */ cpJsx("div", { style: row }, [0, 1, 2, 3, 4, 5, 6].map((day) => /* @__PURE__ */ cpJsx("label", { key: day }, /* @__PURE__ */ cpJsx("input", { type: "checkbox", checked: profile2.calendar.schoolDays.includes(day), ...controlProps("m4.tt.schoolDay", (e) => updateProfile((p) => ({ ...p, calendar: { ...p.calendar, schoolDays: e.target.checked ? [...p.calendar.schoolDays, day].sort((a, b) => a - b) : p.calendar.schoolDays.filter((d) => d !== day) } })), String(day)) }), t("calendar.day" + day))))), printing && ReactDOM.createPortal(/* @__PURE__ */ cpJsx("div", { className: "cp-timetable-print", role: "dialog", "aria-label": t("tt.print"), dir: doc.settings.dir || "ltr", style: { position: "fixed", inset: 0, zIndex: 400, background: "#fff", padding: 24, overflow: "auto" } }, /* @__PURE__ */ cpJsx("style", null, "@media print {html,body{height:auto!important;min-height:0!important;background:#fff!important}body>*:not(.cp-timetable-print){display:none!important}.cp-timetable-print{position:static!important;overflow:visible!important;padding:0!important}.cp-no-print{display:none!important}@page{size:landscape;margin:12mm}}"), /* @__PURE__ */ cpJsx("div", { className: "cp-no-print", style: row }, /* @__PURE__ */ cpJsx(ToolButton, { id: "tt.printNow", onClick: () => window.print() }, t("tt.printNow")), /* @__PURE__ */ cpJsx(ToolButton, { id: "tt.closePrint", onClick: () => setPrinting(false) }, t("tt.closePrint"))), /* @__PURE__ */ cpJsx("h1", { style: { fontSize: 18, lineHeight: 1.35, margin: "0 0 8px" } }, t("tt.week")), /* @__PURE__ */ cpJsx("p", { style: { fontSize: 12, lineHeight: 1.35, margin: "0 0 10px" } }, cpRaw(Object.values(profile2.reportHeader).filter(Boolean).join(" \xB7 "))), grid), document.body));
+    } }), notice && /* @__PURE__ */ cpJsx("p", { role: "status" }, t("tt.starterApplied")), conflicts.length > 0 && /* @__PURE__ */ cpJsx("p", { role: "alert", style: { color: "#b91c1c" } }, t("tt.overlap")), /* @__PURE__ */ cpJsx(ClassTidy, { profile: profile2 }), tab === "year" ? /* @__PURE__ */ cpJsx(SchoolYear, { profile: profile2, today: date5, doc }) : tab === "week" ? /* @__PURE__ */ cpJsx("div", { style: { ...panel, overflow: "auto" } }, grid) : /* @__PURE__ */ cpJsx("div", { style: panel }, !isSchoolDay(date5, profile2.calendar) ? /* @__PURE__ */ cpJsx("p", null, t("tt.dayOff")) : lessonsOn(profile2, date5).map(({ period, cell: cell3 }) => /* @__PURE__ */ cpJsx("div", { key: period.id, style: { ...row, padding: 10, borderBlockEnd: "1px solid var(--n-200)" } }, /* @__PURE__ */ cpJsx("strong", null, cpRaw(period.label)), /* @__PURE__ */ cpJsx("bdi", { dir: "ltr" }, period.start, "\u2013", period.end), period.break && /* @__PURE__ */ cpJsx("span", null, t("tt.break")), cell3?.classId && /* @__PURE__ */ cpJsx(ToolButton, { id: "tt.open", context: "today:" + period.id, onClick: () => onOpenClass(cell3.classId) }, cpRaw(cellLabel(profile2, cell3))), /* @__PURE__ */ cpJsx("span", null, cpRaw([cell3?.subject, cell3?.room, cell3?.note].filter(Boolean).join(" \xB7 ")))))), quick && editing && /* @__PURE__ */ cpJsx(QuickCell, { profile: profile2, quick, onClose: () => setQuick(null), onEdit: setSelection, onOpenClass }), selection && /* @__PURE__ */ cpJsx(CellEditor, { key: selection.weekday + ":" + selection.periodId, profile: profile2, selection, onClose: () => setSelection(null) }), editing && /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx(SchedulePlanner, { key: editorDay, profile: profile2, periods, day: weekday, date: date5 }), /* @__PURE__ */ cpJsx("h2", { style: { fontSize: 14, marginBlockStart: 20 } }, t("tt.period")), /* @__PURE__ */ cpJsx("label", { style: row }, t("tt.editDay"), /* @__PURE__ */ cpJsx("select", { "aria-label": t("tt.editDay"), value: editorDay, ...controlProps("m4.tt.editorDay", (e) => setEditorDay(e.target.value)), style: field }, /* @__PURE__ */ cpJsx("option", { value: "all" }, t("tt.allPeriods")), [0, 1, 2, 3, 4, 5, 6].map((day) => /* @__PURE__ */ cpJsx("option", { key: day, value: day }, t("calendar.day" + day))))), /* @__PURE__ */ cpJsx("p", { style: { fontSize: 12, color: "var(--n-600)" } }, t("tt.addHint")), periods.map((period) => /* @__PURE__ */ cpJsx(PeriodEditor, { key: period.id + JSON.stringify(period), period, conflict: ids.has(period.id), schoolDays: profile2.calendar.schoolDays })), /* @__PURE__ */ cpJsx(ToolButton, { id: "tt.addPeriod", disabled: !nextTimes, onClick: () => updateProfile((p) => addPeriod(p, t("tt.period") + " " + number, weekday)) }, t("tt.addPeriod")), !nextTimes && /* @__PURE__ */ cpJsx("p", { role: "status" }, t("tt.endOfDay")), /* @__PURE__ */ cpJsx("h2", { style: { fontSize: 14 } }, t("tt.schoolDays")), /* @__PURE__ */ cpJsx("div", { style: row }, [0, 1, 2, 3, 4, 5, 6].map((day) => /* @__PURE__ */ cpJsx("label", { key: day }, /* @__PURE__ */ cpJsx("input", { type: "checkbox", checked: profile2.calendar.schoolDays.includes(day), ...controlProps("m4.tt.schoolDay", (e) => updateProfile((p) => ({ ...p, calendar: { ...p.calendar, schoolDays: e.target.checked ? [...p.calendar.schoolDays, day].sort((a, b) => a - b) : p.calendar.schoolDays.filter((d) => d !== day) } })), String(day)) }), t("calendar.day" + day))))), printing && ReactDOM.createPortal(/* @__PURE__ */ cpJsx("div", { className: "cp-timetable-print", role: "dialog", "aria-label": t("tt.print"), dir: doc.settings.dir || "ltr", style: { position: "fixed", inset: 0, zIndex: 400, background: "#fff", padding: 24, overflow: "auto" } }, /* @__PURE__ */ cpJsx("style", null, "@media print {html,body{height:auto!important;min-height:0!important;background:#fff!important}body>*:not(.cp-timetable-print){display:none!important}.cp-timetable-print{position:static!important;overflow:visible!important;padding:0!important}.cp-no-print{display:none!important}@page{size:landscape;margin:12mm}}"), /* @__PURE__ */ cpJsx("div", { className: "cp-no-print", style: row }, /* @__PURE__ */ cpJsx(ToolButton, { id: "tt.printNow", onClick: () => window.print() }, t("tt.printNow")), /* @__PURE__ */ cpJsx(ToolButton, { id: "tt.closePrint", onClick: () => setPrinting(false) }, t("tt.closePrint"))), /* @__PURE__ */ cpJsx("h1", { style: { fontSize: 18, lineHeight: 1.35, margin: "0 0 8px" } }, t("tt.week")), /* @__PURE__ */ cpJsx("p", { style: { fontSize: 12, lineHeight: 1.35, margin: "0 0 10px" } }, cpRaw(Object.values(profile2.reportHeader).filter(Boolean).join(" \xB7 "))), grid), document.body));
   }
   var timetable_default = m4Manifest("timetable", { defaults: { periods: [], timetable: [] }, migrate: (value = {}) => ({ ...value, periods: value.periods || [], timetable: value.timetable || [] }) }, TimetableView);
 
