@@ -847,7 +847,7 @@ body{background:var(--cp-background);color:var(--cp-text)}
 .cp-conduct-pick{margin-block:0 6px}.cp-conduct-pick .cp-ux-field{display:grid;gap:3px}.cp-conduct-pick select{inline-size:100%}
 .cp-conduct-strike{margin-block:0 6px;padding:4px 8px;border-radius:5px;background:#fff8e1;border:1px solid #fcd34d;color:#92400e;font-size:11px;font-weight:600}.cp-conduct-strike.is-full{background:#f8fafc;border-color:#cbd5e1;color:#475569}
 .cp-conduct-shared{margin-block:8px 0;padding:6px 10px;border-radius:6px;background:#eff6ff;border:1px solid #bfdbfe;color:#1e3a8a;font-size:11.5px;line-height:1.5}.cp-conduct-shared.is-local{background:#f8fafc;border-color:#cbd5e1;color:#475569}
-.cp-rule-grip{flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;inline-size:22px;block-size:26px;padding:0;border:1px solid transparent;border-radius:5px;background:transparent;color:var(--n-400,#94a3b8);fill:currentColor;cursor:grab;touch-action:none}.cp-rule-grip:hover,.cp-rule-grip:focus-visible{color:var(--n-700,#334155);background:rgba(255,255,255,.7);border-color:var(--n-300,#cbd5e1)}.cp-rule-dragging{opacity:.55}.cp-rule-dragging .cp-rule-grip{cursor:grabbing}.cp-drop-before{box-shadow:inset 0 3px 0 var(--ux-primary,#2563eb)}.cp-drop-after{box-shadow:inset 0 -3px 0 var(--ux-primary,#2563eb)}
+.cp-drag-grip{flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;inline-size:22px;block-size:26px;padding:0;border:1px solid transparent;border-radius:5px;background:transparent;color:var(--n-400,#94a3b8);fill:currentColor;cursor:grab;touch-action:none}.cp-drag-grip:hover,.cp-drag-grip:focus-visible{color:var(--n-700,#334155);background:rgba(255,255,255,.7);border-color:var(--n-300,#cbd5e1)}.cp-dragging{opacity:.55}.cp-dragging .cp-drag-grip{cursor:grabbing}.cp-drop-before{box-shadow:inset 0 3px 0 var(--ux-primary,#2563eb)}.cp-drop-after{box-shadow:inset 0 -3px 0 var(--ux-primary,#2563eb)}
 .cp-profile-failure{position:fixed;inset-inline:16px;bottom:16px;z-index:250;background:#fff1f2;color:#881337;border:1px solid #be123c;border-radius:8px;padding:14px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;box-shadow:0 8px 24px #0f172a33;font:12.5px system-ui}.cp-profile-failure div{display:flex;gap:8px}.cp-profile-failure button{background:#fff;color:#881337;border:1px solid #be123c;border-radius:5px;padding:6px 10px}:focus-visible,input:focus-within,select:focus-within,textarea:focus-within{outline:2px solid #1d4ed8!important;outline-offset:2px!important}</style></head>
 <body>
 <div id="root"></div>
@@ -5387,6 +5387,8 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.conduct.strikeTag": "strike",
     "ux.conduct.shared": "Shared by all your classes: saved in your teacher profile. A change here applies to every class.",
     "ux.conduct.sharedOff": "This class's own code. Link your teacher profile to use one code for all your classes.",
+    "ux.classes.drag": "Drag to change the order of your classes (or use the up and down arrow keys)",
+    "ux.classes.orderFailed": "The new class order could not be saved in this browser.",
     "ux.conduct.drag": "Drag to reorder (or use the up and down arrow keys)",
     "ux.conduct.strikeAdds": "This rule also records strike {n} of {max}.",
     "ux.conduct.strikeFull": "Already 3 strikes: the marks are deducted, but no strike is added.",
@@ -10511,6 +10513,8 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.conduct.strikeTag": "\u0625\u0646\u0630\u0627\u0631",
     "ux.conduct.shared": "\u0645\u0634\u062A\u0631\u0643\u0629 \u0628\u064A\u0646 \u062C\u0645\u064A\u0639 \u0635\u0641\u0648\u0641\u0643: \u0645\u062D\u0641\u0648\u0638\u0629 \u0641\u064A \u0645\u0644\u0641\u0643 \u0627\u0644\u0634\u062E\u0635\u064A \u0643\u0645\u0639\u0644\u0645. \u0623\u064A \u062A\u063A\u064A\u064A\u0631 \u0647\u0646\u0627 \u064A\u0633\u0631\u064A \u0639\u0644\u0649 \u0643\u0644 \u0627\u0644\u0635\u0641\u0648\u0641.",
     "ux.conduct.sharedOff": "\u0642\u0648\u0627\u0639\u062F \u062E\u0627\u0635\u0629 \u0628\u0647\u0630\u0627 \u0627\u0644\u0635\u0641. \u0627\u0631\u0628\u0637 \u0645\u0644\u0641\u0643 \u0627\u0644\u0634\u062E\u0635\u064A \u0643\u0645\u0639\u0644\u0645 \u0644\u0627\u0633\u062A\u062E\u062F\u0627\u0645 \u0642\u0648\u0627\u0639\u062F \u0648\u0627\u062D\u062F\u0629 \u0644\u062C\u0645\u064A\u0639 \u0635\u0641\u0648\u0641\u0643.",
+    "ux.classes.drag": "\u0627\u0633\u062D\u0628 \u0644\u062A\u063A\u064A\u064A\u0631 \u062A\u0631\u062A\u064A\u0628 \u0635\u0641\u0648\u0641\u0643 (\u0623\u0648 \u0627\u0633\u062A\u062E\u062F\u0645 \u0645\u0641\u062A\u0627\u062D\u064E\u064A \u0627\u0644\u0633\u0647\u0645 \u0644\u0644\u0623\u0639\u0644\u0649 \u0648\u0644\u0644\u0623\u0633\u0641\u0644)",
+    "ux.classes.orderFailed": "\u062A\u0639\u0630\u0651\u0631 \u062D\u0641\u0638 \u0627\u0644\u062A\u0631\u062A\u064A\u0628 \u0627\u0644\u062C\u062F\u064A\u062F \u0644\u0644\u0635\u0641\u0648\u0641 \u0641\u064A \u0647\u0630\u0627 \u0627\u0644\u0645\u062A\u0635\u0641\u062D.",
     "ux.conduct.drag": "\u0627\u0633\u062D\u0628 \u0644\u062A\u063A\u064A\u064A\u0631 \u0627\u0644\u062A\u0631\u062A\u064A\u0628 (\u0623\u0648 \u0627\u0633\u062A\u062E\u062F\u0645 \u0645\u0641\u062A\u0627\u062D\u064E\u064A \u0627\u0644\u0633\u0647\u0645 \u0644\u0644\u0623\u0639\u0644\u0649 \u0648\u0644\u0644\u0623\u0633\u0641\u0644)",
     "ux.conduct.strikeAdds": "\u0647\u0630\u0647 \u0627\u0644\u0642\u0627\u0639\u062F\u0629 \u062A\u0633\u062C\u0651\u0644 \u0623\u064A\u0636\u064B\u0627 \u0627\u0644\u0625\u0646\u0630\u0627\u0631 {n} \u0645\u0646 {max}.",
     "ux.conduct.strikeFull": "\u0644\u062F\u0649 \u0627\u0644\u0637\u0627\u0644\u0628 3 \u0625\u0646\u0630\u0627\u0631\u0627\u062A \u0628\u0627\u0644\u0641\u0639\u0644: \u062A\u064F\u062E\u0635\u0645 \u0627\u0644\u062F\u0631\u062C\u0627\u062A \u062F\u0648\u0646 \u0625\u0636\u0627\u0641\u0629 \u0625\u0646\u0630\u0627\u0631.",
@@ -27000,6 +27004,19 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       "meaning": "ux.conduct.drag"
     },
     {
+      "id": "ux.classes.drag",
+      "labelKey": "ux.classes.drag",
+      "icon": null,
+      "shortcut": null,
+      "availability": "rendered-and-not-disabled",
+      "canonicalHome": "classes:context",
+      "events": [
+        "onClick"
+      ],
+      "source": "src/modules",
+      "meaning": "ux.classes.drag"
+    },
+    {
       "id": "ux.report.sort",
       "labelKey": "ux.report.sort",
       "icon": null,
@@ -33594,7 +33611,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
   Object.assign(uxClick, { "nav.assessments": "nav.assessments", "assess.import": "assess.import", "assess.useLessons": "assess.useLessons", "assess.cancelImport": "assess.cancelImport", "assess.useGuess": "assess.useGuess", "assess.useAll": "assess.useAll", "assess.lessons": "assess.lessons", "assess.pickDone": "assess.pickDone" });
   Object.assign(uxChange, { "assess.file": "assess.file", "assess.sheet": "assess.sheet", "assess.column": "assess.column", "assess.type": "assess.type", "assess.date": "assess.date", "assess.term": "assess.term", "assess.search": "assess.search", "assess.pick": "assess.pick" });
   Object.assign(uxClick, { "pace.openYear": "pace.openYear", "pace.openLessons": "pace.openLessons", "pace.allLessons": "pace.allLessons", "pace.yearTab": "pace.yearTab" });
-  Object.assign(uxClick, { "conduct.drag": "conduct.drag" });
+  Object.assign(uxClick, { "conduct.drag": "conduct.drag", "classes.drag": "classes.drag" });
   Object.assign(uxChange, { "pace.done": "pace.done", "pace.termFrom": "pace.termFrom", "pace.termTo": "pace.termTo", "pace.planTerm": "pace.planTerm" });
   var uxActions = [...Object.entries(uxClick).map(([id, key4]) => [id, key4, "onClick"]), ...Object.entries(uxChange).map(([id, key4]) => [id, key4, "onChange"])].map(([id, key4, event]) => ({ id: "ux." + id, labelKey: "ux." + key4, icon: null, shortcut: null, availability: "rendered-and-not-disabled", canonicalHome: id.startsWith("nav.") ? "Workspace:sidebar" : id.startsWith("appearance.") ? "Workspace:context" : id.split(".")[0] + ":context", events: [event], source: "src/modules", meaning: "ux." + id }));
 
@@ -35605,6 +35622,8 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "conduct.strikeTag": ["strike", "\u0625\u0646\u0630\u0627\u0631"],
     "conduct.shared": ["Shared by all your classes: saved in your teacher profile. A change here applies to every class.", "\u0645\u0634\u062A\u0631\u0643\u0629 \u0628\u064A\u0646 \u062C\u0645\u064A\u0639 \u0635\u0641\u0648\u0641\u0643: \u0645\u062D\u0641\u0648\u0638\u0629 \u0641\u064A \u0645\u0644\u0641\u0643 \u0627\u0644\u0634\u062E\u0635\u064A \u0643\u0645\u0639\u0644\u0645. \u0623\u064A \u062A\u063A\u064A\u064A\u0631 \u0647\u0646\u0627 \u064A\u0633\u0631\u064A \u0639\u0644\u0649 \u0643\u0644 \u0627\u0644\u0635\u0641\u0648\u0641."],
     "conduct.sharedOff": ["This class's own code. Link your teacher profile to use one code for all your classes.", "\u0642\u0648\u0627\u0639\u062F \u062E\u0627\u0635\u0629 \u0628\u0647\u0630\u0627 \u0627\u0644\u0635\u0641. \u0627\u0631\u0628\u0637 \u0645\u0644\u0641\u0643 \u0627\u0644\u0634\u062E\u0635\u064A \u0643\u0645\u0639\u0644\u0645 \u0644\u0627\u0633\u062A\u062E\u062F\u0627\u0645 \u0642\u0648\u0627\u0639\u062F \u0648\u0627\u062D\u062F\u0629 \u0644\u062C\u0645\u064A\u0639 \u0635\u0641\u0648\u0641\u0643."],
+    "classes.drag": ["Drag to change the order of your classes (or use the up and down arrow keys)", "\u0627\u0633\u062D\u0628 \u0644\u062A\u063A\u064A\u064A\u0631 \u062A\u0631\u062A\u064A\u0628 \u0635\u0641\u0648\u0641\u0643 (\u0623\u0648 \u0627\u0633\u062A\u062E\u062F\u0645 \u0645\u0641\u062A\u0627\u062D\u064E\u064A \u0627\u0644\u0633\u0647\u0645 \u0644\u0644\u0623\u0639\u0644\u0649 \u0648\u0644\u0644\u0623\u0633\u0641\u0644)"],
+    "classes.orderFailed": ["The new class order could not be saved in this browser.", "\u062A\u0639\u0630\u0651\u0631 \u062D\u0641\u0638 \u0627\u0644\u062A\u0631\u062A\u064A\u0628 \u0627\u0644\u062C\u062F\u064A\u062F \u0644\u0644\u0635\u0641\u0648\u0641 \u0641\u064A \u0647\u0630\u0627 \u0627\u0644\u0645\u062A\u0635\u0641\u062D."],
     "conduct.drag": ["Drag to reorder (or use the up and down arrow keys)", "\u0627\u0633\u062D\u0628 \u0644\u062A\u063A\u064A\u064A\u0631 \u0627\u0644\u062A\u0631\u062A\u064A\u0628 (\u0623\u0648 \u0627\u0633\u062A\u062E\u062F\u0645 \u0645\u0641\u062A\u0627\u062D\u064E\u064A \u0627\u0644\u0633\u0647\u0645 \u0644\u0644\u0623\u0639\u0644\u0649 \u0648\u0644\u0644\u0623\u0633\u0641\u0644)"],
     "conduct.strikeAdds": ["This rule also records strike {n} of {max}.", "\u0647\u0630\u0647 \u0627\u0644\u0642\u0627\u0639\u062F\u0629 \u062A\u0633\u062C\u0651\u0644 \u0623\u064A\u0636\u064B\u0627 \u0627\u0644\u0625\u0646\u0630\u0627\u0631 {n} \u0645\u0646 {max}."],
     "conduct.strikeFull": ["Already 3 strikes: the marks are deducted, but no strike is added.", "\u0644\u062F\u0649 \u0627\u0644\u0637\u0627\u0644\u0628 3 \u0625\u0646\u0630\u0627\u0631\u0627\u062A \u0628\u0627\u0644\u0641\u0639\u0644: \u062A\u064F\u062E\u0635\u0645 \u0627\u0644\u062F\u0631\u062C\u0627\u062A \u062F\u0648\u0646 \u0625\u0636\u0627\u0641\u0629 \u0625\u0646\u0630\u0627\u0631."],
@@ -37417,22 +37436,22 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     return at < 0 || target == null ? list2 : moveRule(list2, id, target, step > 0);
   }
 
-  // src/modules/lesson-actions/rule-order.jsx
-  var rowOf = (id) => document.querySelector('[data-cp-rule="' + CSS.escape(id) + '"]');
-  function RuleHandle({ id, visible, rules, onMove }) {
-    const commit = (list2) => {
-      if (list2 === rules) return;
-      onMove(list2);
-      requestAnimationFrame(() => rowOf(id)?.querySelector(".cp-rule-grip")?.focus());
+  // src/core/drag-grip.jsx
+  function DragGrip({ id, visible, list: list2, onMove, action: action2, label, rowAttr }) {
+    const rowOf = (key4) => document.querySelector("[" + rowAttr + '="' + CSS.escape(key4) + '"]');
+    const commit = (next) => {
+      if (next === list2) return;
+      onMove(next);
+      requestAnimationFrame(() => rowOf(id)?.querySelector(".cp-drag-grip")?.focus());
     };
     const drag = (event) => {
       if (event.button !== 0) return;
       event.preventDefault();
       event.currentTarget.focus();
-      const row2 = event.currentTarget.closest("[data-cp-rule]"), rows = () => [...row2?.parentElement?.querySelectorAll(":scope > [data-cp-rule]") || []];
+      const row2 = event.currentTarget.closest("[" + rowAttr + "]"), rows = () => [...row2?.parentElement?.querySelectorAll(":scope > [" + rowAttr + "]") || []];
       if (!row2) return;
       let target = null, after = false;
-      row2.classList.add("cp-rule-dragging");
+      row2.classList.add("cp-dragging");
       const clear = () => rows().forEach((r) => r.classList.remove("cp-drop-before", "cp-drop-after"));
       const move = (ev) => {
         clear();
@@ -37442,7 +37461,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
           if (ev.clientY >= box.top && ev.clientY <= box.bottom) {
             after = ev.clientY > box.top + box.height / 2;
             if (r !== row2) {
-              target = r.dataset.cpRule;
+              target = r.getAttribute(rowAttr);
               r.classList.add(after ? "cp-drop-after" : "cp-drop-before");
             }
             break;
@@ -37454,8 +37473,8 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
         window.removeEventListener("pointerup", stop);
         window.removeEventListener("pointercancel", stop);
         clear();
-        row2.classList.remove("cp-rule-dragging");
-        if (ev.type === "pointerup" && target) commit(moveRule(rules, id, target, after));
+        row2.classList.remove("cp-dragging");
+        if (ev.type === "pointerup" && target) commit(moveRule(list2, id, target, after));
       };
       window.addEventListener("pointermove", move);
       window.addEventListener("pointerup", stop);
@@ -37465,10 +37484,15 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       const step = event.key === "ArrowUp" ? -1 : event.key === "ArrowDown" ? 1 : 0;
       if (!step) return;
       event.preventDefault();
-      commit(stepRule(rules, visible, id, step));
+      commit(stepRule(list2, visible, id, step));
     };
-    const label = uxText("conduct.drag");
-    return /* @__PURE__ */ cpJsx("button", { type: "button", className: "cp-rule-grip", ...actionProps("ux.conduct.drag", null, id), "aria-label": label, title: label, onPointerDown: drag, onKeyDown: keys }, /* @__PURE__ */ cpJsx("svg", { width: "10", height: "16", viewBox: "0 0 10 16", "aria-hidden": "true" }, /* @__PURE__ */ cpJsx("circle", { cx: "2.5", cy: "3", r: "1.5" }), /* @__PURE__ */ cpJsx("circle", { cx: "7.5", cy: "3", r: "1.5" }), /* @__PURE__ */ cpJsx("circle", { cx: "2.5", cy: "8", r: "1.5" }), /* @__PURE__ */ cpJsx("circle", { cx: "7.5", cy: "8", r: "1.5" }), /* @__PURE__ */ cpJsx("circle", { cx: "2.5", cy: "13", r: "1.5" }), /* @__PURE__ */ cpJsx("circle", { cx: "7.5", cy: "13", r: "1.5" })));
+    const text6 = uxText(label);
+    return /* @__PURE__ */ cpJsx("button", { type: "button", className: "cp-drag-grip", ...actionProps(action2, null, id), "aria-label": text6, title: text6, onPointerDown: drag, onKeyDown: keys }, /* @__PURE__ */ cpJsx("svg", { width: "10", height: "16", viewBox: "0 0 10 16", "aria-hidden": "true" }, /* @__PURE__ */ cpJsx("circle", { cx: "2.5", cy: "3", r: "1.5" }), /* @__PURE__ */ cpJsx("circle", { cx: "7.5", cy: "3", r: "1.5" }), /* @__PURE__ */ cpJsx("circle", { cx: "2.5", cy: "8", r: "1.5" }), /* @__PURE__ */ cpJsx("circle", { cx: "7.5", cy: "8", r: "1.5" }), /* @__PURE__ */ cpJsx("circle", { cx: "2.5", cy: "13", r: "1.5" }), /* @__PURE__ */ cpJsx("circle", { cx: "7.5", cy: "13", r: "1.5" })));
+  }
+
+  // src/modules/lesson-actions/rule-order.jsx
+  function RuleHandle({ id, visible, rules, onMove }) {
+    return /* @__PURE__ */ cpJsx(DragGrip, { id, visible, list: rules, onMove, action: "ux.conduct.drag", label: "conduct.drag", rowAttr: "data-cp-rule" });
   }
 
   // src/core/stable-component.jsx
@@ -44205,12 +44229,14 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
   }
 
   // src/gradebook/class-manager.jsx
-  function ClassManager({ classes, activeId, onSwitch, onRename, onReplace, onRemove, onAddExisting, onCreateNew, onClose, _cpOrigin }) {
+  function ClassManager({ classes, activeId, onSwitch, onRename, onReplace, onRemove, onAddExisting, onCreateNew, onClose, _cpOrigin, onReorder }) {
     return /* @__PURE__ */ cpJsx("div", { style: { position: en_default["gb.992a93455c71fedd"], inset: 0, background: en_default["gb.a5ea378397922d5f"], backdropFilter: en_default["gb.d69da87cc94f6e5b"], display: en_default["gb.222f930b87524636"], alignItems: en_default["gb.f179a509d32bd92c"], justifyContent: en_default["gb.f179a509d32bd92c"], zIndex: 320, padding: 20 }, onMouseDown: function(e) {
       if (e.target === e.currentTarget) onClose();
     }, "data-cp-scope": _cpOrigin }, /* @__PURE__ */ cpJsx("div", { style: { background: en_default["gb.e08de713877c54e8"], borderRadius: 14, width: en_default["gb.bf6a6ea091205af1"], maxHeight: en_default["gb.fa63e23e638e10e7"], display: en_default["gb.222f930b87524636"], flexDirection: en_default["gb.881d5fb60090f59a"], overflow: en_default["gb.e564b4081d7a9ea4"], boxShadow: en_default["gb.ee81ec5f5347b399"], fontFamily: en_default["gb.035300f3afee55ae"] } }, /* @__PURE__ */ cpJsx("div", { style: { display: en_default["gb.222f930b87524636"], alignItems: en_default["gb.f179a509d32bd92c"], gap: 10, padding: en_default["gb.0caea5d44cac5dcd"], borderBottom: en_default["gb.d6ab3ca69906c920"] } }, /* @__PURE__ */ cpJsx("strong", { style: { fontSize: 15, color: en_default["gb.0e684e516035b04c"] } }, en_default["gb.845c94069203a356"]), /* @__PURE__ */ cpJsx("span", { style: { fontSize: 11.5, color: en_default["gb.b5e2bc59ff0f8c39"] } }, en_default["gb.6e01f78b9eb4142b"], classes.length, en_default["gb.0b29126c4966e133"]), /* @__PURE__ */ cpJsx("button", { onClick: bindAction("gb.class-manager.1080", "singleton", "onClick", onClose), style: B({ marginLeft: en_default["gb.929260ad9b9ea9fe"], background: en_default["gb.10e9f5602d2492b3"], border: en_default["gb.d6ab3ca69906c920"], color: en_default["gb.833631aa325ef0ac"], width: 28, height: 28, padding: 0, fontSize: 15 }), "data-cp-action": "gb.class-manager.1080", "data-cp-context": "singleton" }, en_default["gb.be64f28a8d0a6257"])), /* @__PURE__ */ cpJsx("div", { style: { padding: 16, overflowY: en_default["gb.929260ad9b9ea9fe"] }, className: en_default["gb.e16a9d4d1cf9ead8"] }, /* @__PURE__ */ cpJsx("div", { style: { fontSize: 11.5, color: en_default["gb.6b3d6d843dfe8b50"], marginBottom: 12, lineHeight: 1.5 } }, en_default["gb.bdedeaa73c2cd9a6"]), classes.length === 0 && /* @__PURE__ */ cpJsx("div", { style: { padding: 18, background: en_default["gb.46461f86fde154d9"], border: en_default["gb.55972a6d920aae83"], borderRadius: 8, fontSize: 12.5, color: en_default["gb.6b3d6d843dfe8b50"], textAlign: en_default["gb.f179a509d32bd92c"] } }, en_default["gb.05b6ed0d8708cdf6"]), /* @__PURE__ */ cpJsx("div", { style: { display: en_default["gb.222f930b87524636"], flexDirection: en_default["gb.881d5fb60090f59a"], gap: 8 } }, cpRaw(classes.map(function(c) {
       var on = c.id === activeId;
-      return /* @__PURE__ */ cpJsx("div", { key: c.id, style: { display: en_default["gb.222f930b87524636"], alignItems: en_default["gb.f179a509d32bd92c"], gap: 10, padding: en_default["gb.df2b3200534403db"], border: en_default["gb.bc5481e0e6a81a72"] + (on ? en_default["gb.d139a669343ee5a9"] : en_default["gb.3b313dfb66a5b167"]), background: on ? en_default["gb.61eaaf6f10c140bc"] : en_default["gb.e08de713877c54e8"], borderRadius: 9 } }, /* @__PURE__ */ cpJsx("span", { style: { width: 8, height: 8, borderRadius: 4, background: on ? en_default["gb.3c5c1ab6c5fd2f50"] : en_default["gb.e2442d83b3a8e558"], flexShrink: 0 } }), /* @__PURE__ */ cpJsx("div", { style: { flex: 1, minWidth: 0 } }, /* @__PURE__ */ cpJsx("div", { style: { fontSize: 13, fontWeight: 600, color: en_default["gb.0e684e516035b04c"], overflow: en_default["gb.e564b4081d7a9ea4"], textOverflow: en_default["gb.b014a0215b719a33"], whiteSpace: en_default["gb.010d16d2e92177fe"] } }, cpRaw(c.name || en_default["gb.f7491e291e5a417b"])), /* @__PURE__ */ cpJsx("div", { style: { fontSize: 10.5, color: en_default["gb.b5e2bc59ff0f8c39"] } }, on ? en_default["gb.92340695899bd2d8"] : en_default["gb.ca98b80f10aa4495"])), !on && /* @__PURE__ */ cpJsx("button", { onClick: bindAction("gb.class-manager.2578", JSON.stringify([c.id]), "onClick", (function() {
+      return /* @__PURE__ */ cpJsx("div", { "data-cp-class": c.id, key: c.id, style: { display: en_default["gb.222f930b87524636"], alignItems: en_default["gb.f179a509d32bd92c"], gap: 10, padding: en_default["gb.df2b3200534403db"], border: en_default["gb.bc5481e0e6a81a72"] + (on ? en_default["gb.d139a669343ee5a9"] : en_default["gb.3b313dfb66a5b167"]), background: on ? en_default["gb.61eaaf6f10c140bc"] : en_default["gb.e08de713877c54e8"], borderRadius: 9 } }, onReorder && classes.length > 1 && /* @__PURE__ */ cpJsx(DragGrip, { id: c.id, visible: classes.map(function(x2) {
+        return x2.id;
+      }), list: classes, onMove: onReorder, action: "ux.classes.drag", label: "classes.drag", rowAttr: "data-cp-class" }), /* @__PURE__ */ cpJsx("span", { style: { width: 8, height: 8, borderRadius: 4, background: on ? en_default["gb.3c5c1ab6c5fd2f50"] : en_default["gb.e2442d83b3a8e558"], flexShrink: 0 } }), /* @__PURE__ */ cpJsx("div", { style: { flex: 1, minWidth: 0 } }, /* @__PURE__ */ cpJsx("div", { style: { fontSize: 13, fontWeight: 600, color: en_default["gb.0e684e516035b04c"], overflow: en_default["gb.e564b4081d7a9ea4"], textOverflow: en_default["gb.b014a0215b719a33"], whiteSpace: en_default["gb.010d16d2e92177fe"] } }, cpRaw(c.name || en_default["gb.f7491e291e5a417b"])), /* @__PURE__ */ cpJsx("div", { style: { fontSize: 10.5, color: en_default["gb.b5e2bc59ff0f8c39"] } }, on ? en_default["gb.92340695899bd2d8"] : en_default["gb.ca98b80f10aa4495"])), !on && /* @__PURE__ */ cpJsx("button", { onClick: bindAction("gb.class-manager.2578", JSON.stringify([c.id]), "onClick", (function() {
         onSwitch(c.id);
       })), style: B({ background: en_default["gb.dbd729b0a3fbcb8b"], color: en_default["gb.e08de713877c54e8"], fontSize: 11.5 }), "data-cp-action": "gb.class-manager.2578", "data-cp-context": JSON.stringify([c.id]) }, en_default["gb.39921a740bf2b678"]), /* @__PURE__ */ cpJsx("button", { onClick: bindAction("gb.class-manager.2714", JSON.stringify([c.id]), "onClick", (function() {
         onRename(c.id);
@@ -44300,6 +44326,16 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
   }
   function purgeItem(doc, id) {
     return { ...doc, cp: { ...doc.cp, recycleBin: { ...recycleBin(doc), items: recycleBin(doc).items.filter((i) => i.id !== id) } } };
+  }
+
+  // src/core/class-order.js
+  function numberClasses(list2) {
+    return list2.map((record, index) => record.order === index ? record : { ...record, order: index });
+  }
+  function saveClassOrder(list2, setClasses) {
+    const next = numberClasses(list2);
+    setClasses(next);
+    return Promise.all(next.filter((record, index) => record !== list2[index]).map((record) => idbPutClass(record))).catch(() => toast(uxText2("classes.orderFailed")));
   }
 
   // src/modules/groups/model.js
@@ -51817,7 +51853,7 @@ Reply with JSON only, exactly in the shape of "response_schema", one report per 
       onC();
     }, onClose: function() {
       sMgrO(false);
-    }, _cpOrigin: "15-app.jsx:22135" }));
+    }, _cpOrigin: "15-app.jsx:22135", onReorder: (list2) => saveClassOrder(list2, sClasses) }));
   }
 
   // src/core/demo-workspace.jsx
