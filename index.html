@@ -852,6 +852,51 @@ body{background:var(--cp-background);color:var(--cp-text)}
 .cp-conduct-strike{margin-block:0 6px;padding:4px 8px;border-radius:5px;background:#fff8e1;border:1px solid #fcd34d;color:#92400e;font-size:11px;font-weight:600}.cp-conduct-strike.is-full{background:#f8fafc;border-color:#cbd5e1;color:#475569}
 .cp-conduct-shared{margin-block:8px 0;padding:6px 10px;border-radius:6px;background:#eff6ff;border:1px solid #bfdbfe;color:#1e3a8a;font-size:11.5px;line-height:1.5}.cp-conduct-shared.is-local{background:#f8fafc;border-color:#cbd5e1;color:#475569}
 .cp-drag-grip{flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;inline-size:22px;block-size:26px;padding:0;border:1px solid transparent;border-radius:5px;background:transparent;color:var(--n-400,#94a3b8);fill:currentColor;cursor:grab;touch-action:none}.cp-drag-grip:hover,.cp-drag-grip:focus-visible{color:var(--n-700,#334155);background:rgba(255,255,255,.7);border-color:var(--n-300,#cbd5e1)}.cp-dragging{opacity:.55}.cp-dragging .cp-drag-grip{cursor:grabbing}.cp-drop-before{box-shadow:inset 0 3px 0 var(--ux-primary,#2563eb)}.cp-drop-after{box-shadow:inset 0 -3px 0 var(--ux-primary,#2563eb)}
+
+/* M53 (owner request): a compact timetable. One summary line; a week grid of small cells with filled class chips, today and
+   the current period marked, breaks as thin rows; bell times as one list with grips; planning tools folded away. */
+.cp-tt-summary{display:flex;flex-wrap:wrap;gap:4px 18px;margin:0 0 10px;font-size:12.5px;color:var(--cp-muted)}.cp-tt-summary b{color:var(--cp-text);font-size:15px;font-variant-numeric:tabular-nums}
+.cp-tt-grid{border-collapse:separate;border-spacing:3px;width:100%;table-layout:fixed;font-size:12px}
+.cp-tt-grid th{text-align:start;font-size:12px;padding:2px 6px 4px;color:var(--cp-muted);font-weight:650}.cp-tt-grid th small{margin-inline-start:6px;font-weight:400;font-variant-numeric:tabular-nums}
+.cp-tt-grid th[data-today=true]{color:var(--cp-text)}.cp-tt-grid th[data-today=true]::after{content:"";display:block;block-size:3px;border-radius:2px;margin-block-start:3px;background:var(--cp-gold,#c9a227)}
+.cp-tt-grid .cp-tt-cell{vertical-align:top;padding:4px 7px;border:1px solid var(--cp-border);border-radius:7px;background:var(--cp-surface);overflow-wrap:anywhere;block-size:44px;box-shadow:none}
+.cp-workspace[dir=rtl] .cp-tt-grid .cp-tt-cell.has-class,.cp-tt-grid .cp-tt-cell.has-class{background:color-mix(in srgb,var(--cp-class) 20%,var(--cp-surface));border-color:color-mix(in srgb,var(--cp-class) 50%,var(--cp-border));box-shadow:none}
+.cp-tt-grid .cp-tt-cell[data-break=true]{block-size:auto;padding:1px 7px;background:transparent;border-style:dashed}
+.cp-tt-grid .cp-tt-cell[data-today=true]:not(.has-class):not([data-break=true]){background:color-mix(in srgb,var(--cp-gold,#c9a227) 7%,var(--cp-surface))}
+.cp-tt-grid .cp-tt-cell[data-now=true]{outline:2px solid var(--cp-text);outline-offset:-1px}
+.cp-tt-grid .cp-tt-cell[data-conflict=true]{background:#fef2f2;border-color:#fca5a5}.cp-tt-grid .cp-tt-cell[data-off=true]{opacity:.55}
+.cp-tt-when{display:flex;justify-content:space-between;gap:4px;font-size:10.5px;line-height:1.35;color:var(--cp-muted)}.cp-tt-when b{font-weight:600}.cp-tt-when bdi{font-variant-numeric:tabular-nums}
+.cp-tt-class,.cp-tt-grid [data-cp-action="m4.tt.open"]{display:block;margin-block-start:2px;font-weight:700;font-size:12.5px;line-height:1.3;color:var(--cp-text)}
+.cp-tt-grid [data-cp-action="m4.tt.open"]{background:transparent!important;border:0!important;padding:0!important;text-align:start!important;cursor:pointer}.cp-tt-grid [data-cp-action="m4.tt.open"]:hover{text-decoration:underline}
+.cp-tt-grid .cp-tt-quick{margin-block:2px 0;padding:2px 6px!important;min-block-size:0!important;font-size:12px!important}
+.cp-tt-meta{font-size:10.5px;color:var(--cp-muted);margin-block-start:1px}.cp-tt-note{white-space:pre-wrap}
+.cp-tt-grid.is-print .cp-tt-cell{block-size:auto}
+.cp-tt-bells{margin-block:14px 10px;padding:12px 14px;border:1px solid var(--cp-border);border-radius:12px;background:var(--cp-surface)}
+.cp-tt-bells>header{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}.cp-tt-bells h3{margin:0;font-size:14px}
+.cp-tt-showfor{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--cp-muted)}.cp-tt-showfor select{block-size:30px;inline-size:auto!important}
+.cp-tt-bell{display:grid;grid-template-columns:24px minmax(120px,1.3fr) 112px 112px 72px minmax(110px,1fr) auto;gap:6px;align-items:center;padding-block:3px;border-block-end:1px solid var(--cp-border)}
+.cp-tt-bell>label>span{position:absolute;inline-size:1px;block-size:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.cp-tt-bell>label:not(.cp-tt-break){display:block!important}.cp-tt-bell input:not([type=checkbox]){block-size:30px;padding-block:2px;inline-size:100%}
+.cp-tt-bell-head{font-size:11px;font-weight:650;color:var(--cp-muted);padding-block:6px 4px}
+.cp-tt-bell.is-break{background:color-mix(in srgb,var(--cp-border) 25%,transparent)}.cp-tt-bell.is-conflict{background:#fef2f2}
+.cp-tt-break{display:flex;align-items:center;gap:4px;font-size:12px}
+.cp-tt-days{font-size:11.5px!important;padding:4px 8px!important;text-align:start!important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cp-tt-row-actions{display:flex;gap:4px;justify-content:flex-end}.cp-tt-delete{color:#b91c1c!important;padding:4px 9px!important;font-size:12px!important}
+.cp-tt-dayset{grid-column:2 / -1;display:flex;flex-wrap:wrap;gap:8px 12px;border:0;padding:0 0 4px;margin:0;font-size:12px}.cp-tt-dayset legend{float:inline-start;font-weight:650;margin-inline-end:6px}
+.cp-tt-error{grid-column:2 / -1;color:#b91c1c;margin:0;font-size:12px}
+.cp-tt-tools{margin-block:10px;border:1px solid var(--cp-border);border-radius:12px;background:var(--cp-surface);padding:8px 14px}
+.cp-tt-tools>summary{cursor:pointer;font-weight:650;font-size:13px;padding-block:4px}.cp-tt-tools section{border-block-start:1px solid var(--cp-border);padding-block:10px;margin-block-start:8px}.cp-tt-tools h4{margin:0 0 6px;font-size:12.5px}
+.cp-tt-schooldays{display:flex;flex-wrap:wrap;gap:10px;font-size:12px}
+@media (max-width:820px){.cp-tt-bell{grid-template-columns:24px 1fr 1fr 1fr}.cp-tt-bell-head{display:none}}
+.cp-tt-brushes{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-block:0 10px}
+.cp-tt-brush{display:inline-flex!important;align-items:center;gap:6px;padding:4px 10px!important;font-size:12px!important;border-radius:999px!important}
+.cp-tt-brush i{inline-size:10px;block-size:10px;border-radius:3px;background:var(--cp-class)}
+.cp-tt-brush[aria-pressed=true]{background:color-mix(in srgb,var(--cp-class,var(--cp-text)) 22%,var(--cp-surface))!important;border-color:var(--cp-class,var(--cp-text))!important;box-shadow:0 0 0 2px color-mix(in srgb,var(--cp-class,var(--cp-text)) 35%,transparent)}
+.cp-tt-brush.is-free{border-style:dashed!important}.cp-tt-brushes .cp-tt-hint{margin:0 0 0 6px}
+.cp-tt-grid .cp-tt-quick{display:block!important;inline-size:100%;min-block-size:22px;margin:0!important;padding:0!important;border:0!important;background:transparent!important;text-align:start!important;font-weight:700!important;font-size:12.5px!important;color:var(--cp-text)!important;cursor:pointer;touch-action:none}
+.cp-tt-grid .cp-tt-quick.is-empty::after{content:"+";opacity:0;color:var(--cp-muted)}.cp-tt-grid .cp-tt-cell:hover .cp-tt-quick.is-empty::after{opacity:1}
+.cp-tt-grid .cp-tt-cell[data-paint=set]{background:color-mix(in srgb,var(--cp-gold,#c9a227) 30%,var(--cp-surface))}.cp-tt-grid .cp-tt-cell[data-paint=clear]{background:var(--cp-surface);opacity:.5}
+.cp-tt-grid .cp-tt-cell.is-none{border:0;background:transparent}
 .cp-profile-failure{position:fixed;inset-inline:16px;bottom:16px;z-index:250;background:#fff1f2;color:#881337;border:1px solid #be123c;border-radius:8px;padding:14px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;box-shadow:0 8px 24px #0f172a33;font:12.5px system-ui}.cp-profile-failure div{display:flex;gap:8px}.cp-profile-failure button{background:#fff;color:#881337;border:1px solid #be123c;border-radius:5px;padding:6px 10px}:focus-visible,input:focus-within,select:focus-within,textarea:focus-within{outline:2px solid #1d4ed8!important;outline-offset:2px!important}</style></head>
 <body>
 <div id="root"></div>
@@ -6047,7 +6092,22 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.tt.place": "Place a lesson here",
     "ux.tt.noClasses": "Link a class file first.",
     "ux.tt.openClass": "Open this class",
-    "ux.tt.editHint": "Click a slot to place a class. Drag a lesson to move it; dropping it on another lesson swaps them. Every change can be undone.",
+    "ux.tt.sum.lessons": "lessons a week",
+    "ux.tt.sum.free": "free periods",
+    "ux.tt.sum.cover": "cover periods",
+    "ux.tt.sum.duty": "duty periods",
+    "ux.tt.sum.teaching": "of teaching a week",
+    "ux.tt.sum.time": "{h} h {m} min",
+    "ux.tt.bellTitle": "Bell times",
+    "ux.tt.bellHint": "Type straight into a row; it saves when you leave it or press Enter. Drag \u22EE\u22EE to change the order. Choose a day to see only that day's periods.",
+    "ux.tt.brushes": "Place a class",
+    "ux.tt.brushFree": "Free",
+    "ux.tt.brushOn": "Click or drag across the grid to place it. Click the picked class again to stop.",
+    "ux.tt.dragPeriod": "Drag to change the order of the periods (or use the up and down arrow keys)",
+    "ux.tt.periodDays": "Days this period applies",
+    "ux.tt.toolsTitle": "More tools: re-time all periods, saved schedules, lesson reminders, school days",
+    "ux.tt.presetsTitle": "Saved schedules",
+    "ux.tt.editHint": "Pick a class, then click or drag across the grid to place it; Free clears. With nothing picked, click a lesson for its details or drag it to move it.",
     "ux.bv.show": "Show",
     "ux.bv.all": "All",
     "ux.bv.attention": "Needs attention",
@@ -11194,7 +11254,22 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.tt.place": "\u0648\u0636\u0639 \u062D\u0635\u0629 \u0647\u0646\u0627",
     "ux.tt.noClasses": "\u0627\u0631\u0628\u0637 \u0645\u0644\u0641 \u0634\u0639\u0628\u0629 \u0623\u0648\u0644\u0627\u064B.",
     "ux.tt.openClass": "\u0641\u062A\u062D \u0647\u0630\u0647 \u0627\u0644\u0634\u0639\u0628\u0629",
-    "ux.tt.editHint": "\u0627\u0646\u0642\u0631 \u062E\u0627\u0646\u0629 \u0644\u0648\u0636\u0639 \u0634\u0639\u0628\u0629. \u0627\u0633\u062D\u0628 \u0627\u0644\u062D\u0635\u0629 \u0644\u0646\u0642\u0644\u0647\u0627\u060C \u0648\u0625\u0641\u0644\u0627\u062A\u0647\u0627 \u0639\u0644\u0649 \u062D\u0635\u0629 \u0623\u062E\u0631\u0649 \u064A\u0628\u0627\u062F\u0644 \u0628\u064A\u0646\u0647\u0645\u0627. \u064A\u0645\u0643\u0646 \u0627\u0644\u062A\u0631\u0627\u062C\u0639 \u0639\u0646 \u0643\u0644 \u062A\u063A\u064A\u064A\u0631.",
+    "ux.tt.sum.lessons": "\u062D\u0635\u0629 \u0623\u0633\u0628\u0648\u0639\u064A\u064B\u0627",
+    "ux.tt.sum.free": "\u062D\u0635\u0629 \u0641\u0631\u0627\u063A",
+    "ux.tt.sum.cover": "\u062D\u0635\u0629 \u0627\u062D\u062A\u064A\u0627\u0637",
+    "ux.tt.sum.duty": "\u062D\u0635\u0629 \u0645\u0647\u0627\u0645",
+    "ux.tt.sum.teaching": "\u062A\u062F\u0631\u064A\u0633 \u0623\u0633\u0628\u0648\u0639\u064A\u064B\u0627",
+    "ux.tt.sum.time": "{h} \u0633 {m} \u062F",
+    "ux.tt.bellTitle": "\u0645\u0648\u0627\u0639\u064A\u062F \u0627\u0644\u062D\u0635\u0635",
+    "ux.tt.bellHint": "\u0627\u0643\u062A\u0628 \u0645\u0628\u0627\u0634\u0631\u0629 \u0641\u064A \u0627\u0644\u0635\u0641\u061B \u064A\u064F\u062D\u0641\u0638 \u0639\u0646\u062F \u0645\u063A\u0627\u062F\u0631\u062A\u0647 \u0623\u0648 \u0627\u0644\u0636\u063A\u0637 \u0639\u0644\u0649 Enter. \u0627\u0633\u062D\u0628 \u22EE\u22EE \u0644\u062A\u063A\u064A\u064A\u0631 \u0627\u0644\u062A\u0631\u062A\u064A\u0628. \u0627\u062E\u062A\u0631 \u064A\u0648\u0645\u064B\u0627 \u0644\u0639\u0631\u0636 \u062D\u0635\u0635 \u0630\u0644\u0643 \u0627\u0644\u064A\u0648\u0645 \u0641\u0642\u0637.",
+    "ux.tt.brushes": "\u0648\u0636\u0639 \u0634\u0639\u0628\u0629",
+    "ux.tt.brushFree": "\u0641\u0631\u0627\u063A",
+    "ux.tt.brushOn": "\u0627\u0646\u0642\u0631 \u0623\u0648 \u0627\u0633\u062D\u0628 \u0639\u0644\u0649 \u0627\u0644\u062C\u062F\u0648\u0644 \u0644\u0648\u0636\u0639\u0647\u0627. \u0627\u0646\u0642\u0631 \u0627\u0644\u0634\u0639\u0628\u0629 \u0627\u0644\u0645\u062E\u062A\u0627\u0631\u0629 \u0645\u0631\u0629 \u0623\u062E\u0631\u0649 \u0644\u0644\u0625\u064A\u0642\u0627\u0641.",
+    "ux.tt.dragPeriod": "\u0627\u0633\u062D\u0628 \u0644\u062A\u063A\u064A\u064A\u0631 \u062A\u0631\u062A\u064A\u0628 \u0627\u0644\u062D\u0635\u0635 (\u0623\u0648 \u0627\u0633\u062A\u062E\u062F\u0645 \u0645\u0641\u062A\u0627\u062D\u064E\u064A \u0627\u0644\u0633\u0647\u0645 \u0644\u0644\u0623\u0639\u0644\u0649 \u0648\u0644\u0644\u0623\u0633\u0641\u0644)",
+    "ux.tt.periodDays": "\u0623\u064A\u0627\u0645 \u0647\u0630\u0647 \u0627\u0644\u062D\u0635\u0629",
+    "ux.tt.toolsTitle": "\u0623\u062F\u0648\u0627\u062A \u0623\u062E\u0631\u0649: \u0625\u0639\u0627\u062F\u0629 \u062A\u0648\u0642\u064A\u062A \u0627\u0644\u062D\u0635\u0635\u060C \u0627\u0644\u062C\u062F\u0627\u0648\u0644 \u0627\u0644\u0645\u062D\u0641\u0648\u0638\u0629\u060C \u062A\u0630\u0643\u064A\u0631\u0627\u062A \u0627\u0644\u062D\u0635\u0635\u060C \u0623\u064A\u0627\u0645 \u0627\u0644\u062F\u0631\u0627\u0633\u0629",
+    "ux.tt.presetsTitle": "\u0627\u0644\u062C\u062F\u0627\u0648\u0644 \u0627\u0644\u0645\u062D\u0641\u0648\u0638\u0629",
+    "ux.tt.editHint": "\u0627\u062E\u062A\u0631 \u0634\u0639\u0628\u0629 \u062B\u0645 \u0627\u0646\u0642\u0631 \u0623\u0648 \u0627\u0633\u062D\u0628 \u0639\u0644\u0649 \u0627\u0644\u062C\u062F\u0648\u0644 \u0644\u0648\u0636\u0639\u0647\u0627\u061B \xAB\u0641\u0631\u0627\u063A\xBB \u064A\u0645\u0633\u062D. \u0648\u0645\u0646 \u062F\u0648\u0646 \u0627\u062E\u062A\u064A\u0627\u0631\u060C \u0627\u0646\u0642\u0631 \u0627\u0644\u062D\u0635\u0629 \u0644\u062A\u0641\u0627\u0635\u064A\u0644\u0647\u0627 \u0623\u0648 \u0627\u0633\u062D\u0628\u0647\u0627 \u0644\u0646\u0642\u0644\u0647\u0627.",
     "ux.bv.show": "\u0639\u0631\u0636",
     "ux.bv.all": "\u0627\u0644\u0643\u0644",
     "ux.bv.attention": "\u064A\u062D\u062A\u0627\u062C \u0627\u0646\u062A\u0628\u0627\u0647\u0627\u064B",
@@ -27063,6 +27138,45 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       "meaning": "ux.classes.drag"
     },
     {
+      "id": "ux.tt.dragPeriod",
+      "labelKey": "ux.tt.dragPeriod",
+      "icon": null,
+      "shortcut": null,
+      "availability": "rendered-and-not-disabled",
+      "canonicalHome": "tt:context",
+      "events": [
+        "onClick"
+      ],
+      "source": "src/modules",
+      "meaning": "ux.tt.dragPeriod"
+    },
+    {
+      "id": "ux.tt.periodDays",
+      "labelKey": "ux.tt.periodDays",
+      "icon": null,
+      "shortcut": null,
+      "availability": "rendered-and-not-disabled",
+      "canonicalHome": "tt:context",
+      "events": [
+        "onClick"
+      ],
+      "source": "src/modules",
+      "meaning": "ux.tt.periodDays"
+    },
+    {
+      "id": "ux.tt.brush",
+      "labelKey": "ux.tt.brush",
+      "icon": null,
+      "shortcut": null,
+      "availability": "rendered-and-not-disabled",
+      "canonicalHome": "tt:context",
+      "events": [
+        "onClick"
+      ],
+      "source": "src/modules",
+      "meaning": "ux.tt.brush"
+    },
+    {
       "id": "ux.pace.dayAdd",
       "labelKey": "ux.pace.dayAdd",
       "icon": null,
@@ -33728,7 +33842,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
   Object.assign(uxClick, { "nav.assessments": "nav.assessments", "assess.import": "assess.import", "assess.useLessons": "assess.useLessons", "assess.cancelImport": "assess.cancelImport", "assess.useGuess": "assess.useGuess", "assess.useAll": "assess.useAll", "assess.lessons": "assess.lessons", "assess.pickDone": "assess.pickDone" });
   Object.assign(uxChange, { "assess.file": "assess.file", "assess.sheet": "assess.sheet", "assess.column": "assess.column", "assess.type": "assess.type", "assess.date": "assess.date", "assess.term": "assess.term", "assess.search": "assess.search", "assess.pick": "assess.pick" });
   Object.assign(uxClick, { "pace.openYear": "pace.openYear", "pace.openLessons": "pace.openLessons", "pace.allLessons": "pace.allLessons", "pace.yearTab": "pace.yearTab" });
-  Object.assign(uxClick, { "conduct.drag": "conduct.drag", "classes.drag": "classes.drag" });
+  Object.assign(uxClick, { "conduct.drag": "conduct.drag", "classes.drag": "classes.drag", "tt.dragPeriod": "tt.dragPeriod", "tt.periodDays": "tt.periodDays", "tt.brush": "tt.brush" });
   Object.assign(uxChange, { "pace.done": "pace.done", "pace.termFrom": "pace.termFrom", "pace.termTo": "pace.termTo", "pace.planTerm": "pace.planTerm" });
   Object.assign(uxClick, { "pace.dayAdd": "pace.dayAdd", "pace.dayDelete": "pace.dayDelete" });
   Object.assign(uxChange, { "pace.dayFrom": "pace.dayFrom", "pace.dayTo": "pace.dayTo", "pace.dayType": "pace.dayType" });
@@ -36838,7 +36952,22 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "tt.place": ["Place a lesson here", "\u0648\u0636\u0639 \u062D\u0635\u0629 \u0647\u0646\u0627"],
     "tt.noClasses": ["Link a class file first.", "\u0627\u0631\u0628\u0637 \u0645\u0644\u0641 \u0634\u0639\u0628\u0629 \u0623\u0648\u0644\u0627\u064B."],
     "tt.openClass": ["Open this class", "\u0641\u062A\u062D \u0647\u0630\u0647 \u0627\u0644\u0634\u0639\u0628\u0629"],
-    "tt.editHint": ["Click a slot to place a class. Drag a lesson to move it; dropping it on another lesson swaps them. Every change can be undone.", "\u0627\u0646\u0642\u0631 \u062E\u0627\u0646\u0629 \u0644\u0648\u0636\u0639 \u0634\u0639\u0628\u0629. \u0627\u0633\u062D\u0628 \u0627\u0644\u062D\u0635\u0629 \u0644\u0646\u0642\u0644\u0647\u0627\u060C \u0648\u0625\u0641\u0644\u0627\u062A\u0647\u0627 \u0639\u0644\u0649 \u062D\u0635\u0629 \u0623\u062E\u0631\u0649 \u064A\u0628\u0627\u062F\u0644 \u0628\u064A\u0646\u0647\u0645\u0627. \u064A\u0645\u0643\u0646 \u0627\u0644\u062A\u0631\u0627\u062C\u0639 \u0639\u0646 \u0643\u0644 \u062A\u063A\u064A\u064A\u0631."],
+    "tt.sum.lessons": ["lessons a week", "\u062D\u0635\u0629 \u0623\u0633\u0628\u0648\u0639\u064A\u064B\u0627"],
+    "tt.sum.free": ["free periods", "\u062D\u0635\u0629 \u0641\u0631\u0627\u063A"],
+    "tt.sum.cover": ["cover periods", "\u062D\u0635\u0629 \u0627\u062D\u062A\u064A\u0627\u0637"],
+    "tt.sum.duty": ["duty periods", "\u062D\u0635\u0629 \u0645\u0647\u0627\u0645"],
+    "tt.sum.teaching": ["of teaching a week", "\u062A\u062F\u0631\u064A\u0633 \u0623\u0633\u0628\u0648\u0639\u064A\u064B\u0627"],
+    "tt.sum.time": ["{h} h {m} min", "{h} \u0633 {m} \u062F"],
+    "tt.bellTitle": ["Bell times", "\u0645\u0648\u0627\u0639\u064A\u062F \u0627\u0644\u062D\u0635\u0635"],
+    "tt.bellHint": ["Type straight into a row; it saves when you leave it or press Enter. Drag \u22EE\u22EE to change the order. Choose a day to see only that day's periods.", "\u0627\u0643\u062A\u0628 \u0645\u0628\u0627\u0634\u0631\u0629 \u0641\u064A \u0627\u0644\u0635\u0641\u061B \u064A\u064F\u062D\u0641\u0638 \u0639\u0646\u062F \u0645\u063A\u0627\u062F\u0631\u062A\u0647 \u0623\u0648 \u0627\u0644\u0636\u063A\u0637 \u0639\u0644\u0649 Enter. \u0627\u0633\u062D\u0628 \u22EE\u22EE \u0644\u062A\u063A\u064A\u064A\u0631 \u0627\u0644\u062A\u0631\u062A\u064A\u0628. \u0627\u062E\u062A\u0631 \u064A\u0648\u0645\u064B\u0627 \u0644\u0639\u0631\u0636 \u062D\u0635\u0635 \u0630\u0644\u0643 \u0627\u0644\u064A\u0648\u0645 \u0641\u0642\u0637."],
+    "tt.brushes": ["Place a class", "\u0648\u0636\u0639 \u0634\u0639\u0628\u0629"],
+    "tt.brushFree": ["Free", "\u0641\u0631\u0627\u063A"],
+    "tt.brushOn": ["Click or drag across the grid to place it. Click the picked class again to stop.", "\u0627\u0646\u0642\u0631 \u0623\u0648 \u0627\u0633\u062D\u0628 \u0639\u0644\u0649 \u0627\u0644\u062C\u062F\u0648\u0644 \u0644\u0648\u0636\u0639\u0647\u0627. \u0627\u0646\u0642\u0631 \u0627\u0644\u0634\u0639\u0628\u0629 \u0627\u0644\u0645\u062E\u062A\u0627\u0631\u0629 \u0645\u0631\u0629 \u0623\u062E\u0631\u0649 \u0644\u0644\u0625\u064A\u0642\u0627\u0641."],
+    "tt.dragPeriod": ["Drag to change the order of the periods (or use the up and down arrow keys)", "\u0627\u0633\u062D\u0628 \u0644\u062A\u063A\u064A\u064A\u0631 \u062A\u0631\u062A\u064A\u0628 \u0627\u0644\u062D\u0635\u0635 (\u0623\u0648 \u0627\u0633\u062A\u062E\u062F\u0645 \u0645\u0641\u062A\u0627\u062D\u064E\u064A \u0627\u0644\u0633\u0647\u0645 \u0644\u0644\u0623\u0639\u0644\u0649 \u0648\u0644\u0644\u0623\u0633\u0641\u0644)"],
+    "tt.periodDays": ["Days this period applies", "\u0623\u064A\u0627\u0645 \u0647\u0630\u0647 \u0627\u0644\u062D\u0635\u0629"],
+    "tt.toolsTitle": ["More tools: re-time all periods, saved schedules, lesson reminders, school days", "\u0623\u062F\u0648\u0627\u062A \u0623\u062E\u0631\u0649: \u0625\u0639\u0627\u062F\u0629 \u062A\u0648\u0642\u064A\u062A \u0627\u0644\u062D\u0635\u0635\u060C \u0627\u0644\u062C\u062F\u0627\u0648\u0644 \u0627\u0644\u0645\u062D\u0641\u0648\u0638\u0629\u060C \u062A\u0630\u0643\u064A\u0631\u0627\u062A \u0627\u0644\u062D\u0635\u0635\u060C \u0623\u064A\u0627\u0645 \u0627\u0644\u062F\u0631\u0627\u0633\u0629"],
+    "tt.presetsTitle": ["Saved schedules", "\u0627\u0644\u062C\u062F\u0627\u0648\u0644 \u0627\u0644\u0645\u062D\u0641\u0648\u0638\u0629"],
+    "tt.editHint": ["Pick a class, then click or drag across the grid to place it; Free clears. With nothing picked, click a lesson for its details or drag it to move it.", "\u0627\u062E\u062A\u0631 \u0634\u0639\u0628\u0629 \u062B\u0645 \u0627\u0646\u0642\u0631 \u0623\u0648 \u0627\u0633\u062D\u0628 \u0639\u0644\u0649 \u0627\u0644\u062C\u062F\u0648\u0644 \u0644\u0648\u0636\u0639\u0647\u0627\u061B \xAB\u0641\u0631\u0627\u063A\xBB \u064A\u0645\u0633\u062D. \u0648\u0645\u0646 \u062F\u0648\u0646 \u0627\u062E\u062A\u064A\u0627\u0631\u060C \u0627\u0646\u0642\u0631 \u0627\u0644\u062D\u0635\u0629 \u0644\u062A\u0641\u0627\u0635\u064A\u0644\u0647\u0627 \u0623\u0648 \u0627\u0633\u062D\u0628\u0647\u0627 \u0644\u0646\u0642\u0644\u0647\u0627."],
     "bv.show": ["Show", "\u0639\u0631\u0636"],
     "bv.all": ["All", "\u0627\u0644\u0643\u0644"],
     "bv.attention": ["Needs attention", "\u064A\u062D\u062A\u0627\u062C \u0627\u0646\u062A\u0628\u0627\u0647\u0627\u064B"],
@@ -44743,17 +44872,17 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
   function playTone(tone = "chime", volume = 0.5) {
     if (!soundReady()) return false;
     const patterns = { chime: [[0, 660, 0.3, "sine"], [0.3, 880, 0.4, "sine"]], double: [[0, 520, 0.16, "triangle"], [0.25, 520, 0.16, "triangle"]], bright: [[0, 1046, 0.15, "square"], [0.18, 784, 0.25, "square"]], soft: [[0, 392, 0.8, "sine"]] };
-    for (const [offset, frequency, duration, wave] of patterns[tone] || patterns.chime) {
+    for (const [offset, frequency, duration2, wave] of patterns[tone] || patterns.chime) {
       const oscillator = audio.createOscillator(), gain = audio.createGain(), start = audio.currentTime + offset;
       oscillator.type = wave;
       oscillator.frequency.value = frequency;
       gain.gain.setValueAtTime(0, start);
       gain.gain.linearRampToValueAtTime(Math.max(0, Math.min(1, volume)) * (wave === "square" ? 0.08 : 0.2), start + 0.015);
-      gain.gain.exponentialRampToValueAtTime(1e-4, start + duration);
+      gain.gain.exponentialRampToValueAtTime(1e-4, start + duration2);
       oscillator.connect(gain);
       gain.connect(audio.destination);
       oscillator.start(start);
-      oscillator.stop(start + duration + 0.02);
+      oscillator.stop(start + duration2 + 0.02);
       oscillator.onended = () => {
         oscillator.disconnect();
         gain.disconnect();
@@ -47868,12 +47997,12 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     return result;
   }
   var stamp = (minutes2) => String(Math.floor(minutes2 / 60)).padStart(2, "0") + ":" + String(minutes2 % 60).padStart(2, "0");
-  function previewChain(periods, { start, duration, gap }) {
+  function previewChain(periods, { start, duration: duration2, gap }) {
     const first = timeMinutes(start);
-    if (first === null || !Number.isInteger(first) || !Number.isInteger(duration) || duration < 1 || duration > 240 || !Number.isInteger(gap) || gap < 0 || gap > 120) throw Error("planner.invalid");
+    if (first === null || !Number.isInteger(first) || !Number.isInteger(duration2) || duration2 < 1 || duration2 > 240 || !Number.isInteger(gap) || gap < 0 || gap > 120) throw Error("planner.invalid");
     let at = first;
     return periods.map((period) => {
-      const minutes2 = period.break ? timeMinutes(period.end) - timeMinutes(period.start) : duration;
+      const minutes2 = period.break ? timeMinutes(period.end) - timeMinutes(period.start) : duration2;
       if (!Number.isInteger(minutes2) || at + minutes2 > 1439) throw Error("planner.invalid");
       const result = { ...period, start: stamp(at), end: stamp(at + minutes2) };
       at += minutes2 + gap;
@@ -47915,30 +48044,25 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
   }
 
   // src/modules/timetable/planner.jsx
-  function Workload({ profile: profile2, compact = false }) {
-    const totals = workload(profile2);
-    return /* @__PURE__ */ cpJsx(Metrics, { compact, items: Object.entries(totals).map(([key4, value]) => ({ key: "planner." + key4, value })) });
+  var duration = (minutes2) => uxText("tt.sum.time").replace("{h}", String(Math.floor(minutes2 / 60))).replace("{m}", String(Math.round(minutes2 % 60)));
+  function Workload({ profile: profile2 }) {
+    const w = workload(profile2), items = [["lessons", w.teaching], ...w.cover ? [["cover", w.cover]] : [], ...w.task ? [["duty", w.task]] : [], ["free", w.free]];
+    return /* @__PURE__ */ cpJsx("p", { className: "cp-tt-summary" }, items.map(([key4, n]) => /* @__PURE__ */ cpJsx("span", { key: key4, "data-key": key4 }, /* @__PURE__ */ cpJsx("b", null, cpRaw(String(n))), " ", uxText("tt.sum." + key4))), /* @__PURE__ */ cpJsx("span", { "data-key": "minutes" }, /* @__PURE__ */ cpJsx("b", null, cpRaw(duration(w.minutes))), " ", uxText("tt.sum.teaching")));
   }
-  function SchedulePlanner({ profile: profile2, periods, day, date: date5 }) {
-    const [start, setStart] = useState(periods[0]?.start || "07:25"), [duration, setDuration] = useState(45), [gap, setGap] = useState(3), [preview, setPreview] = useState(null), [error2, setError] = useState(""), [name, setName] = useState(""), [preset, setPreset] = useState(""), [event, setEvent] = useState({ periodId: "", kind: "reminder", text: "", recurrence: "dated" });
+  function TimetableTools({ profile: profile2, periods, day, date: date5, children }) {
+    const [start, setStart] = useState(periods[0]?.start || "07:25"), [duration2, setDuration] = useState(45), [gap, setGap] = useState(3), [preview, setPreview] = useState(null), [error2, setError] = useState(""), [name, setName] = useState(""), [preset, setPreset] = useState(""), [event, setEvent] = useState({ periodId: "", kind: "reminder", text: "", recurrence: "dated" });
     const save = (change2) => {
       downloadBackup(getProfile());
       updateProfile(change2);
     };
-    return /* @__PURE__ */ cpJsx(UxPanel, { title: "planner.title", description: "planner.safety" }, /* @__PURE__ */ cpJsx("div", { className: "cp-ux-form" }, /* @__PURE__ */ cpJsx(UxField, { id: "planner.start", type: "time", value: start, onChange: (e) => setStart(e.target.value) }), /* @__PURE__ */ cpJsx(UxField, { id: "planner.duration", type: "number", min: "1", max: "240", value: duration, onChange: (e) => setDuration(+e.target.value) }), /* @__PURE__ */ cpJsx(UxField, { id: "planner.gap", type: "number", min: "0", max: "120", value: gap, onChange: (e) => setGap(+e.target.value) }), /* @__PURE__ */ cpJsx(UxButton, { id: "planner.preview", disabled: !periods.length, onClick: () => {
+    return /* @__PURE__ */ cpJsx("details", { className: "cp-tt-tools" }, /* @__PURE__ */ cpJsx("summary", null, uxText("tt.toolsTitle")), /* @__PURE__ */ cpJsx("section", null, /* @__PURE__ */ cpJsx("h4", null, uxText("planner.title")), /* @__PURE__ */ cpJsx("p", { className: "cp-tt-hint" }, uxText("planner.safety")), /* @__PURE__ */ cpJsx("div", { className: "cp-ux-form" }, /* @__PURE__ */ cpJsx(UxField, { id: "planner.start", type: "time", value: start, onChange: (e) => setStart(e.target.value) }), /* @__PURE__ */ cpJsx(UxField, { id: "planner.duration", type: "number", min: "1", max: "240", value: duration2, onChange: (e) => setDuration(+e.target.value) }), /* @__PURE__ */ cpJsx(UxField, { id: "planner.gap", type: "number", min: "0", max: "120", value: gap, onChange: (e) => setGap(+e.target.value) }), /* @__PURE__ */ cpJsx(UxButton, { id: "planner.preview", disabled: !periods.length, onClick: () => {
       try {
-        setPreview({ kind: "chain", periods: previewChain(periods, { start, duration, gap }) });
+        setPreview({ kind: "chain", periods: previewChain(periods, { start, duration: duration2, gap }) });
         setError("");
       } catch (e) {
         setError(uxText(e.message));
       }
-    } })), /* @__PURE__ */ cpJsx("p", null, uxText("planner.order")), /* @__PURE__ */ cpJsx("ol", null, periods.map((p) => /* @__PURE__ */ cpJsx("li", { key: p.id }, cpRaw(p.label), " ", /* @__PURE__ */ cpJsx("bdi", null, p.start, "\u2013", p.end), " ", /* @__PURE__ */ cpJsx(UxButton, { id: "planner.up", context: p.id, onClick: () => {
-      setPreview(null);
-      updateProfile((value) => movePeriod(value, p.id, -1));
-    } }), /* @__PURE__ */ cpJsx(UxButton, { id: "planner.down", context: p.id, onClick: () => {
-      setPreview(null);
-      updateProfile((value) => movePeriod(value, p.id, 1));
-    } })))), /* @__PURE__ */ cpJsx("div", { className: "cp-ux-form" }, /* @__PURE__ */ cpJsx(UxField, { id: "planner.name", value: name, maxLength: 120, onChange: (e) => setName(e.target.value) }), /* @__PURE__ */ cpJsx(UxButton, { id: "planner.save", disabled: !name.trim() || !profile2.periods.length, onClick: () => {
+    } }))), /* @__PURE__ */ cpJsx("section", null, /* @__PURE__ */ cpJsx("h4", null, uxText("tt.presetsTitle")), /* @__PURE__ */ cpJsx("div", { className: "cp-ux-form" }, /* @__PURE__ */ cpJsx(UxField, { id: "planner.name", value: name, maxLength: 120, onChange: (e) => setName(e.target.value) }), /* @__PURE__ */ cpJsx(UxButton, { id: "planner.save", disabled: !name.trim() || !profile2.periods.length, onClick: () => {
       updateProfile((p) => savePreset(p, name));
       setName("");
     } }), /* @__PURE__ */ cpJsx(UxSelect, { id: "planner.presets", value: preset, onChange: (e) => {
@@ -47948,10 +48072,10 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     } }, /* @__PURE__ */ cpJsx("option", { value: "" }, uxText("planner.choose")), (profile2.schedulePresets || []).map((p) => /* @__PURE__ */ cpJsx("option", { key: p.id, value: p.id }, cpRaw(p.name))))), preview && /* @__PURE__ */ cpJsx("section", { className: "cp-ux-preview" }, /* @__PURE__ */ cpJsx("h3", null, uxText("planner.review")), /* @__PURE__ */ cpJsx("p", null, uxText("planner.scope")), /* @__PURE__ */ cpJsx("table", { className: "cp-ux-table" }, /* @__PURE__ */ cpJsx("thead", null, /* @__PURE__ */ cpJsx("tr", null, /* @__PURE__ */ cpJsx("th", null, t("tt.period")), /* @__PURE__ */ cpJsx("th", null, uxText("planner.before")), /* @__PURE__ */ cpJsx("th", null, uxText("planner.after")), /* @__PURE__ */ cpJsx("th", null, t("tt.applies")))), /* @__PURE__ */ cpJsx("tbody", null, preview.periods.map((p) => /* @__PURE__ */ cpJsx("tr", { key: p.id }, /* @__PURE__ */ cpJsx("td", null, cpRaw(p.label)), /* @__PURE__ */ cpJsx("td", null, profile2.periods.find((v) => v.id === p.id)?.start, "\u2013", profile2.periods.find((v) => v.id === p.id)?.end), /* @__PURE__ */ cpJsx("td", null, p.start, "\u2013", p.end), /* @__PURE__ */ cpJsx("td", null, (p.weekdays || profile2.calendar.schoolDays).map((d) => t("calendar.day" + d)).join(", ")))))), /* @__PURE__ */ cpJsx(UxButton, { id: "planner.apply", primary: true, onClick: () => {
       save((p) => preview.kind === "chain" ? applyChain(p, preview.periods) : { ...p, periods: preview.periods, timetable: preview.timetable });
       setPreview(null);
-    } }), /* @__PURE__ */ cpJsx(UxButton, { id: "planner.cancel", onClick: () => setPreview(null) })), /* @__PURE__ */ cpJsx("h3", null, uxText("planner.annotations")), /* @__PURE__ */ cpJsx("p", null, uxText("planner.annotationDate"), ": ", date5), /* @__PURE__ */ cpJsx("div", { className: "cp-ux-form" }, /* @__PURE__ */ cpJsx(UxSelect, { id: "planner.period", value: event.periodId, onChange: (e) => setEvent({ ...event, periodId: e.target.value }) }, /* @__PURE__ */ cpJsx("option", { value: "" }, uxText("planner.choosePeriod")), periods.map((p) => /* @__PURE__ */ cpJsx("option", { key: p.id, value: p.id }, cpRaw(p.label)))), /* @__PURE__ */ cpJsx(UxSelect, { id: "planner.kind", value: event.kind, onChange: (e) => setEvent({ ...event, kind: e.target.value }) }, ["homework", "assessment", "resource", "reminder"].map((kind) => /* @__PURE__ */ cpJsx("option", { key: kind, value: kind }, uxText("planner." + kind)))), /* @__PURE__ */ cpJsx(UxSelect, { id: "planner.recurrence", value: event.recurrence, onChange: (e) => setEvent({ ...event, recurrence: e.target.value }) }, /* @__PURE__ */ cpJsx("option", { value: "dated" }, uxText("planner.dated")), /* @__PURE__ */ cpJsx("option", { value: "weekly", disabled: day === null }, uxText("planner.weekly"))), /* @__PURE__ */ cpJsx(UxField, { id: "planner.text", value: event.text, maxLength: 2e3, onChange: (e) => setEvent({ ...event, text: e.target.value }) }), /* @__PURE__ */ cpJsx(UxButton, { id: "planner.add", disabled: !event.periodId || !event.text.trim() || event.recurrence === "weekly" && day === null, onClick: () => {
+    } }), /* @__PURE__ */ cpJsx(UxButton, { id: "planner.cancel", onClick: () => setPreview(null) }))), /* @__PURE__ */ cpJsx("section", null, /* @__PURE__ */ cpJsx("h4", null, uxText("planner.annotations")), /* @__PURE__ */ cpJsx("p", null, uxText("planner.annotationDate"), ": ", date5), /* @__PURE__ */ cpJsx("div", { className: "cp-ux-form" }, /* @__PURE__ */ cpJsx(UxSelect, { id: "planner.period", value: event.periodId, onChange: (e) => setEvent({ ...event, periodId: e.target.value }) }, /* @__PURE__ */ cpJsx("option", { value: "" }, uxText("planner.choosePeriod")), periods.map((p) => /* @__PURE__ */ cpJsx("option", { key: p.id, value: p.id }, cpRaw(p.label)))), /* @__PURE__ */ cpJsx(UxSelect, { id: "planner.kind", value: event.kind, onChange: (e) => setEvent({ ...event, kind: e.target.value }) }, ["homework", "assessment", "resource", "reminder"].map((kind) => /* @__PURE__ */ cpJsx("option", { key: kind, value: kind }, uxText("planner." + kind)))), /* @__PURE__ */ cpJsx(UxSelect, { id: "planner.recurrence", value: event.recurrence, onChange: (e) => setEvent({ ...event, recurrence: e.target.value }) }, /* @__PURE__ */ cpJsx("option", { value: "dated" }, uxText("planner.dated")), /* @__PURE__ */ cpJsx("option", { value: "weekly", disabled: day === null }, uxText("planner.weekly"))), /* @__PURE__ */ cpJsx(UxField, { id: "planner.text", value: event.text, maxLength: 2e3, onChange: (e) => setEvent({ ...event, text: e.target.value }) }), /* @__PURE__ */ cpJsx(UxButton, { id: "planner.add", disabled: !event.periodId || !event.text.trim() || event.recurrence === "weekly" && day === null, onClick: () => {
       updateProfile((p) => addAnnotation(p, { periodId: event.periodId, kind: event.kind, text: event.text, ...event.recurrence === "dated" ? { date: date5 } : { weekday: day } }));
       setEvent({ ...event, text: "" });
-    } })), (profile2.lessonAnnotations || []).map((a) => /* @__PURE__ */ cpJsx("p", { key: a.id }, cpRaw(profile2.periods.find((p) => p.id === a.periodId)?.label || a.periodId), " \xB7 ", uxText("planner." + a.kind), " \xB7 ", a.date || t("calendar.day" + a.weekday), " \xB7 ", cpRaw(a.text), " ", /* @__PURE__ */ cpJsx(UxButton, { id: "planner.remove", context: a.id, onClick: () => updateProfile((p) => ({ ...p, lessonAnnotations: p.lessonAnnotations.filter((item) => item.id !== a.id) })) }))), error2 && /* @__PURE__ */ cpJsx("p", { role: "alert" }, error2));
+    } })), (profile2.lessonAnnotations || []).map((a) => /* @__PURE__ */ cpJsx("p", { key: a.id }, cpRaw(profile2.periods.find((p) => p.id === a.periodId)?.label || a.periodId), " \xB7 ", uxText("planner." + a.kind), " \xB7 ", a.date || t("calendar.day" + a.weekday), " \xB7 ", cpRaw(a.text), " ", /* @__PURE__ */ cpJsx(UxButton, { id: "planner.remove", context: a.id, onClick: () => updateProfile((p) => ({ ...p, lessonAnnotations: p.lessonAnnotations.filter((item) => item.id !== a.id) })) }))), error2 && /* @__PURE__ */ cpJsx("p", { role: "alert" }, error2)), children);
   }
 
   // src/modules/timetable/starter-preview.jsx
@@ -47972,8 +48096,17 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
   }
 
   // src/modules/timetable/index.jsx
-  function PeriodEditor({ period, conflict, schoolDays }) {
-    const [draft, setDraft] = useState(period), [error2, setError] = useState("");
+  var dayRange = (days) => {
+    const sorted = [...days].sort((a, b) => a - b), runs = [];
+    for (const day of sorted) {
+      const last = runs.at(-1);
+      if (last && day === last[1] + 1) last[1] = day;
+      else runs.push([day, day]);
+    }
+    return runs.map(([a, b]) => a === b ? t("calendar.day" + a) : t("calendar.day" + a) + "\u2013" + t("calendar.day" + b)).join(", ");
+  };
+  function PeriodRow({ period, conflict, schoolDays, list: list2, visible }) {
+    const [draft, setDraft] = useState(period), [error2, setError] = useState(""), [daysOpen, setDaysOpen] = useState(false), dirty = JSON.stringify(draft) !== JSON.stringify(period);
     function save() {
       if (!draft.label.trim() || timeMinutes(draft.start) == null || timeMinutes(draft.end) == null || timeMinutes(draft.end) <= timeMinutes(draft.start)) {
         setError(t("tt.invalid"));
@@ -47986,7 +48119,12 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       updateProfile((p) => ({ ...p, periods: p.periods.map((item) => item.id === draft.id ? { ...item, ...draft } : item) }));
       setError("");
     }
-    return /* @__PURE__ */ cpJsx("div", { style: { ...panel, borderColor: conflict ? "#dc2626" : "var(--n-200)", marginBlockEnd: 8 } }, /* @__PURE__ */ cpJsx("div", { style: row }, /* @__PURE__ */ cpJsx(ToolField, { id: "tt.label", context: period.id, label: "tt.label", value: draft.label, onChange: (e) => setDraft({ ...draft, label: e.target.value }) }), /* @__PURE__ */ cpJsx(ToolField, { id: "tt.start", context: period.id, label: "tt.start", type: "time", value: draft.start, onChange: (e) => setDraft({ ...draft, start: e.target.value }) }), /* @__PURE__ */ cpJsx(ToolField, { id: "tt.end", context: period.id, label: "tt.end", type: "time", value: draft.end, onChange: (e) => setDraft({ ...draft, end: e.target.value }) }), /* @__PURE__ */ cpJsx("label", null, /* @__PURE__ */ cpJsx("input", { type: "checkbox", checked: draft.break, ...controlProps("m4.tt.break", (e) => setDraft({ ...draft, break: e.target.checked }), period.id) }), t("tt.break")), /* @__PURE__ */ cpJsx(ToolButton, { id: "tt.savePeriod", context: period.id, onClick: save }, t("tt.savePeriod")), /* @__PURE__ */ cpJsx(ToolButton, { id: "tt.deletePeriod", context: period.id, onClick: () => updateProfile((p) => removePeriod(p, period.id)) }, t("tt.deletePeriod"))), /* @__PURE__ */ cpJsx("fieldset", { style: { border: 0, padding: 0, marginBlockStart: 10 } }, /* @__PURE__ */ cpJsx("legend", { style: { fontSize: 11 } }, t("tt.applies")), /* @__PURE__ */ cpJsx("div", { style: row }, /* @__PURE__ */ cpJsx("label", null, /* @__PURE__ */ cpJsx("input", { type: "checkbox", checked: draft.weekdays === void 0, ...controlProps("m4.tt.everySchoolDay", (e) => setDraft({ ...draft, weekdays: e.target.checked ? void 0 : [...schoolDays] }), period.id) }), t("tt.everySchoolDay")), draft.weekdays && [0, 1, 2, 3, 4, 5, 6].map((day) => /* @__PURE__ */ cpJsx("label", { key: day }, /* @__PURE__ */ cpJsx("input", { type: "checkbox", checked: draft.weekdays.includes(day), ...controlProps("m4.tt.periodDay", (e) => setDraft({ ...draft, weekdays: e.target.checked ? [...draft.weekdays, day].sort((a, b) => a - b) : draft.weekdays.filter((d) => d !== day) }), period.id + ":" + day) }), t("calendar.day" + day))))), error2 && /* @__PURE__ */ cpJsx("p", { role: "alert" }, error2));
+    const keys = (e) => {
+      if (e.key === "Enter" && dirty) save();
+    };
+    return /* @__PURE__ */ cpJsx("div", { className: "cp-tt-bell" + (conflict ? " is-conflict" : "") + (draft.break ? " is-break" : ""), "data-cp-period": period.id, onKeyDown: keys, onBlur: (e) => {
+      if (dirty && !e.currentTarget.contains(e.relatedTarget)) save();
+    } }, /* @__PURE__ */ cpJsx(DragGrip, { id: period.id, visible, list: list2, onMove: (next) => updateProfile((p) => ({ ...p, periods: next })), action: "ux.tt.dragPeriod", label: "tt.dragPeriod", rowAttr: "data-cp-period" }), /* @__PURE__ */ cpJsx(ToolField, { id: "tt.label", context: period.id, label: "tt.label", value: draft.label, onChange: (e) => setDraft({ ...draft, label: e.target.value }) }), /* @__PURE__ */ cpJsx(ToolField, { id: "tt.start", context: period.id, label: "tt.start", type: "time", value: draft.start, onChange: (e) => setDraft({ ...draft, start: e.target.value }) }), /* @__PURE__ */ cpJsx(ToolField, { id: "tt.end", context: period.id, label: "tt.end", type: "time", value: draft.end, onChange: (e) => setDraft({ ...draft, end: e.target.value }) }), /* @__PURE__ */ cpJsx("label", { className: "cp-tt-break" }, /* @__PURE__ */ cpJsx("input", { type: "checkbox", checked: draft.break, ...controlProps("m4.tt.break", (e) => setDraft({ ...draft, break: e.target.checked }), period.id) }), /* @__PURE__ */ cpJsx("span", null, t("tt.break"))), /* @__PURE__ */ cpJsx(UxButton, { id: "tt.periodDays", context: period.id, className: "cp-tt-days", "aria-expanded": daysOpen, "aria-label": t("tt.applies") + ": " + (draft.weekdays === void 0 ? t("tt.everySchoolDay") : dayRange(draft.weekdays)), onClick: () => setDaysOpen(!daysOpen) }, cpRaw(draft.weekdays === void 0 ? t("tt.everySchoolDay") : dayRange(draft.weekdays) || "\u2013")), /* @__PURE__ */ cpJsx("span", { className: "cp-tt-row-actions" }, /* @__PURE__ */ cpJsx(ToolButton, { id: "tt.deletePeriod", context: period.id, className: "cp-tt-delete", "aria-label": t("tt.deletePeriod") + ": " + period.label, title: t("tt.deletePeriod"), onClick: () => updateProfile((p) => removePeriod(p, period.id)) }, cpRaw("\u2715"))), daysOpen && /* @__PURE__ */ cpJsx("fieldset", { className: "cp-tt-dayset" }, /* @__PURE__ */ cpJsx("legend", null, t("tt.applies")), /* @__PURE__ */ cpJsx("label", null, /* @__PURE__ */ cpJsx("input", { type: "checkbox", checked: draft.weekdays === void 0, ...controlProps("m4.tt.everySchoolDay", (e) => setDraft({ ...draft, weekdays: e.target.checked ? void 0 : [...schoolDays] }), period.id) }), t("tt.everySchoolDay")), draft.weekdays && [0, 1, 2, 3, 4, 5, 6].map((day) => /* @__PURE__ */ cpJsx("label", { key: day }, /* @__PURE__ */ cpJsx("input", { type: "checkbox", checked: draft.weekdays.includes(day), ...controlProps("m4.tt.periodDay", (e) => setDraft({ ...draft, weekdays: e.target.checked ? [...draft.weekdays, day].sort((a, b) => a - b) : draft.weekdays.filter((d) => d !== day) }), period.id + ":" + day) }), t("calendar.day" + day)))), error2 && /* @__PURE__ */ cpJsx("p", { role: "alert", className: "cp-tt-error" }, error2));
   }
   function CellEditor({ profile: profile2, selection, onClose }) {
     const [draft, setDraft] = useState(() => ({ slotType: "lesson", classId: null, subject: "", room: "", note: "", ...timetableCell(profile2, selection.weekday, selection.periodId) })), groups = splitReferences(profile2, useLinkedClassIds());
@@ -48030,15 +48168,46 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       onOpenClass(cell3.classId);
     } }, uxText("tt.openClass")));
   }
+  function paintCells(profile2, slots, classId) {
+    return slots.reduce((p, slot2) => classId ? setCell(p, slot2.weekday, slot2.periodId, { classId, slotType: timetableCell(p, slot2.weekday, slot2.periodId)?.slotType === "cover" ? "cover" : "lesson" }) : { ...p, timetable: (p.timetable || []).filter((c) => c.weekday !== slot2.weekday || c.periodId !== slot2.periodId) }, profile2);
+  }
+  function Brushes({ profile: profile2, brush, setBrush }) {
+    const { linked, other } = splitReferences(profile2, useLinkedClassIds()), pick2 = (id) => setBrush(brush === id ? null : id);
+    const chip = ({ ref }) => /* @__PURE__ */ cpJsx(UxButton, { key: ref.classId, id: "tt.brush", context: ref.classId, className: "cp-tt-brush", "aria-label": uxText("tt.brushes") + ": " + ref.displayName, "aria-pressed": brush === ref.classId, style: { "--cp-class": classColour(profile2, ref.classId) }, onClick: () => pick2(ref.classId) }, /* @__PURE__ */ cpJsx("i", null), cpRaw(ref.displayName));
+    return /* @__PURE__ */ cpJsx("div", { className: "cp-tt-brushes", role: "toolbar", "aria-label": uxText("tt.brushes") }, linked.map(chip), other.map(chip), /* @__PURE__ */ cpJsx(UxButton, { id: "tt.brush", context: "free", className: "cp-tt-brush is-free", "aria-pressed": brush === "free", onClick: () => pick2("free") }, uxText("tt.brushFree")), /* @__PURE__ */ cpJsx("span", { className: "cp-tt-hint" }, uxText(brush ? "tt.brushOn" : "tt.editHint")));
+  }
   function cellLabel(profile2, cell3) {
     return cell3?.classId ? profile2.classReferences.find((r) => r.classId === cell3.classId)?.displayName || t("tt.free") : t("tt.free");
   }
-  function ScheduleGrid({ profile: profile2, date: date5, printing, onOpenClass, onEdit, editing, onQuick }) {
+  function ScheduleGrid({ profile: profile2, date: date5, printing, onOpenClass, onEdit, editing, onQuick, brush }) {
+    const [stroke, setStroke] = useState(null), strokeRef = useRef(null);
+    const key4 = (slot2) => slot2.weekday + ":" + slot2.periodId;
+    const finish = () => {
+      const current4 = strokeRef.current;
+      strokeRef.current = null;
+      setStroke(null);
+      window.removeEventListener("pointerup", finish);
+      if (!current4) return;
+      updateProfile((p) => paintCells(p, [...current4.cells.values()], current4.value));
+    };
+    const start = (slot2, cell3) => {
+      const value = brush === "free" || cell3?.classId === brush ? null : brush, next = { value, cells: /* @__PURE__ */ new Map([[key4(slot2), slot2]]) };
+      strokeRef.current = next;
+      setStroke({ ...next });
+      window.addEventListener("pointerup", finish);
+    };
+    const extend = (slot2) => {
+      const current4 = strokeRef.current;
+      if (!current4 || current4.cells.has(key4(slot2))) return;
+      current4.cells.set(key4(slot2), slot2);
+      setStroke({ ...current4 });
+    };
     const drag = useRef(null), linkedIds = useLinkedClassIds(), unlinked = (classId) => !!linkedIds && !!classId && !linkedIds.has(classId);
     const days = weekDates(profile2.calendar, date5).map((day) => ({ ...day, periods: periodsOn(profile2, day.weekday).sort((a, b) => timeMinutes(a.start) - timeMinutes(b.start)), conflicts: new Set(periodConflicts(profile2.periods || [], [day.weekday]).flat()) }));
     const count = Math.max(0, ...days.map((day) => day.periods.length));
     if (!days.length) return /* @__PURE__ */ cpJsx("p", null, t("tt.noSchoolDays"));
-    return /* @__PURE__ */ cpJsx("table", { "aria-label": t("tt.week"), style: { borderCollapse: "collapse", width: "100%", tableLayout: "fixed", fontSize: 12, lineHeight: printing ? 1.45 : void 0 } }, /* @__PURE__ */ cpJsx("thead", null, /* @__PURE__ */ cpJsx("tr", null, days.map((day) => /* @__PURE__ */ cpJsx("th", { key: day.weekday, style: { padding: 8, textAlign: "start" } }, t("calendar.day" + day.weekday), /* @__PURE__ */ cpJsx("div", { style: { fontWeight: 400, fontSize: 11 } }, day.date))))), /* @__PURE__ */ cpJsx("tbody", null, Array.from({ length: count }, (_, index) => /* @__PURE__ */ cpJsx("tr", { key: index }, days.map((day) => {
+    const clock = /* @__PURE__ */ new Date(), minute = clock.getHours() * 60 + clock.getMinutes();
+    return /* @__PURE__ */ cpJsx("table", { "aria-label": t("tt.week"), className: "cp-tt-grid" + (printing ? " is-print" : "") }, /* @__PURE__ */ cpJsx("thead", null, /* @__PURE__ */ cpJsx("tr", null, days.map((day) => /* @__PURE__ */ cpJsx("th", { key: day.weekday, "data-today": !printing && day.date === date5 ? "true" : void 0 }, t("calendar.day" + day.weekday), /* @__PURE__ */ cpJsx("small", null, cpRaw(day.date.slice(8) + "/" + day.date.slice(5, 7))))))), /* @__PURE__ */ cpJsx("tbody", null, Array.from({ length: count }, (_, index) => /* @__PURE__ */ cpJsx("tr", { key: index }, days.map((day) => {
       const period = day.periods[index], cell3 = period && timetableCell(profile2, day.weekday, period.id), context = day.weekday + ":" + period?.id;
       const slot2 = { weekday: day.weekday, periodId: period?.id }, dnd = editing && !printing && period ? { onDragOver: (e) => {
         if (drag.current) {
@@ -48054,13 +48223,22 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
         drag.current = null;
         if (from) updateProfile((p) => moveCell(p, from, slot2));
       } } : {};
-      return /* @__PURE__ */ cpJsx("td", { key: day.weekday, "data-weekday": day.weekday, "data-period-id": period?.id, className: "cp-tt-cell" + (cell3?.classId ? " has-class" : "") + (unlinked(cell3?.classId) ? " is-unlinked" : ""), title: unlinked(cell3?.classId) ? uxText("tt.notLinkedHere") : void 0, draggable: !!(editing && !printing && cell3), onDragStart: editing && cell3 ? (e) => {
+      return /* @__PURE__ */ cpJsx("td", { key: day.weekday, "data-weekday": day.weekday, "data-period-id": period?.id, className: "cp-tt-cell" + (cell3?.classId ? " has-class" : "") + (unlinked(cell3?.classId) ? " is-unlinked" : "") + (printing ? " is-print" : "") + (period ? "" : " is-none"), title: unlinked(cell3?.classId) ? uxText("tt.notLinkedHere") : void 0, draggable: !!(editing && !printing && cell3 && !brush), onDragStart: editing && cell3 ? (e) => {
         drag.current = slot2;
         e.dataTransfer.effectAllowed = "move";
         e.dataTransfer.setData("text/plain", slot2.weekday + ":" + slot2.periodId);
       } : void 0, onDragEnd: () => {
         drag.current = null;
-      }, ...dnd, style: { "--cp-class": cell3?.classId ? classColour(profile2, cell3.classId) : "transparent", padding: printing ? 5 : 8, border: "1px solid var(--n-200)", verticalAlign: "top", overflowWrap: "anywhere", background: period && day.conflicts.has(period.id) ? "#fef2f2" : isSchoolDay(day.date, profile2.calendar) ? "#fff" : "#f1f5f9" } }, period ? /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx("strong", null, cpRaw(period.label)), /* @__PURE__ */ cpJsx("div", { style: { marginBlock: printing ? "2px" : "4px 8px" } }, /* @__PURE__ */ cpJsx("bdi", { dir: "ltr" }, period.start, "\u2013", period.end), period.break && /* @__PURE__ */ cpJsx("span", null, " \xB7 " + t("tt.break"))), editing && !printing ? /* @__PURE__ */ cpJsx(UxButton, { id: "tt.quick", context, className: "cp-tt-quick" + (cell3?.classId ? "" : " is-empty"), "aria-haspopup": "true", "aria-label": cell3?.classId ? uxText("tt.quick") + ": " + cellLabel(profile2, cell3) : uxText("tt.place"), onClick: (e) => onQuick({ ...slot2, rect: e.currentTarget.getBoundingClientRect() }) }, cell3?.classId ? cpRaw(cellLabel(profile2, cell3)) : cpRaw("+")) : cell3?.classId && !printing ? /* @__PURE__ */ cpJsx(ToolButton, { id: "tt.open", context, onClick: () => onOpenClass(cell3.classId), style: { textAlign: "start" } }, cpRaw(cellLabel(profile2, cell3))) : /* @__PURE__ */ cpJsx("span", null, cell3?.classId ? cpRaw(cellLabel(profile2, cell3)) : printing ? null : t("tt.free")), /* @__PURE__ */ cpJsx("div", null, cpRaw(cell3?.subject || "")), /* @__PURE__ */ cpJsx("div", null, cpRaw(cell3?.room || "")), cell3?.slotType && ["cover", "task"].includes(cell3.slotType) && /* @__PURE__ */ cpJsx("span", { className: "cp-ux-tag" }, uxText("planner." + cell3.slotType + "Slot")), lessonAnnotations(profile2, day.date, period.id).map((a) => /* @__PURE__ */ cpJsx("div", { key: a.id, className: "cp-ux-tag" }, uxText("planner." + a.kind), " \xB7 ", cpRaw(a.text))), /* @__PURE__ */ cpJsx("div", { style: { fontSize: 11, whiteSpace: "pre-wrap" } }, cpRaw(cell3?.note || ""))) : t("tt.noPeriod"));
+      }, ...dnd, "data-today": !printing && day.date === date5 ? "true" : void 0, "data-paint": stroke && period && stroke.cells.has(day.weekday + ":" + period.id) ? stroke.value ? "set" : "clear" : void 0, "data-now": !printing && period && day.date === date5 && minute >= timeMinutes(period.start) && minute < timeMinutes(period.end) ? "true" : void 0, "data-break": period?.break ? "true" : void 0, "data-conflict": period && day.conflicts.has(period.id) ? "true" : void 0, "data-off": !isSchoolDay(day.date, profile2.calendar) ? "true" : void 0, style: { "--cp-class": cell3?.classId ? classColour(profile2, cell3.classId) : "transparent" } }, period ? /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx("div", { className: "cp-tt-when" }, /* @__PURE__ */ cpJsx("b", null, cpRaw(period.label)), /* @__PURE__ */ cpJsx("bdi", { dir: "ltr" }, period.start, "\u2013", period.end)), period.break ? null : editing && !printing ? /* @__PURE__ */ cpJsx(UxButton, { id: "tt.quick", context, className: "cp-tt-quick" + (cell3?.classId ? "" : " is-empty"), "aria-haspopup": brush ? void 0 : "true", onPointerDown: brush ? (e) => {
+        e.preventDefault();
+        start(slot2, cell3);
+      } : void 0, onPointerEnter: brush ? () => extend(slot2) : void 0, "aria-label": cell3?.classId ? uxText("tt.quick") + ": " + cellLabel(profile2, cell3) : uxText("tt.place"), onClick: (e) => {
+        if (brush) {
+          if (e.detail === 0) updateProfile((p) => paintCells(p, [slot2], brush === "free" || cell3?.classId === brush ? null : brush));
+          return;
+        }
+        onQuick({ ...slot2, rect: e.currentTarget.getBoundingClientRect() });
+      } }, cell3?.classId ? cpRaw(cellLabel(profile2, cell3)) : "") : cell3?.classId && !printing ? /* @__PURE__ */ cpJsx(ToolButton, { id: "tt.open", context, onClick: () => onOpenClass(cell3.classId), style: { textAlign: "start" } }, cpRaw(cellLabel(profile2, cell3))) : cell3?.classId ? /* @__PURE__ */ cpJsx("span", { className: "cp-tt-class" }, cpRaw(cellLabel(profile2, cell3))) : null, (cell3?.subject || cell3?.room) && /* @__PURE__ */ cpJsx("div", { className: "cp-tt-meta" }, cpRaw([cell3?.subject, cell3?.room].filter(Boolean).join(" \xB7 "))), cell3?.slotType && ["cover", "task"].includes(cell3.slotType) && /* @__PURE__ */ cpJsx("span", { className: "cp-ux-tag" }, uxText("planner." + cell3.slotType + "Slot")), lessonAnnotations(profile2, day.date, period.id).map((a) => /* @__PURE__ */ cpJsx("div", { key: a.id, className: "cp-ux-tag" }, uxText("planner." + a.kind), " \xB7 ", cpRaw(a.text))), cell3?.note && /* @__PURE__ */ cpJsx("div", { className: "cp-tt-meta cp-tt-note" }, cpRaw(cell3.note))) : null);
     })))));
   }
   function ClassTidy({ profile: profile2 }) {
@@ -48082,11 +48260,11 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       } catch {
         return "week";
       }
-    }), [selection, setSelection] = useState(null), [printing, setPrinting] = useState(false), [editorDay, setEditorDay] = useState("all"), [starter, setStarter] = useState(null), [notice, setNotice] = useState(false), [editing, setEditing] = useState(false), [quick, setQuick] = useState(null);
+    }), [selection, setSelection] = useState(null), [printing, setPrinting] = useState(false), [editorDay, setEditorDay] = useState("all"), [starter, setStarter] = useState(null), [notice, setNotice] = useState(false), [editing, setEditing] = useState(false), [quick, setQuick] = useState(null), [brush, setBrush] = useState(null);
     const conflicts = periodConflicts(profile2.periods || [], profile2.calendar.schoolDays), ids = new Set(conflicts.flat()), weekday = editorDay === "all" ? null : +editorDay;
     const periods = (profile2.periods || []).filter((period) => weekday === null || periodApplies(period, weekday)), nextTimes = nextPeriodTimes(profile2, weekday);
     const numbers = periods.filter((period) => !period.break).map((period) => Number(period.label.match(/\d+\s*$/)?.[0] || 0)), number = Math.max(0, ...numbers) + 1;
-    const grid = /* @__PURE__ */ cpJsx(ScheduleGrid, { profile: profile2, date: date5, printing, onOpenClass, onEdit: setSelection, editing, onQuick: setQuick });
+    const grid = /* @__PURE__ */ cpJsx(ScheduleGrid, { profile: profile2, date: date5, printing, onOpenClass, onEdit: setSelection, editing, onQuick: setQuick, brush: editing ? brush : null });
     function previewStarter() {
       setNotice(false);
       setStarter(createStarterPeriods({ period: t("tt.period"), assembly: t("tt.assembly"), firstBreak: t("tt.firstBreak"), secondBreak: t("tt.secondBreak") }));
@@ -48095,12 +48273,13 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       setEditing(!editing);
       setSelection(null);
       setQuick(null);
-    } })), more: /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx(ToolButton, { id: "tt.print", onClick: () => setPrinting(true) }, t("tt.print")), editing && /* @__PURE__ */ cpJsx(ToolButton, { id: "tt.importStarter", onClick: previewStarter }, t("tt.importStarter"))) }, /* @__PURE__ */ cpJsx(Workload, { profile: profile2, compact: true }), editing && /* @__PURE__ */ cpJsx("p", { className: "cp-tt-hint" }, uxText("tt.editHint")), starter && /* @__PURE__ */ cpJsx(StarterPreview, { profile: profile2, periods: starter, onClose: () => setStarter(null), onApply: () => {
+      setBrush(null);
+    } })), more: /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx(ToolButton, { id: "tt.print", onClick: () => setPrinting(true) }, t("tt.print")), editing && /* @__PURE__ */ cpJsx(ToolButton, { id: "tt.importStarter", onClick: previewStarter }, t("tt.importStarter"))) }, /* @__PURE__ */ cpJsx(Workload, { profile: profile2, compact: true }), editing && /* @__PURE__ */ cpJsx(Brushes, { profile: profile2, brush, setBrush }), starter && /* @__PURE__ */ cpJsx(StarterPreview, { profile: profile2, periods: starter, onClose: () => setStarter(null), onApply: () => {
       setStarter(null);
       setSelection(null);
       setEditorDay("all");
       setNotice(true);
-    } }), notice && /* @__PURE__ */ cpJsx("p", { role: "status" }, t("tt.starterApplied")), conflicts.length > 0 && /* @__PURE__ */ cpJsx("p", { role: "alert", style: { color: "#b91c1c" } }, t("tt.overlap")), /* @__PURE__ */ cpJsx(ClassTidy, { profile: profile2 }), tab === "year" ? /* @__PURE__ */ cpJsx(SchoolYear, { profile: profile2, today: date5, doc }) : tab === "week" ? /* @__PURE__ */ cpJsx("div", { style: { ...panel, overflow: "auto" } }, grid) : /* @__PURE__ */ cpJsx("div", { style: panel }, !isSchoolDay(date5, profile2.calendar) ? /* @__PURE__ */ cpJsx("p", null, t("tt.dayOff")) : lessonsOn(profile2, date5).map(({ period, cell: cell3 }) => /* @__PURE__ */ cpJsx("div", { key: period.id, style: { ...row, padding: 10, borderBlockEnd: "1px solid var(--n-200)" } }, /* @__PURE__ */ cpJsx("strong", null, cpRaw(period.label)), /* @__PURE__ */ cpJsx("bdi", { dir: "ltr" }, period.start, "\u2013", period.end), period.break && /* @__PURE__ */ cpJsx("span", null, t("tt.break")), cell3?.classId && /* @__PURE__ */ cpJsx(ToolButton, { id: "tt.open", context: "today:" + period.id, onClick: () => onOpenClass(cell3.classId) }, cpRaw(cellLabel(profile2, cell3))), /* @__PURE__ */ cpJsx("span", null, cpRaw([cell3?.subject, cell3?.room, cell3?.note].filter(Boolean).join(" \xB7 ")))))), quick && editing && /* @__PURE__ */ cpJsx(QuickCell, { profile: profile2, quick, onClose: () => setQuick(null), onEdit: setSelection, onOpenClass }), selection && /* @__PURE__ */ cpJsx(CellEditor, { key: selection.weekday + ":" + selection.periodId, profile: profile2, selection, onClose: () => setSelection(null) }), editing && /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx(SchedulePlanner, { key: editorDay, profile: profile2, periods, day: weekday, date: date5 }), /* @__PURE__ */ cpJsx("h2", { style: { fontSize: 14, marginBlockStart: 20 } }, t("tt.period")), /* @__PURE__ */ cpJsx("label", { style: row }, t("tt.editDay"), /* @__PURE__ */ cpJsx("select", { "aria-label": t("tt.editDay"), value: editorDay, ...controlProps("m4.tt.editorDay", (e) => setEditorDay(e.target.value)), style: field }, /* @__PURE__ */ cpJsx("option", { value: "all" }, t("tt.allPeriods")), [0, 1, 2, 3, 4, 5, 6].map((day) => /* @__PURE__ */ cpJsx("option", { key: day, value: day }, t("calendar.day" + day))))), /* @__PURE__ */ cpJsx("p", { style: { fontSize: 12, color: "var(--n-600)" } }, t("tt.addHint")), periods.map((period) => /* @__PURE__ */ cpJsx(PeriodEditor, { key: period.id + JSON.stringify(period), period, conflict: ids.has(period.id), schoolDays: profile2.calendar.schoolDays })), /* @__PURE__ */ cpJsx(ToolButton, { id: "tt.addPeriod", disabled: !nextTimes, onClick: () => updateProfile((p) => addPeriod(p, t("tt.period") + " " + number, weekday)) }, t("tt.addPeriod")), !nextTimes && /* @__PURE__ */ cpJsx("p", { role: "status" }, t("tt.endOfDay")), /* @__PURE__ */ cpJsx("h2", { style: { fontSize: 14 } }, t("tt.schoolDays")), /* @__PURE__ */ cpJsx("div", { style: row }, [0, 1, 2, 3, 4, 5, 6].map((day) => /* @__PURE__ */ cpJsx("label", { key: day }, /* @__PURE__ */ cpJsx("input", { type: "checkbox", checked: profile2.calendar.schoolDays.includes(day), ...controlProps("m4.tt.schoolDay", (e) => updateProfile((p) => ({ ...p, calendar: { ...p.calendar, schoolDays: e.target.checked ? [...p.calendar.schoolDays, day].sort((a, b) => a - b) : p.calendar.schoolDays.filter((d) => d !== day) } })), String(day)) }), t("calendar.day" + day))))), printing && ReactDOM.createPortal(/* @__PURE__ */ cpJsx("div", { className: "cp-timetable-print", role: "dialog", "aria-label": t("tt.print"), dir: doc.settings.dir || "ltr", style: { position: "fixed", inset: 0, zIndex: 400, background: "#fff", padding: 24, overflow: "auto" } }, /* @__PURE__ */ cpJsx("style", null, "@media print {html,body{height:auto!important;min-height:0!important;background:#fff!important}body>*:not(.cp-timetable-print){display:none!important}.cp-timetable-print{position:static!important;overflow:visible!important;padding:0!important}.cp-no-print{display:none!important}@page{size:landscape;margin:12mm}}"), /* @__PURE__ */ cpJsx("div", { className: "cp-no-print", style: row }, /* @__PURE__ */ cpJsx(ToolButton, { id: "tt.printNow", onClick: () => window.print() }, t("tt.printNow")), /* @__PURE__ */ cpJsx(ToolButton, { id: "tt.closePrint", onClick: () => setPrinting(false) }, t("tt.closePrint"))), /* @__PURE__ */ cpJsx("h1", { style: { fontSize: 18, lineHeight: 1.35, margin: "0 0 8px" } }, t("tt.week")), /* @__PURE__ */ cpJsx("p", { style: { fontSize: 12, lineHeight: 1.35, margin: "0 0 10px" } }, cpRaw(Object.values(profile2.reportHeader).filter(Boolean).join(" \xB7 "))), grid), document.body));
+    } }), notice && /* @__PURE__ */ cpJsx("p", { role: "status" }, t("tt.starterApplied")), conflicts.length > 0 && /* @__PURE__ */ cpJsx("p", { role: "alert", style: { color: "#b91c1c" } }, t("tt.overlap")), /* @__PURE__ */ cpJsx(ClassTidy, { profile: profile2 }), tab === "year" ? /* @__PURE__ */ cpJsx(SchoolYear, { profile: profile2, today: date5, doc }) : tab === "week" ? /* @__PURE__ */ cpJsx("div", { style: { ...panel, overflow: "auto" } }, grid) : /* @__PURE__ */ cpJsx("div", { style: panel }, !isSchoolDay(date5, profile2.calendar) ? /* @__PURE__ */ cpJsx("p", null, t("tt.dayOff")) : lessonsOn(profile2, date5).map(({ period, cell: cell3 }) => /* @__PURE__ */ cpJsx("div", { key: period.id, style: { ...row, padding: 10, borderBlockEnd: "1px solid var(--n-200)" } }, /* @__PURE__ */ cpJsx("strong", null, cpRaw(period.label)), /* @__PURE__ */ cpJsx("bdi", { dir: "ltr" }, period.start, "\u2013", period.end), period.break && /* @__PURE__ */ cpJsx("span", null, t("tt.break")), cell3?.classId && /* @__PURE__ */ cpJsx(ToolButton, { id: "tt.open", context: "today:" + period.id, onClick: () => onOpenClass(cell3.classId) }, cpRaw(cellLabel(profile2, cell3))), /* @__PURE__ */ cpJsx("span", null, cpRaw([cell3?.subject, cell3?.room, cell3?.note].filter(Boolean).join(" \xB7 ")))))), quick && editing && /* @__PURE__ */ cpJsx(QuickCell, { profile: profile2, quick, onClose: () => setQuick(null), onEdit: setSelection, onOpenClass }), selection && /* @__PURE__ */ cpJsx(CellEditor, { key: selection.weekday + ":" + selection.periodId, profile: profile2, selection, onClose: () => setSelection(null) }), editing && /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx("div", { className: "cp-tt-bells" }, /* @__PURE__ */ cpJsx("header", null, /* @__PURE__ */ cpJsx("h3", { id: "cp-tt-bells" }, uxText("tt.bellTitle")), /* @__PURE__ */ cpJsx("label", { className: "cp-tt-showfor" }, t("tt.editDay"), /* @__PURE__ */ cpJsx("select", { "aria-label": t("tt.editDay"), value: editorDay, ...controlProps("m4.tt.editorDay", (e) => setEditorDay(e.target.value)), style: field }, /* @__PURE__ */ cpJsx("option", { value: "all" }, t("tt.allPeriods")), [0, 1, 2, 3, 4, 5, 6].map((day) => /* @__PURE__ */ cpJsx("option", { key: day, value: day }, t("calendar.day" + day)))))), /* @__PURE__ */ cpJsx("p", { className: "cp-tt-hint" }, uxText("tt.bellHint")), /* @__PURE__ */ cpJsx("div", { className: "cp-tt-bell cp-tt-bell-head", "aria-hidden": "true" }, /* @__PURE__ */ cpJsx("span", null), /* @__PURE__ */ cpJsx("span", null, t("tt.label")), /* @__PURE__ */ cpJsx("span", null, t("tt.start")), /* @__PURE__ */ cpJsx("span", null, t("tt.end")), /* @__PURE__ */ cpJsx("span", null, t("tt.break")), /* @__PURE__ */ cpJsx("span", null, t("tt.applies")), /* @__PURE__ */ cpJsx("span", null)), periods.map((period) => /* @__PURE__ */ cpJsx(PeriodRow, { key: period.id + JSON.stringify(period), period, conflict: ids.has(period.id), schoolDays: profile2.calendar.schoolDays, list: profile2.periods || [], visible: periods.map((item) => item.id) })), /* @__PURE__ */ cpJsx(ToolButton, { id: "tt.addPeriod", disabled: !nextTimes, onClick: () => updateProfile((p) => addPeriod(p, t("tt.period") + " " + number, weekday)) }, t("tt.addPeriod")), !nextTimes && /* @__PURE__ */ cpJsx("p", { role: "status" }, t("tt.endOfDay"))), /* @__PURE__ */ cpJsx(TimetableTools, { key: editorDay, profile: profile2, periods, day: weekday, date: date5 }, /* @__PURE__ */ cpJsx("section", null, /* @__PURE__ */ cpJsx("h4", null, t("tt.schoolDays")), /* @__PURE__ */ cpJsx("div", { className: "cp-tt-schooldays" }, [0, 1, 2, 3, 4, 5, 6].map((day) => /* @__PURE__ */ cpJsx("label", { key: day }, /* @__PURE__ */ cpJsx("input", { type: "checkbox", checked: profile2.calendar.schoolDays.includes(day), ...controlProps("m4.tt.schoolDay", (e) => updateProfile((p) => ({ ...p, calendar: { ...p.calendar, schoolDays: e.target.checked ? [...p.calendar.schoolDays, day].sort((a, b) => a - b) : p.calendar.schoolDays.filter((d) => d !== day) } })), String(day)) }), t("calendar.day" + day))))))), printing && ReactDOM.createPortal(/* @__PURE__ */ cpJsx("div", { className: "cp-timetable-print", role: "dialog", "aria-label": t("tt.print"), dir: doc.settings.dir || "ltr", style: { position: "fixed", inset: 0, zIndex: 400, background: "#fff", padding: 24, overflow: "auto" } }, /* @__PURE__ */ cpJsx("style", null, "@media print {html,body{height:auto!important;min-height:0!important;background:#fff!important}body>*:not(.cp-timetable-print){display:none!important}.cp-timetable-print{position:static!important;overflow:visible!important;padding:0!important}.cp-no-print{display:none!important}@page{size:landscape;margin:12mm}}"), /* @__PURE__ */ cpJsx("div", { className: "cp-no-print", style: row }, /* @__PURE__ */ cpJsx(ToolButton, { id: "tt.printNow", onClick: () => window.print() }, t("tt.printNow")), /* @__PURE__ */ cpJsx(ToolButton, { id: "tt.closePrint", onClick: () => setPrinting(false) }, t("tt.closePrint"))), /* @__PURE__ */ cpJsx("h1", { style: { fontSize: 18, lineHeight: 1.35, margin: "0 0 8px" } }, t("tt.week")), /* @__PURE__ */ cpJsx("p", { style: { fontSize: 12, lineHeight: 1.35, margin: "0 0 10px" } }, cpRaw(Object.values(profile2.reportHeader).filter(Boolean).join(" \xB7 "))), grid), document.body));
   }
   var timetable_default = m4Manifest("timetable", { defaults: { periods: [], timetable: [] }, migrate: (value = {}) => ({ ...value, periods: value.periods || [], timetable: value.timetable || [] }) }, TimetableView);
 
@@ -48412,8 +48591,8 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
   }
   function planTiming(plan, profile2) {
     const minutes2 = plan.activities.reduce((sum, a) => sum + a.minutes, 0), period = planPeriod(plan, profile2);
-    const duration = period ? timeMinutes(period.end) - timeMinutes(period.start) : null;
-    return { minutes: minutes2, duration, difference: duration === null ? null : minutes2 - duration, missing: !!plan.periodId && !period };
+    const duration2 = period ? timeMinutes(period.end) - timeMinutes(period.start) : null;
+    return { minutes: minutes2, duration: duration2, difference: duration2 === null ? null : minutes2 - duration2, missing: !!plan.periodId && !period };
   }
   function planSlots(profile2, doc, date5) {
     const weekday = parseISO(date5).getDay();
