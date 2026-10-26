@@ -189,7 +189,7 @@ body{background:var(--cp-background);color:var(--cp-text)}
 [dir=rtl] .cp-sidebar button[aria-pressed=true],.cp-workspace[dir=rtl] .cp-sidebar button[aria-pressed=true]{box-shadow:inset -3px 0 0 var(--cp-gold)!important}
 /* Wheel button: icon only, the word stays for screen readers and keyboard users. */
 .cp-app-toolbar [data-cp-action="gb.wheel"]{width:30px;padding:0!important;justify-content:center}
-.cp-app-toolbar [data-cp-action="gb.wheel"]>span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.cp-app-toolbar [data-cp-action="gb.wheel"]>span{position:absolute;inset-block-start:0;inset-inline-start:0;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .cp-tool-dock{display:inline-flex;gap:2px}
 .cp-dock-btn{position:relative;display:inline-grid;place-items:center;width:30px;height:26px;padding:0;border:1px solid var(--n-200);border-radius:var(--r-1);background:transparent;color:var(--n-600);cursor:pointer}
 .cp-dock-btn:hover{background:var(--n-50)}.cp-dock-btn[aria-pressed=true]{background:var(--cp-active);color:var(--cp-link);border-color:var(--cp-gold)}
@@ -337,7 +337,7 @@ body{background:var(--cp-background);color:var(--cp-text)}
 .cp-module table{border-color:var(--cp-border)}
 .cp-shelf .cp-cmd{padding:4px 10px!important;font-size:11.5px!important;border-radius:999px!important}
 /* M15 style pass: Groups, Behaviour and Settings. Presentation only; original logic and data untouched. */
-.cp-sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.cp-sr{position:absolute;inset-block-start:0;inset-inline-start:0;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 .cp-groups-bar{margin-block:14px;padding:12px 16px}
 .cp-groups-head{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
 .cp-groups-head h2{margin:0;margin-inline-end:4px;font-size:20px}
@@ -395,7 +395,7 @@ body{background:var(--cp-background);color:var(--cp-text)}
 .cp-ux-group-card li>strong{flex:1;min-width:0;font-weight:600}
 .cp-ux-group-card li>small{font-size:10.5px;padding:1px 6px;border-radius:99px;background:var(--cp-active);color:var(--cp-text)}
 .cp-ux-group-card li .cp-ux-field{flex:0 0 132px}
-.cp-ux-group-card li .cp-ux-field>span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.cp-ux-group-card li .cp-ux-field>span{position:absolute;inset-block-start:0;inset-inline-start:0;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .cp-ux-group-card li select{min-height:28px!important;height:28px!important;font-size:12px!important}
 .cp-ux-group-card>.cp-ux-actions{align-items:end}
 .cp-ux-group-card{border-radius:12px}
@@ -414,7 +414,7 @@ body{background:var(--cp-background);color:var(--cp-text)}
 .cp-sidebar .cp-sidebar-footer button:hover{background:var(--cp-active)!important;color:var(--cp-text)!important}
 .cp-sidebar .cp-sidebar-footer button[aria-pressed=true],.cp-sidebar .cp-sidebar-footer button[aria-expanded=true]{background:var(--cp-active)!important;color:var(--cp-text)!important;box-shadow:none!important}
 .cp-sidebar .cp-sidebar-footer button svg{width:18px;height:18px}
-.cp-sidebar .cp-sidebar-footer button>span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.cp-sidebar .cp-sidebar-footer button>span{position:absolute;inset-block-start:0;inset-inline-start:0;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .cp-sidebar .cp-footer-hint{flex-basis:100%;font-size:11px;color:var(--cp-muted);padding-inline:4px}
 .cp-subnav{flex:none;display:flex;align-items:stretch;gap:2px;padding-inline:14px;background:var(--cp-surface);border-block-end:1px solid var(--cp-border);overflow-x:auto;scrollbar-width:none}
 .cp-subnav[hidden],.cp-subnav-group[hidden]{display:none}
@@ -707,7 +707,7 @@ body{background:var(--cp-background);color:var(--cp-text)}
 .cp-reel-knob{position:absolute;left:50%;top:-8px;width:28px;height:28px;margin-left:-14px;border-radius:50%;background:var(--cp-gold);box-shadow:0 3px 8px rgba(0,0,0,.45),inset 0 -3px 0 rgba(0,0,0,.18);transition:transform .22s cubic-bezier(.3,.7,.4,1)}
 .cp-reel[data-pulled=true] .cp-reel-knob{transform:translateY(50px)}
 .cp-reel-label{font-size:10.5px;font-weight:750;letter-spacing:.06em;text-transform:uppercase}
-.cp-visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.cp-visually-hidden{position:absolute;inset-block-start:0;inset-inline-start:0;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 @media (prefers-reduced-motion:reduce){.cp-reel-knob{transition:none}.cp-reel[data-rolling=true] .cp-reel-row{filter:none}}
 /* M33: per-tool sound on/off, and adding tools back into the floating window. */
 .cp-float-btn[data-icon=sound]{--cp-icon:url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%2016%2016%27%20fill%3D%27none%27%20stroke%3D%27black%27%20stroke-width%3D%271.3%27%20stroke-linecap%3D%27round%27%20stroke-linejoin%3D%27round%27%3E%3Cpath%20d%3D%27M2.5%206h2.2L8%203.2v9.6L4.7%2010H2.5z%20M10.6%205.6a3.4%203.4%200%20010%204.8%20M12.6%203.8a6%206%200%20010%208.4%27%2F%3E%3C%2Fsvg%3E")}
@@ -904,6 +904,10 @@ body{background:var(--cp-background);color:var(--cp-text)}
 .cp-analysis-tools>p,.cp-analysis-tools>ul,.cp-analysis-tools>.cp-ux-field{margin-block:8px}
 .cp-assess-enrichment{color:var(--cp-muted);font-style:italic}
 .cp-file-excel:hover,.cp-file-excel:focus-visible{background:var(--n-50)!important}
+/* M58c (owner: a white area under Today): a hidden label without a positioned box was placed where it would sit in
+   the page, so a long page made the window itself taller. Hidden labels now sit at the top of their box (above), and the
+   window never scrolls on screen: the app frame fills it and each area scrolls on its own. */
+@media screen{html:has(.cp-workspace),html:has(.cp-workspace) body{overflow:hidden}}
 /* M56 design foundations (owner-supplied Master Implementation Brief, M56; design report §7–§8).
    One set of tokens for the frame and the new modules. Protected Gradebook views (Marks, Groups, Behaviour,
    Adjustments, Analysis, the original wheel, the Settings drawer and the class manager) do not use them. */
