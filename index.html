@@ -1049,15 +1049,8 @@ body{background:var(--cp-background);color:var(--cp-text)}
 .cp-app-toolbar .cp-tb-undo,.cp-app-toolbar .cp-tb-wheel{margin-inline-start:12px!important}
 .cp-app-toolbar .cp-view-menu{margin-inline-start:auto}
 .cp-app-toolbar .cp-tool-dock{gap:4px;align-items:center}
-.cp-app-toolbar .cp-tool-dock .cp-more-btn{height:26px;width:26px}
+/* M58 (owner): the tool buttons, the wheel and Settings show icons only, at every width (names in their tooltips). */
 .cp-tb-label{display:none}
-@media (min-width:1440px){
- .cp-tb-label{display:inline}
- .cp-dock-btn{display:inline-flex;gap:5px;width:auto;padding:0 8px;font-size:11px}
- .cp-app-toolbar .cp-tb-settings{width:auto!important;padding:0 9px!important;gap:5px;font-size:11px}
- .cp-app-toolbar [data-cp-action="gb.wheel"]{width:auto;padding:0 9px!important}
- .cp-app-toolbar [data-cp-action="gb.wheel"]>span{position:static;width:auto;height:auto;clip:auto}
-}
 .cp-subnav button{min-height:30px!important;padding-block:4px!important}
 /* The context bar: errors first (red), the clock and the lesson; the running timer in the middle; one notice and
    "+n more" at the end. */
@@ -1090,6 +1083,11 @@ body{background:var(--cp-background);color:var(--cp-text)}
 .cp-context-bar:not(:has(.cp-ctx-middle>*)){grid-template-columns:minmax(0,1fr) auto}
 .cp-context-bar:not(:has(.cp-ctx-middle>*))>.cp-ctx-middle{display:none}
 :root[data-cp-density=compact] .cp-subnav button{min-height:26px!important;padding-block:2px!important}
+/* M58: the open class's calendar status on the School calendar page. */
+.cp-cal-status{display:flex;align-items:center;gap:var(--cp-sp-3);flex-wrap:wrap;margin:0 0 var(--cp-sp-3);padding:var(--cp-sp-2) var(--cp-sp-3);border-radius:var(--cp-r-control);background:var(--cp-info-bg);color:var(--cp-info);font-size:var(--cp-fs-body)}
+.cp-cal-status[data-follows=true]{background:var(--cp-success-bg);color:var(--cp-success)}
+.cp-cal-status[data-follows=true]::before{content:"✓";font-weight:700}
+.cp-opened-from{display:inline-flex;align-items:center;gap:var(--cp-sp-2);margin:0 0 var(--cp-sp-3);padding:2px var(--cp-sp-3);border-radius:var(--cp-r-pill);background:var(--cp-surface-sunken);border:1px solid var(--cp-border);font-size:var(--cp-fs-caption);color:var(--cp-text)}
 .cp-profile-failure{position:fixed;inset-inline:16px;bottom:16px;z-index:250;background:#fff1f2;color:#881337;border:1px solid #be123c;border-radius:8px;padding:14px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;box-shadow:0 8px 24px #0f172a33;font:12.5px system-ui}.cp-profile-failure div{display:flex;gap:8px}.cp-profile-failure button{background:#fff;color:#881337;border:1px solid #be123c;border-radius:5px;padding:6px 10px}:focus-visible,input:focus-within,select:focus-within,textarea:focus-within{outline:2px solid #1d4ed8!important;outline-offset:2px!important}</style></head>
 <body>
 <div id="root"></div>
@@ -5190,7 +5188,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.report.noGrades": "No released grade result is recorded for this student in the selected term.",
     "ux.report.source": "Source and counting rules",
     "ux.report.sort": "Sort by student name",
-    "ux.report.termInvalid": "Choose a valid term start date on or before the report end.",
+    "ux.report.termInvalid": "No term has started yet. Add the term dates in Timetable \u2192 School calendar.",
     "ux.appearance.textSize": "Text size",
     "ux.appearance.standard": "Standard",
     "ux.appearance.large": "Large",
@@ -5913,12 +5911,12 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.timer.min.other": "{n} minutes",
     "ux.pace.kicker": "Lesson plan",
     "ux.pace.setupTitle": "See this week's lessons here",
-    "ux.pace.needTerms": "Add your term dates in Timetable \u2192 School year, and this card shows the week of the term and the lessons to cover.",
+    "ux.pace.needTerms": "Add your term dates in Timetable \u2192 School calendar, and this card shows the week of the term and the lessons to cover.",
     "ux.pace.needLessons": "Import this class's lessons, with their weeks, in Gradebook \u2192 Assessments and lessons.",
-    "ux.pace.openYear": "School year",
+    "ux.pace.openYear": "School calendar",
     "ux.pace.openLessons": "Import lessons",
     "ux.pace.allLessons": "All lessons",
-    "ux.pace.yearTab": "School year",
+    "ux.pace.yearTab": "School calendar",
     "ux.pace.term.T1": "Term 1",
     "ux.pace.term.T2": "Term 2",
     "ux.pace.term.T3": "Term 3",
@@ -6772,7 +6770,15 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.foot.appearance": "Appearance",
     "ux.classSwitch.now": "Now in {class}.",
     "ux.classSwitch.lesson": "Now in {class} for this lesson.",
-    "ux.classSwitch.cleared": "Now in {class}. The lesson context was cleared."
+    "ux.classSwitch.cleared": "Now in {class}. The lesson context was cleared.",
+    "ux.cal.own": "This class has its own calendar ({days}); the teacher calendar is {teacher}.",
+    "ux.cal.useTeacher": "Use the teacher calendar",
+    "ux.cal.follows": "{class}: follows the teacher calendar",
+    "ux.cal.ownStatus": "{class}: own calendar ({days})",
+    "ux.cal.followsNow": "This class now follows the teacher calendar.",
+    "ux.parentReport.openedFrom": "Opened from: {kind} on {date}",
+    "ux.home.termHint": "Term dates are set in Timetable \u2192 School calendar.",
+    "ux.cal.ownHolidays": "This class has its own holidays, different from the teacher calendar."
   };
 
   // src/i18n/plain-copy.js
@@ -10444,7 +10450,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.report.noGrades": "\u0644\u0627 \u062A\u0648\u062C\u062F \u0646\u062A\u064A\u062C\u0629 \u062F\u0631\u062C\u0627\u062A \u0645\u0639\u0644\u0646\u0629 \u0644\u0647\u0630\u0627 \u0627\u0644\u0637\u0627\u0644\u0628 \u0641\u064A \u0627\u0644\u0641\u0635\u0644 \u0627\u0644\u0645\u062D\u062F\u062F.",
     "ux.report.source": "\u0627\u0644\u0645\u0635\u062F\u0631 \u0648\u0642\u0648\u0627\u0639\u062F \u0627\u0644\u0627\u062D\u062A\u0633\u0627\u0628",
     "ux.report.sort": "\u0627\u0644\u062A\u0631\u062A\u064A\u0628 \u0628\u062D\u0633\u0628 \u0627\u0633\u0645 \u0627\u0644\u0637\u0627\u0644\u0628",
-    "ux.report.termInvalid": "\u0627\u062E\u062A\u0631 \u062A\u0627\u0631\u064A\u062E \u0628\u062F\u0627\u064A\u0629 \u0641\u0635\u0644 \u0635\u062D\u064A\u062D\u0627\u064B \u0644\u0627 \u064A\u062A\u062C\u0627\u0648\u0632 \u0646\u0647\u0627\u064A\u0629 \u0627\u0644\u062A\u0642\u0631\u064A\u0631.",
+    "ux.report.termInvalid": "\u0644\u0645 \u064A\u0628\u062F\u0623 \u0623\u064A \u0641\u0635\u0644 \u0628\u0639\u062F. \u0623\u0636\u0641 \u062A\u0648\u0627\u0631\u064A\u062E \u0627\u0644\u0641\u0635\u0648\u0644 \u0641\u064A \u0627\u0644\u062C\u062F\u0648\u0644 \u2190 \u0627\u0644\u062A\u0642\u0648\u064A\u0645 \u0627\u0644\u0645\u062F\u0631\u0633\u064A.",
     "ux.appearance.textSize": "\u062D\u062C\u0645 \u0627\u0644\u0646\u0635",
     "ux.appearance.standard": "\u0642\u064A\u0627\u0633\u064A",
     "ux.appearance.large": "\u0643\u0628\u064A\u0631",
@@ -11167,12 +11173,12 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.timer.min.other": "{n} \u062F\u0642\u064A\u0642\u0629",
     "ux.pace.kicker": "\u062E\u0637\u0629 \u0627\u0644\u062F\u0631\u0648\u0633",
     "ux.pace.setupTitle": "\u0627\u0639\u0631\u0636 \u062F\u0631\u0648\u0633 \u0647\u0630\u0627 \u0627\u0644\u0623\u0633\u0628\u0648\u0639 \u0647\u0646\u0627",
-    "ux.pace.needTerms": "\u0623\u0636\u0641 \u062A\u0648\u0627\u0631\u064A\u062E \u0627\u0644\u0641\u0635\u0648\u0644 \u0641\u064A \u0627\u0644\u062C\u062F\u0648\u0644 \u2190 \u0627\u0644\u0639\u0627\u0645 \u0627\u0644\u062F\u0631\u0627\u0633\u064A\u060C \u0644\u062A\u0639\u0631\u0636 \u0647\u0630\u0647 \u0627\u0644\u0628\u0637\u0627\u0642\u0629 \u0623\u0633\u0628\u0648\u0639 \u0627\u0644\u0641\u0635\u0644 \u0648\u0627\u0644\u062F\u0631\u0648\u0633 \u0627\u0644\u0645\u0637\u0644\u0648\u0628 \u062A\u063A\u0637\u064A\u062A\u0647\u0627.",
+    "ux.pace.needTerms": "\u0623\u0636\u0641 \u062A\u0648\u0627\u0631\u064A\u062E \u0627\u0644\u0641\u0635\u0648\u0644 \u0641\u064A \u0627\u0644\u062C\u062F\u0648\u0644 \u2190 \u0627\u0644\u062A\u0642\u0648\u064A\u0645 \u0627\u0644\u0645\u062F\u0631\u0633\u064A\u060C \u0644\u062A\u0639\u0631\u0636 \u0647\u0630\u0647 \u0627\u0644\u0628\u0637\u0627\u0642\u0629 \u0623\u0633\u0628\u0648\u0639 \u0627\u0644\u0641\u0635\u0644 \u0648\u0627\u0644\u062F\u0631\u0648\u0633 \u0627\u0644\u0645\u0637\u0644\u0648\u0628 \u062A\u063A\u0637\u064A\u062A\u0647\u0627.",
     "ux.pace.needLessons": "\u0627\u0633\u062A\u0648\u0631\u062F \u062F\u0631\u0648\u0633 \u0647\u0630\u0627 \u0627\u0644\u0635\u0641 \u0645\u0639 \u0623\u0633\u0627\u0628\u064A\u0639\u0647\u0627 \u0645\u0646 \u0633\u062C\u0644 \u0627\u0644\u062F\u0631\u062C\u0627\u062A \u2190 \u0627\u0644\u062A\u0642\u064A\u064A\u0645\u0627\u062A \u0648\u0627\u0644\u062F\u0631\u0648\u0633.",
-    "ux.pace.openYear": "\u0627\u0644\u0639\u0627\u0645 \u0627\u0644\u062F\u0631\u0627\u0633\u064A",
+    "ux.pace.openYear": "\u0627\u0644\u062A\u0642\u0648\u064A\u0645 \u0627\u0644\u0645\u062F\u0631\u0633\u064A",
     "ux.pace.openLessons": "\u0627\u0633\u062A\u064A\u0631\u0627\u062F \u0627\u0644\u062F\u0631\u0648\u0633",
     "ux.pace.allLessons": "\u0643\u0644 \u0627\u0644\u062F\u0631\u0648\u0633",
-    "ux.pace.yearTab": "\u0627\u0644\u0639\u0627\u0645 \u0627\u0644\u062F\u0631\u0627\u0633\u064A",
+    "ux.pace.yearTab": "\u0627\u0644\u062A\u0642\u0648\u064A\u0645 \u0627\u0644\u0645\u062F\u0631\u0633\u064A",
     "ux.pace.term.T1": "\u0627\u0644\u0641\u0635\u0644 \u0627\u0644\u0623\u0648\u0644",
     "ux.pace.term.T2": "\u0627\u0644\u0641\u0635\u0644 \u0627\u0644\u062B\u0627\u0646\u064A",
     "ux.pace.term.T3": "\u0627\u0644\u0641\u0635\u0644 \u0627\u0644\u062B\u0627\u0644\u062B",
@@ -12026,7 +12032,15 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.foot.appearance": "\u0627\u0644\u0645\u0638\u0647\u0631",
     "ux.classSwitch.now": "\u0623\u0646\u062A \u0627\u0644\u0622\u0646 \u0641\u064A {class}.",
     "ux.classSwitch.lesson": "\u0623\u0646\u062A \u0627\u0644\u0622\u0646 \u0641\u064A {class} \u0644\u0647\u0630\u0647 \u0627\u0644\u062D\u0635\u0629.",
-    "ux.classSwitch.cleared": "\u0623\u0646\u062A \u0627\u0644\u0622\u0646 \u0641\u064A {class}. \u0623\u064F\u0644\u063A\u064A \u0633\u064A\u0627\u0642 \u0627\u0644\u062D\u0635\u0629."
+    "ux.classSwitch.cleared": "\u0623\u0646\u062A \u0627\u0644\u0622\u0646 \u0641\u064A {class}. \u0623\u064F\u0644\u063A\u064A \u0633\u064A\u0627\u0642 \u0627\u0644\u062D\u0635\u0629.",
+    "ux.cal.own": "\u0644\u0647\u0630\u0627 \u0627\u0644\u0635\u0641 \u062A\u0642\u0648\u064A\u0645 \u062E\u0627\u0635 ({days})\u060C \u0648\u062A\u0642\u0648\u064A\u0645 \u0627\u0644\u0645\u0639\u0644\u0645 \u0647\u0648 {teacher}.",
+    "ux.cal.useTeacher": "\u0627\u0633\u062A\u062E\u062F\u0627\u0645 \u062A\u0642\u0648\u064A\u0645 \u0627\u0644\u0645\u0639\u0644\u0645",
+    "ux.cal.follows": "{class}: \u064A\u062A\u0628\u0639 \u062A\u0642\u0648\u064A\u0645 \u0627\u0644\u0645\u0639\u0644\u0645",
+    "ux.cal.ownStatus": "{class}: \u062A\u0642\u0648\u064A\u0645 \u062E\u0627\u0635 ({days})",
+    "ux.cal.followsNow": "\u0623\u0635\u0628\u062D \u0647\u0630\u0627 \u0627\u0644\u0635\u0641 \u064A\u062A\u0628\u0639 \u062A\u0642\u0648\u064A\u0645 \u0627\u0644\u0645\u0639\u0644\u0645.",
+    "ux.parentReport.openedFrom": "\u0641\u064F\u062A\u062D \u0645\u0646: {kind} \u0628\u062A\u0627\u0631\u064A\u062E {date}",
+    "ux.home.termHint": "\u062A\u064F\u062D\u062F\u064E\u0651\u062F \u062A\u0648\u0627\u0631\u064A\u062E \u0627\u0644\u0641\u0635\u0648\u0644 \u0641\u064A \u0627\u0644\u062C\u062F\u0648\u0644 \u2190 \u0627\u0644\u062A\u0642\u0648\u064A\u0645 \u0627\u0644\u0645\u062F\u0631\u0633\u064A.",
+    "ux.cal.ownHolidays": "\u0644\u0647\u0630\u0627 \u0627\u0644\u0635\u0641 \u0625\u062C\u0627\u0632\u0627\u062A \u062E\u0627\u0635\u0629 \u062A\u062E\u062A\u0644\u0641 \u0639\u0646 \u062A\u0642\u0648\u064A\u0645 \u0627\u0644\u0645\u0639\u0644\u0645."
   };
 
   // src/core/actions.js
@@ -27801,6 +27815,19 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       "meaning": "ux.context.more"
     },
     {
+      "id": "ux.cal.useTeacher",
+      "labelKey": "ux.cal.useTeacher",
+      "icon": null,
+      "shortcut": null,
+      "availability": "rendered-and-not-disabled",
+      "canonicalHome": "cal:context",
+      "events": [
+        "onClick"
+      ],
+      "source": "src/modules",
+      "meaning": "ux.cal.useTeacher"
+    },
+    {
       "id": "ux.report.sort",
       "labelKey": "ux.report.sort",
       "icon": null,
@@ -34813,6 +34840,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
   Object.assign(uxClick, { "dialog.confirm": "dialog.confirm", "dialog.cancel": "dialog.cancel", "toast.undo": "toast.undo", "toast.close": "toast.close", "skipToContent": "skipToContent", "picker.all": "picker.all", "picker.present": "picker.present", "picker.matching": "picker.matching", "picker.view": "picker.view", "picker.clear": "picker.clear", "scope.open": "scope.open", "notes.new": "notes.new", "notes.select": "notes.select", "notes.close": "notes.close", "notes.clearFilters": "notes.clearFilters" });
   Object.assign(uxChange, { "dialog.text": "dialog.text", "picker.search": "picker.search", "picker.student": "picker.student" });
   Object.assign(uxClick, { "context.more": "context.more" });
+  Object.assign(uxClick, { "cal.useTeacher": "cal.useTeacher" });
   var uxActions = [...Object.entries(uxClick).map(([id, key4]) => [id, key4, "onClick"]), ...Object.entries(uxChange).map(([id, key4]) => [id, key4, "onChange"])].map(([id, key4, event]) => ({ id: "ux." + id, labelKey: "ux." + key4, icon: null, shortcut: null, availability: "rendered-and-not-disabled", canonicalHome: id.startsWith("nav.") ? "Workspace:sidebar" : id.startsWith("appearance.") ? "Workspace:context" : id.split(".")[0] + ":context", events: [event], source: "src/modules", meaning: "ux." + id }));
 
   // src/i18n/ux-copy.js
@@ -35118,8 +35146,8 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       "\u0627\u0644\u062A\u0631\u062A\u064A\u0628 \u0628\u062D\u0633\u0628 \u0627\u0633\u0645 \u0627\u0644\u0637\u0627\u0644\u0628"
     ],
     "report.termInvalid": [
-      "Choose a valid term start date on or before the report end.",
-      "\u0627\u062E\u062A\u0631 \u062A\u0627\u0631\u064A\u062E \u0628\u062F\u0627\u064A\u0629 \u0641\u0635\u0644 \u0635\u062D\u064A\u062D\u0627\u064B \u0644\u0627 \u064A\u062A\u062C\u0627\u0648\u0632 \u0646\u0647\u0627\u064A\u0629 \u0627\u0644\u062A\u0642\u0631\u064A\u0631."
+      "No term has started yet. Add the term dates in Timetable \u2192 School calendar.",
+      "\u0644\u0645 \u064A\u0628\u062F\u0623 \u0623\u064A \u0641\u0635\u0644 \u0628\u0639\u062F. \u0623\u0636\u0641 \u062A\u0648\u0627\u0631\u064A\u062E \u0627\u0644\u0641\u0635\u0648\u0644 \u0641\u064A \u0627\u0644\u062C\u062F\u0648\u0644 \u2190 \u0627\u0644\u062A\u0642\u0648\u064A\u0645 \u0627\u0644\u0645\u062F\u0631\u0633\u064A."
     ],
     "appearance.textSize": [
       "Text size",
@@ -37547,12 +37575,12 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "timer.min.other": ["{n} minutes", "{n} \u062F\u0642\u064A\u0642\u0629"],
     "pace.kicker": ["Lesson plan", "\u062E\u0637\u0629 \u0627\u0644\u062F\u0631\u0648\u0633"],
     "pace.setupTitle": ["See this week's lessons here", "\u0627\u0639\u0631\u0636 \u062F\u0631\u0648\u0633 \u0647\u0630\u0627 \u0627\u0644\u0623\u0633\u0628\u0648\u0639 \u0647\u0646\u0627"],
-    "pace.needTerms": ["Add your term dates in Timetable \u2192 School year, and this card shows the week of the term and the lessons to cover.", "\u0623\u0636\u0641 \u062A\u0648\u0627\u0631\u064A\u062E \u0627\u0644\u0641\u0635\u0648\u0644 \u0641\u064A \u0627\u0644\u062C\u062F\u0648\u0644 \u2190 \u0627\u0644\u0639\u0627\u0645 \u0627\u0644\u062F\u0631\u0627\u0633\u064A\u060C \u0644\u062A\u0639\u0631\u0636 \u0647\u0630\u0647 \u0627\u0644\u0628\u0637\u0627\u0642\u0629 \u0623\u0633\u0628\u0648\u0639 \u0627\u0644\u0641\u0635\u0644 \u0648\u0627\u0644\u062F\u0631\u0648\u0633 \u0627\u0644\u0645\u0637\u0644\u0648\u0628 \u062A\u063A\u0637\u064A\u062A\u0647\u0627."],
+    "pace.needTerms": ["Add your term dates in Timetable \u2192 School calendar, and this card shows the week of the term and the lessons to cover.", "\u0623\u0636\u0641 \u062A\u0648\u0627\u0631\u064A\u062E \u0627\u0644\u0641\u0635\u0648\u0644 \u0641\u064A \u0627\u0644\u062C\u062F\u0648\u0644 \u2190 \u0627\u0644\u062A\u0642\u0648\u064A\u0645 \u0627\u0644\u0645\u062F\u0631\u0633\u064A\u060C \u0644\u062A\u0639\u0631\u0636 \u0647\u0630\u0647 \u0627\u0644\u0628\u0637\u0627\u0642\u0629 \u0623\u0633\u0628\u0648\u0639 \u0627\u0644\u0641\u0635\u0644 \u0648\u0627\u0644\u062F\u0631\u0648\u0633 \u0627\u0644\u0645\u0637\u0644\u0648\u0628 \u062A\u063A\u0637\u064A\u062A\u0647\u0627."],
     "pace.needLessons": ["Import this class's lessons, with their weeks, in Gradebook \u2192 Assessments and lessons.", "\u0627\u0633\u062A\u0648\u0631\u062F \u062F\u0631\u0648\u0633 \u0647\u0630\u0627 \u0627\u0644\u0635\u0641 \u0645\u0639 \u0623\u0633\u0627\u0628\u064A\u0639\u0647\u0627 \u0645\u0646 \u0633\u062C\u0644 \u0627\u0644\u062F\u0631\u062C\u0627\u062A \u2190 \u0627\u0644\u062A\u0642\u064A\u064A\u0645\u0627\u062A \u0648\u0627\u0644\u062F\u0631\u0648\u0633."],
-    "pace.openYear": ["School year", "\u0627\u0644\u0639\u0627\u0645 \u0627\u0644\u062F\u0631\u0627\u0633\u064A"],
+    "pace.openYear": ["School calendar", "\u0627\u0644\u062A\u0642\u0648\u064A\u0645 \u0627\u0644\u0645\u062F\u0631\u0633\u064A"],
     "pace.openLessons": ["Import lessons", "\u0627\u0633\u062A\u064A\u0631\u0627\u062F \u0627\u0644\u062F\u0631\u0648\u0633"],
     "pace.allLessons": ["All lessons", "\u0643\u0644 \u0627\u0644\u062F\u0631\u0648\u0633"],
-    "pace.yearTab": ["School year", "\u0627\u0644\u0639\u0627\u0645 \u0627\u0644\u062F\u0631\u0627\u0633\u064A"],
+    "pace.yearTab": ["School calendar", "\u0627\u0644\u062A\u0642\u0648\u064A\u0645 \u0627\u0644\u0645\u062F\u0631\u0633\u064A"],
     "pace.term.T1": ["Term 1", "\u0627\u0644\u0641\u0635\u0644 \u0627\u0644\u0623\u0648\u0644"],
     "pace.term.T2": ["Term 2", "\u0627\u0644\u0641\u0635\u0644 \u0627\u0644\u062B\u0627\u0646\u064A"],
     "pace.term.T3": ["Term 3", "\u0627\u0644\u0641\u0635\u0644 \u0627\u0644\u062B\u0627\u0644\u062B"],
@@ -38406,7 +38434,15 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "foot.appearance": ["Appearance", "\u0627\u0644\u0645\u0638\u0647\u0631"],
     "classSwitch.now": ["Now in {class}.", "\u0623\u0646\u062A \u0627\u0644\u0622\u0646 \u0641\u064A {class}."],
     "classSwitch.lesson": ["Now in {class} for this lesson.", "\u0623\u0646\u062A \u0627\u0644\u0622\u0646 \u0641\u064A {class} \u0644\u0647\u0630\u0647 \u0627\u0644\u062D\u0635\u0629."],
-    "classSwitch.cleared": ["Now in {class}. The lesson context was cleared.", "\u0623\u0646\u062A \u0627\u0644\u0622\u0646 \u0641\u064A {class}. \u0623\u064F\u0644\u063A\u064A \u0633\u064A\u0627\u0642 \u0627\u0644\u062D\u0635\u0629."]
+    "classSwitch.cleared": ["Now in {class}. The lesson context was cleared.", "\u0623\u0646\u062A \u0627\u0644\u0622\u0646 \u0641\u064A {class}. \u0623\u064F\u0644\u063A\u064A \u0633\u064A\u0627\u0642 \u0627\u0644\u062D\u0635\u0629."],
+    "cal.own": ["This class has its own calendar ({days}); the teacher calendar is {teacher}.", "\u0644\u0647\u0630\u0627 \u0627\u0644\u0635\u0641 \u062A\u0642\u0648\u064A\u0645 \u062E\u0627\u0635 ({days})\u060C \u0648\u062A\u0642\u0648\u064A\u0645 \u0627\u0644\u0645\u0639\u0644\u0645 \u0647\u0648 {teacher}."],
+    "cal.useTeacher": ["Use the teacher calendar", "\u0627\u0633\u062A\u062E\u062F\u0627\u0645 \u062A\u0642\u0648\u064A\u0645 \u0627\u0644\u0645\u0639\u0644\u0645"],
+    "cal.follows": ["{class}: follows the teacher calendar", "{class}: \u064A\u062A\u0628\u0639 \u062A\u0642\u0648\u064A\u0645 \u0627\u0644\u0645\u0639\u0644\u0645"],
+    "cal.ownStatus": ["{class}: own calendar ({days})", "{class}: \u062A\u0642\u0648\u064A\u0645 \u062E\u0627\u0635 ({days})"],
+    "cal.followsNow": ["This class now follows the teacher calendar.", "\u0623\u0635\u0628\u062D \u0647\u0630\u0627 \u0627\u0644\u0635\u0641 \u064A\u062A\u0628\u0639 \u062A\u0642\u0648\u064A\u0645 \u0627\u0644\u0645\u0639\u0644\u0645."],
+    "parentReport.openedFrom": ["Opened from: {kind} on {date}", "\u0641\u064F\u062A\u062D \u0645\u0646: {kind} \u0628\u062A\u0627\u0631\u064A\u062E {date}"],
+    "home.termHint": ["Term dates are set in Timetable \u2192 School calendar.", "\u062A\u064F\u062D\u062F\u064E\u0651\u062F \u062A\u0648\u0627\u0631\u064A\u062E \u0627\u0644\u0641\u0635\u0648\u0644 \u0641\u064A \u0627\u0644\u062C\u062F\u0648\u0644 \u2190 \u0627\u0644\u062A\u0642\u0648\u064A\u0645 \u0627\u0644\u0645\u062F\u0631\u0633\u064A."],
+    "cal.ownHolidays": ["This class has its own holidays, different from the teacher calendar.", "\u0644\u0647\u0630\u0627 \u0627\u0644\u0635\u0641 \u0625\u062C\u0627\u0632\u0627\u062A \u062E\u0627\u0635\u0629 \u062A\u062E\u062A\u0644\u0641 \u0639\u0646 \u062A\u0642\u0648\u064A\u0645 \u0627\u0644\u0645\u0639\u0644\u0645."]
   };
   var uxEn = Object.fromEntries(Object.entries(pairs).map(([key4, value]) => ["ux." + key4, value[0]]));
   var uxAr = Object.fromEntries(Object.entries(pairs).map(([key4, value]) => ["ux." + key4, value[1]]));
@@ -41752,6 +41788,17 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     return note ? addNote(next, ticket.studentId, when2, note) : next;
   }
 
+  // src/modules/weekly/request.js
+  var pending3 = null;
+  function requestParentReport(request) {
+    pending3 = request;
+  }
+  function takeParentReportRequest() {
+    const request = pending3;
+    pending3 = null;
+    return request;
+  }
+
   // src/modules/contacts/ui.jsx
   function ParentReasonWatcher({ doc, onUpdate }) {
     const seen = useRef(null), [asking, setAsking] = useState(null), [reason, setReason] = useState("");
@@ -41796,7 +41843,10 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       onUpdate((d) => resolveTicket(d, ticket, { method, outcome, date: today, note: record(ticket, method, outcome) }));
       setOpen(null);
     };
-    const report = (ticket) => window.dispatchEvent(new CustomEvent("cp:student-module", { detail: { view: "module:weekly", studentId: ticket.studentId } }));
+    const report = (ticket) => {
+      requestParentReport({ studentId: ticket.studentId, date: ticket.date, kind: ticket.kind });
+      window.dispatchEvent(new CustomEvent("cp:student-module", { detail: { view: "module:weekly", studentId: ticket.studentId } }));
+    };
     return /* @__PURE__ */ cpJsx("section", { className: "cp-contact-tickets", "aria-label": uxText("contact.ticketsTitle") }, /* @__PURE__ */ cpJsx("header", null, /* @__PURE__ */ cpJsx("h2", null, uxText("contact.ticketsTitle")), /* @__PURE__ */ cpJsx("span", { className: "cp-contact-count" }, cpRaw(String(tickets.length)))), /* @__PURE__ */ cpJsx("ol", null, tickets.map((ticket) => {
       const editing = open?.id === ticket.id;
       return /* @__PURE__ */ cpJsx("li", { key: ticket.id, "data-kind": ticket.kind }, /* @__PURE__ */ cpJsx("div", { className: "cp-contact-line" }, /* @__PURE__ */ cpJsx("span", { className: "cp-contact-kind" }, uxText("contact.kind." + ticket.kind)), /* @__PURE__ */ cpJsx("b", null, cpRaw(ticket.name)), /* @__PURE__ */ cpJsx("bdi", { dir: "ltr", className: "cp-contact-date" }, cpRaw(ticket.date))), /* @__PURE__ */ cpJsx("p", { dir: "auto", className: ticket.reason ? "" : "cp-contact-missing" }, ticket.reason ? cpRaw(ticket.reason) : uxText("contact.noReason")), /* @__PURE__ */ cpJsx(ParentLine, { doc, studentId: ticket.studentId }), ticket.tagRemoved && /* @__PURE__ */ cpJsx("p", { className: "cp-contact-missing" }, uxText("contact.tagRemoved")), editing && open.mode === "reason" ? /* @__PURE__ */ cpJsx("div", { className: "cp-contact-form" }, /* @__PURE__ */ cpJsx("label", { className: "cp-ux-field" }, /* @__PURE__ */ cpJsx("span", null, uxText("contact.reason")), /* @__PURE__ */ cpJsx("textarea", { rows: 2, maxLength: 2e3, dir: "auto", value: draft.reason, ...controlProps("ux.contact.reason", (e) => setDraft({ ...draft, reason: e.target.value }), ticket.id) })), /* @__PURE__ */ cpJsx("div", { className: "cp-ux-actions" }, /* @__PURE__ */ cpJsx("button", { type: "button", className: "cp-ux-button cp-ux-primary", disabled: !draft.reason.trim(), ...actionProps("ux.contact.save", () => {
@@ -45741,20 +45791,20 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
   var groups_default = { id: "groupLayouts", schema: { defaults: { schemaVersion: 1, formations: [], captains: {}, appearance: {} }, migrate: (value) => value || { schemaVersion: 1, formations: [], captains: {}, appearance: {} } }, views: [], actions: uxActions.filter((a) => a.id.startsWith("ux.groups.")), settingsSections: [], exports: [{ id: "groups.cards", format: "print/pdf" }], i18n: { en: uxEn, ar: uxAr } };
 
   // src/core/restore-review.jsx
-  var pending3 = null;
+  var pending4 = null;
   var listeners7 = /* @__PURE__ */ new Set(), emit3 = () => {
-    for (const fn of listeners7) fn(pending3);
+    for (const fn of listeners7) fn(pending4);
   };
   function reviewRestore(current4, incoming, linked, message) {
-    if (pending3) return Promise.resolve(false);
+    if (pending4) return Promise.resolve(false);
     return new Promise((resolve) => {
-      pending3 = { current: current4, incoming, linked, message, resolve };
+      pending4 = { current: current4, incoming, linked, message, resolve };
       emit3();
     });
   }
   var counts = (d) => ({ students: d.students.length, columns: d.sections.reduce((n, s) => n + s.columns.length, 0), sessions: Object.keys(d.cp?.attendance?.sessions || {}).length, plans: d.cp?.plans?.length || 0, notes: Object.values(d.cp?.notes?.byStudent || {}).reduce((n, list2) => n + list2.length, 0) });
   function RestoreReview() {
-    const [review, setReview] = useState(pending3), dialog = useRef(null);
+    const [review, setReview] = useState(pending4), dialog = useRef(null);
     useEffect(() => {
       listeners7.add(setReview);
       return () => listeners7.delete(setReview);
@@ -45763,8 +45813,8 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       if (review) dialog.current?.showModal();
     }, [review]);
     function finish(accept) {
-      const old = pending3;
-      pending3 = null;
+      const old = pending4;
+      pending4 = null;
       setReview(null);
       old?.resolve(accept);
     }
@@ -47368,13 +47418,13 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
   var notebook_default = { id: "notebook", schema: { defaults: notebook(), migrate: notebook }, views: [{ id: "module:notebook", labelKey: "ux.notebook.title", Component: NotebookView }], actions: uxActions.filter((a) => a.id.startsWith("ux.notebook.") || a.id === "ux.nav.notebook"), settingsSections: [], exports: [{ id: "notebook.word", format: "docx" }], i18n: { en: uxEn, ar: uxAr } };
 
   // src/modules/certificates/proposal.js
-  var pending4 = null;
+  var pending5 = null;
   function proposeCertificates(kind) {
-    pending4 = kind;
+    pending5 = kind;
   }
   function takeCertificateProposal() {
-    const kind = pending4;
-    pending4 = null;
+    const kind = pending5;
+    pending5 = null;
     return kind;
   }
 
@@ -47473,9 +47523,31 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     const dates = teachingWeeks(calendar, termsOf(calendar).find((t2) => t2.id === termId));
     return [...weeks.entries()].sort((a, b) => a[0] - b[0]).map(([n, list2]) => ({ n, lessons: list2, dates: dates[n - 1] || null }));
   }
+  function termAt(calendar, date5) {
+    const terms = termsOf(calendar);
+    return terms.find((t2) => date5 >= t2.from && date5 <= t2.to) || terms.find((t2) => t2.from > date5) || null;
+  }
+  function termEndFor(profile2, date5) {
+    return termAt(profile2?.calendar, date5)?.to || (valid2(profile2?.termEndDate) ? profile2.termEndDate : null);
+  }
+  function termStartFor(profile2, date5, fallback) {
+    const terms = termsOf(profile2?.calendar), term = terms.find((t2) => date5 >= t2.from && date5 <= t2.to) || [...terms].reverse().find((t2) => t2.to < date5);
+    return term?.from || (valid2(fallback) ? fallback : null);
+  }
+  var CLASS_DAYS = [0, 1, 2, 3, 4], TEACHER_DAYS = [1, 2, 3, 4, 5];
+  var daysOf = (list2, fallback) => [...new Set(Array.isArray(list2) && list2.length ? list2 : fallback)].sort((a, b) => a - b);
+  var spansOf = (list2) => (Array.isArray(list2) ? list2 : []).filter((h) => h && valid2(h.from)).map((h) => h.from + "/" + (h.to || h.from)).sort().join(",");
+  var classDays = (doc) => daysOf(doc?.settings?.schoolDays, CLASS_DAYS), teacherDays = (calendar) => daysOf(calendar?.schoolDays, TEACHER_DAYS);
+  function followsTeacherCalendar(doc, calendar) {
+    return classDays(doc).join() === teacherDays(calendar).join() && spansOf(doc?.settings?.holidays) === spansOf(calendar?.holidays);
+  }
+  function adoptTeacherCalendar(doc, calendar) {
+    return { ...doc, settings: { ...doc.settings, schoolDays: teacherDays(calendar), holidays: (Array.isArray(calendar?.holidays) ? calendar.holidays : []).filter((h) => h && valid2(h.from)).map((h) => ({ ...h })) } };
+  }
 
   // src/modules/pacing/year.jsx
   var locale = () => getLanguage() === "ar" ? "ar-AE-u-nu-latn" : "en-GB";
+  var dayRange = (days) => days.length > 1 && days.every((day, i) => !i || day === days[i - 1] + 1) ? t("calendar.day" + days[0]) + "\u2013" + t("calendar.day" + days.at(-1)) : days.map((day) => t("calendar.day" + day)).join(", ");
   var dayMonth = (iso) => new Intl.DateTimeFormat(locale(), { day: "numeric", month: "short" }).format(parseISO(iso));
   function Months({ calendar, terms, today }) {
     if (!terms.length) return null;
@@ -47516,11 +47588,15 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     }));
     return /* @__PURE__ */ cpJsx("table", { className: "cp-year-summary" }, /* @__PURE__ */ cpJsx("thead", null, /* @__PURE__ */ cpJsx("tr", null, /* @__PURE__ */ cpJsx("td", null), summary.terms.map((t2) => /* @__PURE__ */ cpJsx("th", { key: t2.id, scope: "col" }, uxText("pace.term." + t2.id))))), /* @__PURE__ */ cpJsx("tbody", null, row2("weeks", (t2) => t2.weeks), row2("days", (t2) => t2.schoolDays), row2("teaching", (t2) => t2.teachingWeeks), plan && row2("plan", (t2) => t2.planWeeks, (t2) => t2.planWeeks != null && t2.planWeeks > t2.teachingWeeks), /* @__PURE__ */ cpJsx("tr", null, /* @__PURE__ */ cpJsx("th", { scope: "row" }, uxText("pace.sum.total")), /* @__PURE__ */ cpJsx("td", { colSpan: summary.terms.length }, cpRaw(String(summary.schoolDays))))));
   }
-  function SchoolYear({ profile: profile2, today, doc }) {
+  function SchoolYear({ profile: profile2, today, doc, onUpdate }) {
     useLanguage();
     const calendar = profile2.calendar || {}, terms = termsOf(calendar), list2 = Array.isArray(calendar.terms) ? calendar.terms : [];
     const shown2 = TERM_IDS.filter((id, i) => i < 3 || list2.some((t2) => t2.id === id));
-    return /* @__PURE__ */ cpJsx("div", { className: "cp-year" }, /* @__PURE__ */ cpJsx("section", { className: "cp-ai3-group", "aria-labelledby": "cp-year-terms" }, /* @__PURE__ */ cpJsx("h3", { id: "cp-year-terms" }, uxText("pace.termsTitle")), /* @__PURE__ */ cpJsx("p", { className: "cp-ai3-hint" }, uxText("pace.termsLead")), /* @__PURE__ */ cpJsx("div", { className: "cp-year-terms" }, shown2.map((id) => {
+    const follows = doc ? followsTeacherCalendar(doc, calendar) : true, name = doc?.settings?.className || "";
+    return /* @__PURE__ */ cpJsx("div", { className: "cp-year" }, doc?.cp?.classId && /* @__PURE__ */ cpJsx("p", { className: "cp-cal-status", "data-follows": follows ? "true" : "false", role: "status" }, cpRaw(follows ? uxText("cal.follows").replace("{class}", name) : uxText("cal.ownStatus").replace("{class}", name).replace("{days}", dayRange(classDays(doc)))), !follows && onUpdate && /* @__PURE__ */ cpJsx(UxButton, { id: "cal.useTeacher", context: "calendar", onClick: () => {
+      onUpdate((d) => adoptTeacherCalendar(d, calendar));
+      notify2(uxText("cal.followsNow"), { undo: true });
+    } })), /* @__PURE__ */ cpJsx("section", { className: "cp-ai3-group", "aria-labelledby": "cp-year-terms" }, /* @__PURE__ */ cpJsx("h3", { id: "cp-year-terms" }, uxText("pace.termsTitle")), /* @__PURE__ */ cpJsx("p", { className: "cp-ai3-hint" }, uxText("pace.termsLead")), /* @__PURE__ */ cpJsx("div", { className: "cp-year-terms" }, shown2.map((id) => {
       const term = list2.find((t2) => t2.id === id) || {}, weeks = termsOf(calendar).some((t2) => t2.id === id) ? teachingWeeks(calendar, term).length : 0;
       return /* @__PURE__ */ cpJsx("div", { key: id, className: "cp-year-term" }, /* @__PURE__ */ cpJsx("b", null, uxText("pace.term." + id)), /* @__PURE__ */ cpJsx(UxField, { id: "pace.termFrom", label: "pace.from", type: "date", context: id, value: term.from || "", max: term.to || void 0, onChange: (e) => updateProfile((p) => setTerm(p, id, { from: e.target.value })) }), /* @__PURE__ */ cpJsx(UxField, { id: "pace.termTo", label: "pace.to", type: "date", context: id, value: term.to || "", min: term.from || void 0, onChange: (e) => updateProfile((p) => setTerm(p, id, { to: e.target.value })) }), /* @__PURE__ */ cpJsx("small", { "data-weeks": weeks }, weeks ? uxText("pace.weeks").replace("{n}", String(weeks)) : uxText("pace.noDates")));
     }))), /* @__PURE__ */ cpJsx("section", { className: "cp-ai3-group", "aria-labelledby": "cp-year-days" }, /* @__PURE__ */ cpJsx("h3", { id: "cp-year-days" }, uxText("pace.daysTitle")), /* @__PURE__ */ cpJsx("p", { className: "cp-ai3-hint" }, uxText("pace.daysLead")), /* @__PURE__ */ cpJsx(DaysOff, { calendar })), terms.length > 0 && /* @__PURE__ */ cpJsx("section", { className: "cp-ai3-group", "aria-labelledby": "cp-year-sum" }, /* @__PURE__ */ cpJsx("h3", { id: "cp-year-sum" }, uxText("pace.summaryTitle")), /* @__PURE__ */ cpJsx("p", { className: "cp-ai3-hint" }, uxText("pace.summaryLead")), /* @__PURE__ */ cpJsx(Summary, { calendar, doc })), terms.length > 0 && /* @__PURE__ */ cpJsx("section", { "aria-labelledby": "cp-year-glance" }, /* @__PURE__ */ cpJsx("h3", { id: "cp-year-glance" }, uxText("pace.glance")), /* @__PURE__ */ cpJsx("p", { className: "cp-year-key" }, /* @__PURE__ */ cpJsx("span", { "data-kind": "term" }), uxText("pace.keyTerm"), /* @__PURE__ */ cpJsx("span", { "data-kind": "noteach" }), uxText("pace.keyNoTeach"), /* @__PURE__ */ cpJsx("span", { "data-kind": "holiday" }), uxText("pace.holiday"), /* @__PURE__ */ cpJsx("span", { "data-kind": "off" }), uxText("pace.keyOff")), /* @__PURE__ */ cpJsx(Months, { calendar, terms, today })));
@@ -47551,7 +47627,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       if (records[student.id]?.status) counts2.marked++;
       if (records[student.id]?.status === "absent") counts2.absent++;
     }
-    const end = profile2.termEndDate, days = end ? Math.ceil((parseISO(end) - parseISO(date5)) / 864e5) : null, suggestions2 = show ? certificateSuggestions(doc, { from: date5, through: date5 }) : null, followups = show ? doc.students.filter((s) => attendanceFlags(s, doc).length) : [];
+    const end = termEndFor(profile2, date5), days = end ? Math.ceil((parseISO(end) - parseISO(date5)) / 864e5) : null, suggestions2 = show ? certificateSuggestions(doc, { from: date5, through: date5 }) : null, followups = show ? doc.students.filter((s) => attendanceFlags(s, doc).length) : [];
     const ready = canOpen && isProfileLinked() && profile2.timetable.some((c) => c.classId);
     if (part === "setup") return ready ? null : /* @__PURE__ */ cpJsx(UxPanel, { title: "home.next", description: !canOpen ? "home.link" : !isProfileLinked() ? "home.profileHint" : !profile2.timetable.some((c) => c.classId) ? "home.scheduleHint" : "home.ready" }, /* @__PURE__ */ cpJsx("div", { className: "cp-ux-actions" }, !canOpen ? /* @__PURE__ */ cpJsx(UxButton, { id: "home.classes", primary: true, onClick: onManageClasses }) : !isProfileLinked() ? /* @__PURE__ */ cpJsx(UxButton, { id: "home.profile", primary: true, onClick: onProfile }) : !profile2.timetable.some((c) => c.classId) ? /* @__PURE__ */ cpJsx(UxButton, { id: "home.schedule", primary: true, onClick: () => setView("module:timetable") }) : /* @__PURE__ */ cpJsx(UxButton, { id: "home.attendance", primary: true, onClick: () => setView("module:attendance") }), /* @__PURE__ */ cpJsx(UxButton, { id: "demo.start", onClick: () => window.dispatchEvent(new Event("cp:start-demo")) })));
     if (part === "ready") return ready ? /* @__PURE__ */ cpJsx(UxPanel, { title: "home.next", description: !canOpen ? "home.link" : !isProfileLinked() ? "home.profileHint" : !profile2.timetable.some((c) => c.classId) ? "home.scheduleHint" : "home.ready" }, /* @__PURE__ */ cpJsx("div", { className: "cp-ux-actions" }, !canOpen ? /* @__PURE__ */ cpJsx(UxButton, { id: "home.classes", primary: true, onClick: onManageClasses }) : !isProfileLinked() ? /* @__PURE__ */ cpJsx(UxButton, { id: "home.profile", primary: true, onClick: onProfile }) : !profile2.timetable.some((c) => c.classId) ? /* @__PURE__ */ cpJsx(UxButton, { id: "home.schedule", primary: true, onClick: () => setView("module:timetable") }) : /* @__PURE__ */ cpJsx(UxButton, { id: "home.attendance", primary: true, onClick: () => setView("module:attendance") }), /* @__PURE__ */ cpJsx(UxButton, { id: "demo.start", onClick: () => window.dispatchEvent(new Event("cp:start-demo")) }))) : null;
@@ -47590,7 +47666,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
         }
       } }), error2 && /* @__PURE__ */ cpJsx("p", { role: "alert" }, cpRaw(error2)));
     }
-    if (part === "overview") return /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx(Metrics, { items: [{ key: "home.classCount", value: profile2.classReferences.length }, { key: "home.rosterCount", value: doc.students.length }, { key: "home.marked", value: counts2.marked + "/" + doc.students.length }, { key: "home.absent", value: counts2.absent }, { key: "home.daysLeft", value: days === null ? uxText("notRecorded") : Math.max(0, days) }] }), /* @__PURE__ */ cpJsx("div", { className: "cp-ux-actions" }, /* @__PURE__ */ cpJsx(UxField, { id: "home.termEnd", type: "date", value: end || "", onChange: (e) => updateProfile((p) => ({ ...p, termEndDate: e.target.value })) })));
+    if (part === "overview") return /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx(Metrics, { items: [{ key: "home.classCount", value: profile2.classReferences.length }, { key: "home.rosterCount", value: doc.students.length }, { key: "home.marked", value: counts2.marked + "/" + doc.students.length }, { key: "home.absent", value: counts2.absent }, { key: "home.daysLeft", value: days === null ? uxText("notRecorded") : Math.max(0, days) }] }), !end && /* @__PURE__ */ cpJsx("p", { className: "cp-ai3-hint" }, uxText("home.termHint")));
     if (part === "private") return /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx("div", { className: "cp-ux-actions" }, /* @__PURE__ */ cpJsx(UxButton, { id: "home.private", active: show, onClick: () => setShow(!show) })), show && /* @__PURE__ */ cpJsx(UxPanel, { title: "home.privateTitle", description: "home.privateHint" }, /* @__PURE__ */ cpJsx("div", { className: "cp-ux-split" }, /* @__PURE__ */ cpJsx("section", null, /* @__PURE__ */ cpJsx("h3", null, uxText("home.recognition")), /* @__PURE__ */ cpJsx("ul", null, suggestions2.participation.map((id) => /* @__PURE__ */ cpJsx("li", { key: id }, cpRaw(doc.students.find((s) => s.id === id)?.name)))), /* @__PURE__ */ cpJsx(UxButton, { id: "home.certificates", onClick: () => setView("module:certificates") })), /* @__PURE__ */ cpJsx("section", null, /* @__PURE__ */ cpJsx("h3", null, uxText("home.followup")), /* @__PURE__ */ cpJsx("ul", null, followups.map((s) => /* @__PURE__ */ cpJsx("li", { key: s.id }, cpRaw(s.name)))), /* @__PURE__ */ cpJsx(UxButton, { id: "home.support", onClick: () => setView("module:support") }))), /* @__PURE__ */ cpJsx(UxButton, { id: "home.workspace", onClick: () => setView("module:workspace") })));
     return null;
   }
@@ -48778,9 +48854,12 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
   }
 
   // src/modules/reports/detail.js
-  function quickRange(kind, options) {
+  function quickRange(kind, options, profile2) {
     const through = todayISO();
-    if (kind === "term") return validDate(options.termStart) && options.termStart <= through ? { from: options.termStart, through } : null;
+    if (kind === "term") {
+      const start = termStartFor(profile2, through, options.termStart);
+      return validDate(start) && start <= through ? { from: start, through } : null;
+    }
     return { from: kind === "week" ? isoOf(addDays(parseISO(through), -6)) : kind === "month" ? isoOf(addDays(parseISO(through), -29)) : through, through };
   }
   function reportSessions(doc, options) {
@@ -49220,7 +49299,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
   }
 
   // src/modules/timetable/index.jsx
-  var dayRange = (days) => {
+  var dayRange2 = (days) => {
     const sorted = [...days].sort((a, b) => a - b), runs = [];
     for (const day of sorted) {
       const last = runs.at(-1);
@@ -49248,7 +49327,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     };
     return /* @__PURE__ */ cpJsx("div", { className: "cp-tt-bell" + (conflict ? " is-conflict" : "") + (draft.break ? " is-break" : ""), "data-cp-period": period.id, onKeyDown: keys, onBlur: (e) => {
       if (dirty && !e.currentTarget.contains(e.relatedTarget)) save();
-    } }, /* @__PURE__ */ cpJsx(DragGrip, { id: period.id, visible, list: list2, onMove: (next) => updateProfile((p) => ({ ...p, periods: next })), action: "ux.tt.dragPeriod", label: "tt.dragPeriod", rowAttr: "data-cp-period" }), /* @__PURE__ */ cpJsx(ToolField, { id: "tt.label", context: period.id, label: "tt.label", value: draft.label, onChange: (e) => setDraft({ ...draft, label: e.target.value }) }), /* @__PURE__ */ cpJsx(ToolField, { id: "tt.start", context: period.id, label: "tt.start", type: "time", value: draft.start, onChange: (e) => setDraft({ ...draft, start: e.target.value }) }), /* @__PURE__ */ cpJsx(ToolField, { id: "tt.end", context: period.id, label: "tt.end", type: "time", value: draft.end, onChange: (e) => setDraft({ ...draft, end: e.target.value }) }), /* @__PURE__ */ cpJsx("label", { className: "cp-tt-break" }, /* @__PURE__ */ cpJsx("input", { type: "checkbox", checked: draft.break, ...controlProps("m4.tt.break", (e) => setDraft({ ...draft, break: e.target.checked }), period.id) }), /* @__PURE__ */ cpJsx("span", null, t("tt.break"))), /* @__PURE__ */ cpJsx(UxButton, { id: "tt.periodDays", context: period.id, className: "cp-tt-days", "aria-expanded": daysOpen, "aria-label": t("tt.applies") + ": " + (draft.weekdays === void 0 ? t("tt.everySchoolDay") : dayRange(draft.weekdays)), onClick: () => setDaysOpen(!daysOpen) }, cpRaw(draft.weekdays === void 0 ? t("tt.everySchoolDay") : dayRange(draft.weekdays) || "\u2013")), /* @__PURE__ */ cpJsx("span", { className: "cp-tt-row-actions" }, /* @__PURE__ */ cpJsx(ToolButton, { id: "tt.deletePeriod", context: period.id, className: "cp-tt-delete", "aria-label": t("tt.deletePeriod") + ": " + period.label, title: t("tt.deletePeriod"), onClick: () => updateProfile((p) => removePeriod(p, period.id)) }, cpRaw("\u2715"))), daysOpen && /* @__PURE__ */ cpJsx("fieldset", { className: "cp-tt-dayset" }, /* @__PURE__ */ cpJsx("legend", null, t("tt.applies")), /* @__PURE__ */ cpJsx("label", null, /* @__PURE__ */ cpJsx("input", { type: "checkbox", checked: draft.weekdays === void 0, ...controlProps("m4.tt.everySchoolDay", (e) => setDraft({ ...draft, weekdays: e.target.checked ? void 0 : [...schoolDays] }), period.id) }), t("tt.everySchoolDay")), draft.weekdays && [0, 1, 2, 3, 4, 5, 6].map((day) => /* @__PURE__ */ cpJsx("label", { key: day }, /* @__PURE__ */ cpJsx("input", { type: "checkbox", checked: draft.weekdays.includes(day), ...controlProps("m4.tt.periodDay", (e) => setDraft({ ...draft, weekdays: e.target.checked ? [...draft.weekdays, day].sort((a, b) => a - b) : draft.weekdays.filter((d) => d !== day) }), period.id + ":" + day) }), t("calendar.day" + day)))), error2 && /* @__PURE__ */ cpJsx("p", { role: "alert", className: "cp-tt-error" }, error2));
+    } }, /* @__PURE__ */ cpJsx(DragGrip, { id: period.id, visible, list: list2, onMove: (next) => updateProfile((p) => ({ ...p, periods: next })), action: "ux.tt.dragPeriod", label: "tt.dragPeriod", rowAttr: "data-cp-period" }), /* @__PURE__ */ cpJsx(ToolField, { id: "tt.label", context: period.id, label: "tt.label", value: draft.label, onChange: (e) => setDraft({ ...draft, label: e.target.value }) }), /* @__PURE__ */ cpJsx(ToolField, { id: "tt.start", context: period.id, label: "tt.start", type: "time", value: draft.start, onChange: (e) => setDraft({ ...draft, start: e.target.value }) }), /* @__PURE__ */ cpJsx(ToolField, { id: "tt.end", context: period.id, label: "tt.end", type: "time", value: draft.end, onChange: (e) => setDraft({ ...draft, end: e.target.value }) }), /* @__PURE__ */ cpJsx("label", { className: "cp-tt-break" }, /* @__PURE__ */ cpJsx("input", { type: "checkbox", checked: draft.break, ...controlProps("m4.tt.break", (e) => setDraft({ ...draft, break: e.target.checked }), period.id) }), /* @__PURE__ */ cpJsx("span", null, t("tt.break"))), /* @__PURE__ */ cpJsx(UxButton, { id: "tt.periodDays", context: period.id, className: "cp-tt-days", "aria-expanded": daysOpen, "aria-label": t("tt.applies") + ": " + (draft.weekdays === void 0 ? t("tt.everySchoolDay") : dayRange2(draft.weekdays)), onClick: () => setDaysOpen(!daysOpen) }, cpRaw(draft.weekdays === void 0 ? t("tt.everySchoolDay") : dayRange2(draft.weekdays) || "\u2013")), /* @__PURE__ */ cpJsx("span", { className: "cp-tt-row-actions" }, /* @__PURE__ */ cpJsx(ToolButton, { id: "tt.deletePeriod", context: period.id, className: "cp-tt-delete", "aria-label": t("tt.deletePeriod") + ": " + period.label, title: t("tt.deletePeriod"), onClick: () => updateProfile((p) => removePeriod(p, period.id)) }, cpRaw("\u2715"))), daysOpen && /* @__PURE__ */ cpJsx("fieldset", { className: "cp-tt-dayset" }, /* @__PURE__ */ cpJsx("legend", null, t("tt.applies")), /* @__PURE__ */ cpJsx("label", null, /* @__PURE__ */ cpJsx("input", { type: "checkbox", checked: draft.weekdays === void 0, ...controlProps("m4.tt.everySchoolDay", (e) => setDraft({ ...draft, weekdays: e.target.checked ? void 0 : [...schoolDays] }), period.id) }), t("tt.everySchoolDay")), draft.weekdays && [0, 1, 2, 3, 4, 5, 6].map((day) => /* @__PURE__ */ cpJsx("label", { key: day }, /* @__PURE__ */ cpJsx("input", { type: "checkbox", checked: draft.weekdays.includes(day), ...controlProps("m4.tt.periodDay", (e) => setDraft({ ...draft, weekdays: e.target.checked ? [...draft.weekdays, day].sort((a, b) => a - b) : draft.weekdays.filter((d) => d !== day) }), period.id + ":" + day) }), t("calendar.day" + day)))), error2 && /* @__PURE__ */ cpJsx("p", { role: "alert", className: "cp-tt-error" }, error2));
   }
   function CellEditor({ profile: profile2, selection, onClose }) {
     const [draft, setDraft] = useState(() => ({ slotType: "lesson", classId: null, subject: "", room: "", note: "", ...timetableCell(profile2, selection.weekday, selection.periodId) })), groups = splitReferences(profile2, useLinkedClassIds());
@@ -49387,7 +49466,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       } })));
     }))));
   }
-  function TimetableView({ onOpenClass, doc }) {
+  function TimetableView({ onOpenClass, doc, onUpdate }) {
     const profile2 = useProfile(), now = useClock(1e3), date5 = isoOf(new Date(now)), [tab, setTab] = useState(() => {
       try {
         const wanted = localStorage.getItem("cp:timetable:tab");
@@ -49416,7 +49495,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       setSelection(null);
       setEditorDay("all");
       setNotice(true);
-    } }), notice && /* @__PURE__ */ cpJsx("p", { role: "status" }, t("tt.starterApplied")), conflicts.length > 0 && /* @__PURE__ */ cpJsx("p", { role: "alert", style: { color: "#b91c1c" } }, t("tt.overlap")), /* @__PURE__ */ cpJsx(ClassTidy, { profile: profile2 }), tab === "year" ? /* @__PURE__ */ cpJsx(SchoolYear, { profile: profile2, today: date5, doc }) : tab === "week" ? /* @__PURE__ */ cpJsx("div", { style: { ...panel, overflow: "auto" } }, grid) : /* @__PURE__ */ cpJsx("div", { style: panel }, !isSchoolDay(date5, profile2.calendar) ? /* @__PURE__ */ cpJsx("p", null, t("tt.dayOff")) : lessonsOn(profile2, date5).map(({ period, cell: cell2 }) => /* @__PURE__ */ cpJsx("div", { key: period.id, style: { ...row, padding: 10, borderBlockEnd: "1px solid var(--n-200)" } }, /* @__PURE__ */ cpJsx("strong", null, cpRaw(period.label)), /* @__PURE__ */ cpJsx("bdi", { dir: "ltr" }, period.start, "\u2013", period.end), period.break && /* @__PURE__ */ cpJsx("span", null, t("tt.break")), cell2?.classId && /* @__PURE__ */ cpJsx(ToolButton, { id: "tt.open", context: "today:" + period.id, onClick: () => onOpenClass(cell2.classId) }, cpRaw(cellLabel(profile2, cell2))), /* @__PURE__ */ cpJsx("span", null, cpRaw([cell2?.subject, cell2?.room, cell2?.note].filter(Boolean).join(" \xB7 ")))))), quick && editing && tab === "week" && /* @__PURE__ */ cpJsx(QuickCell, { profile: profile2, quick, onClose: () => setQuick(null), onEdit: setSelection, onOpenClass }), selection && /* @__PURE__ */ cpJsx(CellEditor, { key: selection.weekday + ":" + selection.periodId, profile: profile2, selection, onClose: () => setSelection(null) }), editing && tab === "week" && /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx("div", { className: "cp-tt-bells" }, /* @__PURE__ */ cpJsx("header", null, /* @__PURE__ */ cpJsx("h3", { id: "cp-tt-bells" }, uxText("tt.bellTitle")), /* @__PURE__ */ cpJsx("label", { className: "cp-tt-showfor" }, t("tt.editDay"), /* @__PURE__ */ cpJsx("select", { "aria-label": t("tt.editDay"), value: editorDay, ...controlProps("m4.tt.editorDay", (e) => setEditorDay(e.target.value)), style: field }, /* @__PURE__ */ cpJsx("option", { value: "all" }, t("tt.allPeriods")), [0, 1, 2, 3, 4, 5, 6].map((day) => /* @__PURE__ */ cpJsx("option", { key: day, value: day }, t("calendar.day" + day)))))), /* @__PURE__ */ cpJsx("p", { className: "cp-tt-hint" }, uxText("tt.bellHint")), /* @__PURE__ */ cpJsx("div", { className: "cp-tt-bell cp-tt-bell-head", "aria-hidden": "true" }, /* @__PURE__ */ cpJsx("span", null), /* @__PURE__ */ cpJsx("span", null, t("tt.label")), /* @__PURE__ */ cpJsx("span", null, t("tt.start")), /* @__PURE__ */ cpJsx("span", null, t("tt.end")), /* @__PURE__ */ cpJsx("span", null, t("tt.break")), /* @__PURE__ */ cpJsx("span", null, t("tt.applies")), /* @__PURE__ */ cpJsx("span", null)), periods.map((period) => /* @__PURE__ */ cpJsx(PeriodRow, { key: period.id + JSON.stringify(period), period, conflict: ids.has(period.id), schoolDays: profile2.calendar.schoolDays, list: profile2.periods || [], visible: periods.map((item) => item.id) })), /* @__PURE__ */ cpJsx(ToolButton, { id: "tt.addPeriod", disabled: !nextTimes, onClick: () => updateProfile((p) => addPeriod(p, t("tt.period") + " " + number, weekday)) }, t("tt.addPeriod")), !nextTimes && /* @__PURE__ */ cpJsx("p", { role: "status" }, t("tt.endOfDay"))), /* @__PURE__ */ cpJsx(TimetableTools, { key: editorDay, profile: profile2, periods, day: weekday, date: date5 }, /* @__PURE__ */ cpJsx("section", null, /* @__PURE__ */ cpJsx("h4", null, t("tt.schoolDays")), /* @__PURE__ */ cpJsx("div", { className: "cp-tt-schooldays" }, [0, 1, 2, 3, 4, 5, 6].map((day) => /* @__PURE__ */ cpJsx("label", { key: day }, /* @__PURE__ */ cpJsx("input", { type: "checkbox", checked: profile2.calendar.schoolDays.includes(day), ...controlProps("m4.tt.schoolDay", (e) => updateProfile((p) => ({ ...p, calendar: { ...p.calendar, schoolDays: e.target.checked ? [...p.calendar.schoolDays, day].sort((a, b) => a - b) : p.calendar.schoolDays.filter((d) => d !== day) } })), String(day)) }), t("calendar.day" + day))))))), printing && ReactDOM.createPortal(/* @__PURE__ */ cpJsx("div", { className: "cp-timetable-print", role: "dialog", "aria-label": t("tt.print"), dir: doc.settings.dir || "ltr", style: { position: "fixed", inset: 0, zIndex: 400, background: "#fff", padding: 24, overflow: "auto" } }, /* @__PURE__ */ cpJsx("style", null, "@media print {html,body{height:auto!important;min-height:0!important;background:#fff!important}body>*:not(.cp-timetable-print){display:none!important}.cp-timetable-print{position:static!important;overflow:visible!important;padding:0!important}.cp-no-print{display:none!important}@page{size:landscape;margin:12mm}}"), /* @__PURE__ */ cpJsx("div", { className: "cp-no-print", style: row }, /* @__PURE__ */ cpJsx(ToolButton, { id: "tt.printNow", onClick: () => window.print() }, t("tt.printNow")), /* @__PURE__ */ cpJsx(ToolButton, { id: "tt.closePrint", onClick: () => setPrinting(false) }, t("tt.closePrint"))), /* @__PURE__ */ cpJsx("h1", { style: { fontSize: 18, lineHeight: 1.35, margin: "0 0 8px" } }, t("tt.week")), /* @__PURE__ */ cpJsx("p", { style: { fontSize: 12, lineHeight: 1.35, margin: "0 0 10px" } }, cpRaw(Object.values(profile2.reportHeader).filter(Boolean).join(" \xB7 "))), grid), document.body));
+    } }), notice && /* @__PURE__ */ cpJsx("p", { role: "status" }, t("tt.starterApplied")), conflicts.length > 0 && /* @__PURE__ */ cpJsx("p", { role: "alert", style: { color: "#b91c1c" } }, t("tt.overlap")), /* @__PURE__ */ cpJsx(ClassTidy, { profile: profile2 }), tab === "year" ? /* @__PURE__ */ cpJsx(SchoolYear, { profile: profile2, today: date5, doc, onUpdate }) : tab === "week" ? /* @__PURE__ */ cpJsx("div", { style: { ...panel, overflow: "auto" } }, grid) : /* @__PURE__ */ cpJsx("div", { style: panel }, !isSchoolDay(date5, profile2.calendar) ? /* @__PURE__ */ cpJsx("p", null, t("tt.dayOff")) : lessonsOn(profile2, date5).map(({ period, cell: cell2 }) => /* @__PURE__ */ cpJsx("div", { key: period.id, style: { ...row, padding: 10, borderBlockEnd: "1px solid var(--n-200)" } }, /* @__PURE__ */ cpJsx("strong", null, cpRaw(period.label)), /* @__PURE__ */ cpJsx("bdi", { dir: "ltr" }, period.start, "\u2013", period.end), period.break && /* @__PURE__ */ cpJsx("span", null, t("tt.break")), cell2?.classId && /* @__PURE__ */ cpJsx(ToolButton, { id: "tt.open", context: "today:" + period.id, onClick: () => onOpenClass(cell2.classId) }, cpRaw(cellLabel(profile2, cell2))), /* @__PURE__ */ cpJsx("span", null, cpRaw([cell2?.subject, cell2?.room, cell2?.note].filter(Boolean).join(" \xB7 ")))))), quick && editing && tab === "week" && /* @__PURE__ */ cpJsx(QuickCell, { profile: profile2, quick, onClose: () => setQuick(null), onEdit: setSelection, onOpenClass }), selection && /* @__PURE__ */ cpJsx(CellEditor, { key: selection.weekday + ":" + selection.periodId, profile: profile2, selection, onClose: () => setSelection(null) }), editing && tab === "week" && /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx("div", { className: "cp-tt-bells" }, /* @__PURE__ */ cpJsx("header", null, /* @__PURE__ */ cpJsx("h3", { id: "cp-tt-bells" }, uxText("tt.bellTitle")), /* @__PURE__ */ cpJsx("label", { className: "cp-tt-showfor" }, t("tt.editDay"), /* @__PURE__ */ cpJsx("select", { "aria-label": t("tt.editDay"), value: editorDay, ...controlProps("m4.tt.editorDay", (e) => setEditorDay(e.target.value)), style: field }, /* @__PURE__ */ cpJsx("option", { value: "all" }, t("tt.allPeriods")), [0, 1, 2, 3, 4, 5, 6].map((day) => /* @__PURE__ */ cpJsx("option", { key: day, value: day }, t("calendar.day" + day)))))), /* @__PURE__ */ cpJsx("p", { className: "cp-tt-hint" }, uxText("tt.bellHint")), /* @__PURE__ */ cpJsx("div", { className: "cp-tt-bell cp-tt-bell-head", "aria-hidden": "true" }, /* @__PURE__ */ cpJsx("span", null), /* @__PURE__ */ cpJsx("span", null, t("tt.label")), /* @__PURE__ */ cpJsx("span", null, t("tt.start")), /* @__PURE__ */ cpJsx("span", null, t("tt.end")), /* @__PURE__ */ cpJsx("span", null, t("tt.break")), /* @__PURE__ */ cpJsx("span", null, t("tt.applies")), /* @__PURE__ */ cpJsx("span", null)), periods.map((period) => /* @__PURE__ */ cpJsx(PeriodRow, { key: period.id + JSON.stringify(period), period, conflict: ids.has(period.id), schoolDays: profile2.calendar.schoolDays, list: profile2.periods || [], visible: periods.map((item) => item.id) })), /* @__PURE__ */ cpJsx(ToolButton, { id: "tt.addPeriod", disabled: !nextTimes, onClick: () => updateProfile((p) => addPeriod(p, t("tt.period") + " " + number, weekday)) }, t("tt.addPeriod")), !nextTimes && /* @__PURE__ */ cpJsx("p", { role: "status" }, t("tt.endOfDay"))), /* @__PURE__ */ cpJsx(TimetableTools, { key: editorDay, profile: profile2, periods, day: weekday, date: date5 }, /* @__PURE__ */ cpJsx("section", null, /* @__PURE__ */ cpJsx("h4", null, t("tt.schoolDays")), /* @__PURE__ */ cpJsx("div", { className: "cp-tt-schooldays" }, [0, 1, 2, 3, 4, 5, 6].map((day) => /* @__PURE__ */ cpJsx("label", { key: day }, /* @__PURE__ */ cpJsx("input", { type: "checkbox", checked: profile2.calendar.schoolDays.includes(day), ...controlProps("m4.tt.schoolDay", (e) => updateProfile((p) => ({ ...p, calendar: { ...p.calendar, schoolDays: e.target.checked ? [...p.calendar.schoolDays, day].sort((a, b) => a - b) : p.calendar.schoolDays.filter((d) => d !== day) } })), String(day)) }), t("calendar.day" + day))))))), printing && ReactDOM.createPortal(/* @__PURE__ */ cpJsx("div", { className: "cp-timetable-print", role: "dialog", "aria-label": t("tt.print"), dir: doc.settings.dir || "ltr", style: { position: "fixed", inset: 0, zIndex: 400, background: "#fff", padding: 24, overflow: "auto" } }, /* @__PURE__ */ cpJsx("style", null, "@media print {html,body{height:auto!important;min-height:0!important;background:#fff!important}body>*:not(.cp-timetable-print){display:none!important}.cp-timetable-print{position:static!important;overflow:visible!important;padding:0!important}.cp-no-print{display:none!important}@page{size:landscape;margin:12mm}}"), /* @__PURE__ */ cpJsx("div", { className: "cp-no-print", style: row }, /* @__PURE__ */ cpJsx(ToolButton, { id: "tt.printNow", onClick: () => window.print() }, t("tt.printNow")), /* @__PURE__ */ cpJsx(ToolButton, { id: "tt.closePrint", onClick: () => setPrinting(false) }, t("tt.closePrint"))), /* @__PURE__ */ cpJsx("h1", { style: { fontSize: 18, lineHeight: 1.35, margin: "0 0 8px" } }, t("tt.week")), /* @__PURE__ */ cpJsx("p", { style: { fontSize: 12, lineHeight: 1.35, margin: "0 0 10px" } }, cpRaw(Object.values(profile2.reportHeader).filter(Boolean).join(" \xB7 "))), grid), document.body));
   }
   var timetable_default = m4Manifest("timetable", { defaults: { periods: [], timetable: [] }, migrate: (value = {}) => ({ ...value, periods: value.periods || [], timetable: value.timetable || [] }) }, TimetableView);
 
@@ -50230,12 +50309,12 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
   function cooldownProjection(doc, student, today) {
     const cd = doc.settings.cooldown || {}, periods = normalizeCooldownPeriods(cd.periods || []), on = !!cd.enabled && periods.length > 0;
     const earnedBy = (asOf) => on && periods[0].from <= asOf ? Object.values(cooldownEntitlements(student, periods, asOf, doc.settings)).reduce((a, b) => a + b, 0) : 0;
-    let pending5 = 0;
+    let pending6 = 0;
     if (on) {
       const report = { netApplied: 0, adjusted: 0, touched: /* @__PURE__ */ new Set() }, next = runCooldownReconcile({ ...doc, students: [student] }, today, report).students[0];
-      pending5 = round2((next.behaviour ?? 0) - (student.behaviour ?? next.behaviour ?? 0)) || 0;
+      pending6 = round2((next.behaviour ?? 0) - (student.behaviour ?? next.behaviour ?? 0)) || 0;
     }
-    return { on, earnedBy, pending: pending5 };
+    return { on, earnedBy, pending: pending6 };
   }
   function behaviourOverTime(doc, student, range, kind, today) {
     const start = termStart(doc, today), first = weekOf(start < range.start ? start : range.start, doc.settings).start, all2 = sheetEvents(doc, student, first, range.end).filter(isBehaviour), weeks = [], weight = +(doc.settings.deductionWeight || 1);
@@ -50714,7 +50793,11 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
   }
   function WeeklyView({ doc, onUpdate }) {
     const ui = useLanguage(), profile2 = useProfile();
-    const [kind, setKind] = useState("week"), [from, setFrom] = useState(""), [to, setTo] = useState(""), [anchor, setAnchor] = useState(todayISO), [language2, setLanguage2] = useState(ui === "ar" ? "ar" : "en"), [format2, setFormat] = useState("pdf"), [selected, setSelected] = useState(() => getRequestedStudent() || doc.students[0]?.id || "");
+    const [openedFrom] = useState(() => {
+      const request = takeParentReportRequest(), today2 = todayISO();
+      return request && doc.students.some((s) => s.id === request.studentId) && /^\d{4}-\d{2}-\d{2}$/.test(request.date || "") && request.date <= today2 ? { ...request, from: weekOf(request.date, doc.settings).start, to: today2 } : null;
+    });
+    const [kind, setKind] = useState(openedFrom ? "custom" : "week"), [from, setFrom] = useState(openedFrom?.from || ""), [to, setTo] = useState(openedFrom?.to || ""), [anchor, setAnchor] = useState(todayISO), [language2, setLanguage2] = useState(ui === "ar" ? "ar" : "en"), [format2, setFormat] = useState("pdf"), [selected, setSelected] = useState(() => openedFrom?.studentId || getRequestedStudent() || doc.students[0]?.id || "");
     const [busy, setBusy] = useState(null), [result, setResult] = useState(""), [copied, setCopied] = useState(false), [printing, setPrinting] = useState(false);
     const week = periodRange(kind, { anchor, from, to, today: todayISO(), doc }), period = kind === "week" ? "week" : kind === "term" ? "term" : "period", grades = useMemo(() => liveGrades(doc), [doc]);
     const summaries = useMemo(() => doc.students.map((student) => ({ ...studentWeek(doc, student, week, grades), periodKind: kind })), [doc, week.start, week.end, grades, kind]);
@@ -50777,7 +50860,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
         setTo(week.end);
       }
       setKind(next);
-    }) }, PERIODS.map((value) => /* @__PURE__ */ cpJsx("option", { key: value, value }, uxText("weekly.pk." + value))))), kind === "custom" && /* @__PURE__ */ cpJsx("span", { className: "cp-week-dates" }, /* @__PURE__ */ cpJsx("label", null, /* @__PURE__ */ cpJsx("span", null, uxText("weekly.from")), /* @__PURE__ */ cpJsx("input", { type: "date", value: from, max: to || void 0, ...controlProps("ux.weekly.from", (e) => setFrom(e.target.value)) })), /* @__PURE__ */ cpJsx("label", null, /* @__PURE__ */ cpJsx("span", null, uxText("weekly.to")), /* @__PURE__ */ cpJsx("input", { type: "date", value: to, min: from || void 0, ...controlProps("ux.weekly.to", (e) => setTo(e.target.value)) }))), /* @__PURE__ */ cpJsx("label", { className: "cp-week-lang" }, /* @__PURE__ */ cpJsx("span", null, uxText("weekly.language")), /* @__PURE__ */ cpJsx("select", { value: language2, "aria-label": uxText("weekly.language"), ...controlProps("ux.weekly.language", (e) => setLanguage2(e.target.value)) }, /* @__PURE__ */ cpJsx("option", { value: "en" }, uxText("weekly.english")), /* @__PURE__ */ cpJsx("option", { value: "ar" }, uxText("weekly.arabic"))))) }, !doc.students.length ? /* @__PURE__ */ cpJsx("p", { className: "cp-empty-line" }, uxText("weekly.empty")) : /* @__PURE__ */ cpJsx("div", { className: "cp-weekly" }, /* @__PURE__ */ cpJsx("div", { className: "cp-weekly-preview" }, /* @__PURE__ */ cpJsx("style", null, reportCSS), /* @__PURE__ */ cpJsx("div", { className: "cp-weekly-paper", dangerouslySetInnerHTML: { __html: reportHTML(current4, header2) } })), /* @__PURE__ */ cpJsx("aside", { className: "cp-weekly-panel", "aria-label": uxText("weekly.prepareTitle") }, /* @__PURE__ */ cpJsx("h2", null, uxText("weekly.prepareTitle")), /* @__PURE__ */ cpJsx(Segmented, { label: uxText("weekly.format") }, /* @__PURE__ */ cpJsx(Command, { namespace: "ux", id: "weekly.pdf", active: format2 === "pdf", "aria-pressed": format2 === "pdf", onClick: () => setFormat("pdf") }, uxText("weekly.pdf")), /* @__PURE__ */ cpJsx(Command, { namespace: "ux", id: "weekly.html", active: format2 === "html", "aria-pressed": format2 === "html", onClick: () => setFormat("html") }, uxText("weekly.html"))), /* @__PURE__ */ cpJsx("details", { className: "cp-weekly-work cp-weekly-parts", open: true }, /* @__PURE__ */ cpJsx("summary", null, uxText("weekly.parts")), REPORT_PARTS.map((part) => /* @__PURE__ */ cpJsx("label", { key: part, className: "cp-ux-check" }, /* @__PURE__ */ cpJsx("input", { type: "checkbox", checked: !!parts[part], ...controlProps("ux.weekly.part", (e) => onUpdate((d) => putParts(d, { [part]: e.target.checked })), part) }), /* @__PURE__ */ cpJsx("span", null, uxText("weekly.part." + part))))), /* @__PURE__ */ cpJsx("details", { className: "cp-weekly-work" }, /* @__PURE__ */ cpJsx("summary", null, uxText("weekly.work"), " \xB7 ", cpRaw(String(chosen.size))), /* @__PURE__ */ cpJsx("p", null, uxText(manual ? "weekly.workManual" : "weekly.workHint")), manual && /* @__PURE__ */ cpJsx(Command, { namespace: "ux", id: "weekly.workAuto", onClick: () => onUpdate((d) => putWeek(d, week.start, { workSet: false })) }, uxText("weekly.workAuto")), columns.length ? columns.map((column) => /* @__PURE__ */ cpJsx("label", { key: column.id, className: "cp-ux-check" }, /* @__PURE__ */ cpJsx("input", { type: "checkbox", checked: chosen.has(column.id), ...controlProps("ux.weekly.work", (e) => onUpdate((d) => putWeek(d, week.start, { work: e.target.checked ? [...chosen, column.id] : [...chosen].filter((id) => id !== column.id), workSet: true })), column.id) }), /* @__PURE__ */ cpJsx("span", null, cpRaw(column.name)), /* @__PURE__ */ cpJsx("small", null, cpRaw(column.section)))) : /* @__PURE__ */ cpJsx("p", null, uxText("weekly.noWork"))), /* @__PURE__ */ cpJsx("p", { className: "cp-weekly-count" }, /* @__PURE__ */ cpJsx("b", null, cpRaw(String(needing))), " ", uxText("weekly.mayNeed")), /* @__PURE__ */ cpJsx("ul", { className: "cp-weekly-students" }, ordered.map((summary) => {
+    }) }, PERIODS.map((value) => /* @__PURE__ */ cpJsx("option", { key: value, value }, uxText("weekly.pk." + value))))), kind === "custom" && /* @__PURE__ */ cpJsx("span", { className: "cp-week-dates" }, /* @__PURE__ */ cpJsx("label", null, /* @__PURE__ */ cpJsx("span", null, uxText("weekly.from")), /* @__PURE__ */ cpJsx("input", { type: "date", value: from, max: to || void 0, ...controlProps("ux.weekly.from", (e) => setFrom(e.target.value)) })), /* @__PURE__ */ cpJsx("label", null, /* @__PURE__ */ cpJsx("span", null, uxText("weekly.to")), /* @__PURE__ */ cpJsx("input", { type: "date", value: to, min: from || void 0, ...controlProps("ux.weekly.to", (e) => setTo(e.target.value)) }))), /* @__PURE__ */ cpJsx("label", { className: "cp-week-lang" }, /* @__PURE__ */ cpJsx("span", null, uxText("weekly.language")), /* @__PURE__ */ cpJsx("select", { value: language2, "aria-label": uxText("weekly.language"), ...controlProps("ux.weekly.language", (e) => setLanguage2(e.target.value)) }, /* @__PURE__ */ cpJsx("option", { value: "en" }, uxText("weekly.english")), /* @__PURE__ */ cpJsx("option", { value: "ar" }, uxText("weekly.arabic"))))) }, openedFrom && /* @__PURE__ */ cpJsx("p", { className: "cp-opened-from", role: "status" }, cpRaw(uxText("parentReport.openedFrom").replace("{kind}", uxText("contact.kind." + openedFrom.kind)).replace("{date}", dayMonth(openedFrom.date)))), !doc.students.length ? /* @__PURE__ */ cpJsx("p", { className: "cp-empty-line" }, uxText("weekly.empty")) : /* @__PURE__ */ cpJsx("div", { className: "cp-weekly" }, /* @__PURE__ */ cpJsx("div", { className: "cp-weekly-preview" }, /* @__PURE__ */ cpJsx("style", null, reportCSS), /* @__PURE__ */ cpJsx("div", { className: "cp-weekly-paper", dangerouslySetInnerHTML: { __html: reportHTML(current4, header2) } })), /* @__PURE__ */ cpJsx("aside", { className: "cp-weekly-panel", "aria-label": uxText("weekly.prepareTitle") }, /* @__PURE__ */ cpJsx("h2", null, uxText("weekly.prepareTitle")), /* @__PURE__ */ cpJsx(Segmented, { label: uxText("weekly.format") }, /* @__PURE__ */ cpJsx(Command, { namespace: "ux", id: "weekly.pdf", active: format2 === "pdf", "aria-pressed": format2 === "pdf", onClick: () => setFormat("pdf") }, uxText("weekly.pdf")), /* @__PURE__ */ cpJsx(Command, { namespace: "ux", id: "weekly.html", active: format2 === "html", "aria-pressed": format2 === "html", onClick: () => setFormat("html") }, uxText("weekly.html"))), /* @__PURE__ */ cpJsx("details", { className: "cp-weekly-work cp-weekly-parts", open: true }, /* @__PURE__ */ cpJsx("summary", null, uxText("weekly.parts")), REPORT_PARTS.map((part) => /* @__PURE__ */ cpJsx("label", { key: part, className: "cp-ux-check" }, /* @__PURE__ */ cpJsx("input", { type: "checkbox", checked: !!parts[part], ...controlProps("ux.weekly.part", (e) => onUpdate((d) => putParts(d, { [part]: e.target.checked })), part) }), /* @__PURE__ */ cpJsx("span", null, uxText("weekly.part." + part))))), /* @__PURE__ */ cpJsx("details", { className: "cp-weekly-work" }, /* @__PURE__ */ cpJsx("summary", null, uxText("weekly.work"), " \xB7 ", cpRaw(String(chosen.size))), /* @__PURE__ */ cpJsx("p", null, uxText(manual ? "weekly.workManual" : "weekly.workHint")), manual && /* @__PURE__ */ cpJsx(Command, { namespace: "ux", id: "weekly.workAuto", onClick: () => onUpdate((d) => putWeek(d, week.start, { workSet: false })) }, uxText("weekly.workAuto")), columns.length ? columns.map((column) => /* @__PURE__ */ cpJsx("label", { key: column.id, className: "cp-ux-check" }, /* @__PURE__ */ cpJsx("input", { type: "checkbox", checked: chosen.has(column.id), ...controlProps("ux.weekly.work", (e) => onUpdate((d) => putWeek(d, week.start, { work: e.target.checked ? [...chosen, column.id] : [...chosen].filter((id) => id !== column.id), workSet: true })), column.id) }), /* @__PURE__ */ cpJsx("span", null, cpRaw(column.name)), /* @__PURE__ */ cpJsx("small", null, cpRaw(column.section)))) : /* @__PURE__ */ cpJsx("p", null, uxText("weekly.noWork"))), /* @__PURE__ */ cpJsx("p", { className: "cp-weekly-count" }, /* @__PURE__ */ cpJsx("b", null, cpRaw(String(needing))), " ", uxText("weekly.mayNeed")), /* @__PURE__ */ cpJsx("ul", { className: "cp-weekly-students" }, ordered.map((summary) => {
       const prompts = notePrompts(summary);
       return /* @__PURE__ */ cpJsx("li", { key: summary.student.id }, /* @__PURE__ */ cpJsx("button", { type: "button", ...actionProps("ux.weekly.student", () => setSelected(summary.student.id), summary.student.id), "aria-pressed": summary.student.id === current4.student.id, "data-status": noteStatus(summary) }, /* @__PURE__ */ cpJsx("span", { className: "cp-weekly-name" }, cpRaw(summary.student.name)), /* @__PURE__ */ cpJsx("span", { className: "cp-weekly-chip" }, statusText(summary)), prompts.length > 0 && /* @__PURE__ */ cpJsx("span", { className: "cp-weekly-prompts" }, prompts.map((prompt2) => /* @__PURE__ */ cpJsx("small", { key: prompt2.id }, cpRaw(promptLabel(prompt2, ui === "ar" ? "ar" : "en", summary)))))));
     })), /* @__PURE__ */ cpJsx("section", { className: "cp-weekly-editor" }, /* @__PURE__ */ cpJsx("h3", null, cpRaw(current4.student.name)), !saved.noNote && /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx("p", { className: "cp-weekly-hint" }, uxText("weekly.sentences")), /* @__PURE__ */ cpJsx("div", { className: "cp-weekly-sentences" }, suggestions(current4, language2).map((sentence, index) => /* @__PURE__ */ cpJsx("button", { type: "button", key: index, ...actionProps("ux.weekly.sentence", () => addSentence(sentence), current4.student.id + ":" + index), title: uxText("weekly.sentence") }, cpRaw(sentence)))), ai && /* @__PURE__ */ cpJsx("div", { className: "cp-weekly-ai" }, /* @__PURE__ */ cpJsx(Command, { namespace: "ux", id: "weekly.useAi", onClick: useAi }, uxText("weekly.useAi")), /* @__PURE__ */ cpJsx("span", null, uxText("weekly.aiFrom").replace("{date}", isoOf(new Date(ai.importedAt))).replace("{from}", ai.period.from).replace("{to}", ai.period.to), ai.approved ? "" : " \xB7 " + uxText("weekly.aiNotReviewed"))), /* @__PURE__ */ cpJsx("label", { className: "cp-ux-field" }, /* @__PURE__ */ cpJsx("span", null, uxText("weekly.note")), /* @__PURE__ */ cpJsx("textarea", { rows: 4, value: draft.text, maxLength: 4e3, dir: language2 === "ar" ? "rtl" : "ltr", ...controlProps("ux.weekly.note", (e) => setDraft({ ...draft, text: e.target.value }), current4.student.id), onBlur: (e) => commit("text", e.target.value) })), /* @__PURE__ */ cpJsx("div", { className: "cp-weekly-pair" }, /* @__PURE__ */ cpJsx("label", { className: "cp-ux-field" }, /* @__PURE__ */ cpJsx("span", null, uxText("weekly.strengths")), /* @__PURE__ */ cpJsx("textarea", { rows: 2, value: draft.strengths, maxLength: 2e3, dir: language2 === "ar" ? "rtl" : "ltr", ...controlProps("ux.weekly.strengths", (e) => setDraft({ ...draft, strengths: e.target.value }), current4.student.id), onBlur: (e) => commit("strengths", e.target.value) })), /* @__PURE__ */ cpJsx("label", { className: "cp-ux-field" }, /* @__PURE__ */ cpJsx("span", null, uxText("weekly.nextSteps")), /* @__PURE__ */ cpJsx("textarea", { rows: 2, value: draft.next, maxLength: 2e3, dir: language2 === "ar" ? "rtl" : "ltr", ...controlProps("ux.weekly.nextSteps", (e) => setDraft({ ...draft, next: e.target.value }), current4.student.id), onBlur: (e) => commit("next", e.target.value) })))), /* @__PURE__ */ cpJsx("label", { className: "cp-ux-check cp-weekly-star" }, /* @__PURE__ */ cpJsx("input", { type: "checkbox", checked: !!saved.star, ...controlProps("ux.weekly.star", (e) => onUpdate((d) => putNote(d, week.start, current4.student.id, { star: e.target.checked })), current4.student.id) }), /* @__PURE__ */ cpJsx("span", null, uxText("weekly.star"))), saved.star && /* @__PURE__ */ cpJsx("label", { className: "cp-ux-field" }, /* @__PURE__ */ cpJsx("span", null, uxText("weekly.starText")), /* @__PURE__ */ cpJsx("input", { type: "text", maxLength: 80, dir: language2 === "ar" ? "rtl" : "ltr", defaultValue: saved.starText || "", key: current4.student.id + week.start, ...controlProps("ux.weekly.starText", () => {
@@ -50820,7 +50903,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     const toggle = (id) => setRecipients((ids) => ids.includes(id) ? ids.filter((x2) => x2 !== id) : [...ids, id]);
     const chosen = recipients.filter((id) => doc.students.some((s) => s.id === id)), stale = generated && JSON.stringify(generated) !== JSON.stringify({ ...draft, branding: currentBranding });
     function range(kind) {
-      const next = quickRange(kind, draft);
+      const next = quickRange(kind, draft, profile2);
       if (!next) {
         setError("ux.report.termInvalid");
         return;
@@ -50857,7 +50940,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     return /* @__PURE__ */ cpJsx(ModuleFrame, { titleKey: "shell.reports", icon: "reports", lead: "ux.lead.reports", info: uxText("report.intro") }, /* @__PURE__ */ cpJsx(UxPanel, { title: "report.filters" }, /* @__PURE__ */ cpJsx("div", { className: "cp-ux-actions" }, [["reportParent", "student", { grades: true, trend: true, attendance: true, behaviour: true, focus: false }], ["reportClass", "class", { grades: true, trend: true, attendance: false, behaviour: false, focus: false }], ["reportAttendance", "attendance", { grades: false, trend: false, attendance: true, behaviour: false, focus: false }]].map(([id, type, include]) => /* @__PURE__ */ cpJsx(Command, { namespace: "improve", key: id, id, onClick: () => setDraft((p) => ({ ...p, type, include: { ...p.include, ...include }, sheets: { student: false, class: false, attendance: false, analytics: false } })) }, t("improve." + id)))), /* @__PURE__ */ cpJsx("div", { className: "cp-ux-form" }, /* @__PURE__ */ cpJsx(ReportSelect, { id: "reports.type", value: draft.type, onChange: (e) => change2("type", e.target.value) }, ["student", "class", "attendance"].map((type) => /* @__PURE__ */ cpJsx("option", { key: type, value: type }, t("reports." + type)))), /* @__PURE__ */ cpJsx(UxField, { id: "report.search", label: "search", value: query, onChange: (e) => setQuery(e.target.value) }), /* @__PURE__ */ cpJsx(ReportSelect, { id: "reports.studentId", label: "reports.studentChoice", value: draft.studentId, onChange: (e) => change2("studentId", e.target.value) }, /* @__PURE__ */ cpJsx("option", { value: "" }, t("reports.missingStudent")), doc.students.filter((s) => people.includes(s) || s.id === draft.studentId).map((student) => /* @__PURE__ */ cpJsx("option", { key: student.id, value: student.id }, cpRaw(student.name)))), /* @__PURE__ */ cpJsx(ReportSelect, { id: "reports.termId", label: "reports.termChoice", value: draft.termId, onChange: (e) => {
       const term = terms.find((term2) => term2.id === e.target.value);
       setDraft((p) => ({ ...p, termId: e.target.value, header: { ...p.header, term: term?.label || "" } }));
-    } }, terms.map((term) => /* @__PURE__ */ cpJsx("option", { key: term.id, value: term.id }, cpRaw(term.label)))), /* @__PURE__ */ cpJsx(ReportField, { id: "reports.from", type: "date", value: draft.from, max: draft.through, onChange: (e) => change2("from", e.target.value) }), /* @__PURE__ */ cpJsx(ReportField, { id: "reports.through", type: "date", value: draft.through, min: draft.from, onChange: (e) => change2("through", e.target.value) }), /* @__PURE__ */ cpJsx(UxSelect, { id: "report.scope", value: draft.attendanceMode || "daily", onChange: (e) => setDraft((p) => ({ ...p, attendanceMode: e.target.value, sessionKey: sessions[0]?.[0] || "" })) }, ["daily", "lessons", "single"].map((mode) => /* @__PURE__ */ cpJsx("option", { key: mode, value: mode }, uxText("report." + mode)))), draft.attendanceMode === "single" && /* @__PURE__ */ cpJsx(UxSelect, { id: "report.session", value: draft.sessionKey || "", onChange: (e) => change2("sessionKey", e.target.value) }, /* @__PURE__ */ cpJsx("option", { value: "" }, uxText("notRecorded")), sessions.map(([id, s]) => /* @__PURE__ */ cpJsx("option", { key: id, value: id }, cpRaw(s.date + " \xB7 " + s.period + (s.lesson ? " \xB7 " + s.lesson.start : ""))))), /* @__PURE__ */ cpJsx(ReportSelect, { id: "reports.language", label: "print.language", value: draft.language, onChange: (e) => change2("language", e.target.value) }, ["en", "ar"].map((lang) => /* @__PURE__ */ cpJsx("option", { key: lang, value: lang }, t("print." + lang))))), /* @__PURE__ */ cpJsx("div", { className: "cp-ux-actions" }, ["today", "week", "month", "term"].map((kind) => /* @__PURE__ */ cpJsx(UxButton, { key: kind, id: "report." + kind, onClick: () => range(kind) })), /* @__PURE__ */ cpJsx(UxField, { id: "report.termStart", type: "date", value: draft.termStart || "", max: draft.through, onChange: (e) => change2("termStart", e.target.value) })), /* @__PURE__ */ cpJsx("p", { className: "cp-ux-source" }, uxText("report.sourceHelp")), /* @__PURE__ */ cpJsx("p", { className: "cp-ux-source" }, t("reports.sourceHint"))), /* @__PURE__ */ cpJsx(UxPanel, { title: "report.sections" }, /* @__PURE__ */ cpJsx("div", { className: "cp-ux-actions" }, /* @__PURE__ */ cpJsx(ReportCheck, { id: "reports.raw", checked: draft.raw, onChange: (e) => change2("raw", e.target.checked) }), draft.type !== "attendance" && REPORT_FIELDS.map((key5) => /* @__PURE__ */ cpJsx(ReportCheck, { key: key5, id: "reports.include." + key5, label: key5 === "attendance" ? "reports.includeAttendance" : "reports." + key5, checked: draft.include[key5], onChange: (e) => nested("include", key5, e.target.checked) })), draft.type === "student" && /* @__PURE__ */ cpJsx(UxCheck, { id: "report.dataTable", checked: !!draft.dataTable, onChange: (e) => change2("dataTable", e.target.checked) }), /* @__PURE__ */ cpJsx(UxCheck, { id: "report.details", checked: draft.lessonLedger !== false, onChange: (e) => change2("lessonLedger", e.target.checked) }), /* @__PURE__ */ cpJsx(UxCheck, { id: "report.comments", checked: !!draft.eventComments, onChange: (e) => change2("eventComments", e.target.checked) }), /* @__PURE__ */ cpJsx(UxCheck, { id: "report.originalCharts", checked: !!draft.includeOriginalCharts, onChange: (e) => change2("includeOriginalCharts", e.target.checked) }), /* @__PURE__ */ cpJsx(UxCheck, { id: "report.prose", checked: !!draft.approvedText, onChange: (e) => change2("approvedText", e.target.checked) })), /* @__PURE__ */ cpJsx("p", { className: "cp-ux-source" }, uxText("report.privateHelp")), draft.include.focus && /* @__PURE__ */ cpJsx("div", { className: "cp-ux-actions" }, focusDefinitions().map((tag) => /* @__PURE__ */ cpJsx(ReportCheck, { key: tag.id, id: "reports.tag", label: focusLabel(tag, language2), context: tag.id, checked: draft.focusTagIds.includes(tag.id), onChange: (e) => change2("focusTagIds", e.target.checked ? [...draft.focusTagIds, tag.id] : draft.focusTagIds.filter((id) => id !== tag.id)) }))), /* @__PURE__ */ cpJsx("div", { className: "cp-ux-form" }, HEADER_FIELDS.map((key5) => /* @__PURE__ */ cpJsx(ReportField, { key: key5, id: "reports.header." + key5, label: "reports." + key5, value: draft.header[key5], onChange: (e) => nested("header", key5, e.target.value) })))), /* @__PURE__ */ cpJsx("div", { className: "cp-ux-actions" }, /* @__PURE__ */ cpJsx(UxButton, { id: "report.generate", primary: true, disabled: !!problem, onClick: build }), /* @__PURE__ */ cpJsx(ReportButton, { id: "reports.preview", disabled: !!problem, onClick: () => {
+    } }, terms.map((term) => /* @__PURE__ */ cpJsx("option", { key: term.id, value: term.id }, cpRaw(term.label)))), /* @__PURE__ */ cpJsx(ReportField, { id: "reports.from", type: "date", value: draft.from, max: draft.through, onChange: (e) => change2("from", e.target.value) }), /* @__PURE__ */ cpJsx(ReportField, { id: "reports.through", type: "date", value: draft.through, min: draft.from, onChange: (e) => change2("through", e.target.value) }), /* @__PURE__ */ cpJsx(UxSelect, { id: "report.scope", value: draft.attendanceMode || "daily", onChange: (e) => setDraft((p) => ({ ...p, attendanceMode: e.target.value, sessionKey: sessions[0]?.[0] || "" })) }, ["daily", "lessons", "single"].map((mode) => /* @__PURE__ */ cpJsx("option", { key: mode, value: mode }, uxText("report." + mode)))), draft.attendanceMode === "single" && /* @__PURE__ */ cpJsx(UxSelect, { id: "report.session", value: draft.sessionKey || "", onChange: (e) => change2("sessionKey", e.target.value) }, /* @__PURE__ */ cpJsx("option", { value: "" }, uxText("notRecorded")), sessions.map(([id, s]) => /* @__PURE__ */ cpJsx("option", { key: id, value: id }, cpRaw(s.date + " \xB7 " + s.period + (s.lesson ? " \xB7 " + s.lesson.start : ""))))), /* @__PURE__ */ cpJsx(ReportSelect, { id: "reports.language", label: "print.language", value: draft.language, onChange: (e) => change2("language", e.target.value) }, ["en", "ar"].map((lang) => /* @__PURE__ */ cpJsx("option", { key: lang, value: lang }, t("print." + lang))))), /* @__PURE__ */ cpJsx("div", { className: "cp-ux-actions" }, ["today", "week", "month", "term"].map((kind) => /* @__PURE__ */ cpJsx(UxButton, { key: kind, id: "report." + kind, onClick: () => range(kind) }))), /* @__PURE__ */ cpJsx("p", { className: "cp-ux-source" }, uxText("report.sourceHelp")), /* @__PURE__ */ cpJsx("p", { className: "cp-ux-source" }, t("reports.sourceHint"))), /* @__PURE__ */ cpJsx(UxPanel, { title: "report.sections" }, /* @__PURE__ */ cpJsx("div", { className: "cp-ux-actions" }, /* @__PURE__ */ cpJsx(ReportCheck, { id: "reports.raw", checked: draft.raw, onChange: (e) => change2("raw", e.target.checked) }), draft.type !== "attendance" && REPORT_FIELDS.map((key5) => /* @__PURE__ */ cpJsx(ReportCheck, { key: key5, id: "reports.include." + key5, label: key5 === "attendance" ? "reports.includeAttendance" : "reports." + key5, checked: draft.include[key5], onChange: (e) => nested("include", key5, e.target.checked) })), draft.type === "student" && /* @__PURE__ */ cpJsx(UxCheck, { id: "report.dataTable", checked: !!draft.dataTable, onChange: (e) => change2("dataTable", e.target.checked) }), /* @__PURE__ */ cpJsx(UxCheck, { id: "report.details", checked: draft.lessonLedger !== false, onChange: (e) => change2("lessonLedger", e.target.checked) }), /* @__PURE__ */ cpJsx(UxCheck, { id: "report.comments", checked: !!draft.eventComments, onChange: (e) => change2("eventComments", e.target.checked) }), /* @__PURE__ */ cpJsx(UxCheck, { id: "report.originalCharts", checked: !!draft.includeOriginalCharts, onChange: (e) => change2("includeOriginalCharts", e.target.checked) }), /* @__PURE__ */ cpJsx(UxCheck, { id: "report.prose", checked: !!draft.approvedText, onChange: (e) => change2("approvedText", e.target.checked) })), /* @__PURE__ */ cpJsx("p", { className: "cp-ux-source" }, uxText("report.privateHelp")), draft.include.focus && /* @__PURE__ */ cpJsx("div", { className: "cp-ux-actions" }, focusDefinitions().map((tag) => /* @__PURE__ */ cpJsx(ReportCheck, { key: tag.id, id: "reports.tag", label: focusLabel(tag, language2), context: tag.id, checked: draft.focusTagIds.includes(tag.id), onChange: (e) => change2("focusTagIds", e.target.checked ? [...draft.focusTagIds, tag.id] : draft.focusTagIds.filter((id) => id !== tag.id)) }))), /* @__PURE__ */ cpJsx("div", { className: "cp-ux-form" }, HEADER_FIELDS.map((key5) => /* @__PURE__ */ cpJsx(ReportField, { key: key5, id: "reports.header." + key5, label: "reports." + key5, value: draft.header[key5], onChange: (e) => nested("header", key5, e.target.value) })))), /* @__PURE__ */ cpJsx("div", { className: "cp-ux-actions" }, /* @__PURE__ */ cpJsx(UxButton, { id: "report.generate", primary: true, disabled: !!problem, onClick: build }), /* @__PURE__ */ cpJsx(ReportButton, { id: "reports.preview", disabled: !!problem, onClick: () => {
       setGenerated({ ...draft });
       setPreview({ ...draft, branding: currentBranding });
     } }, t("reports.preview")), /* @__PURE__ */ cpJsx(ReportButton, { id: "reports.save", disabled: !!saveProblem, onClick: () => {
@@ -50997,14 +51080,14 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     const [picking, setPicking] = useState(null), [importing, setImporting] = useState(false), [notice, setNotice] = useState("");
     const lessons = curriculum(doc.cp?.curriculum).lessons, byId = new Map(lessons.map((l) => [l.id, l]));
     const rows = doc.sections.flatMap((section) => section.columns.filter(assessable).map((column) => ({ section, column, info: infoOf(doc, column.id), guess: guessType(column) })));
-    const pending5 = rows.filter((row2) => !row2.info.type && row2.guess);
+    const pending6 = rows.filter((row2) => !row2.info.type && row2.guess);
     return /* @__PURE__ */ cpJsx(ModuleFrame, { titleKey: "ux.assess.title", icon: "assessments", lead: "ux.lead.assessments" }, /* @__PURE__ */ cpJsx("section", { className: "cp-ai3-group", "aria-labelledby": "cp-assess-lessons" }, /* @__PURE__ */ cpJsx("h3", { id: "cp-assess-lessons" }, uxText("assess.lessonsTitle")), /* @__PURE__ */ cpJsx("p", { className: "cp-ai3-hint", "data-lessons": lessons.length }, lessons.length ? uxText("assess.lessonsHave").replace("{n}", String(lessons.length)).replace("{file}", doc.cp.curriculum.source?.file || "").replace("{date}", String(doc.cp.curriculum.importedAt || "").slice(0, 10)) : uxText("assess.lessonsNone")), notice && /* @__PURE__ */ cpJsx("p", { role: "status", className: "cp-ai3-saved" }, notice), !importing ? /* @__PURE__ */ cpJsx("div", { className: "cp-ai3-row" }, /* @__PURE__ */ cpJsx(UxButton, { id: "assess.import", onClick: () => {
       setImporting(true);
       setNotice("");
     } })) : /* @__PURE__ */ cpJsx(LessonImport, { doc, onUpdate, onDone: (n) => {
       setImporting(false);
       setNotice(uxText("assess.imported").replace("{n}", String(n)));
-    } })), /* @__PURE__ */ cpJsx("section", { "aria-labelledby": "cp-assess-table" }, /* @__PURE__ */ cpJsx("h3", { id: "cp-assess-table" }, uxText("assess.tableTitle")), /* @__PURE__ */ cpJsx("p", { className: "cp-ai3-hint" }, uxText("assess.tableLead")), pending5.length > 0 && /* @__PURE__ */ cpJsx("div", { className: "cp-ai3-row" }, /* @__PURE__ */ cpJsx(UxButton, { id: "assess.useAll", onClick: () => onUpdate((d) => pending5.reduce((acc, row2) => setInfo(acc, row2.column.id, { type: row2.guess }), d)) }, uxText("assess.useAll").replace("{n}", String(pending5.length)))), /* @__PURE__ */ cpJsx("table", { className: "cp-ai3-table cp-assess-table" }, /* @__PURE__ */ cpJsx("thead", null, /* @__PURE__ */ cpJsx("tr", null, /* @__PURE__ */ cpJsx("th", null, uxText("assess.col.part")), /* @__PURE__ */ cpJsx("th", null, uxText("assess.col.name")), /* @__PURE__ */ cpJsx("th", null, uxText("assess.col.type")), /* @__PURE__ */ cpJsx("th", null, uxText("assess.col.date")), /* @__PURE__ */ cpJsx("th", null, uxText("assess.col.lessons")))), /* @__PURE__ */ cpJsx("tbody", null, rows.map(({ section, column, info, guess }) => /* @__PURE__ */ cpJsx("tr", { key: column.id, "data-column": column.id }, /* @__PURE__ */ cpJsx("td", { dir: "auto" }, cpRaw(section.name)), /* @__PURE__ */ cpJsx("td", { dir: "auto" }, /* @__PURE__ */ cpJsx("b", null, cpRaw(column.name))), /* @__PURE__ */ cpJsx("td", null, /* @__PURE__ */ cpJsx("select", { value: info.type || "", "aria-label": uxText("assess.col.type") + ": " + column.name, ...controlProps("ux.assess.type", (e) => onUpdate((d) => setInfo(d, column.id, { type: e.target.value || null })), column.id) }, /* @__PURE__ */ cpJsx("option", { value: "" }, uxText("assess.notSet")), TYPES.map((type) => /* @__PURE__ */ cpJsx("option", { key: type, value: type }, uxText("assess.type." + type)))), !info.type && guess && /* @__PURE__ */ cpJsx("span", { className: "cp-assess-guess" }, uxText("assess.suggested").replace("{type}", uxText("assess.type." + guess)), " ", /* @__PURE__ */ cpJsx(UxButton, { id: "assess.useGuess", context: column.id, onClick: () => onUpdate((d) => setInfo(d, column.id, { type: guess })) }))), /* @__PURE__ */ cpJsx("td", null, /* @__PURE__ */ cpJsx("input", { type: "date", value: info.date || "", "aria-label": uxText("assess.col.date") + ": " + column.name, ...controlProps("ux.assess.date", (e) => onUpdate((d) => setInfo(d, column.id, { date: e.target.value || null })), column.id) })), /* @__PURE__ */ cpJsx("td", null, (info.lessons || []).length > 0 && /* @__PURE__ */ cpJsx("ul", { className: "cp-assess-chosen" }, info.lessons.map((id) => byId.get(id)).filter(Boolean).map((l) => /* @__PURE__ */ cpJsx("li", { key: l.id }, cpRaw(lessonLabel(l))))), /* @__PURE__ */ cpJsx(UxButton, { id: "assess.lessons", context: column.id, disabled: !lessons.length, title: lessons.length ? void 0 : uxText("assess.lessonsNone"), onClick: () => setPicking(column) }, uxText((info.lessons || []).length ? "assess.changeLessons" : "assess.lessons"))))))), !rows.length && /* @__PURE__ */ cpJsx("p", { className: "cp-ai3-hint" }, uxText("assess.noColumns"))), /* @__PURE__ */ cpJsx(TermPlan, { doc, onUpdate }), picking && /* @__PURE__ */ cpJsx(LessonPicker, { doc, column: picking, onUpdate, onClose: () => setPicking(null) }));
+    } })), /* @__PURE__ */ cpJsx("section", { "aria-labelledby": "cp-assess-table" }, /* @__PURE__ */ cpJsx("h3", { id: "cp-assess-table" }, uxText("assess.tableTitle")), /* @__PURE__ */ cpJsx("p", { className: "cp-ai3-hint" }, uxText("assess.tableLead")), pending6.length > 0 && /* @__PURE__ */ cpJsx("div", { className: "cp-ai3-row" }, /* @__PURE__ */ cpJsx(UxButton, { id: "assess.useAll", onClick: () => onUpdate((d) => pending6.reduce((acc, row2) => setInfo(acc, row2.column.id, { type: row2.guess }), d)) }, uxText("assess.useAll").replace("{n}", String(pending6.length)))), /* @__PURE__ */ cpJsx("table", { className: "cp-ai3-table cp-assess-table" }, /* @__PURE__ */ cpJsx("thead", null, /* @__PURE__ */ cpJsx("tr", null, /* @__PURE__ */ cpJsx("th", null, uxText("assess.col.part")), /* @__PURE__ */ cpJsx("th", null, uxText("assess.col.name")), /* @__PURE__ */ cpJsx("th", null, uxText("assess.col.type")), /* @__PURE__ */ cpJsx("th", null, uxText("assess.col.date")), /* @__PURE__ */ cpJsx("th", null, uxText("assess.col.lessons")))), /* @__PURE__ */ cpJsx("tbody", null, rows.map(({ section, column, info, guess }) => /* @__PURE__ */ cpJsx("tr", { key: column.id, "data-column": column.id }, /* @__PURE__ */ cpJsx("td", { dir: "auto" }, cpRaw(section.name)), /* @__PURE__ */ cpJsx("td", { dir: "auto" }, /* @__PURE__ */ cpJsx("b", null, cpRaw(column.name))), /* @__PURE__ */ cpJsx("td", null, /* @__PURE__ */ cpJsx("select", { value: info.type || "", "aria-label": uxText("assess.col.type") + ": " + column.name, ...controlProps("ux.assess.type", (e) => onUpdate((d) => setInfo(d, column.id, { type: e.target.value || null })), column.id) }, /* @__PURE__ */ cpJsx("option", { value: "" }, uxText("assess.notSet")), TYPES.map((type) => /* @__PURE__ */ cpJsx("option", { key: type, value: type }, uxText("assess.type." + type)))), !info.type && guess && /* @__PURE__ */ cpJsx("span", { className: "cp-assess-guess" }, uxText("assess.suggested").replace("{type}", uxText("assess.type." + guess)), " ", /* @__PURE__ */ cpJsx(UxButton, { id: "assess.useGuess", context: column.id, onClick: () => onUpdate((d) => setInfo(d, column.id, { type: guess })) }))), /* @__PURE__ */ cpJsx("td", null, /* @__PURE__ */ cpJsx("input", { type: "date", value: info.date || "", "aria-label": uxText("assess.col.date") + ": " + column.name, ...controlProps("ux.assess.date", (e) => onUpdate((d) => setInfo(d, column.id, { date: e.target.value || null })), column.id) })), /* @__PURE__ */ cpJsx("td", null, (info.lessons || []).length > 0 && /* @__PURE__ */ cpJsx("ul", { className: "cp-assess-chosen" }, info.lessons.map((id) => byId.get(id)).filter(Boolean).map((l) => /* @__PURE__ */ cpJsx("li", { key: l.id }, cpRaw(lessonLabel(l))))), /* @__PURE__ */ cpJsx(UxButton, { id: "assess.lessons", context: column.id, disabled: !lessons.length, title: lessons.length ? void 0 : uxText("assess.lessonsNone"), onClick: () => setPicking(column) }, uxText((info.lessons || []).length ? "assess.changeLessons" : "assess.lessons"))))))), !rows.length && /* @__PURE__ */ cpJsx("p", { className: "cp-ai3-hint" }, uxText("assess.noColumns"))), /* @__PURE__ */ cpJsx(TermPlan, { doc, onUpdate }), picking && /* @__PURE__ */ cpJsx(LessonPicker, { doc, column: picking, onUpdate, onClose: () => setPicking(null) }));
   }
   var assessments_default = { id: "assessments", schema: { defaults: { schemaVersion: 1, columns: {} }, migrate: (value) => value ?? { schemaVersion: 1, columns: {} } }, views: [{ id: "module:assessments", labelKey: "ux.assess.title", Component: AssessmentsView }], actions: uxActions.filter((a) => a.id.startsWith("ux.assess.") || a.id === "ux.nav.assessments"), settingsSections: [], exports: [], i18n: { en: uxEn, ar: uxAr } };
 
@@ -51657,7 +51740,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       set("bell", void 0);
       setView?.("module:bell");
     } }) : view === "module:" + tool ? /* @__PURE__ */ cpJsx("p", null, uxText("tools.alreadyOpen")) : tool === "timer" ? /* @__PURE__ */ cpJsx(TimerView, { compact: true }) : /* @__PURE__ */ cpJsx(NoiseView, { compact: true, mini: small, doc, onUpdate });
-    return /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx("span", { className: "cp-tool-dock", role: "group", "aria-label": t("improve.tools") }, tools.map((tool) => /* @__PURE__ */ cpJsx("button", { key: tool, ...actionProps("ux.dock." + tool, () => set(tool, state[tool] ? void 0 : "open"), tool), "aria-pressed": !!state[tool], "aria-label": label(tool), title: label(tool), className: "cp-dock-btn" }, /* @__PURE__ */ cpJsx(NavIcon, { type: tool }), /* @__PURE__ */ cpJsx("span", { className: "cp-tb-label" }, t("ux.dock." + tool)), badge[tool] && /* @__PURE__ */ cpJsx("span", { className: "cp-dock-badge", "aria-hidden": "true" }, cpRaw(badge[tool])))), floatSupported() && /* @__PURE__ */ cpJsx(MoreMenu, { id: "tools" }, /* @__PURE__ */ cpJsx("button", { ...actionProps("ux.float.all", floatAll), "aria-pressed": inPip.length === floating.length, title: t("ux.float.allHint"), className: "cp-dock-float", "data-icon": "pop" }, t("ux.float.all")))), tools.filter((tool) => state[tool] === "open").map((tool) => /* @__PURE__ */ cpJsx(FloatingWindow, { key: tool, id: tool, title: t("ux.dock." + tool), icon: /* @__PURE__ */ cpJsx(NavIcon, { type: tool }), fallback: { timer: { x: 240, y: 70 }, bell: { x: 700, y: 70 }, noise: { x: 700, y: 330 } }[tool], max: max === tool, onMax: () => setMax(max === tool ? null : tool), onShrink: () => {
+    return /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx("span", { className: "cp-tool-dock", role: "group", "aria-label": t("improve.tools") }, tools.map((tool) => /* @__PURE__ */ cpJsx("button", { key: tool, ...actionProps("ux.dock." + tool, () => set(tool, state[tool] ? void 0 : "open"), tool), "aria-pressed": !!state[tool], "aria-label": label(tool), title: label(tool), className: "cp-dock-btn" }, /* @__PURE__ */ cpJsx(NavIcon, { type: tool }), /* @__PURE__ */ cpJsx("span", { className: "cp-tb-label" }, t("ux.dock." + tool)), badge[tool] && /* @__PURE__ */ cpJsx("span", { className: "cp-dock-badge", "aria-hidden": "true" }, cpRaw(badge[tool])))), floatSupported() && /* @__PURE__ */ cpJsx("button", { ...actionProps("ux.float.all", floatAll), "aria-pressed": inPip.length === floating.length, "aria-label": t("ux.float.all"), title: t("ux.float.allHint"), className: "cp-dock-btn cp-dock-float", "data-icon": "pop" })), tools.filter((tool) => state[tool] === "open").map((tool) => /* @__PURE__ */ cpJsx(FloatingWindow, { key: tool, id: tool, title: t("ux.dock." + tool), icon: /* @__PURE__ */ cpJsx(NavIcon, { type: tool }), fallback: { timer: { x: 240, y: 70 }, bell: { x: 700, y: 70 }, noise: { x: 700, y: 330 } }[tool], max: max === tool, onMax: () => setMax(max === tool ? null : tool), onShrink: () => {
       set(tool, "tray");
       if (max === tool) setMax(null);
     }, onClose: () => {
@@ -51733,6 +51816,27 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     };
     const openView = (target) => setView(lastView.current[target] || (target === "gradebook" ? "Marks" : modules.find((candidate) => home(candidate.moduleId) === target)?.id));
     const lesson = activeLesson(doc);
+    const [calendarDismissed, setCalendarDismissed] = useState(false);
+    useEffect(() => {
+      let stored = false;
+      try {
+        stored = localStorage.getItem("cp:calendar-notice:" + doc.cp?.classId) === "dismissed";
+      } catch {
+      }
+      setCalendarDismissed(stored);
+    }, [doc.cp?.classId]);
+    const linkedProfile = isProfileLinked(), sameDays = classDays(doc).join() === teacherDays(profile2.calendar).join(), ownCalendar = !!doc.cp?.classId && (linkedProfile ? !followsTeacherCalendar(doc, profile2.calendar) : JSON.stringify(doc.settings.schoolDays) === "[0,1,2,3,4]");
+    const useTeacherCalendar = () => {
+      onUpdate((d) => adoptTeacherCalendar(d, getProfile().calendar));
+      notify2(t("ux.cal.followsNow"), { undo: true });
+    };
+    useContextItem("calendar", ownCalendar && !calendarDismissed ? { kind: "notice", order: 3, className: "cp-calendar-notice", node: /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx("span", null, /* @__PURE__ */ cpJsx("bdi", null, !linkedProfile ? t("calendar.notice") : sameDays ? t("ux.cal.ownHolidays") : t("ux.cal.own").replace("{days}", dayRange(classDays(doc))).replace("{teacher}", dayRange(teacherDays(profile2.calendar))))), linkedProfile && /* @__PURE__ */ cpJsx("button", { ...actionProps("ux.cal.useTeacher", useTeacherCalendar, "notice") }, t("ux.cal.useTeacher")), /* @__PURE__ */ cpJsx("button", { ...actionProps("cp.calendar-dismiss", () => {
+      setCalendarDismissed(true);
+      try {
+        localStorage.setItem("cp:calendar-notice:" + doc.cp.classId, "dismissed");
+      } catch {
+      }
+    }), "aria-label": t("calendar.dismiss"), title: t("calendar.dismiss") }, "\xD7")) } : null);
     const previous = useRef({ classId: doc.cp?.classId, lesson: null });
     useEffect(() => {
       const id = doc.cp?.classId, before = previous.current;
@@ -51751,7 +51855,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
   }
   function FileSafetyNotice({ doc, onReload, onBackup, onRelink }) {
     useLanguage();
-    const [error2, setError] = useState(null), [dismissed, setDismissed] = useState(false);
+    const [error2, setError] = useState(null);
     useEffect(() => {
       const save = (e) => {
         const code = e.detail?.code;
@@ -51766,13 +51870,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     }, []);
     useEffect(() => {
       setError(null);
-      setDismissed(false);
-      try {
-        setDismissed(localStorage.getItem("cp:calendar-notice:" + doc.cp?.classId) === "dismissed");
-      } catch {
-      }
     }, [doc.cp?.classId]);
-    const sunday = JSON.stringify(doc.settings.schoolDays) === "[0,1,2,3,4]" && doc.cp?.classId;
     useContextItem("file-error", error2 ? { kind: "error", className: "cp-file-notice", node: /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx("span", null, /* @__PURE__ */ cpJsx("bdi", null, t(error2))), /* @__PURE__ */ cpJsx("button", { ...actionProps("cp.conflict-backup", onBackup) }, t("common.backup")), /* @__PURE__ */ cpJsx("button", { ...actionProps("cp.conflict-reload", async () => {
       if (await askConfirm({ title: t("ux.reload.title"), body: t("file.reloadConfirm"), confirm: t("ux.reload.confirm"), context: "reload" })) {
         await addVersion(doc.cp?.classId, { doc, reason: "beforeReload", name: doc.settings?.className || "" });
@@ -51780,13 +51878,6 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
         setError(null);
       }
     }) }, t("common.reload")), /* @__PURE__ */ cpJsx("button", { ...actionProps("cp.conflict-relink", onRelink) }, t("common.relink"))) } : null);
-    useContextItem("calendar", sunday && !dismissed ? { kind: "notice", order: 3, className: "cp-calendar-notice", node: /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx("span", null, /* @__PURE__ */ cpJsx("bdi", null, t("calendar.notice"))), /* @__PURE__ */ cpJsx("button", { ...actionProps("cp.calendar-dismiss", () => {
-      setDismissed(true);
-      try {
-        localStorage.setItem("cp:calendar-notice:" + doc.cp.classId, "dismissed");
-      } catch {
-      }
-    }), "aria-label": t("calendar.dismiss"), title: t("calendar.dismiss") }, "\xD7")) } : null);
     return null;
   }
 
