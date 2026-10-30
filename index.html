@@ -1184,6 +1184,15 @@ button[data-eye]::after{content:'';position:absolute;inset:-6px -4px}
 .cp-module :where(small){font-size:var(--cp-fs-caption)}
 /* M64 (targets ≥ 24 px): a check box and its words are one target at least 24 px tall. */
 .cp-module :where(label.cp-ux-check,.cp-ux-actions>label){min-height:24px}
+/* M64 follow-up (owner: "darken it"): inside the Gradebook's own dialogs, its lightest grey text (#94a3b8, 2.6:1 on
+   white) is shown darker (#64748b, 4.8:1). Display only; the Gradebook source and its other views are unchanged, and
+   the dark and high-contrast themes keep their own colours. */
+:root:not([data-cp-theme=dark]):not([data-cp-theme=contrast]) [role=dialog][aria-modal=true] [style*="color: rgb(148, 163, 184)"]{color:#64748b!important}
+/* The same for its orange and red severity marks: a deeper shade of the same colour (orange #ea580c → #c2410c,
+   red #dc2626 → #b91c1c), as text and as a badge behind white text. */
+:root:not([data-cp-theme=dark]):not([data-cp-theme=contrast]) [role=dialog][aria-modal=true] [style*="color: rgb(234, 88, 12)"]{color:#c2410c!important}
+:root:not([data-cp-theme=dark]):not([data-cp-theme=contrast]) [role=dialog][aria-modal=true] [style*="background: rgb(234, 88, 12)"]{background:#c2410c!important}
+:root:not([data-cp-theme=dark]):not([data-cp-theme=contrast]) [role=dialog][aria-modal=true] [style*="color: rgb(220, 38, 38)"]{color:#b91c1c!important}
 /* M56 design foundations (owner-supplied Master Implementation Brief, M56; design report §7–§8).
    One set of tokens for the frame and the new modules. Protected Gradebook views (Marks, Groups, Behaviour,
    Adjustments, Analysis, the original wheel, the Settings drawer and the class manager) do not use them. */
