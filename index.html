@@ -1389,6 +1389,18 @@ td[data-cp-att],th[data-cp-att]{background:var(--cp-att-bg)!important;box-shadow
 .cp-timer-face[data-fullscreen=true] .cp-timer-controls svg{width:4.8vh!important;height:4.8vh!important;stroke-width:2}
 .cp-timer-esc{position:absolute;inset-block-start:2.6vh;inset-inline-end:1.9vw;font-size:2.4vh;color:#fff;background:rgba(33,26,14,.7);padding:.9vh 1.9vh;border-radius:999px;transition:opacity .4s}
 .cp-timer-face[data-resting=true] .cp-timer-esc{opacity:0}
+
+/* Native fullscreen must outrank compact/enlarged floating-window rules. Keep the approved projector layout. */
+.cp-timer-face[data-fullscreen=true]:fullscreen,
+.cp-float .cp-timer-face[data-fullscreen=true]:fullscreen{position:fixed!important;inset:0!important;inline-size:100vw!important;block-size:100dvh!important;min-block-size:100dvh!important;max-inline-size:none!important;max-block-size:none!important;margin:0!important;padding:0!important;border-radius:0!important;zoom:calc(1 / var(--cp-zoom,1))!important}
+.cp-timer-face[data-fullscreen=true]:fullscreen .cp-timer-ring,
+.cp-float .cp-timer-face[data-fullscreen=true]:fullscreen .cp-timer-ring{width:83vh!important;max-width:90vw!important;height:auto!important}
+.cp-timer-face[data-fullscreen=true][data-late=true]:fullscreen .cp-timer-ring,
+.cp-float .cp-timer-face[data-fullscreen=true][data-late=true]:fullscreen .cp-timer-ring{width:76vh!important;max-width:46vw!important}
+.cp-timer-face[data-fullscreen=true]:fullscreen [data-timer-display],
+.cp-timer-face[data-fullscreen=true]:fullscreen .cp-timer-edit input,
+.cp-float .cp-timer-face[data-fullscreen=true]:fullscreen [data-timer-display],
+.cp-float .cp-timer-face[data-fullscreen=true]:fullscreen .cp-timer-edit input{font-size:27.8vh!important;font-weight:600!important}
 /* M56 design foundations (owner-supplied Master Implementation Brief, M56; design report §7–§8).
    One set of tokens for the frame and the new modules. Protected Gradebook views (Marks, Groups, Behaviour,
    Adjustments, Analysis, the original wheel, the Settings drawer and the class manager) do not use them. */
