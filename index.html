@@ -32130,7 +32130,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     if (n.sessionMinutes !== void 0 && (!Number.isFinite(n.sessionMinutes) || n.sessionMinutes < 0 || n.sessionMinutes > 240) || n.quietGoal !== void 0 && (!Number.isFinite(n.quietGoal) || n.quietGoal < 0 || n.quietGoal > 100) || n.activity !== void 0 && !["quiet", "pairs", "discussion"].includes(n.activity) || n.visual !== void 0 && !["meter", "circles", "halo", "wave", "jar"].includes(n.visual)) invalid();
     if (profile2.certificateDefaults !== void 0) {
       const value = profile2.certificateDefaults;
-      if (!object(value) || !["formal", "modern", "playful", "bordered", "ribbon"].includes(value.template) || !["portrait", "landscape"].includes(value.orientation) || !["en", "ar", "bilingual"].includes(value.language) || !["neutral", "masculine", "feminine"].includes(value.gender)) invalid();
+      if (!object(value) || !["formal", "modern", "playful", "bordered", "ribbon", "royal", "ivory", "emerald"].includes(value.template) || !["portrait", "landscape"].includes(value.orientation) || !["en", "ar", "bilingual"].includes(value.language) || !["neutral", "masculine", "feminine"].includes(value.gender)) invalid();
       for (const key4 of ["title", "titleAr", "achievement", "achievementAr", "school", "schoolAr", "issuer1", "issuer1Ar", "issuer2", "issuer2Ar"]) if (typeof value[key4] !== "string") invalid();
       branding({ logo: value.logo }, invalid);
     }
