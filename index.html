@@ -1255,6 +1255,109 @@ td[data-cp-att],th[data-cp-att]{background:var(--cp-att-bg)!important;box-shadow
 .cp-float .cp-timer-controls{flex-wrap:nowrap;gap:6px}
 .cp-float .cp-timer-controls .cp-round:not(.cp-round-go){width:36px!important;height:36px!important}
 .cp-float .cp-timer-controls .cp-round-go{width:48px!important;height:48px!important}
+/* Timer polish (owner, 31 October 2026, after the mock-up): a segmented mode bar; the mode named inside the ring; minutes
+   large with the unit under them; the typed time edited in place; every preset on one row; settings in place of the
+   timer with switches and removable chips. */
+.cp-timer-top .cp-timer-modes{display:flex;gap:2px;padding:3px;border-radius:10px;background:var(--cp-active)}
+.cp-timer-top .cp-timer-modes button{flex:1;justify-content:center;min-height:32px!important;border:0!important;background:transparent!important;box-shadow:none!important;color:var(--cp-muted)!important;border-radius:8px!important}
+.cp-timer-top .cp-timer-modes button[aria-pressed=true]{background:var(--cp-surface)!important;color:var(--cp-text)!important;box-shadow:0 1px 2px rgba(15,23,42,.16),0 0 0 1px rgba(15,23,42,.06)!important}
+.cp-timer-gear{border:0!important;background:transparent!important;box-shadow:none!important}
+.cp-timer-face{border:0!important;background:transparent!important;padding:6px 0!important;gap:12px}
+.cp-timer-read{gap:2px}
+.cp-timer-mode{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--cp-muted)}
+.cp-timer-unit{font-size:var(--cp-fs-body);font-weight:500;color:var(--cp-muted)}
+.cp-timer-hint{font-size:var(--cp-fs-caption);color:var(--cp-muted)}
+.cp-timer-hint kbd{font:600 10.5px var(--cp-font);border:1px solid var(--cp-border);border-radius:4px;padding:0 4px;background:var(--cp-surface)}
+.cp-timer-face[data-editing=true] .cp-timer-arc{stroke-opacity:.25}
+.cp-timer-edit{display:inline-flex;align-items:center;gap:4px;border-block-end:2px solid var(--cp-gold,#c8961e)}
+.cp-timer-edit input{all:unset;width:3.4em;font:650 42px/1.05 var(--cp-font);font-variant-numeric:tabular-nums;text-align:center;color:var(--cp-text);caret-color:var(--cp-gold,#c8961e)}
+.cp-float .cp-timer-edit input,.cp-float .cp-timer-read output{font-size:36px}
+.cp-timer-ok{all:unset;display:grid;place-items:center;width:24px;height:24px;border-radius:50%;cursor:pointer;color:var(--cp-muted)}
+.cp-timer-ok:hover{background:var(--cp-active);color:var(--cp-text)}.cp-timer-ok:focus-visible{outline:2px solid var(--ux-primary)}
+.cp-timer-presets{display:flex!important;flex-wrap:nowrap!important;gap:6px!important;align-items:center!important;justify-content:center!important;overflow-x:auto;margin-block:10px 0!important}
+.cp-timer-presets .cp-chip{min-width:34px;height:30px;padding:0 8px!important;border-radius:15px!important;justify-content:center;font-weight:600;font-variant-numeric:tabular-nums;font-size:var(--cp-fs-ui)!important}
+.cp-timer-presets .cp-chip[aria-pressed=true],.cp-timer-presets .cp-chip.cp-active,.cp-timer-presets .cp-chip[data-active=true]{background:var(--ux-primary)!important;color:var(--cp-primary-fg)!important;border-color:var(--ux-primary)!important}
+.cp-timer-presets-unit{font-size:var(--cp-fs-caption);color:var(--cp-muted);margin-inline-start:2px}
+.cp-timer-status{text-align:center;font-size:var(--cp-fs-caption)}
+.cp-timer-settings{display:block!important;border:0!important;padding:0!important;margin:0!important}
+.cp-timer-settings-head{display:flex;align-items:center;gap:6px;margin-block-end:6px}
+.cp-timer-settings-head h3{margin:0;font-size:var(--cp-fs-title,14px);font-weight:600}
+.cp-timer-back{border:0!important;background:transparent!important;box-shadow:none!important;width:32px;height:32px;padding:0!important;display:inline-grid!important;place-items:center}
+.cp-timer-settings section{border-block-start:1px solid var(--cp-border);padding-block:10px}
+.cp-timer-settings h4{display:flex;justify-content:space-between;align-items:baseline;margin:0 0 8px;font-size:11px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--cp-muted)}
+.cp-timer-settings h4 small{font-size:var(--cp-fs-caption);font-weight:500;letter-spacing:0;text-transform:none}
+.cp-timer-switch{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:4px 0;font-size:var(--cp-fs-ui);cursor:pointer}
+.cp-timer-switch input{appearance:none;flex:none;width:34px;height:20px;margin:0;border-radius:10px;background:var(--cp-border);position:relative;cursor:pointer;transition:background .15s}
+.cp-timer-switch input::after{content:"";position:absolute;inset-block-start:2px;inset-inline-start:2px;width:16px;height:16px;border-radius:50%;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.25);transition:inset-inline-start .15s}
+.cp-timer-switch input:checked{background:var(--cp-gold,#c8961e)}.cp-timer-switch input:checked::after{inset-inline-start:16px}
+.cp-timer-switch input:focus-visible{outline:2px solid var(--ux-primary);outline-offset:2px}
+.cp-timer-chips{display:flex;flex-wrap:wrap;gap:6px;align-items:center;list-style:none;margin:0;padding:0}
+.cp-timer-edit-chip{display:inline-flex;align-items:center;gap:2px;height:28px;padding-inline:10px 4px;border:1px solid var(--cp-border);border-radius:14px;background:var(--cp-surface);font-weight:600;font-size:var(--cp-fs-ui);font-variant-numeric:tabular-nums}
+.cp-timer-chip-x{all:unset;display:inline-grid;place-items:center;width:20px;height:20px;border-radius:50%;color:var(--cp-muted);cursor:pointer}
+.cp-timer-chip-x svg{width:12px;height:12px}.cp-timer-chip-x:hover{background:var(--cp-active);color:var(--cp-text)}.cp-timer-chip-x:focus-visible{outline:2px solid var(--ux-primary)}
+.cp-timer-add{box-sizing:border-box;width:64px;height:28px;padding:0 10px;border:1px dashed var(--cp-border-strong,#b8ab8c);border-radius:14px;background:transparent;font:500 var(--cp-fs-ui)/1 var(--cp-font);color:var(--cp-text)}
+.cp-timer-add::placeholder{color:var(--cp-muted)}.cp-timer-add:focus{outline:2px solid var(--ux-primary);border-style:solid;width:90px}
+.cp-timer-tips{list-style:none;margin:0;padding:0;display:grid;gap:5px}
+.cp-timer-tips li{display:flex;align-items:center;justify-content:space-between;gap:6px;padding:4px 4px 4px 8px;border:1px solid var(--cp-border);border-radius:8px;background:var(--cp-surface);font-size:var(--cp-fs-ui)}
+.cp-timer-tips li:last-child:has(input){border:0;padding:0;background:transparent}
+.cp-timer-add-line{width:auto!important;min-width:120px}.cp-timer-add-line:focus{width:100%!important}
+.cp-timer-autosave{margin:6px 0 0;text-align:center;font-size:var(--cp-fs-caption);color:var(--cp-muted)}
+.cp-float[data-float=timer][data-max=false] .cp-timer-ring{width:170px!important}
+.cp-float[data-float=timer][data-max=false] .cp-timer-presets .cp-chip{padding:0 6px!important;min-width:30px;height:28px}
+/* The shared button and field styles are inline; these quiet controls drop them. */
+.cp-timer-chip-x,.cp-timer-ok,.cp-timer-back,.cp-timer-gear{all:unset!important;box-sizing:border-box!important;display:inline-grid!important;place-items:center!important;flex:none!important;border-radius:50%!important;color:var(--cp-muted)!important;cursor:pointer!important}
+.cp-timer-chip-x{width:20px!important;height:20px!important}.cp-timer-ok{width:26px!important;height:26px!important}
+.cp-timer-back,.cp-timer-gear{width:32px!important;height:32px!important;border-radius:8px!important;color:var(--cp-text)!important}
+.cp-timer-chip-x:hover,.cp-timer-ok:hover,.cp-timer-back:hover,.cp-timer-gear:hover{background:var(--cp-active)!important;color:var(--cp-text)!important}
+.cp-timer-chip-x:focus-visible,.cp-timer-ok:focus-visible,.cp-timer-back:focus-visible,.cp-timer-gear:focus-visible{outline:2px solid var(--ux-primary)!important;outline-offset:1px!important}
+.cp-timer-chip-x svg{width:12px;height:12px}
+.cp-timer-edit input{all:unset!important;box-sizing:content-box!important;width:3.2em!important;font:650 42px/1.05 var(--cp-font)!important;font-variant-numeric:tabular-nums!important;text-align:center!important;color:var(--cp-text)!important;caret-color:var(--cp-gold,#c8961e)!important}
+.cp-float .cp-timer-edit input{font-size:36px!important}
+.cp-timer-read .cp-timer-time output{font-size:42px}.cp-float .cp-timer-read .cp-timer-time output{font-size:36px}
+.cp-timer-read .cp-timer-hint{max-width:80%}
+.cp-timer-add{all:unset!important;box-sizing:border-box!important;width:64px!important;height:28px!important;padding:0 10px!important;border:1px dashed var(--cp-border-strong,#b8ab8c)!important;border-radius:14px!important;font:500 var(--cp-fs-ui)/26px var(--cp-font)!important;color:var(--cp-text)!important}
+.cp-timer-add:focus{border-style:solid!important;border-color:var(--ux-primary)!important;width:90px!important}
+.cp-timer-add-line{width:auto!important;min-width:120px!important}.cp-timer-add-line:focus{width:100%!important}
+.cp-float[data-float=timer][data-max=false] [data-timer-display]{font-size:36px!important}
+.cp-timer-face[data-fullscreen=true] :is(.cp-timer-mode,.cp-timer-unit,.cp-timer-hint),.cp-float[data-max=true] :is(.cp-timer-mode,.cp-timer-unit,.cp-timer-hint){font-size:min(3.4vh,3.4vw)}
+.cp-module .cp-timer-edit input:focus-visible{outline:none!important}
+.cp-timer-edit:focus-within{border-block-end-width:3px}
+.cp-timer-back svg,.cp-timer-gear svg{width:20px;height:20px}
+.cp-timer-ring .cp-timer-read svg{transform:none;width:18px;height:18px}
+.cp-timer-ok{background:var(--cp-gold,#c8961e)!important;color:#fff!important}.cp-timer-ok:hover{background:var(--cp-gold,#c8961e)!important;color:#fff!important;filter:brightness(.92)}
+/* Sizes from the approved mock-up (floating window 300 px): ring 184 px with a thin track; inside it the mode label
+   11 px caps, the time 46 px, the unit 14 px, the hint 11.5 px; side buttons 40 px, start 60 px; chips 34 × 30 px. */
+.cp-timer-track{stroke:color-mix(in srgb,var(--cp-gold,#c8961e) 26%,transparent)!important;stroke-width:5.2!important}
+.cp-timer-arc{stroke-width:5.2!important}
+.cp-float[data-float=timer][data-max=false] .cp-timer-ring{width:184px!important}
+.cp-timer-ring{width:min(240px,70vw)}
+.cp-timer-read{gap:0!important}
+.cp-timer-mode{font-size:11px!important;font-weight:600;letter-spacing:.06em;margin-block-end:2px}
+.cp-timer-read .cp-timer-time{padding:0 6px!important;line-height:1!important}
+.cp-float[data-float=timer][data-max=false] [data-timer-display],.cp-float .cp-timer-edit input{font-size:46px!important;font-weight:600!important;letter-spacing:-.01em;line-height:1!important}
+.cp-module:not(.cp-float *) [data-timer-display],.cp-timer-edit input{font-size:60px!important;font-weight:600!important;letter-spacing:-.01em;line-height:1!important}
+.cp-timer-unit{font-size:14px!important;font-weight:500;margin-block-start:4px}
+.cp-timer-hint{font-size:11.5px!important;margin-block-start:8px}
+.cp-timer-time:disabled{opacity:1!important;cursor:default!important}
+.cp-timer-face{gap:10px!important}
+.cp-timer-controls{gap:10px!important}
+.cp-float .cp-timer-controls .cp-round:not(.cp-round-go){width:40px!important;height:40px!important}
+.cp-float .cp-timer-controls .cp-round-go{width:60px!important;height:60px!important}
+.cp-round-go:hover,.cp-round-go:active{background:var(--ux-primary)!important;color:var(--cp-primary-fg)!important;filter:none!important}
+.cp-timer-presets .cp-chip,.cp-timer-segments .cp-chip{min-width:34px!important;height:30px!important;font-size:13px!important;font-weight:600!important}
+.cp-timer-segments{display:flex!important;gap:6px!important;margin:0!important;padding:0!important;list-style:none}
+.cp-timer-segments li.cp-chip{display:inline-grid;place-items:center;padding:0 8px!important;border:1px solid var(--cp-border);border-radius:15px;background:var(--cp-surface)}
+.cp-timer-segments li[aria-current]{background:var(--ux-primary)!important;color:var(--cp-primary-fg)!important;border-color:var(--ux-primary)!important}
+.cp-timer-top .cp-timer-modes button{min-height:32px!important;height:32px}
+.cp-timer-face[data-fullscreen=true] [data-timer-display],.cp-timer-face[data-fullscreen=true] .cp-timer-edit input{font-size:min(17vh,17vw)!important}
+.cp-float[data-max=true] [data-timer-display],.cp-float[data-max=true] .cp-timer-edit input{font-size:min(11vh,11vw)!important}
+.cp-pip [data-timer-display]{font-size:min(15vw,10vh)!important}
+.cp-timer-face[data-fullscreen=true] .cp-timer-controls .cp-round:not(.cp-round-go){width:72px!important;height:72px!important}
+.cp-timer-face[data-fullscreen=true] .cp-timer-controls .cp-round-go{width:96px!important;height:96px!important}
+.cp-timer-controls .cp-cmd.cp-round-go:not([data-active=true]):not(:disabled):hover{background:var(--ux-primary)!important;border-color:var(--ux-primary)!important;filter:brightness(1.15)!important}
+.cp-timer-read .cp-timer-time{display:block!important;height:auto!important;min-height:0!important}
+.cp-timer-read .cp-timer-time output{display:block;line-height:1}
+.cp-float .cp-timer-presets{gap:5px!important;overflow:visible}.cp-float .cp-timer-presets .cp-chip{min-width:31px!important;padding:0 6px!important}
 /* M56 design foundations (owner-supplied Master Implementation Brief, M56; design report §7–§8).
    One set of tokens for the frame and the new modules. Protected Gradebook views (Marks, Groups, Behaviour,
    Adjustments, Analysis, the original wheel, the Settings drawer and the class manager) do not use them. */
@@ -6144,7 +6247,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.plans.word": "Export editable lesson plan to Word",
     "ux.report.originalChartsTitle": "Original Analysis chart snapshots",
     "ux.importTools.unknownIdentity": "This student ID is not in the roster and has no name to create a new learner. Correct the identity or mapping.",
-    "ux.timer.advanced": "Timer preset and sequence settings",
+    "ux.timer.advanced": "Timer settings",
     "ux.noise.advanced": "Noise threshold and sensitivity settings",
     "ux.appearance.look": "Look",
     "ux.appearance.fontEn": "English font",
@@ -6620,8 +6723,8 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.timer.tip4": "Get ready to hand in",
     "ux.timer.lastThree": "3 minutes left",
     "ux.timer.pensDown": "Time is up. Pens down.",
-    "ux.timer.showSeconds": "Show seconds (countdown and segments)",
-    "ux.timer.sound": "Sound: chime at 3 minutes in a quiz and when time is up",
+    "ux.timer.showSeconds": "Show seconds",
+    "ux.timer.sound": "Chime when time is up",
     "ux.timer.tipsLabel": "Quiz checklist for the last 3 minutes (one line each)",
     "ux.timer.tipsSave": "Save checklist",
     "ux.timer.tipsReset": "Restore default checklist",
@@ -7371,7 +7474,26 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.cert.teacherLabel": "Teacher",
     "ux.cert.teacher": "Teacher's name (English)",
     "ux.cert.teacherAr": "Teacher's name (Arabic)",
-    "ux.timer.edit": "Click to type a time (for example 7 or 7:30)"
+    "ux.timer.edit": "Click to type a time (for example 7 or 7:30)",
+    "ux.timer.quizChime": "Chime 3 min before a quiz ends",
+    "ux.timer.back": "Back to the timer",
+    "ux.timer.settingsTitle": "Timer settings",
+    "ux.timer.groupDisplay": "Display & sound",
+    "ux.timer.presetsTitle": "Presets",
+    "ux.timer.minutes": "minutes",
+    "ux.timer.minutesLeft": "minutes left",
+    "ux.timer.total": "In all:",
+    "ux.timer.tipsTitle": "Quiz checklist",
+    "ux.timer.tipsWhen": "last 3 minutes",
+    "ux.timer.add": "+ Add",
+    "ux.timer.addLine": "+ Add a line",
+    "ux.timer.remove": "Remove",
+    "ux.timer.autoSave": "Changes save as you make them",
+    "ux.timer.typeTime": "Type a time",
+    "ux.timer.clickToType": "Click to type a time",
+    "ux.timer.set": "set",
+    "ux.timer.cancel": "cancel",
+    "ux.timer.quizSeconds": "Seconds appear only in the last minute"
   };
 
   // src/i18n/plain-copy.js
@@ -11633,7 +11755,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.plans.word": "\u062A\u0635\u062F\u064A\u0631 \u062E\u0637\u0629 \u0627\u0644\u062F\u0631\u0633 \u0625\u0644\u0649 Word \u0642\u0627\u0628\u0644 \u0644\u0644\u062A\u0639\u062F\u064A\u0644",
     "ux.report.originalChartsTitle": "\u0644\u0642\u0637\u0627\u062A \u0631\u0633\u0648\u0645 \u0627\u0644\u062A\u062D\u0644\u064A\u0644 \u0627\u0644\u0623\u0635\u0644\u064A\u0629",
     "ux.importTools.unknownIdentity": "\u0645\u0639\u0631\u0641 \u0627\u0644\u0637\u0627\u0644\u0628 \u063A\u064A\u0631 \u0645\u0648\u062C\u0648\u062F \u0641\u064A \u0627\u0644\u0642\u0627\u0626\u0645\u0629 \u0648\u0644\u0627 \u064A\u0648\u062C\u062F \u0627\u0633\u0645 \u0644\u0625\u0646\u0634\u0627\u0621 \u0645\u062A\u0639\u0644\u0645 \u062C\u062F\u064A\u062F. \u0635\u062D\u062D \u0627\u0644\u0647\u0648\u064A\u0629 \u0623\u0648 \u0627\u0644\u0645\u0637\u0627\u0628\u0642\u0629.",
-    "ux.timer.advanced": "\u0625\u0639\u062F\u0627\u062F\u0627\u062A \u0646\u0645\u0627\u0630\u062C \u0627\u0644\u0645\u0624\u0642\u062A \u0648\u062A\u0633\u0644\u0633\u0644\u0627\u062A\u0647",
+    "ux.timer.advanced": "\u0625\u0639\u062F\u0627\u062F\u0627\u062A \u0627\u0644\u0645\u0624\u0642\u062A",
     "ux.noise.advanced": "\u0625\u0639\u062F\u0627\u062F\u0627\u062A \u0639\u062A\u0628\u0627\u062A \u0627\u0644\u0636\u0648\u0636\u0627\u0621 \u0648\u0627\u0644\u062D\u0633\u0627\u0633\u064A\u0629",
     "ux.appearance.look": "\u0627\u0644\u0645\u0638\u0647\u0631 \u0627\u0644\u0639\u0627\u0645",
     "ux.appearance.fontEn": "\u0627\u0644\u062E\u0637 \u0627\u0644\u0625\u0646\u062C\u0644\u064A\u0632\u064A",
@@ -12109,8 +12231,8 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.timer.tip4": "\u0627\u0633\u062A\u0639\u062F \u0644\u0644\u062A\u0633\u0644\u064A\u0645",
     "ux.timer.lastThree": "\u0628\u0642\u064A\u062A 3 \u062F\u0642\u0627\u0626\u0642",
     "ux.timer.pensDown": "\u0627\u0646\u062A\u0647\u0649 \u0627\u0644\u0648\u0642\u062A. \u0636\u0639\u0648\u0627 \u0627\u0644\u0623\u0642\u0644\u0627\u0645.",
-    "ux.timer.showSeconds": "\u0625\u0638\u0647\u0627\u0631 \u0627\u0644\u062B\u0648\u0627\u0646\u064A (\u0627\u0644\u0639\u062F \u0627\u0644\u062A\u0646\u0627\u0632\u0644\u064A \u0648\u0627\u0644\u0645\u0642\u0627\u0637\u0639)",
-    "ux.timer.sound": "\u0627\u0644\u0635\u0648\u062A: \u062A\u0646\u0628\u064A\u0647 \u0639\u0646\u062F \u0628\u0642\u0627\u0621 3 \u062F\u0642\u0627\u0626\u0642 \u0641\u064A \u0627\u0644\u0627\u062E\u062A\u0628\u0627\u0631 \u0648\u0639\u0646\u062F \u0627\u0646\u062A\u0647\u0627\u0621 \u0627\u0644\u0648\u0642\u062A",
+    "ux.timer.showSeconds": "\u0625\u0638\u0647\u0627\u0631 \u0627\u0644\u062B\u0648\u0627\u0646\u064A",
+    "ux.timer.sound": "\u062A\u0646\u0628\u064A\u0647 \u0635\u0648\u062A\u064A \u0639\u0646\u062F \u0627\u0646\u062A\u0647\u0627\u0621 \u0627\u0644\u0648\u0642\u062A",
     "ux.timer.tipsLabel": "\u0642\u0627\u0626\u0645\u0629 \u062A\u0630\u0643\u064A\u0631 \u0622\u062E\u0631 3 \u062F\u0642\u0627\u0626\u0642 \u0641\u064A \u0627\u0644\u0627\u062E\u062A\u0628\u0627\u0631 (\u0633\u0637\u0631 \u0644\u0643\u0644 \u062A\u0630\u0643\u064A\u0631)",
     "ux.timer.tipsSave": "\u062D\u0641\u0638 \u0627\u0644\u0642\u0627\u0626\u0645\u0629",
     "ux.timer.tipsReset": "\u0627\u0633\u062A\u0639\u0627\u062F\u0629 \u0627\u0644\u0642\u0627\u0626\u0645\u0629 \u0627\u0644\u0627\u0641\u062A\u0631\u0627\u0636\u064A\u0629",
@@ -12860,7 +12982,26 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.cert.teacherLabel": "\u0627\u0644\u0645\u0639\u0644\u0645",
     "ux.cert.teacher": "\u0627\u0633\u0645 \u0627\u0644\u0645\u0639\u0644\u0645 (\u0628\u0627\u0644\u0625\u0646\u062C\u0644\u064A\u0632\u064A\u0629)",
     "ux.cert.teacherAr": "\u0627\u0633\u0645 \u0627\u0644\u0645\u0639\u0644\u0645 (\u0628\u0627\u0644\u0639\u0631\u0628\u064A\u0629)",
-    "ux.timer.edit": "\u0627\u0646\u0642\u0631 \u0644\u0643\u062A\u0627\u0628\u0629 \u0627\u0644\u0648\u0642\u062A (\u0645\u062B\u0644\u064B\u0627 7 \u0623\u0648 7:30)"
+    "ux.timer.edit": "\u0627\u0646\u0642\u0631 \u0644\u0643\u062A\u0627\u0628\u0629 \u0627\u0644\u0648\u0642\u062A (\u0645\u062B\u0644\u064B\u0627 7 \u0623\u0648 7:30)",
+    "ux.timer.quizChime": "\u062A\u0646\u0628\u064A\u0647 \u0642\u0628\u0644 \u0646\u0647\u0627\u064A\u0629 \u0627\u0644\u0627\u062E\u062A\u0628\u0627\u0631 \u0628\u062B\u0644\u0627\u062B \u062F\u0642\u0627\u0626\u0642",
+    "ux.timer.back": "\u0627\u0644\u0639\u0648\u062F\u0629 \u0625\u0644\u0649 \u0627\u0644\u0645\u0624\u0642\u062A",
+    "ux.timer.settingsTitle": "\u0625\u0639\u062F\u0627\u062F\u0627\u062A \u0627\u0644\u0645\u0624\u0642\u062A",
+    "ux.timer.groupDisplay": "\u0627\u0644\u0639\u0631\u0636 \u0648\u0627\u0644\u0635\u0648\u062A",
+    "ux.timer.presetsTitle": "\u0623\u0648\u0642\u0627\u062A \u062C\u0627\u0647\u0632\u0629",
+    "ux.timer.minutes": "\u0628\u0627\u0644\u062F\u0642\u0627\u0626\u0642",
+    "ux.timer.minutesLeft": "\u062F\u0642\u0627\u0626\u0642 \u0645\u062A\u0628\u0642\u064A\u0629",
+    "ux.timer.total": "\u0627\u0644\u0645\u062C\u0645\u0648\u0639:",
+    "ux.timer.tipsTitle": "\u062A\u0630\u0643\u064A\u0631\u0627\u062A \u0627\u0644\u0627\u062E\u062A\u0628\u0627\u0631",
+    "ux.timer.tipsWhen": "\u0622\u062E\u0631 3 \u062F\u0642\u0627\u0626\u0642",
+    "ux.timer.add": "+ \u0625\u0636\u0627\u0641\u0629",
+    "ux.timer.addLine": "+ \u0625\u0636\u0627\u0641\u0629 \u0633\u0637\u0631",
+    "ux.timer.remove": "\u0625\u0632\u0627\u0644\u0629",
+    "ux.timer.autoSave": "\u062A\u064F\u062D\u0641\u0638 \u0627\u0644\u062A\u063A\u064A\u064A\u0631\u0627\u062A \u0641\u0648\u0631 \u0625\u062C\u0631\u0627\u0626\u0647\u0627",
+    "ux.timer.typeTime": "\u0627\u0643\u062A\u0628 \u0627\u0644\u0648\u0642\u062A",
+    "ux.timer.clickToType": "\u0627\u0646\u0642\u0631 \u0644\u0643\u062A\u0627\u0628\u0629 \u0627\u0644\u0648\u0642\u062A",
+    "ux.timer.set": "\u062A\u0639\u064A\u064A\u0646",
+    "ux.timer.cancel": "\u0625\u0644\u063A\u0627\u0621",
+    "ux.timer.quizSeconds": "\u0644\u0627 \u062A\u0638\u0647\u0631 \u0627\u0644\u062B\u0648\u0627\u0646\u064A \u0625\u0644\u0627 \u0641\u064A \u0627\u0644\u062F\u0642\u064A\u0642\u0629 \u0627\u0644\u0623\u062E\u064A\u0631\u0629"
   };
 
   // src/core/actions.js
@@ -29064,6 +29205,45 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       "meaning": "ux.timer.edit"
     },
     {
+      "id": "ux.timer.removePreset",
+      "labelKey": "ux.timer.remove",
+      "icon": null,
+      "shortcut": null,
+      "availability": "rendered-and-not-disabled",
+      "canonicalHome": "timer:context",
+      "events": [
+        "onClick"
+      ],
+      "source": "src/modules",
+      "meaning": "ux.timer.removePreset"
+    },
+    {
+      "id": "ux.timer.removeSegment",
+      "labelKey": "ux.timer.remove",
+      "icon": null,
+      "shortcut": null,
+      "availability": "rendered-and-not-disabled",
+      "canonicalHome": "timer:context",
+      "events": [
+        "onClick"
+      ],
+      "source": "src/modules",
+      "meaning": "ux.timer.removeSegment"
+    },
+    {
+      "id": "ux.timer.removeTip",
+      "labelKey": "ux.timer.remove",
+      "icon": null,
+      "shortcut": null,
+      "availability": "rendered-and-not-disabled",
+      "canonicalHome": "timer:context",
+      "events": [
+        "onClick"
+      ],
+      "source": "src/modules",
+      "meaning": "ux.timer.removeTip"
+    },
+    {
       "id": "ux.report.sort",
       "labelKey": "ux.report.sort",
       "icon": null,
@@ -31636,6 +31816,19 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       ],
       "source": "src/modules",
       "meaning": "ux.cert.subjectAr"
+    },
+    {
+      "id": "ux.timer.quizChime",
+      "labelKey": "ux.timer.quizChime",
+      "icon": null,
+      "shortcut": null,
+      "availability": "rendered-and-not-disabled",
+      "canonicalHome": "timer:context",
+      "events": [
+        "onChange"
+      ],
+      "source": "src/modules",
+      "meaning": "ux.timer.quizChime"
     }
   ];
 
@@ -36232,6 +36425,8 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
   Object.assign(uxClick, { "att.clearAll": "att.clearAll" });
   Object.assign(uxChange, { "cert.subject": "cert.subject", "cert.subjectAr": "cert.subjectAr" });
   Object.assign(uxClick, { "timer.edit": "timer.edit" });
+  Object.assign(uxClick, { "timer.removePreset": "timer.remove", "timer.removeSegment": "timer.remove", "timer.removeTip": "timer.remove" });
+  Object.assign(uxChange, { "timer.quizChime": "timer.quizChime" });
   var uxActions = [...Object.entries(uxClick).map(([id, key4]) => [id, key4, "onClick"]), ...Object.entries(uxChange).map(([id, key4]) => [id, key4, "onChange"])].map(([id, key4, event]) => ({ id: "ux." + id, labelKey: "ux." + key4, icon: null, shortcut: null, availability: "rendered-and-not-disabled", canonicalHome: id.startsWith("nav.") ? "Workspace:sidebar" : id.startsWith("appearance.") ? "Workspace:context" : id.split(".")[0] + ":context", events: [event], source: "src/modules", meaning: "ux." + id }));
 
   // src/i18n/ux-copy.js
@@ -38756,8 +38951,8 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       "\u0645\u0639\u0631\u0641 \u0627\u0644\u0637\u0627\u0644\u0628 \u063A\u064A\u0631 \u0645\u0648\u062C\u0648\u062F \u0641\u064A \u0627\u0644\u0642\u0627\u0626\u0645\u0629 \u0648\u0644\u0627 \u064A\u0648\u062C\u062F \u0627\u0633\u0645 \u0644\u0625\u0646\u0634\u0627\u0621 \u0645\u062A\u0639\u0644\u0645 \u062C\u062F\u064A\u062F. \u0635\u062D\u062D \u0627\u0644\u0647\u0648\u064A\u0629 \u0623\u0648 \u0627\u0644\u0645\u0637\u0627\u0628\u0642\u0629."
     ],
     "timer.advanced": [
-      "Timer preset and sequence settings",
-      "\u0625\u0639\u062F\u0627\u062F\u0627\u062A \u0646\u0645\u0627\u0630\u062C \u0627\u0644\u0645\u0624\u0642\u062A \u0648\u062A\u0633\u0644\u0633\u0644\u0627\u062A\u0647"
+      "Timer settings",
+      "\u0625\u0639\u062F\u0627\u062F\u0627\u062A \u0627\u0644\u0645\u0624\u0642\u062A"
     ],
     "noise.advanced": [
       "Noise threshold and sensitivity settings",
@@ -39237,8 +39432,8 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "timer.tip4": ["Get ready to hand in", "\u0627\u0633\u062A\u0639\u062F \u0644\u0644\u062A\u0633\u0644\u064A\u0645"],
     "timer.lastThree": ["3 minutes left", "\u0628\u0642\u064A\u062A 3 \u062F\u0642\u0627\u0626\u0642"],
     "timer.pensDown": ["Time is up. Pens down.", "\u0627\u0646\u062A\u0647\u0649 \u0627\u0644\u0648\u0642\u062A. \u0636\u0639\u0648\u0627 \u0627\u0644\u0623\u0642\u0644\u0627\u0645."],
-    "timer.showSeconds": ["Show seconds (countdown and segments)", "\u0625\u0638\u0647\u0627\u0631 \u0627\u0644\u062B\u0648\u0627\u0646\u064A (\u0627\u0644\u0639\u062F \u0627\u0644\u062A\u0646\u0627\u0632\u0644\u064A \u0648\u0627\u0644\u0645\u0642\u0627\u0637\u0639)"],
-    "timer.sound": ["Sound: chime at 3 minutes in a quiz and when time is up", "\u0627\u0644\u0635\u0648\u062A: \u062A\u0646\u0628\u064A\u0647 \u0639\u0646\u062F \u0628\u0642\u0627\u0621 3 \u062F\u0642\u0627\u0626\u0642 \u0641\u064A \u0627\u0644\u0627\u062E\u062A\u0628\u0627\u0631 \u0648\u0639\u0646\u062F \u0627\u0646\u062A\u0647\u0627\u0621 \u0627\u0644\u0648\u0642\u062A"],
+    "timer.showSeconds": ["Show seconds", "\u0625\u0638\u0647\u0627\u0631 \u0627\u0644\u062B\u0648\u0627\u0646\u064A"],
+    "timer.sound": ["Chime when time is up", "\u062A\u0646\u0628\u064A\u0647 \u0635\u0648\u062A\u064A \u0639\u0646\u062F \u0627\u0646\u062A\u0647\u0627\u0621 \u0627\u0644\u0648\u0642\u062A"],
     "timer.tipsLabel": ["Quiz checklist for the last 3 minutes (one line each)", "\u0642\u0627\u0626\u0645\u0629 \u062A\u0630\u0643\u064A\u0631 \u0622\u062E\u0631 3 \u062F\u0642\u0627\u0626\u0642 \u0641\u064A \u0627\u0644\u0627\u062E\u062A\u0628\u0627\u0631 (\u0633\u0637\u0631 \u0644\u0643\u0644 \u062A\u0630\u0643\u064A\u0631)"],
     "timer.tipsSave": ["Save checklist", "\u062D\u0641\u0638 \u0627\u0644\u0642\u0627\u0626\u0645\u0629"],
     "timer.tipsReset": ["Restore default checklist", "\u0627\u0633\u062A\u0639\u0627\u062F\u0629 \u0627\u0644\u0642\u0627\u0626\u0645\u0629 \u0627\u0644\u0627\u0641\u062A\u0631\u0627\u0636\u064A\u0629"],
@@ -39988,7 +40183,26 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "cert.teacherLabel": ["Teacher", "\u0627\u0644\u0645\u0639\u0644\u0645"],
     "cert.teacher": ["Teacher's name (English)", "\u0627\u0633\u0645 \u0627\u0644\u0645\u0639\u0644\u0645 (\u0628\u0627\u0644\u0625\u0646\u062C\u0644\u064A\u0632\u064A\u0629)"],
     "cert.teacherAr": ["Teacher's name (Arabic)", "\u0627\u0633\u0645 \u0627\u0644\u0645\u0639\u0644\u0645 (\u0628\u0627\u0644\u0639\u0631\u0628\u064A\u0629)"],
-    "timer.edit": ["Click to type a time (for example 7 or 7:30)", "\u0627\u0646\u0642\u0631 \u0644\u0643\u062A\u0627\u0628\u0629 \u0627\u0644\u0648\u0642\u062A (\u0645\u062B\u0644\u064B\u0627 7 \u0623\u0648 7:30)"]
+    "timer.edit": ["Click to type a time (for example 7 or 7:30)", "\u0627\u0646\u0642\u0631 \u0644\u0643\u062A\u0627\u0628\u0629 \u0627\u0644\u0648\u0642\u062A (\u0645\u062B\u0644\u064B\u0627 7 \u0623\u0648 7:30)"],
+    "timer.quizChime": ["Chime 3 min before a quiz ends", "\u062A\u0646\u0628\u064A\u0647 \u0642\u0628\u0644 \u0646\u0647\u0627\u064A\u0629 \u0627\u0644\u0627\u062E\u062A\u0628\u0627\u0631 \u0628\u062B\u0644\u0627\u062B \u062F\u0642\u0627\u0626\u0642"],
+    "timer.back": ["Back to the timer", "\u0627\u0644\u0639\u0648\u062F\u0629 \u0625\u0644\u0649 \u0627\u0644\u0645\u0624\u0642\u062A"],
+    "timer.settingsTitle": ["Timer settings", "\u0625\u0639\u062F\u0627\u062F\u0627\u062A \u0627\u0644\u0645\u0624\u0642\u062A"],
+    "timer.groupDisplay": ["Display & sound", "\u0627\u0644\u0639\u0631\u0636 \u0648\u0627\u0644\u0635\u0648\u062A"],
+    "timer.presetsTitle": ["Presets", "\u0623\u0648\u0642\u0627\u062A \u062C\u0627\u0647\u0632\u0629"],
+    "timer.minutes": ["minutes", "\u0628\u0627\u0644\u062F\u0642\u0627\u0626\u0642"],
+    "timer.minutesLeft": ["minutes left", "\u062F\u0642\u0627\u0626\u0642 \u0645\u062A\u0628\u0642\u064A\u0629"],
+    "timer.total": ["In all:", "\u0627\u0644\u0645\u062C\u0645\u0648\u0639:"],
+    "timer.tipsTitle": ["Quiz checklist", "\u062A\u0630\u0643\u064A\u0631\u0627\u062A \u0627\u0644\u0627\u062E\u062A\u0628\u0627\u0631"],
+    "timer.tipsWhen": ["last 3 minutes", "\u0622\u062E\u0631 3 \u062F\u0642\u0627\u0626\u0642"],
+    "timer.add": ["+ Add", "+ \u0625\u0636\u0627\u0641\u0629"],
+    "timer.addLine": ["+ Add a line", "+ \u0625\u0636\u0627\u0641\u0629 \u0633\u0637\u0631"],
+    "timer.remove": ["Remove", "\u0625\u0632\u0627\u0644\u0629"],
+    "timer.autoSave": ["Changes save as you make them", "\u062A\u064F\u062D\u0641\u0638 \u0627\u0644\u062A\u063A\u064A\u064A\u0631\u0627\u062A \u0641\u0648\u0631 \u0625\u062C\u0631\u0627\u0626\u0647\u0627"],
+    "timer.typeTime": ["Type a time", "\u0627\u0643\u062A\u0628 \u0627\u0644\u0648\u0642\u062A"],
+    "timer.clickToType": ["Click to type a time", "\u0627\u0646\u0642\u0631 \u0644\u0643\u062A\u0627\u0628\u0629 \u0627\u0644\u0648\u0642\u062A"],
+    "timer.set": ["set", "\u062A\u0639\u064A\u064A\u0646"],
+    "timer.cancel": ["cancel", "\u0625\u0644\u063A\u0627\u0621"],
+    "timer.quizSeconds": ["Seconds appear only in the last minute", "\u0644\u0627 \u062A\u0638\u0647\u0631 \u0627\u0644\u062B\u0648\u0627\u0646\u064A \u0625\u0644\u0627 \u0641\u064A \u0627\u0644\u062F\u0642\u064A\u0642\u0629 \u0627\u0644\u0623\u062E\u064A\u0631\u0629"]
   };
   var uxEn = Object.fromEntries(Object.entries(pairs).map(([key4, value]) => ["ux." + key4, value[0]]));
   var uxAr = Object.fromEntries(Object.entries(pairs).map(([key4, value]) => ["ux." + key4, value[1]]));
@@ -48707,7 +48921,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     } }, icon(ICONS2[running ? "pause" : "play"])), /* @__PURE__ */ cpJsx(ToolButton, { id: "timer.reset", context, ...named("timer.reset"), onClick: () => writeTimer((s) => ({ ...idleTimer(s.mode, s.durationMs), segmentsMs: s.segmentsMs || [] })) }, icon(ICONS2.reset)), /* @__PURE__ */ cpJsx(ToolButton, { id: "timer.subtractMinute", context, ...named("timer.subtractMinute"), onClick: () => writeTimer((s) => adjustTimer(s, -6e4)) }, /* @__PURE__ */ cpJsx("bdi", { dir: "ltr" }, cpRaw("\u22121:00"))), /* @__PURE__ */ cpJsx(ToolButton, { id: "timer.addMinute", context, ...named("timer.addMinute"), onClick: () => writeTimer((s) => adjustTimer(s, 6e4)) }, /* @__PURE__ */ cpJsx("bdi", { dir: "ltr" }, cpRaw("+1:00"))));
   }
   var icon = (d) => /* @__PURE__ */ cpJsx("svg", { "aria-hidden": "true", width: "18", height: "18", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "1.8", strokeLinecap: "round", strokeLinejoin: "round" }, /* @__PURE__ */ cpJsx("path", { d }));
-  var ICONS2 = { gear: "M12 8.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7z M19 12a7 7 0 0 0-.1-1.2l2-1.5-2-3.4-2.3.9a7 7 0 0 0-2-1.2L14.2 3h-4.4l-.4 2.6a7 7 0 0 0-2 1.2l-2.3-.9-2 3.4 2 1.5a7 7 0 0 0 0 2.4l-2 1.5 2 3.4 2.3-.9a7 7 0 0 0 2 1.2l.4 2.6h4.4l.4-2.6a7 7 0 0 0 2-1.2l2.3.9 2-3.4-2-1.5c.1-.4.1-.8.1-1.2z", check: "M5 12l5 5 9-10", countdown: "M7 3h10M7 21h10M8 3c0 5 8 5 8 9s-8 4-8 9M16 3c0 5-8 5-8 9", stopwatch: "M12 21a8 8 0 1 0 0-16 8 8 0 0 0 0 16z M12 9v4l2.5 2 M10 2h4 M12 2v3 M19 6l1.5-1.5", segments: "M4 6h16 M4 12h10 M4 18h6", quiz: "M6 3h9l3 3v15H6z M9 12h6 M9 16h4 M15 3v3h3", play: "M8 5.5v13l10-6.5z", pause: "M8.5 5.5v13M15.5 5.5v13", reset: "M4.5 12a7.5 7.5 0 1 0 2.2-5.3M4.5 4v4h4", plus: "M12 5v14M5 12h14", minus: "M5 12h14", full: "M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5" };
+  var ICONS2 = { gear: "M4 7h9M17 7h3M4 17h3M11 17h9M15 5a2 2 0 1 0 0 4 2 2 0 0 0 0-4zM9 15a2 2 0 1 0 0 4 2 2 0 0 0 0-4z", back: "M14.5 6l-6 6 6 6", close: "M7 7l10 10M17 7L7 17", check: "M5 12l5 5 9-10", countdown: "M6.5 3h11M6.5 21h11M8 3v2.5c0 2.6 4 3.9 4 6.5s-4 3.9-4 6.5V21M16 3v2.5c0 2.6-4 3.9-4 6.5s4 3.9 4 6.5V21M10 19.6h4L12 17.4z", stopwatch: "M12 21a8 8 0 1 0 0-16 8 8 0 0 0 0 16z M12 9v4l2.5 2 M10 2h4 M12 2v3 M19 6l1.5-1.5", segments: "M12 3.5a8.5 8.5 0 1 0 0 17 8.5 8.5 0 0 0 0-17z M12 12V3.5M12 12l7.4 4.2M12 12l-7.4 4.2", quiz: "M7.2 4h9.6a2.2 2.2 0 0 1 2.2 2.2v12.6a2.2 2.2 0 0 1-2.2 2.2H7.2A2.2 2.2 0 0 1 5 18.8V6.2A2.2 2.2 0 0 1 7.2 4z M9 4V2.8h6V4 M8.5 10h7M8.5 13.5h7M8.5 17h4", play: "M8 5.5v13l10-6.5z", pause: "M8.5 5.5v13M15.5 5.5v13", reset: "M4.5 12a7.5 7.5 0 1 0 2.2-5.3M4.5 4v4h4", plus: "M12 5v14M5 12h14", minus: "M5 12h14", full: "M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5" };
   var defaultQuizTips = () => [1, 2, 3, 4].map((n) => uxText("timer.tip" + n));
   function quizTips(settings) {
     return settings?.quizTips?.length ? settings.quizTips : defaultQuizTips();
@@ -48715,6 +48929,10 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
   function timerReadout(snapshot, settings) {
     const quiz = !!settings?.quizMode && snapshot.mode === "countdown", minutesOnly = snapshot.mode !== "stopwatch" && (quiz ? snapshot.displayMs > 6e4 : settings?.showSeconds === false);
     return minutesOnly ? Math.ceil(snapshot.displayMs / 6e4) + " " + uxText("timer.min") : formatDuration(snapshot.displayMs);
+  }
+  function timerParts(snapshot, settings) {
+    const quiz = !!settings?.quizMode && snapshot.mode === "countdown", minutesOnly = snapshot.mode !== "stopwatch" && (quiz ? snapshot.displayMs > 6e4 : settings?.showSeconds === false);
+    return minutesOnly ? { value: String(Math.ceil(snapshot.displayMs / 6e4)), unit: uxText(snapshot.phase === "idle" ? "timer.minutes" : "timer.minutesLeft") } : { value: formatDuration(snapshot.displayMs), unit: "" };
   }
   var writeSettings = (patch) => updateProfile((p) => ({ ...p, timerSettings: { segmentsMinutes: [5, 15, 20], ...p.timerSettings, ...patch } }));
   var MODES = [["countdown", "m4", "timer.countdown"], ["stopwatch", "m4", "timer.stopwatch"], ["segments", "m4", "timer.segments"], ["quiz", "ux", "timer.quiz"]];
@@ -48729,7 +48947,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     return m && +text7 > 0 && +text7 <= 1440 ? Math.round(+text7 * 6e4) : null;
   }
   function TimerView({ compact = false } = {}) {
-    const host = React.useContext(FloatHost), profile2 = useProfile(), now = useClock(), state2 = profile2.timerState || idleTimer(), snapshot = timerSnapshot(state2, now), settings = profile2.timerSettings || {}, [presets, setPresets] = useState(profile2.timerPresets.join(", ")), [sequence3, setSequence] = useState((profile2.timerSettings?.segmentsMinutes || [5, 15, 20]).join(", ")), [tips, setTips] = useState(() => quizTips(profile2.timerSettings).join("\n")), [error2, setError] = useState(""), [fullscreen, setFullscreen] = useState(false), [advanced, setAdvanced] = useState(false), [editing, setEditing] = useState(null), [resting, setResting] = useState(false), projector = useRef(null);
+    const host = React.useContext(FloatHost), profile2 = useProfile(), now = useClock(), state2 = profile2.timerState || idleTimer(), snapshot = timerSnapshot(state2, now), settings = profile2.timerSettings || {}, [error2, setError] = useState(""), [fullscreen, setFullscreen] = useState(false), [advanced, setAdvanced] = useState(false), [editing, setEditing] = useState(null), [resting, setResting] = useState(false), projector = useRef(null);
     useEffect(() => {
       const change2 = () => setFullscreen(document.fullscreenElement === projector.current);
       document.addEventListener("fullscreenchange", change2);
@@ -48757,10 +48975,10 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       return result.length && result.every((n) => Number.isFinite(n) && n > 0 && n <= 1440) ? result : null;
     };
     const quiz = !!settings.quizMode && state2.mode === "countdown", mode = quiz ? "quiz" : state2.mode, running = state2.phase === "running" && !snapshot.finished, late = quiz && state2.phase !== "idle" && snapshot.displayMs <= 18e4;
-    const segmentTotal = state2.mode === "segments" ? state2.segmentsMs[snapshot.segmentIndex] || 1 : snapshot.totalMs || 1, fraction = state2.mode === "stopwatch" ? snapshot.elapsedMs % 6e4 / 6e4 : Math.max(0, Math.min(1, snapshot.displayMs / segmentTotal)), C = 2 * Math.PI * 52;
+    const segmentTotal = state2.mode === "segments" ? state2.segmentsMs[snapshot.segmentIndex] || 1 : snapshot.totalMs || 1, fraction = state2.mode === "stopwatch" ? snapshot.elapsedMs % 6e4 / 6e4 : Math.max(0, Math.min(1, snapshot.displayMs / segmentTotal)), C = 2 * Math.PI * 55;
     const status = snapshot.finished ? "" : state2.mode === "segments" ? t("timer.segment") + ": " + (snapshot.segmentIndex + 1) + " / " + state2.segmentsMs.length : "";
     const go = running ? "timer.pause" : state2.phase === "paused" ? "timer.resume" : "timer.start", canType = state2.mode === "countdown" && !running;
-    const chooseMode = (next) => updateProfile((p) => ({ ...p, timerSettings: { segmentsMinutes: [5, 15, 20], ...p.timerSettings, quizMode: next === "quiz" }, timerState: { ...idleTimer(next === "quiz" ? "countdown" : next, next === "quiz" ? 20 * 6e4 : 3e5), segmentsMs: next === "segments" ? (p.timerSettings?.segmentsMinutes || [5, 15, 20]).map((n) => n * 6e4) : [] } }));
+    const chooseMode = (next) => updateProfile((p) => ({ ...p, timerSettings: { segmentsMinutes: [5, 15, 20], ...p.timerSettings, quizMode: next === "quiz" }, timerState: { ...idleTimer(next === "quiz" ? "countdown" : next, next === "quiz" ? 20 * 6e4 : 3e5), segmentsMs: next === "segments" ? (p.timerSettings?.segmentsMinutes?.length ? p.timerSettings.segmentsMinutes : [5, 15, 20]).map((n) => n * 6e4) : [] } }));
     const applyTyped = () => {
       const ms = parseTyped(editing);
       if (ms == null) {
@@ -48772,18 +48990,67 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       setError("");
     };
     const named = (key4) => ({ "aria-label": key4.startsWith("ux.") ? uxText(key4.slice(3)) : t(key4), title: key4.startsWith("ux.") ? uxText(key4.slice(3)) : t(key4) });
+    const addList = (value, current4, sort) => {
+      const values = parse2(value);
+      if (!values) {
+        setError(t("timer.invalid"));
+        return null;
+      }
+      setError("");
+      const next = [...current4, ...values];
+      return sort ? [...new Set(next)].sort((x2, y2) => x2 - y2) : next;
+    };
+    const segmentsNow = settings.segmentsMinutes?.length ? settings.segmentsMinutes : [5, 15, 20];
+    const saveSegments = (list2) => updateProfile((p) => ({ ...p, timerSettings: { ...p.timerSettings, segmentsMinutes: list2 }, timerState: p.timerState?.mode === "segments" && p.timerState.phase === "idle" ? { ...p.timerState, segmentsMs: list2.map((n) => n * 6e4) } : p.timerState }));
+    const tipsNow = quizTips(settings), saveTips = (list2) => writeSettings({ quizTips: list2.length ? list2 : void 0 });
+    const enter = (handler) => (e) => {
+      const input = e.currentTarget;
+      if (e.key === "Enter" && input.value.trim()) {
+        e.preventDefault();
+        if (handler(input.value) !== false) input.value = "";
+      }
+    };
+    const quiet = (id, onClick, label, className, d, context) => /* @__PURE__ */ cpJsx("button", { type: "button", ...actionProps(id, onClick, context), className, "aria-label": label, title: label }, icon(d));
+    const chip = (label, id, index, onRemove, removable) => /* @__PURE__ */ cpJsx("li", { key: index, className: "cp-timer-edit-chip" }, /* @__PURE__ */ cpJsx("bdi", null, cpRaw(label)), removable && quiet("ux." + id, onRemove, uxText("timer.remove") + " " + label, "cp-timer-chip-x", ICONS2.close, String(index)));
+    const sw = (id, checked, onChange, label) => /* @__PURE__ */ cpJsx("label", { className: "cp-timer-switch" }, /* @__PURE__ */ cpJsx("span", null, label), /* @__PURE__ */ cpJsx("input", { type: "checkbox", role: "switch", checked, ...controlProps(id, (e) => onChange(e.target.checked)) }));
+    const parts = timerParts(snapshot, settings), modeName = mode === "quiz" ? uxText("timer.quiz") : mode === "segments" ? snapshot.segmentIndex + 1 + " / " + state2.segmentsMs.length : t("timer." + mode);
+    if (advanced) return /* @__PURE__ */ cpJsx(ToolFrame, { id: "timer", compact }, /* @__PURE__ */ cpJsx("div", { className: "cp-timer-settings" }, /* @__PURE__ */ cpJsx("div", { className: "cp-timer-settings-head" }, quiet("ux.timer.advanced", () => {
+      setAdvanced(false);
+      setError("");
+    }, uxText("timer.back"), "cp-timer-back", ICONS2.back), /* @__PURE__ */ cpJsx("h3", null, uxText("timer.settingsTitle"))), /* @__PURE__ */ cpJsx("section", null, /* @__PURE__ */ cpJsx("h4", null, uxText("timer.groupDisplay")), sw("ux.timer.showSeconds", settings.showSeconds !== false, (v) => writeSettings({ showSeconds: v }), uxText("timer.showSeconds")), sw("ux.timer.sound", settings.sound !== false, (v) => writeSettings({ sound: v }), uxText("timer.sound")), sw("ux.timer.quizChime", settings.sound !== false && settings.quizChime !== false, (v) => writeSettings(v ? { quizChime: true, sound: true } : { quizChime: false }), uxText("timer.quizChime"))), /* @__PURE__ */ cpJsx("section", null, /* @__PURE__ */ cpJsx("h4", null, uxText("timer.presetsTitle"), /* @__PURE__ */ cpJsx("small", null, uxText("timer.minutes"))), /* @__PURE__ */ cpJsx("ul", { className: "cp-timer-chips" }, profile2.timerPresets.map((value, index) => chip(String(value), "timer.removePreset", index, () => updateProfile((p) => ({ ...p, timerPresets: p.timerPresets.filter((_, i) => i !== index) })), profile2.timerPresets.length > 1)), /* @__PURE__ */ cpJsx("li", null, /* @__PURE__ */ cpJsx("input", { className: "cp-timer-add", inputMode: "decimal", placeholder: uxText("timer.add"), "aria-label": t("timer.presets"), ...controlProps("m4.timer.presets", () => {
+    }), onKeyDown: enter((value) => {
+      const next = addList(value, profile2.timerPresets, true);
+      if (!next) return false;
+      updateProfile((p) => ({ ...p, timerPresets: next }));
+    }) })))), /* @__PURE__ */ cpJsx("section", null, /* @__PURE__ */ cpJsx("h4", null, t("timer.segments"), /* @__PURE__ */ cpJsx("small", null, uxText("timer.total") + " " + countText(segmentsNow.reduce((a, b) => a + b, 0), "timer.min"))), /* @__PURE__ */ cpJsx("ol", { className: "cp-timer-chips" }, segmentsNow.map((value, index) => chip(String(value), "timer.removeSegment", index, () => saveSegments(segmentsNow.filter((_, i) => i !== index)), segmentsNow.length > 1)), /* @__PURE__ */ cpJsx("li", null, /* @__PURE__ */ cpJsx("input", { className: "cp-timer-add", inputMode: "decimal", placeholder: uxText("timer.add"), "aria-label": t("timer.sequence"), ...controlProps("m4.timer.sequence", () => {
+    }), onKeyDown: enter((value) => {
+      const next = addList(value, segmentsNow, false);
+      if (!next) return false;
+      saveSegments(next);
+    }) })))), /* @__PURE__ */ cpJsx("section", null, /* @__PURE__ */ cpJsx("h4", null, uxText("timer.tipsTitle"), /* @__PURE__ */ cpJsx("small", null, uxText("timer.tipsWhen"))), /* @__PURE__ */ cpJsx("ul", { className: "cp-timer-tips" }, tipsNow.map((tip, index) => /* @__PURE__ */ cpJsx("li", { key: index }, /* @__PURE__ */ cpJsx("span", null, cpRaw(tip)), tipsNow.length > 1 && quiet("ux.timer.removeTip", () => saveTips(tipsNow.filter((_, i) => i !== index)), uxText("timer.remove") + " " + tip, "cp-timer-chip-x", ICONS2.close, String(index)))), tipsNow.length < 12 && /* @__PURE__ */ cpJsx("li", null, /* @__PURE__ */ cpJsx("input", { className: "cp-timer-add cp-timer-add-line", placeholder: uxText("timer.addLine"), "aria-label": uxText("timer.tipsLabel"), ...controlProps("ux.timer.tipsText", () => {
+    }), onKeyDown: enter((value) => {
+      saveTips([...tipsNow, value.trim().slice(0, 200)]);
+    }) })))), error2 && /* @__PURE__ */ cpJsx("p", { role: "alert" }, error2), /* @__PURE__ */ cpJsx("p", { className: "cp-timer-autosave" }, uxText("timer.autoSave"))));
     return /* @__PURE__ */ cpJsx(ToolFrame, { id: "timer", compact }, /* @__PURE__ */ cpJsx("div", { className: "cp-timer-top" }, /* @__PURE__ */ cpJsx("div", { className: "cp-timer-modes", role: "group", "aria-label": t("shell.timer") }, MODES.map(([id, ns, key4]) => {
       const Button3 = ns === "ux" ? UxButton : ToolButton;
       const label = ns === "ux" ? uxText(key4) : t(key4);
       return /* @__PURE__ */ cpJsx(Button3, { key: id, id: key4, active: mode === id, "aria-pressed": mode === id, "aria-label": label, title: label, onClick: () => chooseMode(id) }, icon(ICONS2[id]), /* @__PURE__ */ cpJsx("span", { className: "cp-timer-mode-word" }, label));
-    })), /* @__PURE__ */ cpJsx(UxButton, { id: "timer.advanced", className: "cp-timer-gear", active: advanced, "aria-expanded": advanced, ...named("ux.timer.advanced"), onClick: () => setAdvanced(!advanced) }, icon(ICONS2.gear))), /* @__PURE__ */ cpJsx("div", { ref: projector, className: "cp-timer-face" + (snapshot.finished ? " cp-timer-flash" : ""), "data-late": late ? "true" : "false", "data-fullscreen": fullscreen ? "true" : "false", "data-resting": resting ? "true" : "false" }, snapshot.finished && /* @__PURE__ */ cpJsx("strong", { role: "status" }, quiz ? uxText("timer.pensDown") : t("timer.finished")), /* @__PURE__ */ cpJsx("div", { className: "cp-timer-ring" }, /* @__PURE__ */ cpJsx("svg", { viewBox: "0 0 120 120", "aria-hidden": "true" }, /* @__PURE__ */ cpJsx("circle", { cx: "60", cy: "60", r: "52", className: "cp-timer-track" }), /* @__PURE__ */ cpJsx("circle", { cx: "60", cy: "60", r: "52", className: "cp-timer-arc", style: { strokeDasharray: C, strokeDashoffset: C * (1 - fraction) } })), /* @__PURE__ */ cpJsx("div", { className: "cp-timer-read" }, editing != null ? /* @__PURE__ */ cpJsx("span", { className: "cp-timer-edit" }, /* @__PURE__ */ cpJsx("input", { autoFocus: true, inputMode: "decimal", value: editing, ...controlProps("m4.timer.custom", (e) => setEditing(e.target.value)), "aria-label": t("timer.custom"), onKeyDown: (e) => {
+    })), quiet("ux.timer.advanced", () => {
+      setAdvanced(true);
+      setEditing(null);
+    }, uxText("timer.advanced"), "cp-timer-gear", ICONS2.gear)), /* @__PURE__ */ cpJsx("div", { ref: projector, className: "cp-timer-face" + (snapshot.finished ? " cp-timer-flash" : ""), "data-late": late ? "true" : "false", "data-fullscreen": fullscreen ? "true" : "false", "data-resting": resting ? "true" : "false", "data-editing": editing != null ? "true" : "false" }, snapshot.finished && /* @__PURE__ */ cpJsx("strong", { role: "status" }, quiz ? uxText("timer.pensDown") : t("timer.finished")), /* @__PURE__ */ cpJsx("div", { className: "cp-timer-ring" }, /* @__PURE__ */ cpJsx("svg", { viewBox: "0 0 120 120", "aria-hidden": "true" }, /* @__PURE__ */ cpJsx("circle", { cx: "60", cy: "60", r: "55", className: "cp-timer-track" }), /* @__PURE__ */ cpJsx("circle", { cx: "60", cy: "60", r: "55", className: "cp-timer-arc", style: { strokeDasharray: C, strokeDashoffset: C * (1 - fraction) } })), /* @__PURE__ */ cpJsx("div", { className: "cp-timer-read" }, editing != null ? /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx("span", { className: "cp-timer-mode" }, uxText("timer.typeTime")), /* @__PURE__ */ cpJsx("span", { className: "cp-timer-edit" }, /* @__PURE__ */ cpJsx("input", { autoFocus: true, inputMode: "decimal", size: "5", value: editing, ...controlProps("m4.timer.custom", (e) => setEditing(e.target.value)), "aria-label": t("timer.custom"), onBlur: (e) => {
+      if (!e.relatedTarget?.closest?.(".cp-timer-edit")) {
+        setEditing(null);
+        setError("");
+      }
+    }, onKeyDown: (e) => {
       if (e.key === "Enter") applyTyped();
       if (e.key === "Escape") {
         e.stopPropagation();
         setEditing(null);
         setError("");
       }
-    } }), /* @__PURE__ */ cpJsx(ToolButton, { id: "timer.load", className: "cp-round cp-round-small", ...named("timer.load"), onClick: applyTyped }, icon(ICONS2.check))) : /* @__PURE__ */ cpJsx(UxButton, { id: "timer.edit", className: "cp-timer-time", disabled: !canType, ...named("ux.timer.edit"), onClick: () => setEditing(String(Math.round(state2.durationMs / 6e4 * 100) / 100)) }, /* @__PURE__ */ cpJsx("output", { "data-timer-display": true }, timerReadout(snapshot, settings))))), status && /* @__PURE__ */ cpJsx("span", { className: "cp-timer-status" }, status), late && !snapshot.finished && /* @__PURE__ */ cpJsx("div", { className: "cp-quiz-msg", role: "status" }, /* @__PURE__ */ cpJsx("strong", null, uxText("timer.lastThree")), /* @__PURE__ */ cpJsx("ul", null, quizTips(settings).map((tip, index) => /* @__PURE__ */ cpJsx("li", { key: index }, cpRaw(tip))))), /* @__PURE__ */ cpJsx("div", { className: "cp-timer-controls" }, /* @__PURE__ */ cpJsx(ToolButton, { id: "timer.reset", className: "cp-round", ...named("timer.reset"), onClick: () => writeTimer((s) => ({ ...idleTimer(s.mode, s.durationMs), segmentsMs: s.segmentsMs || [] })) }, icon(ICONS2.reset)), /* @__PURE__ */ cpJsx(ToolButton, { id: "timer.subtractMinute", className: "cp-round", ...named("timer.subtractMinute"), onClick: () => writeTimer((s) => adjustTimer(s, -6e4)) }, icon(ICONS2.minus)), /* @__PURE__ */ cpJsx(ToolButton, { id: go, className: "cp-round cp-round-go", ...named(go), onClick: async () => {
+    } }), quiet("m4.timer.load", applyTyped, t("timer.load"), "cp-timer-ok", ICONS2.check)), /* @__PURE__ */ cpJsx("span", { className: "cp-timer-hint" }, /* @__PURE__ */ cpJsx("kbd", null, cpRaw("Enter")), " ", uxText("timer.set"), "  ", /* @__PURE__ */ cpJsx("kbd", null, cpRaw("Esc")), " ", uxText("timer.cancel"))) : /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx("span", { className: "cp-timer-mode" }, modeName), /* @__PURE__ */ cpJsx(UxButton, { id: "timer.edit", className: "cp-timer-time", disabled: !canType, ...named("ux.timer.edit"), onClick: () => setEditing(String(Math.round(state2.durationMs / 6e4 * 100) / 100)) }, /* @__PURE__ */ cpJsx("output", { "data-timer-display": true }, parts.value)), parts.unit ? /* @__PURE__ */ cpJsx("span", { className: "cp-timer-unit" }, parts.unit) : canType ? /* @__PURE__ */ cpJsx("span", { className: "cp-timer-hint" }, uxText("timer.clickToType")) : null))), quiz && !late && !snapshot.finished && /* @__PURE__ */ cpJsx("span", { className: "cp-timer-status" }, uxText("timer.quizSeconds")), status && /* @__PURE__ */ cpJsx("span", { className: "cp-timer-status" }, status), late && !snapshot.finished && /* @__PURE__ */ cpJsx("div", { className: "cp-quiz-msg", role: "status" }, /* @__PURE__ */ cpJsx("strong", null, uxText("timer.lastThree")), /* @__PURE__ */ cpJsx("ul", null, quizTips(settings).map((tip, index) => /* @__PURE__ */ cpJsx("li", { key: index }, cpRaw(tip))))), /* @__PURE__ */ cpJsx("div", { className: "cp-timer-controls" }, /* @__PURE__ */ cpJsx(ToolButton, { id: "timer.reset", className: "cp-round", ...named("timer.reset"), onClick: () => writeTimer((s) => ({ ...idleTimer(s.mode, s.durationMs), segmentsMs: s.segmentsMs || [] })) }, icon(ICONS2.reset)), /* @__PURE__ */ cpJsx(ToolButton, { id: "timer.subtractMinute", className: "cp-round", ...named("timer.subtractMinute"), onClick: () => writeTimer((s) => adjustTimer(s, -6e4)) }, icon(ICONS2.minus)), /* @__PURE__ */ cpJsx(ToolButton, { id: go, className: "cp-round cp-round-go", ...named(go), onClick: async () => {
       if (running) writeTimer((s) => pauseTimer(s));
       else {
         try {
@@ -48799,35 +49066,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       } catch {
         setError(t("timer.fullscreenFailed"));
       }
-    } }, icon(ICONS2.full)))), (mode === "countdown" || mode === "quiz") && /* @__PURE__ */ cpJsx(
-      "div",
-      { className: "cp-timer-presets" },
-      /* The small floating window keeps four presets; the page shows all. */
-      (compact ? profile2.timerPresets.slice(0, 4) : profile2.timerPresets).map((value, index) => /* @__PURE__ */ cpJsx(ToolButton, { key: index, id: "timer.preset", context: String(index), className: "cp-chip", onClick: () => writeTimer(idleTimer("countdown", value * 6e4)) }, cpRaw(countText(value, "timer.min"))))
-    ), mode === "segments" && /* @__PURE__ */ cpJsx("ol", { className: "cp-timer-segments" }, state2.segmentsMs.map((ms, index) => /* @__PURE__ */ cpJsx("li", { key: index, "aria-current": index === snapshot.segmentIndex ? "step" : void 0 }, cpRaw(countText(Math.round(ms / 6e4 * 100) / 100, "timer.min"))))), advanced && /* @__PURE__ */ cpJsx("div", { className: "cp-timer-settings" }, /* @__PURE__ */ cpJsx("div", { className: "cp-timer-checks" }, /* @__PURE__ */ cpJsx("label", { className: "cp-ux-check" }, /* @__PURE__ */ cpJsx("input", { type: "checkbox", checked: settings.showSeconds !== false, ...controlProps("ux.timer.showSeconds", (e) => writeSettings({ showSeconds: e.target.checked })) }), /* @__PURE__ */ cpJsx("span", null, uxText("timer.showSeconds"))), /* @__PURE__ */ cpJsx("label", { className: "cp-ux-check" }, /* @__PURE__ */ cpJsx("input", { type: "checkbox", checked: settings.sound !== false, ...controlProps("ux.timer.sound", (e) => writeSettings({ sound: e.target.checked })) }), /* @__PURE__ */ cpJsx("span", null, uxText("timer.sound")))), /* @__PURE__ */ cpJsx("div", { style: row }, /* @__PURE__ */ cpJsx(ToolField, { id: "timer.presets", label: "timer.presets", value: presets, onChange: (e) => setPresets(e.target.value) }), /* @__PURE__ */ cpJsx(ToolButton, { id: "timer.savePresets", onClick: () => {
-      const values = parse2(presets);
-      if (!values) {
-        setError(t("timer.invalid"));
-        return;
-      }
-      updateProfile((p) => ({ ...p, timerPresets: values }));
-      setError("");
-    } }, t("timer.savePresets"))), /* @__PURE__ */ cpJsx("div", { style: row }, /* @__PURE__ */ cpJsx(ToolField, { id: "timer.sequence", label: "timer.sequence", value: sequence3, onChange: (e) => setSequence(e.target.value) }), /* @__PURE__ */ cpJsx(ToolButton, { id: "timer.saveSequence", onClick: () => {
-      const values = parse2(sequence3);
-      if (!values) {
-        setError(t("timer.invalid"));
-        return;
-      }
-      updateProfile((p) => ({ ...p, timerSettings: { ...p.timerSettings, segmentsMinutes: values } }));
-      setError("");
-    } }, t("timer.saveSequence")), /* @__PURE__ */ cpJsx(ToolButton, { id: "timer.loadSequence", onClick: () => writeTimer({ ...idleTimer("segments"), segmentsMs: (profile2.timerSettings?.segmentsMinutes || [5, 15, 20]).map((n) => n * 6e4) }) }, t("timer.loadSequence"))), /* @__PURE__ */ cpJsx("label", { className: "cp-ux-field" }, /* @__PURE__ */ cpJsx("span", null, uxText("timer.tipsLabel")), /* @__PURE__ */ cpJsx("textarea", { rows: "4", value: tips, ...controlProps("ux.timer.tipsText", (e) => setTips(e.target.value)) })), /* @__PURE__ */ cpJsx("div", { style: row }, /* @__PURE__ */ cpJsx(UxButton, { id: "timer.tipsSave", onClick: () => {
-      const list2 = tips.split("\n").map((x2) => x2.trim()).filter(Boolean).slice(0, 12).map((x2) => x2.slice(0, 200));
-      writeSettings({ quizTips: list2.length ? list2 : void 0 });
-      setTips((list2.length ? list2 : defaultQuizTips()).join("\n"));
-    } }), /* @__PURE__ */ cpJsx(UxButton, { id: "timer.tipsReset", onClick: () => {
-      writeSettings({ quizTips: void 0 });
-      setTips(defaultQuizTips().join("\n"));
-    } }))), error2 && /* @__PURE__ */ cpJsx("p", { role: "alert" }, error2));
+    } }, icon(ICONS2.full)))), (mode === "countdown" || mode === "quiz") && /* @__PURE__ */ cpJsx("div", { className: "cp-timer-presets" }, profile2.timerPresets.map((value, index) => /* @__PURE__ */ cpJsx(ToolButton, { key: index, id: "timer.preset", context: String(index), className: "cp-chip", active: state2.phase === "idle" && state2.durationMs === value * 6e4, "aria-label": countText(value, "timer.min"), title: countText(value, "timer.min"), onClick: () => writeTimer(idleTimer("countdown", value * 6e4)) }, cpRaw(String(value)))), /* @__PURE__ */ cpJsx("span", { className: "cp-timer-presets-unit" }, uxText("timer.min"))), mode === "segments" && /* @__PURE__ */ cpJsx("div", { className: "cp-timer-presets" }, /* @__PURE__ */ cpJsx("ol", { className: "cp-timer-segments" }, state2.segmentsMs.map((ms, index) => /* @__PURE__ */ cpJsx("li", { key: index, className: "cp-chip", "aria-current": index === snapshot.segmentIndex ? "step" : void 0, title: countText(Math.round(ms / 6e4 * 100) / 100, "timer.min") }, cpRaw(String(Math.round(ms / 6e4 * 100) / 100))))), /* @__PURE__ */ cpJsx("span", { className: "cp-timer-presets-unit" }, uxText("timer.min"))), error2 && /* @__PURE__ */ cpJsx("p", { role: "alert" }, error2));
   }
   var timer_default = m4Manifest("timer", { defaults: { timerPresets: [1, 2, 3, 5, 10, 15], timerSettings: { segmentsMinutes: [5, 15, 20] }, timerState: idleTimer() }, migrate: (value = {}) => ({ ...value, timerPresets: value.timerPresets || [1, 2, 3, 5, 10, 15], timerSettings: { segmentsMinutes: [5, 15, 20], ...value.timerSettings }, timerState: value.timerState || idleTimer() }) }, TimerView);
 
@@ -48978,7 +49217,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       const key4 = state2.runId + ":three";
       if (fired.current.has(key4)) return;
       fired.current.add(key4);
-      if (profile2.timerSettings?.sound !== false) playTone("chime", 0.4);
+      if (profile2.timerSettings?.sound !== false && profile2.timerSettings?.quizChime !== false) playTone("chime", 0.4);
     }, [state2.runId, state2.phase, state2.mode, timer2.finished, timer2.displayMs <= 18e4, profile2.timerSettings?.quizMode]);
     const lastSeconds = state2.mode === "countdown" && state2.phase === "running" && !timer2.finished ? Math.ceil(timer2.displayMs / 1e3) : 0;
     useEffect(() => {
