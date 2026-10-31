@@ -1193,6 +1193,8 @@ button[data-eye]::after{content:'';position:absolute;inset:-6px -4px}
 :root:not([data-cp-theme=dark]):not([data-cp-theme=contrast]) [role=dialog][aria-modal=true] [style*="color: rgb(234, 88, 12)"]{color:#c2410c!important}
 :root:not([data-cp-theme=dark]):not([data-cp-theme=contrast]) [role=dialog][aria-modal=true] [style*="background: rgb(234, 88, 12)"]{background:#c2410c!important}
 :root:not([data-cp-theme=dark]):not([data-cp-theme=contrast]) [role=dialog][aria-modal=true] [style*="color: rgb(220, 38, 38)"]{color:#b91c1c!important}
+/* Attendance (owner, 31 October 2026): copy an earlier lesson's statuses, an icon button beside All present. */
+.cp-att-bar .cp-att-copy{display:inline-grid!important;place-items:center;inline-size:32px;block-size:32px;padding:0!important;border-radius:8px!important}
 /* M56 design foundations (owner-supplied Master Implementation Brief, M56; design report §7–§8).
    One set of tokens for the frame and the new modules. Protected Gradebook views (Marks, Groups, Behaviour,
    Adjustments, Analysis, the original wheel, the Settings drawer and the class manager) do not use them. */
@@ -4627,7 +4629,7 @@ var ClassPilot = (() => {
     "file.invalidNamespace": "This class file has a damaged ClassPilot section, so it was not opened. Your file was not changed.",
     "file.invalidProfile": "This is not a ClassPilot teacher-profile file, so it was not opened. The file was not changed. Choose your profile .json file.",
     "about.title": "ClassPilot",
-    "about.version": "Version 0.11.0",
+    "about.version": "Version 0.11.1",
     "about.license": "MIT",
     "about.privacy": "Data stays on this computer.",
     "attendance.day": "One by one",
@@ -7298,7 +7300,8 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.a11y.columnA": "Column A (X)",
     "ux.a11y.columnB": "Column B (Y)",
     "ux.a11y.student": "Student",
-    "ux.a11y.term": "Term"
+    "ux.a11y.term": "Term",
+    "ux.att.copyFrom": "Copy statuses from {lesson}"
   };
 
   // src/i18n/plain-copy.js
@@ -10158,7 +10161,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "file.invalidNamespace": "\u0641\u064A \u0645\u0644\u0641 \u0627\u0644\u0635\u0641 \u0647\u0630\u0627 \u0642\u0633\u0645 \u062A\u0627\u0644\u0641 \u062E\u0627\u0635 \u0628\u0640 ClassPilot\u060C \u0644\u0630\u0644\u0643 \u0644\u0645 \u064A\u064F\u0641\u062A\u062D. \u0644\u0645 \u064A\u062A\u063A\u064A\u0651\u0631 \u0645\u0644\u0641\u0643.",
     "file.invalidProfile": "\u0647\u0630\u0627 \u0644\u064A\u0633 \u0645\u0644\u0641 \u0645\u0639\u0644\u0645 \u0645\u0646 ClassPilot\u060C \u0644\u0630\u0644\u0643 \u0644\u0645 \u064A\u064F\u0641\u062A\u062D. \u0644\u0645 \u064A\u062A\u063A\u064A\u0651\u0631 \u0627\u0644\u0645\u0644\u0641. \u0627\u062E\u062A\u0631 \u0645\u0644\u0641 \u0627\u0644\u0645\u0639\u0644\u0645 \u0628\u0635\u064A\u063A\u0629 \u200E.json.",
     "about.title": "ClassPilot",
-    "about.version": "\u0627\u0644\u0625\u0635\u062F\u0627\u0631 0.11.0",
+    "about.version": "\u0627\u0644\u0625\u0635\u062F\u0627\u0631 0.11.1",
     "about.license": "MIT",
     "about.privacy": "\u062A\u0628\u0642\u0649 \u0627\u0644\u0628\u064A\u0627\u0646\u0627\u062A \u0639\u0644\u0649 \u0647\u0630\u0627 \u0627\u0644\u0643\u0645\u0628\u064A\u0648\u062A\u0631.",
     "attendance.day": "\u0637\u0627\u0644\u0628\u064B\u0627 \u0637\u0627\u0644\u0628\u064B\u0627",
@@ -12776,7 +12779,8 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.a11y.columnA": "\u0627\u0644\u0639\u0645\u0648\u062F A (X)",
     "ux.a11y.columnB": "\u0627\u0644\u0639\u0645\u0648\u062F B (Y)",
     "ux.a11y.student": "\u0627\u0644\u0637\u0627\u0644\u0628",
-    "ux.a11y.term": "\u0627\u0644\u0641\u0635\u0644 \u0627\u0644\u062F\u0631\u0627\u0633\u064A"
+    "ux.a11y.term": "\u0627\u0644\u0641\u0635\u0644 \u0627\u0644\u062F\u0631\u0627\u0633\u064A",
+    "ux.att.copyFrom": "\u0646\u0633\u062E \u0627\u0644\u062D\u0627\u0644\u0627\u062A \u0645\u0646 {lesson}"
   };
 
   // src/core/actions.js
@@ -20608,19 +20612,6 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       "meaning": "m3.attendance.settings"
     },
     {
-      "id": "m3.attendance.start",
-      "labelKey": "attendance.start",
-      "icon": null,
-      "shortcut": null,
-      "availability": "rendered-and-not-disabled",
-      "canonicalHome": "attendance:context",
-      "events": [
-        "onClick"
-      ],
-      "source": "src/modules",
-      "meaning": "m3.attendance.start"
-    },
-    {
       "id": "m3.attendance.allPresent",
       "labelKey": "attendance.allPresent",
       "icon": null,
@@ -24779,19 +24770,6 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       ],
       "source": "src/modules",
       "meaning": "improve.cancelOverride"
-    },
-    {
-      "id": "improve.manualRegister",
-      "labelKey": "improve.manualRegister",
-      "icon": null,
-      "shortcut": null,
-      "availability": "rendered-and-not-disabled",
-      "canonicalHome": "TeachingWorkspace:context",
-      "events": [
-        "onClick"
-      ],
-      "source": "src/modules",
-      "meaning": "improve.manualRegister"
     },
     {
       "id": "improve.copyRegister",
@@ -39863,7 +39841,8 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "a11y.columnA": ["Column A (X)", "\u0627\u0644\u0639\u0645\u0648\u062F A (X)"],
     "a11y.columnB": ["Column B (Y)", "\u0627\u0644\u0639\u0645\u0648\u062F B (Y)"],
     "a11y.student": ["Student", "\u0627\u0644\u0637\u0627\u0644\u0628"],
-    "a11y.term": ["Term", "\u0627\u0644\u0641\u0635\u0644 \u0627\u0644\u062F\u0631\u0627\u0633\u064A"]
+    "a11y.term": ["Term", "\u0627\u0644\u0641\u0635\u0644 \u0627\u0644\u062F\u0631\u0627\u0633\u064A"],
+    "att.copyFrom": ["Copy statuses from {lesson}", "\u0646\u0633\u062E \u0627\u0644\u062D\u0627\u0644\u0627\u062A \u0645\u0646 {lesson}"]
   };
   var uxEn = Object.fromEntries(Object.entries(pairs).map(([key4, value]) => ["ux." + key4, value[0]]));
   var uxAr = Object.fromEntries(Object.entries(pairs).map(([key4, value]) => ["ux." + key4, value[1]]));
@@ -42573,7 +42552,6 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "attendance.month": "attendance.month",
     "attendance.summary": "attendance.summary",
     "attendance.settings": "attendance.settings",
-    "attendance.start": "attendance.start",
     "attendance.allPresent": "attendance.allPresent",
     "attendance.clear": "attendance.clear",
     "attendance.excel": "attendance.excel",
@@ -49465,7 +49443,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
   // src/core/improvements-actions.js
   var improvementActions = [["profileRetry", "improve.retry"]].map(([id, labelKey]) => ({ id: "improve." + id, labelKey, icon: null, shortcut: null, availability: "rendered-and-not-disabled", canonicalHome: "ProfileSaveNotice:context", events: ["onClick"], source: "src/core", meaning: "improve." + id }));
   improvementActions.push(...[["toggleNavigation", "improve.navigation", "onClick"], ["theme", "improve.theme", "onChange"], ["density", "improve.spacing", "onChange"]].map(([id, labelKey, event]) => ({ id: "improve." + id, labelKey, icon: null, shortcut: null, availability: "rendered-and-not-disabled", canonicalHome: id === "toggleNavigation" ? "ShellBar:menu" : "Workspace:sidebar", events: [event], source: "src/core", meaning: "improve." + id })));
-  improvementActions.push(...[["nav.home", "improve.today", "onClick"], ["weekPreset", "improve.weekPreset", "onClick"], ["applyWeek", "improve.applyWeek", "onClick"], ["cancelWeek", "improve.cancelWeek", "onClick"], ["help", "improve.help", "onClick"], ["openAttendance", "improve.openAttendance", "onClick"], ["openMarks", "improve.openMarks", "onClick"], ["openPlan", "improve.openPlan", "onClick"], ["override", "improve.override", "onClick"], ["saveOverride", "improve.saveOverride", "onClick"], ["resetOverride", "improve.resetOverride", "onClick"], ["cancelOverride", "improve.cancelOverride", "onClick"], ["manualRegister", "improve.manualRegister", "onClick"], ["copyRegister", "improve.copyRegister", "onClick"], ["clearLesson", "improve.clearLesson", "onClick"], ["lessonDate", "improve.lessonDate", "onChange"], ["mapClass", "tt.class", "onChange"], ["confirmWeek", "improve.replaceWeek", "onChange"], ["overrideStart", "tt.start", "onChange"], ["overrideEnd", "tt.end", "onChange"], ["overrideClass", "tt.class", "onChange"], ["overrideCancelled", "improve.cancelLesson", "onChange"], ["overrideAck", "improve.overrideAck", "onChange"], ["followUpDate", "improve.followUpDate", "onChange"], ["completed", "improve.completed", "onChange"]].map(([id, labelKey, event]) => ({ id: "improve." + id, labelKey, icon: null, shortcut: null, availability: "rendered-and-not-disabled", canonicalHome: id === "nav.home" ? "Workspace:sidebar" : "TeachingWorkspace:context", events: [event], source: "src/modules", meaning: "improve." + id })));
+  improvementActions.push(...[["nav.home", "improve.today", "onClick"], ["weekPreset", "improve.weekPreset", "onClick"], ["applyWeek", "improve.applyWeek", "onClick"], ["cancelWeek", "improve.cancelWeek", "onClick"], ["help", "improve.help", "onClick"], ["openAttendance", "improve.openAttendance", "onClick"], ["openMarks", "improve.openMarks", "onClick"], ["openPlan", "improve.openPlan", "onClick"], ["override", "improve.override", "onClick"], ["saveOverride", "improve.saveOverride", "onClick"], ["resetOverride", "improve.resetOverride", "onClick"], ["cancelOverride", "improve.cancelOverride", "onClick"], ["copyRegister", "improve.copyRegister", "onClick"], ["clearLesson", "improve.clearLesson", "onClick"], ["lessonDate", "improve.lessonDate", "onChange"], ["mapClass", "tt.class", "onChange"], ["confirmWeek", "improve.replaceWeek", "onChange"], ["overrideStart", "tt.start", "onChange"], ["overrideEnd", "tt.end", "onChange"], ["overrideClass", "tt.class", "onChange"], ["overrideCancelled", "improve.cancelLesson", "onChange"], ["overrideAck", "improve.overrideAck", "onChange"], ["followUpDate", "improve.followUpDate", "onChange"], ["completed", "improve.completed", "onChange"]].map(([id, labelKey, event]) => ({ id: "improve." + id, labelKey, icon: null, shortcut: null, availability: "rendered-and-not-disabled", canonicalHome: id === "nav.home" ? "Workspace:sidebar" : "TeachingWorkspace:context", events: [event], source: "src/modules", meaning: "improve." + id })));
   improvementActions.push(...[["confirmRestore", "onClick"], ["cancelRestore", "onClick"], ["teachingMode", "onClick"], ["reportParent", "onClick"], ["reportClass", "onClick"], ["reportAttendance", "onClick"], ["searchSettings", "onChange"], ["pendingFollowups", "onChange"]].map(([id, event]) => ({ id: "improve." + id, labelKey: "improve." + id, icon: null, shortcut: null, availability: "rendered-and-not-disabled", canonicalHome: "Workspace:context", events: [event], source: "src/core", meaning: "improve." + id })));
   improvementActions.push({ id: "improve.selectRegister", labelKey: "improve.register", icon: null, shortcut: null, availability: "rendered-and-not-disabled", canonicalHome: "Attendance:context", events: ["onChange"], source: "src/modules/attendance", meaning: "improve.selectRegister" });
   improvementActions.push(...[["preferences", "Workspace:sidebar"], ["closePreferences", "Workspace:sidebar"], ["viewMenu", "ShellBar:toolbar"], ["settingsJump", "Workspace:context"], ...["gradebook", "teaching", "planning", "reporting", "tools", "manage"].map((hub) => ["hub." + hub, "Workspace:sidebar"])].map(([id, canonicalHome]) => ({ id: "improve." + id, labelKey: "improve." + id, icon: null, shortcut: null, availability: "rendered-and-not-disabled", canonicalHome, events: ["onClick"], source: "src/core", meaning: "improve." + id })));
@@ -50889,6 +50867,8 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     const totals = doc.students.map((s) => ({ student: s, ...studentSummary(doc, s.id, through) }));
     const sum = (key4) => totals.reduce((n, s) => n + s[key4], 0), denom = sum("present") + sum("late") + sum("absent");
     const count = (status) => doc.students.filter((s) => (session?.records[s.id]?.status || "unmarked") === status).length, marked = doc.students.filter((s) => session?.records[s.id]?.status).length;
+    const copySource = canEdit && typeof period === "object" && !Object.keys(session?.records || {}).length ? earlierSession(doc, date5, period) : null;
+    const copyLabel = copySource ? uxText("att.copyFrom").replace("{lesson}", (copySource.period || "") + (copySource.lesson?.start ? " \xB7 " + displayTime(copySource.lesson.start) : "")) : "";
     const scopeLabel = (typeof period === "object" ? period.label : period || uxText("att.wholeDay")) + " \xB7 " + displayDate(date5);
     const nextLesson = typeof period === "object" ? teachingLessons(getProfile(), date5).find((l) => !l.cancelled && l.period.start >= period.end) : null;
     async function advance() {
@@ -50910,10 +50890,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       setPeriod("");
       clearLesson();
       setOverride(false);
-    } }), /* @__PURE__ */ cpJsx(PeriodPicker, { doc, date: date5, period, setPeriod, saved: savedRegisters, onSaved: chooseRegister })), /* @__PURE__ */ cpJsx(Command, { id: "attendance.allPresent", className: "cp-ux-primary", disabled: !canEdit, onClick: () => onUpdate((d) => setRecords(d, date5, period, d.students.map((s) => s.id), { status: "present" }, override)), style: { background: "var(--ux-primary)", color: "var(--cp-primary-fg)", border: "1px solid var(--ux-primary)" } }, t("attendance.allPresent")), /* @__PURE__ */ cpJsx("span", { role: "status", className: "cp-att-progress" }, uxText("attendance.progress"), ": ", marked, "/", doc.students.length, " \xB7 ", uxText(!session ? "attendance.empty" : marked === doc.students.length ? "attendance.complete" : "attendance.partial")), /* @__PURE__ */ cpJsx(MoreMenu, { id: "attendance-register" }, /* @__PURE__ */ cpJsx(Command, { id: "attendance.start", disabled: !canEdit, onClick: () => onUpdate((d) => startSession(d, date5, period, override)) }, t("attendance.start")), typeof period === "object" && /* @__PURE__ */ cpJsx(Command, { namespace: "improve", id: "copyRegister", disabled: !canEdit || !earlierSession(doc, date5, period) || !!Object.keys(session?.records || {}).length, onClick: () => onUpdate((d) => copyEarlierSession(d, date5, period, override)) }, t("improve.copyRegister")), typeof period === "object" && /* @__PURE__ */ cpJsx(Command, { namespace: "improve", id: "manualRegister", onClick: () => {
-      clearLesson();
-      setPeriod("");
-    } }, t("improve.manualRegister")))), !isSchoolDay(date5, doc.settings) && /* @__PURE__ */ cpJsx("div", { style: { ...row, marginBlock: 10 } }, /* @__PURE__ */ cpJsx("span", null, t("attendance.nonSchool")), /* @__PURE__ */ cpJsx("label", null, /* @__PURE__ */ cpJsx("input", { type: "checkbox", checked: override, ...controlProps("m3.attendance.override", (e) => setOverride(e.target.checked)) }), t("attendance.override"))), /* @__PURE__ */ cpJsx(StatusBar, { statuses, count, total: doc.students.length }), tab === "matrix" ? /* @__PURE__ */ cpJsx(AttendanceMatrix, { doc, date: date5, period, session, statuses, canEdit, override, onUpdate }) : /* @__PURE__ */ cpJsx("div", { style: { display: "grid", gridTemplateColumns: "minmax(220px,1fr) minmax(320px,2fr)", gap: 16 } }, /* @__PURE__ */ cpJsx("div", { style: { maxHeight: 430, overflow: "auto", display: "flex", flexDirection: "column", gap: 5 } }, doc.students.map((student) => {
+    } }), /* @__PURE__ */ cpJsx(PeriodPicker, { doc, date: date5, period, setPeriod, saved: savedRegisters, onSaved: chooseRegister })), /* @__PURE__ */ cpJsx(Command, { id: "attendance.allPresent", className: "cp-ux-primary", disabled: !canEdit, onClick: () => onUpdate((d) => setRecords(d, date5, period, d.students.map((s) => s.id), { status: "present" }, override)), style: { background: "var(--ux-primary)", color: "var(--cp-primary-fg)", border: "1px solid var(--ux-primary)" } }, t("attendance.allPresent")), copySource && /* @__PURE__ */ cpJsx(Command, { namespace: "improve", id: "copyRegister", className: "cp-att-copy", title: copyLabel, "aria-label": copyLabel, onClick: () => onUpdate((d) => copyEarlierSession(d, date5, period, override)) }, /* @__PURE__ */ cpJsx("svg", { "aria-hidden": "true", viewBox: "0 0 24 24", width: "18", height: "18", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round" }, /* @__PURE__ */ cpJsx("rect", { x: "9", y: "9", width: "12", height: "12", rx: "2" }), /* @__PURE__ */ cpJsx("path", { d: "M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1" }))), /* @__PURE__ */ cpJsx("span", { role: "status", className: "cp-att-progress" }, uxText("attendance.progress"), ": ", marked, "/", doc.students.length, " \xB7 ", uxText(!session ? "attendance.empty" : marked === doc.students.length ? "attendance.complete" : "attendance.partial"))), !isSchoolDay(date5, doc.settings) && /* @__PURE__ */ cpJsx("div", { style: { ...row, marginBlock: 10 } }, /* @__PURE__ */ cpJsx("span", null, t("attendance.nonSchool")), /* @__PURE__ */ cpJsx("label", null, /* @__PURE__ */ cpJsx("input", { type: "checkbox", checked: override, ...controlProps("m3.attendance.override", (e) => setOverride(e.target.checked)) }), t("attendance.override"))), /* @__PURE__ */ cpJsx(StatusBar, { statuses, count, total: doc.students.length }), tab === "matrix" ? /* @__PURE__ */ cpJsx(AttendanceMatrix, { doc, date: date5, period, session, statuses, canEdit, override, onUpdate }) : /* @__PURE__ */ cpJsx("div", { style: { display: "grid", gridTemplateColumns: "minmax(220px,1fr) minmax(320px,2fr)", gap: 16 } }, /* @__PURE__ */ cpJsx("div", { style: { maxHeight: 430, overflow: "auto", display: "flex", flexDirection: "column", gap: 5 } }, doc.students.map((student) => {
       const r = session?.records?.[student.id], status = statuses.find((s) => s.id === r?.status);
       return /* @__PURE__ */ cpJsx(Command, { key: student.id, id: "attendance.student", context: student.id, "data-attendance-student": student.id, active: selected === student.id, onClick: () => setSelected(student.id), style: { display: "flex", justifyContent: "space-between", textAlign: "start", padding: "10px 12px" } }, /* @__PURE__ */ cpJsx("span", { dir: doc.settings.studentsDir || doc.settings.dir }, cpRaw(student.name)), /* @__PURE__ */ cpJsx("span", { style: { background: status?.color || "#f1f5f9", color: colourText(status?.color || "#f1f5f9"), padding: "2px 6px", borderRadius: 5 } }, cpRaw(status ? status.icon + " " + statusName(status) : t("attendance.unmarked"))));
     })), /* @__PURE__ */ cpJsx("div", null, /* @__PURE__ */ cpJsx("strong", { style: { fontSize: "var(--cp-fs-label)" } }, cpRaw(doc.students.find((s) => s.id === selected)?.name || "")), /* @__PURE__ */ cpJsx("div", { style: { display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, marginBlock: 14 } }, statuses.map((status, index) => /* @__PURE__ */ cpJsx(Command, { key: status.id, id: "attendance." + status.id, disabled: !canEdit, "aria-pressed": record.status === status.id, onClick: () => mark(status.id), style: { padding: 18, fontSize: "var(--cp-fs-label)", background: status.color, color: colourText(status.color), border: record.status === status.id ? "2px solid var(--n-800)" : "2px solid transparent" } }, cpRaw(status.icon + " " + statusName(status)), /* @__PURE__ */ cpJsx("span", { style: { fontSize: "var(--cp-fs-caption)", marginInlineStart: 8 } }, index + 1)))), /* @__PURE__ */ cpJsx("div", { style: row }, /* @__PURE__ */ cpJsx(Field2, { id: "attendance.minutes", label: "attendance.minutes", type: "number", min: "0", step: "1", disabled: !canEdit, value: record.minutesLate ?? "", onChange: (e) => onUpdate((d) => setRecords(d, date5, period, [selected], { minutesLate: e.target.value === "" ? null : Math.max(0, Math.floor(+e.target.value || 0)) }, override)) }), /* @__PURE__ */ cpJsx(Field2, { id: "attendance.note", label: "attendance.note", disabled: !canEdit, maxLength: 500, value: record.note || "", onChange: (e) => onUpdate((d) => setRecords(d, date5, period, [selected], { note: e.target.value.replace(/[\r\n]/g, " ") }, override)) }), /* @__PURE__ */ cpJsx(Command, { id: "attendance.clear", disabled: !canEdit, onClick: () => mark(null) }, t("attendance.clear"))))), /* @__PURE__ */ cpJsx("div", { className: "cp-ux-actions cp-att-then", "data-complete": session && marked === doc.students.length ? "true" : "false" }, /* @__PURE__ */ cpJsx("span", null, uxText("att.then"), cpRaw(" \xB7 " + scopeLabel)), nextLesson && /* @__PURE__ */ cpJsx(UxButton, { id: "attendance.next", disabled: opening2, onClick: advance }), /* @__PURE__ */ cpJsx(UxButton, { id: "attendance.behaviour", onClick: () => setView("Behaviour") }), /* @__PURE__ */ cpJsx(UxButton, { id: "attendance.participation", onClick: () => setView("Marks") }), /* @__PURE__ */ cpJsx(UxButton, { id: "attendance.observations", onClick: () => setView("module:observations") }), /* @__PURE__ */ cpJsx(UxButton, { id: "attendance.lessonReport", disabled: !session, onClick: () => setLessonReport({ ...reportDefaults(doc, getProfile()), type: "class", from: date5, through: date5, attendanceMode: "single", sessionKey: sessionKey(date5, period), lessonLedger: true, eventComments: false }) })), openError && /* @__PURE__ */ cpJsx("p", { role: "alert" }, uxText("attendance.openError"))), tab === "month" && /* @__PURE__ */ cpJsx("div", { style: panel }, /* @__PURE__ */ cpJsx("div", { style: row }, /* @__PURE__ */ cpJsx(Field2, { id: "attendance.monthInput", label: "attendance.month", type: "month", value: month, onChange: (e) => setMonth(e.target.value) }), /* @__PURE__ */ cpJsx(Field2, { id: "attendance.period", label: "attendance.period", value: typeof period === "object" ? period.label : period, disabled: typeof period === "object", maxLength: 80, onChange: (e) => setPeriod(e.target.value) }), /* @__PURE__ */ cpJsx("label", null, /* @__PURE__ */ cpJsx("input", { type: "checkbox", checked: override, ...controlProps("m3.attendance.override", (e) => setOverride(e.target.checked)) }), t("attendance.override"))), /* @__PURE__ */ cpJsx("div", { style: { overflow: "auto", marginBlockStart: 12 } }, /* @__PURE__ */ cpJsx("table", { style: { borderCollapse: "collapse", fontSize: "var(--cp-fs-caption)", width: "100%" } }, /* @__PURE__ */ cpJsx("thead", null, /* @__PURE__ */ cpJsx("tr", null, /* @__PURE__ */ cpJsx("th", { style: { textAlign: "start" } }, t("attendance.student")), monthDates(month).map((day) => /* @__PURE__ */ cpJsx("th", { key: day, style: { background: isSchoolDay(day, doc.settings) ? "#fff" : "#f1f5f9", padding: 4 } }, day.slice(-2))))), /* @__PURE__ */ cpJsx("tbody", null, doc.students.map((student) => /* @__PURE__ */ cpJsx("tr", { key: student.id }, /* @__PURE__ */ cpJsx("th", { style: { whiteSpace: "nowrap", textAlign: "start", paddingInlineEnd: 8 } }, cpRaw(student.name)), monthDates(month).map((day) => {
