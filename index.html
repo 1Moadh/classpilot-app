@@ -1420,6 +1420,27 @@ td[data-cp-att],th[data-cp-att]{background:var(--cp-att-bg)!important;box-shadow
 .cp-timer-face[data-fullscreen=true]:fullscreen .cp-timer-time:not(:disabled):hover{background:transparent!important;border:0!important;box-shadow:none!important}
 .cp-timer-face[data-fullscreen=true]:fullscreen .cp-timer-edit input,
 .cp-float .cp-timer-face[data-fullscreen=true]:fullscreen .cp-timer-edit input{font-size:min(24vh,calc(100cqi / var(--cp-timer-chars,4)))!important;inline-size:calc(var(--cp-timer-chars,4) * .65em)!important}
+
+/* Owner-approved in-place editor: one readout and one interaction across every timer host. */
+.cp-timer-ring{container-type:normal!important}
+.cp-timer-face{--cp-timer-read-max:60px}
+.cp-float[data-float=timer] .cp-timer-face{--cp-timer-read-max:46px}
+.cp-float[data-float=timer][data-max=true] .cp-timer-face{--cp-timer-read-max:min(11vh,11vw)}
+.cp-pip .cp-timer-face,.cp-pip .cp-float[data-float=timer] .cp-timer-face{--cp-timer-read-max:min(15vw,10vh)}
+.cp-timer-face[data-fullscreen=true]:fullscreen,.cp-float .cp-timer-face[data-fullscreen=true]:fullscreen{--cp-timer-read-max:27.8vh}
+.cp-timer-face .cp-timer-inline [data-timer-display],
+.cp-float[data-float=timer] .cp-timer-face .cp-timer-inline [data-timer-display],
+.cp-timer-face[data-fullscreen=true]:fullscreen .cp-timer-inline [data-timer-display]{font-size:min(var(--cp-timer-read-max),calc(var(--cp-timer-ring-width,184px) * 1.2 / var(--cp-timer-chars,4)))!important}
+.cp-timer-read .cp-timer-inline{position:relative;display:inline-grid;place-items:center;direction:ltr;gap:0;color:var(--cp-text)}
+.cp-timer-inline[data-inline-editing=true]>.cp-timer-time{visibility:hidden}
+.cp-timer-read .cp-timer-inline input[data-cp-action="m4.timer.custom"]{all:unset!important;position:absolute!important;box-sizing:border-box!important;inset-block:0!important;inset-inline:6px!important;inline-size:calc(100% - 12px)!important;block-size:100%!important;min-inline-size:0!important;font:inherit!important;font-variant-numeric:inherit!important;letter-spacing:inherit!important;text-align:start!important;direction:ltr!important;color:var(--cp-text)!important;background:transparent!important;border:0!important;outline:0!important;padding:0!important;margin:0!important;caret-color:var(--cp-gold)!important;cursor:text!important}
+.cp-timer-inline input::selection{background:var(--cp-active);color:var(--cp-text)}
+.cp-timer-face[data-editing=true] .cp-timer-arc{stroke-opacity:1}
+.cp-timer-read .cp-timer-inline-hint{display:flex;align-items:center;justify-content:center;gap:3px;white-space:nowrap;block-size:1.4em;line-height:1.4}
+.cp-timer-inline-hint kbd{all:unset;font:inherit}
+.cp-timer-inline-hint .cp-timer-apply{all:unset;position:relative;font:inherit;color:inherit;cursor:pointer;border-radius:3px}
+.cp-timer-apply::after{content:"";position:absolute;inset:-7px -3px;min-block-size:24px}
+.cp-timer-apply:focus-visible{outline:2px solid var(--cp-gold);outline-offset:2px}
 /* M56 design foundations (owner-supplied Master Implementation Brief, M56; design report §7–§8).
    One set of tokens for the frame and the new modules. Protected Gradebook views (Marks, Groups, Behaviour,
    Adjustments, Analysis, the original wheel, the Settings drawer and the class manager) do not use them. */
@@ -5058,7 +5079,7 @@ var ClassPilot = (() => {
     "timer.stopwatch": "Stopwatch",
     "timer.segments": "Lesson segments",
     "timer.minutes": "minutes",
-    "timer.custom": "Custom duration in minutes",
+    "timer.custom": "Custom timer time",
     "timer.load": "Set custom countdown",
     "timer.start": "Start timer",
     "timer.resume": "Resume timer",
@@ -10622,7 +10643,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "timer.stopwatch": "\u0633\u0627\u0639\u0629 \u0625\u064A\u0642\u0627\u0641",
     "timer.segments": "\u0645\u0631\u0627\u062D\u0644 \u0627\u0644\u062F\u0631\u0633",
     "timer.minutes": "\u062F\u0642\u0627\u0626\u0642",
-    "timer.custom": "\u0645\u062F\u0629 \u0645\u062E\u0635\u0635\u0629 \u0628\u0627\u0644\u062F\u0642\u0627\u0626\u0642",
+    "timer.custom": "\u0648\u0642\u062A \u0645\u062E\u0635\u0635 \u0644\u0644\u0645\u0624\u0642\u062A",
     "timer.load": "\u0636\u0628\u0637 \u0627\u0644\u0639\u062F \u0627\u0644\u062A\u0646\u0627\u0632\u0644\u064A \u0627\u0644\u0645\u062E\u0635\u0635",
     "timer.start": "\u0628\u062F\u0621 \u0627\u0644\u0645\u0624\u0642\u062A",
     "timer.resume": "\u0627\u0633\u062A\u0626\u0646\u0627\u0641 \u0627\u0644\u0645\u0624\u0642\u062A",
@@ -48730,6 +48751,119 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     return release;
   }
 
+  // src/modules/timer/time-input.js
+  function parseTyped(value) {
+    const text7 = String(value).trim().replace(",", ".");
+    let m = text7.match(/^(\d{1,4})(?::(\d{1,2}))?$/);
+    if (m) {
+      const minutes2 = +m[1], seconds = +(m[2] || 0);
+      return seconds < 60 && minutes2 * 60 + seconds > 0 && minutes2 * 60 + seconds <= 86400 ? (minutes2 * 60 + seconds) * 1e3 : null;
+    }
+    m = text7.match(/^\d*\.\d+$/);
+    return m && +text7 > 0 && +text7 <= 1440 ? Math.round(+text7 * 6e4) : null;
+  }
+  function parseClockEdit(value) {
+    const text7 = String(value).trim(), hours = text7.match(/^(\d{1,2}):(\d{2}):(\d{2})$/);
+    if (!hours) return parseTyped(text7);
+    if (+hours[2] >= 60 || +hours[3] >= 60) return null;
+    return parseTyped(+hours[1] * 60 + +hours[2] + ":" + hours[3]);
+  }
+  function clockFields(text7) {
+    let start = 0;
+    return String(text7).split(":").map((value) => {
+      const field2 = { start, end: start + value.length };
+      start = field2.end + 1;
+      return field2;
+    });
+  }
+
+  // src/modules/timer/inline-time.jsx
+  function InlineTimerTime({ parts, modeName, canType, editing, onChange, onApply, onCancel, error: error2 }) {
+    const clock = useRef(null), display2 = useRef(null), input = useRef(null), selected = useRef(0), wasEditing = useRef(false), restoreFocus = useRef(false), hint = React.useId();
+    const select = (index) => {
+      const fields2 = clockFields(input.current.value), at = Math.max(0, Math.min(fields2.length - 1, index));
+      selected.current = at;
+      input.current.setSelectionRange(fields2[at].start, fields2[at].end);
+    };
+    const fieldAt = (clientX) => {
+      const node = display2.current.firstChild, fields2 = clockFields(display2.current.textContent);
+      if (!clientX || !node) return 0;
+      const range = node.ownerDocument.createRange();
+      for (let i = 0; i < fields2.length; i++) {
+        range.setStart(node, fields2[i].start);
+        range.setEnd(node, fields2[i].end);
+        if (clientX <= range.getBoundingClientRect().right) return i;
+      }
+      return fields2.length - 1;
+    };
+    const syncFont = () => {
+      if (!clock.current || !display2.current) return;
+      const win = display2.current.ownerDocument.defaultView, ring = display2.current.closest(".cp-timer-ring");
+      ring.style.setProperty("--cp-timer-ring-width", win.getComputedStyle(ring).width);
+      const style = win.getComputedStyle(display2.current);
+      for (const key4 of ["font-family", "font-size", "font-weight", "line-height", "letter-spacing", "font-variant-numeric"]) clock.current.style.setProperty(key4, style.getPropertyValue(key4));
+    };
+    useLayoutEffect(() => {
+      syncFont();
+      if (editing != null && !wasEditing.current) {
+        input.current.focus();
+        select(selected.current);
+      }
+      if (editing == null && wasEditing.current && restoreFocus.current) {
+        display2.current.closest("button").focus();
+        restoreFocus.current = false;
+      }
+      wasEditing.current = editing != null;
+    }, [editing, parts.value]);
+    useEffect(() => {
+      const doc = display2.current.ownerDocument, win = doc.defaultView, observer = new win.ResizeObserver(syncFont);
+      observer.observe(display2.current);
+      observer.observe(display2.current.closest(".cp-timer-ring"));
+      win.addEventListener("resize", syncFont);
+      doc.fonts?.addEventListener("loadingdone", syncFont);
+      return () => {
+        observer.disconnect();
+        win.removeEventListener("resize", syncFont);
+        doc.fonts?.removeEventListener("loadingdone", syncFont);
+      };
+    }, []);
+    const apply = () => {
+      restoreFocus.current = true;
+      if (onApply() === false) restoreFocus.current = false;
+    };
+    const confirm2 = bindAction("m4.timer.load", "singleton", "onClick", apply);
+    const keyDown = (e) => {
+      const fields2 = clockFields(e.currentTarget.value), index = Math.max(0, fields2.findIndex((field2) => e.currentTarget.selectionStart <= field2.end));
+      if (e.key === "Enter") {
+        e.preventDefault();
+        confirm2(e);
+      } else if (e.key === "Escape") {
+        e.preventDefault();
+        e.stopPropagation();
+        restoreFocus.current = true;
+        onCancel();
+      } else if ((e.key === "Tab" && !e.shiftKey || e.key === ":") && index < fields2.length - 1) {
+        e.preventDefault();
+        select(index + 1);
+      } else if (e.key === "Tab" && e.shiftKey && index > 0) {
+        e.preventDefault();
+        select(index - 1);
+      } else if (e.key === "ArrowRight" && e.currentTarget.selectionEnd >= fields2[index].end && index < fields2.length - 1) {
+        e.preventDefault();
+        select(index + 1);
+      } else if (e.key === "ArrowLeft" && e.currentTarget.selectionStart <= fields2[index].start && index > 0) {
+        e.preventDefault();
+        select(index - 1);
+      }
+    };
+    return /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx("span", { className: "cp-timer-mode" }, modeName), /* @__PURE__ */ cpJsx("span", { className: "cp-timer-inline", ref: clock, dir: "ltr", "data-inline-editing": editing != null ? "true" : "false" }, /* @__PURE__ */ cpJsx(UxButton, { id: "timer.edit", className: "cp-timer-time", disabled: !canType, "aria-label": uxText("timer.edit"), title: uxText("timer.edit"), onClick: (e) => {
+      selected.current = fieldAt(e.clientX);
+      onChange(parts.value);
+    } }, /* @__PURE__ */ cpJsx("output", { ref: display2, "data-timer-display": true }, editing == null ? parts.value : editing || parts.value)), editing != null && /* @__PURE__ */ cpJsx("input", { ref: input, type: "text", inputMode: "decimal", dir: "ltr", value: editing, "aria-label": t("timer.custom"), "aria-describedby": hint, "aria-invalid": error2 ? true : void 0, ...controlProps("m4.timer.custom", (e) => onChange(e.target.value)), onClick: (e) => select(fieldAt(e.clientX)), onKeyDown: keyDown, onBlur: (e) => {
+      if (!e.relatedTarget?.closest(".cp-timer-inline,.cp-timer-apply") && onApply() === false) onCancel();
+    } })), parts.unit ? /* @__PURE__ */ cpJsx("span", { className: "cp-timer-unit" }, parts.unit) : canType ? /* @__PURE__ */ cpJsx("span", { id: hint, className: "cp-timer-hint cp-timer-inline-hint" }, editing != null ? /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx("button", { type: "button", className: "cp-timer-apply", ...actionProps("m4.timer.load", apply), "aria-label": t("timer.load"), title: t("timer.load") }, /* @__PURE__ */ cpJsx("kbd", null, cpRaw("Enter")), " ", uxText("timer.set")), /* @__PURE__ */ cpJsx("span", { "aria-hidden": "true" }, cpRaw("\xB7")), /* @__PURE__ */ cpJsx("kbd", null, cpRaw("Esc")), " ", uxText("timer.cancel")) : uxText("timer.clickToType")) : null);
+  }
+
   // src/i18n/m4-copy.js
   var copy4 = {
     "tt.applies": ["Period days", "\u0623\u064A\u0627\u0645 \u0627\u0644\u062D\u0635\u0629"],
@@ -48837,7 +48971,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "timer.stopwatch": ["Stopwatch", "\u0633\u0627\u0639\u0629 \u0625\u064A\u0642\u0627\u0641"],
     "timer.segments": ["Lesson segments", "\u0645\u0631\u0627\u062D\u0644 \u0627\u0644\u062F\u0631\u0633"],
     "timer.minutes": ["minutes", "\u062F\u0642\u0627\u0626\u0642"],
-    "timer.custom": ["Custom duration in minutes", "\u0645\u062F\u0629 \u0645\u062E\u0635\u0635\u0629 \u0628\u0627\u0644\u062F\u0642\u0627\u0626\u0642"],
+    "timer.custom": ["Custom timer time", "\u0648\u0642\u062A \u0645\u062E\u0635\u0635 \u0644\u0644\u0645\u0624\u0642\u062A"],
     "timer.load": ["Set custom countdown", "\u0636\u0628\u0637 \u0627\u0644\u0639\u062F \u0627\u0644\u062A\u0646\u0627\u0632\u0644\u064A \u0627\u0644\u0645\u062E\u0635\u0635"],
     "timer.start": ["Start timer", "\u0628\u062F\u0621 \u0627\u0644\u0645\u0624\u0642\u062A"],
     "timer.resume": ["Resume timer", "\u0627\u0633\u062A\u0626\u0646\u0627\u0641 \u0627\u0644\u0645\u0624\u0642\u062A"],
@@ -49007,16 +49141,6 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
   }
   var writeSettings = (patch) => updateProfile((p) => ({ ...p, timerSettings: { segmentsMinutes: [5, 15, 20], ...p.timerSettings, ...patch } }));
   var MODES = [["countdown", "m4", "timer.countdown"], ["stopwatch", "m4", "timer.stopwatch"], ["segments", "m4", "timer.segments"], ["quiz", "ux", "timer.quiz"]];
-  function parseTyped(value) {
-    const text7 = String(value).trim().replace(",", ".");
-    let m = text7.match(/^(\d{1,4})(?::(\d{1,2}))?$/);
-    if (m) {
-      const minutes2 = +m[1], seconds = +(m[2] || 0);
-      return seconds < 60 && minutes2 * 60 + seconds > 0 && minutes2 * 60 + seconds <= 86400 ? (minutes2 * 60 + seconds) * 1e3 : null;
-    }
-    m = text7.match(/^\d*\.\d+$/);
-    return m && +text7 > 0 && +text7 <= 1440 ? Math.round(+text7 * 6e4) : null;
-  }
   function TimerView({ compact = false } = {}) {
     const host = React.useContext(FloatHost), profile2 = useProfile(), now = useClock(), state2 = profile2.timerState || idleTimer(), snapshot = timerSnapshot(state2, now), settings = profile2.timerSettings || {}, [error2, setError] = useState(""), [fullscreen, setFullscreen] = useState(false), [advanced, setAdvanced] = useState(false), [editing, setEditing] = useState(null), [resting, setResting] = useState(false), projector = useRef(null);
     useEffect(() => {
@@ -49051,14 +49175,15 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     const go = running ? "timer.pause" : state2.phase === "paused" ? "timer.resume" : "timer.start", canType = state2.mode === "countdown" && !running;
     const chooseMode = (next) => updateProfile((p) => ({ ...p, timerSettings: { segmentsMinutes: [5, 15, 20], ...p.timerSettings, quizMode: next === "quiz" }, timerState: { ...idleTimer(next === "quiz" ? "countdown" : next, next === "quiz" ? 20 * 6e4 : 3e5), segmentsMs: next === "segments" ? (p.timerSettings?.segmentsMinutes?.length ? p.timerSettings.segmentsMinutes : [5, 15, 20]).map((n) => n * 6e4) : [] } }));
     const applyTyped = () => {
-      const ms = parseTyped(editing);
+      const ms = parseClockEdit(editing);
       if (ms == null) {
         setError(t("timer.invalid"));
-        return;
+        return false;
       }
       writeTimer((s) => idleTimer("countdown", ms));
       setEditing(null);
       setError("");
+      return true;
     };
     const named = (key4) => ({ "aria-label": key4.startsWith("ux.") ? uxText(key4.slice(3)) : t(key4), title: key4.startsWith("ux.") ? uxText(key4.slice(3)) : t(key4) });
     const addList = (value, current4, sort) => {
@@ -49109,19 +49234,10 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     })), quiet("ux.timer.advanced", () => {
       setAdvanced(true);
       setEditing(null);
-    }, uxText("timer.advanced"), "cp-timer-gear", ICONS2.gear)), /* @__PURE__ */ cpJsx("div", { ref: projector, style: { "--cp-timer-chars": Math.max(2, (editing ?? parts.value).length) }, className: "cp-timer-face" + (snapshot.finished ? " cp-timer-flash" : ""), "data-late": late ? "true" : "false", "data-fullscreen": fullscreen ? "true" : "false", "data-resting": resting ? "true" : "false", "data-editing": editing != null ? "true" : "false", "data-finished": snapshot.finished ? "true" : "false" }, snapshot.finished && (fullscreen ? /* @__PURE__ */ cpJsx("div", { className: "cp-timer-done", role: "status" }, /* @__PURE__ */ cpJsx("strong", null, quiz ? uxText("timer.pensDownBig") : uxText("timer.timeUp")), quiz && /* @__PURE__ */ cpJsx("span", null, uxText("timer.timeUp"))) : /* @__PURE__ */ cpJsx("strong", { role: "status" }, quiz ? uxText("timer.pensDown") : t("timer.finished"))), /* @__PURE__ */ cpJsx("div", { className: "cp-timer-ring" }, /* @__PURE__ */ cpJsx("svg", { viewBox: "0 0 120 120", "aria-hidden": "true" }, /* @__PURE__ */ cpJsx("circle", { cx: "60", cy: "60", r: "55", className: "cp-timer-track" }), /* @__PURE__ */ cpJsx("circle", { cx: "60", cy: "60", r: "55", className: "cp-timer-arc", style: { strokeDasharray: C, strokeDashoffset: C * (1 - fraction) } })), /* @__PURE__ */ cpJsx("div", { className: "cp-timer-read" }, editing != null ? /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx("span", { className: "cp-timer-mode" }, uxText("timer.typeTime")), /* @__PURE__ */ cpJsx("span", { className: "cp-timer-edit" }, /* @__PURE__ */ cpJsx("input", { autoFocus: true, inputMode: "decimal", size: "5", value: editing, ...controlProps("m4.timer.custom", (e) => setEditing(e.target.value)), "aria-label": t("timer.custom"), onBlur: (e) => {
-      if (!e.relatedTarget?.closest?.(".cp-timer-edit")) {
-        setEditing(null);
-        setError("");
-      }
-    }, onKeyDown: (e) => {
-      if (e.key === "Enter") applyTyped();
-      if (e.key === "Escape") {
-        e.stopPropagation();
-        setEditing(null);
-        setError("");
-      }
-    } }), quiet("m4.timer.load", applyTyped, t("timer.load"), "cp-timer-ok", ICONS2.check)), /* @__PURE__ */ cpJsx("span", { className: "cp-timer-hint" }, /* @__PURE__ */ cpJsx("kbd", null, cpRaw("Enter")), " ", uxText("timer.set"), "  ", /* @__PURE__ */ cpJsx("kbd", null, cpRaw("Esc")), " ", uxText("timer.cancel"))) : /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx("span", { className: "cp-timer-mode" }, modeName), /* @__PURE__ */ cpJsx(UxButton, { id: "timer.edit", className: "cp-timer-time", disabled: !canType, ...named("ux.timer.edit"), onClick: () => setEditing(String(Math.round(state2.durationMs / 6e4 * 100) / 100)) }, /* @__PURE__ */ cpJsx("output", { "data-timer-display": true }, parts.value)), parts.unit ? /* @__PURE__ */ cpJsx("span", { className: "cp-timer-unit" }, parts.unit) : canType ? /* @__PURE__ */ cpJsx("span", { className: "cp-timer-hint" }, uxText("timer.clickToType")) : null))), status && /* @__PURE__ */ cpJsx("span", { className: "cp-timer-status" }, status), late && !snapshot.finished && /* @__PURE__ */ cpJsx("div", { className: "cp-quiz-msg", role: "status" }, /* @__PURE__ */ cpJsx("strong", null, uxText("timer.finalMinutes")), /* @__PURE__ */ cpJsx("ul", null, quizTips(settings).map((tip, index) => /* @__PURE__ */ cpJsx("li", { key: index }, cpRaw(tip))))), fullscreen && /* @__PURE__ */ cpJsx("span", { className: "cp-timer-esc", "aria-hidden": "true" }, uxText("timer.escLeave")), /* @__PURE__ */ cpJsx("div", { className: "cp-timer-controls" }, /* @__PURE__ */ cpJsx(ToolButton, { id: "timer.reset", className: "cp-round", ...named("timer.reset"), onClick: () => writeTimer((s) => ({ ...idleTimer(s.mode, s.durationMs), segmentsMs: s.segmentsMs || [] })) }, icon(ICONS2.reset)), /* @__PURE__ */ cpJsx(ToolButton, { id: "timer.subtractMinute", className: "cp-round", ...named("timer.subtractMinute"), onClick: () => writeTimer((s) => adjustTimer(s, -6e4)) }, icon(ICONS2.minus)), /* @__PURE__ */ cpJsx(ToolButton, { id: go, className: "cp-round cp-round-go", ...named(go), onClick: async () => {
+    }, uxText("timer.advanced"), "cp-timer-gear", ICONS2.gear)), /* @__PURE__ */ cpJsx("div", { ref: projector, style: { "--cp-timer-chars": Math.max(2, (editing || parts.value).length) }, className: "cp-timer-face" + (snapshot.finished ? " cp-timer-flash" : ""), "data-late": late ? "true" : "false", "data-fullscreen": fullscreen ? "true" : "false", "data-resting": resting ? "true" : "false", "data-editing": editing != null ? "true" : "false", "data-finished": snapshot.finished ? "true" : "false" }, snapshot.finished && (fullscreen ? /* @__PURE__ */ cpJsx("div", { className: "cp-timer-done", role: "status" }, /* @__PURE__ */ cpJsx("strong", null, quiz ? uxText("timer.pensDownBig") : uxText("timer.timeUp")), quiz && /* @__PURE__ */ cpJsx("span", null, uxText("timer.timeUp"))) : /* @__PURE__ */ cpJsx("strong", { role: "status" }, quiz ? uxText("timer.pensDown") : t("timer.finished"))), /* @__PURE__ */ cpJsx("div", { className: "cp-timer-ring" }, /* @__PURE__ */ cpJsx("svg", { viewBox: "0 0 120 120", "aria-hidden": "true" }, /* @__PURE__ */ cpJsx("circle", { cx: "60", cy: "60", r: "55", className: "cp-timer-track" }), /* @__PURE__ */ cpJsx("circle", { cx: "60", cy: "60", r: "55", className: "cp-timer-arc", style: { strokeDasharray: C, strokeDashoffset: C * (1 - fraction) } })), /* @__PURE__ */ cpJsx("div", { className: "cp-timer-read" }, /* @__PURE__ */ cpJsx(InlineTimerTime, { parts, modeName, canType, editing, onChange: setEditing, onApply: applyTyped, onCancel: () => {
+      setEditing(null);
+      setError("");
+    }, error: error2 }))), status && /* @__PURE__ */ cpJsx("span", { className: "cp-timer-status" }, status), late && !snapshot.finished && /* @__PURE__ */ cpJsx("div", { className: "cp-quiz-msg", role: "status" }, /* @__PURE__ */ cpJsx("strong", null, uxText("timer.finalMinutes")), /* @__PURE__ */ cpJsx("ul", null, quizTips(settings).map((tip, index) => /* @__PURE__ */ cpJsx("li", { key: index }, cpRaw(tip))))), fullscreen && /* @__PURE__ */ cpJsx("span", { className: "cp-timer-esc", "aria-hidden": "true" }, uxText("timer.escLeave")), /* @__PURE__ */ cpJsx("div", { className: "cp-timer-controls" }, /* @__PURE__ */ cpJsx(ToolButton, { id: "timer.reset", className: "cp-round", ...named("timer.reset"), onClick: () => writeTimer((s) => ({ ...idleTimer(s.mode, s.durationMs), segmentsMs: s.segmentsMs || [] })) }, icon(ICONS2.reset)), /* @__PURE__ */ cpJsx(ToolButton, { id: "timer.subtractMinute", className: "cp-round", ...named("timer.subtractMinute"), onClick: () => writeTimer((s) => adjustTimer(s, -6e4)) }, icon(ICONS2.minus)), /* @__PURE__ */ cpJsx(ToolButton, { id: go, className: "cp-round cp-round-go", ...named(go), onClick: async () => {
       if (running) writeTimer((s) => pauseTimer(s));
       else {
         try {
