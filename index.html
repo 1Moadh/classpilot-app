@@ -7579,7 +7579,9 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.timer.finalMinutes": "Last 3 minutes",
     "ux.timer.pensDownBig": "Pens down",
     "ux.timer.timeUp": "Time is up",
-    "ux.timer.escLeave": "Esc to leave full screen"
+    "ux.timer.escLeave": "Esc to leave full screen",
+    "ux.marks.bonusEntryHint": "Mark + bonus (for example 10+2)",
+    "ux.marks.bonusEntryInvalid": "Enter mark+bonus (for example 10+2). Bonus must be zero or positive."
   };
 
   // src/i18n/plain-copy.js
@@ -13090,7 +13092,9 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.timer.finalMinutes": "\u0622\u062E\u0631 \u062B\u0644\u0627\u062B \u062F\u0642\u0627\u0626\u0642",
     "ux.timer.pensDownBig": "\u0636\u0639\u0648\u0627 \u0627\u0644\u0623\u0642\u0644\u0627\u0645",
     "ux.timer.timeUp": "\u0627\u0646\u062A\u0647\u0649 \u0627\u0644\u0648\u0642\u062A",
-    "ux.timer.escLeave": "\u0627\u0636\u063A\u0637 Esc \u0644\u0644\u062E\u0631\u0648\u062C \u0645\u0646 \u0645\u0644\u0621 \u0627\u0644\u0634\u0627\u0634\u0629"
+    "ux.timer.escLeave": "\u0627\u0636\u063A\u0637 Esc \u0644\u0644\u062E\u0631\u0648\u062C \u0645\u0646 \u0645\u0644\u0621 \u0627\u0644\u0634\u0627\u0634\u0629",
+    "ux.marks.bonusEntryHint": "\u0627\u0644\u062F\u0631\u062C\u0629 + \u0627\u0644\u062F\u0631\u062C\u0629 \u0627\u0644\u0625\u0636\u0627\u0641\u064A\u0629 (\u0645\u062B\u0627\u0644: 10+2)",
+    "ux.marks.bonusEntryInvalid": "\u0627\u0643\u062A\u0628 \u0627\u0644\u062F\u0631\u062C\u0629 + \u0627\u0644\u062F\u0631\u062C\u0629 \u0627\u0644\u0625\u0636\u0627\u0641\u064A\u0629 (\u0645\u062B\u0627\u0644: 10+2). \u064A\u062C\u0628 \u0623\u0646 \u062A\u0643\u0648\u0646 \u0627\u0644\u062F\u0631\u062C\u0629 \u0627\u0644\u0625\u0636\u0627\u0641\u064A\u0629 \u0635\u0641\u0631\u064B\u0627 \u0623\u0648 \u0645\u0648\u062C\u0628\u0629."
   };
 
   // src/core/actions.js
@@ -32007,7 +32011,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
         if (value.startsWith("Saved \xB7 saved ")) text7 = t(englishKeys.get("Saved \xB7 ")) + t(englishKeys.get("saved ")) + value.slice("Saved \xB7 saved ".length);
       }
     }
-    return digits ? text7.replace(/\d/g, (number) => "\u0660\u0661\u0662\u0663\u0664\u0665\u0666\u0667\u0668\u0669"[+number]) : text7;
+    return digits ? text7.replace(/\d/g, (number2) => "\u0660\u0661\u0662\u0663\u0664\u0665\u0666\u0667\u0668\u0669"[+number2]) : text7;
   }
   var rawMarker = /* @__PURE__ */ Symbol("cp:raw");
   function cpRaw(value) {
@@ -32204,7 +32208,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
   var idleMinutes = (profile2) => profile2.lockSettings?.idleMinutes ?? 5;
   var validPin = (pin) => typeof pin === "string" && /^[0-9]{4,8}$/.test(pin);
   var hex = (bytes3) => Array.from(bytes3, (byte) => byte.toString(16).padStart(2, "0")).join("");
-  var bytes = (value) => Uint8Array.from(value.match(/../g), (pair) => parseInt(pair, 16));
+  var bytes = (value) => Uint8Array.from(value.match(/../g), (pair2) => parseInt(pair2, 16));
   function validLockHash(value) {
     return value === null || !!value && typeof value === "object" && value.algorithm === "PBKDF2-SHA-256" && value.iterations === LOCK_ITERATIONS && typeof value.salt === "string" && typeof value.hash === "string" && /^[a-f0-9]{32}$/.test(value.salt) && /^[a-f0-9]{64}$/.test(value.hash);
   }
@@ -32919,15 +32923,15 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     const get2 = (row2, field2) => map[field2] === void 0 ? "" : clean2(row2[map[field2]]), out = [];
     let carry = { chapter: "", chapterName: "", chapterNameAr: "", term: "", week: "" };
     for (const row2 of rows.slice(headerRow + 1)) {
-      const number = get2(row2, "lesson"), rawName = get2(row2, "lessonName");
-      if (!number && !rawName) continue;
+      const number2 = get2(row2, "lesson"), rawName = get2(row2, "lessonName");
+      if (!number2 && !rawName) continue;
       const enrichment = ENRICHMENT.test(get2(row2, "coverage"));
       for (const field2 of ["chapter", "chapterName", "chapterNameAr", "term", "week"]) {
         const value = get2(row2, field2);
         if (value && !(enrichment && field2 === "week")) carry[field2] = value;
       }
       const [name, ...activities] = rawName.split(/\s*Explore:\s*/i);
-      out.push({ ...enrichment ? { enrichment: true } : {}, chapter: carry.chapter, chapterName: carry.chapterName, chapterNameAr: carry.chapterNameAr, term: carry.term || termOf(sheetName), week: enrichment ? "" : carry.week, number, name: clean2(name) || number, nameAr: get2(row2, "lessonNameAr"), activities: activities.map(clean2).filter(Boolean), objectives: get2(row2, "objective").split(/\s*(?:\r?\n|•|;\s*(?=[A-Z؀-ۿ]))\s*/).map(clean2).filter(Boolean), codes: [get2(row2, "objectiveCode")].filter(Boolean), book: get2(row2, "book") });
+      out.push({ ...enrichment ? { enrichment: true } : {}, chapter: carry.chapter, chapterName: carry.chapterName, chapterNameAr: carry.chapterNameAr, term: carry.term || termOf(sheetName), week: enrichment ? "" : carry.week, number: number2, name: clean2(name) || number2, nameAr: get2(row2, "lessonNameAr"), activities: activities.map(clean2).filter(Boolean), objectives: get2(row2, "objective").split(/\s*(?:\r?\n|•|;\s*(?=[A-Z؀-ۿ]))\s*/).map(clean2).filter(Boolean), codes: [get2(row2, "objectiveCode")].filter(Boolean), book: get2(row2, "book") });
     }
     return out;
   }
@@ -34485,7 +34489,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     });
     return out;
   }
-  function buildTermSnapshot(doc, number, label, yearWeight, examWeight, examScores) {
+  function buildTermSnapshot(doc, number2, label, yearWeight, examWeight, examScores) {
     var sections = JSON.parse(JSON.stringify(doc.sections));
     var homework = JSON.parse(JSON.stringify(doc.homework || []));
     var settingsSnap = {
@@ -34528,8 +34532,8 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     });
     return {
       id: mkId(),
-      number,
-      label: label || en_default["gb.ee2743be5742770c"] + number,
+      number: number2,
+      label: label || en_default["gb.ee2743be5742770c"] + number2,
       archivedAt: todayISO(),
       synthetic: false,
       yearWeight: yw,
@@ -34692,7 +34696,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       settings: { ...doc.settings, activeTerm: num2 + 1, yearWeights: nextYW, examWeights: nextEW }
     };
   }
-  function buildSyntheticTerm(doc, number, label, yearWeight, componentWeights, rows) {
+  function buildSyntheticTerm(doc, number2, label, yearWeight, componentWeights, rows) {
     var students = rows.map(function(r) {
       var match = doc.students.find(function(s) {
         return r.studentId && s.studentId === r.studentId || r.name && s.name.toLowerCase() === (r.name || en_default["gb.e3b0c44298fc1c14"]).toLowerCase();
@@ -34718,8 +34722,8 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     });
     return {
       id: mkId(),
-      number,
-      label: label || en_default["gb.ee2743be5742770c"] + number,
+      number: number2,
+      label: label || en_default["gb.ee2743be5742770c"] + number2,
       archivedAt: todayISO(),
       synthetic: true,
       yearWeight: yearWeight != null ? +yearWeight : null,
@@ -40294,7 +40298,9 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "timer.finalMinutes": ["Last 3 minutes", "\u0622\u062E\u0631 \u062B\u0644\u0627\u062B \u062F\u0642\u0627\u0626\u0642"],
     "timer.pensDownBig": ["Pens down", "\u0636\u0639\u0648\u0627 \u0627\u0644\u0623\u0642\u0644\u0627\u0645"],
     "timer.timeUp": ["Time is up", "\u0627\u0646\u062A\u0647\u0649 \u0627\u0644\u0648\u0642\u062A"],
-    "timer.escLeave": ["Esc to leave full screen", "\u0627\u0636\u063A\u0637 Esc \u0644\u0644\u062E\u0631\u0648\u062C \u0645\u0646 \u0645\u0644\u0621 \u0627\u0644\u0634\u0627\u0634\u0629"]
+    "timer.escLeave": ["Esc to leave full screen", "\u0627\u0636\u063A\u0637 Esc \u0644\u0644\u062E\u0631\u0648\u062C \u0645\u0646 \u0645\u0644\u0621 \u0627\u0644\u0634\u0627\u0634\u0629"],
+    "marks.bonusEntryHint": ["Mark + bonus (for example 10+2)", "\u0627\u0644\u062F\u0631\u062C\u0629 + \u0627\u0644\u062F\u0631\u062C\u0629 \u0627\u0644\u0625\u0636\u0627\u0641\u064A\u0629 (\u0645\u062B\u0627\u0644: 10+2)"],
+    "marks.bonusEntryInvalid": ["Enter mark+bonus (for example 10+2). Bonus must be zero or positive.", "\u0627\u0643\u062A\u0628 \u0627\u0644\u062F\u0631\u062C\u0629 + \u0627\u0644\u062F\u0631\u062C\u0629 \u0627\u0644\u0625\u0636\u0627\u0641\u064A\u0629 (\u0645\u062B\u0627\u0644: 10+2). \u064A\u062C\u0628 \u0623\u0646 \u062A\u0643\u0648\u0646 \u0627\u0644\u062F\u0631\u062C\u0629 \u0627\u0644\u0625\u0636\u0627\u0641\u064A\u0629 \u0635\u0641\u0631\u064B\u0627 \u0623\u0648 \u0645\u0648\u062C\u0628\u0629."]
   };
   var uxEn = Object.fromEntries(Object.entries(pairs).map(([key4, value]) => ["ux." + key4, value[0]]));
   var uxAr = Object.fromEntries(Object.entries(pairs).map(([key4, value]) => ["ux." + key4, value[1]]));
@@ -40420,8 +40426,8 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "cert.through": ["Attendance range end", "\u0646\u0647\u0627\u064A\u0629 \u0641\u062A\u0631\u0629 \u0627\u0644\u062D\u0636\u0648\u0631"],
     "cert.criteria": ["The highest original letter band is used. Improvement compares the latest archived term with the live term; ties are included. Participation must be positive. Perfect attendance requires explicit present on every school day in the selected range; late, excused and unmarked do not qualify.", "\u064A\u064F\u0633\u062A\u062E\u062F\u0645 \u0623\u0639\u0644\u0649 \u062A\u0642\u062F\u064A\u0631 \u062D\u0631\u0641\u064A \u0623\u0635\u0644\u064A. \u062A\u064F\u0642\u0627\u0631\u0646 \u0646\u062A\u0627\u0626\u062C \u0622\u062E\u0631 \u0641\u0635\u0644 \u0645\u0624\u0631\u0634\u0641 \u0628\u0627\u0644\u0641\u0635\u0644 \u0627\u0644\u062D\u0627\u0644\u064A \u0644\u0642\u064A\u0627\u0633 \u0627\u0644\u062A\u062D\u0633\u0646 \u0645\u0639 \u0625\u062F\u0631\u0627\u062C \u0627\u0644\u0645\u062A\u0639\u0627\u062F\u0644\u064A\u0646. \u064A\u062C\u0628 \u0623\u0646 \u062A\u0643\u0648\u0646 \u0627\u0644\u0645\u0634\u0627\u0631\u0643\u0629 \u0645\u0648\u062C\u0628\u0629. \u064A\u062A\u0637\u0644\u0628 \u0627\u0644\u062D\u0636\u0648\u0631 \u0627\u0644\u0643\u0627\u0645\u0644 \u062A\u0633\u062C\u064A\u0644 \u062D\u0627\u0636\u0631 \u0635\u0631\u0627\u062D\u0629\u064B \u0641\u064A \u0643\u0644 \u064A\u0648\u0645 \u062F\u0631\u0627\u0633\u064A \u0636\u0645\u0646 \u0627\u0644\u0641\u062A\u0631\u0629\u061B \u0648\u0644\u0627 \u064A\u064F\u062D\u062A\u0633\u0628 \u0627\u0644\u062A\u0623\u062E\u0631 \u0623\u0648 \u0627\u0644\u063A\u064A\u0627\u0628 \u0628\u0639\u0630\u0631 \u0623\u0648 \u0627\u0644\u0623\u064A\u0627\u0645 \u063A\u064A\u0631 \u0627\u0644\u0645\u0633\u062C\u0644\u0629."]
   };
-  var m5En = Object.fromEntries(Object.entries(copy2).map(([key4, pair]) => [key4, pair[0]]));
-  var m5Ar = Object.fromEntries(Object.entries(copy2).map(([key4, pair]) => [key4, pair[1]]));
+  var m5En = Object.fromEntries(Object.entries(copy2).map(([key4, pair2]) => [key4, pair2[0]]));
+  var m5Ar = Object.fromEntries(Object.entries(copy2).map(([key4, pair2]) => [key4, pair2[1]]));
 
   // src/modules/m5-ui.jsx
   function M5Button(props) {
@@ -42376,6 +42382,36 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     })())));
   }
 
+  // src/core/bonus-entry.js
+  var number = "[+-]?(?:\\d+(?:[.,]\\d*)?|[.,]\\d+)(?:[eE][+-]?\\d+)?";
+  var pair = new RegExp("^\\s*(" + number + ")\\s*\\+\\s*(" + number.replace("[+-]?", "") + ")\\s*$");
+  function parseBonusEntry(value, column) {
+    if (!column?.bonusEnabled || typeof value !== "string" || !value.includes("+")) return null;
+    if (value.trim() !== "" && Number.isFinite(Number(value))) return null;
+    const match = value.match(pair);
+    if (!match) return { invalid: true };
+    const mark = Number(match[1].replace(",", ".")), bonus = Number(match[2].replace(",", "."));
+    return Number.isFinite(mark) && Number.isFinite(bonus) && bonus >= 0 ? { mark, bonus } : { invalid: true };
+  }
+  function createBonusMarkCommit(createOriginal, onUpdate, getEdit, getColumn, onInvalid) {
+    const original = createOriginal(onUpdate);
+    let settled = false;
+    return (value) => {
+      if (settled) return;
+      const edit = getEdit(), entry2 = parseBonusEntry(value, edit ? getColumn(edit.cid) : null);
+      if (!entry2) return original(value);
+      if (entry2.invalid) {
+        onInvalid();
+        return false;
+      }
+      settled = true;
+      return createOriginal((change2) => onUpdate((doc) => {
+        const next = change2(doc);
+        return { ...next, students: next.students.map((student) => student.id === edit.sid ? { ...student, bonusMarks: { ...student.bonusMarks || {}, [edit.cid]: entry2.bonus } } : student) };
+      }))(entry2.mark);
+    };
+  }
+
   // src/modules/notebook/attachments.js
   var MAX_ATTACHMENT = 100 * 1024 * 1024;
   var digest = async (file) => Array.from(new Uint8Array(await crypto.subtle.digest("SHA-256", await file.arrayBuffer())), (n) => n.toString(16).padStart(2, "0")).join("");
@@ -43418,22 +43454,24 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     var ar = function(k) {
       return sort?.key === k ? sort.dir === en_default["gb.d68d3ff6f7eb51d4"] ? en_default["gb.671fd067cc0e773b"] : en_default["gb.2e522d1f0da2cc7d"] : en_default["gb.e3b0c44298fc1c14"];
     };
-    var commit = function(val) {
-      if (!ed) return;
-      var { sid: sid2, cid, kind, mm } = ed;
-      var num2 = Math.max(0, Math.min(mm != null ? mm : 10, +val || 0));
-      var today = todayISO();
-      onUpdate(function(d) {
-        return { ...d, students: d.students.map(function(s) {
-          if (s.id !== sid2) return s;
-          if (kind === en_default["gb.aafe609f4f899a24"]) return { ...s, behaviour: num2 };
-          if (kind === en_default["gb.3ea38fc3209511ad"]) return { ...s, participation: num2 };
-          var hist = (s.markHistory || {})[cid] || [];
-          return { ...s, marks: { ...s.marks || {}, [cid]: num2 }, markHistory: { ...s.markHistory || {}, [cid]: [...hist, { date: today, value: num2 }] } };
-        }) };
-      });
-      sEd(null);
-    };
+    var commit = createBonusMarkCommit(function(onUpdate2) {
+      return function(val) {
+        if (!ed) return;
+        var { sid: sid2, cid, kind, mm } = ed;
+        var num2 = Math.max(0, Math.min(mm != null ? mm : 10, +val || 0));
+        var today = todayISO();
+        onUpdate2(function(d) {
+          return { ...d, students: d.students.map(function(s) {
+            if (s.id !== sid2) return s;
+            if (kind === en_default["gb.aafe609f4f899a24"]) return { ...s, behaviour: num2 };
+            if (kind === en_default["gb.3ea38fc3209511ad"]) return { ...s, participation: num2 };
+            var hist = (s.markHistory || {})[cid] || [];
+            return { ...s, marks: { ...s.marks || {}, [cid]: num2 }, markHistory: { ...s.markHistory || {}, [cid]: [...hist, { date: today, value: num2 }] } };
+          }) };
+        });
+        sEd(null);
+      };
+    }, onUpdate, () => ed, (cid) => findCol(sections, cid), () => toast(uxText("marks.bonusEntryInvalid")));
     var rH = 28, fs = 12;
     var [FREEZE, sFREEZE] = useState({ col0: 0, col1: 32, col2: 72 });
     var fz0Ref = useRef(null), fz1Ref = useRef(null);
@@ -43908,7 +43946,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
               return;
             }
             sEd({ sid: s.id, cid: col.id, kind: col.kind, mm: col.maxMark != null ? col.maxMark : 10 });
-          })), "data-cp-action": "gb.06-mv.28841", "data-cp-context": JSON.stringify([s.id, col.id]) }, !vis ? /* @__PURE__ */ cpJsx(HC, { _cpOrigin: "06-mv.jsx:30439" }) : isEd ? /* @__PURE__ */ cpJsx("input", { autoFocus: true, type: en_default["gb.12886f9d00055adf"], min: 0, max: col.maxMark != null ? col.maxMark : 10, step: 1, defaultValue: val, onBlur: bindAction("gb.06-mv.30450", JSON.stringify([s.id, col.id]), "onBlur", (function(e) {
+          })), "data-cp-action": "gb.06-mv.28841", "data-cp-context": JSON.stringify([s.id, col.id]) }, !vis ? /* @__PURE__ */ cpJsx(HC, { _cpOrigin: "06-mv.jsx:30439" }) : isEd ? /* @__PURE__ */ cpJsx("input", { inputMode: bonusOn ? "decimal" : void 0, title: bonusOn ? uxText("marks.bonusEntryHint") : void 0, autoFocus: true, type: bonusOn ? "text" : "number", min: 0, max: col.maxMark != null ? col.maxMark : 10, step: 1, defaultValue: val, onBlur: bindAction("gb.06-mv.30450", JSON.stringify([s.id, col.id]), "onBlur", (function(e) {
             commit(e.target.value);
           })), onKeyDown: bindAction("gb.06-mv.30450", JSON.stringify([s.id, col.id]), "onKeyDown", (function(e) {
             if (e.key === en_default["gb.dc8659db6d416dc3"] || e.key === en_default["gb.90ddf1963abb36c9"]) {
@@ -49018,8 +49056,8 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "noise.unsupported": ["Microphone analysis is unavailable in this browser or launch mode.", "\u062A\u062D\u0644\u064A\u0644 \u0627\u0644\u0645\u064A\u0643\u0631\u0648\u0641\u0648\u0646 \u063A\u064A\u0631 \u0645\u062A\u0627\u062D \u0641\u064A \u0647\u0630\u0627 \u0627\u0644\u0645\u062A\u0635\u0641\u062D \u0623\u0648 \u0648\u0636\u0639 \u0627\u0644\u062A\u0634\u063A\u064A\u0644."],
     "noise.hidden": ["Microphone stopped because this view was hidden. Start it again when ready.", "\u062A\u0648\u0642\u0641 \u0627\u0644\u0645\u064A\u0643\u0631\u0648\u0641\u0648\u0646 \u0644\u0623\u0646 \u0647\u0630\u0627 \u0627\u0644\u0639\u0631\u0636 \u0623\u064F\u062E\u0641\u064A. \u0634\u063A\u0651\u0644\u0647 \u0645\u062C\u062F\u062F\u064B\u0627 \u0639\u0646\u062F\u0645\u0627 \u062A\u0643\u0648\u0646 \u0645\u0633\u062A\u0639\u062F\u064B\u0627."]
   };
-  var m4En = Object.fromEntries(Object.entries(copy4).map(([key4, pair]) => [key4, pair[0]]));
-  var m4Ar = Object.fromEntries(Object.entries(copy4).map(([key4, pair]) => [key4, pair[1]]));
+  var m4En = Object.fromEntries(Object.entries(copy4).map(([key4, pair2]) => [key4, pair2[0]]));
+  var m4Ar = Object.fromEntries(Object.entries(copy4).map(([key4, pair2]) => [key4, pair2[1]]));
 
   // src/modules/m4-manifests.js
   var clicks3 = {
@@ -50139,8 +50177,8 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
   }
   function ownerAssignments(periods, mapping) {
     const cells = [];
-    for (const [day, lessons] of Object.entries(OWNER_WEEK)) for (const [number, name] of Object.entries(lessons)) {
-      const group = +day === 5 ? "friday" : "weekdays", offset = +day === 5 ? starterTimes.weekdays.length : 0, index = starterTimes[group].findIndex((row2) => row2[0] === +number), period = periods[offset + index];
+    for (const [day, lessons] of Object.entries(OWNER_WEEK)) for (const [number2, name] of Object.entries(lessons)) {
+      const group = +day === 5 ? "friday" : "weekdays", offset = +day === 5 ? starterTimes.weekdays.length : 0, index = starterTimes[group].findIndex((row2) => row2[0] === +number2), period = periods[offset + index];
       if (!period || !mapping[name]) throw Error("Invalid teaching week mapping");
       cells.push({ id: crypto.randomUUID(), weekday: +day, periodId: period.id, classId: mapping[name], subject: "", room: "", note: "" });
     }
@@ -50491,7 +50529,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     }
     rows.push([t2("analytics.r"), data.r ?? ""], [t2("analytics.slope"), data.regression?.slope ?? ""], [t2("analytics.intercept"), data.regression?.intercept ?? ""], [t2("analytics.r2"), data.regression?.r2 ?? ""]);
     if (data.r === null) rows.push([t2("analytics.undefined")]);
-    rows.push([], [t2("reports.name"), t2("reports.id"), t2("analytics.x"), t2("analytics.y")], ...data.pairs.map((pair) => [pair.name, pair.studentId, pair.x, pair.y]));
+    rows.push([], [t2("reports.name"), t2("reports.id"), t2("analytics.x"), t2("analytics.y")], ...data.pairs.map((pair2) => [pair2.name, pair2.studentId, pair2.x, pair2.y]));
     return rows;
   }
 
@@ -51956,7 +51994,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     }), [selection, setSelection] = useState(null), [printing, setPrinting] = useState(false), [editorDay, setEditorDay] = useState("all"), [starter, setStarter] = useState(null), [notice, setNotice] = useState(false), [editing, setEditing] = useState(false), [quick, setQuick] = useState(null), [brush, setBrush] = useState(null), [preset, setPreset] = useState(false);
     const conflicts = periodConflicts(profile2.periods || [], profile2.calendar.schoolDays), ids = new Set(conflicts.flat()), weekday = editorDay === "all" ? null : +editorDay;
     const periods = (profile2.periods || []).filter((period) => weekday === null || periodApplies(period, weekday)), nextTimes = nextPeriodTimes(profile2, weekday);
-    const numbers = periods.filter((period) => !period.break).map((period) => Number(period.label.match(/\d+\s*$/)?.[0] || 0)), number = Math.max(0, ...numbers) + 1;
+    const numbers = periods.filter((period) => !period.break).map((period) => Number(period.label.match(/\d+\s*$/)?.[0] || 0)), number2 = Math.max(0, ...numbers) + 1;
     const grid = /* @__PURE__ */ cpJsx(ScheduleGrid, { profile: profile2, date: date5, printing, onOpenClass, onEdit: setSelection, editing, onQuick: setQuick, brush: editing ? brush : null });
     function previewStarter() {
       setNotice(false);
@@ -51973,7 +52011,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       setSelection(null);
       setEditorDay("all");
       setNotice(true);
-    } }), preset && /* @__PURE__ */ cpJsx(WeekPreset, { profile: profile2, onClose: () => setPreset(false) }), notice && /* @__PURE__ */ cpJsx("p", { role: "status" }, t("tt.starterApplied")), conflicts.length > 0 && /* @__PURE__ */ cpJsx("p", { role: "alert", style: { color: "#b91c1c" } }, t("tt.overlap")), /* @__PURE__ */ cpJsx(ClassTidy, { profile: profile2 }), tab === "year" ? /* @__PURE__ */ cpJsx(SchoolYear, { profile: profile2, today: date5, doc, onUpdate }) : tab === "week" ? /* @__PURE__ */ cpJsx("div", { style: { ...panel, overflow: "auto" } }, grid) : /* @__PURE__ */ cpJsx("div", { style: panel }, !isSchoolDay(date5, profile2.calendar) ? /* @__PURE__ */ cpJsx("p", null, t("tt.dayOff")) : lessonsOn(profile2, date5).map(({ period, cell: cell2 }) => /* @__PURE__ */ cpJsx("div", { key: period.id, style: { ...row, padding: 10, borderBlockEnd: "1px solid var(--n-200)" } }, /* @__PURE__ */ cpJsx("strong", null, cpRaw(period.label)), /* @__PURE__ */ cpJsx("bdi", { dir: "ltr" }, period.start, "\u2013", period.end), period.break && /* @__PURE__ */ cpJsx("span", null, t("tt.break")), cell2?.classId && /* @__PURE__ */ cpJsx(ToolButton, { id: "tt.open", context: "today:" + period.id, onClick: () => onOpenClass(cell2.classId) }, cpRaw(cellLabel(profile2, cell2))), /* @__PURE__ */ cpJsx("span", null, cpRaw([cell2?.subject, cell2?.room, cell2?.note].filter(Boolean).join(" \xB7 ")))))), quick && editing && tab === "week" && /* @__PURE__ */ cpJsx(QuickCell, { profile: profile2, quick, onClose: () => setQuick(null), onEdit: setSelection, onOpenClass }), selection && /* @__PURE__ */ cpJsx(CellEditor, { key: selection.weekday + ":" + selection.periodId, profile: profile2, selection, onClose: () => setSelection(null) }), editing && tab === "week" && /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx("div", { className: "cp-tt-bells" }, /* @__PURE__ */ cpJsx("header", null, /* @__PURE__ */ cpJsx("h3", { id: "cp-tt-bells" }, uxText("tt.bellTitle")), /* @__PURE__ */ cpJsx("label", { className: "cp-tt-showfor" }, t("tt.editDay"), /* @__PURE__ */ cpJsx("select", { "aria-label": t("tt.editDay"), value: editorDay, ...controlProps("m4.tt.editorDay", (e) => setEditorDay(e.target.value)), style: field }, /* @__PURE__ */ cpJsx("option", { value: "all" }, t("tt.allPeriods")), [0, 1, 2, 3, 4, 5, 6].map((day) => /* @__PURE__ */ cpJsx("option", { key: day, value: day }, t("calendar.day" + day)))))), /* @__PURE__ */ cpJsx("p", { className: "cp-tt-hint" }, uxText("tt.bellHint")), /* @__PURE__ */ cpJsx("div", { className: "cp-tt-bell cp-tt-bell-head", "aria-hidden": "true" }, /* @__PURE__ */ cpJsx("span", null), /* @__PURE__ */ cpJsx("span", null, t("tt.label")), /* @__PURE__ */ cpJsx("span", null, t("tt.start")), /* @__PURE__ */ cpJsx("span", null, t("tt.end")), /* @__PURE__ */ cpJsx("span", null, t("tt.break")), /* @__PURE__ */ cpJsx("span", null, t("tt.applies")), /* @__PURE__ */ cpJsx("span", null)), periods.map((period) => /* @__PURE__ */ cpJsx(PeriodRow, { key: period.id + JSON.stringify(period), period, conflict: ids.has(period.id), schoolDays: profile2.calendar.schoolDays, list: profile2.periods || [], visible: periods.map((item) => item.id) })), /* @__PURE__ */ cpJsx(ToolButton, { id: "tt.addPeriod", disabled: !nextTimes, onClick: () => updateProfile((p) => addPeriod(p, t("tt.period") + " " + number, weekday)) }, t("tt.addPeriod")), !nextTimes && /* @__PURE__ */ cpJsx("p", { role: "status" }, t("tt.endOfDay"))), /* @__PURE__ */ cpJsx(TimetableTools, { key: editorDay, profile: profile2, periods, day: weekday, date: date5 }, /* @__PURE__ */ cpJsx("section", null, /* @__PURE__ */ cpJsx("h4", null, t("tt.schoolDays")), /* @__PURE__ */ cpJsx("div", { className: "cp-tt-schooldays" }, [0, 1, 2, 3, 4, 5, 6].map((day) => /* @__PURE__ */ cpJsx("label", { key: day }, /* @__PURE__ */ cpJsx("input", { type: "checkbox", checked: profile2.calendar.schoolDays.includes(day), ...controlProps("m4.tt.schoolDay", (e) => updateProfile((p) => ({ ...p, calendar: { ...p.calendar, schoolDays: e.target.checked ? [...p.calendar.schoolDays, day].sort((a, b) => a - b) : p.calendar.schoolDays.filter((d) => d !== day) } })), String(day)) }), t("calendar.day" + day))))))), printing && ReactDOM.createPortal(/* @__PURE__ */ cpJsx("div", { className: "cp-timetable-print", role: "dialog", "aria-label": t("tt.print"), dir: doc.settings.dir || "ltr", style: { position: "fixed", inset: 0, zIndex: 400, background: "#fff", padding: 24, overflow: "auto" } }, /* @__PURE__ */ cpJsx("style", null, "@media print {html,body{height:auto!important;min-height:0!important;background:#fff!important}body>*:not(.cp-timetable-print){display:none!important}.cp-timetable-print{position:static!important;overflow:visible!important;padding:0!important}.cp-no-print{display:none!important}@page{size:landscape;margin:12mm}}"), /* @__PURE__ */ cpJsx("div", { className: "cp-no-print", style: row }, /* @__PURE__ */ cpJsx(ToolButton, { id: "tt.printNow", onClick: () => window.print() }, t("tt.printNow")), /* @__PURE__ */ cpJsx(ToolButton, { id: "tt.closePrint", onClick: () => setPrinting(false) }, t("tt.closePrint"))), /* @__PURE__ */ cpJsx("h1", { style: { fontSize: "var(--cp-fs-section)", lineHeight: 1.35, margin: "0 0 8px" } }, t("tt.week")), /* @__PURE__ */ cpJsx("p", { style: { fontSize: "var(--cp-fs-body)", lineHeight: 1.35, margin: "0 0 10px" } }, cpRaw(Object.values(profile2.reportHeader).filter(Boolean).join(" \xB7 "))), grid), document.body));
+    } }), preset && /* @__PURE__ */ cpJsx(WeekPreset, { profile: profile2, onClose: () => setPreset(false) }), notice && /* @__PURE__ */ cpJsx("p", { role: "status" }, t("tt.starterApplied")), conflicts.length > 0 && /* @__PURE__ */ cpJsx("p", { role: "alert", style: { color: "#b91c1c" } }, t("tt.overlap")), /* @__PURE__ */ cpJsx(ClassTidy, { profile: profile2 }), tab === "year" ? /* @__PURE__ */ cpJsx(SchoolYear, { profile: profile2, today: date5, doc, onUpdate }) : tab === "week" ? /* @__PURE__ */ cpJsx("div", { style: { ...panel, overflow: "auto" } }, grid) : /* @__PURE__ */ cpJsx("div", { style: panel }, !isSchoolDay(date5, profile2.calendar) ? /* @__PURE__ */ cpJsx("p", null, t("tt.dayOff")) : lessonsOn(profile2, date5).map(({ period, cell: cell2 }) => /* @__PURE__ */ cpJsx("div", { key: period.id, style: { ...row, padding: 10, borderBlockEnd: "1px solid var(--n-200)" } }, /* @__PURE__ */ cpJsx("strong", null, cpRaw(period.label)), /* @__PURE__ */ cpJsx("bdi", { dir: "ltr" }, period.start, "\u2013", period.end), period.break && /* @__PURE__ */ cpJsx("span", null, t("tt.break")), cell2?.classId && /* @__PURE__ */ cpJsx(ToolButton, { id: "tt.open", context: "today:" + period.id, onClick: () => onOpenClass(cell2.classId) }, cpRaw(cellLabel(profile2, cell2))), /* @__PURE__ */ cpJsx("span", null, cpRaw([cell2?.subject, cell2?.room, cell2?.note].filter(Boolean).join(" \xB7 ")))))), quick && editing && tab === "week" && /* @__PURE__ */ cpJsx(QuickCell, { profile: profile2, quick, onClose: () => setQuick(null), onEdit: setSelection, onOpenClass }), selection && /* @__PURE__ */ cpJsx(CellEditor, { key: selection.weekday + ":" + selection.periodId, profile: profile2, selection, onClose: () => setSelection(null) }), editing && tab === "week" && /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx("div", { className: "cp-tt-bells" }, /* @__PURE__ */ cpJsx("header", null, /* @__PURE__ */ cpJsx("h3", { id: "cp-tt-bells" }, uxText("tt.bellTitle")), /* @__PURE__ */ cpJsx("label", { className: "cp-tt-showfor" }, t("tt.editDay"), /* @__PURE__ */ cpJsx("select", { "aria-label": t("tt.editDay"), value: editorDay, ...controlProps("m4.tt.editorDay", (e) => setEditorDay(e.target.value)), style: field }, /* @__PURE__ */ cpJsx("option", { value: "all" }, t("tt.allPeriods")), [0, 1, 2, 3, 4, 5, 6].map((day) => /* @__PURE__ */ cpJsx("option", { key: day, value: day }, t("calendar.day" + day)))))), /* @__PURE__ */ cpJsx("p", { className: "cp-tt-hint" }, uxText("tt.bellHint")), /* @__PURE__ */ cpJsx("div", { className: "cp-tt-bell cp-tt-bell-head", "aria-hidden": "true" }, /* @__PURE__ */ cpJsx("span", null), /* @__PURE__ */ cpJsx("span", null, t("tt.label")), /* @__PURE__ */ cpJsx("span", null, t("tt.start")), /* @__PURE__ */ cpJsx("span", null, t("tt.end")), /* @__PURE__ */ cpJsx("span", null, t("tt.break")), /* @__PURE__ */ cpJsx("span", null, t("tt.applies")), /* @__PURE__ */ cpJsx("span", null)), periods.map((period) => /* @__PURE__ */ cpJsx(PeriodRow, { key: period.id + JSON.stringify(period), period, conflict: ids.has(period.id), schoolDays: profile2.calendar.schoolDays, list: profile2.periods || [], visible: periods.map((item) => item.id) })), /* @__PURE__ */ cpJsx(ToolButton, { id: "tt.addPeriod", disabled: !nextTimes, onClick: () => updateProfile((p) => addPeriod(p, t("tt.period") + " " + number2, weekday)) }, t("tt.addPeriod")), !nextTimes && /* @__PURE__ */ cpJsx("p", { role: "status" }, t("tt.endOfDay"))), /* @__PURE__ */ cpJsx(TimetableTools, { key: editorDay, profile: profile2, periods, day: weekday, date: date5 }, /* @__PURE__ */ cpJsx("section", null, /* @__PURE__ */ cpJsx("h4", null, t("tt.schoolDays")), /* @__PURE__ */ cpJsx("div", { className: "cp-tt-schooldays" }, [0, 1, 2, 3, 4, 5, 6].map((day) => /* @__PURE__ */ cpJsx("label", { key: day }, /* @__PURE__ */ cpJsx("input", { type: "checkbox", checked: profile2.calendar.schoolDays.includes(day), ...controlProps("m4.tt.schoolDay", (e) => updateProfile((p) => ({ ...p, calendar: { ...p.calendar, schoolDays: e.target.checked ? [...p.calendar.schoolDays, day].sort((a, b) => a - b) : p.calendar.schoolDays.filter((d) => d !== day) } })), String(day)) }), t("calendar.day" + day))))))), printing && ReactDOM.createPortal(/* @__PURE__ */ cpJsx("div", { className: "cp-timetable-print", role: "dialog", "aria-label": t("tt.print"), dir: doc.settings.dir || "ltr", style: { position: "fixed", inset: 0, zIndex: 400, background: "#fff", padding: 24, overflow: "auto" } }, /* @__PURE__ */ cpJsx("style", null, "@media print {html,body{height:auto!important;min-height:0!important;background:#fff!important}body>*:not(.cp-timetable-print){display:none!important}.cp-timetable-print{position:static!important;overflow:visible!important;padding:0!important}.cp-no-print{display:none!important}@page{size:landscape;margin:12mm}}"), /* @__PURE__ */ cpJsx("div", { className: "cp-no-print", style: row }, /* @__PURE__ */ cpJsx(ToolButton, { id: "tt.printNow", onClick: () => window.print() }, t("tt.printNow")), /* @__PURE__ */ cpJsx(ToolButton, { id: "tt.closePrint", onClick: () => setPrinting(false) }, t("tt.closePrint"))), /* @__PURE__ */ cpJsx("h1", { style: { fontSize: "var(--cp-fs-section)", lineHeight: 1.35, margin: "0 0 8px" } }, t("tt.week")), /* @__PURE__ */ cpJsx("p", { style: { fontSize: "var(--cp-fs-body)", lineHeight: 1.35, margin: "0 0 10px" } }, cpRaw(Object.values(profile2.reportHeader).filter(Boolean).join(" \xB7 "))), grid), document.body));
   }
   var timetable_default = m4Manifest("timetable", { defaults: { periods: [], timetable: [] }, migrate: (value = {}) => ({ ...value, periods: value.periods || [], timetable: value.timetable || [] }) }, TimetableView);
 
@@ -53601,8 +53639,8 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
   }
   function AttendanceScatter({ data }) {
     const low = Math.min(0, ...data.pairs.map((p) => p.y)), high = Math.max(100, ...data.pairs.map((p) => p.y)), sy = (value) => H - P - (value - low) / (high - low) * (H - 2 * P), fit = data.regression;
-    const xs = data.pairs.map((pair) => pair.x), left = Math.min(...xs), right = Math.max(...xs);
-    return /* @__PURE__ */ cpJsx("svg", { viewBox: "0 0 " + W + " " + H, role: "img", "aria-label": t("analytics.scatter"), style: { width: "100%", maxWidth: 900, direction: "ltr" } }, /* @__PURE__ */ cpJsx("title", null, t("analytics.scatter")), /* @__PURE__ */ cpJsx("defs", null, /* @__PURE__ */ cpJsx("clipPath", { id: "cp-m6-regression" }, /* @__PURE__ */ cpJsx("rect", { x: P, y: P, width: W - 2 * P, height: H - 2 * P }))), [0, 25, 50, 75, 100].map((value) => /* @__PURE__ */ cpJsx("g", { key: value }, /* @__PURE__ */ cpJsx("line", { x1: x(value), x2: x(value), y1: P, y2: H - P, stroke: "#e2e8f0" }), /* @__PURE__ */ cpJsx("text", { x: x(value), y: H - P + 18, textAnchor: "middle", fontSize: "11" }, value), /* @__PURE__ */ cpJsx("line", { x1: P, x2: W - P, y1: sy(low + (high - low) * value / 100), y2: sy(low + (high - low) * value / 100), stroke: "#e2e8f0" }), /* @__PURE__ */ cpJsx("text", { x: P - 8, y: sy(low + (high - low) * value / 100) + 4, textAnchor: "end", fontSize: "11" }, Math.round((low + (high - low) * value / 100) * 100) / 100))), /* @__PURE__ */ cpJsx("g", { clipPath: "url(#cp-m6-regression)" }, fit && /* @__PURE__ */ cpJsx("line", { x1: x(left), y1: sy(fit.intercept + fit.slope * left), x2: x(right), y2: sy(fit.intercept + fit.slope * right), stroke: "#64748b", strokeWidth: "2" })), data.pairs.map((pair) => /* @__PURE__ */ cpJsx("g", { key: pair.id }, /* @__PURE__ */ cpJsx("circle", { cx: x(pair.x), cy: sy(pair.y), r: "4", fill: "#2563eb", fillOpacity: "0.7" }), /* @__PURE__ */ cpJsx("title", null, cpRaw(pair.name + " \xB7 " + pair.x.toFixed(2) + "% \xB7 " + pair.y)))), /* @__PURE__ */ cpJsx("text", { x: W / 2, y: H - 6, textAnchor: "middle", fontSize: "11" }, t("analytics.x")), /* @__PURE__ */ cpJsx("text", { x: P, y: "16", fontSize: "11" }, t("analytics.y")));
+    const xs = data.pairs.map((pair2) => pair2.x), left = Math.min(...xs), right = Math.max(...xs);
+    return /* @__PURE__ */ cpJsx("svg", { viewBox: "0 0 " + W + " " + H, role: "img", "aria-label": t("analytics.scatter"), style: { width: "100%", maxWidth: 900, direction: "ltr" } }, /* @__PURE__ */ cpJsx("title", null, t("analytics.scatter")), /* @__PURE__ */ cpJsx("defs", null, /* @__PURE__ */ cpJsx("clipPath", { id: "cp-m6-regression" }, /* @__PURE__ */ cpJsx("rect", { x: P, y: P, width: W - 2 * P, height: H - 2 * P }))), [0, 25, 50, 75, 100].map((value) => /* @__PURE__ */ cpJsx("g", { key: value }, /* @__PURE__ */ cpJsx("line", { x1: x(value), x2: x(value), y1: P, y2: H - P, stroke: "#e2e8f0" }), /* @__PURE__ */ cpJsx("text", { x: x(value), y: H - P + 18, textAnchor: "middle", fontSize: "11" }, value), /* @__PURE__ */ cpJsx("line", { x1: P, x2: W - P, y1: sy(low + (high - low) * value / 100), y2: sy(low + (high - low) * value / 100), stroke: "#e2e8f0" }), /* @__PURE__ */ cpJsx("text", { x: P - 8, y: sy(low + (high - low) * value / 100) + 4, textAnchor: "end", fontSize: "11" }, Math.round((low + (high - low) * value / 100) * 100) / 100))), /* @__PURE__ */ cpJsx("g", { clipPath: "url(#cp-m6-regression)" }, fit && /* @__PURE__ */ cpJsx("line", { x1: x(left), y1: sy(fit.intercept + fit.slope * left), x2: x(right), y2: sy(fit.intercept + fit.slope * right), stroke: "#64748b", strokeWidth: "2" })), data.pairs.map((pair2) => /* @__PURE__ */ cpJsx("g", { key: pair2.id }, /* @__PURE__ */ cpJsx("circle", { cx: x(pair2.x), cy: sy(pair2.y), r: "4", fill: "#2563eb", fillOpacity: "0.7" }), /* @__PURE__ */ cpJsx("title", null, cpRaw(pair2.name + " \xB7 " + pair2.x.toFixed(2) + "% \xB7 " + pair2.y)))), /* @__PURE__ */ cpJsx("text", { x: W / 2, y: H - 6, textAnchor: "middle", fontSize: "11" }, t("analytics.x")), /* @__PURE__ */ cpJsx("text", { x: P, y: "16", fontSize: "11" }, t("analytics.y")));
   }
 
   // src/modules/analytics/index.jsx
@@ -53623,7 +53661,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     const termLabel = terms.find((term) => term.id === options.termId)?.label || "";
     const toolbar = /* @__PURE__ */ cpJsx("div", { className: "cp-card cp-tpl-bar" }, /* @__PURE__ */ cpJsx(ScopeChip, { label: ux2("analytics.dates"), value: displayDates(options.from, options.through), context: "dates" }, /* @__PURE__ */ cpJsx(Field, { action: "m6.analytics.from", label: "reports.from", type: "date", value: options.from, max: options.through, onChange: (e) => change2("from", e.target.value) }), /* @__PURE__ */ cpJsx(Field, { action: "m6.analytics.through", label: "reports.through", type: "date", value: options.through, min: options.from, onChange: (e) => change2("through", e.target.value) })), /* @__PURE__ */ cpJsx(ScopeChip, { label: ux2("analytics.grades"), value: termLabel + (options.raw ? " \xB7 " + t("reports.raw") : ""), context: "grades" }, /* @__PURE__ */ cpJsx(Field, { action: "m6.analytics.termId", label: "reports.termChoice", as: "select", value: options.termId, onChange: (e) => change2("termId", e.target.value) }, terms.map((term) => /* @__PURE__ */ cpJsx("option", { key: term.id, value: term.id }, cpRaw(term.label)))), /* @__PURE__ */ cpJsx(Check, { action: "m6.analytics.raw", label: "reports.raw", checked: options.raw, onChange: (e) => change2("raw", e.target.checked) })), saved && /* @__PURE__ */ cpJsx(SaveStatus, { state: "saved" }));
     const columns = ["date", "present", "absent", "late", "excused", "unmarked", "percent"];
-    const preview = problem ? /* @__PURE__ */ cpJsx("p", { role: "alert" }, t(problem)) : /* @__PURE__ */ cpJsx("div", { className: "cp-tpl-stack" }, /* @__PURE__ */ cpJsx("section", { className: "cp-card", style: { padding: "var(--cp-sp-4)" } }, /* @__PURE__ */ cpJsx("h2", null, t("analytics.trend")), data.trend.length ? /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx(AttendanceTrend, { data: data.trend }), /* @__PURE__ */ cpJsx("div", { style: { overflow: "auto" } }, /* @__PURE__ */ cpJsx("table", { className: "cp-kit-table" }, /* @__PURE__ */ cpJsx("caption", null, t("analytics.table")), /* @__PURE__ */ cpJsx("thead", null, /* @__PURE__ */ cpJsx("tr", null, columns.map((key4) => /* @__PURE__ */ cpJsx("th", { key: key4 }, t("reports." + key4))))), /* @__PURE__ */ cpJsx("tbody", null, data.trend.map((point) => /* @__PURE__ */ cpJsx("tr", { key: point.date }, columns.map((key4) => /* @__PURE__ */ cpJsx("td", { key: key4 }, point[key4] === null ? t("reports.notRecorded") : cpRaw(key4 === "percent" ? point[key4].toFixed(2) : String(point[key4])))))))))) : /* @__PURE__ */ cpJsx("p", null, t("analytics.noDates"))), /* @__PURE__ */ cpJsx("section", { className: "cp-card", style: { padding: "var(--cp-sp-4)" } }, /* @__PURE__ */ cpJsx("h2", null, t("analytics.scatter")), /* @__PURE__ */ cpJsx("p", null, /* @__PURE__ */ cpJsx("b", null, t("analytics.cause"))), /* @__PURE__ */ cpJsx("p", null, t("analytics.pairs"), ": ", /* @__PURE__ */ cpJsx("span", { "data-m6-pairs": true }, data.n)), data.eligible ? /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx(AttendanceScatter, { data }), /* @__PURE__ */ cpJsx("p", null, t("analytics.legend")), /* @__PURE__ */ cpJsx("p", { className: "cp-kit-stats" }, [["analytics.r", data.r], ["analytics.slope", data.regression?.slope], ["analytics.intercept", data.regression?.intercept], ["analytics.r2", data.regression?.r2]].map(([label, value]) => /* @__PURE__ */ cpJsx("span", { key: label }, t(label), ": ", value == null ? t("reports.notRecorded") : cpRaw(value.toFixed(4))))), data.r === null && /* @__PURE__ */ cpJsx("p", { role: "status" }, t("analytics.undefined")), /* @__PURE__ */ cpJsx("div", { style: { overflow: "auto" } }, /* @__PURE__ */ cpJsx("table", { className: "cp-kit-table" }, /* @__PURE__ */ cpJsx("thead", null, /* @__PURE__ */ cpJsx("tr", null, /* @__PURE__ */ cpJsx("th", null, t("reports.name")), /* @__PURE__ */ cpJsx("th", null, t("analytics.x")), /* @__PURE__ */ cpJsx("th", null, t("analytics.y")))), /* @__PURE__ */ cpJsx("tbody", null, data.pairs.map((pair) => /* @__PURE__ */ cpJsx("tr", { key: pair.id }, /* @__PURE__ */ cpJsx("td", null, /* @__PURE__ */ cpJsx("bdi", null, cpRaw(pair.name))), /* @__PURE__ */ cpJsx("td", null, cpRaw(pair.x.toFixed(2))), /* @__PURE__ */ cpJsx("td", null, pair.y))))))) : /* @__PURE__ */ cpJsx("p", { role: "status" }, t("analytics.minimum"))));
+    const preview = problem ? /* @__PURE__ */ cpJsx("p", { role: "alert" }, t(problem)) : /* @__PURE__ */ cpJsx("div", { className: "cp-tpl-stack" }, /* @__PURE__ */ cpJsx("section", { className: "cp-card", style: { padding: "var(--cp-sp-4)" } }, /* @__PURE__ */ cpJsx("h2", null, t("analytics.trend")), data.trend.length ? /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx(AttendanceTrend, { data: data.trend }), /* @__PURE__ */ cpJsx("div", { style: { overflow: "auto" } }, /* @__PURE__ */ cpJsx("table", { className: "cp-kit-table" }, /* @__PURE__ */ cpJsx("caption", null, t("analytics.table")), /* @__PURE__ */ cpJsx("thead", null, /* @__PURE__ */ cpJsx("tr", null, columns.map((key4) => /* @__PURE__ */ cpJsx("th", { key: key4 }, t("reports." + key4))))), /* @__PURE__ */ cpJsx("tbody", null, data.trend.map((point) => /* @__PURE__ */ cpJsx("tr", { key: point.date }, columns.map((key4) => /* @__PURE__ */ cpJsx("td", { key: key4 }, point[key4] === null ? t("reports.notRecorded") : cpRaw(key4 === "percent" ? point[key4].toFixed(2) : String(point[key4])))))))))) : /* @__PURE__ */ cpJsx("p", null, t("analytics.noDates"))), /* @__PURE__ */ cpJsx("section", { className: "cp-card", style: { padding: "var(--cp-sp-4)" } }, /* @__PURE__ */ cpJsx("h2", null, t("analytics.scatter")), /* @__PURE__ */ cpJsx("p", null, /* @__PURE__ */ cpJsx("b", null, t("analytics.cause"))), /* @__PURE__ */ cpJsx("p", null, t("analytics.pairs"), ": ", /* @__PURE__ */ cpJsx("span", { "data-m6-pairs": true }, data.n)), data.eligible ? /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx(AttendanceScatter, { data }), /* @__PURE__ */ cpJsx("p", null, t("analytics.legend")), /* @__PURE__ */ cpJsx("p", { className: "cp-kit-stats" }, [["analytics.r", data.r], ["analytics.slope", data.regression?.slope], ["analytics.intercept", data.regression?.intercept], ["analytics.r2", data.regression?.r2]].map(([label, value]) => /* @__PURE__ */ cpJsx("span", { key: label }, t(label), ": ", value == null ? t("reports.notRecorded") : cpRaw(value.toFixed(4))))), data.r === null && /* @__PURE__ */ cpJsx("p", { role: "status" }, t("analytics.undefined")), /* @__PURE__ */ cpJsx("div", { style: { overflow: "auto" } }, /* @__PURE__ */ cpJsx("table", { className: "cp-kit-table" }, /* @__PURE__ */ cpJsx("thead", null, /* @__PURE__ */ cpJsx("tr", null, /* @__PURE__ */ cpJsx("th", null, t("reports.name")), /* @__PURE__ */ cpJsx("th", null, t("analytics.x")), /* @__PURE__ */ cpJsx("th", null, t("analytics.y")))), /* @__PURE__ */ cpJsx("tbody", null, data.pairs.map((pair2) => /* @__PURE__ */ cpJsx("tr", { key: pair2.id }, /* @__PURE__ */ cpJsx("td", null, /* @__PURE__ */ cpJsx("bdi", null, cpRaw(pair2.name))), /* @__PURE__ */ cpJsx("td", null, cpRaw(pair2.x.toFixed(2))), /* @__PURE__ */ cpJsx("td", null, pair2.y))))))) : /* @__PURE__ */ cpJsx("p", { role: "status" }, t("analytics.minimum"))));
     return /* @__PURE__ */ cpJsx(PageTemplate, { kind: "C", titleKey: "shell.analytics", icon: "analytics", lead: "ux.lead.analytics", info: /* @__PURE__ */ cpJsx(React.Fragment, null, t("analytics.original"), " ", ux2("analytics.autosave"), " ", t("analytics.hint"), " ", t("reports.sourceHint")), toolbar, preview });
   }
   var analytics_default = m6Manifest("analytics", AnalyticsView);
@@ -55838,11 +55876,11 @@ Reply with JSON only, exactly in the shape of "response_schema", one report per 
       sArchO(false);
       toast(en_default["gb.ee2743be5742770c"] + n + en_default["gb.036966db362d47dd"] + (n + 1));
     };
-    var onBackfill = function(number, label, yearW, compW, rows) {
+    var onBackfill = function(number2, label, yearW, compW, rows) {
       sDoc(function(d) {
-        var syn = buildSyntheticTerm(d, number, label, yearW, compW, rows);
+        var syn = buildSyntheticTerm(d, number2, label, yearW, compW, rows);
         var existing = (d.archivedTerms || []).filter(function(t2) {
-          return t2.number !== number;
+          return t2.number !== number2;
         });
         var merged = [...existing, syn].sort(function(a, b) {
           return a.number - b.number;
@@ -55853,7 +55891,7 @@ Reply with JSON only, exactly in the shape of "response_schema", one report per 
         var active3 = d.settings.activeTerm;
         if (active3 == null || active3 <= maxNum) active3 = maxNum + 1;
         var nextW = { ...d.settings.yearWeights || {} };
-        if (yearW != null) nextW[number] = +yearW;
+        if (yearW != null) nextW[number2] = +yearW;
         return { ...d, archivedTerms: merged, settings: { ...d.settings, activeTerm: active3, yearWeights: nextW } };
       });
       toast(label + en_default["gb.0856666aded0d83b"]);
@@ -56110,8 +56148,8 @@ Reply with JSON only, exactly in the shape of "response_schema", one report per 
     }, onClose: () => setAdding(false) }), archive && /* @__PURE__ */ cpJsx(ArchiveModal, { doc, onConfirm: (w, ew, scores) => {
       setDoc((d) => archiveAndAdvance(d, w, ew, scores));
       setArchive(false);
-    }, onClose: () => setArchive(false) }), backfill && /* @__PURE__ */ cpJsx(BackfillModal, { doc, onBackfill: (number, label, yearWeight, componentWeight, rows) => {
-      setDoc((d) => ({ ...d, archivedTerms: [...(d.archivedTerms || []).filter((t2) => t2.number !== number), buildSyntheticTerm(d, number, label, yearWeight, componentWeight, rows)] }));
+    }, onClose: () => setArchive(false) }), backfill && /* @__PURE__ */ cpJsx(BackfillModal, { doc, onBackfill: (number2, label, yearWeight, componentWeight, rows) => {
+      setDoc((d) => ({ ...d, archivedTerms: [...(d.archivedTerms || []).filter((t2) => t2.number !== number2), buildSyntheticTerm(d, number2, label, yearWeight, componentWeight, rows)] }));
       setBackfill(false);
     }, onClose: () => setBackfill(false) }));
   }
