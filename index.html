@@ -1441,6 +1441,38 @@ td[data-cp-att],th[data-cp-att]{background:var(--cp-att-bg)!important;box-shadow
 .cp-timer-inline-hint .cp-timer-apply{all:unset;position:relative;font:inherit;color:inherit;cursor:pointer;border-radius:3px}
 .cp-timer-apply::after{content:"";position:absolute;inset:-7px -3px;min-block-size:24px}
 .cp-timer-apply:focus-visible{outline:2px solid var(--cp-gold);outline-offset:2px}
+
+/* Owner-approved Marks row guide: original cell/attendance colours and input outline remain in place. */
+
+[data-cp-sheet="marks"] tr[data-cp-active-row="true"] > td {
+ background-image:linear-gradient(color-mix(in srgb,var(--cp-gold) 10%,transparent),color-mix(in srgb,var(--cp-gold) 10%,transparent)) !important;
+ box-shadow:inset 0 1px 0 color-mix(in srgb,var(--cp-gold) 65%,transparent),inset 0 -1px 0 color-mix(in srgb,var(--cp-gold) 65%,transparent) !important;
+}
+[data-cp-sheet="marks"] tr[data-cp-active-row="true"] > td:nth-child(3):not([data-cp-att]) {
+ background-image:linear-gradient(color-mix(in srgb,var(--cp-gold) 23%,transparent),color-mix(in srgb,var(--cp-gold) 23%,transparent)) !important;
+ box-shadow:inset 0 1px 0 color-mix(in srgb,var(--cp-gold) 65%,transparent),inset 0 -1px 0 color-mix(in srgb,var(--cp-gold) 65%,transparent) !important;
+}
+[data-cp-sheet="marks"] tr[data-cp-active-row="true"] > td:nth-child(3)::after {
+ content:"";position:absolute;inset-inline-start:0;inset-block:5px;inline-size:3px;border-radius:2px;background:var(--cp-gold);pointer-events:none;
+}
+[data-cp-sheet="marks"] tr[data-cp-active-row="true"] > td[data-cp-att] {
+ box-shadow:inset 0 1px 0 color-mix(in srgb,var(--cp-gold) 65%,transparent),inset 0 -1px 0 color-mix(in srgb,var(--cp-gold) 65%,transparent),inset 3px 0 0 var(--cp-att-edge) !important;
+}
+[data-cp-sheet="marks"][dir="rtl"] tr[data-cp-active-row="true"] > td[data-cp-att] {
+ box-shadow:inset 0 1px 0 color-mix(in srgb,var(--cp-gold) 65%,transparent),inset 0 -1px 0 color-mix(in srgb,var(--cp-gold) 65%,transparent),inset -3px 0 0 var(--cp-att-edge) !important;
+}
+[data-cp-sheet="marks"] tr[data-cp-active-row="true"] > td[data-cp-att]::after {display:none;}
+
+@media print {
+ [data-cp-sheet="marks"] tr[data-cp-active-row="true"] > td {background-image:none!important;box-shadow:none!important;}
+ [data-cp-sheet="marks"] tr[data-cp-active-row="true"] > td[data-cp-att] {box-shadow:inset 3px 0 0 var(--cp-att-edge)!important;}
+ [data-cp-sheet="marks"][dir="rtl"] tr[data-cp-active-row="true"] > td[data-cp-att] {box-shadow:inset -3px 0 0 var(--cp-att-edge)!important;}
+ [data-cp-sheet="marks"] tr[data-cp-active-row="true"] > td:nth-child(3)::after {display:none;}
+}
+@media (forced-colors:active) {
+ [data-cp-sheet="marks"] tr[data-cp-active-row="true"] > td {outline:1px solid Highlight;outline-offset:-1px;}
+ [data-cp-sheet="marks"] tr[data-cp-active-row="true"] > td:nth-child(3)::after {background:Highlight;}
+}
 /* M56 design foundations (owner-supplied Master Implementation Brief, M56; design report §7–§8).
    One set of tokens for the frame and the new modules. Protected Gradebook views (Marks, Groups, Behaviour,
    Adjustments, Analysis, the original wheel, the Settings drawer and the class manager) do not use them. */
@@ -42382,6 +42414,40 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     })())));
   }
 
+  // src/core/marks-row.js
+  function useMarksRow(classId) {
+    const ref = useRef(null), [active3, setActive] = useState({ sid: null, visible: false });
+    const show = (sid) => setActive((previous) => {
+      const next = sid || previous.sid;
+      return previous.visible && previous.sid === next ? previous : { sid: next, visible: !!next };
+    });
+    const hide = () => setActive((previous) => previous.visible ? { ...previous, visible: false } : previous);
+    useLayoutEffect(() => {
+      setActive({ sid: null, visible: false });
+    }, [classId]);
+    useEffect(() => {
+      const root2 = ref.current, doc = root2?.ownerDocument;
+      if (!doc) return;
+      const outside = (event) => {
+        if (!root2.contains(event.target)) hide();
+      };
+      doc.addEventListener("mousedown", outside, true);
+      doc.addEventListener("focusin", outside, true);
+      return () => {
+        doc.removeEventListener("mousedown", outside, true);
+        doc.removeEventListener("focusin", outside, true);
+      };
+    }, []);
+    const capture = (event) => {
+      const root2 = ref.current, row2 = event.target.closest?.("[data-cp-student-row]");
+      if (event.type === "focus" && event.target === root2) return;
+      if (row2 && root2?.contains(row2)) show(row2.dataset.cpStudentRow);
+      else if (root2 && !root2.contains(event.target)) show();
+      else hide();
+    };
+    return { sid: active3.visible ? active3.sid : null, props: { ref, onMouseDownCapture: capture, onFocusCapture: capture } };
+  }
+
   // src/core/bonus-entry.js
   var number = "[+-]?(?:\\d+(?:[.,]\\d*)?|[.,]\\d+)(?:[eE][+-]?\\d+)?";
   var pair = new RegExp("^\\s*(" + number + ")\\s*\\+\\s*(" + number.replace("[+-]?", "") + ")\\s*$");
@@ -43514,7 +43580,8 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     var sStu = students.find(function(s) {
       return s.id === sSid;
     });
-    return /* @__PURE__ */ cpJsx("div", { "data-cp-sheet": "marks", dir: settings.studentsDir || settings.dir || en_default["gb.9422b24d2f1f1fc8"], style: { fontSize: fs, fontFamily: en_default["gb.035300f3afee55ae"], position: en_default["gb.d2d9e1f13413d3e0"] }, tabIndex: 0, "data-cp-scope": _cpOrigin }, focusSid && (function() {
+    var cpMarksRow = useMarksRow(doc.cp?.classId);
+    return /* @__PURE__ */ cpJsx("div", { ...cpMarksRow.props, "data-cp-sheet": "marks", dir: settings.studentsDir || settings.dir || en_default["gb.9422b24d2f1f1fc8"], style: { fontSize: fs, fontFamily: en_default["gb.035300f3afee55ae"], position: en_default["gb.d2d9e1f13413d3e0"] }, tabIndex: 0, "data-cp-scope": _cpOrigin }, focusSid && (function() {
       var stu = students.find(function(s) {
         return s.id === focusSid;
       });
@@ -43884,7 +43951,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       var isSel = function(c) {
         return sel?.sid === s.id && sel?.cid === c;
       };
-      return /* @__PURE__ */ cpJsx("tr", { key: s.id, style: { background: rb }, onContextMenu: bindAction("gb.06-mv.26424", JSON.stringify([s.id]), "onContextMenu", (function(e) {
+      return /* @__PURE__ */ cpJsx("tr", { "data-cp-student-row": s.id, "data-cp-active-row": cpMarksRow.sid === s.id ? "true" : void 0, key: s.id, style: { background: rb }, onContextMenu: bindAction("gb.06-mv.26424", JSON.stringify([s.id]), "onContextMenu", (function(e) {
         e.preventDefault();
         sCtx({ sid: s.id, x: e.clientX, y: e.clientY });
       })), "data-cp-action": "gb.06-mv.26424", "data-cp-context": JSON.stringify([s.id]) }, /* @__PURE__ */ cpJsx("td", { style: td({ textAlign: en_default["gb.f179a509d32bd92c"], color: en_default["gb.b5e2bc59ff0f8c39"], background: rb, borderRight: en_default["gb.140bedbf9c3f6d56"], ...SL(FREEZE.col0, 2) }) }, rIdx + 1), /* @__PURE__ */ cpJsx("td", { style: td({ textAlign: en_default["gb.f179a509d32bd92c"], cursor: en_default["gb.1cdf95bd12e993d5"], background: rb, borderRight: en_default["gb.140bedbf9c3f6d56"], ...SL(FREEZE.col1, 2) }), onMouseDown: function() {
