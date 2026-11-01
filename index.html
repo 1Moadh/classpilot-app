@@ -1337,7 +1337,7 @@ td[data-cp-att],th[data-cp-att]{background:var(--cp-att-bg)!important;box-shadow
 .cp-float[data-float=timer][data-max=false] [data-timer-display],.cp-float .cp-timer-edit input{font-size:46px!important;font-weight:600!important;letter-spacing:-.01em;line-height:1!important}
 .cp-module:not(.cp-float *) [data-timer-display],.cp-timer-edit input{font-size:60px!important;font-weight:600!important;letter-spacing:-.01em;line-height:1!important}
 .cp-timer-unit{font-size:14px!important;font-weight:500;margin-block-start:4px}
-.cp-timer-hint{font-size:11.5px!important;margin-block-start:8px}
+.cp-timer-hint{font-size:11px!important;margin-block-start:8px}
 .cp-timer-time:disabled{opacity:1!important;cursor:default!important}
 .cp-timer-face{gap:10px!important}
 .cp-timer-controls{gap:10px!important}
@@ -1538,6 +1538,101 @@ td[data-cp-att],th[data-cp-att]{background:var(--cp-att-bg)!important;box-shadow
 .cp-ws-grid input[type=file]::file-selector-button{font:600 var(--cp-fs-ui) var(--cp-font);height:32px;padding:0 14px;margin-inline-end:10px;border:1px solid var(--cp-border);border-radius:8px;background:var(--cp-surface);color:var(--cp-text);cursor:pointer}
 .cp-panel-dialog .cp-ws-reorder{display:grid!important;grid-template-columns:1fr!important;gap:12px!important}
 .cp-panel-dialog .cp-ws-reorder>.cp-ux-button,.cp-panel-dialog .cp-ws-reorder>button{justify-self:end}
+/* Owner (1 November 2026, approved mock-up): sidebar footer rows + the teacher; Teacher profile pop-up; Settings as three
+   cards; the Bell page (master switch, today's timeline, one-line rules). */
+.cp-sidebar .cp-sidebar-footer{flex-direction:column!important;flex-wrap:nowrap!important;align-items:stretch!important;gap:2px!important;padding:10px 12px!important}
+.cp-sidebar .cp-sidebar-footer>button{flex:none!important;display:flex!important;flex-direction:row!important;justify-content:flex-start!important;align-items:center!important;gap:10px!important;min-height:36px;padding:8px 10px!important;font-size:var(--cp-fs-ui)!important;font-weight:500!important;color:var(--cp-text)!important;text-align:start}
+.cp-sidebar .cp-sidebar-footer>button.cp-foot-me{margin-top:6px;padding:10px!important;border-top:1px solid var(--cp-border)!important;border-radius:0 0 10px 10px!important}
+.cp-foot-me-text{display:grid;min-width:0}.cp-foot-me-text b{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:600}.cp-foot-me-text small{color:var(--cp-muted);font-size:var(--cp-fs-caption);font-weight:400}
+.cp-avatar{flex:none;display:inline-grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--ux-primary,#211a0e);color:#f3c75a;font-weight:600;font-size:13px;letter-spacing:.02em}
+:root[data-cp-look=classic] .cp-avatar{color:#fff}
+.cp-profile-dialog{width:min(560px,94vw)!important;padding:0!important;overflow:hidden}
+.cp-profile-head{display:flex;align-items:center;gap:12px;padding:16px 18px;border-bottom:1px solid var(--cp-border)}
+.cp-profile-head h2{margin:0;font-family:var(--cp-font-display);font-size:var(--cp-fs-section,18px)}.cp-profile-head p{margin:2px 0 0;color:var(--cp-muted);font-size:var(--cp-fs-caption)}
+.cp-profile-x{all:unset;margin-inline-start:auto;display:grid;place-items:center;width:32px;height:32px;border-radius:8px;cursor:pointer;color:var(--cp-muted)}.cp-profile-x:hover{background:var(--cp-active);color:var(--cp-text)}.cp-profile-x:focus-visible{outline:2px solid var(--cp-focus,var(--ux-primary))}
+.cp-profile-panel{display:flex;flex-direction:column;max-height:calc(100vh - 160px)}
+.cp-profile-body{padding:14px 18px;display:grid;gap:10px;overflow:auto}
+.cp-profile-group{margin:6px 0 0;font-size:11px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--cp-muted)}
+.cp-profile-field{display:grid;grid-template-columns:130px 1fr;align-items:center;gap:10px;font-size:var(--cp-fs-body);color:var(--cp-muted)}
+.cp-profile-field input{height:34px;padding:0 10px;border:1px solid var(--cp-border);border-radius:8px;background:var(--cp-surface);color:var(--cp-text);font:inherit;font-size:var(--cp-fs-ui)}
+.cp-profile-preview{display:flex;align-items:center;gap:12px;padding:10px 12px;border:1px solid var(--cp-border);border-radius:10px;background:var(--cp-surface)}
+.cp-profile-preview img,.cp-profile-logo{width:44px;height:44px;border-radius:8px;object-fit:contain;flex:none}.cp-profile-logo{border:1px dashed var(--cp-border)}
+.cp-profile-preview div{display:grid}.cp-profile-preview span{color:var(--cp-muted);font-size:var(--cp-fs-caption)}
+.cp-profile-body>details{margin:0!important}
+.cp-profile-foot{display:flex;gap:8px;align-items:center;padding:12px 18px;border-top:1px solid var(--cp-border);background:var(--cp-active)}
+.cp-profile-gap{flex:1}.cp-profile-note{margin:0;color:var(--cp-muted);font-size:var(--cp-fs-caption)}.cp-profile-error{margin:0;color:#b91c1c}
+.cp-settings-home.cp-settings-cards{display:block!important;overflow:auto;padding:28px 16px}
+.cp-settings-column{max-width:640px;margin:0 auto;display:grid;gap:14px}
+.cp-settings-column>h2{margin:0;font-family:var(--cp-font-display);font-size:24px}
+.cp-settings-card{background:var(--cp-surface);border:1px solid var(--cp-border);border-radius:12px;padding:16px 18px;scroll-margin-top:20px}
+.cp-settings-card>h3{margin:0 0 10px;font-family:var(--cp-font-display);font-size:var(--cp-fs-section,18px)}
+.cp-settings-about-line{margin:0}
+.cp-att-reminder{margin-top:16px;padding:14px 16px;border:1px solid var(--cp-border);border-radius:12px;background:var(--cp-surface)}.cp-att-reminder h3{margin:0 0 8px;font-size:var(--cp-fs-label)}
+/* Bell */
+.cp-bell-master{display:flex;align-items:center;gap:14px;padding:10px 14px;border:1px solid var(--cp-border);border-radius:12px;background:var(--cp-surface)}
+.cp-bell-master>div{display:grid}.cp-bell-master span{color:var(--cp-muted);font-size:var(--cp-fs-body)}
+.cp-bell-switch{display:inline-flex}.cp-bell-switch input{appearance:none;margin:0;width:34px;height:20px;border-radius:10px;background:var(--cp-border);position:relative;cursor:pointer;transition:background .15s;flex:none}
+.cp-bell-switch input::after{content:"";position:absolute;inset-block-start:2px;inset-inline-start:2px;width:16px;height:16px;border-radius:50%;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.25);transition:inset-inline-start .15s}
+.cp-bell-switch input:checked{background:var(--cp-gold,#c8961e)}.cp-bell-switch input:checked::after{inset-inline-start:16px}
+.cp-bell-switch-big input{width:44px;height:24px;border-radius:12px}.cp-bell-switch-big input::after{width:20px;height:20px}.cp-bell-switch-big input:checked::after{inset-inline-start:22px}
+.cp-bell-switch input:focus-visible{outline:2px solid var(--cp-focus,var(--ux-primary));outline-offset:2px}
+.cp-bell-banner{display:flex;align-items:center;gap:12px;padding:10px 14px;margin-block:4px 14px;border-radius:10px;background:#fdf3df;border:1px solid #e9c98a;color:#5b3d06}
+.cp-bell-banner>span{flex:1}:root[data-cp-theme=dark] .cp-bell-banner{background:#3a2a0e;border-color:#6b4c14;color:#f6e7c8}
+.cp-bell-grid{display:grid;grid-template-columns:minmax(260px,360px) minmax(0,1fr);gap:18px;align-items:start}
+@media(max-width:900px){.cp-bell-grid{grid-template-columns:1fr}}
+.cp-bell-today,.cp-bell-rules{background:var(--cp-surface);border:1px solid var(--cp-border);border-radius:12px;padding:16px}
+.cp-bell-today header,.cp-bell-rules header{display:flex;align-items:center;gap:10px}
+.cp-bell-today h2,.cp-bell-rules h2{margin:0;font-family:var(--cp-font-display);font-size:var(--cp-fs-section,18px)}
+.cp-bell-today header>span{margin-inline-start:auto;color:var(--cp-muted)}
+.cp-bell-today ol,.cp-bell-rules ul{list-style:none;margin:10px 0 0;padding:0}
+.cp-bell-today li{display:grid;grid-template-columns:56px 16px 1fr auto;align-items:center;gap:10px;padding:8px 0;border-top:1px solid var(--cp-border)}
+.cp-bell-time{font-weight:600;font-variant-numeric:tabular-nums}
+.cp-bell-dot{width:10px;height:10px;border-radius:50%;background:var(--cp-border);justify-self:center}
+.cp-bell-today [data-state=rung] .cp-bell-dot{background:#15803d}.cp-bell-today [data-state=missed] .cp-bell-dot,.cp-bell-today [data-state=blocked] .cp-bell-dot{background:#b45309}
+.cp-bell-today [data-state=next] .cp-bell-dot{background:var(--cp-gold,#c8961e);box-shadow:0 0 0 4px color-mix(in srgb,var(--cp-gold,#c8961e) 25%,transparent)}
+.cp-bell-today [data-state=next]>span:nth-child(3){font-weight:600}
+.cp-bell-tag{font-size:11px;font-weight:600;padding:2px 8px;border-radius:999px;background:var(--cp-active);color:var(--cp-muted);white-space:nowrap}
+.cp-bell-today [data-state=rung] .cp-bell-tag{background:#e6f4ea;color:#14532d}.cp-bell-today [data-state=missed] .cp-bell-tag,.cp-bell-today [data-state=blocked] .cp-bell-tag{background:#fdecd2;color:#7c2d12}.cp-bell-today [data-state=next] .cp-bell-tag{background:#f3e3b8;color:#5c4100}
+:root[data-cp-theme=dark] .cp-bell-tag{background:#2c2618!important;color:#f6e7c8!important}
+.cp-bell-quiet{margin:12px 0 0;color:var(--cp-muted);font-size:var(--cp-fs-caption)}
+.cp-bell-history{margin-top:8px}.cp-bell-history summary{cursor:pointer;color:var(--cp-link,#7a5300);font-weight:600;font-size:var(--cp-fs-caption)}
+.cp-bell-history table{width:100%;margin-top:8px;font-size:var(--cp-fs-caption);border-collapse:collapse}.cp-bell-history th{text-align:start;color:var(--cp-muted)}
+.cp-bell-spacer{flex:1}
+.cp-bell-menu-wrap{position:relative}
+.cp-bell-menu{position:absolute;inset-inline-end:0;top:calc(100% + 6px);z-index:20;width:320px;padding:6px;border:1px solid var(--cp-border);border-radius:12px;background:var(--cp-surface);box-shadow:0 12px 30px rgba(0,0,0,.16);display:grid;gap:2px}
+.cp-bell-menu>div{display:grid;gap:4px;padding:10px;border-radius:8px}.cp-bell-menu>div:hover{background:var(--cp-active)}
+.cp-bell-menu small{color:var(--cp-muted);font-size:var(--cp-fs-caption)}
+.cp-bell-menu .cp-cmd{justify-self:start}
+.cp-bell-advance{display:flex;gap:8px;align-items:end}.cp-bell-advance input{width:70px}
+.cp-bell-primary{background:var(--ux-primary)!important;color:var(--cp-primary-fg)!important;border-color:var(--ux-primary)!important}
+.cp-bell-rule{border-top:1px solid var(--cp-border)}
+.cp-bell-line{display:grid;grid-template-columns:40px 56px minmax(0,1fr) auto 130px 32px 32px;align-items:center;gap:10px;padding:10px 2px}
+.cp-bell-rule[data-enabled=false] .cp-bell-line>:is(.cp-bell-time,.cp-bell-name,.cp-bell-tone){color:var(--cp-muted)}
+.cp-bell-tone{color:var(--cp-muted)}
+.cp-bell-days{display:inline-flex;gap:3px}.cp-bell-days span{width:20px;height:20px;border-radius:50%;display:inline-grid;place-items:center;font-size:10px;font-weight:600;background:var(--cp-active);color:var(--cp-muted)}
+.cp-bell-days span[data-on=true]{background:var(--ux-primary,#211a0e);color:var(--cp-primary-fg,#fff)}
+.cp-bell-icon{all:unset;display:inline-grid;place-items:center;width:30px;height:30px;border-radius:8px;cursor:pointer;color:var(--cp-muted)}
+.cp-bell-icon:hover,.cp-bell-icon[aria-expanded=true]{background:var(--cp-active);color:var(--cp-text)}.cp-bell-icon:focus-visible{outline:2px solid var(--cp-focus,var(--ux-primary))}
+.cp-bell-edit{margin:0 0 12px;padding:14px;border:1px solid var(--cp-border);border-radius:10px;background:var(--cp-background)}
+.cp-bell-edit-grid{display:grid;grid-template-columns:minmax(0,1fr) 140px 180px 170px;gap:12px;align-items:end}
+@media(max-width:900px){.cp-bell-edit-grid{grid-template-columns:1fr 1fr}}
+.cp-bell-edit-foot{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:12px}
+.cp-bell-daypick{display:inline-flex;gap:6px}
+.cp-bell-daypick label{position:relative;cursor:pointer}.cp-bell-daypick input{position:absolute;opacity:0;width:26px;height:26px;margin:0;cursor:pointer}
+.cp-bell-daypick label>span[aria-hidden]{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;font-size:11px;font-weight:600;background:var(--cp-active);color:var(--cp-muted)}
+.cp-bell-daypick input:checked+span{background:var(--ux-primary,#211a0e);color:var(--cp-primary-fg,#fff)}
+.cp-bell-daypick input:focus-visible+span{outline:2px solid var(--cp-focus,var(--ux-primary));outline-offset:2px}
+.cp-bell-danger{color:#b91c1c!important}
+/* The footer buttons sit in a display:contents slot, so they are matched as descendants. */
+.cp-workspace .cp-sidebar .cp-sidebar-footer button{flex:none!important;display:flex!important;flex-direction:row!important;justify-content:flex-start!important;align-items:center!important;gap:10px!important;width:100%!important;min-height:36px!important;padding:8px 10px!important;color:var(--cp-text)!important;text-align:start}
+.cp-workspace .cp-sidebar .cp-sidebar-footer button>span{position:static!important;width:auto!important;height:auto!important;clip:auto!important;overflow:hidden;font-size:var(--cp-fs-ui)!important;line-height:1.25;white-space:nowrap}
+.cp-workspace .cp-sidebar .cp-sidebar-footer button.cp-foot-me{margin-top:6px!important;padding:10px!important;border-top:1px solid var(--cp-border)!important;border-radius:0 0 10px 10px!important;min-height:54px!important}
+.cp-workspace .cp-sidebar .cp-sidebar-footer button>.cp-avatar{width:34px!important;height:34px!important;display:inline-grid!important;font-size:13px!important}
+.cp-workspace .cp-sidebar .cp-sidebar-footer button>.cp-foot-me-text{display:grid!important}
+.cp-workspace .cp-sidebar .cp-sidebar-footer button>.cp-foot-me-text small{font-size:var(--cp-fs-caption)}
+.cp-workspace[data-collapsed=true] .cp-sidebar .cp-sidebar-footer button>.cp-avatar{display:inline-grid!important}
+.cp-workspace[data-collapsed=true] .cp-sidebar .cp-sidebar-footer button{justify-content:center!important}
+.cp-settings-lockcard h3:first-of-type{margin:0 0 10px!important;font-family:var(--cp-font-display);font-size:var(--cp-fs-section,18px)!important}
 /* M56 design foundations (owner-supplied Master Implementation Brief, M56; design report §7–§8).
    One set of tokens for the frame and the new modules. Protected Gradebook views (Marks, Groups, Behaviour,
    Adjustments, Analysis, the original wheel, the Settings drawer and the class manager) do not use them. */
@@ -7708,7 +7803,43 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.workspace.tickNote": "Ticked classes are used by Compare classes and Back up everything below.",
     "ux.workspace.tickFirst": "Tick at least one class in the list above.",
     "ux.workspace.tip": "Tip: create a desktop shortcut to the ClassPilot file to open it in one click.",
-    "ux.workspace.noGrade": "No grade"
+    "ux.workspace.noGrade": "No grade",
+    "ux.bell.dayShort0": "S",
+    "ux.bell.dayShort1": "M",
+    "ux.bell.dayShort2": "T",
+    "ux.bell.dayShort3": "W",
+    "ux.bell.dayShort4": "T",
+    "ux.bell.dayShort5": "F",
+    "ux.bell.dayShort6": "S",
+    "ux.bell.inMin": "in {n} min",
+    "ux.bell.inHours": "in {h} h {m} min",
+    "ux.bell.onNext": "On \xB7 next: {label} at {time} ({in})",
+    "ux.bell.onNone": "On \xB7 no more bells today",
+    "ux.bell.offLine": "Off \xB7 bells will not ring",
+    "ux.bell.soundBlocked": "The browser has blocked sound for now.",
+    "ux.bell.allowSound": "Allow sound",
+    "ux.bell.today": "Today",
+    "ux.bell.noneToday": "No bells today.",
+    "ux.bell.keepOpen": "Keep ClassPilot open for bells to ring.",
+    "ux.bell.history": "History",
+    "ux.bell.edit": "Edit bell",
+    "ux.bell.cancel": "Cancel",
+    "ux.bell.days": "Days",
+    "ux.bell.createMenu": "Create from timetable \u25BE",
+    "ux.bell.fromPeriods": "Start and end of each period",
+    "ux.bell.fromPeriodsHint": "Replaces the bells made from the timetable; your own bells stay.",
+    "ux.bell.remindersShort": "Reminder before each period",
+    "ux.bell.remindersHint": "Rings this many minutes before each bell. Replaces earlier reminders.",
+    "ux.bell.addShort": "+ Add bell",
+    "ux.bell.noRules": "No bells yet. Add one, or create them from your timetable.",
+    "ux.settings.app": "Settings",
+    "ux.profile.close": "Close",
+    "ux.profile.you": "You",
+    "ux.profile.reportHeader": "Report header",
+    "ux.profile.reportChange": "Change\u2026",
+    "ux.profile.reportDone": "Done",
+    "ux.tb.classSettings": "Class settings",
+    "ux.att.remindTitle": "Reminder"
   };
 
   // src/i18n/plain-copy.js
@@ -13251,7 +13382,43 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.workspace.tickNote": "\u062A\u064F\u0633\u062A\u062E\u062F\u0645 \u0627\u0644\u0635\u0641\u0648\u0641 \u0627\u0644\u0645\u062D\u062F\u062F\u0629 \u0641\u064A \xAB\u0645\u0642\u0627\u0631\u0646\u0629 \u0627\u0644\u0635\u0641\u0648\u0641\xBB \u0648\xAB\u0646\u0633\u062E\u0629 \u0627\u062D\u062A\u064A\u0627\u0637\u064A\u0629 \u0634\u0627\u0645\u0644\u0629\xBB \u0623\u062F\u0646\u0627\u0647.",
     "ux.workspace.tickFirst": "\u062D\u062F\u0651\u062F \u0635\u0641\u064B\u0627 \u0648\u0627\u062D\u062F\u064B\u0627 \u0639\u0644\u0649 \u0627\u0644\u0623\u0642\u0644 \u0641\u064A \u0627\u0644\u0642\u0627\u0626\u0645\u0629 \u0623\u0639\u0644\u0627\u0647.",
     "ux.workspace.tip": "\u0646\u0635\u064A\u062D\u0629: \u0623\u0646\u0634\u0626 \u0627\u062E\u062A\u0635\u0627\u0631\u064B\u0627 \u0644\u0645\u0644\u0641 ClassPilot \u0639\u0644\u0649 \u0633\u0637\u062D \u0627\u0644\u0645\u0643\u062A\u0628 \u0644\u062A\u0641\u062A\u062D\u0647 \u0628\u0646\u0642\u0631\u0629 \u0648\u0627\u062D\u062F\u0629.",
-    "ux.workspace.noGrade": "\u0628\u0644\u0627 \u0635\u0641"
+    "ux.workspace.noGrade": "\u0628\u0644\u0627 \u0635\u0641",
+    "ux.bell.dayShort0": "\u062D",
+    "ux.bell.dayShort1": "\u0646",
+    "ux.bell.dayShort2": "\u062B",
+    "ux.bell.dayShort3": "\u0631",
+    "ux.bell.dayShort4": "\u062E",
+    "ux.bell.dayShort5": "\u062C",
+    "ux.bell.dayShort6": "\u0633",
+    "ux.bell.inMin": "\u0628\u0639\u062F {n} \u062F",
+    "ux.bell.inHours": "\u0628\u0639\u062F {h} \u0633 {m} \u062F",
+    "ux.bell.onNext": "\u0645\u0641\u0639\u0651\u0644 \xB7 \u0627\u0644\u062A\u0627\u0644\u064A: {label} \u0639\u0646\u062F {time} ({in})",
+    "ux.bell.onNone": "\u0645\u0641\u0639\u0651\u0644 \xB7 \u0644\u0627 \u0623\u062C\u0631\u0627\u0633 \u0623\u062E\u0631\u0649 \u0627\u0644\u064A\u0648\u0645",
+    "ux.bell.offLine": "\u0645\u062A\u0648\u0642\u0641 \xB7 \u0644\u0646 \u062A\u064F\u0642\u0631\u0639 \u0627\u0644\u0623\u062C\u0631\u0627\u0633",
+    "ux.bell.soundBlocked": "\u062D\u0638\u0631 \u0627\u0644\u0645\u062A\u0635\u0641\u062D \u0627\u0644\u0635\u0648\u062A \u0645\u0624\u0642\u062A\u064B\u0627.",
+    "ux.bell.allowSound": "\u0627\u0644\u0633\u0645\u0627\u062D \u0628\u0627\u0644\u0635\u0648\u062A",
+    "ux.bell.today": "\u0627\u0644\u064A\u0648\u0645",
+    "ux.bell.noneToday": "\u0644\u0627 \u0623\u062C\u0631\u0627\u0633 \u0627\u0644\u064A\u0648\u0645.",
+    "ux.bell.keepOpen": "\u0623\u0628\u0642\u0650 ClassPilot \u0645\u0641\u062A\u0648\u062D\u064B\u0627 \u0644\u062A\u064F\u0642\u0631\u0639 \u0627\u0644\u0623\u062C\u0631\u0627\u0633.",
+    "ux.bell.history": "\u0627\u0644\u0633\u062C\u0644",
+    "ux.bell.edit": "\u062A\u0639\u062F\u064A\u0644 \u0627\u0644\u062C\u0631\u0633",
+    "ux.bell.cancel": "\u0625\u0644\u063A\u0627\u0621",
+    "ux.bell.days": "\u0627\u0644\u0623\u064A\u0627\u0645",
+    "ux.bell.createMenu": "\u0625\u0646\u0634\u0627\u0621 \u0645\u0646 \u0627\u0644\u062C\u062F\u0648\u0644 \u25BE",
+    "ux.bell.fromPeriods": "\u0628\u062F\u0627\u064A\u0629 \u0643\u0644 \u062D\u0635\u0629 \u0648\u0646\u0647\u0627\u064A\u062A\u0647\u0627",
+    "ux.bell.fromPeriodsHint": "\u062A\u062D\u0644 \u0645\u062D\u0644 \u0627\u0644\u0623\u062C\u0631\u0627\u0633 \u0627\u0644\u0645\u0623\u062E\u0648\u0630\u0629 \u0645\u0646 \u0627\u0644\u062C\u062F\u0648\u0644\u061B \u0648\u062A\u0628\u0642\u0649 \u0623\u062C\u0631\u0627\u0633\u0643 \u0627\u0644\u062E\u0627\u0635\u0629.",
+    "ux.bell.remindersShort": "\u062A\u0646\u0628\u064A\u0647 \u0642\u0628\u0644 \u0643\u0644 \u062D\u0635\u0629",
+    "ux.bell.remindersHint": "\u064A\u0631\u0646 \u0642\u0628\u0644 \u0643\u0644 \u062C\u0631\u0633 \u0628\u0647\u0630\u0627 \u0627\u0644\u0639\u062F\u062F \u0645\u0646 \u0627\u0644\u062F\u0642\u0627\u0626\u0642. \u064A\u062D\u0644 \u0645\u062D\u0644 \u0627\u0644\u062A\u0646\u0628\u064A\u0647\u0627\u062A \u0627\u0644\u0633\u0627\u0628\u0642\u0629.",
+    "ux.bell.addShort": "+ \u0625\u0636\u0627\u0641\u0629 \u062C\u0631\u0633",
+    "ux.bell.noRules": "\u0644\u0627 \u0623\u062C\u0631\u0627\u0633 \u0628\u0639\u062F. \u0623\u0636\u0641 \u062C\u0631\u0633\u064B\u0627 \u0623\u0648 \u0623\u0646\u0634\u0626 \u0627\u0644\u0623\u062C\u0631\u0627\u0633 \u0645\u0646 \u062C\u062F\u0648\u0644\u0643.",
+    "ux.settings.app": "\u0627\u0644\u0625\u0639\u062F\u0627\u062F\u0627\u062A",
+    "ux.profile.close": "\u0625\u063A\u0644\u0627\u0642",
+    "ux.profile.you": "\u0628\u064A\u0627\u0646\u0627\u062A\u0643",
+    "ux.profile.reportHeader": "\u062A\u0631\u0648\u064A\u0633\u0629 \u0627\u0644\u062A\u0642\u0627\u0631\u064A\u0631",
+    "ux.profile.reportChange": "\u062A\u063A\u064A\u064A\u0631\u2026",
+    "ux.profile.reportDone": "\u062A\u0645",
+    "ux.tb.classSettings": "\u0625\u0639\u062F\u0627\u062F\u0627\u062A \u0627\u0644\u0635\u0641",
+    "ux.att.remindTitle": "\u0627\u0644\u062A\u0630\u0643\u064A\u0631"
   };
 
   // src/core/actions.js
@@ -29572,6 +29739,84 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       "meaning": "ux.workspace.closeReorder"
     },
     {
+      "id": "ux.bell.edit",
+      "labelKey": "ux.bell.edit",
+      "icon": null,
+      "shortcut": null,
+      "availability": "rendered-and-not-disabled",
+      "canonicalHome": "bell:context",
+      "events": [
+        "onClick"
+      ],
+      "source": "src/modules",
+      "meaning": "ux.bell.edit"
+    },
+    {
+      "id": "ux.bell.cancel",
+      "labelKey": "ux.bell.cancel",
+      "icon": null,
+      "shortcut": null,
+      "availability": "rendered-and-not-disabled",
+      "canonicalHome": "bell:context",
+      "events": [
+        "onClick"
+      ],
+      "source": "src/modules",
+      "meaning": "ux.bell.cancel"
+    },
+    {
+      "id": "ux.bell.createMenu",
+      "labelKey": "ux.bell.createMenu",
+      "icon": null,
+      "shortcut": null,
+      "availability": "rendered-and-not-disabled",
+      "canonicalHome": "bell:context",
+      "events": [
+        "onClick"
+      ],
+      "source": "src/modules",
+      "meaning": "ux.bell.createMenu"
+    },
+    {
+      "id": "ux.bell.allowSound",
+      "labelKey": "ux.bell.allowSound",
+      "icon": null,
+      "shortcut": null,
+      "availability": "rendered-and-not-disabled",
+      "canonicalHome": "bell:context",
+      "events": [
+        "onClick"
+      ],
+      "source": "src/modules",
+      "meaning": "ux.bell.allowSound"
+    },
+    {
+      "id": "ux.settings.app",
+      "labelKey": "ux.settings.app",
+      "icon": null,
+      "shortcut": null,
+      "availability": "rendered-and-not-disabled",
+      "canonicalHome": "settings:context",
+      "events": [
+        "onClick"
+      ],
+      "source": "src/modules",
+      "meaning": "ux.settings.app"
+    },
+    {
+      "id": "ux.profile.close",
+      "labelKey": "ux.profile.close",
+      "icon": null,
+      "shortcut": null,
+      "availability": "rendered-and-not-disabled",
+      "canonicalHome": "profile:context",
+      "events": [
+        "onClick"
+      ],
+      "source": "src/modules",
+      "meaning": "ux.profile.close"
+    },
+    {
       "id": "ux.report.sort",
       "labelKey": "ux.report.sort",
       "icon": null,
@@ -36086,7 +36331,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
   }
   function Workspace({ children }) {
     useLanguage();
-    const [slots2, setSlots] = useState({}), [direction, setDirection] = useState(getProfile().ui.direction || "ltr"), [collapsed, setCollapsed] = useState(false), [teaching, setTeaching] = useState(false);
+    const [slots, setSlots] = useState({}), [direction, setDirection] = useState(getProfile().ui.direction || "ltr"), [collapsed, setCollapsed] = useState(false), [teaching, setTeaching] = useState(false);
     const [appearance, setAppearance] = useState(() => ({ ...getAppearance(), ...Object.fromEntries(Object.entries(getProfile().ui).filter(([key4]) => ["theme", "density", "textSize", "accent", "look", "fontEn", "fontAr"].includes(key4))) }));
     const callbacks = useMemo(() => Object.fromEntries(["today", "hubs", "teaching", "gradebook", "year", "planning", "reporting", "tools", "manage", "footer", "preferences", "toolbarContext", "toolbarTools"].map((key4) => [key4, (node) => setSlots((old) => old[key4] === node ? old : { ...old, [key4]: node })])), []);
     useLayoutEffect(() => applyAppearance(appearance), [appearance]);
@@ -36095,7 +36340,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       setAppearance((old) => ({ ...old, [key4]: value2 }));
       updateProfile((p) => ({ ...p, ui: { ...p.ui, [key4]: value2 } }));
     }, []);
-    const value = useMemo(() => ({ slots: slots2, slotRefs: callbacks, setDirection, collapsed, setCollapsed, teaching, setTeaching, appearance, setAppearanceKey }), [slots2, callbacks, collapsed, teaching, appearance, setAppearanceKey]);
+    const value = useMemo(() => ({ slots, slotRefs: callbacks, setDirection, collapsed, setCollapsed, teaching, setTeaching, appearance, setAppearanceKey }), [slots, callbacks, collapsed, teaching, appearance, setAppearanceKey]);
     return /* @__PURE__ */ cpJsx(WorkspaceContext.Provider, { value }, /* @__PURE__ */ cpJsx("div", { className: "cp-workspace", dir: direction, "data-collapsed": collapsed, "data-teaching": teaching }, /* @__PURE__ */ cpJsx(SkipLink, null), /* @__PURE__ */ cpJsx("aside", { className: "cp-sidebar", "aria-label": t("improve.navigation") }, /* @__PURE__ */ cpJsx("div", { className: "cp-sidebar-brand" }, /* @__PURE__ */ cpJsx("span", { "aria-hidden": "true", "data-mark": "star" }), /* @__PURE__ */ cpJsx("strong", null, t("improve.appName"))), /* @__PURE__ */ cpJsx("nav", { className: "cp-hubs" }, /* @__PURE__ */ cpJsx("div", { ref: callbacks.today, className: "cp-hub-slot" }), /* @__PURE__ */ cpJsx("div", { ref: callbacks.hubs, className: "cp-hub-slot" })), /* @__PURE__ */ cpJsx("div", { className: "cp-appearance-controls cp-sidebar-footer" }, /* @__PURE__ */ cpJsx("div", { ref: callbacks.footer, className: "cp-sidebar-footer-slot" }))), /* @__PURE__ */ cpJsx("div", { className: "cp-main", id: "cp-content", tabIndex: -1 }, children), /* @__PURE__ */ cpJsx(DialogHost, null), /* @__PURE__ */ cpJsx(ToastHost, null)));
   }
 
@@ -36536,9 +36781,9 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     const part = (type) => parts.find((p) => p.type === type)?.value;
     return [weekday && part("weekday"), part("day"), part("month"), year && part("year")].filter(Boolean).join(" ");
   }
-  function displayTime(hhmm, { language: language2 = getLanguage() } = {}) {
-    const match = /^(\d{1,2}):(\d{2})$/.exec(String(hhmm || ""));
-    if (!match) return hhmm || "";
+  function displayTime(hhmm2, { language: language2 = getLanguage() } = {}) {
+    const match = /^(\d{1,2}):(\d{2})$/.exec(String(hhmm2 || ""));
+    if (!match) return hhmm2 || "";
     return new Intl.DateTimeFormat(language2 === "ar" ? "ar-AE-u-nu-latn" : "en-US", { hour: "numeric", minute: "2-digit", hour12: true }).format(new Date(2e3, 0, 1, +match[1], +match[2]));
   }
   var displayRange = (start, end, options) => displayTime(start, options) + "\u2013" + displayTime(end, options);
@@ -36770,6 +37015,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
   Object.assign(uxChange, { "timer.quizChime": "timer.quizChime" });
   Object.assign(uxClick, { "assess.filter": "assess.filter", "assess.addDate": "assess.addDate", "assess.editDate": "assess.changeDate", "assess.showLessons": "assess.showLessons", "workspace.reorder": "workspace.reorder", "workspace.closeReorder": "workspace.closeReorder" });
   Object.assign(uxChange, { "workspace.selectAll": "workspace.selectAll" });
+  Object.assign(uxClick, { "bell.edit": "bell.edit", "bell.cancel": "bell.cancel", "bell.createMenu": "bell.createMenu", "bell.allowSound": "bell.allowSound", "settings.app": "settings.app", "profile.close": "profile.close" });
   var uxActions = [...Object.entries(uxClick).map(([id, key4]) => [id, key4, "onClick"]), ...Object.entries(uxChange).map(([id, key4]) => [id, key4, "onChange"])].map(([id, key4, event]) => ({ id: "ux." + id, labelKey: "ux." + key4, icon: null, shortcut: null, availability: "rendered-and-not-disabled", canonicalHome: id.startsWith("nav.") ? "Workspace:sidebar" : id.startsWith("appearance.") ? "Workspace:context" : id.split(".")[0] + ":context", events: [event], source: "src/modules", meaning: "ux." + id }));
 
   // src/i18n/ux-copy.js
@@ -40514,7 +40760,43 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "workspace.tickNote": ["Ticked classes are used by Compare classes and Back up everything below.", "\u062A\u064F\u0633\u062A\u062E\u062F\u0645 \u0627\u0644\u0635\u0641\u0648\u0641 \u0627\u0644\u0645\u062D\u062F\u062F\u0629 \u0641\u064A \xAB\u0645\u0642\u0627\u0631\u0646\u0629 \u0627\u0644\u0635\u0641\u0648\u0641\xBB \u0648\xAB\u0646\u0633\u062E\u0629 \u0627\u062D\u062A\u064A\u0627\u0637\u064A\u0629 \u0634\u0627\u0645\u0644\u0629\xBB \u0623\u062F\u0646\u0627\u0647."],
     "workspace.tickFirst": ["Tick at least one class in the list above.", "\u062D\u062F\u0651\u062F \u0635\u0641\u064B\u0627 \u0648\u0627\u062D\u062F\u064B\u0627 \u0639\u0644\u0649 \u0627\u0644\u0623\u0642\u0644 \u0641\u064A \u0627\u0644\u0642\u0627\u0626\u0645\u0629 \u0623\u0639\u0644\u0627\u0647."],
     "workspace.tip": ["Tip: create a desktop shortcut to the ClassPilot file to open it in one click.", "\u0646\u0635\u064A\u062D\u0629: \u0623\u0646\u0634\u0626 \u0627\u062E\u062A\u0635\u0627\u0631\u064B\u0627 \u0644\u0645\u0644\u0641 ClassPilot \u0639\u0644\u0649 \u0633\u0637\u062D \u0627\u0644\u0645\u0643\u062A\u0628 \u0644\u062A\u0641\u062A\u062D\u0647 \u0628\u0646\u0642\u0631\u0629 \u0648\u0627\u062D\u062F\u0629."],
-    "workspace.noGrade": ["No grade", "\u0628\u0644\u0627 \u0635\u0641"]
+    "workspace.noGrade": ["No grade", "\u0628\u0644\u0627 \u0635\u0641"],
+    "bell.dayShort0": ["S", "\u062D"],
+    "bell.dayShort1": ["M", "\u0646"],
+    "bell.dayShort2": ["T", "\u062B"],
+    "bell.dayShort3": ["W", "\u0631"],
+    "bell.dayShort4": ["T", "\u062E"],
+    "bell.dayShort5": ["F", "\u062C"],
+    "bell.dayShort6": ["S", "\u0633"],
+    "bell.inMin": ["in {n} min", "\u0628\u0639\u062F {n} \u062F"],
+    "bell.inHours": ["in {h} h {m} min", "\u0628\u0639\u062F {h} \u0633 {m} \u062F"],
+    "bell.onNext": ["On \xB7 next: {label} at {time} ({in})", "\u0645\u0641\u0639\u0651\u0644 \xB7 \u0627\u0644\u062A\u0627\u0644\u064A: {label} \u0639\u0646\u062F {time} ({in})"],
+    "bell.onNone": ["On \xB7 no more bells today", "\u0645\u0641\u0639\u0651\u0644 \xB7 \u0644\u0627 \u0623\u062C\u0631\u0627\u0633 \u0623\u062E\u0631\u0649 \u0627\u0644\u064A\u0648\u0645"],
+    "bell.offLine": ["Off \xB7 bells will not ring", "\u0645\u062A\u0648\u0642\u0641 \xB7 \u0644\u0646 \u062A\u064F\u0642\u0631\u0639 \u0627\u0644\u0623\u062C\u0631\u0627\u0633"],
+    "bell.soundBlocked": ["The browser has blocked sound for now.", "\u062D\u0638\u0631 \u0627\u0644\u0645\u062A\u0635\u0641\u062D \u0627\u0644\u0635\u0648\u062A \u0645\u0624\u0642\u062A\u064B\u0627."],
+    "bell.allowSound": ["Allow sound", "\u0627\u0644\u0633\u0645\u0627\u062D \u0628\u0627\u0644\u0635\u0648\u062A"],
+    "bell.today": ["Today", "\u0627\u0644\u064A\u0648\u0645"],
+    "bell.noneToday": ["No bells today.", "\u0644\u0627 \u0623\u062C\u0631\u0627\u0633 \u0627\u0644\u064A\u0648\u0645."],
+    "bell.keepOpen": ["Keep ClassPilot open for bells to ring.", "\u0623\u0628\u0642\u0650 ClassPilot \u0645\u0641\u062A\u0648\u062D\u064B\u0627 \u0644\u062A\u064F\u0642\u0631\u0639 \u0627\u0644\u0623\u062C\u0631\u0627\u0633."],
+    "bell.history": ["History", "\u0627\u0644\u0633\u062C\u0644"],
+    "bell.edit": ["Edit bell", "\u062A\u0639\u062F\u064A\u0644 \u0627\u0644\u062C\u0631\u0633"],
+    "bell.cancel": ["Cancel", "\u0625\u0644\u063A\u0627\u0621"],
+    "bell.days": ["Days", "\u0627\u0644\u0623\u064A\u0627\u0645"],
+    "bell.createMenu": ["Create from timetable \u25BE", "\u0625\u0646\u0634\u0627\u0621 \u0645\u0646 \u0627\u0644\u062C\u062F\u0648\u0644 \u25BE"],
+    "bell.fromPeriods": ["Start and end of each period", "\u0628\u062F\u0627\u064A\u0629 \u0643\u0644 \u062D\u0635\u0629 \u0648\u0646\u0647\u0627\u064A\u062A\u0647\u0627"],
+    "bell.fromPeriodsHint": ["Replaces the bells made from the timetable; your own bells stay.", "\u062A\u062D\u0644 \u0645\u062D\u0644 \u0627\u0644\u0623\u062C\u0631\u0627\u0633 \u0627\u0644\u0645\u0623\u062E\u0648\u0630\u0629 \u0645\u0646 \u0627\u0644\u062C\u062F\u0648\u0644\u061B \u0648\u062A\u0628\u0642\u0649 \u0623\u062C\u0631\u0627\u0633\u0643 \u0627\u0644\u062E\u0627\u0635\u0629."],
+    "bell.remindersShort": ["Reminder before each period", "\u062A\u0646\u0628\u064A\u0647 \u0642\u0628\u0644 \u0643\u0644 \u062D\u0635\u0629"],
+    "bell.remindersHint": ["Rings this many minutes before each bell. Replaces earlier reminders.", "\u064A\u0631\u0646 \u0642\u0628\u0644 \u0643\u0644 \u062C\u0631\u0633 \u0628\u0647\u0630\u0627 \u0627\u0644\u0639\u062F\u062F \u0645\u0646 \u0627\u0644\u062F\u0642\u0627\u0626\u0642. \u064A\u062D\u0644 \u0645\u062D\u0644 \u0627\u0644\u062A\u0646\u0628\u064A\u0647\u0627\u062A \u0627\u0644\u0633\u0627\u0628\u0642\u0629."],
+    "bell.addShort": ["+ Add bell", "+ \u0625\u0636\u0627\u0641\u0629 \u062C\u0631\u0633"],
+    "bell.noRules": ["No bells yet. Add one, or create them from your timetable.", "\u0644\u0627 \u0623\u062C\u0631\u0627\u0633 \u0628\u0639\u062F. \u0623\u0636\u0641 \u062C\u0631\u0633\u064B\u0627 \u0623\u0648 \u0623\u0646\u0634\u0626 \u0627\u0644\u0623\u062C\u0631\u0627\u0633 \u0645\u0646 \u062C\u062F\u0648\u0644\u0643."],
+    "settings.app": ["Settings", "\u0627\u0644\u0625\u0639\u062F\u0627\u062F\u0627\u062A"],
+    "profile.close": ["Close", "\u0625\u063A\u0644\u0627\u0642"],
+    "profile.you": ["You", "\u0628\u064A\u0627\u0646\u0627\u062A\u0643"],
+    "profile.reportHeader": ["Report header", "\u062A\u0631\u0648\u064A\u0633\u0629 \u0627\u0644\u062A\u0642\u0627\u0631\u064A\u0631"],
+    "profile.reportChange": ["Change\u2026", "\u062A\u063A\u064A\u064A\u0631\u2026"],
+    "profile.reportDone": ["Done", "\u062A\u0645"],
+    "tb.classSettings": ["Class settings", "\u0625\u0639\u062F\u0627\u062F\u0627\u062A \u0627\u0644\u0635\u0641"],
+    "att.remindTitle": ["Reminder", "\u0627\u0644\u062A\u0630\u0643\u064A\u0631"]
   };
   var uxEn = Object.fromEntries(Object.entries(pairs).map(([key4, value]) => ["ux." + key4, value[0]]));
   var uxAr = Object.fromEntries(Object.entries(pairs).map(([key4, value]) => ["ux." + key4, value[1]]));
@@ -42031,7 +42313,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       }, onMouseLeave: function(e) {
         e.currentTarget.style.background = en_default["gb.10e9f5602d2492b3"];
       }, style: { display: en_default["gb.222f930b87524636"], alignItems: en_default["gb.f179a509d32bd92c"], gap: 10, width: en_default["gb.32e48995f98ce3b7"], textAlign: en_default["gb.cced28c6dc3f99c2"], padding: en_default["gb.afc844787360ada1"], background: en_default["gb.10e9f5602d2492b3"], border: en_default["gb.140bedbf9c3f6d56"], cursor: en_default["gb.1cdf95bd12e993d5"], fontFamily: en_default["gb.035300f3afee55ae"] }, "data-cp-action": actionVariant("gb.chrome.7684", it.l), "data-cp-context": JSON.stringify([it.l]) }, /* @__PURE__ */ cpJsx("span", { style: { color: en_default["gb.2cb39091d5d3e806"], display: en_default["gb.123306850fe18564"] } }, /* @__PURE__ */ cpJsx(Icn, { n: it.ic, sz: 14, _cpOrigin: "chrome.jsx:8154" })), /* @__PURE__ */ cpJsx("span", null, /* @__PURE__ */ cpJsx("span", { style: { display: en_default["gb.496aca80e4d8f29f"], fontSize: 12, fontWeight: 500, color: en_default["gb.803dc50fc78ae0a7"] } }, it.l), /* @__PURE__ */ cpJsx("span", { style: { display: en_default["gb.496aca80e4d8f29f"], fontSize: 10.5, color: en_default["gb.2cb39091d5d3e806"] } }, it.d)));
-    }))), /* @__PURE__ */ cpJsx("button", { onClick: bindAction("gb.settings", "singleton", "onClick", onSettings), title: en_default["gb.74a883a037bc227f"], "aria-label": en_default["gb.74a883a037bc227f"], style: B({ width: 26, height: 26, padding: 0, background: en_default["gb.10e9f5602d2492b3"], border: en_default["gb.c0973dd788d47056"], borderRadius: en_default["gb.1d40ec43f9b3dd50"], color: en_default["gb.e70f85eadb9d6ea6"], display: en_default["gb.123306850fe18564"], alignItems: en_default["gb.f179a509d32bd92c"], justifyContent: en_default["gb.f179a509d32bd92c"] }), "data-cp-action": "gb.settings", "data-cp-context": "singleton", className: "cp-tb-settings" }, /* @__PURE__ */ cpJsx(Icn, { n: en_default["gb.70ad3de50a55e77d"], sz: 14, _cpOrigin: "chrome.jsx:8952" }), /* @__PURE__ */ cpJsx("span", { className: "cp-tb-label" }, t("ux.tb.settings"))));
+    }))), /* @__PURE__ */ cpJsx("button", { onClick: bindAction("gb.settings", "singleton", "onClick", onSettings), title: t("ux.tb.classSettings"), "aria-label": t("ux.tb.classSettings"), style: B({ width: 26, height: 26, padding: 0, background: en_default["gb.10e9f5602d2492b3"], border: en_default["gb.c0973dd788d47056"], borderRadius: en_default["gb.1d40ec43f9b3dd50"], color: en_default["gb.e70f85eadb9d6ea6"], display: en_default["gb.123306850fe18564"], alignItems: en_default["gb.f179a509d32bd92c"], justifyContent: en_default["gb.f179a509d32bd92c"] }), "data-cp-action": "gb.settings", "data-cp-context": "singleton", className: "cp-tb-settings" }, /* @__PURE__ */ cpJsx(Icn, { n: en_default["gb.70ad3de50a55e77d"], sz: 14, _cpOrigin: "chrome.jsx:8952" }), /* @__PURE__ */ cpJsx("span", { className: "cp-tb-label" }, t("ux.tb.settings"))));
   }
 
   // src/core/settings-browser.jsx
@@ -48256,239 +48538,36 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     }))), /* @__PURE__ */ cpJsx("div", { style: { display: en_default["gb.222f930b87524636"], gap: 10, marginTop: 16, paddingTop: 16, borderTop: en_default["gb.70f02aab0627e198"] } }, /* @__PURE__ */ cpJsx("button", { onClick: bindAction("gb.class-manager.3467", "singleton", "onClick", onAddExisting), style: B({ flex: 1, background: en_default["gb.61eaaf6f10c140bc"], color: en_default["gb.d139a669343ee5a9"], border: en_default["gb.1a9ddd986ea838cb"], padding: en_default["gb.38cb6b4a22ffdadc"], fontSize: 12.5, fontWeight: 600 }), "data-cp-action": "gb.class-manager.3467", "data-cp-context": "singleton" }, en_default["gb.87753b805ffaaad6"]), /* @__PURE__ */ cpJsx("button", { onClick: bindAction("gb.class-manager.3667", "singleton", "onClick", onCreateNew), style: B({ flex: 1, background: en_default["gb.3c5c1ab6c5fd2f50"], color: en_default["gb.e08de713877c54e8"], padding: en_default["gb.38cb6b4a22ffdadc"], fontSize: 12.5, fontWeight: 600 }), "data-cp-action": "gb.class-manager.3667", "data-cp-context": "singleton" }, en_default["gb.d5cc2edca40ea59e"])))));
   }
 
-  // src/modules/lock/settings.jsx
-  function LockSettings({ profile: profile2 }) {
+  // src/core/profile-dialog.jsx
+  var initialsOf = (name) => String(name || "").replace(/^(mr|mrs|ms|dr|miss|أ|أستاذ|أستاذة)\.?\s+/i, "").split(/\s+/).filter(Boolean).slice(0, 2).map((part) => part[0]).join("").toUpperCase();
+  function ProfileMount({ open, onClose, children }) {
     useLanguage();
-    const [current4, setCurrent] = React.useState(""), [pin, setPin] = React.useState(""), [confirm2, setConfirm] = React.useState(""), [idle, setIdle] = React.useState(String(idleMinutes(profile2))), [message, setMessage] = React.useState(""), [busy, setBusy] = React.useState(false);
-    React.useEffect(() => {
-      setCurrent("");
-      setPin("");
-      setConfirm("");
-      setIdle(String(idleMinutes(profile2)));
-    }, [profile2.lockHash, profile2.lockSettings]);
-    async function save(remove = false) {
-      setMessage("");
-      if (busy || !isProfileLinked()) return;
-      if (!remove && (!Number.isInteger(Number(idle)) || Number(idle) < 0 || Number(idle) > 240 || idle.trim() === "")) {
-        setMessage("lock.idleInvalid");
-        return;
-      }
-      setBusy(true);
-      try {
-        if (!crypto.subtle) {
-          setMessage("lock.crypto");
-          return;
-        }
-        if (profile2.lockHash && !await verifyPin(current4, profile2.lockHash)) {
-          setMessage("lock.wrong");
-          return;
-        }
-        let lockHash = profile2.lockHash;
-        if (remove) lockHash = null;
-        else if (pin || confirm2 || !lockHash) {
-          if (!validPin(pin) || pin !== confirm2) {
-            setMessage("lock.invalidPin");
-            return;
-          }
-          lockHash = await hashPin(pin);
-        }
-        if (getProfile() !== profile2) {
-          setMessage("lock.failed");
-          return;
-        }
-        await new Promise((resolve) => {
-          const unsubscribe = subscribeProfile((next) => {
-            if (next.lockHash === lockHash) {
-              unsubscribe();
-              resolve();
-            }
-          });
-          updateProfile((p) => ({ ...p, lockHash, lockSettings: { ...p.lockSettings, idleMinutes: remove ? idleMinutes(p) : Number(idle) } }));
-        });
-        await flushProfile();
-        setCurrent("");
-        setPin("");
-        setConfirm("");
-        setMessage("lock.saved");
-      } catch {
-        setMessage("lock.failed");
-      } finally {
-        setBusy(false);
-      }
-    }
-    const field2 = (id, value, onChange) => /* @__PURE__ */ cpJsx("label", { style: { display: "flex", gap: 8, alignItems: "center", marginBlock: 8, fontSize: "var(--cp-fs-body)" } }, /* @__PURE__ */ cpJsx("span", { style: { flex: 1 } }, t("lock." + id)), /* @__PURE__ */ cpJsx("input", { type: id === "idle" ? "number" : "password", inputMode: "numeric", autoComplete: "off", min: id === "idle" ? 0 : void 0, max: id === "idle" ? 240 : void 0, maxLength: id === "idle" ? void 0 : 8, "aria-label": t("lock." + id), style: { ...I, width: 145 }, value, disabled: !isProfileLinked() || busy, ...controlProps("m8." + id, (e) => onChange(e.target.value)) }));
-    return /* @__PURE__ */ cpJsx("section", { "aria-label": t("lock.title") }, /* @__PURE__ */ cpJsx("h3", { style: { fontSize: "var(--cp-fs-label)" } }, t("lock.title")), /* @__PURE__ */ cpJsx("p", { style: { fontSize: "var(--cp-fs-body)" } }, t(profile2.lockHash ? "lock.on" : "lock.off")), /* @__PURE__ */ cpJsx("p", { style: { fontSize: "var(--cp-fs-body)" } }, t("lock.privacy")), !isProfileLinked() && /* @__PURE__ */ cpJsx("p", null, t("lock.link")), profile2.lockHash && field2("current", current4, setCurrent), field2("new", pin, setPin), field2("confirm", confirm2, setConfirm), field2("idle", idle, setIdle), /* @__PURE__ */ cpJsx("div", { style: { display: "flex", gap: 8 } }, /* @__PURE__ */ cpJsx("button", { ...actionProps("m8.save", () => save()), disabled: !isProfileLinked() || busy, style: B() }, t("lock.save")), profile2.lockHash && /* @__PURE__ */ cpJsx("button", { ...actionProps("m8.remove", () => save(true)), disabled: busy, style: B() }, t("lock.remove"))), message && /* @__PURE__ */ cpJsx("p", { role: "status", style: { fontSize: "var(--cp-fs-body)" } }, t(message)), /* @__PURE__ */ cpJsx("p", { style: { fontSize: "var(--cp-fs-caption)" } }, t("lock.recovery")));
-  }
-
-  // src/modules/pacing/year.jsx
-  var locale2 = () => getLanguage() === "ar" ? "ar-AE-u-nu-latn" : "en-GB";
-  var dayRange = (days) => days.length > 1 && days.every((day, i) => !i || day === days[i - 1] + 1) ? t("calendar.day" + days[0]) + "\u2013" + t("calendar.day" + days.at(-1)) : days.map((day) => t("calendar.day" + day)).join(", ");
-  var dayMonth = (iso) => displayDate(iso, { weekday: false, year: false });
-  function Months({ calendar, terms, today }) {
-    if (!terms.length) return null;
-    const first = parseISO(terms[0].from), last = parseISO(terms.at(-1).to), months = [];
-    for (let m = new Date(first.getFullYear(), first.getMonth(), 1); m <= last; m = new Date(m.getFullYear(), m.getMonth() + 1, 1)) months.push(m);
-    const holidays = calendar.holidays || [], schoolDays = calendar.schoolDays?.length ? calendar.schoolDays : [1, 2, 3, 4, 5], weekStart = Math.min(...schoolDays);
-    const weekNo = /* @__PURE__ */ new Map();
-    for (const term of terms) for (const week of teachingWeeks(calendar, term)) for (const day of week.days) weekNo.set(day, term.id + " \xB7 " + uxText("pace.week") + " " + week.n);
-    return /* @__PURE__ */ cpJsx("div", { className: "cp-year-months" }, months.map((month) => {
-      const lead = (month.getDay() - weekStart + 7) % 7, days = new Date(month.getFullYear(), month.getMonth() + 1, 0).getDate();
-      return /* @__PURE__ */ cpJsx("section", { key: isoOf(month), className: "cp-year-month" }, /* @__PURE__ */ cpJsx("h4", null, new Intl.DateTimeFormat(locale2(), { month: "long", year: "numeric" }).format(month)), /* @__PURE__ */ cpJsx("div", { className: "cp-year-grid" }, Array.from({ length: 7 }, (_, i) => /* @__PURE__ */ cpJsx("span", { key: "h" + i, className: "cp-year-dow" }, new Intl.DateTimeFormat(locale2(), { weekday: "narrow" }).format(addDays(month, ((weekStart + i - month.getDay()) % 7 + 7) % 7)))), Array.from({ length: lead }, (_, i) => /* @__PURE__ */ cpJsx("span", { key: "b" + i })), Array.from({ length: days }, (_, i) => {
-        const date5 = new Date(month.getFullYear(), month.getMonth(), i + 1), iso = isoOf(date5), term = terms.find((t2) => iso >= t2.from && iso <= t2.to), holiday = holidays.some((h) => iso >= h.from && iso <= (h.to || h.from)), weekend = !schoolDays.includes(date5.getDay()), school = term && isSchoolDay(iso, calendar), noLessons = school ? noTeachingOn(calendar, iso) : null, kind = holiday && term ? "holiday" : noLessons ? "noteach" : school ? "term" : term ? "off" : "out";
-        return /* @__PURE__ */ cpJsx("span", { key: iso, className: "cp-year-day", "data-kind": kind, "data-weekend": weekend ? "true" : void 0, "data-today": iso === today ? "true" : void 0, title: [iso, holiday ? uxText("pace.holiday") : noLessons ? uxText("pace.kind." + noLessons.kind) : weekNo.get(iso) || ""].filter(Boolean).join(" \xB7 ") }, cpRaw(String(i + 1)));
-      })));
-    }));
-  }
-  var DAY_TYPES = ["holiday", ...NO_TEACHING_KINDS];
-  function DaysOff({ calendar }) {
-    const [from, setFrom] = useState(""), [to, setTo] = useState(""), [type, setType] = useState("holiday");
-    const rows = [
-      ...(calendar.holidays || []).map((range, index) => ({ ...range, type: "holiday", key: "h:" + index, remove: (p) => ({ ...p, calendar: { ...p.calendar, holidays: p.calendar.holidays.filter((_, i) => i !== index) } }) })),
-      ...noTeachingOf(calendar).map((range, index) => ({ ...range, type: range.kind, key: "n:" + index, remove: (p) => removeNoTeaching(p, index) }))
-    ].sort((a, b) => a.from.localeCompare(b.from));
-    const add = () => {
-      const last = to || from;
-      updateProfile((p) => type === "holiday" ? { ...p, calendar: { ...p.calendar, holidays: [...p.calendar.holidays || [], { from, to: last }] } } : addNoTeaching(p, { from, to: last, kind: type }));
-      setFrom("");
-      setTo("");
-    };
-    return /* @__PURE__ */ cpJsx("div", { className: "cp-year-days" }, rows.length ? rows.map((row2) => /* @__PURE__ */ cpJsx("div", { key: row2.key, className: "cp-year-range", "data-type": row2.type }, /* @__PURE__ */ cpJsx("span", { className: "cp-year-swatch", "data-kind": row2.type === "holiday" ? "holiday" : "noteach" }), /* @__PURE__ */ cpJsx("span", null, /* @__PURE__ */ cpJsx("bdi", null, cpRaw(row2.from + (row2.to && row2.to !== row2.from ? " \u2013 " + row2.to : ""))), " \xB7 ", uxText("pace.kind." + row2.type)), /* @__PURE__ */ cpJsx(UxButton, { id: "pace.dayDelete", context: row2.key, onClick: () => updateProfile(row2.remove) }))) : /* @__PURE__ */ cpJsx("p", { className: "cp-ai3-hint" }, uxText("pace.daysNone")), /* @__PURE__ */ cpJsx("div", { className: "cp-year-add" }, /* @__PURE__ */ cpJsx(UxField, { id: "pace.dayFrom", type: "date", value: from, max: to || void 0, onChange: (e) => setFrom(e.target.value) }), /* @__PURE__ */ cpJsx(UxField, { id: "pace.dayTo", type: "date", value: to, min: from || void 0, onChange: (e) => setTo(e.target.value) }), /* @__PURE__ */ cpJsx(UxSelect, { id: "pace.dayType", value: type, onChange: (e) => setType(e.target.value) }, DAY_TYPES.map((k) => /* @__PURE__ */ cpJsx("option", { key: k, value: k }, uxText("pace.kind." + k)))), /* @__PURE__ */ cpJsx(UxButton, { id: "pace.dayAdd", disabled: !from || to && to < from, onClick: add })));
-  }
-  function Summary({ calendar, doc }) {
-    const summary = yearSummary(calendar, doc), plan = summary.terms.some((t2) => t2.planWeeks != null);
-    if (!summary.terms.length) return null;
-    const row2 = (key4, value, extra) => /* @__PURE__ */ cpJsx("tr", { key: key4 }, /* @__PURE__ */ cpJsx("th", { scope: "row" }, uxText("pace.sum." + key4)), summary.terms.map((t2) => {
-      const v = value(t2), warn = extra?.(t2);
-      return /* @__PURE__ */ cpJsx("td", { key: t2.id, "data-warn": warn ? "true" : void 0, title: warn ? uxText("pace.sum.planLonger") : void 0 }, cpRaw(v == null ? "\u2013" : String(v)));
-    }));
-    return /* @__PURE__ */ cpJsx("table", { className: "cp-year-summary" }, /* @__PURE__ */ cpJsx("thead", null, /* @__PURE__ */ cpJsx("tr", null, /* @__PURE__ */ cpJsx("td", null), summary.terms.map((t2) => /* @__PURE__ */ cpJsx("th", { key: t2.id, scope: "col" }, uxText("pace.term." + t2.id))))), /* @__PURE__ */ cpJsx("tbody", null, row2("weeks", (t2) => t2.weeks), row2("days", (t2) => t2.schoolDays), row2("teaching", (t2) => t2.teachingWeeks), plan && row2("plan", (t2) => t2.planWeeks, (t2) => t2.planWeeks != null && t2.planWeeks > t2.teachingWeeks), /* @__PURE__ */ cpJsx("tr", null, /* @__PURE__ */ cpJsx("th", { scope: "row" }, uxText("pace.sum.total")), /* @__PURE__ */ cpJsx("td", { colSpan: summary.terms.length }, cpRaw(String(summary.schoolDays))))));
-  }
-  function SchoolYear({ profile: profile2, today, doc, onUpdate }) {
-    useLanguage();
-    const calendar = profile2.calendar || {}, terms = termsOf(calendar), list2 = Array.isArray(calendar.terms) ? calendar.terms : [];
-    const shown2 = TERM_IDS.filter((id, i) => i < 3 || list2.some((t2) => t2.id === id));
-    const follows = doc ? followsTeacherCalendar(doc, calendar) : true, name = doc?.settings?.className || "";
-    return /* @__PURE__ */ cpJsx("div", { className: "cp-year" }, doc?.cp?.classId && /* @__PURE__ */ cpJsx("p", { className: "cp-cal-status", "data-follows": follows ? "true" : "false", role: "status" }, cpRaw(follows ? uxText("cal.follows").replace("{class}", name) : uxText("cal.ownStatus").replace("{class}", name).replace("{days}", dayRange(classDays(doc)))), !follows && onUpdate && /* @__PURE__ */ cpJsx(UxButton, { id: "cal.useTeacher", context: "calendar", onClick: () => {
-      onUpdate((d) => adoptTeacherCalendar(d, calendar));
-      notify(uxText("cal.followsNow"), { undo: true });
-    } })), /* @__PURE__ */ cpJsx("section", { className: "cp-ai3-group", "aria-labelledby": "cp-year-terms" }, /* @__PURE__ */ cpJsx("h3", { id: "cp-year-terms" }, uxText("pace.termsTitle")), /* @__PURE__ */ cpJsx("p", { className: "cp-ai3-hint" }, uxText("pace.termsLead")), /* @__PURE__ */ cpJsx("div", { className: "cp-year-terms" }, shown2.map((id) => {
-      const term = list2.find((t2) => t2.id === id) || {}, weeks = termsOf(calendar).some((t2) => t2.id === id) ? teachingWeeks(calendar, term).length : 0;
-      return /* @__PURE__ */ cpJsx("div", { key: id, className: "cp-year-term" }, /* @__PURE__ */ cpJsx("b", null, uxText("pace.term." + id)), /* @__PURE__ */ cpJsx(UxField, { id: "pace.termFrom", label: "pace.from", type: "date", context: id, value: term.from || "", max: term.to || void 0, onChange: (e) => updateProfile((p) => setTerm(p, id, { from: e.target.value })) }), /* @__PURE__ */ cpJsx(UxField, { id: "pace.termTo", label: "pace.to", type: "date", context: id, value: term.to || "", min: term.from || void 0, onChange: (e) => updateProfile((p) => setTerm(p, id, { to: e.target.value })) }), /* @__PURE__ */ cpJsx("small", { "data-weeks": weeks }, weeks ? uxText("pace.weeks").replace("{n}", String(weeks)) : uxText("pace.noDates")));
-    }))), /* @__PURE__ */ cpJsx("section", { className: "cp-ai3-group", "aria-labelledby": "cp-year-days" }, /* @__PURE__ */ cpJsx("h3", { id: "cp-year-days" }, uxText("pace.daysTitle")), /* @__PURE__ */ cpJsx("p", { className: "cp-ai3-hint" }, uxText("pace.daysLead")), /* @__PURE__ */ cpJsx(DaysOff, { calendar })), terms.length > 0 && /* @__PURE__ */ cpJsx("section", { className: "cp-ai3-group", "aria-labelledby": "cp-year-sum" }, /* @__PURE__ */ cpJsx("h3", { id: "cp-year-sum" }, uxText("pace.summaryTitle")), /* @__PURE__ */ cpJsx("p", { className: "cp-ai3-hint" }, uxText("pace.summaryLead")), /* @__PURE__ */ cpJsx(Summary, { calendar, doc })), terms.length > 0 && /* @__PURE__ */ cpJsx("section", { "aria-labelledby": "cp-year-glance" }, /* @__PURE__ */ cpJsx("h3", { id: "cp-year-glance" }, uxText("pace.glance")), /* @__PURE__ */ cpJsx("p", { className: "cp-year-key" }, /* @__PURE__ */ cpJsx("span", { "data-kind": "term" }), uxText("pace.keyTerm"), /* @__PURE__ */ cpJsx("span", { "data-kind": "noteach" }), uxText("pace.keyNoTeach"), /* @__PURE__ */ cpJsx("span", { "data-kind": "holiday" }), uxText("pace.holiday"), /* @__PURE__ */ cpJsx("span", { "data-kind": "off" }), uxText("pace.keyOff")), /* @__PURE__ */ cpJsx(Months, { calendar, terms, today })));
-  }
-
-  // src/core/settings-home.jsx
-  var SECTIONS = ["class", "calendar", "profile", "appearance", "lock", "reminders", "about"];
-  var state = { open: false, section: "class" };
-  var listeners7 = /* @__PURE__ */ new Set(), slots = {}, slotListeners = /* @__PURE__ */ new Set(), slotRef = {};
-  var emit3 = () => listeners7.forEach((listener) => listener(state));
-  function openSettings(section) {
-    state = { open: true, section: SECTIONS.includes(section) ? section : state.section };
-    emit3();
-  }
-  function closeSettings() {
-    if (!state.open) return;
-    state = { ...state, open: false };
-    emit3();
-  }
-  function useSettings() {
-    const [value, setValue] = useState(state);
-    useEffect(() => {
-      listeners7.add(setValue);
-      setValue(state);
-      return () => listeners7.delete(setValue);
-    }, []);
-    return value;
-  }
-  function setSlot(section, node) {
-    if (slots[section] === node) return;
-    slots[section] = node;
-    slotListeners.forEach((listener) => listener());
-  }
-  var refFor = (section) => slotRef[section] || (slotRef[section] = (node) => setSlot(section, node));
-  function useSlot(section) {
-    const [, tick] = useState(0);
-    useEffect(() => {
-      const listener = () => tick((n) => n + 1);
-      slotListeners.add(listener);
-      return () => slotListeners.delete(listener);
-    }, []);
-    return slots[section] || null;
-  }
-  function SettingsMount({ section, open, onOpen, onClose, children }) {
-    const settings = useSettings(), slot3 = useSlot(section), active3 = settings.open && settings.section === section, wasOpen = useRef(open), wasActive = useRef(active3);
-    useEffect(() => {
-      if (open && !wasOpen.current && !active3) openSettings(section);
-      if (!open && wasOpen.current && active3) closeSettings();
-      wasOpen.current = open;
-    }, [open]);
-    useEffect(() => {
-      if (active3 && !wasActive.current && !open) onOpen?.();
-      if (wasActive.current && !active3 && open) onClose?.();
-      wasActive.current = active3;
-    }, [active3, open]);
-    return active3 && slot3 ? ReactDOM.createPortal(/* @__PURE__ */ cpJsx("div", { className: "cp-settings-mount", "data-section": section }, children), slot3) : null;
-  }
-  var keywords = (section) => t("ux.settings.kw." + section);
-  function focusTargets(root2) {
-    return [...root2.querySelectorAll("button,input,select,textarea,summary,a[href],[tabindex]")].filter((element) => {
-      if (element.matches(":disabled") || element.tabIndex < 0 || !element.getClientRects().length || getComputedStyle(element).visibility !== "visible") return false;
-      for (let parent = element.parentElement; parent && parent !== root2; parent = parent.parentElement) if (parent.tagName === "DETAILS" && !parent.open && !parent.querySelector(":scope > summary")?.contains(element)) return false;
-      return true;
-    });
-  }
-  function CalendarSummary({ profile: profile2, onOpenCalendar }) {
-    const terms = termsOf(profile2.calendar);
-    return /* @__PURE__ */ cpJsx("div", { className: "cp-settings-calendar" }, /* @__PURE__ */ cpJsx("p", null, t("ux.settings.calendarLead")), /* @__PURE__ */ cpJsx("dl", null, /* @__PURE__ */ cpJsx("div", null, /* @__PURE__ */ cpJsx("dt", null, t("ux.settings.schoolWeek")), /* @__PURE__ */ cpJsx("dd", null, cpRaw(dayRange(profile2.calendar?.schoolDays || [])))), /* @__PURE__ */ cpJsx("div", null, /* @__PURE__ */ cpJsx("dt", null, t("ux.settings.terms")), /* @__PURE__ */ cpJsx("dd", null, terms.length ? terms.map((term) => /* @__PURE__ */ cpJsx("span", { key: term.id }, cpRaw(t("ux.pace.term." + term.id) + " \xB7 " + dayMonth(term.from) + " \u2013 " + dayMonth(term.to)))) : t("ux.settings.noTerms"))), /* @__PURE__ */ cpJsx("div", null, /* @__PURE__ */ cpJsx("dt", null, t("ux.settings.holidays")), /* @__PURE__ */ cpJsx("dd", null, cpRaw(String((profile2.calendar?.holidays || []).length))))), /* @__PURE__ */ cpJsx("button", { type: "button", className: "cp-ux-button", ...actionProps("ux.pace.openYear", onOpenCalendar, "settings") }, t("ux.settings.openCalendar")));
-  }
-  function AppearanceSection({ workspace, language: language2, onLanguage, direction, onDirection, profile: profile2 }) {
-    const appearance = workspace?.appearance || {}, set = workspace?.setAppearanceKey;
-    const select = (id, labelKey, value, options, onChange) => /* @__PURE__ */ cpJsx("label", { className: "cp-settings-field" }, /* @__PURE__ */ cpJsx("span", null, t(labelKey)), /* @__PURE__ */ cpJsx("select", { value, "aria-label": t(labelKey), ...controlProps(id, onChange) }, options));
-    return /* @__PURE__ */ cpJsx("div", { className: "cp-settings-fields" }, select("cp.language", "settings.language", language2, [/* @__PURE__ */ cpJsx("option", { key: "en", value: "en" }, t("settings.en")), /* @__PURE__ */ cpJsx("option", { key: "ar", value: "ar" }, t("settings.ar"))], (e) => onLanguage(e.target.value)), select("cp.direction", "settings.direction", direction, [/* @__PURE__ */ cpJsx("option", { key: "ltr", value: "ltr" }, t("settings.ltr")), /* @__PURE__ */ cpJsx("option", { key: "rtl", value: "rtl" }, t("settings.rtl"))], (e) => onDirection(e.target.value)), /* @__PURE__ */ cpJsx("label", { className: "cp-settings-check" }, /* @__PURE__ */ cpJsx("input", { type: "checkbox", checked: !!profile2.ui?.arabicIndicDigits, ...controlProps("cp.digits", (e) => {
-      setDisplayDigits(e.target.checked);
-      updateProfile((p) => ({ ...p, ui: { ...p.ui, arabicIndicDigits: e.target.checked } }));
-    }) }), /* @__PURE__ */ cpJsx("span", null, t("settings.digits"))), select("improve.theme", "improve.theme", appearance.theme || "light", [["light", "improve.light"], ["dark", "improve.dark"], ["contrast", "ux.appearance.contrast"]].map(([value, key4]) => /* @__PURE__ */ cpJsx("option", { key: value, value }, t(key4))), (e) => set?.("theme", e.target.value)), select("improve.density", "improve.spacing", appearance.density || "comfortable", [["comfortable", "improve.comfortable"], ["compact", "improve.compact"]].map(([value, key4]) => /* @__PURE__ */ cpJsx("option", { key: value, value }, t(key4))), (e) => set?.("density", e.target.value)), [["look", ["gold", "aurora", "meadow", "cloud", "oasis", "classic"]], ["fontEn", ["plex", "figtree", "lexend", "system"]], ["fontAr", ["thmanyah", "plexArabic", "system"]], ["textSize", ["standard", "large", "extraLarge"]], ["accent", ["blue", "teal", "violet"]]].filter(([key4]) => key4 !== "accent" || (appearance.look || "gold") === "classic").map(([key4, values]) => /* @__PURE__ */ cpJsx("span", { key: key4 }, select("ux.appearance." + key4, "ux.appearance." + key4, appearance[key4] || values[0], values.map((value) => /* @__PURE__ */ cpJsx("option", { key: value, value }, t("ux.appearance." + value))), (e) => set?.(key4, e.target.value)))));
-  }
-  function SettingsHome({ workspace, language: language2, onLanguage, direction, onDirection, onOpenCalendar }) {
-    useLanguage();
-    const settings = useSettings(), [profile2, setProfile] = useState(getProfile), [query, setQuery] = useState(""), box = useRef(null), opener = useRef(null);
+    const layer = useRef(null), [profile2, setProfile] = useState(getProfile);
     useEffect(() => subscribeProfile(setProfile), []);
-    useEscape(settings.open, () => closeSettings());
+    useEscape(open, onClose);
     useEffect(() => {
-      if (!settings.open) setQuery("");
-    }, [settings.open]);
-    useLayoutEffect(() => {
-      if (settings.open) {
-        opener.current = document.activeElement;
-        box.current?.querySelector('[data-cp-action="improve.closePreferences"]')?.focus();
-      } else {
-        const back = opener.current;
-        opener.current = null;
-        if (back?.isConnected) back.focus();
-      }
-    }, [settings.open]);
-    const needle = query.trim().toLocaleLowerCase(), shown2 = SECTIONS.filter((section2) => !needle || (t("ux.settings." + section2) + " " + keywords(section2)).toLocaleLowerCase().includes(needle));
-    useEffect(() => {
-      if (settings.open && needle && shown2.length && !shown2.includes(settings.section)) openSettings(shown2[0]);
-    }, [needle, settings.open]);
-    if (!settings.open) return null;
-    const trap = (event) => {
-      if (event.key !== "Tab") return;
-      const controls4 = focusTargets(box.current);
-      const first = controls4[0], last = controls4.at(-1);
-      if (event.shiftKey && document.activeElement === first) {
-        event.preventDefault();
-        last?.focus();
-      } else if (!event.shiftKey && document.activeElement === last) {
-        event.preventDefault();
-        first?.focus();
-      }
-    };
-    const section = settings.section, reminders = profile2.reminders?.attendance !== false;
-    return ReactDOM.createPortal(/* @__PURE__ */ cpJsx("div", { className: "cp-settings-home", role: "dialog", "aria-modal": "true", "aria-labelledby": "cp-settings-title", ref: box, dir: direction, onKeyDown: trap }, /* @__PURE__ */ cpJsx("button", { type: "button", className: "cp-settings-close", ...actionProps("improve.closePreferences", () => closeSettings()), "aria-label": t("common.close"), title: t("improve.closePreferences") }, "\xD7"), /* @__PURE__ */ cpJsx("aside", { className: "cp-settings-nav" }, /* @__PURE__ */ cpJsx("h2", { id: "cp-settings-title" }, t("ux.settings.title")), /* @__PURE__ */ cpJsx("label", { className: "cp-settings-search" }, /* @__PURE__ */ cpJsx("span", { className: "cp-sr" }, t("ux.settings.search")), /* @__PURE__ */ cpJsx("input", { type: "search", value: query, placeholder: t("ux.settings.searchHint"), "aria-label": t("ux.settings.search"), ...controlProps("ux.settings.search", (e) => setQuery(e.target.value)) })), /* @__PURE__ */ cpJsx("nav", { "aria-label": t("ux.settings.title") }, shown2.map((id) => /* @__PURE__ */ cpJsx("button", { type: "button", key: id, "aria-current": id === section ? "page" : void 0, ...actionProps("ux.settings.section", () => openSettings(id), id) }, t("ux.settings." + id))), !shown2.length && /* @__PURE__ */ cpJsx("p", { role: "status" }, t("ux.settings.noMatch")))), /* @__PURE__ */ cpJsx("section", { className: "cp-settings-body", "aria-labelledby": "cp-settings-section" }, /* @__PURE__ */ cpJsx("header", null, /* @__PURE__ */ cpJsx("h3", { id: "cp-settings-section" }, t("ux.settings." + section))), section === "class" && /* @__PURE__ */ cpJsx("div", { className: "cp-settings-slot", ref: refFor("class") }), section === "profile" && /* @__PURE__ */ cpJsx("div", { className: "cp-settings-slot", ref: refFor("profile") }), section === "calendar" && /* @__PURE__ */ cpJsx(CalendarSummary, { profile: profile2, onOpenCalendar: () => {
-      closeSettings();
-      onOpenCalendar();
-    } }), section === "appearance" && /* @__PURE__ */ cpJsx(AppearanceSection, { workspace, language: language2, onLanguage, direction, onDirection, profile: profile2 }), section === "lock" && /* @__PURE__ */ cpJsx(LockSettings, { profile: profile2 }), section === "reminders" && /* @__PURE__ */ cpJsx("div", { className: "cp-settings-fields" }, /* @__PURE__ */ cpJsx("label", { className: "cp-settings-check", title: t("ux.home.remindHint") }, /* @__PURE__ */ cpJsx("input", { type: "checkbox", checked: reminders, disabled: !isProfileLinked(), ...controlProps("ux.home.remindAttendance", (e) => updateProfile((p) => ({ ...p, reminders: { ...p.reminders, attendance: e.target.checked } }))) }), /* @__PURE__ */ cpJsx("span", null, t("ux.home.remindAttendance"))), /* @__PURE__ */ cpJsx("p", { className: "cp-settings-hint" }, t("ux.home.remindHint"))), section === "about" && /* @__PURE__ */ cpJsx("dl", { className: "cp-settings-about" }, /* @__PURE__ */ cpJsx("div", null, /* @__PURE__ */ cpJsx("dt", null, t("ux.settings.aboutName")), /* @__PURE__ */ cpJsx("dd", null, t("about.title"))), /* @__PURE__ */ cpJsx("div", null, /* @__PURE__ */ cpJsx("dt", null, t("ux.settings.aboutVersion")), /* @__PURE__ */ cpJsx("dd", null, t("about.version"))), /* @__PURE__ */ cpJsx("div", null, /* @__PURE__ */ cpJsx("dt", null, t("ux.settings.aboutLicence")), /* @__PURE__ */ cpJsx("dd", null, t("about.license"))), /* @__PURE__ */ cpJsx("p", null, t("about.privacy"))))), document.body);
+      if (!open) return;
+      const opener = document.activeElement, dialog = layer.current;
+      if (dialog && !dialog.open && typeof dialog.showModal === "function") dialog.showModal();
+      requestAnimationFrame(() => dialog?.querySelector(".cp-profile-dialog input,.cp-profile-dialog button")?.focus());
+      return () => {
+        if (opener?.isConnected) opener.focus();
+      };
+    }, [open]);
+    if (!open) return null;
+    const name = profile2.reportHeader?.teacher || "", file = getProfileHandle()?.name, state2 = !isProfileLinked() ? t("improve.profileUnlinked") : isProfileDirty() ? t("improve.profilePending") : t("profile.linked");
+    return /* @__PURE__ */ cpJsx("dialog", { ref: layer, className: "cp-dialog-layer cp-kit-layer", "aria-modal": "true", "aria-labelledby": "cp-profile-title", onCancel: (event) => {
+      event.preventDefault();
+      onClose();
+    }, onMouseDown: (event) => {
+      if (event.target === event.currentTarget) onClose();
+    } }, /* @__PURE__ */ cpJsx("div", { className: "cp-dialog cp-profile-dialog" }, /* @__PURE__ */ cpJsx("header", { className: "cp-profile-head" }, /* @__PURE__ */ cpJsx("span", { className: "cp-avatar", "aria-hidden": "true" }, cpRaw(initialsOf(name) || "\xB7")), /* @__PURE__ */ cpJsx("div", null, /* @__PURE__ */ cpJsx("h2", { id: "cp-profile-title" }, t("profile.title")), /* @__PURE__ */ cpJsx("p", null, file && /* @__PURE__ */ cpJsx("span", { dir: "auto" }, cpRaw(file)), file && cpRaw(" \xB7 "), /* @__PURE__ */ cpJsx("span", null, state2))), /* @__PURE__ */ cpJsx("button", { type: "button", className: "cp-profile-x", "aria-label": t("ux.profile.close"), title: t("ux.profile.close"), ...actionProps("ux.profile.close", onClose) }, /* @__PURE__ */ cpJsx("svg", { "aria-hidden": "true", viewBox: "0 0 24 24", width: "18", height: "18", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round" }, /* @__PURE__ */ cpJsx("path", { d: "M6 6l12 12M18 6L6 18" })))), children));
+  }
+
+  // src/core/escape-layer.jsx
+  function EscapeLayer({ open, onClose, children }) {
+    useEscape(!!open, onClose);
+    return children;
   }
 
   // src/modules/timetable/class-links.js
@@ -48533,26 +48612,26 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
   // src/core/classes-files.jsx
   var PAGE = "module:workspace";
   var slot = null;
-  var slotListeners2 = /* @__PURE__ */ new Set();
-  function setSlot2(node) {
+  var slotListeners = /* @__PURE__ */ new Set();
+  function setSlot(node) {
     if (slot === node) return;
     slot = node;
-    slotListeners2.forEach((listener) => listener());
+    slotListeners.forEach((listener) => listener());
   }
-  function useSlot2() {
+  function useSlot() {
     const [, tick] = useState(0);
     useEffect(() => {
       const listener = () => tick((n) => n + 1);
-      slotListeners2.add(listener);
-      return () => slotListeners2.delete(listener);
+      slotListeners.add(listener);
+      return () => slotListeners.delete(listener);
     }, []);
     return slot;
   }
   function ClassesSlot() {
-    return /* @__PURE__ */ cpJsx("div", { className: "cp-classes-slot", ref: setSlot2 });
+    return /* @__PURE__ */ cpJsx("div", { className: "cp-classes-slot", ref: setSlot });
   }
   function ClassesMount({ open, onOpen, onClose, view, setView, children }) {
-    const node = useSlot2(), active3 = view === PAGE, wasOpen = useRef(open), wasActive = useRef(false), back = useRef(null);
+    const node = useSlot(), active3 = view === PAGE, wasOpen = useRef(open), wasActive = useRef(false), back = useRef(null);
     useEffect(() => {
       if (!active3) back.current = view;
     }, [view]);
@@ -48773,22 +48852,22 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
 
   // src/core/restore-review.jsx
   var pending4 = null;
-  var listeners8 = /* @__PURE__ */ new Set(), emit4 = () => {
-    for (const fn of listeners8) fn(pending4);
+  var listeners7 = /* @__PURE__ */ new Set(), emit3 = () => {
+    for (const fn of listeners7) fn(pending4);
   };
   function reviewRestore(current4, incoming, linked, message) {
     if (pending4) return Promise.resolve(false);
     return new Promise((resolve) => {
       pending4 = { current: current4, incoming, linked, message, resolve };
-      emit4();
+      emit3();
     });
   }
   var counts = (d) => ({ students: d.students.length, columns: d.sections.reduce((n, s) => n + s.columns.length, 0), sessions: Object.keys(d.cp?.attendance?.sessions || {}).length, plans: d.cp?.plans?.length || 0, notes: Object.values(d.cp?.notes?.byStudent || {}).reduce((n, list2) => n + list2.length, 0) });
   function RestoreReview() {
     const [review, setReview] = useState(pending4), dialog = useRef(null);
     useEffect(() => {
-      listeners8.add(setReview);
-      return () => listeners8.delete(setReview);
+      listeners7.add(setReview);
+      return () => listeners7.delete(setReview);
     }, []);
     useEffect(() => {
       if (review) dialog.current?.showModal();
@@ -48896,13 +48975,13 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
 
   // src/modules/bell/audio.js
   var audio = null;
-  var listeners9 = /* @__PURE__ */ new Set();
+  var listeners8 = /* @__PURE__ */ new Set();
   var soundReady = () => audio?.state === "running";
   function subscribeAudio(listener) {
-    listeners9.add(listener);
-    return () => listeners9.delete(listener);
+    listeners8.add(listener);
+    return () => listeners8.delete(listener);
   }
-  var notify4 = () => listeners9.forEach((listener) => listener(soundReady()));
+  var notify4 = () => listeners8.forEach((listener) => listener(soundReady()));
   async function enableSound() {
     const Context = globalThis.AudioContext || globalThis.webkitAudioContext;
     if (!Context) throw new Error("audio.unsupported");
@@ -48959,13 +49038,13 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
 
   // src/modules/bell/runtime.js
   var worker = null, release = null, signature = "", handle2 = null, generation = 0, error = "";
-  var listeners10 = /* @__PURE__ */ new Set();
+  var listeners9 = /* @__PURE__ */ new Set();
   var bellError = () => error;
   function subscribeBell(listener) {
-    listeners10.add(listener);
-    return () => listeners10.delete(listener);
+    listeners9.add(listener);
+    return () => listeners9.delete(listener);
   }
-  var notify5 = () => listeners10.forEach((listener) => listener());
+  var notify5 = () => listeners9.forEach((listener) => listener());
   function recordEvents(events) {
     const profile2 = getProfile(), at = Date.now(), rows = [];
     for (const event of events) {
@@ -49605,14 +49684,14 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
   }
 
   // src/core/context-bar.jsx
-  var items = /* @__PURE__ */ new Map(), listeners11 = /* @__PURE__ */ new Set();
+  var items = /* @__PURE__ */ new Map(), listeners10 = /* @__PURE__ */ new Set();
   var queued2 = false;
-  function emit5() {
+  function emit4() {
     if (queued2) return;
     queued2 = true;
     Promise.resolve().then(() => {
       queued2 = false;
-      listeners11.forEach((listener) => listener());
+      listeners10.forEach((listener) => listener());
     });
   }
   function useContextItem(id, item) {
@@ -49620,11 +49699,11 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       const had = items.get(id);
       if (item) items.set(id, item);
       else items.delete(id);
-      if (item || had) emit5();
+      if (item || had) emit4();
     });
     useEffect(() => () => {
       items.delete(id);
-      emit5();
+      emit4();
     }, [id]);
   }
   function contextItems() {
@@ -49635,8 +49714,8 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     const [, refresh] = useState(0), [open, setOpen] = useState(false), more = useRef(null), box = useRef(null);
     useEffect(() => {
       const listener = () => refresh((n) => n + 1);
-      listeners11.add(listener);
-      return () => listeners11.delete(listener);
+      listeners10.add(listener);
+      return () => listeners10.delete(listener);
     }, []);
     useEscape(open, () => {
       setOpen(false);
@@ -49702,7 +49781,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       playTicks([0], 0.7);
     }, [state2.runId, lastSeconds]);
     useContextItem("now-next", schedule.now || schedule.next ? { kind: "clock", className: "cp-ctx-clock", node: /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx("span", null, t("tt.now"), ": ", cpRaw(schedule.now?.period.label || t("tt.none"))), schedule.now?.cell?.classId && /* @__PURE__ */ cpJsx(ToolButton, { id: "tt.open", context: "now-strip", onClick: () => onOpenClass(schedule.now.cell.classId) }, cpRaw(profile2.classReferences.find((r) => r.classId === schedule.now.cell.classId)?.displayName || t("tt.open"))), /* @__PURE__ */ cpJsx("span", null, t("tt.next"), ": ", cpRaw(schedule.next?.period.label || t("tt.none"))), schedule.now && /* @__PURE__ */ cpJsx("strong", null, uxText("home.remaining"), ": ", formatDuration((/* @__PURE__ */ new Date()).setHours(...schedule.now.period.end.split(":").map(Number), 0, 0) - now))) } : null);
-    useContextItem("audio", needsAudio && !audio2 ? { kind: "notice", order: 1, className: "cp-ctx-audio", node: /* @__PURE__ */ cpJsx(ToolButton, { id: "audio.enable", onClick: async () => {
+    useContextItem("audio", needsAudio && !audio2 && view !== "module:bell" ? { kind: "notice", order: 1, className: "cp-ctx-audio", node: /* @__PURE__ */ cpJsx(ToolButton, { id: "audio.enable", onClick: async () => {
       try {
         await enableSound();
         setError("");
@@ -50296,6 +50375,63 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
   function weekAverage(rates) {
     const known = rates.filter((rate) => rate != null);
     return known.length ? Math.round(known.reduce((a, b) => a + b, 0) / known.length) : null;
+  }
+
+  // src/modules/pacing/year.jsx
+  var locale2 = () => getLanguage() === "ar" ? "ar-AE-u-nu-latn" : "en-GB";
+  var dayRange = (days) => days.length > 1 && days.every((day, i) => !i || day === days[i - 1] + 1) ? t("calendar.day" + days[0]) + "\u2013" + t("calendar.day" + days.at(-1)) : days.map((day) => t("calendar.day" + day)).join(", ");
+  var dayMonth = (iso) => displayDate(iso, { weekday: false, year: false });
+  function Months({ calendar, terms, today }) {
+    if (!terms.length) return null;
+    const first = parseISO(terms[0].from), last = parseISO(terms.at(-1).to), months = [];
+    for (let m = new Date(first.getFullYear(), first.getMonth(), 1); m <= last; m = new Date(m.getFullYear(), m.getMonth() + 1, 1)) months.push(m);
+    const holidays = calendar.holidays || [], schoolDays = calendar.schoolDays?.length ? calendar.schoolDays : [1, 2, 3, 4, 5], weekStart = Math.min(...schoolDays);
+    const weekNo = /* @__PURE__ */ new Map();
+    for (const term of terms) for (const week of teachingWeeks(calendar, term)) for (const day of week.days) weekNo.set(day, term.id + " \xB7 " + uxText("pace.week") + " " + week.n);
+    return /* @__PURE__ */ cpJsx("div", { className: "cp-year-months" }, months.map((month) => {
+      const lead = (month.getDay() - weekStart + 7) % 7, days = new Date(month.getFullYear(), month.getMonth() + 1, 0).getDate();
+      return /* @__PURE__ */ cpJsx("section", { key: isoOf(month), className: "cp-year-month" }, /* @__PURE__ */ cpJsx("h4", null, new Intl.DateTimeFormat(locale2(), { month: "long", year: "numeric" }).format(month)), /* @__PURE__ */ cpJsx("div", { className: "cp-year-grid" }, Array.from({ length: 7 }, (_, i) => /* @__PURE__ */ cpJsx("span", { key: "h" + i, className: "cp-year-dow" }, new Intl.DateTimeFormat(locale2(), { weekday: "narrow" }).format(addDays(month, ((weekStart + i - month.getDay()) % 7 + 7) % 7)))), Array.from({ length: lead }, (_, i) => /* @__PURE__ */ cpJsx("span", { key: "b" + i })), Array.from({ length: days }, (_, i) => {
+        const date5 = new Date(month.getFullYear(), month.getMonth(), i + 1), iso = isoOf(date5), term = terms.find((t2) => iso >= t2.from && iso <= t2.to), holiday = holidays.some((h) => iso >= h.from && iso <= (h.to || h.from)), weekend = !schoolDays.includes(date5.getDay()), school = term && isSchoolDay(iso, calendar), noLessons = school ? noTeachingOn(calendar, iso) : null, kind = holiday && term ? "holiday" : noLessons ? "noteach" : school ? "term" : term ? "off" : "out";
+        return /* @__PURE__ */ cpJsx("span", { key: iso, className: "cp-year-day", "data-kind": kind, "data-weekend": weekend ? "true" : void 0, "data-today": iso === today ? "true" : void 0, title: [iso, holiday ? uxText("pace.holiday") : noLessons ? uxText("pace.kind." + noLessons.kind) : weekNo.get(iso) || ""].filter(Boolean).join(" \xB7 ") }, cpRaw(String(i + 1)));
+      })));
+    }));
+  }
+  var DAY_TYPES = ["holiday", ...NO_TEACHING_KINDS];
+  function DaysOff({ calendar }) {
+    const [from, setFrom] = useState(""), [to, setTo] = useState(""), [type, setType] = useState("holiday");
+    const rows = [
+      ...(calendar.holidays || []).map((range, index) => ({ ...range, type: "holiday", key: "h:" + index, remove: (p) => ({ ...p, calendar: { ...p.calendar, holidays: p.calendar.holidays.filter((_, i) => i !== index) } }) })),
+      ...noTeachingOf(calendar).map((range, index) => ({ ...range, type: range.kind, key: "n:" + index, remove: (p) => removeNoTeaching(p, index) }))
+    ].sort((a, b) => a.from.localeCompare(b.from));
+    const add = () => {
+      const last = to || from;
+      updateProfile((p) => type === "holiday" ? { ...p, calendar: { ...p.calendar, holidays: [...p.calendar.holidays || [], { from, to: last }] } } : addNoTeaching(p, { from, to: last, kind: type }));
+      setFrom("");
+      setTo("");
+    };
+    return /* @__PURE__ */ cpJsx("div", { className: "cp-year-days" }, rows.length ? rows.map((row2) => /* @__PURE__ */ cpJsx("div", { key: row2.key, className: "cp-year-range", "data-type": row2.type }, /* @__PURE__ */ cpJsx("span", { className: "cp-year-swatch", "data-kind": row2.type === "holiday" ? "holiday" : "noteach" }), /* @__PURE__ */ cpJsx("span", null, /* @__PURE__ */ cpJsx("bdi", null, cpRaw(row2.from + (row2.to && row2.to !== row2.from ? " \u2013 " + row2.to : ""))), " \xB7 ", uxText("pace.kind." + row2.type)), /* @__PURE__ */ cpJsx(UxButton, { id: "pace.dayDelete", context: row2.key, onClick: () => updateProfile(row2.remove) }))) : /* @__PURE__ */ cpJsx("p", { className: "cp-ai3-hint" }, uxText("pace.daysNone")), /* @__PURE__ */ cpJsx("div", { className: "cp-year-add" }, /* @__PURE__ */ cpJsx(UxField, { id: "pace.dayFrom", type: "date", value: from, max: to || void 0, onChange: (e) => setFrom(e.target.value) }), /* @__PURE__ */ cpJsx(UxField, { id: "pace.dayTo", type: "date", value: to, min: from || void 0, onChange: (e) => setTo(e.target.value) }), /* @__PURE__ */ cpJsx(UxSelect, { id: "pace.dayType", value: type, onChange: (e) => setType(e.target.value) }, DAY_TYPES.map((k) => /* @__PURE__ */ cpJsx("option", { key: k, value: k }, uxText("pace.kind." + k)))), /* @__PURE__ */ cpJsx(UxButton, { id: "pace.dayAdd", disabled: !from || to && to < from, onClick: add })));
+  }
+  function Summary({ calendar, doc }) {
+    const summary = yearSummary(calendar, doc), plan = summary.terms.some((t2) => t2.planWeeks != null);
+    if (!summary.terms.length) return null;
+    const row2 = (key4, value, extra) => /* @__PURE__ */ cpJsx("tr", { key: key4 }, /* @__PURE__ */ cpJsx("th", { scope: "row" }, uxText("pace.sum." + key4)), summary.terms.map((t2) => {
+      const v = value(t2), warn = extra?.(t2);
+      return /* @__PURE__ */ cpJsx("td", { key: t2.id, "data-warn": warn ? "true" : void 0, title: warn ? uxText("pace.sum.planLonger") : void 0 }, cpRaw(v == null ? "\u2013" : String(v)));
+    }));
+    return /* @__PURE__ */ cpJsx("table", { className: "cp-year-summary" }, /* @__PURE__ */ cpJsx("thead", null, /* @__PURE__ */ cpJsx("tr", null, /* @__PURE__ */ cpJsx("td", null), summary.terms.map((t2) => /* @__PURE__ */ cpJsx("th", { key: t2.id, scope: "col" }, uxText("pace.term." + t2.id))))), /* @__PURE__ */ cpJsx("tbody", null, row2("weeks", (t2) => t2.weeks), row2("days", (t2) => t2.schoolDays), row2("teaching", (t2) => t2.teachingWeeks), plan && row2("plan", (t2) => t2.planWeeks, (t2) => t2.planWeeks != null && t2.planWeeks > t2.teachingWeeks), /* @__PURE__ */ cpJsx("tr", null, /* @__PURE__ */ cpJsx("th", { scope: "row" }, uxText("pace.sum.total")), /* @__PURE__ */ cpJsx("td", { colSpan: summary.terms.length }, cpRaw(String(summary.schoolDays))))));
+  }
+  function SchoolYear({ profile: profile2, today, doc, onUpdate }) {
+    useLanguage();
+    const calendar = profile2.calendar || {}, terms = termsOf(calendar), list2 = Array.isArray(calendar.terms) ? calendar.terms : [];
+    const shown2 = TERM_IDS.filter((id, i) => i < 3 || list2.some((t2) => t2.id === id));
+    const follows = doc ? followsTeacherCalendar(doc, calendar) : true, name = doc?.settings?.className || "";
+    return /* @__PURE__ */ cpJsx("div", { className: "cp-year" }, doc?.cp?.classId && /* @__PURE__ */ cpJsx("p", { className: "cp-cal-status", "data-follows": follows ? "true" : "false", role: "status" }, cpRaw(follows ? uxText("cal.follows").replace("{class}", name) : uxText("cal.ownStatus").replace("{class}", name).replace("{days}", dayRange(classDays(doc)))), !follows && onUpdate && /* @__PURE__ */ cpJsx(UxButton, { id: "cal.useTeacher", context: "calendar", onClick: () => {
+      onUpdate((d) => adoptTeacherCalendar(d, calendar));
+      notify(uxText("cal.followsNow"), { undo: true });
+    } })), /* @__PURE__ */ cpJsx("section", { className: "cp-ai3-group", "aria-labelledby": "cp-year-terms" }, /* @__PURE__ */ cpJsx("h3", { id: "cp-year-terms" }, uxText("pace.termsTitle")), /* @__PURE__ */ cpJsx("p", { className: "cp-ai3-hint" }, uxText("pace.termsLead")), /* @__PURE__ */ cpJsx("div", { className: "cp-year-terms" }, shown2.map((id) => {
+      const term = list2.find((t2) => t2.id === id) || {}, weeks = termsOf(calendar).some((t2) => t2.id === id) ? teachingWeeks(calendar, term).length : 0;
+      return /* @__PURE__ */ cpJsx("div", { key: id, className: "cp-year-term" }, /* @__PURE__ */ cpJsx("b", null, uxText("pace.term." + id)), /* @__PURE__ */ cpJsx(UxField, { id: "pace.termFrom", label: "pace.from", type: "date", context: id, value: term.from || "", max: term.to || void 0, onChange: (e) => updateProfile((p) => setTerm(p, id, { from: e.target.value })) }), /* @__PURE__ */ cpJsx(UxField, { id: "pace.termTo", label: "pace.to", type: "date", context: id, value: term.to || "", min: term.from || void 0, onChange: (e) => updateProfile((p) => setTerm(p, id, { to: e.target.value })) }), /* @__PURE__ */ cpJsx("small", { "data-weeks": weeks }, weeks ? uxText("pace.weeks").replace("{n}", String(weeks)) : uxText("pace.noDates")));
+    }))), /* @__PURE__ */ cpJsx("section", { className: "cp-ai3-group", "aria-labelledby": "cp-year-days" }, /* @__PURE__ */ cpJsx("h3", { id: "cp-year-days" }, uxText("pace.daysTitle")), /* @__PURE__ */ cpJsx("p", { className: "cp-ai3-hint" }, uxText("pace.daysLead")), /* @__PURE__ */ cpJsx(DaysOff, { calendar })), terms.length > 0 && /* @__PURE__ */ cpJsx("section", { className: "cp-ai3-group", "aria-labelledby": "cp-year-sum" }, /* @__PURE__ */ cpJsx("h3", { id: "cp-year-sum" }, uxText("pace.summaryTitle")), /* @__PURE__ */ cpJsx("p", { className: "cp-ai3-hint" }, uxText("pace.summaryLead")), /* @__PURE__ */ cpJsx(Summary, { calendar, doc })), terms.length > 0 && /* @__PURE__ */ cpJsx("section", { "aria-labelledby": "cp-year-glance" }, /* @__PURE__ */ cpJsx("h3", { id: "cp-year-glance" }, uxText("pace.glance")), /* @__PURE__ */ cpJsx("p", { className: "cp-year-key" }, /* @__PURE__ */ cpJsx("span", { "data-kind": "term" }), uxText("pace.keyTerm"), /* @__PURE__ */ cpJsx("span", { "data-kind": "noteach" }), uxText("pace.keyNoTeach"), /* @__PURE__ */ cpJsx("span", { "data-kind": "holiday" }), uxText("pace.holiday"), /* @__PURE__ */ cpJsx("span", { "data-kind": "off" }), uxText("pace.keyOff")), /* @__PURE__ */ cpJsx(Months, { calendar, terms, today })));
   }
 
   // src/modules/pacing/card.jsx
@@ -51859,7 +51995,11 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
         setSelected(student.id);
         setTab("day");
       }, style: { padding: "5px", minWidth: 28, background: status?.color || "transparent", color: colourText(status?.color || "#ffffff") } }, cpRaw(status?.icon || "\xB7")));
-    }))))))), tab === "summary" && /* @__PURE__ */ cpJsx("div", { style: panel }, /* @__PURE__ */ cpJsx(Field2, { id: "attendance.through", label: "attendance.through", type: "date", value: through, onChange: (e) => setThrough(e.target.value) }), /* @__PURE__ */ cpJsx("p", { style: { fontSize: "var(--cp-fs-caption)", color: "var(--n-600)" } }, t("attendance.formula")), /* @__PURE__ */ cpJsx("h2", { style: { fontSize: "var(--cp-fs-label)" } }, t("attendance.classSummary")), /* @__PURE__ */ cpJsx("p", null, t("attendance.percent"), ": ", denom ? (100 * (sum("present") + sum("late")) / denom).toFixed(1) + "%" : t("attendance.noData"), " \xB7 ", t("attendance.absences"), ": ", sum("absent"), " \xB7 ", t("attendance.lates"), ": ", sum("late")), /* @__PURE__ */ cpJsx("table", { style: { width: "100%", borderCollapse: "collapse", textAlign: "start" } }, /* @__PURE__ */ cpJsx("thead", null, /* @__PURE__ */ cpJsx("tr", null, ["student", "percent", "absences", "lates", "longest"].map((key4) => /* @__PURE__ */ cpJsx("th", { key: key4, style: { textAlign: "start", padding: 8 } }, t("attendance." + key4))))), /* @__PURE__ */ cpJsx("tbody", null, totals.map((s) => /* @__PURE__ */ cpJsx("tr", { key: s.student.id, style: { borderTop: "1px solid var(--n-200)" } }, /* @__PURE__ */ cpJsx("th", { style: { textAlign: "start", padding: 8 } }, cpRaw(s.student.name)), /* @__PURE__ */ cpJsx("td", null, s.presentPercent == null ? t("attendance.noData") : s.presentPercent.toFixed(1) + "%"), /* @__PURE__ */ cpJsx("td", null, s.absent), /* @__PURE__ */ cpJsx("td", null, s.late), /* @__PURE__ */ cpJsx("td", null, s.longestAbsenceRun)))))), tab === "settings" && /* @__PURE__ */ cpJsx(AttendanceSettings, { doc, onUpdate })), lessonReport && /* @__PURE__ */ cpJsx(ReportPrint, { doc, options: lessonReport, onClose: () => setLessonReport(null) }), print && ReactDOM.createPortal(/* @__PURE__ */ cpJsx("div", { className: "cp-attendance-print-root", role: "dialog", "aria-label": t("attendance.print"), style: { position: "fixed", inset: 0, zIndex: 400, background: "#fff", padding: 24, overflow: "auto" } }, /* @__PURE__ */ cpJsx("style", null, "@media print {body>*:not(.cp-attendance-print-root) {display:none!important} .cp-attendance-print-root {position:static!important;overflow:visible!important;padding:0!important} .cp-no-print {display:none!important} @page {size:landscape;margin:12mm}}"), /* @__PURE__ */ cpJsx("div", { className: "cp-attendance-print", style: { background: "#fff" } }, /* @__PURE__ */ cpJsx("div", { className: "cp-no-print", style: row }, /* @__PURE__ */ cpJsx(Command, { id: "attendance.printNow", onClick: () => window.print() }, t("attendance.printNow")), /* @__PURE__ */ cpJsx(Command, { id: "attendance.closePrint", onClick: () => setPrint(false) }, t("attendance.closePrint"))), /* @__PURE__ */ cpJsx("h1", null, t("shell.attendance")), /* @__PURE__ */ cpJsx("h2", null, cpRaw(doc.settings.className)), /* @__PURE__ */ cpJsx("p", null, cpRaw([getProfile().reportHeader.school, getProfile().reportHeader.teacher, getProfile().reportHeader.academicYear].filter(Boolean).join(" \xB7 "))), /* @__PURE__ */ cpJsx("table", { style: { borderCollapse: "collapse", width: "100%" } }, /* @__PURE__ */ cpJsx("tbody", null, attendanceRows(doc).map((r, i) => /* @__PURE__ */ cpJsx("tr", { key: i }, r.map((cell2, j) => /* @__PURE__ */ cpJsx("td", { key: j, style: { border: "1px solid #cbd5e1", padding: 5, fontWeight: i === 0 ? 600 : 400 } }, cpRaw(cell2))))))))), document.body));
+    }))))))), tab === "summary" && /* @__PURE__ */ cpJsx("div", { style: panel }, /* @__PURE__ */ cpJsx(Field2, { id: "attendance.through", label: "attendance.through", type: "date", value: through, onChange: (e) => setThrough(e.target.value) }), /* @__PURE__ */ cpJsx("p", { style: { fontSize: "var(--cp-fs-caption)", color: "var(--n-600)" } }, t("attendance.formula")), /* @__PURE__ */ cpJsx("h2", { style: { fontSize: "var(--cp-fs-label)" } }, t("attendance.classSummary")), /* @__PURE__ */ cpJsx("p", null, t("attendance.percent"), ": ", denom ? (100 * (sum("present") + sum("late")) / denom).toFixed(1) + "%" : t("attendance.noData"), " \xB7 ", t("attendance.absences"), ": ", sum("absent"), " \xB7 ", t("attendance.lates"), ": ", sum("late")), /* @__PURE__ */ cpJsx("table", { style: { width: "100%", borderCollapse: "collapse", textAlign: "start" } }, /* @__PURE__ */ cpJsx("thead", null, /* @__PURE__ */ cpJsx("tr", null, ["student", "percent", "absences", "lates", "longest"].map((key4) => /* @__PURE__ */ cpJsx("th", { key: key4, style: { textAlign: "start", padding: 8 } }, t("attendance." + key4))))), /* @__PURE__ */ cpJsx("tbody", null, totals.map((s) => /* @__PURE__ */ cpJsx("tr", { key: s.student.id, style: { borderTop: "1px solid var(--n-200)" } }, /* @__PURE__ */ cpJsx("th", { style: { textAlign: "start", padding: 8 } }, cpRaw(s.student.name)), /* @__PURE__ */ cpJsx("td", null, s.presentPercent == null ? t("attendance.noData") : s.presentPercent.toFixed(1) + "%"), /* @__PURE__ */ cpJsx("td", null, s.absent), /* @__PURE__ */ cpJsx("td", null, s.late), /* @__PURE__ */ cpJsx("td", null, s.longestAbsenceRun)))))), tab === "settings" && /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx(AttendanceSettings, { doc, onUpdate }), /* @__PURE__ */ cpJsx(AttendanceReminder, null))), lessonReport && /* @__PURE__ */ cpJsx(ReportPrint, { doc, options: lessonReport, onClose: () => setLessonReport(null) }), print && ReactDOM.createPortal(/* @__PURE__ */ cpJsx("div", { className: "cp-attendance-print-root", role: "dialog", "aria-label": t("attendance.print"), style: { position: "fixed", inset: 0, zIndex: 400, background: "#fff", padding: 24, overflow: "auto" } }, /* @__PURE__ */ cpJsx("style", null, "@media print {body>*:not(.cp-attendance-print-root) {display:none!important} .cp-attendance-print-root {position:static!important;overflow:visible!important;padding:0!important} .cp-no-print {display:none!important} @page {size:landscape;margin:12mm}}"), /* @__PURE__ */ cpJsx("div", { className: "cp-attendance-print", style: { background: "#fff" } }, /* @__PURE__ */ cpJsx("div", { className: "cp-no-print", style: row }, /* @__PURE__ */ cpJsx(Command, { id: "attendance.printNow", onClick: () => window.print() }, t("attendance.printNow")), /* @__PURE__ */ cpJsx(Command, { id: "attendance.closePrint", onClick: () => setPrint(false) }, t("attendance.closePrint"))), /* @__PURE__ */ cpJsx("h1", null, t("shell.attendance")), /* @__PURE__ */ cpJsx("h2", null, cpRaw(doc.settings.className)), /* @__PURE__ */ cpJsx("p", null, cpRaw([getProfile().reportHeader.school, getProfile().reportHeader.teacher, getProfile().reportHeader.academicYear].filter(Boolean).join(" \xB7 "))), /* @__PURE__ */ cpJsx("table", { style: { borderCollapse: "collapse", width: "100%" } }, /* @__PURE__ */ cpJsx("tbody", null, attendanceRows(doc).map((r, i) => /* @__PURE__ */ cpJsx("tr", { key: i }, r.map((cell2, j) => /* @__PURE__ */ cpJsx("td", { key: j, style: { border: "1px solid #cbd5e1", padding: 5, fontWeight: i === 0 ? 600 : 400 } }, cpRaw(cell2))))))))), document.body));
+  }
+  function AttendanceReminder() {
+    const profile2 = useProfile(), on = profile2.reminders?.attendance !== false;
+    return /* @__PURE__ */ cpJsx("section", { className: "cp-att-reminder", "aria-labelledby": "cp-att-reminder" }, /* @__PURE__ */ cpJsx("h3", { id: "cp-att-reminder" }, uxText("att.remindTitle")), /* @__PURE__ */ cpJsx("label", { className: "cp-ux-check", title: t("ux.home.remindHint") }, /* @__PURE__ */ cpJsx("input", { type: "checkbox", checked: on, disabled: !isProfileLinked(), ...controlProps("ux.home.remindAttendance", (e) => updateProfile((p) => ({ ...p, reminders: { ...p.reminders, attendance: e.target.checked } }))) }), /* @__PURE__ */ cpJsx("span", null, t("ux.home.remindAttendance"))), /* @__PURE__ */ cpJsx("p", { className: "cp-ai3-hint" }, t("ux.home.remindHint")));
   }
   var attendance_default = manifest("attendance", { defaults: attendance(), migrate: attendance }, [{ id: "module:attendance", labelKey: "shell.attendance", Component: AttendanceView }], [{ id: "attendance.settings", Component: AttendanceSettings }], [{ id: "attendance.excel", run: exportAttendance }]);
 
@@ -52128,8 +52268,8 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     } }, uxText("tt.openClass")));
   }
   var CLASS_DRAG = "application/x-classpilot-class";
-  function paintCells(profile2, slots2, classId) {
-    return slots2.reduce((p, slot3) => classId ? setCell(p, slot3.weekday, slot3.periodId, { classId, slotType: timetableCell(p, slot3.weekday, slot3.periodId)?.slotType === "cover" ? "cover" : "lesson" }) : { ...p, timetable: (p.timetable || []).filter((c) => c.weekday !== slot3.weekday || c.periodId !== slot3.periodId) }, profile2);
+  function paintCells(profile2, slots, classId) {
+    return slots.reduce((p, slot3) => classId ? setCell(p, slot3.weekday, slot3.periodId, { classId, slotType: timetableCell(p, slot3.weekday, slot3.periodId)?.slotType === "cover" ? "cover" : "lesson" }) : { ...p, timetable: (p.timetable || []).filter((c) => c.weekday !== slot3.weekday || c.periodId !== slot3.periodId) }, profile2);
   }
   function Brushes({ profile: profile2, brush, setBrush }) {
     const { linked, other } = splitReferences(profile2, useLinkedClassIds()), pick2 = (id) => setBrush(brush === id ? null : id);
@@ -52322,27 +52462,69 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
   function ruleLabel(rule) {
     return rule.label || (rule.source === "timetable" ? (rule.periods || []).map((p) => p.label + " \xB7 " + t("bell." + p.boundary)).join(" / ") : "");
   }
-  function RuleEditor({ rule }) {
+  var DAY_ORDER = [0, 1, 2, 3, 4, 5, 6];
+  var dayLetter = (day) => uxText("bell.dayShort" + day);
+  var hhmm = (time3) => String(time3 || "").slice(0, 5);
+  function inText(ms) {
+    const minutes2 = Math.max(0, Math.ceil(ms / 6e4));
+    if (minutes2 < 60) return uxText("bell.inMin").replace("{n}", String(minutes2));
+    return uxText("bell.inHours").replace("{h}", String(Math.floor(minutes2 / 60))).replace("{m}", String(minutes2 % 60));
+  }
+  function DayDots({ weekdays: weekdays2 }) {
+    return /* @__PURE__ */ cpJsx("span", { className: "cp-bell-days", "aria-label": weekdays2.map((d) => t("calendar.day" + d)).join(", ") }, DAY_ORDER.map((day) => /* @__PURE__ */ cpJsx("span", { key: day, "aria-hidden": "true", "data-on": weekdays2.includes(day) ? "true" : "false" }, dayLetter(day))));
+  }
+  function RuleEditor({ rule, onDone }) {
     const [draft, setDraft] = useState(rule), [error2, setError] = useState("");
-    return /* @__PURE__ */ cpJsx("div", { style: { ...panel, marginBlockEnd: 10 } }, /* @__PURE__ */ cpJsx("div", { style: row }, /* @__PURE__ */ cpJsx(ToolField, { id: "bell.label", context: rule.id, label: "bell.label", value: draft.label || ruleLabel(draft), onChange: (e) => setDraft({ ...draft, label: e.target.value }) }), /* @__PURE__ */ cpJsx(ToolField, { id: "bell.time", context: rule.id, label: "bell.time", type: "time", step: "1", value: draft.time, onChange: (e) => setDraft({ ...draft, time: e.target.value }) }), /* @__PURE__ */ cpJsx("label", null, t("bell.tone"), /* @__PURE__ */ cpJsx("select", { "aria-label": t("bell.tone"), value: draft.tone, ...controlProps("m4.bell.tone", (e) => setDraft({ ...draft, tone: e.target.value }), rule.id), style: field }, TONES2.map((tone) => /* @__PURE__ */ cpJsx("option", { key: tone, value: tone }, t("bell." + tone))))), /* @__PURE__ */ cpJsx(ToolField, { id: "bell.volume", context: rule.id, label: "bell.volume", type: "range", min: "0", max: "1", step: "0.05", value: draft.volume, onChange: (e) => setDraft({ ...draft, volume: +e.target.value }) }), /* @__PURE__ */ cpJsx("label", null, /* @__PURE__ */ cpJsx("input", { type: "checkbox", checked: draft.enabled, ...controlProps("m4.bell.ruleEnabled", (e) => setDraft({ ...draft, enabled: e.target.checked }), rule.id) }), t("bell.ruleEnabled"))), /* @__PURE__ */ cpJsx("div", { style: { ...row, marginBlock: 10 } }, [0, 1, 2, 3, 4, 5, 6].map((day) => /* @__PURE__ */ cpJsx("label", { key: day }, /* @__PURE__ */ cpJsx("input", { type: "checkbox", checked: draft.weekdays.includes(day), ...controlProps("m4.bell.day", (e) => setDraft({ ...draft, weekdays: e.target.checked ? [...draft.weekdays, day].sort() : draft.weekdays.filter((d) => d !== day) }), rule.id + ":" + day) }), t("calendar.day" + day)))), /* @__PURE__ */ cpJsx("div", { style: row }, /* @__PURE__ */ cpJsx(ToolButton, { id: "bell.save", context: rule.id, onClick: () => {
+    return /* @__PURE__ */ cpJsx("div", { className: "cp-bell-edit" }, /* @__PURE__ */ cpJsx("div", { className: "cp-bell-edit-grid" }, /* @__PURE__ */ cpJsx(ToolField, { id: "bell.label", context: rule.id, label: "bell.label", value: draft.label || ruleLabel(draft), onChange: (e) => setDraft({ ...draft, label: e.target.value }) }), /* @__PURE__ */ cpJsx(ToolField, { id: "bell.time", context: rule.id, label: "bell.time", type: "time", step: "1", value: draft.time, onChange: (e) => setDraft({ ...draft, time: e.target.value }) }), /* @__PURE__ */ cpJsx("label", { className: "cp-ux-field" }, /* @__PURE__ */ cpJsx("span", null, t("bell.tone")), /* @__PURE__ */ cpJsx("select", { "aria-label": t("bell.tone"), value: draft.tone, ...controlProps("m4.bell.tone", (e) => setDraft({ ...draft, tone: e.target.value }), rule.id), style: field }, TONES2.map((tone) => /* @__PURE__ */ cpJsx("option", { key: tone, value: tone }, t("bell." + tone))))), /* @__PURE__ */ cpJsx(ToolField, { id: "bell.volume", context: rule.id, label: "bell.volume", type: "range", min: "0", max: "1", step: "0.05", value: draft.volume, onChange: (e) => setDraft({ ...draft, volume: +e.target.value }) })), /* @__PURE__ */ cpJsx("div", { className: "cp-bell-edit-foot" }, /* @__PURE__ */ cpJsx("div", { className: "cp-bell-daypick", role: "group", "aria-label": uxText("bell.days") }, DAY_ORDER.map((day) => /* @__PURE__ */ cpJsx("label", { key: day, title: t("calendar.day" + day) }, /* @__PURE__ */ cpJsx("input", { type: "checkbox", checked: draft.weekdays.includes(day), ...controlProps("m4.bell.day", (e) => setDraft({ ...draft, weekdays: e.target.checked ? [...draft.weekdays, day].sort() : draft.weekdays.filter((d) => d !== day) }), rule.id + ":" + day) }), /* @__PURE__ */ cpJsx("span", { "aria-hidden": "true" }, dayLetter(day)), /* @__PURE__ */ cpJsx("span", { className: "cp-visually-hidden" }, t("calendar.day" + day))))), /* @__PURE__ */ cpJsx("span", { className: "cp-bell-spacer" }), /* @__PURE__ */ cpJsx(ToolButton, { id: "bell.delete", context: rule.id, className: "cp-bell-danger", onClick: () => updateProfile((p) => ({ ...p, bellSchedule: p.bellSchedule.filter((r) => r.id !== rule.id) })) }, t("bell.delete")), /* @__PURE__ */ cpJsx(UxButton, { id: "bell.cancel", context: rule.id, onClick: onDone }), /* @__PURE__ */ cpJsx(ToolButton, { id: "bell.save", context: rule.id, className: "cp-bell-primary", onClick: () => {
       if (timeMinutes(draft.time) == null || !ruleLabel(draft).trim() || !draft.weekdays.length) {
         setError(t("bell.invalid"));
         return;
       }
       updateProfile((p) => ({ ...p, bellSchedule: p.bellSchedule.map((r) => r.id === rule.id ? { ...r, ...draft } : r) }));
       setError("");
-    } }, t("bell.save")), /* @__PURE__ */ cpJsx(ToolButton, { id: "bell.test", context: rule.id, onClick: async () => {
+      onDone();
+    } }, t("bell.save"))), error2 && /* @__PURE__ */ cpJsx("p", { role: "alert" }, error2));
+  }
+  function RuleRow({ rule, open, onToggle }) {
+    const [error2, setError] = useState("");
+    return /* @__PURE__ */ cpJsx("li", { className: "cp-bell-rule", "data-open": open ? "true" : "false", "data-enabled": rule.enabled ? "true" : "false" }, /* @__PURE__ */ cpJsx("div", { className: "cp-bell-line" }, /* @__PURE__ */ cpJsx("label", { className: "cp-bell-switch", title: t("bell.ruleEnabled") }, /* @__PURE__ */ cpJsx("input", { type: "checkbox", role: "switch", checked: rule.enabled, "aria-label": t("bell.ruleEnabled") + ": " + ruleLabel(rule), ...controlProps("m4.bell.ruleEnabled", (e) => updateProfile((p) => ({ ...p, bellSchedule: p.bellSchedule.map((r) => r.id === rule.id ? { ...r, enabled: e.target.checked } : r) })), rule.id) })), /* @__PURE__ */ cpJsx("span", { className: "cp-bell-time" }, cpRaw(hhmm(rule.time))), /* @__PURE__ */ cpJsx("span", { className: "cp-bell-name", dir: "auto" }, cpRaw(ruleLabel(rule))), /* @__PURE__ */ cpJsx(DayDots, { weekdays: rule.weekdays }), /* @__PURE__ */ cpJsx("span", { className: "cp-bell-tone" }, t("bell." + rule.tone)), /* @__PURE__ */ cpJsx("button", { type: "button", className: "cp-bell-icon", title: t("bell.test"), "aria-label": t("bell.test") + ": " + ruleLabel(rule), ...actionProps("m4.bell.test", async () => {
       try {
         await enableSound();
-        playTone(draft.tone, draft.volume);
+        playTone(rule.tone, rule.volume);
+        setError("");
       } catch (e) {
         setError(t(e.message));
       }
-    } }, t("bell.test")), /* @__PURE__ */ cpJsx(ToolButton, { id: "bell.delete", context: rule.id, onClick: () => updateProfile((p) => ({ ...p, bellSchedule: p.bellSchedule.filter((r) => r.id !== rule.id) })) }, t("bell.delete"))), error2 && /* @__PURE__ */ cpJsx("p", { role: "alert" }, error2));
+    }, rule.id) }, /* @__PURE__ */ cpJsx("svg", { "aria-hidden": "true", viewBox: "0 0 24 24", width: "16", height: "16" }, /* @__PURE__ */ cpJsx("path", { d: "M8 5.5v13l10.5-6.5z", fill: "currentColor" }))), /* @__PURE__ */ cpJsx("button", { type: "button", className: "cp-bell-icon", "aria-expanded": open, title: uxText("bell.edit"), "aria-label": uxText("bell.edit") + ": " + ruleLabel(rule), ...actionProps("ux.bell.edit", onToggle, rule.id) }, /* @__PURE__ */ cpJsx("svg", { "aria-hidden": "true", viewBox: "0 0 24 24", width: "16", height: "16", fill: "none", stroke: "currentColor", strokeWidth: "1.9", strokeLinecap: "round", strokeLinejoin: "round" }, /* @__PURE__ */ cpJsx("path", { d: "M4 20h4L19 9l-4-4L4 16z M13.5 6.5l4 4" })))), error2 && /* @__PURE__ */ cpJsx("p", { role: "alert" }, error2), open && /* @__PURE__ */ cpJsx(RuleEditor, { key: JSON.stringify(rule), rule, onDone: onToggle }));
+  }
+  function Today({ profile: profile2, now }) {
+    const day = new Date(now), start = new Date(day.getFullYear(), day.getMonth(), day.getDate()).getTime(), list2 = bellOccurrences(profile2.bellSchedule, profile2.calendar, start - 1, start + 86399999), history = new Map((profile2.bellHistory || []).map((e) => [e.occurrenceId, e])), next = list2.find((e) => e.scheduledAt > now);
+    return /* @__PURE__ */ cpJsx("section", { className: "cp-bell-today", "aria-labelledby": "cp-bell-today" }, /* @__PURE__ */ cpJsx("header", null, /* @__PURE__ */ cpJsx("h2", { id: "cp-bell-today" }, uxText("bell.today")), /* @__PURE__ */ cpJsx("span", null, t("calendar.day" + day.getDay()))), list2.length ? /* @__PURE__ */ cpJsx("ol", null, list2.map((event) => {
+      const rule = profile2.bellSchedule.find((r) => r.id === event.ruleId) || {}, seen = history.get(event.occurrenceId), state2 = seen ? seen.status === "due" ? "blocked" : seen.status : event === next ? "next" : event.scheduledAt <= now ? "past" : "later";
+      return /* @__PURE__ */ cpJsx("li", { key: event.occurrenceId, "data-state": state2 }, /* @__PURE__ */ cpJsx("span", { className: "cp-bell-time" }, cpRaw(hhmm(rule.time))), /* @__PURE__ */ cpJsx("span", { className: "cp-bell-dot", "aria-hidden": "true" }), /* @__PURE__ */ cpJsx("span", { dir: "auto" }, cpRaw(ruleLabel(rule))), ["rung", "missed", "blocked"].includes(state2) ? /* @__PURE__ */ cpJsx("span", { className: "cp-bell-tag" }, t("bell." + state2)) : state2 === "next" ? /* @__PURE__ */ cpJsx("span", { className: "cp-bell-tag" }, inText(event.scheduledAt - now)) : /* @__PURE__ */ cpJsx("span", null));
+    })) : /* @__PURE__ */ cpJsx("p", { className: "cp-bell-quiet" }, uxText("bell.noneToday")), /* @__PURE__ */ cpJsx("p", { className: "cp-bell-quiet" }, uxText("bell.keepOpen")), /* @__PURE__ */ cpJsx("details", { className: "cp-bell-history" }, /* @__PURE__ */ cpJsx("summary", null, uxText("bell.history")), /* @__PURE__ */ cpJsx("table", null, /* @__PURE__ */ cpJsx("thead", null, /* @__PURE__ */ cpJsx("tr", null, /* @__PURE__ */ cpJsx("th", null, t("bell.scheduled")), /* @__PURE__ */ cpJsx("th", null, t("bell.label")), /* @__PURE__ */ cpJsx("th", null, t("bell.status")), /* @__PURE__ */ cpJsx("th", null, t("bell.latency")))), /* @__PURE__ */ cpJsx("tbody", null, [...profile2.bellHistory || []].reverse().map((event) => /* @__PURE__ */ cpJsx("tr", { key: event.occurrenceId }, /* @__PURE__ */ cpJsx("td", null, new Date(event.scheduledAt).toLocaleString()), /* @__PURE__ */ cpJsx("td", null, cpRaw(event.label || ruleLabel(profile2.bellSchedule.find((rule) => rule.id === event.ruleId) || { label: event.ruleId }))), /* @__PURE__ */ cpJsx("td", null, t("bell." + (event.status === "due" ? "blocked" : event.status))), /* @__PURE__ */ cpJsx("td", null, event.lateMs)))))));
   }
   function BellView() {
-    const profile2 = useProfile(), now = useClock(1e3), next = nextBell(profile2.bellSchedule, profile2.calendar, now), [advance, setAdvance] = useState(profile2.bellAdvanceMinutes || 2);
-    return /* @__PURE__ */ cpJsx(ToolFrame, { id: "bell" }, /* @__PURE__ */ cpJsx("label", { style: { ...row, fontWeight: 600 } }, /* @__PURE__ */ cpJsx("input", { type: "checkbox", checked: !!profile2.bellSettings?.enabled, ...controlProps("m4.bell.master", (e) => updateProfile((p) => ({ ...p, bellSettings: { ...p.bellSettings, enabled: e.target.checked } }))) }), t("bell.master")), /* @__PURE__ */ cpJsx("p", { style: { fontSize: "var(--cp-fs-section)", fontVariantNumeric: "tabular-nums" } }, next ? t("bell.next") + " " + formatDuration(next.scheduledAt - now) : t("bell.none")), /* @__PURE__ */ cpJsx("p", { style: { fontSize: "var(--cp-fs-body)", color: "var(--n-600)" } }, t("bell.limits")), /* @__PURE__ */ cpJsx("div", { style: { ...row, marginBlock: 14 } }, /* @__PURE__ */ cpJsx(ToolButton, { id: "bell.add", onClick: () => updateProfile((p) => ({ ...p, bellSchedule: [...p.bellSchedule, { id: crypto.randomUUID(), time: "08:00:00", weekdays: [...p.calendar.schoolDays], label: t("shell.bell"), tone: "chime", volume: 0.5, enabled: true, source: "manual" }] })) }, t("bell.add")), /* @__PURE__ */ cpJsx(ToolButton, { id: "bell.generate", disabled: !profile2.periods?.length, onClick: () => updateProfile((p) => ({ ...p, bellSchedule: generatedBells(p) })) }, t("bell.generate"))), /* @__PURE__ */ cpJsx("p", { style: { fontSize: "var(--cp-fs-caption)" } }, t("bell.generateHint")), /* @__PURE__ */ cpJsx("div", { className: "cp-ux-actions" }, /* @__PURE__ */ cpJsx(UxField, { id: "bell.advance", type: "number", min: "1", max: "60", step: "1", value: advance, onChange: (e) => setAdvance(+e.target.value) }), /* @__PURE__ */ cpJsx(UxButton, { id: "bell.reminders", disabled: !Number.isInteger(advance) || advance < 1 || advance > 60 || !profile2.bellSchedule.length, onClick: () => updateProfile((p) => advanceReminders(p, advance, uxText("bell.reminderLabel"))) })), /* @__PURE__ */ cpJsx("p", null, uxText("bell.reminderHint")), /* @__PURE__ */ cpJsx("h2", { style: { fontSize: "var(--cp-fs-label)" } }, t("bell.rules")), profile2.bellSchedule.map((rule) => /* @__PURE__ */ cpJsx(RuleEditor, { key: rule.id + JSON.stringify(rule), rule })), /* @__PURE__ */ cpJsx("h2", { style: { fontSize: "var(--cp-fs-label)" } }, t("bell.log")), /* @__PURE__ */ cpJsx("table", { style: { width: "100%", fontSize: "var(--cp-fs-caption)", textAlign: "start" } }, /* @__PURE__ */ cpJsx("thead", null, /* @__PURE__ */ cpJsx("tr", null, /* @__PURE__ */ cpJsx("th", { style: { textAlign: "start" } }, t("bell.scheduled")), /* @__PURE__ */ cpJsx("th", { style: { textAlign: "start" } }, t("bell.label")), /* @__PURE__ */ cpJsx("th", { style: { textAlign: "start" } }, t("bell.status")), /* @__PURE__ */ cpJsx("th", { style: { textAlign: "start" } }, t("bell.latency")))), /* @__PURE__ */ cpJsx("tbody", null, [...profile2.bellHistory || []].reverse().map((event) => /* @__PURE__ */ cpJsx("tr", { key: event.occurrenceId }, /* @__PURE__ */ cpJsx("td", null, new Date(event.scheduledAt).toLocaleString()), /* @__PURE__ */ cpJsx("td", null, cpRaw(event.label || ruleLabel(profile2.bellSchedule.find((rule) => rule.id === event.ruleId) || { label: event.ruleId }))), /* @__PURE__ */ cpJsx("td", null, t("bell." + (event.status === "due" ? "blocked" : event.status))), /* @__PURE__ */ cpJsx("td", null, event.lateMs))))));
+    const profile2 = useProfile(), now = useClock(1e3), next = nextBell(profile2.bellSchedule, profile2.calendar, now), [advance, setAdvance] = useState(profile2.bellAdvanceMinutes || 2), [openId, setOpenId] = useState(null), [menu, setMenu] = useState(false), [sound, setSound] = useState(soundReady()), enabled = !!profile2.bellSettings?.enabled;
+    useEffect(() => subscribeAudio(setSound), []);
+    const nextRule = next && profile2.bellSchedule.find((r) => r.id === next.ruleId);
+    const master = /* @__PURE__ */ cpJsx("div", { className: "cp-bell-master" }, /* @__PURE__ */ cpJsx("div", null, /* @__PURE__ */ cpJsx("b", null, t("bell.master")), /* @__PURE__ */ cpJsx("span", null, enabled ? next ? uxText("bell.onNext").replace("{label}", ruleLabel(nextRule || {})).replace("{time}", hhmm(nextRule?.time)).replace("{in}", inText(next.scheduledAt - now)) : uxText("bell.onNone") : uxText("bell.offLine"))), /* @__PURE__ */ cpJsx("label", { className: "cp-bell-switch cp-bell-switch-big" }, /* @__PURE__ */ cpJsx("input", { type: "checkbox", role: "switch", "aria-label": t("bell.master"), checked: enabled, ...controlProps("m4.bell.master", (e) => updateProfile((p) => ({ ...p, bellSettings: { ...p.bellSettings, enabled: e.target.checked } }))) })));
+    return /* @__PURE__ */ cpJsx(ToolFrame, { id: "bell", actions: master }, enabled && !sound && /* @__PURE__ */ cpJsx("div", { className: "cp-bell-banner", role: "status" }, /* @__PURE__ */ cpJsx("span", null, uxText("bell.soundBlocked")), /* @__PURE__ */ cpJsx(UxButton, { id: "bell.allowSound", onClick: async () => {
+      try {
+        await enableSound();
+      } catch {
+      }
+    } })), /* @__PURE__ */ cpJsx("div", { className: "cp-bell-grid" }, /* @__PURE__ */ cpJsx(Today, { profile: profile2, now }), /* @__PURE__ */ cpJsx("section", { className: "cp-bell-rules", "aria-labelledby": "cp-bell-rules" }, /* @__PURE__ */ cpJsx("header", null, /* @__PURE__ */ cpJsx("h2", { id: "cp-bell-rules" }, t("bell.rules")), /* @__PURE__ */ cpJsx("span", { className: "cp-bell-spacer" }), /* @__PURE__ */ cpJsx("div", { className: "cp-bell-menu-wrap" }, /* @__PURE__ */ cpJsx(UxButton, { id: "bell.createMenu", "aria-expanded": menu, onClick: () => setMenu(!menu) }), menu && /* @__PURE__ */ cpJsx("div", { className: "cp-bell-menu", role: "group", "aria-label": uxText("bell.createMenu") }, /* @__PURE__ */ cpJsx("div", null, /* @__PURE__ */ cpJsx(ToolButton, { id: "bell.generate", disabled: !profile2.periods?.length, onClick: () => {
+      updateProfile((p) => ({ ...p, bellSchedule: generatedBells(p) }));
+      setMenu(false);
+    } }, uxText("bell.fromPeriods")), /* @__PURE__ */ cpJsx("small", null, uxText("bell.fromPeriodsHint"))), /* @__PURE__ */ cpJsx("div", null, /* @__PURE__ */ cpJsx("div", { className: "cp-bell-advance" }, /* @__PURE__ */ cpJsx(UxField, { id: "bell.advance", type: "number", min: "1", max: "60", step: "1", value: advance, onChange: (e) => setAdvance(+e.target.value) }), /* @__PURE__ */ cpJsx(UxButton, { id: "bell.reminders", disabled: !Number.isInteger(advance) || advance < 1 || advance > 60 || !profile2.bellSchedule.length, onClick: () => {
+      updateProfile((p) => advanceReminders(p, advance, uxText("bell.reminderLabel")));
+      setMenu(false);
+    } }, uxText("bell.remindersShort"))), /* @__PURE__ */ cpJsx("small", null, uxText("bell.remindersHint"))))), /* @__PURE__ */ cpJsx(ToolButton, { id: "bell.add", className: "cp-bell-primary", onClick: () => {
+      const id = crypto.randomUUID();
+      updateProfile((p) => ({ ...p, bellSchedule: [...p.bellSchedule, { id, time: "08:00:00", weekdays: [...p.calendar.schoolDays], label: t("shell.bell"), tone: "chime", volume: 0.5, enabled: true, source: "manual" }] }));
+      setOpenId(id);
+    } }, uxText("bell.addShort"))), profile2.bellSchedule.length ? /* @__PURE__ */ cpJsx("ul", null, [...profile2.bellSchedule].sort((a, b) => String(a.time).localeCompare(String(b.time))).map((rule) => /* @__PURE__ */ cpJsx(RuleRow, { key: rule.id, rule, open: openId === rule.id, onToggle: () => setOpenId(openId === rule.id ? null : rule.id) }))) : /* @__PURE__ */ cpJsx("p", { className: "cp-bell-quiet" }, uxText("bell.noRules")))));
   }
   var bell_default = m4Manifest("bell", { defaults: { bellSchedule: [], bellSettings: { enabled: false }, bellHistory: [] }, migrate: (value = {}) => ({ ...value, bellSchedule: value.bellSchedule || [], bellSettings: { enabled: false, ...value.bellSettings }, bellHistory: value.bellHistory || [] }) }, BellView);
 
@@ -52644,7 +52826,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     const change2 = (key4, value) => setDraft((p) => ({ ...p, [key4]: value }));
     const activity = (id, patch) => setDraft((p) => ({ ...p, activities: p.activities.map((a) => a.id === id ? { ...a, ...patch } : a) }));
     const field2 = (key4, multiline = true) => /* @__PURE__ */ cpJsx(M5Field, { key: key4, id: "plans." + key4, multiline, rows: multiline ? 3 : void 0, value: draft[key4], onChange: (e) => change2(key4, e.target.value) });
-    const slots2 = /^\d{4}-\d{2}-\d{2}$/.test(draft.date) ? planSlots(profile2, doc, draft.date) : [], slot3 = slots2.find(({ cell: cell2 }) => cell2 && cell2.id === draft.slotId), period = slot3?.period || slots2.find(({ period: period2 }) => period2.id === draft.periodId)?.period;
+    const slots = /^\d{4}-\d{2}-\d{2}$/.test(draft.date) ? planSlots(profile2, doc, draft.date) : [], slot3 = slots.find(({ cell: cell2 }) => cell2 && cell2.id === draft.slotId), period = slot3?.period || slots.find(({ period: period2 }) => period2.id === draft.periodId)?.period;
     const identity = [t(draft.kind === "template" ? "ux.plans.template" : "ux.plans.plan"), doc.settings.className, /^\d{4}-\d{2}-\d{2}$/.test(draft.date) ? dayMonth(draft.date) : "", period?.label].filter(Boolean).join(" \xB7 ");
     const week = /^\d{4}-\d{2}-\d{2}$/.test(draft.date) ? pace(doc, profile2.calendar, draft.date) : null, curriculumLessons = week?.state === "term" ? week.thisWeek : [];
     const useLesson = (lesson) => {
@@ -52657,7 +52839,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       const value = e.target.value, separator = value.indexOf(":"), kind = value.slice(0, separator), id = value.slice(separator + 1);
       const cell2 = (profile2.timetable || []).find((c) => c.id === id);
       setDraft((p) => ({ ...p, periodId: kind === "slot" ? cell2.periodId : kind === "period" ? id : null, slotId: kind === "slot" ? id : null }));
-    } }, /* @__PURE__ */ cpJsx("option", { value: "" }, t("plans.noPeriod")), slots2.flatMap(({ period: period2, cell: cell2 }) => [/* @__PURE__ */ cpJsx("option", { key: period2.id, value: "period:" + period2.id }, cpRaw(period2.label + " \xB7 " + displayRange(period2.start, period2.end))), ...cell2 ? [/* @__PURE__ */ cpJsx("option", { key: cell2.id, value: "slot:" + cell2.id }, cpRaw([period2.label, displayDate(draft.date), cell2.room].filter(Boolean).join(" \xB7 ")))] : []]), timing.missing && /* @__PURE__ */ cpJsx("option", { value: draft.slotId ? "slot:" + draft.slotId : "period:" + draft.periodId }, t("plans.missingPeriod")))), curriculumLessons.length > 0 && /* @__PURE__ */ cpJsx("div", { className: "cp-plan-curriculum", role: "group", "aria-label": t("ux.plans.curriculum") }, /* @__PURE__ */ cpJsx("span", null, t("ux.plans.curriculum")), curriculumLessons.map((lesson) => /* @__PURE__ */ cpJsx(UxButton, { key: lesson.id, id: "plans.curriculum", context: lesson.id, className: "cp-chip", title: t("ux.plans.curriculumHint"), onClick: () => useLesson(lesson) }, cpRaw("+ " + lessonLabel(lesson))))), field2("unit", false), field2("title", false), field2("objectives"), field2("outcomes"), field2("priorKnowledge")), /* @__PURE__ */ cpJsx("section", { className: "cp-plan-section", "data-section": "sequence" }, /* @__PURE__ */ cpJsx("h3", null, t("ux.plans.sectionSequence")), field2("starter"), /* @__PURE__ */ cpJsx("h4", null, t("plans.activities")), draft.activities.map((a) => /* @__PURE__ */ cpJsx("div", { key: a.id, className: "cp-plan-activity" }, /* @__PURE__ */ cpJsx(M5Field, { id: "plans.activity", context: a.id, value: a.text, onChange: (e) => activity(a.id, { text: e.target.value }), style: { flex: 1 } }), /* @__PURE__ */ cpJsx(M5Field, { id: "plans.minutes", context: a.id, type: "number", min: "0", step: "1", value: a.minutes, onChange: (e) => activity(a.id, { minutes: +e.target.value }), style: { width: 96 } }), /* @__PURE__ */ cpJsx(M5Button, { id: "plans.removeActivity", context: a.id, onClick: () => change2("activities", draft.activities.filter((item) => item.id !== a.id)) }, t("plans.removeActivity")))), /* @__PURE__ */ cpJsx(M5Button, { id: "plans.addActivity", onClick: () => change2("activities", [...draft.activities, { id: crypto.randomUUID(), text: "", minutes: 0 }]) }, t("plans.addActivity")), /* @__PURE__ */ cpJsx("div", { role: "status", className: "cp-plan-budget", "data-state": timing.missing ? "missing" : timing.difference === null ? "none" : timing.difference > 0 ? "over" : timing.difference < 0 ? "under" : "exact" }, /* @__PURE__ */ cpJsx("div", { className: "cp-plan-budget-line" }, /* @__PURE__ */ cpJsx("b", null, cpRaw(timing.duration !== null ? timing.minutes + " / " + timing.duration + " " + t("ux.plans.min") : timing.minutes + " " + t("ux.plans.min"))), /* @__PURE__ */ cpJsx("span", null, timing.missing ? t("plans.missingPeriod") : timing.difference === null ? t("plans.noPeriod") : timing.difference > 0 ? t("plans.over") + " " + timing.difference : timing.difference < 0 ? t("plans.under") + " " + -timing.difference : t("plans.exact"))), timing.duration !== null && /* @__PURE__ */ cpJsx("div", { className: "cp-plan-bar", "aria-hidden": "true" }, /* @__PURE__ */ cpJsx("i", { style: { inlineSize: budget + "%" } })), /* @__PURE__ */ cpJsx("small", null, t("plans.allocated"), ": ", timing.minutes, timing.duration !== null && /* @__PURE__ */ cpJsx(React.Fragment, null, " \xB7 ", t("plans.duration"), ": ", timing.duration), " \xB7 ", t("plans.timingHint")))), /* @__PURE__ */ cpJsx("section", { className: "cp-plan-section", "data-section": "support" }, /* @__PURE__ */ cpJsx("h3", null, t("ux.plans.sectionSupport")), field2("support"), field2("extension"), field2("resources"), field2("checks")), /* @__PURE__ */ cpJsx("section", { className: "cp-plan-section", "data-section": "after" }, /* @__PURE__ */ cpJsx("h3", null, t("ux.plans.sectionAfter")), field2("homework"), field2("reflection"), /* @__PURE__ */ cpJsx(M5Select, { id: "plans.status", value: draft.status, onChange: (e) => change2("status", e.target.value) }, ["planned", "taught", "skipped"].map((status) => /* @__PURE__ */ cpJsx("option", { key: status, value: status }, t("plans." + status)))))), /* @__PURE__ */ cpJsx("footer", { className: "cp-plan-foot" }, !valid4 && /* @__PURE__ */ cpJsx("p", { role: "status" }, t("plans.required")), /* @__PURE__ */ cpJsx(M5Button, { id: "plans.save", className: "cp-ux-primary", disabled: !valid4, onClick: () => {
+    } }, /* @__PURE__ */ cpJsx("option", { value: "" }, t("plans.noPeriod")), slots.flatMap(({ period: period2, cell: cell2 }) => [/* @__PURE__ */ cpJsx("option", { key: period2.id, value: "period:" + period2.id }, cpRaw(period2.label + " \xB7 " + displayRange(period2.start, period2.end))), ...cell2 ? [/* @__PURE__ */ cpJsx("option", { key: cell2.id, value: "slot:" + cell2.id }, cpRaw([period2.label, displayDate(draft.date), cell2.room].filter(Boolean).join(" \xB7 ")))] : []]), timing.missing && /* @__PURE__ */ cpJsx("option", { value: draft.slotId ? "slot:" + draft.slotId : "period:" + draft.periodId }, t("plans.missingPeriod")))), curriculumLessons.length > 0 && /* @__PURE__ */ cpJsx("div", { className: "cp-plan-curriculum", role: "group", "aria-label": t("ux.plans.curriculum") }, /* @__PURE__ */ cpJsx("span", null, t("ux.plans.curriculum")), curriculumLessons.map((lesson) => /* @__PURE__ */ cpJsx(UxButton, { key: lesson.id, id: "plans.curriculum", context: lesson.id, className: "cp-chip", title: t("ux.plans.curriculumHint"), onClick: () => useLesson(lesson) }, cpRaw("+ " + lessonLabel(lesson))))), field2("unit", false), field2("title", false), field2("objectives"), field2("outcomes"), field2("priorKnowledge")), /* @__PURE__ */ cpJsx("section", { className: "cp-plan-section", "data-section": "sequence" }, /* @__PURE__ */ cpJsx("h3", null, t("ux.plans.sectionSequence")), field2("starter"), /* @__PURE__ */ cpJsx("h4", null, t("plans.activities")), draft.activities.map((a) => /* @__PURE__ */ cpJsx("div", { key: a.id, className: "cp-plan-activity" }, /* @__PURE__ */ cpJsx(M5Field, { id: "plans.activity", context: a.id, value: a.text, onChange: (e) => activity(a.id, { text: e.target.value }), style: { flex: 1 } }), /* @__PURE__ */ cpJsx(M5Field, { id: "plans.minutes", context: a.id, type: "number", min: "0", step: "1", value: a.minutes, onChange: (e) => activity(a.id, { minutes: +e.target.value }), style: { width: 96 } }), /* @__PURE__ */ cpJsx(M5Button, { id: "plans.removeActivity", context: a.id, onClick: () => change2("activities", draft.activities.filter((item) => item.id !== a.id)) }, t("plans.removeActivity")))), /* @__PURE__ */ cpJsx(M5Button, { id: "plans.addActivity", onClick: () => change2("activities", [...draft.activities, { id: crypto.randomUUID(), text: "", minutes: 0 }]) }, t("plans.addActivity")), /* @__PURE__ */ cpJsx("div", { role: "status", className: "cp-plan-budget", "data-state": timing.missing ? "missing" : timing.difference === null ? "none" : timing.difference > 0 ? "over" : timing.difference < 0 ? "under" : "exact" }, /* @__PURE__ */ cpJsx("div", { className: "cp-plan-budget-line" }, /* @__PURE__ */ cpJsx("b", null, cpRaw(timing.duration !== null ? timing.minutes + " / " + timing.duration + " " + t("ux.plans.min") : timing.minutes + " " + t("ux.plans.min"))), /* @__PURE__ */ cpJsx("span", null, timing.missing ? t("plans.missingPeriod") : timing.difference === null ? t("plans.noPeriod") : timing.difference > 0 ? t("plans.over") + " " + timing.difference : timing.difference < 0 ? t("plans.under") + " " + -timing.difference : t("plans.exact"))), timing.duration !== null && /* @__PURE__ */ cpJsx("div", { className: "cp-plan-bar", "aria-hidden": "true" }, /* @__PURE__ */ cpJsx("i", { style: { inlineSize: budget + "%" } })), /* @__PURE__ */ cpJsx("small", null, t("plans.allocated"), ": ", timing.minutes, timing.duration !== null && /* @__PURE__ */ cpJsx(React.Fragment, null, " \xB7 ", t("plans.duration"), ": ", timing.duration), " \xB7 ", t("plans.timingHint")))), /* @__PURE__ */ cpJsx("section", { className: "cp-plan-section", "data-section": "support" }, /* @__PURE__ */ cpJsx("h3", null, t("ux.plans.sectionSupport")), field2("support"), field2("extension"), field2("resources"), field2("checks")), /* @__PURE__ */ cpJsx("section", { className: "cp-plan-section", "data-section": "after" }, /* @__PURE__ */ cpJsx("h3", null, t("ux.plans.sectionAfter")), field2("homework"), field2("reflection"), /* @__PURE__ */ cpJsx(M5Select, { id: "plans.status", value: draft.status, onChange: (e) => change2("status", e.target.value) }, ["planned", "taught", "skipped"].map((status) => /* @__PURE__ */ cpJsx("option", { key: status, value: status }, t("plans." + status)))))), /* @__PURE__ */ cpJsx("footer", { className: "cp-plan-foot" }, !valid4 && /* @__PURE__ */ cpJsx("p", { role: "status" }, t("plans.required")), /* @__PURE__ */ cpJsx(M5Button, { id: "plans.save", className: "cp-ux-primary", disabled: !valid4, onClick: () => {
       onSave(draft);
       acceptDraft(draft);
     } }, t(draft.kind === "template" ? "plans.saveTemplateEdit" : "plans.save")), /* @__PURE__ */ cpJsx(M5Button, { id: "plans.saveTemplate", disabled: !valid4, onClick: () => onCopy(copyPlan(draft, draft.date, "template")) }, t("plans.saveTemplate")), /* @__PURE__ */ cpJsx(ScopeChip, { label: t("ux.plans.duplicateTo"), value: duplicateDate || "\u2026", context: "plan-duplicate" }, /* @__PURE__ */ cpJsx(M5Field, { id: "plans.duplicateDate", type: "date", value: duplicateDate, onChange: (e) => setDuplicateDate(e.target.value) }), /* @__PURE__ */ cpJsx(M5Button, { id: "plans.duplicate", disabled: !valid4 || !duplicateDate, onClick: () => onCopy(copyPlan(draft, duplicateDate)) }, t("plans.duplicate"))), /* @__PURE__ */ cpJsx(ScopeChip, { label: t("ux.plans.output"), value: t("print." + language2), context: "plan-output" }, /* @__PURE__ */ cpJsx(DocumentLanguage, { id: "plans.language", value: language2, onChange: (e) => setLanguage2(e.target.value) }), /* @__PURE__ */ cpJsx(M5Button, { id: "plans.preview", disabled: !valid4, onClick: () => onPreview(draft, language2) }, t("plans.preview")), /* @__PURE__ */ cpJsx(UxButton, { id: "plans.word", disabled: !valid4, onClick: () => downloadWord({ title: draft.title, language: language2 === "ar" ? "ar" : "en", blocks: planWordBlocks(draft, doc, profile2, language2) }, "ClassPilot_lesson_plan.docx") })), /* @__PURE__ */ cpJsx("span", { className: "cp-plan-close" }, /* @__PURE__ */ cpJsx(M5Button, { id: "plans.cancel", onClick: () => {
@@ -54587,8 +54769,8 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     }, []);
     return text7 ? /* @__PURE__ */ cpJsx("div", { className: "cp-pip-toast", role: "status" }, cpRaw(text7)) : null;
   }
-  var minutesUntil = (hhmm, now) => {
-    const [h, m] = hhmm.split(":").map(Number), d = new Date(now);
+  var minutesUntil = (hhmm2, now) => {
+    const [h, m] = hhmm2.split(":").map(Number), d = new Date(now);
     d.setHours(h, m, 0, 0);
     return Math.max(0, Math.ceil((d - now) / 6e4));
   };
@@ -54735,6 +54917,142 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
   var slot2 = (id, milestone) => Object.freeze({ id, milestone, schema: { defaults: {}, migrate: (value) => value }, views: [], actions: [], settingsSections: [], exports: [], i18n: {} });
   var moduleSlots = [slot2("attendance", 3), slot2("observations", 3), slot2("notes", 3), slot2("timetable", 4), slot2("bell", 4), slot2("timer", 4), slot2("noise", 4), slot2("plans", 5), slot2("certificates", 5), slot2("reports", 6), slot2("analytics", 6), slot2("lock", 8)];
 
+  // src/modules/lock/settings.jsx
+  function LockSettings({ profile: profile2 }) {
+    useLanguage();
+    const [current4, setCurrent] = React.useState(""), [pin, setPin] = React.useState(""), [confirm2, setConfirm] = React.useState(""), [idle, setIdle] = React.useState(String(idleMinutes(profile2))), [message, setMessage] = React.useState(""), [busy, setBusy] = React.useState(false);
+    React.useEffect(() => {
+      setCurrent("");
+      setPin("");
+      setConfirm("");
+      setIdle(String(idleMinutes(profile2)));
+    }, [profile2.lockHash, profile2.lockSettings]);
+    async function save(remove = false) {
+      setMessage("");
+      if (busy || !isProfileLinked()) return;
+      if (!remove && (!Number.isInteger(Number(idle)) || Number(idle) < 0 || Number(idle) > 240 || idle.trim() === "")) {
+        setMessage("lock.idleInvalid");
+        return;
+      }
+      setBusy(true);
+      try {
+        if (!crypto.subtle) {
+          setMessage("lock.crypto");
+          return;
+        }
+        if (profile2.lockHash && !await verifyPin(current4, profile2.lockHash)) {
+          setMessage("lock.wrong");
+          return;
+        }
+        let lockHash = profile2.lockHash;
+        if (remove) lockHash = null;
+        else if (pin || confirm2 || !lockHash) {
+          if (!validPin(pin) || pin !== confirm2) {
+            setMessage("lock.invalidPin");
+            return;
+          }
+          lockHash = await hashPin(pin);
+        }
+        if (getProfile() !== profile2) {
+          setMessage("lock.failed");
+          return;
+        }
+        await new Promise((resolve) => {
+          const unsubscribe = subscribeProfile((next) => {
+            if (next.lockHash === lockHash) {
+              unsubscribe();
+              resolve();
+            }
+          });
+          updateProfile((p) => ({ ...p, lockHash, lockSettings: { ...p.lockSettings, idleMinutes: remove ? idleMinutes(p) : Number(idle) } }));
+        });
+        await flushProfile();
+        setCurrent("");
+        setPin("");
+        setConfirm("");
+        setMessage("lock.saved");
+      } catch {
+        setMessage("lock.failed");
+      } finally {
+        setBusy(false);
+      }
+    }
+    const field2 = (id, value, onChange) => /* @__PURE__ */ cpJsx("label", { style: { display: "flex", gap: 8, alignItems: "center", marginBlock: 8, fontSize: "var(--cp-fs-body)" } }, /* @__PURE__ */ cpJsx("span", { style: { flex: 1 } }, t("lock." + id)), /* @__PURE__ */ cpJsx("input", { type: id === "idle" ? "number" : "password", inputMode: "numeric", autoComplete: "off", min: id === "idle" ? 0 : void 0, max: id === "idle" ? 240 : void 0, maxLength: id === "idle" ? void 0 : 8, "aria-label": t("lock." + id), style: { ...I, width: 145 }, value, disabled: !isProfileLinked() || busy, ...controlProps("m8." + id, (e) => onChange(e.target.value)) }));
+    return /* @__PURE__ */ cpJsx("section", { "aria-label": t("lock.title") }, /* @__PURE__ */ cpJsx("h3", { style: { fontSize: "var(--cp-fs-label)" } }, t("lock.title")), /* @__PURE__ */ cpJsx("p", { style: { fontSize: "var(--cp-fs-body)" } }, t(profile2.lockHash ? "lock.on" : "lock.off")), /* @__PURE__ */ cpJsx("p", { style: { fontSize: "var(--cp-fs-body)" } }, t("lock.privacy")), !isProfileLinked() && /* @__PURE__ */ cpJsx("p", null, t("lock.link")), profile2.lockHash && field2("current", current4, setCurrent), field2("new", pin, setPin), field2("confirm", confirm2, setConfirm), field2("idle", idle, setIdle), /* @__PURE__ */ cpJsx("div", { style: { display: "flex", gap: 8 } }, /* @__PURE__ */ cpJsx("button", { ...actionProps("m8.save", () => save()), disabled: !isProfileLinked() || busy, style: B() }, t("lock.save")), profile2.lockHash && /* @__PURE__ */ cpJsx("button", { ...actionProps("m8.remove", () => save(true)), disabled: busy, style: B() }, t("lock.remove"))), message && /* @__PURE__ */ cpJsx("p", { role: "status", style: { fontSize: "var(--cp-fs-body)" } }, t(message)), /* @__PURE__ */ cpJsx("p", { style: { fontSize: "var(--cp-fs-caption)" } }, t("lock.recovery")));
+  }
+
+  // src/core/settings-home.jsx
+  var SECTIONS = ["appearance", "lock", "about"];
+  var state = { open: false, section: "appearance" };
+  var listeners11 = /* @__PURE__ */ new Set();
+  var emit5 = () => listeners11.forEach((listener) => listener(state));
+  function openSettings(section) {
+    state = { open: true, section: SECTIONS.includes(section) ? section : state.section };
+    emit5();
+  }
+  function closeSettings() {
+    if (!state.open) return;
+    state = { ...state, open: false };
+    emit5();
+  }
+  function useSettings() {
+    const [value, setValue] = useState(state);
+    useEffect(() => {
+      listeners11.add(setValue);
+      setValue(state);
+      return () => listeners11.delete(setValue);
+    }, []);
+    return value;
+  }
+  function focusTargets(root2) {
+    return [...root2.querySelectorAll("button,input,select,textarea,summary,a[href],[tabindex]")].filter((element) => {
+      if (element.matches(":disabled") || element.tabIndex < 0 || !element.getClientRects().length || getComputedStyle(element).visibility !== "visible") return false;
+      for (let parent = element.parentElement; parent && parent !== root2; parent = parent.parentElement) if (parent.tagName === "DETAILS" && !parent.open && !parent.querySelector(":scope > summary")?.contains(element)) return false;
+      return true;
+    });
+  }
+  function AppearanceSection({ workspace, language: language2, onLanguage, direction, onDirection, profile: profile2 }) {
+    const appearance = workspace?.appearance || {}, set = workspace?.setAppearanceKey;
+    const select = (id, labelKey, value, options, onChange) => /* @__PURE__ */ cpJsx("label", { className: "cp-settings-field" }, /* @__PURE__ */ cpJsx("span", null, t(labelKey)), /* @__PURE__ */ cpJsx("select", { value, "aria-label": t(labelKey), ...controlProps(id, onChange) }, options));
+    return /* @__PURE__ */ cpJsx("div", { className: "cp-settings-fields" }, select("cp.language", "settings.language", language2, [/* @__PURE__ */ cpJsx("option", { key: "en", value: "en" }, t("settings.en")), /* @__PURE__ */ cpJsx("option", { key: "ar", value: "ar" }, t("settings.ar"))], (e) => onLanguage(e.target.value)), select("cp.direction", "settings.direction", direction, [/* @__PURE__ */ cpJsx("option", { key: "ltr", value: "ltr" }, t("settings.ltr")), /* @__PURE__ */ cpJsx("option", { key: "rtl", value: "rtl" }, t("settings.rtl"))], (e) => onDirection(e.target.value)), /* @__PURE__ */ cpJsx("label", { className: "cp-settings-check" }, /* @__PURE__ */ cpJsx("input", { type: "checkbox", checked: !!profile2.ui?.arabicIndicDigits, ...controlProps("cp.digits", (e) => {
+      setDisplayDigits(e.target.checked);
+      updateProfile((p) => ({ ...p, ui: { ...p.ui, arabicIndicDigits: e.target.checked } }));
+    }) }), /* @__PURE__ */ cpJsx("span", null, t("settings.digits"))), select("improve.theme", "improve.theme", appearance.theme || "light", [["light", "improve.light"], ["dark", "improve.dark"], ["contrast", "ux.appearance.contrast"]].map(([value, key4]) => /* @__PURE__ */ cpJsx("option", { key: value, value }, t(key4))), (e) => set?.("theme", e.target.value)), select("improve.density", "improve.spacing", appearance.density || "comfortable", [["comfortable", "improve.comfortable"], ["compact", "improve.compact"]].map(([value, key4]) => /* @__PURE__ */ cpJsx("option", { key: value, value }, t(key4))), (e) => set?.("density", e.target.value)), [["look", ["gold", "aurora", "meadow", "cloud", "oasis", "classic"]], ["fontEn", ["plex", "figtree", "lexend", "system"]], ["fontAr", ["thmanyah", "plexArabic", "system"]], ["textSize", ["standard", "large", "extraLarge"]], ["accent", ["blue", "teal", "violet"]]].filter(([key4]) => key4 !== "accent" || (appearance.look || "gold") === "classic").map(([key4, values]) => /* @__PURE__ */ cpJsx("span", { key: key4 }, select("ux.appearance." + key4, "ux.appearance." + key4, appearance[key4] || values[0], values.map((value) => /* @__PURE__ */ cpJsx("option", { key: value, value }, t("ux.appearance." + value))), (e) => set?.(key4, e.target.value)))));
+  }
+  function SettingsHome({ workspace, language: language2, onLanguage, direction, onDirection, onOpenCalendar }) {
+    useLanguage();
+    const settings = useSettings(), [profile2, setProfile] = useState(getProfile), box = useRef(null), opener = useRef(null);
+    useEffect(() => subscribeProfile(setProfile), []);
+    useEscape(settings.open, () => closeSettings());
+    useLayoutEffect(() => {
+      if (settings.open) {
+        opener.current = document.activeElement;
+        box.current?.querySelector('[data-cp-action="improve.closePreferences"]')?.focus();
+      } else {
+        const back = opener.current;
+        opener.current = null;
+        if (back?.isConnected) back.focus();
+      }
+    }, [settings.open]);
+    useEffect(() => {
+      if (settings.open) box.current?.querySelector("#cp-settings-" + settings.section)?.scrollIntoView?.({ block: "start" });
+    }, [settings.open, settings.section]);
+    if (!settings.open) return null;
+    const trap = (event) => {
+      if (event.key !== "Tab") return;
+      const controls4 = focusTargets(box.current);
+      const first = controls4[0], last = controls4.at(-1);
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last?.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first?.focus();
+      }
+    };
+    return ReactDOM.createPortal(/* @__PURE__ */ cpJsx("div", { className: "cp-settings-home cp-settings-cards", role: "dialog", "aria-modal": "true", "aria-labelledby": "cp-settings-title", ref: box, dir: direction, onKeyDown: trap }, /* @__PURE__ */ cpJsx("button", { type: "button", className: "cp-settings-close", ...actionProps("improve.closePreferences", () => closeSettings()), "aria-label": t("common.close"), title: t("improve.closePreferences") }, "\xD7"), /* @__PURE__ */ cpJsx("div", { className: "cp-settings-column" }, /* @__PURE__ */ cpJsx("h2", { id: "cp-settings-title" }, t("ux.settings.title")), /* @__PURE__ */ cpJsx("section", { className: "cp-settings-card", id: "cp-settings-appearance", "aria-labelledby": "cp-settings-h-appearance" }, /* @__PURE__ */ cpJsx("h3", { id: "cp-settings-h-appearance" }, t("ux.settings.appearance")), /* @__PURE__ */ cpJsx(AppearanceSection, { workspace, language: language2, onLanguage, direction, onDirection, profile: profile2 })), /* @__PURE__ */ cpJsx("section", { className: "cp-settings-card cp-settings-lockcard", id: "cp-settings-lock", "aria-label": t("ux.settings.lock") }, /* @__PURE__ */ cpJsx(LockSettings, { profile: profile2 })), /* @__PURE__ */ cpJsx("section", { className: "cp-settings-card", id: "cp-settings-about", "aria-labelledby": "cp-settings-h-about" }, /* @__PURE__ */ cpJsx("h3", { id: "cp-settings-h-about" }, t("ux.settings.about")), /* @__PURE__ */ cpJsx("p", { className: "cp-settings-about-line" }, /* @__PURE__ */ cpJsx("b", null, t("about.title")), cpRaw(" \xB7 "), t("about.version"), cpRaw(" \xB7 "), t("about.license")), /* @__PURE__ */ cpJsx("p", { className: "cp-settings-hint" }, t("about.privacy"))))), document.body);
+  }
+
   // src/core/shell.jsx
   setNewClassNameAsker(() => askText({ title: t("ux.newClass.title"), body: t("ux.newClass.body"), label: t("ux.newClass.label"), confirm: t("ux.newClass.confirm"), context: "new-class" }));
   function ViewMenu({ workspace }) {
@@ -54844,7 +55162,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       } catch {
       }
       setView("module:timetable");
-    } }), /* @__PURE__ */ cpJsx(SidebarPortal, { target: "footer" }, !isProfileLinked() && /* @__PURE__ */ cpJsx("span", { role: "status", className: "cp-footer-hint", title: t("ux.notebook.linkProfile") }, t("improve.profileUnlinked")), profile2.lockHash && /* @__PURE__ */ cpJsx("button", { ...actionProps("m8.manual", () => window.dispatchEvent(new Event("cp:lock"))), title: t("lock.manual") }, /* @__PURE__ */ cpJsx(NavIcon, { type: "lock" }), /* @__PURE__ */ cpJsx("span", null, t("lock.manual"))), onSettings && /* @__PURE__ */ cpJsx("button", { className: "cp-preferences-toggle", ...actionProps("gb.settings", onSettings, "footer"), title: t("ux.settings.open"), "aria-label": t("improve.preferences") }, /* @__PURE__ */ cpJsx(NavIcon, { type: "appearance" }), /* @__PURE__ */ cpJsx("span", null, t("ux.foot.appearance"))), hubButton("manage"), /* @__PURE__ */ cpJsx("button", { ...actionProps("cp.profile", onProfile), title: t("shell.profile"), "aria-label": t("shell.profile") }, /* @__PURE__ */ cpJsx(NavIcon, { type: "profile" }), /* @__PURE__ */ cpJsx("span", null, t("ux.foot.profile")))), /* @__PURE__ */ cpJsx(ContextBar, null));
+    } }), /* @__PURE__ */ cpJsx(SidebarPortal, { target: "footer" }, !isProfileLinked() && /* @__PURE__ */ cpJsx("span", { role: "status", className: "cp-footer-hint", title: t("ux.notebook.linkProfile") }, t("improve.profileUnlinked")), profile2.lockHash && /* @__PURE__ */ cpJsx("button", { ...actionProps("m8.manual", () => window.dispatchEvent(new Event("cp:lock"))), title: t("lock.manual") }, /* @__PURE__ */ cpJsx(NavIcon, { type: "lock" }), /* @__PURE__ */ cpJsx("span", null, t("lock.manual"))), hubButton("manage"), /* @__PURE__ */ cpJsx("button", { ...actionProps("ux.settings.app", () => openSettings("appearance")), title: t("ux.settings.app") }, /* @__PURE__ */ cpJsx(NavIcon, { type: "appearance" }), /* @__PURE__ */ cpJsx("span", null, t("ux.settings.app"))), /* @__PURE__ */ cpJsx("button", { className: "cp-foot-me", ...actionProps("cp.profile", onProfile), title: t("shell.profile"), "aria-label": t("shell.profile") }, /* @__PURE__ */ cpJsx("span", { className: "cp-avatar", "aria-hidden": "true" }, cpRaw(initialsOf(profile2.reportHeader?.teacher) || "\xB7")), /* @__PURE__ */ cpJsx("span", { className: "cp-foot-me-text" }, /* @__PURE__ */ cpJsx("b", { dir: "auto" }, cpRaw(profile2.reportHeader?.teacher || t("ux.foot.profile"))), profile2.reportHeader?.teacher && /* @__PURE__ */ cpJsx("small", null, t("ux.foot.profile"))))), /* @__PURE__ */ cpJsx(ContextBar, null));
   }
   function FileSafetyNotice({ doc, onReload, onBackup, onRelink }) {
     useLanguage();
@@ -54910,10 +55228,8 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       }
     };
     const header2 = (key4, value) => updateProfile((p) => ({ ...p, reportHeader: { ...p.reportHeader, [key4]: value } }));
-    return /* @__PURE__ */ cpJsx("section", { className: "cp-profile-panel", dir: doc.settings.dir || "ltr", "aria-label": t("profile.title") }, /* @__PURE__ */ cpJsx("p", { style: { fontSize: "var(--cp-fs-body)", color: "var(--n-500)" } }, t(linked ? "profile.linked" : "profile.unlinked")), /* @__PURE__ */ cpJsx("div", { style: { display: "flex", gap: 8, marginBottom: 16 } }, /* @__PURE__ */ cpJsx("button", { ...actionProps("cp.profile-create", invoke(withUi(createProfile))), style: B() }, t("profile.create")), /* @__PURE__ */ cpJsx("button", { ...actionProps("cp.profile-open", invoke(withUi(openProfile))), style: B() }, t("profile.open")), /* @__PURE__ */ cpJsx("button", { ...actionProps("cp.profile-backup", () => downloadBackup(profile2)), style: B() }, t("profile.backup"))), ["school", "teacher", "academicYear"].map((key4) => /* @__PURE__ */ cpJsx("label", { key: key4, style: { display: "flex", alignItems: "center", gap: 10, marginBottom: 10 } }, /* @__PURE__ */ cpJsx("span", { style: { width: 140, fontSize: "var(--cp-fs-body)" } }, t(key4 === "academicYear" ? "profile.year" : "profile." + key4)), /* @__PURE__ */ cpJsx("input", { "aria-label": t(key4 === "academicYear" ? "profile.year" : "profile." + key4), style: { ...I, flex: 1 }, disabled: !linked, value: profile2.reportHeader[key4] || "", ...controlProps("cp.header-" + key4, (e) => header2(key4, e.target.value)) }))), /* @__PURE__ */ cpJsx("h3", { style: { fontSize: "var(--cp-fs-label)" } }, t("profile.calendar")), /* @__PURE__ */ cpJsx("p", { style: { fontSize: "var(--cp-fs-body)" } }, profile2.calendar.schoolDays.map((day) => t("calendar.day" + day)).join(" \xB7 ")), /* @__PURE__ */ cpJsx("button", { ...actionProps("cp.profile-copy-calendar", () => updateProfile((p) => ({ ...p, calendar: { ...p.calendar, schoolDays: [...doc.settings.schoolDays], holidays: JSON.parse(JSON.stringify(doc.settings.holidays || [])) } }))), disabled: !linked, style: B() }, t("profile.copyCalendar")), /* @__PURE__ */ cpJsx("p", { style: { fontSize: "var(--cp-fs-body)" } }, t("ux.profile.classesMoved")), /* @__PURE__ */ cpJsx("button", { ...actionProps("improve.hub.manage", () => {
-      closeSettings();
-      onClasses?.();
-    }, "profile"), style: B() }, t("improve.hub.manage")), /* @__PURE__ */ cpJsx(ReportBrandingEditor, { value: profile2.reportBranding, onChange: (value) => updateProfile((p) => ({ ...p, reportBranding: value })) }), error2 && /* @__PURE__ */ cpJsx("p", { role: "alert", style: { color: "#b91c1c", fontSize: "var(--cp-fs-body)" } }, error2), saved && /* @__PURE__ */ cpJsx("p", { role: "status", style: { fontSize: "var(--cp-fs-body)" } }, t("profile.saved")));
+    const fields2 = [["teacher", "profile.teacher"], ["school", "profile.school"], ["academicYear", "profile.year"]];
+    return /* @__PURE__ */ cpJsx("section", { className: "cp-profile-panel", dir: doc.settings.dir || "ltr", "aria-label": t("profile.title") }, /* @__PURE__ */ cpJsx("div", { className: "cp-profile-body" }, !linked && /* @__PURE__ */ cpJsx("p", { className: "cp-profile-note" }, t("profile.unlinked")), /* @__PURE__ */ cpJsx("h3", { className: "cp-profile-group" }, t("ux.profile.you")), fields2.map(([key4, label]) => /* @__PURE__ */ cpJsx("label", { key: key4, className: "cp-profile-field" }, /* @__PURE__ */ cpJsx("span", null, t(label)), /* @__PURE__ */ cpJsx("input", { "aria-label": t(label), disabled: !linked, value: profile2.reportHeader[key4] || "", ...controlProps("cp.header-" + key4, (e) => header2(key4, e.target.value)) }))), /* @__PURE__ */ cpJsx("h3", { className: "cp-profile-group" }, t("ux.profile.reportHeader")), /* @__PURE__ */ cpJsx("div", { className: "cp-profile-preview" }, profile2.reportBranding?.logo ? /* @__PURE__ */ cpJsx("img", { src: profile2.reportBranding.logo, alt: t("ux.branding.logo") }) : /* @__PURE__ */ cpJsx("span", { className: "cp-profile-logo", "aria-hidden": "true" }), /* @__PURE__ */ cpJsx("div", null, /* @__PURE__ */ cpJsx("b", { dir: "auto" }, cpRaw(profile2.reportHeader.school || "")), /* @__PURE__ */ cpJsx("span", { dir: "auto" }, cpRaw([profile2.reportBranding?.subject, profile2.reportHeader.teacher, profile2.reportHeader.academicYear].filter(Boolean).join(" \xB7 "))))), /* @__PURE__ */ cpJsx(ReportBrandingEditor, { value: profile2.reportBranding, onChange: (value) => updateProfile((p) => ({ ...p, reportBranding: value })) }), error2 && /* @__PURE__ */ cpJsx("p", { role: "alert", className: "cp-profile-error" }, error2), saved && /* @__PURE__ */ cpJsx("p", { role: "status", className: "cp-profile-note" }, t("profile.saved"))), /* @__PURE__ */ cpJsx("footer", { className: "cp-profile-foot" }, /* @__PURE__ */ cpJsx("button", { ...actionProps("cp.profile-backup", () => downloadBackup(profile2)), style: B() }, t("profile.backup")), /* @__PURE__ */ cpJsx("span", { className: "cp-profile-gap" }), /* @__PURE__ */ cpJsx("button", { ...actionProps("cp.profile-open", invoke(withUi(openProfile))), style: B() }, t("profile.open")), /* @__PURE__ */ cpJsx("button", { ...actionProps("cp.profile-create", invoke(withUi(createProfile))), style: B() }, t("profile.create"))));
   }
 
   // src/modules/aireports/prompt.js
@@ -56350,17 +56666,13 @@ Reply with JSON only, exactly in the shape of "response_schema", one report per 
       sArchO(true);
     }, onBackfill: function() {
       sBfO(true);
-    }, _cpOrigin: "15-app.jsx:21126" })))), /* @__PURE__ */ cpJsx(SettingsMount, { section: "profile", open: profileO, onOpen: function() {
-      sProfileO(true);
-    }, onClose: function() {
+    }, _cpOrigin: "15-app.jsx:21126" })))), /* @__PURE__ */ cpJsx(ProfileMount, { open: profileO, onClose: function() {
       sProfileO(false);
     } }, profileO && /* @__PURE__ */ cpJsx(ProfilePanel, { doc, classes, onRelink, onClose: function() {
       sProfileO(false);
     }, _cpOrigin: "15-app.jsx:21298", onClasses: function() {
       sView("module:workspace");
-    } })), /* @__PURE__ */ cpJsx(SettingsMount, { section: "class", open: settO, onOpen: function() {
-      sSettO(true);
-    }, onClose: function() {
+    } })), /* @__PURE__ */ cpJsx(EscapeLayer, { open: settO, onClose: function() {
       sSettO(false);
     } }, /* @__PURE__ */ cpJsx(SettDr, { open: settO, onClose: function() {
       sSettO(false);
