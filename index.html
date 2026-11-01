@@ -1473,6 +1473,71 @@ td[data-cp-att],th[data-cp-att]{background:var(--cp-att-bg)!important;box-shadow
  [data-cp-sheet="marks"] tr[data-cp-active-row="true"] > td {outline:1px solid Highlight;outline-offset:-1px;}
  [data-cp-sheet="marks"] tr[data-cp-active-row="true"] > td:nth-child(3)::after {background:Highlight;}
 }
+/* Owner (1 November 2026, approved mock-up): Quizzes and tests grouped by course part, with readiness; Classes & files
+   with each label once, ticks for file health, and plain "Across your classes" cards. */
+.cp-assess-strip{display:flex!important;flex-wrap:wrap;align-items:center;gap:12px 14px;padding:12px 16px;border:1px solid var(--cp-border);border-radius:12px;background:var(--cp-surface)}
+.cp-assess-strip>b{font-size:var(--cp-fs-ui)}
+.cp-assess-bar{flex:0 0 160px;height:6px;border-radius:3px;background:var(--cp-active);overflow:hidden}.cp-assess-bar i{display:block;height:100%;background:var(--cp-gold,#c8961e);border-radius:3px}
+.cp-assess-strip .cp-ai3-hint{margin:0}
+.cp-assess-strip .cp-seg,.cp-assess-strip [role=group]{margin-inline-start:auto}
+.cp-assess-table{border-collapse:separate;border-spacing:0}
+.cp-assess-table thead th{font-size:11px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--cp-muted)}
+.cp-assess-table th:first-child,.cp-assess-table td:first-child{width:28px;padding-inline-end:0}
+.cp-assess-group th{padding:14px 12px 6px!important;font-size:11px!important;font-weight:600!important;letter-spacing:.05em;text-transform:uppercase;color:var(--cp-muted)!important;background:transparent!important;text-align:start;border-top:1px solid var(--cp-border)}
+.cp-assess-table tbody tr[data-column] td{vertical-align:middle;padding-block:9px}
+.cp-assess-dot{display:inline-block;width:10px;height:10px;border-radius:50%;box-sizing:border-box;border:2px solid #b45309}
+.cp-assess-dot[data-ready=true]{background:#15803d;border-color:#15803d}
+:root[data-cp-theme=dark] .cp-assess-dot{border-color:#f2b55c}:root[data-cp-theme=dark] .cp-assess-dot[data-ready=true]{background:#4ade80;border-color:#4ade80}
+.cp-assess-table select{min-width:150px;height:30px;border-radius:8px}
+.cp-assess-table select[data-suggested=true]{border-style:dashed!important;color:var(--cp-muted)!important}
+.cp-assess-quiet{all:unset;box-sizing:border-box;cursor:pointer;border-radius:6px;padding:4px 6px;margin-inline-start:-6px}
+.cp-assess-quiet:hover{background:var(--cp-active)}.cp-assess-quiet:focus-visible{outline:2px solid var(--cp-focus,var(--ux-primary))}
+.cp-assess-quiet:disabled{opacity:.5;cursor:default}
+.cp-assess-add{color:var(--cp-link,#7a5300);font-weight:600}
+.cp-assess-datetext{font-variant-numeric:tabular-nums;white-space:nowrap}
+.cp-assess-table input[type=date]{height:30px;border-radius:8px}
+.cp-assess-lessons-cell{display:grid;gap:8px}
+.cp-assess-summary{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px}
+.cp-assess-chip{padding:4px 10px;border-radius:999px;background:var(--cp-active);font-weight:500}.cp-assess-chip b{font-weight:600}
+.cp-assess-chapter{color:var(--cp-muted)}
+.cp-assess-toggle{display:inline-grid;place-items:center;width:26px;height:26px;padding:0;margin:0;color:var(--cp-muted)}
+.cp-assess-chosen{margin:0;padding-inline-start:18px;font-size:var(--cp-fs-caption)}
+.cp-assess-foot{margin:0;padding:10px 12px;color:var(--cp-muted);font-size:var(--cp-fs-caption);border-top:1px solid var(--cp-border)}
+/* Classes & files */
+.cp-classes-health{display:flex;flex-wrap:wrap;gap:18px;color:var(--cp-muted)}
+.cp-classes-health [data-ok]::before{content:"✓";margin-inline-end:6px;font-weight:700;color:#15803d}
+.cp-classes-health [data-ok=false]::before{content:"!";color:#b45309}
+:root[data-cp-theme=dark] .cp-classes-health [data-ok]::before{color:#4ade80}:root[data-cp-theme=dark] .cp-classes-health [data-ok=false]::before{color:#f2b55c}
+.cp-ws-toolbar{align-items:end}
+.cp-ws-classes thead th{font-size:11px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--cp-muted);background:var(--cp-active)}
+.cp-ws-classes td,.cp-ws-classes th{vertical-align:middle}
+.cp-ws-classes th:first-child,.cp-ws-classes td:first-child{width:40px}
+.cp-ws-classes :is(td,th) .cp-ux-check>span,.cp-ws-classes td .cp-ux-field>span,.cp-ws-classes td label>span:first-child{position:absolute!important;width:1px!important;height:1px!important;overflow:hidden!important;clip:rect(0 0 0 0)!important;white-space:nowrap!important}
+.cp-ws-classes td .cp-ux-field,.cp-ws-classes td label{margin:0!important;gap:0!important}
+.cp-ws-classes td:nth-child(2) .cp-ux-button{border:0!important;background:transparent!important;box-shadow:none!important;padding:4px 6px!important;font-weight:600!important;margin-inline-start:-6px}
+.cp-ws-classes td:nth-child(2) .cp-ux-button:hover{background:var(--cp-active)!important}
+.cp-ws-classes td:nth-child(4) select,.cp-ws-classes td:nth-child(5) input{max-width:110px}
+.cp-ws-open{margin-inline-start:8px;padding:2px 8px;border-radius:999px;font-size:11px;font-weight:600;color:#14532d;background:#dcfce7}
+:root[data-cp-theme=dark] .cp-ws-open{color:#4ade80;background:#14301d}
+.cp-ws-none{color:var(--cp-muted)}
+.cp-ws-foot,.cp-ws-tip{margin:10px 0 0;color:var(--cp-muted);font-size:var(--cp-fs-caption)}
+.cp-ws-across>h2{font-family:var(--cp-font-display);font-size:var(--cp-fs-section,18px);margin:24px 0 12px}
+.cp-ws-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;align-items:start}
+.cp-ws-grid>.cp-ux-panel{margin:0!important;height:100%}
+.cp-ws-grid>.cp-ux-panel:has(table){grid-column:1/-1}
+.cp-ws-grid .cp-ux-form{display:grid!important;grid-template-columns:1fr auto;gap:8px;align-items:end}
+.cp-ws-need{margin:8px 0 0;color:#b45309;font-size:var(--cp-fs-caption)}
+:root[data-cp-theme=dark] .cp-ws-need{color:#f2b55c}
+.cp-assess-table{table-layout:auto;width:100%}
+.cp-assess-table thead th:nth-child(2){width:22%}.cp-assess-table thead th:nth-child(3){width:190px}.cp-assess-table thead th:nth-child(4){width:170px}
+.cp-assess-table thead th{border-bottom:1px solid var(--cp-border)}
+.cp-assess-table tbody:first-of-type .cp-assess-group th{border-top:0}
+.cp-ws-grid .cp-ux-check{display:flex!important;margin:6px 0!important}
+.cp-ws-grid .cp-ux-panel>p:not(.cp-ws-need){color:var(--cp-muted);font-size:var(--cp-fs-caption)}
+.cp-ws-grid input[type=file]{font:inherit;font-size:var(--cp-fs-caption);color:var(--cp-muted)}
+.cp-ws-grid input[type=file]::file-selector-button{font:600 var(--cp-fs-ui) var(--cp-font);height:32px;padding:0 14px;margin-inline-end:10px;border:1px solid var(--cp-border);border-radius:8px;background:var(--cp-surface);color:var(--cp-text);cursor:pointer}
+.cp-panel-dialog .cp-ws-reorder{display:grid!important;grid-template-columns:1fr!important;gap:12px!important}
+.cp-panel-dialog .cp-ws-reorder>.cp-ux-button,.cp-panel-dialog .cp-ws-reorder>button{justify-self:end}
 /* M56 design foundations (owner-supplied Master Implementation Brief, M56; design report §7–§8).
    One set of tokens for the frame and the new modules. Protected Gradebook views (Marks, Groups, Behaviour,
    Adjustments, Analysis, the original wheel, the Settings drawer and the class manager) do not use them. */
@@ -6150,32 +6215,32 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.workspace.allGrades": "All grades",
     "ux.workspace.gradeFilter": "Grade filter",
     "ux.workspace.newSchool": "New school name",
-    "ux.workspace.addSchool": "Add school grouping",
-    "ux.workspace.classes": "Manage linked workspace files",
+    "ux.workspace.addSchool": "Add school",
+    "ux.workspace.classes": "Manage linked files",
     "ux.workspace.selected": "Include this class",
-    "ux.workspace.class": "Class file",
+    "ux.workspace.class": "Class",
     "ux.workspace.schoolAssignment": "School assignment",
     "ux.workspace.grade": "Grade",
     "ux.workspace.section": "Section",
-    "ux.workspace.rosterOrder": "Roster order",
+    "ux.workspace.rosterOrder": "Roster",
     "ux.workspace.open": "Open this class file",
-    "ux.workspace.unassigned": "Unassigned school",
+    "ux.workspace.unassigned": "Choose a school",
     "ux.workspace.openToOrder": "Open this class to reorder its roster.",
     "ux.workspace.empty": "No classes match this school and grade.",
-    "ux.workspace.overview": "Selected-class overview",
-    "ux.workspace.snapshotHint": "Refresh reads the ticked class files after any pending saves. Averages use each student's current final result and leave out students without one. This is a snapshot from that moment; it does not update by itself.",
-    "ux.workspace.refresh": "Refresh selected-class overview",
+    "ux.workspace.overview": "Compare classes",
+    "ux.workspace.snapshotHint": "Average results and attendance of the ticked classes, side by side. It is a snapshot: compare again to update it.",
+    "ux.workspace.refresh": "Compare the ticked classes",
     "ux.workspace.readAt": "Files read at",
     "ux.workspace.rosterCount": "Roster students",
     "ux.workspace.knownResults": "Recorded final results",
     "ux.workspace.mean": "Average final result (%)",
     "ux.workspace.registers": "Saved registers",
-    "ux.workspace.archive": "Workspace archive and recovery copies",
-    "ux.workspace.archiveHint": "Select every class to include. A genuine ZIP contains the teacher profile, exact checked class documents, a checksum manifest and optional original Excel workbooks. It never replaces normal per-class backups.",
-    "ux.workspace.excel": "Include the Gradebook Excel workbooks",
-    "ux.workspace.sidecars": "Included attachments require access to their original files; relink unavailable files in the notebook first. If excluded, keep sidecar files with your backup separately.",
-    "ux.workspace.backup": "Download selected workspace archive",
-    "ux.workspace.archiveFile": "Review a ClassPilot workspace ZIP",
+    "ux.workspace.archive": "Back up everything",
+    "ux.workspace.archiveHint": "One ZIP with your teacher profile and the ticked classes. Your usual backups stay as they are.",
+    "ux.workspace.excel": "Add the Excel workbooks",
+    "ux.workspace.sidecars": "Attachments are added only when ClassPilot can still reach their files.",
+    "ux.workspace.backup": "Download backup ZIP",
+    "ux.workspace.archiveFile": "Check a backup ZIP",
     "ux.workspace.review": "Archive contents and integrity",
     "ux.workspace.file": "Archive file path",
     "ux.workspace.bytes": "Bytes",
@@ -6292,13 +6357,13 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.home.remaining": "Current-period time remaining",
     "ux.home.profileHint": "Create or open your teacher-profile file for schedule and personal preferences.",
     "ux.home.scheduleHint": "Set bell times and assign your existing classes to teaching periods. Friday can use its own times.",
-    "ux.assessment.title": "Reusable assessment setup",
-    "ux.assessment.hint": "Save your current direct, tally and adjustment column definitions in the teacher profile. Open another class and preview appending the preset there. Apply one class at a time so its original shared undo and checked autosave remain in control. Roster data, existing assessments and special scoring columns are not copied.",
-    "ux.assessment.name": "Assessment preset name",
-    "ux.assessment.save": "Save current assessment definitions",
-    "ux.assessment.preset": "Assessment setup preset",
-    "ux.assessment.choose": "Choose saved assessment definitions",
-    "ux.assessment.preview": "Preview adding assessment definitions",
+    "ux.assessment.title": "Copy assessment setup",
+    "ux.assessment.hint": "Save this class's assessment columns, then add them to another class. Students and marks are not copied.",
+    "ux.assessment.name": "Name, for example Grade 8 Term 1",
+    "ux.assessment.save": "Save setup",
+    "ux.assessment.preset": "Saved setup",
+    "ux.assessment.choose": "Choose a saved setup",
+    "ux.assessment.preview": "Preview in this class",
     "ux.assessment.review": "Review additional assessment sections",
     "ux.assessment.weights": "These additional column weights affect the original total as configured. Review all weights in Gradebook Settings after applying. Existing marks and rules stay unchanged.",
     "ux.assessment.section": "Section",
@@ -6340,7 +6405,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.support.targetCount": "Distinct target learners",
     "ux.lessonActions.invalid": "Choose an available action.",
     "ux.demo.firstRun": "You can explore with invented learners before linking any real class file. Demonstration edits are discarded on exit.",
-    "ux.workspace.attachments": "Include checked notebook attachment files",
+    "ux.workspace.attachments": "Add notebook attachments",
     "ux.workspace.sidecarsIncluded": "Verified attachment files embedded in ZIP",
     "ux.workspace.sidecarsOmitted": "Attachment files listed but excluded from ZIP",
     "ux.workspace.partial": "Some new recovery copies may have been written before the operation stopped. Current class files were not replaced. Keep the archive and retry in a new empty folder.",
@@ -6349,8 +6414,8 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.report.back": "Return to the previous class report",
     "ux.noise.custom": "Current custom thresholds",
     "ux.groups.noParticipation": "This class has no participation column in its marks sheet.",
-    "ux.workspace.private": "Include private recognition and attendance follow-up",
-    "ux.workspace.privateHint": "Opt in before refreshing. Private lists use original participation suggestions and existing attendance flags, never private-note excerpts. They stay in this temporary snapshot; keep this screen private when projecting.",
+    "ux.workspace.private": "Include private lists (praise to give, attendance follow-up)",
+    "ux.workspace.privateHint": "Don't show these lists on the projector. Tick this before you compare.",
     "ux.workspace.openPrivate": "Open this class to review private records",
     "ux.importTools.encoding": "Use a UTF-8 CSV or an Excel workbook to preserve these characters.",
     "ux.documents.wordHint": "Word exports contain editable text and tables. Use Print/PDF to retain the page design and charts.",
@@ -6414,7 +6479,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.float.add": "Add to this window",
     "ux.nav.assessments": "Assessments & curriculum",
     "ux.assess.title": "Assessments & curriculum",
-    "ux.lead.assessments": "For each quiz or test: its type, its date and the lessons it tested. The AI analysis uses them to link results to lessons and to the notes written before them.",
+    "ux.lead.assessments": "Give each quiz or test a type, a date and the lessons it tested. The AI analysis uses this to link results to lessons.",
     "ux.assess.lessonsTitle": "Lessons of this class",
     "ux.assess.lessonsNone": "No lessons yet. Import them from your Excel sheet.",
     "ux.assess.lessonsHave": "{n} lessons, from {file} ({date}).",
@@ -6451,7 +6516,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.assess.noLessons": "No lessons were found.",
     "ux.assess.tooMany": "There are too many lessons (more than 2000).",
     "ux.assess.tableTitle": "Quizzes and tests",
-    "ux.assess.tableLead": "Behaviour and participation columns are not listed. A type is only used once you choose or confirm it.",
+    "ux.assess.tableLead": "Behaviour and participation columns are not assessments, so they are not listed.",
     "ux.assess.col.part": "Course part",
     "ux.assess.col.name": "Assessment",
     "ux.assess.col.type": "Type",
@@ -7613,7 +7678,37 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.timer.timeUp": "Time is up",
     "ux.timer.escLeave": "Esc to leave full screen",
     "ux.marks.bonusEntryHint": "Mark + bonus (for example 10+2)",
-    "ux.marks.bonusEntryInvalid": "Enter mark+bonus (for example 10+2). Bonus must be zero or positive."
+    "ux.marks.bonusEntryInvalid": "Enter mark+bonus (for example 10+2). Bonus must be zero or positive.",
+    "ux.assess.readyOf": "{n} of {total} ready",
+    "ux.assess.readyMeans": "Ready = type, date and lessons set",
+    "ux.assess.filter": "Show",
+    "ux.assess.filter.all": "All {n}",
+    "ux.assess.filter.todo": "Needs details {n}",
+    "ux.assess.col.status": "Ready",
+    "ux.assess.ready": "Ready",
+    "ux.assess.needs": "Needs details",
+    "ux.assess.addDate": "+ Add date",
+    "ux.assess.changeDate": "Change date",
+    "ux.assess.chooseLessons": "+ Choose lessons",
+    "ux.assess.showLessons": "Show the lessons",
+    "ux.assess.hideLessons": "Hide the lessons",
+    "ux.assess.lessonOne": "lesson {n}",
+    "ux.assess.lessonRange": "lessons {from}\u2013{to}",
+    "ux.assess.lessonCount.one": "{n} lesson",
+    "ux.assess.lessonCount.two": "{n} lessons",
+    "ux.assess.lessonCount.few": "{n} lessons",
+    "ux.assess.lessonCount.many": "{n} lessons",
+    "ux.assess.lessonCount.other": "{n} lessons",
+    "ux.workspace.across": "Across your classes",
+    "ux.workspace.selectAll": "Include all classes",
+    "ux.workspace.current": "Open",
+    "ux.workspace.reorder": "Reorder roster\u2026",
+    "ux.workspace.reorderTitle": "Reorder roster \xB7 {class}",
+    "ux.workspace.closeReorder": "Done",
+    "ux.workspace.tickNote": "Ticked classes are used by Compare classes and Back up everything below.",
+    "ux.workspace.tickFirst": "Tick at least one class in the list above.",
+    "ux.workspace.tip": "Tip: create a desktop shortcut to the ClassPilot file to open it in one click.",
+    "ux.workspace.noGrade": "No grade"
   };
 
   // src/i18n/plain-copy.js
@@ -11663,32 +11758,32 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.workspace.allGrades": "\u062C\u0645\u064A\u0639 \u0627\u0644\u0635\u0641\u0648\u0641",
     "ux.workspace.gradeFilter": "\u0645\u0631\u0634\u062D \u0627\u0644\u0635\u0641",
     "ux.workspace.newSchool": "\u0627\u0633\u0645 \u0627\u0644\u0645\u062F\u0631\u0633\u0629 \u0627\u0644\u062C\u062F\u064A\u062F\u0629",
-    "ux.workspace.addSchool": "\u0625\u0636\u0627\u0641\u0629 \u0645\u062C\u0645\u0648\u0639\u0629 \u0645\u062F\u0631\u0633\u0629",
-    "ux.workspace.classes": "\u0625\u062F\u0627\u0631\u0629 \u0645\u0644\u0641\u0627\u062A \u0645\u0633\u0627\u062D\u0629 \u0627\u0644\u0639\u0645\u0644 \u0627\u0644\u0645\u0631\u062A\u0628\u0637\u0629",
+    "ux.workspace.addSchool": "\u0625\u0636\u0627\u0641\u0629 \u0645\u062F\u0631\u0633\u0629",
+    "ux.workspace.classes": "\u0625\u062F\u0627\u0631\u0629 \u0627\u0644\u0645\u0644\u0641\u0627\u062A \u0627\u0644\u0645\u0631\u062A\u0628\u0637\u0629",
     "ux.workspace.selected": "\u062A\u0636\u0645\u064A\u0646 \u0647\u0630\u0627 \u0627\u0644\u0635\u0641",
-    "ux.workspace.class": "\u0645\u0644\u0641 \u0627\u0644\u0635\u0641",
+    "ux.workspace.class": "\u0627\u0644\u0635\u0641",
     "ux.workspace.schoolAssignment": "\u062A\u0639\u064A\u064A\u0646 \u0627\u0644\u0645\u062F\u0631\u0633\u0629",
     "ux.workspace.grade": "\u0627\u0644\u0635\u0641",
     "ux.workspace.section": "\u0627\u0644\u0634\u0639\u0628\u0629",
-    "ux.workspace.rosterOrder": "\u062A\u0631\u062A\u064A\u0628 \u0627\u0644\u0637\u0644\u0628\u0629",
+    "ux.workspace.rosterOrder": "\u0642\u0627\u0626\u0645\u0629 \u0627\u0644\u0637\u0644\u0627\u0628",
     "ux.workspace.open": "\u0641\u062A\u062D \u0645\u0644\u0641 \u0647\u0630\u0627 \u0627\u0644\u0635\u0641",
-    "ux.workspace.unassigned": "\u0645\u062F\u0631\u0633\u0629 \u063A\u064A\u0631 \u0645\u0633\u0646\u062F\u0629",
+    "ux.workspace.unassigned": "\u0627\u062E\u062A\u0631 \u0645\u062F\u0631\u0633\u0629",
     "ux.workspace.openToOrder": "\u0627\u0641\u062A\u062D \u0627\u0644\u0635\u0641 \u0644\u0625\u0639\u0627\u062F\u0629 \u062A\u0631\u062A\u064A\u0628 \u0627\u0644\u0637\u0644\u0628\u0629.",
     "ux.workspace.empty": "\u0644\u0627 \u062A\u0648\u062C\u062F \u0635\u0641\u0648\u0641 \u062A\u0637\u0627\u0628\u0642 \u0627\u0644\u0645\u062F\u0631\u0633\u0629 \u0648\u0627\u0644\u0635\u0641.",
-    "ux.workspace.overview": "\u0645\u0644\u062E\u0635 \u0627\u0644\u0635\u0641\u0648\u0641 \u0627\u0644\u0645\u062D\u062F\u062F\u0629",
-    "ux.workspace.snapshotHint": "\u064A\u0642\u0631\u0623 \xAB\u062A\u062D\u062F\u064A\u062B\xBB \u0645\u0644\u0641\u0627\u062A \u0627\u0644\u0635\u0641\u0648\u0641 \u0627\u0644\u0645\u062D\u062F\u062F\u0629 \u0628\u0639\u062F \u0627\u0643\u062A\u0645\u0627\u0644 \u0623\u064A \u062D\u0641\u0638 \u0645\u0639\u0644\u0651\u0642. \u062A\u0633\u062A\u062E\u062F\u0645 \u0627\u0644\u0645\u062A\u0648\u0633\u0637\u0627\u062A \u0627\u0644\u0646\u062A\u064A\u062C\u0629 \u0627\u0644\u0646\u0647\u0627\u0626\u064A\u0629 \u0627\u0644\u062D\u0627\u0644\u064A\u0629 \u0644\u0643\u0644 \u0637\u0627\u0644\u0628 \u0648\u062A\u0633\u062A\u0628\u0639\u062F \u0645\u0646 \u0644\u0627 \u0646\u062A\u064A\u062C\u0629 \u0644\u0647. \u0647\u0630\u0647 \u0635\u0648\u0631\u0629 \u0644\u062A\u0644\u0643 \u0627\u0644\u0644\u062D\u0638\u0629 \u0648\u0644\u0627 \u062A\u062A\u062D\u062F\u0651\u062B \u0648\u062D\u062F\u0647\u0627.",
-    "ux.workspace.refresh": "\u062A\u062D\u062F\u064A\u062B \u0645\u0644\u062E\u0635 \u0627\u0644\u0635\u0641\u0648\u0641 \u0627\u0644\u0645\u062D\u062F\u062F\u0629",
+    "ux.workspace.overview": "\u0645\u0642\u0627\u0631\u0646\u0629 \u0627\u0644\u0635\u0641\u0648\u0641",
+    "ux.workspace.snapshotHint": "\u0645\u062A\u0648\u0633\u0637 \u0627\u0644\u0646\u062A\u0627\u0626\u062C \u0648\u0627\u0644\u062D\u0636\u0648\u0631 \u0644\u0644\u0635\u0641\u0648\u0641 \u0627\u0644\u0645\u062D\u062F\u062F\u0629 \u062C\u0646\u0628\u064B\u0627 \u0625\u0644\u0649 \u062C\u0646\u0628. \u0647\u064A \u0644\u0642\u0637\u0629 \u0644\u062A\u0644\u0643 \u0627\u0644\u0644\u062D\u0638\u0629: \u0642\u0627\u0631\u0646 \u0645\u062C\u062F\u062F\u064B\u0627 \u0644\u062A\u062D\u062F\u064A\u062B\u0647\u0627.",
+    "ux.workspace.refresh": "\u0642\u0627\u0631\u0646 \u0627\u0644\u0635\u0641\u0648\u0641 \u0627\u0644\u0645\u062D\u062F\u062F\u0629",
     "ux.workspace.readAt": "\u0648\u0642\u062A \u0642\u0631\u0627\u0621\u0629 \u0627\u0644\u0645\u0644\u0641\u0627\u062A",
     "ux.workspace.rosterCount": "\u0639\u062F\u062F \u0627\u0644\u0637\u0644\u0628\u0629",
     "ux.workspace.knownResults": "\u0627\u0644\u0646\u062A\u0627\u0626\u062C \u0627\u0644\u0646\u0647\u0627\u0626\u064A\u0629 \u0627\u0644\u0645\u0633\u062C\u0644\u0629",
     "ux.workspace.mean": "\u0645\u062A\u0648\u0633\u0637 \u0627\u0644\u0646\u062A\u064A\u062C\u0629 \u0627\u0644\u0646\u0647\u0627\u0626\u064A\u0629 (%)",
     "ux.workspace.registers": "\u0633\u062C\u0644\u0627\u062A \u0627\u0644\u062D\u0636\u0648\u0631 \u0627\u0644\u0645\u062D\u0641\u0648\u0638\u0629",
-    "ux.workspace.archive": "\u0623\u0631\u0634\u064A\u0641 \u0645\u0633\u0627\u062D\u0629 \u0627\u0644\u0639\u0645\u0644 \u0648\u0646\u0633\u062E \u0627\u0644\u0627\u0633\u062A\u0639\u0627\u062F\u0629",
-    "ux.workspace.archiveHint": "\u062D\u062F\u062F \u062C\u0645\u064A\u0639 \u0627\u0644\u0635\u0641\u0648\u0641 \u0627\u0644\u0645\u0637\u0644\u0648\u0628 \u062A\u0636\u0645\u064A\u0646\u0647\u0627. \u064A\u062A\u0636\u0645\u0646 \u0645\u0644\u0641 ZIP \u062D\u0642\u064A\u0642\u064A\u0627\u064B \u0645\u0644\u0641 \u0627\u0644\u0645\u0639\u0644\u0645 \u0648\u0645\u0633\u062A\u0646\u062F\u0627\u062A \u0627\u0644\u0635\u0641\u0648\u0641 \u0627\u0644\u0645\u062A\u062D\u0642\u0642 \u0645\u0646\u0647\u0627 \u0648\u0628\u064A\u0627\u0646 \u0627\u0644\u0628\u0635\u0645\u0627\u062A\u060C \u0645\u0639 \u0645\u0635\u0646\u0641\u0627\u062A Excel \u0627\u0644\u0623\u0635\u0644\u064A\u0629 \u0627\u062E\u062A\u064A\u0627\u0631\u064A\u0627\u064B. \u0644\u0627 \u064A\u062D\u0644 \u0645\u062D\u0644 \u0627\u0644\u0646\u0633\u062E \u0627\u0644\u0627\u062D\u062A\u064A\u0627\u0637\u064A\u0629 \u0627\u0644\u0645\u0633\u062A\u0642\u0644\u0629.",
-    "ux.workspace.excel": "\u062A\u0636\u0645\u064A\u0646 \u0645\u0644\u0641\u0627\u062A Excel \u0645\u0646 \u0633\u062C\u0644 \u0627\u0644\u062F\u0631\u062C\u0627\u062A",
-    "ux.workspace.sidecars": "\u064A\u062A\u0637\u0644\u0628 \u062A\u0636\u0645\u064A\u0646 \u0627\u0644\u0645\u0631\u0641\u0642\u0627\u062A \u0627\u0644\u0648\u0635\u0648\u0644 \u0625\u0644\u0649 \u0645\u0644\u0641\u0627\u062A\u0647\u0627 \u0627\u0644\u0623\u0635\u0644\u064A\u0629\u061B \u0623\u0639\u062F \u0631\u0628\u0637 \u063A\u064A\u0631 \u0627\u0644\u0645\u062A\u0627\u062D \u0645\u0646\u0647\u0627 \u0641\u064A \u0627\u0644\u062F\u0641\u062A\u0631 \u0623\u0648\u0644\u0627\u064B. \u0639\u0646\u062F \u0627\u0633\u062A\u0628\u0639\u0627\u062F\u0647\u0627\u060C \u0627\u062D\u062A\u0641\u0638 \u0628\u0645\u0644\u0641\u0627\u062A \u0627\u0644\u0645\u0631\u0641\u0642\u0627\u062A \u0645\u0646\u0641\u0635\u0644\u0629\u064B \u0645\u0639 \u0646\u0633\u062E\u062A\u0643 \u0627\u0644\u0627\u062D\u062A\u064A\u0627\u0637\u064A\u0629.",
-    "ux.workspace.backup": "\u062A\u0646\u0632\u064A\u0644 \u0623\u0631\u0634\u064A\u0641 \u0645\u0633\u0627\u062D\u0629 \u0627\u0644\u0639\u0645\u0644 \u0627\u0644\u0645\u062D\u062F\u062F\u0629",
-    "ux.workspace.archiveFile": "\u0645\u0631\u0627\u062C\u0639\u0629 \u0623\u0631\u0634\u064A\u0641 ClassPilot \u0628\u0635\u064A\u063A\u0629 ZIP",
+    "ux.workspace.archive": "\u0646\u0633\u062E\u0629 \u0627\u062D\u062A\u064A\u0627\u0637\u064A\u0629 \u0634\u0627\u0645\u0644\u0629",
+    "ux.workspace.archiveHint": "\u0645\u0644\u0641 ZIP \u0648\u0627\u062D\u062F \u064A\u0636\u0645 \u0645\u0644\u0641 \u0627\u0644\u0645\u0639\u0644\u0645 \u0648\u0627\u0644\u0635\u0641\u0648\u0641 \u0627\u0644\u0645\u062D\u062F\u062F\u0629. \u062A\u0628\u0642\u0649 \u0646\u0633\u062E\u0643 \u0627\u0644\u0627\u062D\u062A\u064A\u0627\u0637\u064A\u0629 \u0627\u0644\u0645\u0639\u062A\u0627\u062F\u0629 \u0643\u0645\u0627 \u0647\u064A.",
+    "ux.workspace.excel": "\u0625\u0636\u0627\u0641\u0629 \u0645\u0635\u0646\u0641\u0627\u062A Excel",
+    "ux.workspace.sidecars": "\u062A\u064F\u0636\u0627\u0641 \u0627\u0644\u0645\u0631\u0641\u0642\u0627\u062A \u0641\u0642\u0637 \u0625\u0630\u0627 \u0643\u0627\u0646 ClassPilot \u0644\u0627 \u064A\u0632\u0627\u0644 \u064A\u0635\u0644 \u0625\u0644\u0649 \u0645\u0644\u0641\u0627\u062A\u0647\u0627.",
+    "ux.workspace.backup": "\u062A\u0646\u0632\u064A\u0644 \u0645\u0644\u0641 \u0627\u0644\u0646\u0633\u062E\u0629 \u0627\u0644\u0627\u062D\u062A\u064A\u0627\u0637\u064A\u0629",
+    "ux.workspace.archiveFile": "\u0641\u062D\u0635 \u0645\u0644\u0641 \u0646\u0633\u062E\u0629 \u0627\u062D\u062A\u064A\u0627\u0637\u064A\u0629",
     "ux.workspace.review": "\u0645\u062D\u062A\u0648\u0649 \u0627\u0644\u0623\u0631\u0634\u064A\u0641 \u0648\u0633\u0644\u0627\u0645\u062A\u0647",
     "ux.workspace.file": "\u0645\u0633\u0627\u0631 \u0627\u0644\u0645\u0644\u0641 \u0641\u064A \u0627\u0644\u0623\u0631\u0634\u064A\u0641",
     "ux.workspace.bytes": "\u0628\u0627\u064A\u062A",
@@ -11805,13 +11900,13 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.home.remaining": "\u0627\u0644\u0648\u0642\u062A \u0627\u0644\u0645\u062A\u0628\u0642\u064A \u0645\u0646 \u0627\u0644\u0641\u062A\u0631\u0629 \u0627\u0644\u062D\u0627\u0644\u064A\u0629",
     "ux.home.profileHint": "\u0623\u0646\u0634\u0626 \u0645\u0644\u0641 \u0627\u0644\u0645\u0639\u0644\u0645 \u0623\u0648 \u0627\u0641\u062A\u062D\u0647 \u0644\u062D\u0641\u0638 \u0627\u0644\u062C\u062F\u0648\u0644 \u0648\u0627\u0644\u062A\u0641\u0636\u064A\u0644\u0627\u062A \u0627\u0644\u0634\u062E\u0635\u064A\u0629.",
     "ux.home.scheduleHint": "\u0627\u0636\u0628\u0637 \u0623\u0648\u0642\u0627\u062A \u0627\u0644\u062C\u0631\u0633 \u0648\u0648\u0632\u0639 \u0627\u0644\u0635\u0641\u0648\u0641 \u0627\u0644\u062D\u0627\u0644\u064A\u0629 \u0639\u0644\u0649 \u0627\u0644\u062D\u0635\u0635. \u064A\u0645\u0643\u0646 \u0644\u0644\u062C\u0645\u0639\u0629 \u0627\u0633\u062A\u062E\u062F\u0627\u0645 \u0623\u0648\u0642\u0627\u062A \u0645\u062E\u062A\u0644\u0641\u0629.",
-    "ux.assessment.title": "\u0625\u0639\u062F\u0627\u062F \u062A\u0642\u064A\u064A\u0645\u0627\u062A \u0642\u0627\u0628\u0644 \u0644\u0625\u0639\u0627\u062F\u0629 \u0627\u0644\u0627\u0633\u062A\u062E\u062F\u0627\u0645",
-    "ux.assessment.hint": "\u0627\u062D\u0641\u0638 \u062A\u0639\u0631\u064A\u0641\u0627\u062A \u0623\u0639\u0645\u062F\u0629 \u0627\u0644\u062F\u0631\u062C\u0627\u062A \u0627\u0644\u0645\u0628\u0627\u0634\u0631\u0629 \u0648\u0627\u0644\u062D\u0635\u0631 \u0648\u0627\u0644\u062A\u0639\u062F\u064A\u0644\u0627\u062A \u0641\u064A \u0645\u0644\u0641 \u0627\u0644\u0645\u0639\u0644\u0645. \u0627\u0641\u062A\u062D \u0635\u0641\u0627\u064B \u0622\u062E\u0631 \u0648\u0639\u0627\u064A\u0646 \u0625\u0636\u0627\u0641\u0629 \u0627\u0644\u0646\u0645\u0648\u0630\u062C \u0625\u0644\u064A\u0647. \u0637\u0628\u0651\u0642 \u0639\u0644\u0649 \u0635\u0641 \u0648\u0627\u062D\u062F \u0643\u0644 \u0645\u0631\u0629 \u0644\u0644\u062D\u0641\u0627\u0638 \u0639\u0644\u0649 \u0627\u0644\u062A\u0631\u0627\u062C\u0639 \u0648\u0627\u0644\u062D\u0641\u0638 \u0627\u0644\u0622\u0645\u0646 \u0627\u0644\u0623\u0635\u0644\u064A\u064A\u0646. \u0644\u0627 \u062A\u064F\u0646\u0633\u062E \u0628\u064A\u0627\u0646\u0627\u062A \u0627\u0644\u0637\u0644\u0628\u0629 \u0623\u0648 \u0627\u0644\u062A\u0642\u064A\u064A\u0645\u0627\u062A \u0627\u0644\u0642\u0627\u0626\u0645\u0629 \u0623\u0648 \u0623\u0639\u0645\u062F\u0629 \u0627\u062D\u062A\u0633\u0627\u0628 \u0627\u0644\u0633\u0644\u0648\u0643 \u0648\u0627\u0644\u0645\u0634\u0627\u0631\u0643\u0629.",
-    "ux.assessment.name": "\u0627\u0633\u0645 \u0646\u0645\u0648\u0630\u062C \u0627\u0644\u062A\u0642\u064A\u064A\u0645\u0627\u062A",
-    "ux.assessment.save": "\u062D\u0641\u0638 \u062A\u0639\u0631\u064A\u0641\u0627\u062A \u0627\u0644\u062A\u0642\u064A\u064A\u0645\u0627\u062A \u0627\u0644\u062D\u0627\u0644\u064A\u0629",
-    "ux.assessment.preset": "\u0646\u0645\u0648\u0630\u062C \u0625\u0639\u062F\u0627\u062F \u0627\u0644\u062A\u0642\u064A\u064A\u0645\u0627\u062A",
-    "ux.assessment.choose": "\u0627\u062E\u062A\u0631 \u062A\u0639\u0631\u064A\u0641\u0627\u062A \u062A\u0642\u064A\u064A\u0645\u0627\u062A \u0645\u062D\u0641\u0648\u0638\u0629",
-    "ux.assessment.preview": "\u0645\u0639\u0627\u064A\u0646\u0629 \u0625\u0636\u0627\u0641\u0629 \u062A\u0639\u0631\u064A\u0641\u0627\u062A \u0627\u0644\u062A\u0642\u064A\u064A\u0645\u0627\u062A",
+    "ux.assessment.title": "\u0646\u0633\u062E \u0625\u0639\u062F\u0627\u062F \u0627\u0644\u062A\u0642\u064A\u064A\u0645\u0627\u062A",
+    "ux.assessment.hint": "\u0627\u062D\u0641\u0638 \u0623\u0639\u0645\u062F\u0629 \u0627\u0644\u062A\u0642\u064A\u064A\u0645 \u0641\u064A \u0647\u0630\u0627 \u0627\u0644\u0635\u0641\u060C \u062B\u0645 \u0623\u0636\u0641\u0647\u0627 \u0625\u0644\u0649 \u0635\u0641 \u0622\u062E\u0631. \u0644\u0627 \u062A\u064F\u0646\u0633\u062E \u0623\u0633\u0645\u0627\u0621 \u0627\u0644\u0637\u0644\u0627\u0628 \u0648\u0644\u0627 \u062F\u0631\u062C\u0627\u062A\u0647\u0645.",
+    "ux.assessment.name": "\u0627\u0644\u0627\u0633\u0645\u060C \u0645\u062B\u0644\u064B\u0627: \u0627\u0644\u0635\u0641 \u0627\u0644\u062B\u0627\u0645\u0646 \u0627\u0644\u0641\u0635\u0644 \u0627\u0644\u0623\u0648\u0644",
+    "ux.assessment.save": "\u062D\u0641\u0638 \u0627\u0644\u0625\u0639\u062F\u0627\u062F",
+    "ux.assessment.preset": "\u0627\u0644\u0625\u0639\u062F\u0627\u062F \u0627\u0644\u0645\u062D\u0641\u0648\u0638",
+    "ux.assessment.choose": "\u0627\u062E\u062A\u0631 \u0625\u0639\u062F\u0627\u062F\u064B\u0627 \u0645\u062D\u0641\u0648\u0638\u064B\u0627",
+    "ux.assessment.preview": "\u0645\u0639\u0627\u064A\u0646\u0629 \u0641\u064A \u0647\u0630\u0627 \u0627\u0644\u0635\u0641",
     "ux.assessment.review": "\u0645\u0631\u0627\u062C\u0639\u0629 \u0623\u0642\u0633\u0627\u0645 \u0627\u0644\u062A\u0642\u064A\u064A\u0645 \u0627\u0644\u0625\u0636\u0627\u0641\u064A\u0629",
     "ux.assessment.weights": "\u062A\u0624\u062B\u0631 \u0623\u0648\u0632\u0627\u0646 \u0627\u0644\u0623\u0639\u0645\u062F\u0629 \u0627\u0644\u0625\u0636\u0627\u0641\u064A\u0629 \u0641\u064A \u0627\u0644\u0645\u062C\u0645\u0648\u0639 \u0627\u0644\u0623\u0635\u0644\u064A \u0648\u0641\u0642 \u0625\u0639\u062F\u0627\u062F\u0627\u062A\u0647\u0627. \u0631\u0627\u062C\u0639 \u062C\u0645\u064A\u0639 \u0627\u0644\u0623\u0648\u0632\u0627\u0646 \u0641\u064A \u0625\u0639\u062F\u0627\u062F\u0627\u062A \u0627\u0644\u062F\u0641\u062A\u0631 \u0628\u0639\u062F \u0627\u0644\u062A\u0637\u0628\u064A\u0642. \u062A\u0628\u0642\u0649 \u0627\u0644\u062F\u0631\u062C\u0627\u062A \u0648\u0627\u0644\u0642\u0648\u0627\u0639\u062F \u0627\u0644\u0642\u0627\u0626\u0645\u0629 \u062F\u0648\u0646 \u062A\u063A\u064A\u064A\u0631.",
     "ux.assessment.section": "\u0627\u0644\u0642\u0633\u0645",
@@ -11853,7 +11948,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.support.targetCount": "\u0639\u062F\u062F \u0627\u0644\u0645\u062A\u0639\u0644\u0645\u064A\u0646 \u0627\u0644\u0645\u0633\u062A\u0647\u062F\u0641\u064A\u0646 \u062F\u0648\u0646 \u062A\u0643\u0631\u0627\u0631",
     "ux.lessonActions.invalid": "\u0627\u062E\u062A\u0631 \u0625\u062C\u0631\u0627\u0621\u064B \u0645\u062A\u0627\u062D\u064B\u0627.",
     "ux.demo.firstRun": "\u064A\u0645\u0643\u0646\u0643 \u0627\u0644\u0627\u0633\u062A\u0643\u0634\u0627\u0641 \u0628\u0645\u062A\u0639\u0644\u0645\u064A\u0646 \u0627\u0635\u0637\u0646\u0627\u0639\u064A\u064A\u0646 \u0642\u0628\u0644 \u0631\u0628\u0637 \u0623\u064A \u0645\u0644\u0641 \u0635\u0641 \u062D\u0642\u064A\u0642\u064A. \u062A\u064F\u062A\u062C\u0627\u0647\u0644 \u062A\u0639\u062F\u064A\u0644\u0627\u062A \u0627\u0644\u0639\u0631\u0636 \u0639\u0646\u062F \u0627\u0644\u062E\u0631\u0648\u062C.",
-    "ux.workspace.attachments": "\u062A\u0636\u0645\u064A\u0646 \u0645\u0644\u0641\u0627\u062A \u0645\u0631\u0641\u0642\u0627\u062A \u0627\u0644\u062F\u0641\u062A\u0631 \u0627\u0644\u0645\u062A\u062D\u0642\u0642 \u0645\u0646\u0647\u0627",
+    "ux.workspace.attachments": "\u0625\u0636\u0627\u0641\u0629 \u0645\u0631\u0641\u0642\u0627\u062A \u0627\u0644\u062F\u0641\u062A\u0631",
     "ux.workspace.sidecarsIncluded": "\u0645\u0644\u0641\u0627\u062A \u0645\u0631\u0641\u0642\u0627\u062A \u0645\u062A\u062D\u0642\u0642 \u0645\u0646\u0647\u0627 \u0648\u0645\u0636\u0645\u0646\u0629 \u0641\u064A ZIP",
     "ux.workspace.sidecarsOmitted": "\u0645\u0631\u0641\u0642\u0627\u062A \u0645\u062F\u0631\u062C\u0629 \u0648\u0645\u0633\u062A\u0628\u0639\u062F\u0629 \u0645\u0646 ZIP",
     "ux.workspace.partial": "\u0642\u062F \u062A\u0643\u0648\u0646 \u0628\u0639\u0636 \u0646\u0633\u062E \u0627\u0644\u0627\u0633\u062A\u0639\u0627\u062F\u0629 \u0627\u0644\u062C\u062F\u064A\u062F\u0629 \u0642\u062F \u0643\u064F\u062A\u0628\u062A \u0642\u0628\u0644 \u062A\u0648\u0642\u0641 \u0627\u0644\u0639\u0645\u0644\u064A\u0629. \u0644\u0645 \u062A\u064F\u0633\u062A\u0628\u062F\u0644 \u0645\u0644\u0641\u0627\u062A \u0627\u0644\u0635\u0641\u0648\u0641 \u0627\u0644\u062D\u0627\u0644\u064A\u0629. \u0627\u062D\u062A\u0641\u0638 \u0628\u0627\u0644\u0623\u0631\u0634\u064A\u0641 \u0648\u0623\u0639\u062F \u0627\u0644\u0645\u062D\u0627\u0648\u0644\u0629 \u0641\u064A \u0645\u062C\u0644\u062F \u062C\u062F\u064A\u062F \u0641\u0627\u0631\u063A.",
@@ -11862,8 +11957,8 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.report.back": "\u0627\u0644\u0639\u0648\u062F\u0629 \u0625\u0644\u0649 \u062A\u0642\u0631\u064A\u0631 \u0627\u0644\u0635\u0641 \u0627\u0644\u0633\u0627\u0628\u0642",
     "ux.noise.custom": "\u0627\u0644\u0639\u062A\u0628\u0627\u062A \u0627\u0644\u0645\u062E\u0635\u0635\u0629 \u0627\u0644\u062D\u0627\u0644\u064A\u0629",
     "ux.groups.noParticipation": "\u0644\u0627 \u064A\u0648\u062C\u062F \u0639\u0645\u0648\u062F \u0645\u0634\u0627\u0631\u0643\u0629 \u0641\u064A \u0633\u062C\u0644 \u062F\u0631\u062C\u0627\u062A \u0647\u0630\u0627 \u0627\u0644\u0635\u0641.",
-    "ux.workspace.private": "\u062A\u0636\u0645\u064A\u0646 \u0627\u0644\u062A\u0643\u0631\u064A\u0645 \u0627\u0644\u062E\u0627\u0635 \u0648\u0645\u062A\u0627\u0628\u0639\u0629 \u0627\u0644\u062D\u0636\u0648\u0631",
-    "ux.workspace.privateHint": "\u0641\u0639\u0651\u0644 \u0627\u0644\u062E\u064A\u0627\u0631 \u0642\u0628\u0644 \u0627\u0644\u062A\u062D\u062F\u064A\u062B. \u062A\u0633\u062A\u062E\u062F\u0645 \u0627\u0644\u0642\u0648\u0627\u0626\u0645 \u0627\u0644\u062E\u0627\u0635\u0629 \u0627\u0642\u062A\u0631\u0627\u062D\u0627\u062A \u0627\u0644\u0645\u0634\u0627\u0631\u0643\u0629 \u0627\u0644\u0623\u0635\u0644\u064A\u0629 \u0648\u062A\u0646\u0628\u064A\u0647\u0627\u062A \u0627\u0644\u062D\u0636\u0648\u0631 \u0627\u0644\u0642\u0627\u0626\u0645\u0629\u060C \u062F\u0648\u0646 \u0645\u0642\u062A\u0637\u0641\u0627\u062A \u0627\u0644\u0645\u0644\u0627\u062D\u0638\u0627\u062A \u0627\u0644\u062E\u0627\u0635\u0629. \u062A\u0628\u0642\u0649 \u0641\u064A \u0647\u0630\u0647 \u0627\u0644\u0644\u0642\u0637\u0629 \u0627\u0644\u0645\u0624\u0642\u062A\u0629\u061B \u062D\u0627\u0641\u0638 \u0639\u0644\u0649 \u062E\u0635\u0648\u0635\u064A\u0629 \u0627\u0644\u0634\u0627\u0634\u0629 \u0623\u062B\u0646\u0627\u0621 \u0627\u0644\u0639\u0631\u0636.",
+    "ux.workspace.private": "\u062A\u0636\u0645\u064A\u0646 \u0627\u0644\u0642\u0648\u0627\u0626\u0645 \u0627\u0644\u062E\u0627\u0635\u0629 (\u0637\u0644\u0627\u0628 \u064A\u0633\u062A\u062D\u0642\u0648\u0646 \u0627\u0644\u062B\u0646\u0627\u0621\u060C \u0648\u0645\u062A\u0627\u0628\u0639\u0629 \u0627\u0644\u062D\u0636\u0648\u0631)",
+    "ux.workspace.privateHint": "\u0644\u0627 \u062A\u0639\u0631\u0636 \u0647\u0630\u0647 \u0627\u0644\u0642\u0648\u0627\u0626\u0645 \u0639\u0644\u0649 \u062C\u0647\u0627\u0632 \u0627\u0644\u0639\u0631\u0636. \u062D\u062F\u0651\u062F \u0647\u0630\u0627 \u0627\u0644\u062E\u064A\u0627\u0631 \u0642\u0628\u0644 \u0627\u0644\u0645\u0642\u0627\u0631\u0646\u0629.",
     "ux.workspace.openPrivate": "\u0641\u062A\u062D \u0647\u0630\u0627 \u0627\u0644\u0635\u0641 \u0644\u0645\u0631\u0627\u062C\u0639\u0629 \u0633\u062C\u0644\u0627\u062A\u0647 \u0627\u0644\u062E\u0627\u0635\u0629",
     "ux.importTools.encoding": "\u0627\u0633\u062A\u062E\u062F\u0645 CSV \u0628\u062A\u0631\u0645\u064A\u0632 UTF-8 \u0623\u0648 \u0645\u0635\u0646\u0641 Excel \u0644\u0644\u062D\u0641\u0627\u0638 \u0639\u0644\u0649 \u0647\u0630\u0647 \u0627\u0644\u0623\u062D\u0631\u0641.",
     "ux.documents.wordHint": "\u062A\u062D\u062A\u0648\u064A \u0635\u0627\u062F\u0631\u0627\u062A Word \u0639\u0644\u0649 \u0646\u0635 \u0648\u062C\u062F\u0627\u0648\u0644 \u0642\u0627\u0628\u0644\u0629 \u0644\u0644\u062A\u0639\u062F\u064A\u0644. \u0627\u0633\u062A\u062E\u062F\u0645 \u0627\u0644\u0637\u0628\u0627\u0639\u0629 \u0623\u0648 PDF \u0644\u0644\u0627\u062D\u062A\u0641\u0627\u0638 \u0628\u062A\u0635\u0645\u064A\u0645 \u0627\u0644\u0635\u0641\u062D\u0629 \u0648\u0627\u0644\u0631\u0633\u0648\u0645.",
@@ -11927,7 +12022,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.float.add": "\u0625\u0636\u0627\u0641\u0629 \u0625\u0644\u0649 \u0647\u0630\u0647 \u0627\u0644\u0646\u0627\u0641\u0630\u0629",
     "ux.nav.assessments": "\u0627\u0644\u062A\u0642\u064A\u064A\u0645\u0627\u062A \u0648\u0627\u0644\u0645\u0646\u0647\u062C",
     "ux.assess.title": "\u0627\u0644\u062A\u0642\u064A\u064A\u0645\u0627\u062A \u0648\u0627\u0644\u0645\u0646\u0647\u062C",
-    "ux.lead.assessments": "\u0644\u0643\u0644 \u0627\u062E\u062A\u0628\u0627\u0631 \u0642\u0635\u064A\u0631 \u0623\u0648 \u0627\u062E\u062A\u0628\u0627\u0631: \u0646\u0648\u0639\u0647 \u0648\u062A\u0627\u0631\u064A\u062E\u0647 \u0648\u0627\u0644\u062F\u0631\u0648\u0633 \u0627\u0644\u062A\u064A \u0642\u0627\u0633\u0647\u0627. \u064A\u0633\u062A\u062E\u062F\u0645\u0647\u0627 \u062A\u062D\u0644\u064A\u0644 \u0627\u0644\u0630\u0643\u0627\u0621 \u0627\u0644\u0627\u0635\u0637\u0646\u0627\u0639\u064A \u0644\u0631\u0628\u0637 \u0627\u0644\u0646\u062A\u0627\u0626\u062C \u0628\u0627\u0644\u062F\u0631\u0648\u0633 \u0648\u0628\u0627\u0644\u0645\u0644\u0627\u062D\u0638\u0627\u062A \u0627\u0644\u0645\u0643\u062A\u0648\u0628\u0629 \u0642\u0628\u0644\u0647\u0627.",
+    "ux.lead.assessments": "\u062D\u062F\u0651\u062F \u0644\u0643\u0644 \u0627\u062E\u062A\u0628\u0627\u0631 \u0646\u0648\u0639\u0647 \u0648\u062A\u0627\u0631\u064A\u062E\u0647 \u0648\u0627\u0644\u062F\u0631\u0648\u0633 \u0627\u0644\u062A\u064A \u0642\u0627\u0633\u0647\u0627. \u064A\u0633\u062A\u062E\u062F\u0645 \u062A\u062D\u0644\u064A\u0644 \u0627\u0644\u0630\u0643\u0627\u0621 \u0627\u0644\u0627\u0635\u0637\u0646\u0627\u0639\u064A \u0630\u0644\u0643 \u0644\u0631\u0628\u0637 \u0627\u0644\u0646\u062A\u0627\u0626\u062C \u0628\u0627\u0644\u062F\u0631\u0648\u0633.",
     "ux.assess.lessonsTitle": "\u062F\u0631\u0648\u0633 \u0647\u0630\u0627 \u0627\u0644\u0635\u0641",
     "ux.assess.lessonsNone": "\u0644\u0627 \u062A\u0648\u062C\u062F \u062F\u0631\u0648\u0633 \u0628\u0639\u062F. \u0627\u0633\u062A\u0648\u0631\u062F\u0647\u0627 \u0645\u0646 \u0645\u0644\u0641 Excel \u0627\u0644\u062E\u0627\u0635 \u0628\u0643.",
     "ux.assess.lessonsHave": "{n} \u0645\u0646 \u0627\u0644\u062F\u0631\u0648\u0633\u060C \u0645\u0646 {file} ({date}).",
@@ -11964,7 +12059,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.assess.noLessons": "\u0644\u0645 \u064A\u064F\u0639\u062B\u0631 \u0639\u0644\u0649 \u062F\u0631\u0648\u0633.",
     "ux.assess.tooMany": "\u0639\u062F\u062F \u0627\u0644\u062F\u0631\u0648\u0633 \u0643\u0628\u064A\u0631 \u062C\u062F\u064B\u0627 (\u0623\u0643\u062B\u0631 \u0645\u0646 2000).",
     "ux.assess.tableTitle": "\u0627\u0644\u0627\u062E\u062A\u0628\u0627\u0631\u0627\u062A \u0627\u0644\u0642\u0635\u064A\u0631\u0629 \u0648\u0627\u0644\u0627\u062E\u062A\u0628\u0627\u0631\u0627\u062A",
-    "ux.assess.tableLead": "\u0644\u0627 \u062A\u0638\u0647\u0631 \u0623\u0639\u0645\u062F\u0629 \u0627\u0644\u0633\u0644\u0648\u0643 \u0648\u0627\u0644\u0645\u0634\u0627\u0631\u0643\u0629. \u0648\u0644\u0627 \u064A\u064F\u0639\u062A\u0645\u062F \u0627\u0644\u0646\u0648\u0639 \u0625\u0644\u0627 \u0628\u0639\u062F \u0623\u0646 \u062A\u062E\u062A\u0627\u0631\u0647 \u0623\u0648 \u062A\u0624\u0643\u0651\u062F\u0647.",
+    "ux.assess.tableLead": "\u0623\u0639\u0645\u062F\u0629 \u0627\u0644\u0633\u0644\u0648\u0643 \u0648\u0627\u0644\u0645\u0634\u0627\u0631\u0643\u0629 \u0644\u064A\u0633\u062A \u062A\u0642\u064A\u064A\u0645\u0627\u062A\u060C \u0644\u0630\u0644\u0643 \u0644\u0627 \u062A\u0638\u0647\u0631 \u0647\u0646\u0627.",
     "ux.assess.col.part": "\u062C\u0632\u0621 \u0627\u0644\u0645\u0642\u0631\u0631",
     "ux.assess.col.name": "\u0627\u0644\u062A\u0642\u064A\u064A\u0645",
     "ux.assess.col.type": "\u0627\u0644\u0646\u0648\u0639",
@@ -13126,7 +13221,37 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.timer.timeUp": "\u0627\u0646\u062A\u0647\u0649 \u0627\u0644\u0648\u0642\u062A",
     "ux.timer.escLeave": "\u0627\u0636\u063A\u0637 Esc \u0644\u0644\u062E\u0631\u0648\u062C \u0645\u0646 \u0645\u0644\u0621 \u0627\u0644\u0634\u0627\u0634\u0629",
     "ux.marks.bonusEntryHint": "\u0627\u0644\u062F\u0631\u062C\u0629 + \u0627\u0644\u062F\u0631\u062C\u0629 \u0627\u0644\u0625\u0636\u0627\u0641\u064A\u0629 (\u0645\u062B\u0627\u0644: 10+2)",
-    "ux.marks.bonusEntryInvalid": "\u0627\u0643\u062A\u0628 \u0627\u0644\u062F\u0631\u062C\u0629 + \u0627\u0644\u062F\u0631\u062C\u0629 \u0627\u0644\u0625\u0636\u0627\u0641\u064A\u0629 (\u0645\u062B\u0627\u0644: 10+2). \u064A\u062C\u0628 \u0623\u0646 \u062A\u0643\u0648\u0646 \u0627\u0644\u062F\u0631\u062C\u0629 \u0627\u0644\u0625\u0636\u0627\u0641\u064A\u0629 \u0635\u0641\u0631\u064B\u0627 \u0623\u0648 \u0645\u0648\u062C\u0628\u0629."
+    "ux.marks.bonusEntryInvalid": "\u0627\u0643\u062A\u0628 \u0627\u0644\u062F\u0631\u062C\u0629 + \u0627\u0644\u062F\u0631\u062C\u0629 \u0627\u0644\u0625\u0636\u0627\u0641\u064A\u0629 (\u0645\u062B\u0627\u0644: 10+2). \u064A\u062C\u0628 \u0623\u0646 \u062A\u0643\u0648\u0646 \u0627\u0644\u062F\u0631\u062C\u0629 \u0627\u0644\u0625\u0636\u0627\u0641\u064A\u0629 \u0635\u0641\u0631\u064B\u0627 \u0623\u0648 \u0645\u0648\u062C\u0628\u0629.",
+    "ux.assess.readyOf": "{n} \u0645\u0646 {total} \u062C\u0627\u0647\u0632\u0629",
+    "ux.assess.readyMeans": "\u062C\u0627\u0647\u0632 = \u0627\u0644\u0646\u0648\u0639 \u0648\u0627\u0644\u062A\u0627\u0631\u064A\u062E \u0648\u0627\u0644\u062F\u0631\u0648\u0633 \u0645\u062D\u062F\u062F\u0629",
+    "ux.assess.filter": "\u0639\u0631\u0636",
+    "ux.assess.filter.all": "\u0627\u0644\u0643\u0644 {n}",
+    "ux.assess.filter.todo": "\u062A\u062D\u062A\u0627\u062C \u062A\u0641\u0627\u0635\u064A\u0644 {n}",
+    "ux.assess.col.status": "\u062C\u0627\u0647\u0632",
+    "ux.assess.ready": "\u062C\u0627\u0647\u0632",
+    "ux.assess.needs": "\u062A\u062D\u062A\u0627\u062C \u062A\u0641\u0627\u0635\u064A\u0644",
+    "ux.assess.addDate": "+ \u0625\u0636\u0627\u0641\u0629 \u062A\u0627\u0631\u064A\u062E",
+    "ux.assess.changeDate": "\u062A\u063A\u064A\u064A\u0631 \u0627\u0644\u062A\u0627\u0631\u064A\u062E",
+    "ux.assess.chooseLessons": "+ \u0627\u062E\u062A\u064A\u0627\u0631 \u0627\u0644\u062F\u0631\u0648\u0633",
+    "ux.assess.showLessons": "\u0639\u0631\u0636 \u0627\u0644\u062F\u0631\u0648\u0633",
+    "ux.assess.hideLessons": "\u0625\u062E\u0641\u0627\u0621 \u0627\u0644\u062F\u0631\u0648\u0633",
+    "ux.assess.lessonOne": "\u0627\u0644\u062F\u0631\u0633 {n}",
+    "ux.assess.lessonRange": "\u0627\u0644\u062F\u0631\u0648\u0633 {from}\u2013{to}",
+    "ux.assess.lessonCount.one": "\u062F\u0631\u0633 \u0648\u0627\u062D\u062F",
+    "ux.assess.lessonCount.two": "\u062F\u0631\u0633\u0627\u0646",
+    "ux.assess.lessonCount.few": "{n} \u062F\u0631\u0648\u0633",
+    "ux.assess.lessonCount.many": "{n} \u062F\u0631\u0633\u064B\u0627",
+    "ux.assess.lessonCount.other": "{n} \u062F\u0631\u0633",
+    "ux.workspace.across": "\u0639\u0628\u0631 \u0635\u0641\u0648\u0641\u0643",
+    "ux.workspace.selectAll": "\u062A\u0636\u0645\u064A\u0646 \u0643\u0644 \u0627\u0644\u0635\u0641\u0648\u0641",
+    "ux.workspace.current": "\u0645\u0641\u062A\u0648\u062D",
+    "ux.workspace.reorder": "\u0625\u0639\u0627\u062F\u0629 \u062A\u0631\u062A\u064A\u0628 \u0627\u0644\u0637\u0644\u0627\u0628\u2026",
+    "ux.workspace.reorderTitle": "\u0625\u0639\u0627\u062F\u0629 \u062A\u0631\u062A\u064A\u0628 \u0627\u0644\u0637\u0644\u0627\u0628 \xB7 {class}",
+    "ux.workspace.closeReorder": "\u062A\u0645",
+    "ux.workspace.tickNote": "\u062A\u064F\u0633\u062A\u062E\u062F\u0645 \u0627\u0644\u0635\u0641\u0648\u0641 \u0627\u0644\u0645\u062D\u062F\u062F\u0629 \u0641\u064A \xAB\u0645\u0642\u0627\u0631\u0646\u0629 \u0627\u0644\u0635\u0641\u0648\u0641\xBB \u0648\xAB\u0646\u0633\u062E\u0629 \u0627\u062D\u062A\u064A\u0627\u0637\u064A\u0629 \u0634\u0627\u0645\u0644\u0629\xBB \u0623\u062F\u0646\u0627\u0647.",
+    "ux.workspace.tickFirst": "\u062D\u062F\u0651\u062F \u0635\u0641\u064B\u0627 \u0648\u0627\u062D\u062F\u064B\u0627 \u0639\u0644\u0649 \u0627\u0644\u0623\u0642\u0644 \u0641\u064A \u0627\u0644\u0642\u0627\u0626\u0645\u0629 \u0623\u0639\u0644\u0627\u0647.",
+    "ux.workspace.tip": "\u0646\u0635\u064A\u062D\u0629: \u0623\u0646\u0634\u0626 \u0627\u062E\u062A\u0635\u0627\u0631\u064B\u0627 \u0644\u0645\u0644\u0641 ClassPilot \u0639\u0644\u0649 \u0633\u0637\u062D \u0627\u0644\u0645\u0643\u062A\u0628 \u0644\u062A\u0641\u062A\u062D\u0647 \u0628\u0646\u0642\u0631\u0629 \u0648\u0627\u062D\u062F\u0629.",
+    "ux.workspace.noGrade": "\u0628\u0644\u0627 \u0635\u0641"
   };
 
   // src/core/actions.js
@@ -29369,6 +29494,84 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       "meaning": "ux.timer.removeTip"
     },
     {
+      "id": "ux.assess.filter",
+      "labelKey": "ux.assess.filter",
+      "icon": null,
+      "shortcut": null,
+      "availability": "rendered-and-not-disabled",
+      "canonicalHome": "assess:context",
+      "events": [
+        "onClick"
+      ],
+      "source": "src/modules",
+      "meaning": "ux.assess.filter"
+    },
+    {
+      "id": "ux.assess.addDate",
+      "labelKey": "ux.assess.addDate",
+      "icon": null,
+      "shortcut": null,
+      "availability": "rendered-and-not-disabled",
+      "canonicalHome": "assess:context",
+      "events": [
+        "onClick"
+      ],
+      "source": "src/modules",
+      "meaning": "ux.assess.addDate"
+    },
+    {
+      "id": "ux.assess.editDate",
+      "labelKey": "ux.assess.changeDate",
+      "icon": null,
+      "shortcut": null,
+      "availability": "rendered-and-not-disabled",
+      "canonicalHome": "assess:context",
+      "events": [
+        "onClick"
+      ],
+      "source": "src/modules",
+      "meaning": "ux.assess.editDate"
+    },
+    {
+      "id": "ux.assess.showLessons",
+      "labelKey": "ux.assess.showLessons",
+      "icon": null,
+      "shortcut": null,
+      "availability": "rendered-and-not-disabled",
+      "canonicalHome": "assess:context",
+      "events": [
+        "onClick"
+      ],
+      "source": "src/modules",
+      "meaning": "ux.assess.showLessons"
+    },
+    {
+      "id": "ux.workspace.reorder",
+      "labelKey": "ux.workspace.reorder",
+      "icon": null,
+      "shortcut": null,
+      "availability": "rendered-and-not-disabled",
+      "canonicalHome": "workspace:context",
+      "events": [
+        "onClick"
+      ],
+      "source": "src/modules",
+      "meaning": "ux.workspace.reorder"
+    },
+    {
+      "id": "ux.workspace.closeReorder",
+      "labelKey": "ux.workspace.closeReorder",
+      "icon": null,
+      "shortcut": null,
+      "availability": "rendered-and-not-disabled",
+      "canonicalHome": "workspace:context",
+      "events": [
+        "onClick"
+      ],
+      "source": "src/modules",
+      "meaning": "ux.workspace.closeReorder"
+    },
+    {
       "id": "ux.report.sort",
       "labelKey": "ux.report.sort",
       "icon": null,
@@ -31954,6 +32157,19 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       ],
       "source": "src/modules",
       "meaning": "ux.timer.quizChime"
+    },
+    {
+      "id": "ux.workspace.selectAll",
+      "labelKey": "ux.workspace.selectAll",
+      "icon": null,
+      "shortcut": null,
+      "availability": "rendered-and-not-disabled",
+      "canonicalHome": "workspace:context",
+      "events": [
+        "onChange"
+      ],
+      "source": "src/modules",
+      "meaning": "ux.workspace.selectAll"
     }
   ];
 
@@ -36552,6 +36768,8 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
   Object.assign(uxClick, { "timer.edit": "timer.edit" });
   Object.assign(uxClick, { "timer.removePreset": "timer.remove", "timer.removeSegment": "timer.remove", "timer.removeTip": "timer.remove" });
   Object.assign(uxChange, { "timer.quizChime": "timer.quizChime" });
+  Object.assign(uxClick, { "assess.filter": "assess.filter", "assess.addDate": "assess.addDate", "assess.editDate": "assess.changeDate", "assess.showLessons": "assess.showLessons", "workspace.reorder": "workspace.reorder", "workspace.closeReorder": "workspace.closeReorder" });
+  Object.assign(uxChange, { "workspace.selectAll": "workspace.selectAll" });
   var uxActions = [...Object.entries(uxClick).map(([id, key4]) => [id, key4, "onClick"]), ...Object.entries(uxChange).map(([id, key4]) => [id, key4, "onChange"])].map(([id, key4, event]) => ({ id: "ux." + id, labelKey: "ux." + key4, icon: null, shortcut: null, availability: "rendered-and-not-disabled", canonicalHome: id.startsWith("nav.") ? "Workspace:sidebar" : id.startsWith("appearance.") ? "Workspace:context" : id.split(".")[0] + ":context", events: [event], source: "src/modules", meaning: "ux." + id }));
 
   // src/i18n/ux-copy.js
@@ -38296,19 +38514,10 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       "New school name",
       "\u0627\u0633\u0645 \u0627\u0644\u0645\u062F\u0631\u0633\u0629 \u0627\u0644\u062C\u062F\u064A\u062F\u0629"
     ],
-    "workspace.addSchool": [
-      "Add school grouping",
-      "\u0625\u0636\u0627\u0641\u0629 \u0645\u062C\u0645\u0648\u0639\u0629 \u0645\u062F\u0631\u0633\u0629"
-    ],
-    "workspace.classes": [
-      "Manage linked workspace files",
-      "\u0625\u062F\u0627\u0631\u0629 \u0645\u0644\u0641\u0627\u062A \u0645\u0633\u0627\u062D\u0629 \u0627\u0644\u0639\u0645\u0644 \u0627\u0644\u0645\u0631\u062A\u0628\u0637\u0629"
-    ],
+    "workspace.addSchool": ["Add school", "\u0625\u0636\u0627\u0641\u0629 \u0645\u062F\u0631\u0633\u0629"],
+    "workspace.classes": ["Manage linked files", "\u0625\u062F\u0627\u0631\u0629 \u0627\u0644\u0645\u0644\u0641\u0627\u062A \u0627\u0644\u0645\u0631\u062A\u0628\u0637\u0629"],
     "workspace.selected": ["Include this class", "\u062A\u0636\u0645\u064A\u0646 \u0647\u0630\u0627 \u0627\u0644\u0635\u0641"],
-    "workspace.class": [
-      "Class file",
-      "\u0645\u0644\u0641 \u0627\u0644\u0635\u0641"
-    ],
+    "workspace.class": ["Class", "\u0627\u0644\u0635\u0641"],
     "workspace.schoolAssignment": [
       "School assignment",
       "\u062A\u0639\u064A\u064A\u0646 \u0627\u0644\u0645\u062F\u0631\u0633\u0629"
@@ -38321,18 +38530,12 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       "Section",
       "\u0627\u0644\u0634\u0639\u0628\u0629"
     ],
-    "workspace.rosterOrder": [
-      "Roster order",
-      "\u062A\u0631\u062A\u064A\u0628 \u0627\u0644\u0637\u0644\u0628\u0629"
-    ],
+    "workspace.rosterOrder": ["Roster", "\u0642\u0627\u0626\u0645\u0629 \u0627\u0644\u0637\u0644\u0627\u0628"],
     "workspace.open": [
       "Open this class file",
       "\u0641\u062A\u062D \u0645\u0644\u0641 \u0647\u0630\u0627 \u0627\u0644\u0635\u0641"
     ],
-    "workspace.unassigned": [
-      "Unassigned school",
-      "\u0645\u062F\u0631\u0633\u0629 \u063A\u064A\u0631 \u0645\u0633\u0646\u062F\u0629"
-    ],
+    "workspace.unassigned": ["Choose a school", "\u0627\u062E\u062A\u0631 \u0645\u062F\u0631\u0633\u0629"],
     "workspace.openToOrder": [
       "Open this class to reorder its roster.",
       "\u0627\u0641\u062A\u062D \u0627\u0644\u0635\u0641 \u0644\u0625\u0639\u0627\u062F\u0629 \u062A\u0631\u062A\u064A\u0628 \u0627\u0644\u0637\u0644\u0628\u0629."
@@ -38341,15 +38544,9 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       "No classes match this school and grade.",
       "\u0644\u0627 \u062A\u0648\u062C\u062F \u0635\u0641\u0648\u0641 \u062A\u0637\u0627\u0628\u0642 \u0627\u0644\u0645\u062F\u0631\u0633\u0629 \u0648\u0627\u0644\u0635\u0641."
     ],
-    "workspace.overview": [
-      "Selected-class overview",
-      "\u0645\u0644\u062E\u0635 \u0627\u0644\u0635\u0641\u0648\u0641 \u0627\u0644\u0645\u062D\u062F\u062F\u0629"
-    ],
-    "workspace.snapshotHint": ["Refresh reads the ticked class files after any pending saves. Averages use each student's current final result and leave out students without one. This is a snapshot from that moment; it does not update by itself.", "\u064A\u0642\u0631\u0623 \xAB\u062A\u062D\u062F\u064A\u062B\xBB \u0645\u0644\u0641\u0627\u062A \u0627\u0644\u0635\u0641\u0648\u0641 \u0627\u0644\u0645\u062D\u062F\u062F\u0629 \u0628\u0639\u062F \u0627\u0643\u062A\u0645\u0627\u0644 \u0623\u064A \u062D\u0641\u0638 \u0645\u0639\u0644\u0651\u0642. \u062A\u0633\u062A\u062E\u062F\u0645 \u0627\u0644\u0645\u062A\u0648\u0633\u0637\u0627\u062A \u0627\u0644\u0646\u062A\u064A\u062C\u0629 \u0627\u0644\u0646\u0647\u0627\u0626\u064A\u0629 \u0627\u0644\u062D\u0627\u0644\u064A\u0629 \u0644\u0643\u0644 \u0637\u0627\u0644\u0628 \u0648\u062A\u0633\u062A\u0628\u0639\u062F \u0645\u0646 \u0644\u0627 \u0646\u062A\u064A\u062C\u0629 \u0644\u0647. \u0647\u0630\u0647 \u0635\u0648\u0631\u0629 \u0644\u062A\u0644\u0643 \u0627\u0644\u0644\u062D\u0638\u0629 \u0648\u0644\u0627 \u062A\u062A\u062D\u062F\u0651\u062B \u0648\u062D\u062F\u0647\u0627."],
-    "workspace.refresh": [
-      "Refresh selected-class overview",
-      "\u062A\u062D\u062F\u064A\u062B \u0645\u0644\u062E\u0635 \u0627\u0644\u0635\u0641\u0648\u0641 \u0627\u0644\u0645\u062D\u062F\u062F\u0629"
-    ],
+    "workspace.overview": ["Compare classes", "\u0645\u0642\u0627\u0631\u0646\u0629 \u0627\u0644\u0635\u0641\u0648\u0641"],
+    "workspace.snapshotHint": ["Average results and attendance of the ticked classes, side by side. It is a snapshot: compare again to update it.", "\u0645\u062A\u0648\u0633\u0637 \u0627\u0644\u0646\u062A\u0627\u0626\u062C \u0648\u0627\u0644\u062D\u0636\u0648\u0631 \u0644\u0644\u0635\u0641\u0648\u0641 \u0627\u0644\u0645\u062D\u062F\u062F\u0629 \u062C\u0646\u0628\u064B\u0627 \u0625\u0644\u0649 \u062C\u0646\u0628. \u0647\u064A \u0644\u0642\u0637\u0629 \u0644\u062A\u0644\u0643 \u0627\u0644\u0644\u062D\u0638\u0629: \u0642\u0627\u0631\u0646 \u0645\u062C\u062F\u062F\u064B\u0627 \u0644\u062A\u062D\u062F\u064A\u062B\u0647\u0627."],
+    "workspace.refresh": ["Compare the ticked classes", "\u0642\u0627\u0631\u0646 \u0627\u0644\u0635\u0641\u0648\u0641 \u0627\u0644\u0645\u062D\u062F\u062F\u0629"],
     "workspace.readAt": [
       "Files read at",
       "\u0648\u0642\u062A \u0642\u0631\u0627\u0621\u0629 \u0627\u0644\u0645\u0644\u0641\u0627\u062A"
@@ -38367,27 +38564,12 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       "Saved registers",
       "\u0633\u062C\u0644\u0627\u062A \u0627\u0644\u062D\u0636\u0648\u0631 \u0627\u0644\u0645\u062D\u0641\u0648\u0638\u0629"
     ],
-    "workspace.archive": [
-      "Workspace archive and recovery copies",
-      "\u0623\u0631\u0634\u064A\u0641 \u0645\u0633\u0627\u062D\u0629 \u0627\u0644\u0639\u0645\u0644 \u0648\u0646\u0633\u062E \u0627\u0644\u0627\u0633\u062A\u0639\u0627\u062F\u0629"
-    ],
-    "workspace.archiveHint": [
-      "Select every class to include. A genuine ZIP contains the teacher profile, exact checked class documents, a checksum manifest and optional original Excel workbooks. It never replaces normal per-class backups.",
-      "\u062D\u062F\u062F \u062C\u0645\u064A\u0639 \u0627\u0644\u0635\u0641\u0648\u0641 \u0627\u0644\u0645\u0637\u0644\u0648\u0628 \u062A\u0636\u0645\u064A\u0646\u0647\u0627. \u064A\u062A\u0636\u0645\u0646 \u0645\u0644\u0641 ZIP \u062D\u0642\u064A\u0642\u064A\u0627\u064B \u0645\u0644\u0641 \u0627\u0644\u0645\u0639\u0644\u0645 \u0648\u0645\u0633\u062A\u0646\u062F\u0627\u062A \u0627\u0644\u0635\u0641\u0648\u0641 \u0627\u0644\u0645\u062A\u062D\u0642\u0642 \u0645\u0646\u0647\u0627 \u0648\u0628\u064A\u0627\u0646 \u0627\u0644\u0628\u0635\u0645\u0627\u062A\u060C \u0645\u0639 \u0645\u0635\u0646\u0641\u0627\u062A Excel \u0627\u0644\u0623\u0635\u0644\u064A\u0629 \u0627\u062E\u062A\u064A\u0627\u0631\u064A\u0627\u064B. \u0644\u0627 \u064A\u062D\u0644 \u0645\u062D\u0644 \u0627\u0644\u0646\u0633\u062E \u0627\u0644\u0627\u062D\u062A\u064A\u0627\u0637\u064A\u0629 \u0627\u0644\u0645\u0633\u062A\u0642\u0644\u0629."
-    ],
-    "workspace.excel": ["Include the Gradebook Excel workbooks", "\u062A\u0636\u0645\u064A\u0646 \u0645\u0644\u0641\u0627\u062A Excel \u0645\u0646 \u0633\u062C\u0644 \u0627\u0644\u062F\u0631\u062C\u0627\u062A"],
-    "workspace.sidecars": [
-      "Included attachments require access to their original files; relink unavailable files in the notebook first. If excluded, keep sidecar files with your backup separately.",
-      "\u064A\u062A\u0637\u0644\u0628 \u062A\u0636\u0645\u064A\u0646 \u0627\u0644\u0645\u0631\u0641\u0642\u0627\u062A \u0627\u0644\u0648\u0635\u0648\u0644 \u0625\u0644\u0649 \u0645\u0644\u0641\u0627\u062A\u0647\u0627 \u0627\u0644\u0623\u0635\u0644\u064A\u0629\u061B \u0623\u0639\u062F \u0631\u0628\u0637 \u063A\u064A\u0631 \u0627\u0644\u0645\u062A\u0627\u062D \u0645\u0646\u0647\u0627 \u0641\u064A \u0627\u0644\u062F\u0641\u062A\u0631 \u0623\u0648\u0644\u0627\u064B. \u0639\u0646\u062F \u0627\u0633\u062A\u0628\u0639\u0627\u062F\u0647\u0627\u060C \u0627\u062D\u062A\u0641\u0638 \u0628\u0645\u0644\u0641\u0627\u062A \u0627\u0644\u0645\u0631\u0641\u0642\u0627\u062A \u0645\u0646\u0641\u0635\u0644\u0629\u064B \u0645\u0639 \u0646\u0633\u062E\u062A\u0643 \u0627\u0644\u0627\u062D\u062A\u064A\u0627\u0637\u064A\u0629."
-    ],
-    "workspace.backup": [
-      "Download selected workspace archive",
-      "\u062A\u0646\u0632\u064A\u0644 \u0623\u0631\u0634\u064A\u0641 \u0645\u0633\u0627\u062D\u0629 \u0627\u0644\u0639\u0645\u0644 \u0627\u0644\u0645\u062D\u062F\u062F\u0629"
-    ],
-    "workspace.archiveFile": [
-      "Review a ClassPilot workspace ZIP",
-      "\u0645\u0631\u0627\u062C\u0639\u0629 \u0623\u0631\u0634\u064A\u0641 ClassPilot \u0628\u0635\u064A\u063A\u0629 ZIP"
-    ],
+    "workspace.archive": ["Back up everything", "\u0646\u0633\u062E\u0629 \u0627\u062D\u062A\u064A\u0627\u0637\u064A\u0629 \u0634\u0627\u0645\u0644\u0629"],
+    "workspace.archiveHint": ["One ZIP with your teacher profile and the ticked classes. Your usual backups stay as they are.", "\u0645\u0644\u0641 ZIP \u0648\u0627\u062D\u062F \u064A\u0636\u0645 \u0645\u0644\u0641 \u0627\u0644\u0645\u0639\u0644\u0645 \u0648\u0627\u0644\u0635\u0641\u0648\u0641 \u0627\u0644\u0645\u062D\u062F\u062F\u0629. \u062A\u0628\u0642\u0649 \u0646\u0633\u062E\u0643 \u0627\u0644\u0627\u062D\u062A\u064A\u0627\u0637\u064A\u0629 \u0627\u0644\u0645\u0639\u062A\u0627\u062F\u0629 \u0643\u0645\u0627 \u0647\u064A."],
+    "workspace.excel": ["Add the Excel workbooks", "\u0625\u0636\u0627\u0641\u0629 \u0645\u0635\u0646\u0641\u0627\u062A Excel"],
+    "workspace.sidecars": ["Attachments are added only when ClassPilot can still reach their files.", "\u062A\u064F\u0636\u0627\u0641 \u0627\u0644\u0645\u0631\u0641\u0642\u0627\u062A \u0641\u0642\u0637 \u0625\u0630\u0627 \u0643\u0627\u0646 ClassPilot \u0644\u0627 \u064A\u0632\u0627\u0644 \u064A\u0635\u0644 \u0625\u0644\u0649 \u0645\u0644\u0641\u0627\u062A\u0647\u0627."],
+    "workspace.backup": ["Download backup ZIP", "\u062A\u0646\u0632\u064A\u0644 \u0645\u0644\u0641 \u0627\u0644\u0646\u0633\u062E\u0629 \u0627\u0644\u0627\u062D\u062A\u064A\u0627\u0637\u064A\u0629"],
+    "workspace.archiveFile": ["Check a backup ZIP", "\u0641\u062D\u0635 \u0645\u0644\u0641 \u0646\u0633\u062E\u0629 \u0627\u062D\u062A\u064A\u0627\u0637\u064A\u0629"],
     "workspace.review": [
       "Archive contents and integrity",
       "\u0645\u062D\u062A\u0648\u0649 \u0627\u0644\u0623\u0631\u0634\u064A\u0641 \u0648\u0633\u0644\u0627\u0645\u062A\u0647"
@@ -38801,34 +38983,13 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       "Set bell times and assign your existing classes to teaching periods. Friday can use its own times.",
       "\u0627\u0636\u0628\u0637 \u0623\u0648\u0642\u0627\u062A \u0627\u0644\u062C\u0631\u0633 \u0648\u0648\u0632\u0639 \u0627\u0644\u0635\u0641\u0648\u0641 \u0627\u0644\u062D\u0627\u0644\u064A\u0629 \u0639\u0644\u0649 \u0627\u0644\u062D\u0635\u0635. \u064A\u0645\u0643\u0646 \u0644\u0644\u062C\u0645\u0639\u0629 \u0627\u0633\u062A\u062E\u062F\u0627\u0645 \u0623\u0648\u0642\u0627\u062A \u0645\u062E\u062A\u0644\u0641\u0629."
     ],
-    "assessment.title": [
-      "Reusable assessment setup",
-      "\u0625\u0639\u062F\u0627\u062F \u062A\u0642\u064A\u064A\u0645\u0627\u062A \u0642\u0627\u0628\u0644 \u0644\u0625\u0639\u0627\u062F\u0629 \u0627\u0644\u0627\u0633\u062A\u062E\u062F\u0627\u0645"
-    ],
-    "assessment.hint": [
-      "Save your current direct, tally and adjustment column definitions in the teacher profile. Open another class and preview appending the preset there. Apply one class at a time so its original shared undo and checked autosave remain in control. Roster data, existing assessments and special scoring columns are not copied.",
-      "\u0627\u062D\u0641\u0638 \u062A\u0639\u0631\u064A\u0641\u0627\u062A \u0623\u0639\u0645\u062F\u0629 \u0627\u0644\u062F\u0631\u062C\u0627\u062A \u0627\u0644\u0645\u0628\u0627\u0634\u0631\u0629 \u0648\u0627\u0644\u062D\u0635\u0631 \u0648\u0627\u0644\u062A\u0639\u062F\u064A\u0644\u0627\u062A \u0641\u064A \u0645\u0644\u0641 \u0627\u0644\u0645\u0639\u0644\u0645. \u0627\u0641\u062A\u062D \u0635\u0641\u0627\u064B \u0622\u062E\u0631 \u0648\u0639\u0627\u064A\u0646 \u0625\u0636\u0627\u0641\u0629 \u0627\u0644\u0646\u0645\u0648\u0630\u062C \u0625\u0644\u064A\u0647. \u0637\u0628\u0651\u0642 \u0639\u0644\u0649 \u0635\u0641 \u0648\u0627\u062D\u062F \u0643\u0644 \u0645\u0631\u0629 \u0644\u0644\u062D\u0641\u0627\u0638 \u0639\u0644\u0649 \u0627\u0644\u062A\u0631\u0627\u062C\u0639 \u0648\u0627\u0644\u062D\u0641\u0638 \u0627\u0644\u0622\u0645\u0646 \u0627\u0644\u0623\u0635\u0644\u064A\u064A\u0646. \u0644\u0627 \u062A\u064F\u0646\u0633\u062E \u0628\u064A\u0627\u0646\u0627\u062A \u0627\u0644\u0637\u0644\u0628\u0629 \u0623\u0648 \u0627\u0644\u062A\u0642\u064A\u064A\u0645\u0627\u062A \u0627\u0644\u0642\u0627\u0626\u0645\u0629 \u0623\u0648 \u0623\u0639\u0645\u062F\u0629 \u0627\u062D\u062A\u0633\u0627\u0628 \u0627\u0644\u0633\u0644\u0648\u0643 \u0648\u0627\u0644\u0645\u0634\u0627\u0631\u0643\u0629."
-    ],
-    "assessment.name": [
-      "Assessment preset name",
-      "\u0627\u0633\u0645 \u0646\u0645\u0648\u0630\u062C \u0627\u0644\u062A\u0642\u064A\u064A\u0645\u0627\u062A"
-    ],
-    "assessment.save": [
-      "Save current assessment definitions",
-      "\u062D\u0641\u0638 \u062A\u0639\u0631\u064A\u0641\u0627\u062A \u0627\u0644\u062A\u0642\u064A\u064A\u0645\u0627\u062A \u0627\u0644\u062D\u0627\u0644\u064A\u0629"
-    ],
-    "assessment.preset": [
-      "Assessment setup preset",
-      "\u0646\u0645\u0648\u0630\u062C \u0625\u0639\u062F\u0627\u062F \u0627\u0644\u062A\u0642\u064A\u064A\u0645\u0627\u062A"
-    ],
-    "assessment.choose": [
-      "Choose saved assessment definitions",
-      "\u0627\u062E\u062A\u0631 \u062A\u0639\u0631\u064A\u0641\u0627\u062A \u062A\u0642\u064A\u064A\u0645\u0627\u062A \u0645\u062D\u0641\u0648\u0638\u0629"
-    ],
-    "assessment.preview": [
-      "Preview adding assessment definitions",
-      "\u0645\u0639\u0627\u064A\u0646\u0629 \u0625\u0636\u0627\u0641\u0629 \u062A\u0639\u0631\u064A\u0641\u0627\u062A \u0627\u0644\u062A\u0642\u064A\u064A\u0645\u0627\u062A"
-    ],
+    "assessment.title": ["Copy assessment setup", "\u0646\u0633\u062E \u0625\u0639\u062F\u0627\u062F \u0627\u0644\u062A\u0642\u064A\u064A\u0645\u0627\u062A"],
+    "assessment.hint": ["Save this class's assessment columns, then add them to another class. Students and marks are not copied.", "\u0627\u062D\u0641\u0638 \u0623\u0639\u0645\u062F\u0629 \u0627\u0644\u062A\u0642\u064A\u064A\u0645 \u0641\u064A \u0647\u0630\u0627 \u0627\u0644\u0635\u0641\u060C \u062B\u0645 \u0623\u0636\u0641\u0647\u0627 \u0625\u0644\u0649 \u0635\u0641 \u0622\u062E\u0631. \u0644\u0627 \u062A\u064F\u0646\u0633\u062E \u0623\u0633\u0645\u0627\u0621 \u0627\u0644\u0637\u0644\u0627\u0628 \u0648\u0644\u0627 \u062F\u0631\u062C\u0627\u062A\u0647\u0645."],
+    "assessment.name": ["Name, for example Grade 8 Term 1", "\u0627\u0644\u0627\u0633\u0645\u060C \u0645\u062B\u0644\u064B\u0627: \u0627\u0644\u0635\u0641 \u0627\u0644\u062B\u0627\u0645\u0646 \u0627\u0644\u0641\u0635\u0644 \u0627\u0644\u0623\u0648\u0644"],
+    "assessment.save": ["Save setup", "\u062D\u0641\u0638 \u0627\u0644\u0625\u0639\u062F\u0627\u062F"],
+    "assessment.preset": ["Saved setup", "\u0627\u0644\u0625\u0639\u062F\u0627\u062F \u0627\u0644\u0645\u062D\u0641\u0648\u0638"],
+    "assessment.choose": ["Choose a saved setup", "\u0627\u062E\u062A\u0631 \u0625\u0639\u062F\u0627\u062F\u064B\u0627 \u0645\u062D\u0641\u0648\u0638\u064B\u0627"],
+    "assessment.preview": ["Preview in this class", "\u0645\u0639\u0627\u064A\u0646\u0629 \u0641\u064A \u0647\u0630\u0627 \u0627\u0644\u0635\u0641"],
     "assessment.review": [
       "Review additional assessment sections",
       "\u0645\u0631\u0627\u062C\u0639\u0629 \u0623\u0642\u0633\u0627\u0645 \u0627\u0644\u062A\u0642\u064A\u064A\u0645 \u0627\u0644\u0625\u0636\u0627\u0641\u064A\u0629"
@@ -38990,10 +39151,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       "You can explore with invented learners before linking any real class file. Demonstration edits are discarded on exit.",
       "\u064A\u0645\u0643\u0646\u0643 \u0627\u0644\u0627\u0633\u062A\u0643\u0634\u0627\u0641 \u0628\u0645\u062A\u0639\u0644\u0645\u064A\u0646 \u0627\u0635\u0637\u0646\u0627\u0639\u064A\u064A\u0646 \u0642\u0628\u0644 \u0631\u0628\u0637 \u0623\u064A \u0645\u0644\u0641 \u0635\u0641 \u062D\u0642\u064A\u0642\u064A. \u062A\u064F\u062A\u062C\u0627\u0647\u0644 \u062A\u0639\u062F\u064A\u0644\u0627\u062A \u0627\u0644\u0639\u0631\u0636 \u0639\u0646\u062F \u0627\u0644\u062E\u0631\u0648\u062C."
     ],
-    "workspace.attachments": [
-      "Include checked notebook attachment files",
-      "\u062A\u0636\u0645\u064A\u0646 \u0645\u0644\u0641\u0627\u062A \u0645\u0631\u0641\u0642\u0627\u062A \u0627\u0644\u062F\u0641\u062A\u0631 \u0627\u0644\u0645\u062A\u062D\u0642\u0642 \u0645\u0646\u0647\u0627"
-    ],
+    "workspace.attachments": ["Add notebook attachments", "\u0625\u0636\u0627\u0641\u0629 \u0645\u0631\u0641\u0642\u0627\u062A \u0627\u0644\u062F\u0641\u062A\u0631"],
     "workspace.sidecarsIncluded": [
       "Verified attachment files embedded in ZIP",
       "\u0645\u0644\u0641\u0627\u062A \u0645\u0631\u0641\u0642\u0627\u062A \u0645\u062A\u062D\u0642\u0642 \u0645\u0646\u0647\u0627 \u0648\u0645\u0636\u0645\u0646\u0629 \u0641\u064A ZIP"
@@ -39023,14 +39181,8 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       "\u0627\u0644\u0639\u062A\u0628\u0627\u062A \u0627\u0644\u0645\u062E\u0635\u0635\u0629 \u0627\u0644\u062D\u0627\u0644\u064A\u0629"
     ],
     "groups.noParticipation": ["This class has no participation column in its marks sheet.", "\u0644\u0627 \u064A\u0648\u062C\u062F \u0639\u0645\u0648\u062F \u0645\u0634\u0627\u0631\u0643\u0629 \u0641\u064A \u0633\u062C\u0644 \u062F\u0631\u062C\u0627\u062A \u0647\u0630\u0627 \u0627\u0644\u0635\u0641."],
-    "workspace.private": [
-      "Include private recognition and attendance follow-up",
-      "\u062A\u0636\u0645\u064A\u0646 \u0627\u0644\u062A\u0643\u0631\u064A\u0645 \u0627\u0644\u062E\u0627\u0635 \u0648\u0645\u062A\u0627\u0628\u0639\u0629 \u0627\u0644\u062D\u0636\u0648\u0631"
-    ],
-    "workspace.privateHint": [
-      "Opt in before refreshing. Private lists use original participation suggestions and existing attendance flags, never private-note excerpts. They stay in this temporary snapshot; keep this screen private when projecting.",
-      "\u0641\u0639\u0651\u0644 \u0627\u0644\u062E\u064A\u0627\u0631 \u0642\u0628\u0644 \u0627\u0644\u062A\u062D\u062F\u064A\u062B. \u062A\u0633\u062A\u062E\u062F\u0645 \u0627\u0644\u0642\u0648\u0627\u0626\u0645 \u0627\u0644\u062E\u0627\u0635\u0629 \u0627\u0642\u062A\u0631\u0627\u062D\u0627\u062A \u0627\u0644\u0645\u0634\u0627\u0631\u0643\u0629 \u0627\u0644\u0623\u0635\u0644\u064A\u0629 \u0648\u062A\u0646\u0628\u064A\u0647\u0627\u062A \u0627\u0644\u062D\u0636\u0648\u0631 \u0627\u0644\u0642\u0627\u0626\u0645\u0629\u060C \u062F\u0648\u0646 \u0645\u0642\u062A\u0637\u0641\u0627\u062A \u0627\u0644\u0645\u0644\u0627\u062D\u0638\u0627\u062A \u0627\u0644\u062E\u0627\u0635\u0629. \u062A\u0628\u0642\u0649 \u0641\u064A \u0647\u0630\u0647 \u0627\u0644\u0644\u0642\u0637\u0629 \u0627\u0644\u0645\u0624\u0642\u062A\u0629\u061B \u062D\u0627\u0641\u0638 \u0639\u0644\u0649 \u062E\u0635\u0648\u0635\u064A\u0629 \u0627\u0644\u0634\u0627\u0634\u0629 \u0623\u062B\u0646\u0627\u0621 \u0627\u0644\u0639\u0631\u0636."
-    ],
+    "workspace.private": ["Include private lists (praise to give, attendance follow-up)", "\u062A\u0636\u0645\u064A\u0646 \u0627\u0644\u0642\u0648\u0627\u0626\u0645 \u0627\u0644\u062E\u0627\u0635\u0629 (\u0637\u0644\u0627\u0628 \u064A\u0633\u062A\u062D\u0642\u0648\u0646 \u0627\u0644\u062B\u0646\u0627\u0621\u060C \u0648\u0645\u062A\u0627\u0628\u0639\u0629 \u0627\u0644\u062D\u0636\u0648\u0631)"],
+    "workspace.privateHint": ["Don't show these lists on the projector. Tick this before you compare.", "\u0644\u0627 \u062A\u0639\u0631\u0636 \u0647\u0630\u0647 \u0627\u0644\u0642\u0648\u0627\u0626\u0645 \u0639\u0644\u0649 \u062C\u0647\u0627\u0632 \u0627\u0644\u0639\u0631\u0636. \u062D\u062F\u0651\u062F \u0647\u0630\u0627 \u0627\u0644\u062E\u064A\u0627\u0631 \u0642\u0628\u0644 \u0627\u0644\u0645\u0642\u0627\u0631\u0646\u0629."],
     "workspace.openPrivate": [
       "Open this class to review private records",
       "\u0641\u062A\u062D \u0647\u0630\u0627 \u0627\u0644\u0635\u0641 \u0644\u0645\u0631\u0627\u062C\u0639\u0629 \u0633\u062C\u0644\u0627\u062A\u0647 \u0627\u0644\u062E\u0627\u0635\u0629"
@@ -39133,7 +39285,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "float.add": ["Add to this window", "\u0625\u0636\u0627\u0641\u0629 \u0625\u0644\u0649 \u0647\u0630\u0647 \u0627\u0644\u0646\u0627\u0641\u0630\u0629"],
     "nav.assessments": ["Assessments & curriculum", "\u0627\u0644\u062A\u0642\u064A\u064A\u0645\u0627\u062A \u0648\u0627\u0644\u0645\u0646\u0647\u062C"],
     "assess.title": ["Assessments & curriculum", "\u0627\u0644\u062A\u0642\u064A\u064A\u0645\u0627\u062A \u0648\u0627\u0644\u0645\u0646\u0647\u062C"],
-    "lead.assessments": ["For each quiz or test: its type, its date and the lessons it tested. The AI analysis uses them to link results to lessons and to the notes written before them.", "\u0644\u0643\u0644 \u0627\u062E\u062A\u0628\u0627\u0631 \u0642\u0635\u064A\u0631 \u0623\u0648 \u0627\u062E\u062A\u0628\u0627\u0631: \u0646\u0648\u0639\u0647 \u0648\u062A\u0627\u0631\u064A\u062E\u0647 \u0648\u0627\u0644\u062F\u0631\u0648\u0633 \u0627\u0644\u062A\u064A \u0642\u0627\u0633\u0647\u0627. \u064A\u0633\u062A\u062E\u062F\u0645\u0647\u0627 \u062A\u062D\u0644\u064A\u0644 \u0627\u0644\u0630\u0643\u0627\u0621 \u0627\u0644\u0627\u0635\u0637\u0646\u0627\u0639\u064A \u0644\u0631\u0628\u0637 \u0627\u0644\u0646\u062A\u0627\u0626\u062C \u0628\u0627\u0644\u062F\u0631\u0648\u0633 \u0648\u0628\u0627\u0644\u0645\u0644\u0627\u062D\u0638\u0627\u062A \u0627\u0644\u0645\u0643\u062A\u0648\u0628\u0629 \u0642\u0628\u0644\u0647\u0627."],
+    "lead.assessments": ["Give each quiz or test a type, a date and the lessons it tested. The AI analysis uses this to link results to lessons.", "\u062D\u062F\u0651\u062F \u0644\u0643\u0644 \u0627\u062E\u062A\u0628\u0627\u0631 \u0646\u0648\u0639\u0647 \u0648\u062A\u0627\u0631\u064A\u062E\u0647 \u0648\u0627\u0644\u062F\u0631\u0648\u0633 \u0627\u0644\u062A\u064A \u0642\u0627\u0633\u0647\u0627. \u064A\u0633\u062A\u062E\u062F\u0645 \u062A\u062D\u0644\u064A\u0644 \u0627\u0644\u0630\u0643\u0627\u0621 \u0627\u0644\u0627\u0635\u0637\u0646\u0627\u0639\u064A \u0630\u0644\u0643 \u0644\u0631\u0628\u0637 \u0627\u0644\u0646\u062A\u0627\u0626\u062C \u0628\u0627\u0644\u062F\u0631\u0648\u0633."],
     "assess.lessonsTitle": ["Lessons of this class", "\u062F\u0631\u0648\u0633 \u0647\u0630\u0627 \u0627\u0644\u0635\u0641"],
     "assess.lessonsNone": ["No lessons yet. Import them from your Excel sheet.", "\u0644\u0627 \u062A\u0648\u062C\u062F \u062F\u0631\u0648\u0633 \u0628\u0639\u062F. \u0627\u0633\u062A\u0648\u0631\u062F\u0647\u0627 \u0645\u0646 \u0645\u0644\u0641 Excel \u0627\u0644\u062E\u0627\u0635 \u0628\u0643."],
     "assess.lessonsHave": ["{n} lessons, from {file} ({date}).", "{n} \u0645\u0646 \u0627\u0644\u062F\u0631\u0648\u0633\u060C \u0645\u0646 {file} ({date})."],
@@ -39170,7 +39322,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "assess.noLessons": ["No lessons were found.", "\u0644\u0645 \u064A\u064F\u0639\u062B\u0631 \u0639\u0644\u0649 \u062F\u0631\u0648\u0633."],
     "assess.tooMany": ["There are too many lessons (more than 2000).", "\u0639\u062F\u062F \u0627\u0644\u062F\u0631\u0648\u0633 \u0643\u0628\u064A\u0631 \u062C\u062F\u064B\u0627 (\u0623\u0643\u062B\u0631 \u0645\u0646 2000)."],
     "assess.tableTitle": ["Quizzes and tests", "\u0627\u0644\u0627\u062E\u062A\u0628\u0627\u0631\u0627\u062A \u0627\u0644\u0642\u0635\u064A\u0631\u0629 \u0648\u0627\u0644\u0627\u062E\u062A\u0628\u0627\u0631\u0627\u062A"],
-    "assess.tableLead": ["Behaviour and participation columns are not listed. A type is only used once you choose or confirm it.", "\u0644\u0627 \u062A\u0638\u0647\u0631 \u0623\u0639\u0645\u062F\u0629 \u0627\u0644\u0633\u0644\u0648\u0643 \u0648\u0627\u0644\u0645\u0634\u0627\u0631\u0643\u0629. \u0648\u0644\u0627 \u064A\u064F\u0639\u062A\u0645\u062F \u0627\u0644\u0646\u0648\u0639 \u0625\u0644\u0627 \u0628\u0639\u062F \u0623\u0646 \u062A\u062E\u062A\u0627\u0631\u0647 \u0623\u0648 \u062A\u0624\u0643\u0651\u062F\u0647."],
+    "assess.tableLead": ["Behaviour and participation columns are not assessments, so they are not listed.", "\u0623\u0639\u0645\u062F\u0629 \u0627\u0644\u0633\u0644\u0648\u0643 \u0648\u0627\u0644\u0645\u0634\u0627\u0631\u0643\u0629 \u0644\u064A\u0633\u062A \u062A\u0642\u064A\u064A\u0645\u0627\u062A\u060C \u0644\u0630\u0644\u0643 \u0644\u0627 \u062A\u0638\u0647\u0631 \u0647\u0646\u0627."],
     "assess.col.part": ["Course part", "\u062C\u0632\u0621 \u0627\u0644\u0645\u0642\u0631\u0631"],
     "assess.col.name": ["Assessment", "\u0627\u0644\u062A\u0642\u064A\u064A\u0645"],
     "assess.col.type": ["Type", "\u0627\u0644\u0646\u0648\u0639"],
@@ -40332,7 +40484,37 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "timer.timeUp": ["Time is up", "\u0627\u0646\u062A\u0647\u0649 \u0627\u0644\u0648\u0642\u062A"],
     "timer.escLeave": ["Esc to leave full screen", "\u0627\u0636\u063A\u0637 Esc \u0644\u0644\u062E\u0631\u0648\u062C \u0645\u0646 \u0645\u0644\u0621 \u0627\u0644\u0634\u0627\u0634\u0629"],
     "marks.bonusEntryHint": ["Mark + bonus (for example 10+2)", "\u0627\u0644\u062F\u0631\u062C\u0629 + \u0627\u0644\u062F\u0631\u062C\u0629 \u0627\u0644\u0625\u0636\u0627\u0641\u064A\u0629 (\u0645\u062B\u0627\u0644: 10+2)"],
-    "marks.bonusEntryInvalid": ["Enter mark+bonus (for example 10+2). Bonus must be zero or positive.", "\u0627\u0643\u062A\u0628 \u0627\u0644\u062F\u0631\u062C\u0629 + \u0627\u0644\u062F\u0631\u062C\u0629 \u0627\u0644\u0625\u0636\u0627\u0641\u064A\u0629 (\u0645\u062B\u0627\u0644: 10+2). \u064A\u062C\u0628 \u0623\u0646 \u062A\u0643\u0648\u0646 \u0627\u0644\u062F\u0631\u062C\u0629 \u0627\u0644\u0625\u0636\u0627\u0641\u064A\u0629 \u0635\u0641\u0631\u064B\u0627 \u0623\u0648 \u0645\u0648\u062C\u0628\u0629."]
+    "marks.bonusEntryInvalid": ["Enter mark+bonus (for example 10+2). Bonus must be zero or positive.", "\u0627\u0643\u062A\u0628 \u0627\u0644\u062F\u0631\u062C\u0629 + \u0627\u0644\u062F\u0631\u062C\u0629 \u0627\u0644\u0625\u0636\u0627\u0641\u064A\u0629 (\u0645\u062B\u0627\u0644: 10+2). \u064A\u062C\u0628 \u0623\u0646 \u062A\u0643\u0648\u0646 \u0627\u0644\u062F\u0631\u062C\u0629 \u0627\u0644\u0625\u0636\u0627\u0641\u064A\u0629 \u0635\u0641\u0631\u064B\u0627 \u0623\u0648 \u0645\u0648\u062C\u0628\u0629."],
+    "assess.readyOf": ["{n} of {total} ready", "{n} \u0645\u0646 {total} \u062C\u0627\u0647\u0632\u0629"],
+    "assess.readyMeans": ["Ready = type, date and lessons set", "\u062C\u0627\u0647\u0632 = \u0627\u0644\u0646\u0648\u0639 \u0648\u0627\u0644\u062A\u0627\u0631\u064A\u062E \u0648\u0627\u0644\u062F\u0631\u0648\u0633 \u0645\u062D\u062F\u062F\u0629"],
+    "assess.filter": ["Show", "\u0639\u0631\u0636"],
+    "assess.filter.all": ["All {n}", "\u0627\u0644\u0643\u0644 {n}"],
+    "assess.filter.todo": ["Needs details {n}", "\u062A\u062D\u062A\u0627\u062C \u062A\u0641\u0627\u0635\u064A\u0644 {n}"],
+    "assess.col.status": ["Ready", "\u062C\u0627\u0647\u0632"],
+    "assess.ready": ["Ready", "\u062C\u0627\u0647\u0632"],
+    "assess.needs": ["Needs details", "\u062A\u062D\u062A\u0627\u062C \u062A\u0641\u0627\u0635\u064A\u0644"],
+    "assess.addDate": ["+ Add date", "+ \u0625\u0636\u0627\u0641\u0629 \u062A\u0627\u0631\u064A\u062E"],
+    "assess.changeDate": ["Change date", "\u062A\u063A\u064A\u064A\u0631 \u0627\u0644\u062A\u0627\u0631\u064A\u062E"],
+    "assess.chooseLessons": ["+ Choose lessons", "+ \u0627\u062E\u062A\u064A\u0627\u0631 \u0627\u0644\u062F\u0631\u0648\u0633"],
+    "assess.showLessons": ["Show the lessons", "\u0639\u0631\u0636 \u0627\u0644\u062F\u0631\u0648\u0633"],
+    "assess.hideLessons": ["Hide the lessons", "\u0625\u062E\u0641\u0627\u0621 \u0627\u0644\u062F\u0631\u0648\u0633"],
+    "assess.lessonOne": ["lesson {n}", "\u0627\u0644\u062F\u0631\u0633 {n}"],
+    "assess.lessonRange": ["lessons {from}\u2013{to}", "\u0627\u0644\u062F\u0631\u0648\u0633 {from}\u2013{to}"],
+    "assess.lessonCount.one": ["{n} lesson", "\u062F\u0631\u0633 \u0648\u0627\u062D\u062F"],
+    "assess.lessonCount.two": ["{n} lessons", "\u062F\u0631\u0633\u0627\u0646"],
+    "assess.lessonCount.few": ["{n} lessons", "{n} \u062F\u0631\u0648\u0633"],
+    "assess.lessonCount.many": ["{n} lessons", "{n} \u062F\u0631\u0633\u064B\u0627"],
+    "assess.lessonCount.other": ["{n} lessons", "{n} \u062F\u0631\u0633"],
+    "workspace.across": ["Across your classes", "\u0639\u0628\u0631 \u0635\u0641\u0648\u0641\u0643"],
+    "workspace.selectAll": ["Include all classes", "\u062A\u0636\u0645\u064A\u0646 \u0643\u0644 \u0627\u0644\u0635\u0641\u0648\u0641"],
+    "workspace.current": ["Open", "\u0645\u0641\u062A\u0648\u062D"],
+    "workspace.reorder": ["Reorder roster\u2026", "\u0625\u0639\u0627\u062F\u0629 \u062A\u0631\u062A\u064A\u0628 \u0627\u0644\u0637\u0644\u0627\u0628\u2026"],
+    "workspace.reorderTitle": ["Reorder roster \xB7 {class}", "\u0625\u0639\u0627\u062F\u0629 \u062A\u0631\u062A\u064A\u0628 \u0627\u0644\u0637\u0644\u0627\u0628 \xB7 {class}"],
+    "workspace.closeReorder": ["Done", "\u062A\u0645"],
+    "workspace.tickNote": ["Ticked classes are used by Compare classes and Back up everything below.", "\u062A\u064F\u0633\u062A\u062E\u062F\u0645 \u0627\u0644\u0635\u0641\u0648\u0641 \u0627\u0644\u0645\u062D\u062F\u062F\u0629 \u0641\u064A \xAB\u0645\u0642\u0627\u0631\u0646\u0629 \u0627\u0644\u0635\u0641\u0648\u0641\xBB \u0648\xAB\u0646\u0633\u062E\u0629 \u0627\u062D\u062A\u064A\u0627\u0637\u064A\u0629 \u0634\u0627\u0645\u0644\u0629\xBB \u0623\u062F\u0646\u0627\u0647."],
+    "workspace.tickFirst": ["Tick at least one class in the list above.", "\u062D\u062F\u0651\u062F \u0635\u0641\u064B\u0627 \u0648\u0627\u062D\u062F\u064B\u0627 \u0639\u0644\u0649 \u0627\u0644\u0623\u0642\u0644 \u0641\u064A \u0627\u0644\u0642\u0627\u0626\u0645\u0629 \u0623\u0639\u0644\u0627\u0647."],
+    "workspace.tip": ["Tip: create a desktop shortcut to the ClassPilot file to open it in one click.", "\u0646\u0635\u064A\u062D\u0629: \u0623\u0646\u0634\u0626 \u0627\u062E\u062A\u0635\u0627\u0631\u064B\u0627 \u0644\u0645\u0644\u0641 ClassPilot \u0639\u0644\u0649 \u0633\u0637\u062D \u0627\u0644\u0645\u0643\u062A\u0628 \u0644\u062A\u0641\u062A\u062D\u0647 \u0628\u0646\u0642\u0631\u0629 \u0648\u0627\u062D\u062F\u0629."],
+    "workspace.noGrade": ["No grade", "\u0628\u0644\u0627 \u0635\u0641"]
   };
   var uxEn = Object.fromEntries(Object.entries(pairs).map(([key4, value]) => ["ux." + key4, value[0]]));
   var uxAr = Object.fromEntries(Object.entries(pairs).map(([key4, value]) => ["ux." + key4, value[1]]));
@@ -48709,7 +48891,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     return [...(profile2.bellSchedule || []).filter((rule) => rule.source !== "timetable"), ...generated];
   }
 
-  // inline-worker:/workspace/ClassPilot/src/modules/bell/worker.js
+  // inline-worker:/home/user/ClassPilot/src/modules/bell/worker.js
   var worker_default = '(() => {\n  // src/gradebook/calendar.jsx\n  function pad2(n) {\n    return (n < 10 ? "0" : "") + n;\n  }\n  function isoOf(d) {\n    return d.getFullYear() + "-" + pad2(d.getMonth() + 1) + "-" + pad2(d.getDate());\n  }\n  function parseISO(s) {\n    var p = String(s).split("-");\n    return new Date(+p[0], +p[1] - 1, +p[2]);\n  }\n  function addDays(d, n) {\n    var x = new Date(d);\n    x.setDate(x.getDate() + n);\n    return x;\n  }\n  function isSchoolDay(iso, settings) {\n    if (!iso) return false;\n    var d = parseISO(iso);\n    var w = d.getDay();\n    var sd2 = settings && settings.schoolDays || [0, 1, 2, 3, 4];\n    if (sd2.indexOf(w) < 0) return false;\n    var hs = settings && settings.holidays || [];\n    for (var i = 0; i < hs.length; i++) {\n      var h = hs[i];\n      if (h && iso >= h.from && iso <= (h.to || h.from)) return false;\n    }\n    return true;\n  }\n\n  // src/modules/bell/scheduler.js\n  function bellOccurrences(rules, calendar, from, to) {\n    const events = [];\n    if (to < from) return events;\n    for (let day = parseISO(isoOf(new Date(from))), end = parseISO(isoOf(new Date(to))); day <= end; day = addDays(day, 1)) {\n      const date = isoOf(day);\n      if (!isSchoolDay(date, calendar)) continue;\n      for (const rule of rules) {\n        if (!rule.enabled || !rule.weekdays.includes(day.getDay())) continue;\n        const [h, m, s = 0] = rule.time.split(":").map(Number), scheduled = new Date(day.getFullYear(), day.getMonth(), day.getDate(), h, m, s).getTime();\n        if (scheduled > from && scheduled <= to) events.push({ occurrenceId: rule.id + "@" + date + "@" + rule.time, ruleId: rule.id, scheduledAt: scheduled, observedAt: to, lateMs: to - scheduled, status: to - scheduled < 6e4 ? "due" : "missed" });\n      }\n    }\n    return events.sort((a, b) => a.scheduledAt - b.scheduledAt || a.ruleId.localeCompare(b.ruleId));\n  }\n  function createBellScheduler(now = Date.now()) {\n    let last = now, config = { enabled: false, rules: [], calendar: { schoolDays: [], holidays: [] } };\n    const seen = /* @__PURE__ */ new Set();\n    return { configure(next, at = Date.now()) {\n      config = next;\n      last = at;\n    }, check(at = Date.now()) {\n      if (at < last) {\n        last = at;\n        return [];\n      }\n      const events = config.enabled ? bellOccurrences(config.rules, config.calendar, last, at).filter((e) => !seen.has(e.occurrenceId)) : [];\n      last = at;\n      for (const event of events) seen.add(event.occurrenceId);\n      return events;\n    } };\n  }\n\n  // src/modules/bell/worker.js\n  var generation = 0;\n  var scheduler = createBellScheduler();\n  function check(now) {\n    const events = scheduler.check(now);\n    if (events.length) self.postMessage({ type: "events", events, generation });\n  }\n  self.onmessage = (event) => {\n    const message = event.data;\n    if (message.type === "configure") {\n      if (generation !== message.generation) scheduler = createBellScheduler(message.now);\n      generation = message.generation;\n      scheduler.configure(message.config, message.now);\n    }\n    if (message.type === "check") check(message.now);\n  };\n  setInterval(() => check(Date.now()), 100);\n})();\n';
 
   // src/modules/bell/audio.js
@@ -49605,11 +49787,12 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
 
   // src/modules/workspace/index.jsx
   function FileHealth({ canOpen }) {
-    return /* @__PURE__ */ cpJsx("p", { className: "cp-classes-health" }, /* @__PURE__ */ cpJsx("b", null, t("improve.fileHealth")), cpRaw(": "), /* @__PURE__ */ cpJsx("span", null, t(canOpen ? "improve.classLinked" : "improve.classUnlinked")), cpRaw(" \xB7 "), /* @__PURE__ */ cpJsx("span", null, t(isProfileLinked() ? isProfileDirty() ? "improve.profilePending" : "improve.profileLinked" : "improve.profileUnlinked")));
+    return /* @__PURE__ */ cpJsx("p", { className: "cp-classes-health" }, /* @__PURE__ */ cpJsx("b", { className: "cp-visually-hidden" }, t("improve.fileHealth")), /* @__PURE__ */ cpJsx("span", { "data-ok": canOpen ? "true" : "false" }, t(canOpen ? "improve.classLinked" : "improve.classUnlinked")), /* @__PURE__ */ cpJsx("span", { "data-ok": isProfileLinked() && !isProfileDirty() ? "true" : "false" }, t(isProfileLinked() ? isProfileDirty() ? "improve.profilePending" : "improve.profileLinked" : "improve.profileUnlinked")));
   }
   function WorkspaceView({ doc, onUpdate, onOpenClass, onManageClasses, classes, onLinkExisting, setView }) {
     useLanguage();
-    const profile2 = useProfile(), [selected, setSelected] = useState([]), [excel, setExcel] = useState(true), [attachments, setAttachments] = useState(true), [error2, setError] = useState(""), [notice, setNotice] = useState(""), [busy, setBusy] = useState(false), [review, setReview] = useState(null), [snapshot, setSnapshot] = useState(null), [school, setSchool] = useState(""), [newSchool, setNewSchool] = useState(""), [grade, setGrade] = useState(""), [privateSummary, setPrivateSummary] = useState(false);
+    const profile2 = useProfile(), [selected, setSelected] = useState([]), [excel, setExcel] = useState(true), [attachments, setAttachments] = useState(true), [error2, setError] = useState(""), [notice, setNotice] = useState(""), [busy, setBusy] = useState(false), [review, setReview] = useState(null), [snapshot, setSnapshot] = useState(null), [school, setSchool] = useState(""), [newSchool, setNewSchool] = useState(""), [grade, setGrade] = useState(""), [privateSummary, setPrivateSummary] = useState(false), [reorder, setReorder] = useState(false);
+    const GRADES = ["5", "6", "7", "8", "9", "10", "11", "12"];
     const refs = profile2.classReferences.filter((r) => (!school || r.schoolId === school) && (!grade || r.grade === grade)), schools = profile2.schools || [], grades = [...new Set(refs.map((r) => r.grade).filter(Boolean))].sort();
     async function run2(fn) {
       setBusy(true);
@@ -49629,13 +49812,13 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       await flushProfile();
       return checkedClasses(selected);
     }
-    return /* @__PURE__ */ cpJsx(ModuleFrame, { titleKey: "ux.workspace.title", icon: "hub-manage", lead: "ux.lead.workspace", info: uxText("workspace.boundary") }, /* @__PURE__ */ cpJsx("section", { className: "cp-classes-top" }, /* @__PURE__ */ cpJsx(ClassesSlot, null), /* @__PURE__ */ cpJsx(ClassesElsewhere, { classes, onLinkExisting }), /* @__PURE__ */ cpJsx(FileHealth, { canOpen: !!classes?.length }), /* @__PURE__ */ cpJsx("p", { className: "cp-classes-backups" }, uxText("classes.backups"))), /* @__PURE__ */ cpJsx(UxPanel, { title: "workspace.organization" }, /* @__PURE__ */ cpJsx("div", { className: "cp-ux-form" }, /* @__PURE__ */ cpJsx(UxSelect, { id: "workspace.school", value: school, onChange: (e) => {
+    return /* @__PURE__ */ cpJsx(ModuleFrame, { titleKey: "ux.workspace.title", icon: "hub-manage", lead: "ux.lead.workspace", info: uxText("workspace.boundary") }, /* @__PURE__ */ cpJsx("section", { className: "cp-classes-top" }, /* @__PURE__ */ cpJsx(ClassesSlot, null), /* @__PURE__ */ cpJsx(ClassesElsewhere, { classes, onLinkExisting }), /* @__PURE__ */ cpJsx(FileHealth, { canOpen: !!classes?.length }), /* @__PURE__ */ cpJsx("p", { className: "cp-classes-backups" }, uxText("classes.backups"))), /* @__PURE__ */ cpJsx(UxPanel, { title: "workspace.organization" }, /* @__PURE__ */ cpJsx("div", { className: "cp-ux-form cp-ws-toolbar" }, /* @__PURE__ */ cpJsx(UxSelect, { id: "workspace.school", value: school, onChange: (e) => {
       setSchool(e.target.value);
       setGrade("");
     } }, /* @__PURE__ */ cpJsx("option", { value: "" }, uxText("workspace.allSchools")), schools.map((s) => /* @__PURE__ */ cpJsx("option", { key: s.id, value: s.id }, cpRaw(s.name)))), /* @__PURE__ */ cpJsx(UxSelect, { id: "workspace.gradeFilter", value: grade, onChange: (e) => setGrade(e.target.value) }, /* @__PURE__ */ cpJsx("option", { value: "" }, uxText("workspace.allGrades")), grades.map((g) => /* @__PURE__ */ cpJsx("option", { value: g, key: g }, cpRaw(g)))), /* @__PURE__ */ cpJsx(UxField, { id: "workspace.newSchool", value: newSchool, maxLength: 120, onChange: (e) => setNewSchool(e.target.value) }), /* @__PURE__ */ cpJsx(UxButton, { id: "workspace.addSchool", disabled: !newSchool.trim(), onClick: () => {
       updateProfile((p) => ({ ...p, schools: [...p.schools || [], { id: crypto.randomUUID(), name: newSchool.trim() }] }));
       setNewSchool("");
-    } }), /* @__PURE__ */ cpJsx(UxButton, { id: "workspace.classes", onClick: onManageClasses })), /* @__PURE__ */ cpJsx("div", { className: "cp-ux-table-wrap" }, /* @__PURE__ */ cpJsx("table", { className: "cp-ux-table" }, /* @__PURE__ */ cpJsx("thead", null, /* @__PURE__ */ cpJsx("tr", null, ["selected", "class", "schoolAssignment", "grade", "section", "rosterOrder"].map((k) => /* @__PURE__ */ cpJsx("th", { key: k }, uxText("workspace." + k))))), /* @__PURE__ */ cpJsx("tbody", null, refs.map((r) => /* @__PURE__ */ cpJsx("tr", { key: r.classId }, /* @__PURE__ */ cpJsx("td", null, /* @__PURE__ */ cpJsx(UxCheck, { id: "workspace.selected", context: r.classId, checked: selected.includes(r.classId), onChange: (e) => setSelected(e.target.checked ? [...selected, r.classId] : selected.filter((id) => id !== r.classId)) })), /* @__PURE__ */ cpJsx("td", null, /* @__PURE__ */ cpJsx(UxButton, { id: "workspace.open", context: r.classId, onClick: () => onOpenClass(r.classId) }, cpRaw(r.displayName))), /* @__PURE__ */ cpJsx("td", null, /* @__PURE__ */ cpJsx(UxSelect, { id: "workspace.schoolAssignment", context: r.classId, value: r.schoolId || "", onChange: (e) => updateProfile((p) => ({ ...p, classReferences: p.classReferences.map((ref) => ref.classId === r.classId ? { ...ref, schoolId: e.target.value } : ref) })) }, /* @__PURE__ */ cpJsx("option", { value: "" }, uxText("workspace.unassigned")), schools.map((s) => /* @__PURE__ */ cpJsx("option", { key: s.id, value: s.id }, cpRaw(s.name))))), ["grade", "section"].map((key4) => /* @__PURE__ */ cpJsx("td", { key: key4 }, /* @__PURE__ */ cpJsx(UxField, { id: "workspace." + key4, context: r.classId, value: r[key4] || "", onChange: (e) => updateProfile((p) => ({ ...p, classReferences: p.classReferences.map((ref) => ref.classId === r.classId ? { ...ref, [key4]: e.target.value } : ref) })) }))), /* @__PURE__ */ cpJsx("td", null, r.classId === doc.cp.classId ? /* @__PURE__ */ cpJsx(RosterOrder, { doc, onUpdate }) : uxText("workspace.openToOrder"))))))), !refs.length && /* @__PURE__ */ cpJsx("p", null, uxText("workspace.empty"))), school && /* @__PURE__ */ cpJsx(ReportBrandingEditor, { context: school, value: schools.find((s) => s.id === school)?.branding, onChange: (value) => updateProfile((p) => ({ ...p, schools: p.schools.map((s) => s.id === school ? { ...s, branding: value } : s) })) }), /* @__PURE__ */ cpJsx(AssessmentPresets, { doc, onUpdate, profile: profile2 }), /* @__PURE__ */ cpJsx(UxPanel, { title: "workspace.overview", description: "workspace.snapshotHint" }, /* @__PURE__ */ cpJsx(UxCheck, { id: "workspace.private", checked: privateSummary, onChange: (e) => {
+    } }), /* @__PURE__ */ cpJsx(UxButton, { id: "workspace.classes", onClick: onManageClasses })), /* @__PURE__ */ cpJsx("div", { className: "cp-ux-table-wrap" }, /* @__PURE__ */ cpJsx("table", { className: "cp-ux-table cp-ws-classes" }, /* @__PURE__ */ cpJsx("thead", null, /* @__PURE__ */ cpJsx("tr", null, /* @__PURE__ */ cpJsx("th", null, /* @__PURE__ */ cpJsx(UxCheck, { id: "workspace.selectAll", checked: refs.length > 0 && refs.every((r) => selected.includes(r.classId)), onChange: (e) => setSelected(e.target.checked ? [.../* @__PURE__ */ new Set([...selected, ...refs.map((r) => r.classId)])] : selected.filter((id) => !refs.some((r) => r.classId === id))) })), ["class", "schoolAssignment", "grade", "section", "rosterOrder"].map((k) => /* @__PURE__ */ cpJsx("th", { key: k }, uxText("workspace." + k))))), /* @__PURE__ */ cpJsx("tbody", null, refs.map((r) => /* @__PURE__ */ cpJsx("tr", { key: r.classId }, /* @__PURE__ */ cpJsx("td", null, /* @__PURE__ */ cpJsx(UxCheck, { id: "workspace.selected", context: r.classId, checked: selected.includes(r.classId), onChange: (e) => setSelected(e.target.checked ? [...selected, r.classId] : selected.filter((id) => id !== r.classId)) })), /* @__PURE__ */ cpJsx("td", null, /* @__PURE__ */ cpJsx(UxButton, { id: "workspace.open", context: r.classId, onClick: () => onOpenClass(r.classId) }, cpRaw(r.displayName)), r.classId === doc.cp.classId && /* @__PURE__ */ cpJsx("span", { className: "cp-ws-open" }, uxText("workspace.current"))), /* @__PURE__ */ cpJsx("td", null, /* @__PURE__ */ cpJsx(UxSelect, { id: "workspace.schoolAssignment", context: r.classId, value: r.schoolId || "", onChange: (e) => updateProfile((p) => ({ ...p, classReferences: p.classReferences.map((ref) => ref.classId === r.classId ? { ...ref, schoolId: e.target.value } : ref) })) }, /* @__PURE__ */ cpJsx("option", { value: "" }, uxText("workspace.unassigned")), schools.map((s) => /* @__PURE__ */ cpJsx("option", { key: s.id, value: s.id }, cpRaw(s.name))))), /* @__PURE__ */ cpJsx("td", null, /* @__PURE__ */ cpJsx(UxSelect, { id: "workspace.grade", context: r.classId, value: r.grade || "", onChange: (e) => updateProfile((p) => ({ ...p, classReferences: p.classReferences.map((ref) => ref.classId === r.classId ? { ...ref, grade: e.target.value } : ref) })) }, /* @__PURE__ */ cpJsx("option", { value: "" }, uxText("workspace.noGrade")), [...GRADES, ...r.grade && !GRADES.includes(r.grade) ? [r.grade] : []].map((g) => /* @__PURE__ */ cpJsx("option", { key: g, value: g }, cpRaw(g))))), /* @__PURE__ */ cpJsx("td", null, /* @__PURE__ */ cpJsx(UxField, { id: "workspace.section", context: r.classId, value: r.section || "", onChange: (e) => updateProfile((p) => ({ ...p, classReferences: p.classReferences.map((ref) => ref.classId === r.classId ? { ...ref, section: e.target.value } : ref) })) })), /* @__PURE__ */ cpJsx("td", null, r.classId === doc.cp.classId ? /* @__PURE__ */ cpJsx(UxButton, { id: "workspace.reorder", onClick: () => setReorder(true) }) : /* @__PURE__ */ cpJsx("span", { className: "cp-ws-none", title: uxText("workspace.openToOrder") }, /* @__PURE__ */ cpJsx("span", { "aria-hidden": "true" }, cpRaw("\u2014")), /* @__PURE__ */ cpJsx("span", { className: "cp-visually-hidden" }, uxText("workspace.openToOrder"))))))))), !refs.length && /* @__PURE__ */ cpJsx("p", null, uxText("workspace.empty")), refs.length > 0 && /* @__PURE__ */ cpJsx("p", { className: "cp-ws-foot" }, uxText("workspace.tickNote"))), reorder && /* @__PURE__ */ cpJsx(PanelDialog, { title: uxText("workspace.reorderTitle").replace("{class}", doc.settings.className || ""), closeAction: "ux.workspace.closeReorder", onClose: () => setReorder(false) }, /* @__PURE__ */ cpJsx(RosterOrder, { doc, onUpdate })), school && /* @__PURE__ */ cpJsx(ReportBrandingEditor, { context: school, value: schools.find((s) => s.id === school)?.branding, onChange: (value) => updateProfile((p) => ({ ...p, schools: p.schools.map((s) => s.id === school ? { ...s, branding: value } : s) })) }), /* @__PURE__ */ cpJsx("section", { className: "cp-ws-across", "aria-labelledby": "cp-ws-across" }, /* @__PURE__ */ cpJsx("h2", { id: "cp-ws-across" }, uxText("workspace.across")), /* @__PURE__ */ cpJsx("div", { className: "cp-ws-grid" }, /* @__PURE__ */ cpJsx(AssessmentPresets, { doc, onUpdate, profile: profile2 }), /* @__PURE__ */ cpJsx(UxPanel, { title: "workspace.overview", description: "workspace.snapshotHint" }, /* @__PURE__ */ cpJsx(UxCheck, { id: "workspace.private", checked: privateSummary, onChange: (e) => {
       setPrivateSummary(e.target.checked);
       setSnapshot(null);
     } }), /* @__PURE__ */ cpJsx("p", null, uxText("workspace.privateHint")), /* @__PURE__ */ cpJsx(UxButton, { id: "workspace.refresh", disabled: busy || !selected.length, onClick: () => run2(async () => {
@@ -49644,7 +49827,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
         const rows = allTermViews(doc2).find((t2) => t2.live).students, known = rows.filter((r) => r.final != null);
         return { id: doc2.cp.classId, name: doc2.settings.className, students: doc2.students.length, known: known.length, mean: known.length ? known.reduce((n, r) => n + r.final, 0) / known.length : null, attendance: Object.keys(doc2.cp?.attendance?.sessions || {}).length, ...privateSummary ? { recognition: certificateSuggestions(doc2, { from: todayISO(), through: todayISO() }).participation.map((id) => ({ id, name: doc2.students.find((s) => s.id === id)?.name || "" })), followup: doc2.students.filter((s) => attendanceFlags(s, doc2).length).map((s) => ({ id: s.id, name: s.name })) } : {} };
       }) });
-    }) }), snapshot && /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx("p", null, uxText("workspace.readAt"), ": ", cpRaw(new Date(snapshot.at).toLocaleString())), /* @__PURE__ */ cpJsx("table", { className: "cp-ux-table" }, /* @__PURE__ */ cpJsx("thead", null, /* @__PURE__ */ cpJsx("tr", null, ["class", "rosterCount", "knownResults", "mean", "registers"].map((k) => /* @__PURE__ */ cpJsx("th", { key: k }, uxText("workspace." + k))))), /* @__PURE__ */ cpJsx("tbody", null, snapshot.rows.map((r) => /* @__PURE__ */ cpJsx("tr", { key: r.id }, /* @__PURE__ */ cpJsx("td", null, cpRaw(r.name)), /* @__PURE__ */ cpJsx("td", null, r.students), /* @__PURE__ */ cpJsx("td", null, r.known), /* @__PURE__ */ cpJsx("td", null, r.mean == null ? uxText("notRecorded") : r.mean.toFixed(2)), /* @__PURE__ */ cpJsx("td", null, r.attendance))))), privateSummary && snapshot.rows.map((r) => /* @__PURE__ */ cpJsx("section", { key: r.id, className: "cp-ux-note-card" }, /* @__PURE__ */ cpJsx("h3", null, cpRaw(r.name)), /* @__PURE__ */ cpJsx("div", { className: "cp-ux-split" }, /* @__PURE__ */ cpJsx("section", null, /* @__PURE__ */ cpJsx("h4", null, uxText("home.recognition")), /* @__PURE__ */ cpJsx("ul", null, r.recognition?.map((s) => /* @__PURE__ */ cpJsx("li", { key: s.id }, cpRaw(s.name))))), /* @__PURE__ */ cpJsx("section", null, /* @__PURE__ */ cpJsx("h4", null, uxText("home.followup")), /* @__PURE__ */ cpJsx("ul", null, r.followup?.map((s) => /* @__PURE__ */ cpJsx("li", { key: s.id }, cpRaw(s.name)))))), /* @__PURE__ */ cpJsx(UxButton, { id: "workspace.open", context: "private:" + r.id, onClick: () => onOpenClass(r.id) }, uxText("workspace.openPrivate")))))), /* @__PURE__ */ cpJsx(UxPanel, { title: "workspace.archive", description: "workspace.archiveHint" }, /* @__PURE__ */ cpJsx(UxCheck, { id: "workspace.excel", checked: excel, onChange: (e) => setExcel(e.target.checked) }), /* @__PURE__ */ cpJsx(UxCheck, { id: "workspace.attachments", checked: attachments, onChange: (e) => setAttachments(e.target.checked) }), /* @__PURE__ */ cpJsx("p", null, uxText("workspace.sidecars")), /* @__PURE__ */ cpJsx("div", { className: "cp-ux-actions" }, /* @__PURE__ */ cpJsx(UxButton, { id: "workspace.backup", primary: true, disabled: busy || !selected.length, onClick: () => run2(async () => {
+    }) }), snapshot && /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx("p", null, uxText("workspace.readAt"), ": ", cpRaw(new Date(snapshot.at).toLocaleString())), /* @__PURE__ */ cpJsx("table", { className: "cp-ux-table" }, /* @__PURE__ */ cpJsx("thead", null, /* @__PURE__ */ cpJsx("tr", null, ["class", "rosterCount", "knownResults", "mean", "registers"].map((k) => /* @__PURE__ */ cpJsx("th", { key: k }, uxText("workspace." + k))))), /* @__PURE__ */ cpJsx("tbody", null, snapshot.rows.map((r) => /* @__PURE__ */ cpJsx("tr", { key: r.id }, /* @__PURE__ */ cpJsx("td", null, cpRaw(r.name)), /* @__PURE__ */ cpJsx("td", null, r.students), /* @__PURE__ */ cpJsx("td", null, r.known), /* @__PURE__ */ cpJsx("td", null, r.mean == null ? uxText("notRecorded") : r.mean.toFixed(2)), /* @__PURE__ */ cpJsx("td", null, r.attendance))))), privateSummary && snapshot.rows.map((r) => /* @__PURE__ */ cpJsx("section", { key: r.id, className: "cp-ux-note-card" }, /* @__PURE__ */ cpJsx("h3", null, cpRaw(r.name)), /* @__PURE__ */ cpJsx("div", { className: "cp-ux-split" }, /* @__PURE__ */ cpJsx("section", null, /* @__PURE__ */ cpJsx("h4", null, uxText("home.recognition")), /* @__PURE__ */ cpJsx("ul", null, r.recognition?.map((s) => /* @__PURE__ */ cpJsx("li", { key: s.id }, cpRaw(s.name))))), /* @__PURE__ */ cpJsx("section", null, /* @__PURE__ */ cpJsx("h4", null, uxText("home.followup")), /* @__PURE__ */ cpJsx("ul", null, r.followup?.map((s) => /* @__PURE__ */ cpJsx("li", { key: s.id }, cpRaw(s.name)))))), /* @__PURE__ */ cpJsx(UxButton, { id: "workspace.open", context: "private:" + r.id, onClick: () => onOpenClass(r.id) }, uxText("workspace.openPrivate"))))), !selected.length && /* @__PURE__ */ cpJsx("p", { className: "cp-ws-need" }, uxText("workspace.tickFirst"))), /* @__PURE__ */ cpJsx(UxPanel, { title: "workspace.archive", description: "workspace.archiveHint" }, /* @__PURE__ */ cpJsx(UxCheck, { id: "workspace.excel", checked: excel, onChange: (e) => setExcel(e.target.checked) }), /* @__PURE__ */ cpJsx(UxCheck, { id: "workspace.attachments", checked: attachments, onChange: (e) => setAttachments(e.target.checked) }), /* @__PURE__ */ cpJsx("p", null, uxText("workspace.sidecars")), /* @__PURE__ */ cpJsx("div", { className: "cp-ux-actions" }, /* @__PURE__ */ cpJsx(UxButton, { id: "workspace.backup", primary: true, disabled: busy || !selected.length, onClick: () => run2(async () => {
       const classes2 = await readSelected(), out = await buildArchive(getProfile(), classes2, { excel, includeAttachments: attachments });
       downloadBytes(out.bytes, "ClassPilot_workspace_" + (/* @__PURE__ */ new Date()).toISOString().replace(/[:.]/g, "-") + ".zip", "application/zip");
       setReview({ manifest: out.manifest, backupOnly: true });
@@ -49661,11 +49844,11 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       const files = await restoreArchiveCopy(review, directory);
       setNotice(uxText("workspace.restored") + " " + files.length);
       setReview(null);
-    }) })), /* @__PURE__ */ cpJsx(UxButton, { id: "workspace.close", onClick: () => setReview(null) }))), /* @__PURE__ */ cpJsx(UxPanel, { title: "workspace.install", description: "workspace.installHint" }), busy && /* @__PURE__ */ cpJsx("p", { role: "status" }, uxText("workspace.busy")), notice && /* @__PURE__ */ cpJsx("p", { role: "status" }, notice), error2 && /* @__PURE__ */ cpJsx("p", { role: "alert" }, error2));
+    }) })), /* @__PURE__ */ cpJsx(UxButton, { id: "workspace.close", onClick: () => setReview(null) })), !selected.length && /* @__PURE__ */ cpJsx("p", { className: "cp-ws-need" }, uxText("workspace.tickFirst")))), /* @__PURE__ */ cpJsx("p", { className: "cp-ws-tip" }, uxText("workspace.tip"))), busy && /* @__PURE__ */ cpJsx("p", { role: "status" }, uxText("workspace.busy")), notice && /* @__PURE__ */ cpJsx("p", { role: "status" }, notice), error2 && /* @__PURE__ */ cpJsx("p", { role: "alert" }, error2));
   }
   function RosterOrder({ doc, onUpdate }) {
     const [student, setStudent] = useState(doc.students[0]?.id || ""), [before, setBefore] = useState("");
-    return /* @__PURE__ */ cpJsx("div", { className: "cp-ux-form" }, /* @__PURE__ */ cpJsx(UxSelect, { id: "workspace.moveStudent", value: student, onChange: (e) => setStudent(e.target.value) }, doc.students.map((s) => /* @__PURE__ */ cpJsx("option", { key: s.id, value: s.id }, cpRaw(s.name)))), /* @__PURE__ */ cpJsx(UxSelect, { id: "workspace.beforeStudent", value: before, onChange: (e) => setBefore(e.target.value) }, /* @__PURE__ */ cpJsx("option", { value: "" }, uxText("workspace.atEnd")), doc.students.filter((s) => s.id !== student).map((s) => /* @__PURE__ */ cpJsx("option", { key: s.id, value: s.id }, cpRaw(s.name)))), /* @__PURE__ */ cpJsx(UxButton, { id: "workspace.move", disabled: !student, onClick: () => onUpdate((d) => {
+    return /* @__PURE__ */ cpJsx("div", { className: "cp-ux-form cp-ws-reorder" }, /* @__PURE__ */ cpJsx(UxSelect, { id: "workspace.moveStudent", value: student, onChange: (e) => setStudent(e.target.value) }, doc.students.map((s) => /* @__PURE__ */ cpJsx("option", { key: s.id, value: s.id }, cpRaw(s.name)))), /* @__PURE__ */ cpJsx(UxSelect, { id: "workspace.beforeStudent", value: before, onChange: (e) => setBefore(e.target.value) }, /* @__PURE__ */ cpJsx("option", { value: "" }, uxText("workspace.atEnd")), doc.students.filter((s) => s.id !== student).map((s) => /* @__PURE__ */ cpJsx("option", { key: s.id, value: s.id }, cpRaw(s.name)))), /* @__PURE__ */ cpJsx(UxButton, { id: "workspace.move", disabled: !student, onClick: () => onUpdate((d) => {
       const row2 = d.students.find((s) => s.id === student);
       if (!row2) return d;
       const list2 = d.students.filter((s) => s.id !== student), index = before ? list2.findIndex((s) => s.id === before) : list2.length;
@@ -53338,7 +53521,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
 .cpw-days [data-status=present] b{background:#e5f3e8;color:#1f6b35}.cpw-days [data-status=absent] b{background:#fbe3dc;color:#a3321b}.cpw-days [data-status=late] b{background:#fdf0d5;color:#8a5a00}.cpw-days [data-status=excused] b{background:#e7ecfb;color:#2c4a9a}
 .cpw-home{border-radius:3mm;padding:3mm 4mm;background:#eef6f0;border:1px solid #cfe5d5}.cpw-home p{margin:0;white-space:pre-wrap}
 .cpw-read{border-radius:3mm;padding:2.5mm 4mm;background:#f6f6f4}.cpw-read h2{font-size:9.5pt}.cpw-read p{margin:0;font-size:8.5pt;color:#5b5648}
-.cpw-foot{display:flex;justify-content:space-between;gap:4mm;padding-top:2mm;border-top:1px solid #e3dccb;font-size:8pt;color:#8a826f}
+.cpw-foot{display:flex;justify-content:space-between;gap:4mm;padding-top:2mm;border-top:1px solid #e3dccb;font-size:8pt;color:#6b6352}
 .cpw-counts{display:flex;gap:3mm;margin:0;padding:0;list-style:none}.cpw-counts li{display:flex;align-items:baseline;gap:1.5mm;padding:1.5mm 3mm;border-radius:2mm;background:#eef0f4;font-size:9pt}.cpw-counts b{font-size:13pt}
 .cpw-counts [data-status=present]{background:#e5f3e8}.cpw-counts [data-status=absent]{background:#fbe3dc}.cpw-counts [data-status=late]{background:#fdf0d5}.cpw-counts [data-status=excused]{background:#e7ecfb}
 .cpw-obs{display:flex;flex-wrap:wrap;gap:1.5mm;margin:0}.cpw-obs span{padding:.8mm 2.5mm;border-radius:99px;font-size:9pt;font-weight:600;background:#e5f3e8;color:#1f6b35}.cpw-obs [data-kind=support]{background:#fdf0d5;color:#8a5a00}
@@ -53817,9 +54000,26 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     const shown2 = lessons.filter((l) => (!term || l.term === term) && (!query || (lessonLabel(l) + " " + l.objectives.join(" ")).toLowerCase().includes(query.toLowerCase())));
     return /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx("div", { className: "cp-assess-toolbar" }, terms.length > 1 && /* @__PURE__ */ cpJsx(UxSelect, { id: "assess.listTerm", value: term, onChange: (e) => setTerm2(e.target.value) }, /* @__PURE__ */ cpJsx("option", { value: "" }, uxText("assess.allTerms")), terms.map((t2) => /* @__PURE__ */ cpJsx("option", { key: t2, value: t2 }, cpRaw(t2)))), /* @__PURE__ */ cpJsx("label", { className: "cp-ux-field" }, /* @__PURE__ */ cpJsx("span", null, uxText("assess.search")), /* @__PURE__ */ cpJsx("input", { type: "search", value: query, "aria-label": uxText("assess.search"), ...controlProps("ux.assess.listSearch", (e) => setQuery(e.target.value)) })), /* @__PURE__ */ cpJsx("span", { className: "cp-assess-count" }, cpRaw(uxText("assess.shownOf").replace("{n}", String(shown2.length)).replace("{total}", String(lessons.length))))), /* @__PURE__ */ cpJsx("div", { className: "cp-ux-table-wrap" }, /* @__PURE__ */ cpJsx("table", { className: "cp-ai3-table cp-assess-lessons" }, /* @__PURE__ */ cpJsx("thead", null, /* @__PURE__ */ cpJsx("tr", null, /* @__PURE__ */ cpJsx("th", null, uxText("assess.th.chapter")), /* @__PURE__ */ cpJsx("th", null, uxText("assess.th.lesson")), /* @__PURE__ */ cpJsx("th", null, uxText("assess.th.term")), /* @__PURE__ */ cpJsx("th", null, uxText("assess.th.week")), /* @__PURE__ */ cpJsx("th", null, uxText("assess.th.objective")))), /* @__PURE__ */ cpJsx("tbody", null, shown2.map((lesson) => /* @__PURE__ */ cpJsx("tr", { key: lesson.id, "data-lesson": lesson.id }, /* @__PURE__ */ cpJsx("td", { dir: "auto" }, cpRaw([lesson.chapter, lesson.chapterName].filter(Boolean).join(" \u2014 "))), /* @__PURE__ */ cpJsx("td", { dir: "auto" }, /* @__PURE__ */ cpJsx("b", null, cpRaw(lessonLabel(lesson))), lesson.enrichment && /* @__PURE__ */ cpJsx("small", { className: "cp-assess-enrichment" }, cpRaw(" \xB7 " + uxText("assess.enrichment")))), /* @__PURE__ */ cpJsx("td", null, cpRaw(lesson.term || "")), /* @__PURE__ */ cpJsx("td", null, cpRaw(lesson.week || "")), /* @__PURE__ */ cpJsx("td", { dir: "auto" }, cpRaw(lesson.objectives[0] || ""))))))), !shown2.length && /* @__PURE__ */ cpJsx("p", { className: "cp-ai3-hint" }, uxText("assess.noMatch")));
   }
+  var lessonNumber = (lesson) => {
+    const m = String(lesson.number || "").match(/\d+/);
+    return m ? +m[0] : null;
+  };
+  function lessonSummary(chosen) {
+    const groups = /* @__PURE__ */ new Map();
+    for (const lesson of chosen) {
+      const key4 = lesson.chapter || "";
+      if (!groups.has(key4)) groups.set(key4, []);
+      groups.get(key4).push(lesson);
+    }
+    return [...groups].map(([chapter, list2]) => {
+      const numbers = list2.map(lessonNumber).sort((a, b) => a - b), known = numbers.every((n) => n != null), contiguous = known && numbers.every((n, i) => !i || n === numbers[i - 1] + 1);
+      const span = list2.length === 1 && known ? uxText("assess.lessonOne").replace("{n}", String(numbers[0])) : contiguous ? uxText("assess.lessonRange").replace("{from}", String(numbers[0])).replace("{to}", String(numbers[numbers.length - 1])) : countText(list2.length, "assess.lessonCount");
+      return { chapter, span, name: list2[0].chapterName || "" };
+    });
+  }
   function AssessmentsView({ doc, onUpdate }) {
     useLanguage();
-    const [picking, setPicking] = useState(null), [importing, setImporting] = useState(false), [notice, setNotice] = useState(""), [view, setViewState] = useState(readView);
+    const [filter, setFilter] = useState("all"), [editingDate, setEditingDate] = useState(null), [open, setOpen] = useState({}), [picking, setPicking] = useState(null), [importing, setImporting] = useState(false), [notice, setNotice] = useState(""), [view, setViewState] = useState(readView);
     const setView = (next) => {
       setViewState(next);
       try {
@@ -53830,9 +54030,19 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     const lessons = curriculum(doc.cp?.curriculum).lessons, byId = new Map(lessons.map((l) => [l.id, l]));
     const rows = doc.sections.flatMap((section) => section.columns.filter(assessable).map((column) => ({ section, column, info: infoOf(doc, column.id), guess: guessType(column) })));
     const pending6 = rows.filter((row2) => !row2.info.type && row2.guess);
+    const isReady = (info) => !!(info.type && info.date && (info.lessons || []).length), readyCount = rows.filter((row2) => isReady(row2.info)).length;
+    const shownRows = filter === "todo" ? rows.filter((row2) => !isReady(row2.info)) : rows, groups = doc.sections.map((section) => ({ section, rows: shownRows.filter((row2) => row2.section === section) })).filter((g) => g.rows.length);
     const views = /* @__PURE__ */ cpJsx(Segmented, { label: uxText("assess.view") }, ASSESS_VIEWS.map((value) => /* @__PURE__ */ cpJsx(UxButton, { key: value, id: "assess.view", context: value, active: view === value, "aria-pressed": view === value, onClick: () => setView(value) }, uxText("assess.view." + value))));
     const summary = /* @__PURE__ */ cpJsx("p", { className: "cp-ai3-hint", "data-lessons": lessons.length }, lessons.length ? uxText("assess.lessonsHave").replace("{n}", String(lessons.length)).replace("{file}", doc.cp.curriculum.source?.file || "").replace("{date}", String(doc.cp.curriculum.importedAt || "").slice(0, 10)) : uxText("assess.lessonsNone"));
-    return /* @__PURE__ */ cpJsx(ModuleFrame, { titleKey: "ux.assess.title", icon: "assessments", lead: "ux.lead.assessments", actions: views }, view === "tests" && /* @__PURE__ */ cpJsx("section", { "aria-labelledby": "cp-assess-table", className: "cp-assess-view" }, /* @__PURE__ */ cpJsx("h2", { id: "cp-assess-table", className: "cp-assess-heading" }, uxText("assess.tableTitle")), /* @__PURE__ */ cpJsx("div", { className: "cp-assess-toolbar" }, /* @__PURE__ */ cpJsx("p", { className: "cp-ai3-hint" }, uxText("assess.tableLead")), pending6.length > 0 && /* @__PURE__ */ cpJsx(UxButton, { id: "assess.useAll", onClick: () => onUpdate((d) => pending6.reduce((acc, row2) => setInfo(acc, row2.column.id, { type: row2.guess }), d)) }, uxText("assess.useAll").replace("{n}", String(pending6.length)))), rows.length ? /* @__PURE__ */ cpJsx("div", { className: "cp-ux-table-wrap" }, /* @__PURE__ */ cpJsx("table", { className: "cp-ai3-table cp-assess-table" }, /* @__PURE__ */ cpJsx("thead", null, /* @__PURE__ */ cpJsx("tr", null, /* @__PURE__ */ cpJsx("th", null, uxText("assess.col.part")), /* @__PURE__ */ cpJsx("th", null, uxText("assess.col.name")), /* @__PURE__ */ cpJsx("th", null, uxText("assess.col.type")), /* @__PURE__ */ cpJsx("th", null, uxText("assess.col.date")), /* @__PURE__ */ cpJsx("th", null, uxText("assess.col.lessons")))), /* @__PURE__ */ cpJsx("tbody", null, rows.map(({ section, column, info, guess }) => /* @__PURE__ */ cpJsx("tr", { key: column.id, "data-column": column.id }, /* @__PURE__ */ cpJsx("td", { dir: "auto" }, cpRaw(section.name)), /* @__PURE__ */ cpJsx("td", { dir: "auto" }, /* @__PURE__ */ cpJsx("b", null, cpRaw(column.name))), /* @__PURE__ */ cpJsx("td", null, /* @__PURE__ */ cpJsx("select", { value: info.type || "", "aria-label": uxText("assess.col.type") + ": " + column.name, ...controlProps("ux.assess.type", (e) => onUpdate((d) => setInfo(d, column.id, { type: e.target.value || null })), column.id) }, /* @__PURE__ */ cpJsx("option", { value: "" }, uxText("assess.notSet")), TYPES.map((type) => /* @__PURE__ */ cpJsx("option", { key: type, value: type }, uxText("assess.type." + type)))), !info.type && guess && /* @__PURE__ */ cpJsx("span", { className: "cp-assess-guess" }, uxText("assess.suggested").replace("{type}", uxText("assess.type." + guess)), " ", /* @__PURE__ */ cpJsx(UxButton, { id: "assess.useGuess", context: column.id, onClick: () => onUpdate((d) => setInfo(d, column.id, { type: guess })) }))), /* @__PURE__ */ cpJsx("td", null, /* @__PURE__ */ cpJsx("input", { type: "date", value: info.date || "", "aria-label": uxText("assess.col.date") + ": " + column.name, ...controlProps("ux.assess.date", (e) => onUpdate((d) => setInfo(d, column.id, { date: e.target.value || null })), column.id) })), /* @__PURE__ */ cpJsx("td", null, (info.lessons || []).length > 0 && /* @__PURE__ */ cpJsx("ul", { className: "cp-assess-chosen" }, info.lessons.map((id) => byId.get(id)).filter(Boolean).map((l) => /* @__PURE__ */ cpJsx("li", { key: l.id }, cpRaw(lessonLabel(l))))), /* @__PURE__ */ cpJsx(UxButton, { id: "assess.lessons", context: column.id, disabled: !lessons.length, title: lessons.length ? void 0 : uxText("assess.lessonsNone"), onClick: () => setPicking(column) }, uxText((info.lessons || []).length ? "assess.changeLessons" : "assess.lessons")))))))) : /* @__PURE__ */ cpJsx(EmptyState, { kind: "nothing", title: uxText("assess.noColumns") })), view === "lessons" && /* @__PURE__ */ cpJsx("section", { "aria-labelledby": "cp-assess-lessons", className: "cp-assess-view" }, /* @__PURE__ */ cpJsx("h2", { id: "cp-assess-lessons", className: "cp-assess-heading" }, uxText("assess.lessonsTitle")), /* @__PURE__ */ cpJsx("div", { className: "cp-assess-toolbar" }, summary, !importing && /* @__PURE__ */ cpJsx(UxButton, { id: "assess.import", onClick: () => {
+    return /* @__PURE__ */ cpJsx(ModuleFrame, { titleKey: "ux.assess.title", icon: "assessments", lead: "ux.lead.assessments", actions: views }, view === "tests" && /* @__PURE__ */ cpJsx("section", { "aria-labelledby": "cp-assess-table", className: "cp-assess-view" }, /* @__PURE__ */ cpJsx("h2", { id: "cp-assess-table", className: "cp-assess-heading" }, uxText("assess.tableTitle")), /* @__PURE__ */ cpJsx("div", { className: "cp-assess-toolbar cp-assess-strip" }, /* @__PURE__ */ cpJsx("b", { "data-ready": readyCount }, uxText("assess.readyOf").replace("{n}", String(readyCount)).replace("{total}", String(rows.length))), /* @__PURE__ */ cpJsx("span", { className: "cp-assess-bar", "aria-hidden": "true" }, /* @__PURE__ */ cpJsx("i", { style: { width: (rows.length ? Math.round(readyCount / rows.length * 100) : 0) + "%" } })), /* @__PURE__ */ cpJsx("span", { className: "cp-ai3-hint" }, uxText("assess.readyMeans")), pending6.length > 0 && /* @__PURE__ */ cpJsx(UxButton, { id: "assess.useAll", onClick: () => onUpdate((d) => pending6.reduce((acc, row2) => setInfo(acc, row2.column.id, { type: row2.guess }), d)) }, uxText("assess.useAll").replace("{n}", String(pending6.length))), /* @__PURE__ */ cpJsx(Segmented, { label: uxText("assess.filter") }, ["all", "todo"].map((value) => /* @__PURE__ */ cpJsx(UxButton, { key: value, id: "assess.filter", context: value, active: filter === value, "aria-pressed": filter === value, onClick: () => setFilter(value) }, uxText("assess.filter." + value).replace("{n}", String(value === "all" ? rows.length : rows.length - readyCount)))))), rows.length ? /* @__PURE__ */ cpJsx("div", { className: "cp-ux-table-wrap" }, /* @__PURE__ */ cpJsx("table", { className: "cp-ai3-table cp-assess-table" }, /* @__PURE__ */ cpJsx("thead", null, /* @__PURE__ */ cpJsx("tr", null, /* @__PURE__ */ cpJsx("th", null, /* @__PURE__ */ cpJsx("span", { className: "cp-visually-hidden" }, uxText("assess.col.status"))), /* @__PURE__ */ cpJsx("th", null, uxText("assess.col.name")), /* @__PURE__ */ cpJsx("th", null, uxText("assess.col.type")), /* @__PURE__ */ cpJsx("th", null, uxText("assess.col.date")), /* @__PURE__ */ cpJsx("th", null, uxText("assess.col.lessons")))), groups.map(({ section, rows: list2 }) => /* @__PURE__ */ cpJsx("tbody", { key: section.id }, /* @__PURE__ */ cpJsx("tr", { className: "cp-assess-group" }, /* @__PURE__ */ cpJsx("th", { colSpan: "5", scope: "colgroup", dir: "auto" }, cpRaw(section.name + " \xB7 " + list2.length))), list2.map(({ column, info, guess }) => {
+      const ready = isReady(info), chosen = (info.lessons || []).map((id) => byId.get(id)).filter(Boolean), editing = editingDate === column.id;
+      return /* @__PURE__ */ cpJsx("tr", { key: column.id, "data-column": column.id, "data-ready": ready ? "true" : "false" }, /* @__PURE__ */ cpJsx("td", null, /* @__PURE__ */ cpJsx("span", { className: "cp-assess-dot", "data-ready": ready ? "true" : "false", role: "img", "aria-label": uxText(ready ? "assess.ready" : "assess.needs"), title: uxText(ready ? "assess.ready" : "assess.needs") })), /* @__PURE__ */ cpJsx("td", { dir: "auto" }, /* @__PURE__ */ cpJsx("b", null, cpRaw(column.name))), /* @__PURE__ */ cpJsx("td", null, /* @__PURE__ */ cpJsx("select", { value: info.type || "", "data-suggested": !info.type && guess ? "true" : "false", "aria-label": uxText("assess.col.type") + ": " + column.name, ...controlProps("ux.assess.type", (e) => onUpdate((d) => setInfo(d, column.id, { type: e.target.value || null })), column.id) }, /* @__PURE__ */ cpJsx("option", { value: "" }, !info.type && guess ? uxText("assess.suggested").replace("{type}", uxText("assess.type." + guess)) : uxText("assess.notSet")), TYPES.map((type) => /* @__PURE__ */ cpJsx("option", { key: type, value: type }, uxText("assess.type." + type))))), /* @__PURE__ */ cpJsx("td", null, editing ? /* @__PURE__ */ cpJsx("input", { type: "date", autoFocus: true, value: info.date || "", "aria-label": uxText("assess.col.date") + ": " + column.name, onBlur: () => setEditingDate(null), onKeyDown: (e) => {
+        if (e.key === "Enter" || e.key === "Escape") {
+          e.stopPropagation();
+          setEditingDate(null);
+        }
+      }, ...controlProps("ux.assess.date", (e) => onUpdate((d) => setInfo(d, column.id, { date: e.target.value || null })), column.id) }) : info.date ? /* @__PURE__ */ cpJsx("button", { type: "button", className: "cp-assess-quiet cp-assess-datetext", "aria-label": uxText("assess.changeDate") + ": " + column.name, ...actionProps("ux.assess.editDate", () => setEditingDate(column.id), column.id) }, cpRaw(displayDate(info.date))) : /* @__PURE__ */ cpJsx("button", { type: "button", className: "cp-assess-quiet cp-assess-add", "aria-label": uxText("assess.addDate") + ": " + column.name, ...actionProps("ux.assess.addDate", () => setEditingDate(column.id), column.id) }, uxText("assess.addDate"))), /* @__PURE__ */ cpJsx("td", null, chosen.length ? /* @__PURE__ */ cpJsx("div", { className: "cp-assess-lessons-cell" }, /* @__PURE__ */ cpJsx("div", { className: "cp-assess-summary" }, lessonSummary(chosen).map((g, i) => /* @__PURE__ */ cpJsx("span", { key: i, className: "cp-assess-chip", dir: "auto" }, /* @__PURE__ */ cpJsx("b", null, cpRaw(g.chapter)), cpRaw((g.chapter ? " \xB7 " : "") + g.span))), lessonSummary(chosen)[0]?.name && /* @__PURE__ */ cpJsx("span", { className: "cp-assess-chapter", dir: "auto" }, cpRaw(lessonSummary(chosen)[0].name)), /* @__PURE__ */ cpJsx("button", { type: "button", className: "cp-assess-quiet cp-assess-toggle", "aria-expanded": !!open[column.id], "aria-label": uxText(open[column.id] ? "assess.hideLessons" : "assess.showLessons"), title: uxText(open[column.id] ? "assess.hideLessons" : "assess.showLessons"), ...actionProps("ux.assess.showLessons", () => setOpen((o) => ({ ...o, [column.id]: !o[column.id] })), column.id) }, /* @__PURE__ */ cpJsx("svg", { "aria-hidden": "true", viewBox: "0 0 24 24", width: "16", height: "16", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round" }, /* @__PURE__ */ cpJsx("path", { d: open[column.id] ? "M6 15l6-6 6 6" : "M6 9l6 6 6-6" })))), open[column.id] && /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx("ul", { className: "cp-assess-chosen" }, chosen.map((l) => /* @__PURE__ */ cpJsx("li", { key: l.id, dir: "auto" }, cpRaw(lessonLabel(l))))), /* @__PURE__ */ cpJsx(UxButton, { id: "assess.lessons", context: column.id, disabled: !lessons.length, onClick: () => setPicking(column) }, uxText("assess.changeLessons")))) : /* @__PURE__ */ cpJsx("button", { type: "button", className: "cp-assess-quiet cp-assess-add", disabled: !lessons.length, title: lessons.length ? void 0 : uxText("assess.lessonsNone"), "aria-label": uxText("assess.chooseLessons") + ": " + column.name, ...actionProps("ux.assess.lessons", () => setPicking(column), column.id) }, uxText("assess.chooseLessons"))));
+    })))), /* @__PURE__ */ cpJsx("p", { className: "cp-assess-foot" }, uxText("assess.tableLead"))) : /* @__PURE__ */ cpJsx(EmptyState, { kind: "nothing", title: uxText("assess.noColumns") })), view === "lessons" && /* @__PURE__ */ cpJsx("section", { "aria-labelledby": "cp-assess-lessons", className: "cp-assess-view" }, /* @__PURE__ */ cpJsx("h2", { id: "cp-assess-lessons", className: "cp-assess-heading" }, uxText("assess.lessonsTitle")), /* @__PURE__ */ cpJsx("div", { className: "cp-assess-toolbar" }, summary, !importing && /* @__PURE__ */ cpJsx(UxButton, { id: "assess.import", onClick: () => {
       setImporting(true);
       setNotice("");
     } })), notice && /* @__PURE__ */ cpJsx("p", { role: "status", className: "cp-ai3-saved" }, notice), importing && /* @__PURE__ */ cpJsx(LessonImport, { doc, onUpdate, onDone: (n) => {
