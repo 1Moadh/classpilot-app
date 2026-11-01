@@ -49211,7 +49211,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     const segmentTotal = state2.mode === "segments" ? state2.segmentsMs[snapshot.segmentIndex] || 1 : snapshot.totalMs || 1, fraction = state2.mode === "stopwatch" ? snapshot.elapsedMs % 6e4 / 6e4 : Math.max(0, Math.min(1, snapshot.displayMs / segmentTotal)), C = 2 * Math.PI * 55;
     const status = snapshot.finished ? "" : state2.mode === "segments" ? t("timer.segment") + ": " + (snapshot.segmentIndex + 1) + " / " + state2.segmentsMs.length : "";
     const go = running ? "timer.pause" : state2.phase === "paused" ? "timer.resume" : "timer.start", canType = state2.mode === "countdown" && !running;
-    const chooseMode = (next) => updateProfile((p) => ({ ...p, timerSettings: { segmentsMinutes: [5, 15, 20], ...p.timerSettings, quizMode: next === "quiz" }, timerState: { ...idleTimer(next === "quiz" ? "countdown" : next, next === "quiz" ? 20 * 6e4 : 3e5), segmentsMs: next === "segments" ? (p.timerSettings?.segmentsMinutes?.length ? p.timerSettings.segmentsMinutes : [5, 15, 20]).map((n) => n * 6e4) : [] } }));
+    const chooseMode = (next) => updateProfile((p) => ({ ...p, timerSettings: { segmentsMinutes: [5, 15, 20], ...p.timerSettings, quizMode: next === "quiz" }, timerState: { ...idleTimer(next === "quiz" ? "countdown" : next, next === "quiz" ? 30 * 6e4 : 3e5), segmentsMs: next === "segments" ? (p.timerSettings?.segmentsMinutes?.length ? p.timerSettings.segmentsMinutes : [5, 15, 20]).map((n) => n * 6e4) : [] } }));
     const applyTyped = () => {
       const ms = parseClockEdit(editing);
       if (ms == null) {
