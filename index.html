@@ -1667,6 +1667,80 @@ td[data-cp-att],th[data-cp-att]{background:var(--cp-att-bg)!important;box-shadow
  .cp-settings-home.cp-settings-cards.cp-settings-floating {display:none!important;}
  .cp-settings-floating::backdrop {display:none!important;}
 }
+/* Owner (1 November 2026, approved mock-up): Observations — roster | recording | timeline; Student notes list + editor. */
+.cp-obs2{display:grid;grid-template-columns:260px minmax(0,1fr) minmax(300px,380px);gap:16px;align-items:start}
+@media(max-width:1180px){.cp-obs2{grid-template-columns:240px minmax(0,1fr)}.cp-obs-side{grid-column:1/-1}}
+@media(max-width:760px){.cp-obs2{grid-template-columns:1fr}}
+.cp-obs-roster,.cp-obs-record,.cp-obs-side{background:var(--cp-surface);border:1px solid var(--cp-border);border-radius:12px}
+.cp-obs-roster{padding:12px;display:flex;flex-direction:column;max-height:calc(100vh - 210px);position:sticky;top:12px}
+.cp-obs-search input{box-sizing:border-box;width:100%;height:34px;padding:0 10px;border:1px solid var(--cp-border);border-radius:8px;background:var(--cp-background);color:var(--cp-text);font:inherit;font-size:var(--cp-fs-ui)}
+.cp-obs-modes{display:flex;gap:2px;padding:3px;margin:10px 0 8px;border-radius:9px;background:var(--cp-active)}
+.cp-obs-modes button{all:unset;flex:1;text-align:center;padding:5px 4px;border-radius:7px;font-weight:600;font-size:var(--cp-fs-caption);color:var(--cp-muted);cursor:pointer}
+.cp-obs-modes button[aria-pressed=true]{background:var(--cp-surface);color:var(--cp-text);box-shadow:0 1px 2px rgba(0,0,0,.12)}
+.cp-obs-modes button:focus-visible{outline:2px solid var(--cp-focus,var(--ux-primary))}
+.cp-obs-list{list-style:none;margin:0;padding:0;overflow:auto;flex:1;min-height:120px}
+.cp-obs-st{all:unset;box-sizing:border-box;display:flex;align-items:center;gap:9px;width:100%;padding:6px 8px;border-radius:8px;cursor:pointer;font-size:var(--cp-fs-ui)}
+.cp-obs-st:hover{background:var(--cp-active)}.cp-obs-st:focus-visible{outline:2px solid var(--cp-focus,var(--ux-primary))}
+.cp-obs-st[aria-pressed=true],.cp-obs-st[data-on=true]{background:#f5e7c2;font-weight:600}
+:root[data-cp-theme=dark] .cp-obs-st[aria-pressed=true],:root[data-cp-theme=dark] .cp-obs-st[data-on=true]{background:#3a2f17}
+.cp-obs-st input{margin:0;flex:none}.cp-obs-st small{margin-inline-start:auto;color:var(--cp-muted);font-size:11px;font-weight:600}
+.cp-obs-av{flex:none;width:26px;height:26px;border-radius:50%;display:inline-grid;place-items:center;background:var(--cp-active);color:var(--cp-muted);font-size:10px;font-weight:600}
+.cp-obs-none,.cp-obs-rosterfoot{color:var(--cp-muted);font-size:var(--cp-fs-caption)}.cp-obs-rosterfoot{margin:8px 0 0}
+.cp-obs-record{padding:16px;display:grid;gap:12px}
+.cp-obs-targetbar{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:10px 12px;border-radius:10px;background:#fbf4e3;border:1px solid #efdcae}
+:root[data-cp-theme=dark] .cp-obs-targetbar{background:#2c2618;border-color:#5a4720}
+.cp-obs-targetbar>span:first-child{color:var(--cp-muted)}.cp-obs-targetbar em{color:var(--cp-muted)}
+.cp-obs-chip{display:inline-flex;align-items:center;gap:4px;height:28px;padding-inline:10px 4px;border-radius:999px;background:var(--cp-surface);border:1px solid var(--cp-border);font-weight:600}
+.cp-obs-chip button{all:unset;display:inline-grid;place-items:center;width:20px;height:20px;border-radius:50%;cursor:pointer;color:var(--cp-muted)}.cp-obs-chip button:hover{background:var(--cp-active)}.cp-obs-chip button:focus-visible{outline:2px solid var(--cp-focus,var(--ux-primary))}
+.cp-obs-gap{flex:1}.cp-obs-targetbar label{flex-direction:row!important;align-items:center}.cp-obs-targetbar label>span{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.cp-obs-palette{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.cp-obs-palette .cp-cmd{min-height:60px!important;border-radius:12px!important;font-size:var(--cp-fs-label)!important;font-weight:600!important;display:inline-flex!important;align-items:center;justify-content:center;gap:8px;border:1px solid rgba(0,0,0,.08)!important}
+.cp-obs-palette .cp-cmd:disabled{opacity:.45}
+.cp-obs-tagicon{display:inline-grid;place-items:center;width:20px;height:20px;border-radius:50%;background:rgba(255,255,255,.55)}
+.cp-obs-note{display:flex;gap:8px;align-items:end}.cp-obs-note>label{flex:1}
+.cp-obs-hint{margin:-4px 0 0;color:var(--cp-muted);font-size:var(--cp-fs-caption)}
+.cp-obs-reason{padding:12px;border-radius:10px;background:#fdf3df;border:1px solid #e9c98a;display:grid;gap:8px}
+:root[data-cp-theme=dark] .cp-obs-reason{background:#3a2a0e;border-color:#6b4c14}
+.cp-obs-reasonhead{display:flex;align-items:center;gap:10px}.cp-obs-reasonhead b{flex:1}
+.cp-obs-quiet{all:unset;cursor:pointer;color:var(--cp-link,#7a5300);font-weight:600;padding:4px 8px;border-radius:6px}.cp-obs-quiet:hover{background:var(--cp-active)}.cp-obs-quiet:focus-visible{outline:2px solid var(--cp-focus,var(--ux-primary))}
+.cp-obs-tools{display:flex;gap:8px}
+.cp-obs-tags-edit{padding:14px;border:1px solid var(--cp-border);border-radius:10px;background:var(--cp-background)}.cp-obs-tags-edit h2{margin:0 0 10px;font-size:var(--cp-fs-label)}
+.cp-obs-tag-row{display:flex;flex-wrap:wrap;gap:10px;align-items:end;margin-block:8px}
+.cp-obs-side{padding:14px}.cp-obs-side header{display:flex;align-items:baseline;gap:10px;margin-bottom:6px}.cp-obs-side h2{margin:0;font-family:var(--cp-font-display);font-size:var(--cp-fs-section,18px)}.cp-obs-side header>span{margin-inline-start:auto;color:var(--cp-muted);font-size:var(--cp-fs-caption)}
+.cp-obs-entries{list-style:none;margin:0;padding:0}
+.cp-obs-entry{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:10px;align-items:start;padding:10px 0;border-top:1px solid var(--cp-border)}.cp-obs-entry:first-child{border-top:0}
+.cp-obs-when{color:var(--cp-muted);font-size:var(--cp-fs-caption);font-variant-numeric:tabular-nums;white-space:nowrap;padding-top:2px}
+.cp-obs-what{display:flex;flex-wrap:wrap;gap:6px;align-items:center}.cp-obs-notetext{flex-basis:100%;color:var(--cp-muted);font-size:var(--cp-fs-body)}
+.cp-obs-tt{font-size:11.5px;font-weight:600;padding:2px 8px;border-radius:999px;background:var(--cp-active);color:var(--cp-text)}
+.cp-obs-tt[data-kind=positive]{background:#dcfce7;color:#14532d}.cp-obs-tt[data-kind=support]{background:#fef3c7;color:#713f12}
+.cp-obs-badge{font-size:11px;font-weight:600;padding:2px 8px;border-radius:999px;background:var(--cp-active);color:var(--cp-muted)}.cp-obs-badge[data-kind=positive]{background:#e6f4ea;color:#14532d}
+.cp-obs-menuwrap{position:relative}
+.cp-obs-more{all:unset;display:grid;place-items:center;width:28px;height:28px;border-radius:7px;cursor:pointer;color:var(--cp-muted)}.cp-obs-more:hover,.cp-obs-more[aria-expanded=true]{background:var(--cp-active);color:var(--cp-text)}.cp-obs-more:focus-visible{outline:2px solid var(--cp-focus,var(--ux-primary))}
+.cp-obs-menu{position:absolute;inset-inline-end:0;top:32px;z-index:30;min-width:220px;padding:6px;border:1px solid var(--cp-border);border-radius:10px;background:var(--cp-surface);box-shadow:0 12px 30px rgba(0,0,0,.18);display:grid}
+.cp-obs-menu>button{all:unset!important;box-sizing:border-box!important;display:block!important;padding:8px 10px!important;border-radius:7px!important;cursor:pointer!important;font-size:var(--cp-fs-ui)!important;color:var(--cp-text)!important}
+.cp-obs-menu>button:hover:not(:disabled){background:var(--cp-active)!important}.cp-obs-menu>button:disabled{color:var(--cp-muted)!important;opacity:.6;cursor:default!important}.cp-obs-menu>button:focus-visible{outline:2px solid var(--cp-focus,var(--ux-primary))!important}
+.cp-obs-menu>.cp-obs-danger{color:#b91c1c!important;border-top:1px solid var(--cp-border)!important;margin-top:4px!important;border-radius:0 0 7px 7px!important}
+.cp-obs-editbox{grid-column:1/-1;display:grid;gap:8px;padding:10px;border:1px solid var(--cp-border);border-radius:10px;background:var(--cp-background)}
+.cp-obs-editfoot{display:flex;justify-content:flex-end;gap:8px}.cp-obs-primary{background:var(--ux-primary)!important;color:var(--cp-primary-fg)!important;border-color:var(--ux-primary)!important}
+.cp-obs-empty{color:var(--cp-muted);font-size:var(--cp-fs-body);margin:8px 0 0}
+/* Student notes */
+.cp-notes-due{display:flex;align-items:center;gap:10px;margin:var(--cp-sp-4,14px) var(--cp-sp-4,14px) 0;padding:10px 12px;border-radius:10px;background:#fdf3df;border:1px solid #e9c98a}
+:root[data-cp-theme=dark] .cp-notes-due{background:#3a2a0e;border-color:#6b4c14}
+.cp-notes-due>span{flex:1;color:var(--cp-muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cp-notes-items{padding:0 var(--cp-sp-4,14px) var(--cp-sp-4,14px)}
+.cp-notes-rowhead{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.cp-notes-rowhead small{color:var(--cp-muted)}
+.cp-notes-pin{display:inline-flex;color:var(--cp-gold,#c8961e)}
+.cp-notes-badge{margin-inline-start:auto;font-size:11px;font-weight:600;padding:2px 8px;border-radius:999px;background:var(--cp-active);color:var(--cp-muted)}
+.cp-notes-badge[data-state=due]{background:#fdecd2;color:#7c2d12}.cp-notes-badge[data-state=done]{background:#e6f4ea;color:#14532d}
+.cp-notes-link{all:unset;cursor:pointer;color:var(--cp-link,#7a5300);font-weight:600;text-decoration:underline;text-underline-offset:2px}.cp-notes-link:focus-visible{outline:2px solid var(--cp-focus,var(--ux-primary))}
+.cp-notes-gap{flex:1}
+.cp-notes-follow{display:flex;flex-wrap:wrap;align-items:end;gap:12px}
+.cp-notes-switch{display:inline-flex;align-items:center;gap:8px;min-height:34px;font-size:var(--cp-fs-ui);cursor:pointer}
+.cp-notes-switch input{appearance:none;margin:0;width:34px;height:20px;border-radius:10px;background:var(--cp-border);position:relative;cursor:pointer;flex:none}
+.cp-notes-switch input::after{content:"";position:absolute;inset-block-start:2px;inset-inline-start:2px;width:16px;height:16px;border-radius:50%;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.25);transition:inset-inline-start .15s}
+.cp-notes-switch input:checked{background:var(--cp-gold,#c8961e)}.cp-notes-switch input:checked::after{inset-inline-start:16px}.cp-notes-switch input:focus-visible{outline:2px solid var(--cp-focus,var(--ux-primary));outline-offset:2px}
+.cp-notes-obs{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:10px 12px;border-radius:10px;background:var(--cp-active)}.cp-notes-obs>span:first-child{color:var(--cp-muted)}.cp-notes-obs em{color:var(--cp-muted)}.cp-notes-obs .cp-notes-link{margin-inline-start:auto}
+.cp-obs-palette .cp-cmd{flex-direction:row!important;flex-wrap:nowrap!important;text-align:start!important;padding:8px 12px!important;line-height:1.2!important}
 /* M56 design foundations (owner-supplied Master Implementation Brief, M56; design report §7–§8).
    One set of tokens for the frame and the new modules. Protected Gradebook views (Marks, Groups, Behaviour,
    Adjustments, Analysis, the original wheel, the Settings drawer and the class manager) do not use them. */
@@ -6416,8 +6490,8 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.phrases.kind": "Phrase-bank purpose",
     "ux.phrases.text": "Teacher phrases, one per line",
     "ux.phrases.save": "Save teacher comment phrases",
-    "ux.lessonActions.title": "Reviewed lesson actions",
-    "ux.lessonActions.hint": "Use the selected learners and the editable note above. Attendance filters use the active lesson only; without an active lesson present/absent filters are empty. Applying a reviewed action creates one shared undo step.",
+    "ux.lessonActions.title": "Apply a lesson action\u2026",
+    "ux.lessonActions.hint": "Applies an action to the students chosen above, using the note above. You will see a preview first; one Undo reverses it.",
     "ux.lessonActions.kind": "Bulk action type",
     "ux.lessonActions.note": "Record observation note",
     "ux.lessonActions.participation": "Participation award",
@@ -7121,8 +7195,8 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.att.lead": "Mark who is here, then go on with the lesson.",
     "ux.att.then": "After attendance",
     "ux.att.marked": "marked",
-    "ux.lead.observations": "Quick notes on what students do in class.",
-    "ux.lead.notes": "Private notes about one student.",
+    "ux.lead.observations": "What students do in class \u2014 for your reports, not a score.",
+    "ux.lead.notes": "Private notes about one student \u2014 only you see them.",
     "ux.lead.plans": "Plan your lessons week by week.",
     "ux.lead.certificates": "Celebrate a student with a certificate.",
     "ux.lead.workspace": "Your classes, files and backups.",
@@ -7641,7 +7715,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.newClass.label": "Class name",
     "ux.newClass.confirm": "Choose where to save",
     "ux.obs.reasonTitle": "Add a reason from the code of conduct for {who}",
-    "ux.obs.reasonDone": "No reason needed",
+    "ux.obs.reasonDone": "Skip",
     "ux.obs.reasonAdded": "Reason added.",
     "ux.bv.find": "Find a student",
     "ux.bv.findHint": "Type a name to highlight the card; absent students today are dimmed.",
@@ -7875,7 +7949,56 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.tb.classSettings": "Class settings",
     "ux.att.remindTitle": "Reminder",
     "ux.settings.classButton": "Class",
-    "ux.settings.classButtonLabel": "Class settings"
+    "ux.settings.classButtonLabel": "Class settings",
+    "ux.obs.search": "Search students",
+    "ux.obs.modes": "Choose students",
+    "ux.obs.pick": "Choose this student",
+    "ux.obs.mode.one": "One",
+    "ux.obs.mode.several": "Several",
+    "ux.obs.mode.class": "Whole class",
+    "ux.obs.weekCount": "numbers = observations this week",
+    "ux.obs.noMatch": "No student matches.",
+    "ux.obs.recordingFor": "Recording for:",
+    "ux.obs.chooseFirst": "choose a student on the left",
+    "ux.obs.clearChoice": "Clear the choice",
+    "ux.obs.remove": "Remove {who}",
+    "ux.obs.saveNoteOnly": "Save note only",
+    "ux.obs.noteHint": "The note goes with your next tap. Use \u201CSave note only\u201D to record a note with no button.",
+    "ux.obs.why": "Why \u201C{tag}\u201D for {who}?",
+    "ux.obs.recordedTag": "Recorded \u201C{tag}\u201D for {who}",
+    "ux.obs.recordedNote": "Note recorded for {who}",
+    "ux.obs.summary": "{p} positive \xB7 {s} support",
+    "ux.obs.justRecorded": "Just recorded",
+    "ux.obs.today": "Today",
+    "ux.obs.nothingToday": "Nothing recorded today yet.",
+    "ux.obs.pickForTimeline": "Choose one student to see their full timeline.",
+    "ux.obs.awarded": "Awarded participation",
+    "ux.obs.deducted": "Behaviour deducted",
+    "ux.obs.more": "More actions",
+    "ux.obs.edit": "Edit",
+    "ux.obs.cancelEdit": "Cancel",
+    "ux.obs.saveEdit": "Save",
+    "ux.obs.convert.participation": "Award participation",
+    "ux.obs.convert.behaviour": "Deduct behaviour",
+    "ux.obs.convertOnly.participation": "Only for positive observations",
+    "ux.obs.convertOnly.behaviour": "Only for observations that need support",
+    "ux.obs.convertBody.participation": "Adds a participation point in the marks sheet, dated {date}.",
+    "ux.obs.convertBody.behaviour": "Deducts from behaviour in the marks sheet, dated {date}.",
+    "ux.notes.save": "Save changes",
+    "ux.notes.cancelEdit": "Cancel",
+    "ux.notes.showDue": "Show",
+    "ux.notes.openTimeline": "Open timeline \u203A",
+    "ux.notes.remind": "Remind me to follow up",
+    "ux.notes.recentObs": "Recent observations:",
+    "ux.notes.noteOnly": "Note",
+    "ux.notes.noObs": "none yet",
+    "ux.notes.searchNames": "Search notes or names",
+    "ux.notes.allStudents": "Show all students",
+    "ux.notes.due.one": "{n} follow-up due",
+    "ux.notes.due.two": "{n} follow-ups due",
+    "ux.notes.due.few": "{n} follow-ups due",
+    "ux.notes.due.many": "{n} follow-ups due",
+    "ux.notes.due.other": "{n} follow-ups due"
   };
 
   // src/i18n/plain-copy.js
@@ -10682,8 +10805,8 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "shell.termYear": "\u0627\u0644\u0641\u0635\u0644 / \u0627\u0644\u0639\u0627\u0645",
     "shell.profile": "\u0645\u0644\u0641 \u0627\u0644\u0645\u0639\u0644\u0651\u0645",
     "shell.attendance": "\u0627\u0644\u062D\u0636\u0648\u0631",
-    "shell.observations": "\u0627\u0644\u0645\u0644\u0627\u062D\u0638\u0627\u062A \u0627\u0644\u064A\u0648\u0645\u064A\u0629",
-    "shell.notes": "\u0645\u0644\u0627\u062D\u0638\u0627\u062A \u0627\u0644\u0637\u0644\u0627\u0628",
+    "shell.observations": "\u0627\u0644\u0645\u0634\u0627\u0647\u062F\u0627\u062A \u0627\u0644\u0635\u0641\u064A\u0629",
+    "shell.notes": "\u0645\u0644\u0627\u062D\u0638\u0627\u062A \u062E\u0627\u0635\u0629",
     "shell.timetable": "\u0627\u0644\u062C\u062F\u0648\u0644 \u0648\u0627\u0644\u062A\u0642\u0648\u064A\u0645 \u0627\u0644\u0645\u062F\u0631\u0633\u064A",
     "shell.bell": "\u0627\u0644\u062C\u0631\u0633",
     "shell.timer": "\u0627\u0644\u0645\u0624\u0642\u0651\u062A",
@@ -11997,8 +12120,8 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.phrases.kind": "\u063A\u0631\u0636 \u0645\u0643\u062A\u0628\u0629 \u0627\u0644\u0639\u0628\u0627\u0631\u0627\u062A",
     "ux.phrases.text": "\u0639\u0628\u0627\u0631\u0627\u062A \u0627\u0644\u0645\u0639\u0644\u0645\u060C \u0648\u0627\u062D\u062F\u0629 \u0641\u064A \u0643\u0644 \u0633\u0637\u0631",
     "ux.phrases.save": "\u062D\u0641\u0638 \u0639\u0628\u0627\u0631\u0627\u062A \u062A\u0639\u0644\u064A\u0642\u0627\u062A \u0627\u0644\u0645\u0639\u0644\u0645",
-    "ux.lessonActions.title": "\u0625\u062C\u0631\u0627\u0621\u0627\u062A \u0627\u0644\u062D\u0635\u0629 \u0628\u0639\u062F \u0627\u0644\u0645\u0631\u0627\u062C\u0639\u0629",
-    "ux.lessonActions.hint": "\u0627\u0633\u062A\u062E\u062F\u0645 \u0627\u0644\u0637\u0644\u0628\u0629 \u0627\u0644\u0645\u062D\u062F\u062F\u064A\u0646 \u0648\u0627\u0644\u0645\u0644\u0627\u062D\u0638\u0629 \u0627\u0644\u0642\u0627\u0628\u0644\u0629 \u0644\u0644\u062A\u0639\u062F\u064A\u0644 \u0623\u0639\u0644\u0627\u0647. \u062A\u0633\u062A\u062E\u062F\u0645 \u0645\u0631\u0634\u062D\u0627\u062A \u0627\u0644\u062D\u0636\u0648\u0631 \u0627\u0644\u062D\u0635\u0629 \u0627\u0644\u0646\u0634\u0637\u0629 \u0641\u0642\u0637\u061B \u0648\u062A\u0628\u0642\u0649 \u0641\u0627\u0631\u063A\u0629 \u062F\u0648\u0646 \u062D\u0635\u0629 \u0646\u0634\u0637\u0629. \u064A\u0646\u0634\u0626 \u0627\u0644\u062A\u0637\u0628\u064A\u0642 \u0628\u0639\u062F \u0627\u0644\u0645\u0631\u0627\u062C\u0639\u0629 \u062E\u0637\u0648\u0629 \u062A\u0631\u0627\u062C\u0639 \u0645\u0634\u062A\u0631\u0643\u0629 \u0648\u0627\u062D\u062F\u0629.",
+    "ux.lessonActions.title": "\u062A\u0637\u0628\u064A\u0642 \u0625\u062C\u0631\u0627\u0621 \u0639\u0644\u0649 \u0627\u0644\u062D\u0635\u0629\u2026",
+    "ux.lessonActions.hint": "\u064A\u0637\u0628\u0651\u0642 \u0625\u062C\u0631\u0627\u0621\u064B \u0639\u0644\u0649 \u0627\u0644\u0637\u0644\u0627\u0628 \u0627\u0644\u0645\u062E\u062A\u0627\u0631\u064A\u0646 \u0623\u0639\u0644\u0627\u0647 \u0645\u0639 \u0627\u0644\u0645\u0644\u0627\u062D\u0638\u0629 \u0627\u0644\u0645\u0643\u062A\u0648\u0628\u0629. \u0633\u062A\u0638\u0647\u0631 \u0645\u0639\u0627\u064A\u0646\u0629 \u0623\u0648\u0644\u064B\u0627\u060C \u0648\u062A\u0631\u0627\u062C\u0639 \u0648\u0627\u062D\u062F \u064A\u0644\u063A\u064A\u0647.",
     "ux.lessonActions.kind": "\u0646\u0648\u0639 \u0627\u0644\u0625\u062C\u0631\u0627\u0621 \u0627\u0644\u062C\u0645\u0627\u0639\u064A",
     "ux.lessonActions.note": "\u062A\u0633\u062C\u064A\u0644 \u0645\u0644\u0627\u062D\u0638\u0629 \u0635\u0641\u064A\u0629",
     "ux.lessonActions.participation": "\u0645\u0646\u062D \u0627\u0644\u0645\u0634\u0627\u0631\u0643\u0629",
@@ -12702,8 +12825,8 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.att.lead": "\u0633\u062C\u0651\u0644 \u0627\u0644\u062D\u0627\u0636\u0631\u064A\u0646\u060C \u062B\u0645 \u062A\u0627\u0628\u0639 \u0627\u0644\u062D\u0635\u0629.",
     "ux.att.then": "\u0628\u0639\u062F \u0627\u0644\u062D\u0636\u0648\u0631",
     "ux.att.marked": "\u0645\u0633\u062C\u064E\u0651\u0644",
-    "ux.lead.observations": "\u0645\u0644\u0627\u062D\u0638\u0627\u062A \u0633\u0631\u064A\u0639\u0629 \u0639\u0645\u0651\u0627 \u064A\u0641\u0639\u0644\u0647 \u0627\u0644\u0637\u0644\u0627\u0628 \u0641\u064A \u0627\u0644\u062D\u0635\u0629.",
-    "ux.lead.notes": "\u0645\u0644\u0627\u062D\u0638\u0627\u062A \u062E\u0627\u0635\u0629 \u0639\u0646 \u0637\u0627\u0644\u0628 \u0648\u0627\u062D\u062F.",
+    "ux.lead.observations": "\u0645\u0627 \u064A\u0641\u0639\u0644\u0647 \u0627\u0644\u0637\u0644\u0627\u0628 \u0641\u064A \u0627\u0644\u062D\u0635\u0629 \u2014 \u0644\u062A\u0642\u0627\u0631\u064A\u0631\u0643\u060C \u0648\u0644\u064A\u0633 \u062F\u0631\u062C\u0629.",
+    "ux.lead.notes": "\u0645\u0644\u0627\u062D\u0638\u0627\u062A \u062E\u0627\u0635\u0629 \u0639\u0646 \u0637\u0627\u0644\u0628 \u0648\u0627\u062D\u062F \u2014 \u0644\u0627 \u064A\u0631\u0627\u0647\u0627 \u063A\u064A\u0631\u0643.",
     "ux.lead.plans": "\u062E\u0637\u0651\u0637 \u062F\u0631\u0648\u0633\u0643 \u0623\u0633\u0628\u0648\u0639\u064B\u0627 \u0628\u0623\u0633\u0628\u0648\u0639.",
     "ux.lead.certificates": "\u0643\u0631\u0651\u0645 \u0637\u0627\u0644\u0628\u064B\u0627 \u0628\u0634\u0647\u0627\u062F\u0629.",
     "ux.lead.workspace": "\u0634\u0639\u0628\u0643 \u0648\u0645\u0644\u0641\u0627\u062A\u0643 \u0648\u0646\u0633\u062E\u0643 \u0627\u0644\u0627\u062D\u062A\u064A\u0627\u0637\u064A\u0629.",
@@ -13222,7 +13345,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.newClass.label": "\u0627\u0633\u0645 \u0627\u0644\u0635\u0641",
     "ux.newClass.confirm": "\u0627\u062E\u062A\u064A\u0627\u0631 \u0645\u0643\u0627\u0646 \u0627\u0644\u062D\u0641\u0638",
     "ux.obs.reasonTitle": "\u0623\u0636\u0641 \u0633\u0628\u0628\u064B\u0627 \u0645\u0646 \u0644\u0627\u0626\u062D\u0629 \u0627\u0644\u0633\u0644\u0648\u0643 \u0644\u0640 {who}",
-    "ux.obs.reasonDone": "\u0644\u0627 \u062D\u0627\u062C\u0629 \u0625\u0644\u0649 \u0633\u0628\u0628",
+    "ux.obs.reasonDone": "\u062A\u062E\u0637\u064D\u0651",
     "ux.obs.reasonAdded": "\u0623\u064F\u0636\u064A\u0641 \u0627\u0644\u0633\u0628\u0628.",
     "ux.bv.find": "\u0627\u0628\u062D\u062B \u0639\u0646 \u0637\u0627\u0644\u0628",
     "ux.bv.findHint": "\u0627\u0643\u062A\u0628 \u0627\u0633\u0645\u064B\u0627 \u0644\u0625\u0628\u0631\u0627\u0632 \u0627\u0644\u0628\u0637\u0627\u0642\u0629\u061B \u0627\u0644\u0637\u0644\u0628\u0629 \u0627\u0644\u063A\u0627\u0626\u0628\u0648\u0646 \u0627\u0644\u064A\u0648\u0645 \u0628\u0627\u0647\u062A\u0648\u0646.",
@@ -13456,7 +13579,56 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.tb.classSettings": "\u0625\u0639\u062F\u0627\u062F\u0627\u062A \u0627\u0644\u0635\u0641",
     "ux.att.remindTitle": "\u0627\u0644\u062A\u0630\u0643\u064A\u0631",
     "ux.settings.classButton": "\u0627\u0644\u0635\u0641",
-    "ux.settings.classButtonLabel": "\u0625\u0639\u062F\u0627\u062F\u0627\u062A \u0627\u0644\u0635\u0641"
+    "ux.settings.classButtonLabel": "\u0625\u0639\u062F\u0627\u062F\u0627\u062A \u0627\u0644\u0635\u0641",
+    "ux.obs.search": "\u0627\u0628\u062D\u062B \u0639\u0646 \u0637\u0627\u0644\u0628",
+    "ux.obs.modes": "\u0627\u062E\u062A\u064A\u0627\u0631 \u0627\u0644\u0637\u0644\u0627\u0628",
+    "ux.obs.pick": "\u0627\u062E\u062A\u064A\u0627\u0631 \u0647\u0630\u0627 \u0627\u0644\u0637\u0627\u0644\u0628",
+    "ux.obs.mode.one": "\u0637\u0627\u0644\u0628 \u0648\u0627\u062D\u062F",
+    "ux.obs.mode.several": "\u0639\u062F\u0629 \u0637\u0644\u0627\u0628",
+    "ux.obs.mode.class": "\u0627\u0644\u0635\u0641 \u0643\u0644\u0647",
+    "ux.obs.weekCount": "\u0627\u0644\u0623\u0631\u0642\u0627\u0645 = \u0645\u0634\u0627\u0647\u062F\u0627\u062A \u0647\u0630\u0627 \u0627\u0644\u0623\u0633\u0628\u0648\u0639",
+    "ux.obs.noMatch": "\u0644\u0627 \u064A\u0648\u062C\u062F \u0637\u0627\u0644\u0628 \u0645\u0637\u0627\u0628\u0642.",
+    "ux.obs.recordingFor": "\u0627\u0644\u062A\u0633\u062C\u064A\u0644 \u0644\u0640:",
+    "ux.obs.chooseFirst": "\u0627\u062E\u062A\u0631 \u0637\u0627\u0644\u0628\u064B\u0627 \u0645\u0646 \u0627\u0644\u0642\u0627\u0626\u0645\u0629",
+    "ux.obs.clearChoice": "\u0625\u0644\u063A\u0627\u0621 \u0627\u0644\u0627\u062E\u062A\u064A\u0627\u0631",
+    "ux.obs.remove": "\u0625\u0632\u0627\u0644\u0629 {who}",
+    "ux.obs.saveNoteOnly": "\u062D\u0641\u0638 \u0627\u0644\u0645\u0644\u0627\u062D\u0638\u0629 \u0641\u0642\u0637",
+    "ux.obs.noteHint": "\u062A\u064F\u0631\u0641\u0642 \u0627\u0644\u0645\u0644\u0627\u062D\u0638\u0629 \u0628\u0627\u0644\u0632\u0631 \u0627\u0644\u0630\u064A \u062A\u0646\u0642\u0631\u0647 \u0628\u0639\u062F\u0647\u0627. \u0627\u0633\u062A\u062E\u062F\u0645 \xAB\u062D\u0641\u0638 \u0627\u0644\u0645\u0644\u0627\u062D\u0638\u0629 \u0641\u0642\u0637\xBB \u0644\u062A\u0633\u062C\u064A\u0644 \u0645\u0644\u0627\u062D\u0638\u0629 \u0628\u0644\u0627 \u0632\u0631.",
+    "ux.obs.why": "\u0644\u0645\u0627\u0630\u0627 \xAB{tag}\xBB \u0644\u0640 {who}\u061F",
+    "ux.obs.recordedTag": "\u0633\u064F\u062C\u0651\u0644 \xAB{tag}\xBB \u0644\u0640 {who}",
+    "ux.obs.recordedNote": "\u0633\u064F\u062C\u0651\u0644\u062A \u0627\u0644\u0645\u0644\u0627\u062D\u0638\u0629 \u0644\u0640 {who}",
+    "ux.obs.summary": "{p} \u0625\u064A\u062C\u0627\u0628\u064A\u0629 \xB7 {s} \u062A\u062D\u062A\u0627\u062C \u062F\u0639\u0645\u064B\u0627",
+    "ux.obs.justRecorded": "\u0633\u064F\u062C\u0651\u0644 \u0644\u0644\u062A\u0648",
+    "ux.obs.today": "\u0627\u0644\u064A\u0648\u0645",
+    "ux.obs.nothingToday": "\u0644\u0645 \u064A\u064F\u0633\u062C\u064E\u0651\u0644 \u0634\u064A\u0621 \u0627\u0644\u064A\u0648\u0645 \u0628\u0639\u062F.",
+    "ux.obs.pickForTimeline": "\u0627\u062E\u062A\u0631 \u0637\u0627\u0644\u0628\u064B\u0627 \u0648\u0627\u062D\u062F\u064B\u0627 \u0644\u062A\u0631\u0649 \u0633\u062C\u0644\u0647 \u0643\u0627\u0645\u0644\u064B\u0627.",
+    "ux.obs.awarded": "\u0645\u064F\u0646\u062D\u062A \u0646\u0642\u0637\u0629 \u0645\u0634\u0627\u0631\u0643\u0629",
+    "ux.obs.deducted": "\u062E\u064F\u0635\u0645 \u0645\u0646 \u0627\u0644\u0633\u0644\u0648\u0643",
+    "ux.obs.more": "\u0625\u062C\u0631\u0627\u0621\u0627\u062A \u0623\u062E\u0631\u0649",
+    "ux.obs.edit": "\u062A\u0639\u062F\u064A\u0644",
+    "ux.obs.cancelEdit": "\u0625\u0644\u063A\u0627\u0621",
+    "ux.obs.saveEdit": "\u062D\u0641\u0638",
+    "ux.obs.convert.participation": "\u0645\u0646\u062D \u0646\u0642\u0637\u0629 \u0645\u0634\u0627\u0631\u0643\u0629",
+    "ux.obs.convert.behaviour": "\u062E\u0635\u0645 \u0645\u0646 \u0627\u0644\u0633\u0644\u0648\u0643",
+    "ux.obs.convertOnly.participation": "\u0644\u0644\u0645\u0634\u0627\u0647\u062F\u0627\u062A \u0627\u0644\u0625\u064A\u062C\u0627\u0628\u064A\u0629 \u0641\u0642\u0637",
+    "ux.obs.convertOnly.behaviour": "\u0644\u0644\u0645\u0634\u0627\u0647\u062F\u0627\u062A \u0627\u0644\u062A\u064A \u062A\u062D\u062A\u0627\u062C \u062F\u0639\u0645\u064B\u0627 \u0641\u0642\u0637",
+    "ux.obs.convertBody.participation": "\u062A\u064F\u0636\u0627\u0641 \u0646\u0642\u0637\u0629 \u0645\u0634\u0627\u0631\u0643\u0629 \u0641\u064A \u0633\u062C\u0644 \u0627\u0644\u062F\u0631\u062C\u0627\u062A \u0628\u062A\u0627\u0631\u064A\u062E {date}.",
+    "ux.obs.convertBody.behaviour": "\u064A\u064F\u062E\u0635\u0645 \u0645\u0646 \u0627\u0644\u0633\u0644\u0648\u0643 \u0641\u064A \u0633\u062C\u0644 \u0627\u0644\u062F\u0631\u062C\u0627\u062A \u0628\u062A\u0627\u0631\u064A\u062E {date}.",
+    "ux.notes.save": "\u062D\u0641\u0638 \u0627\u0644\u062A\u063A\u064A\u064A\u0631\u0627\u062A",
+    "ux.notes.cancelEdit": "\u0625\u0644\u063A\u0627\u0621",
+    "ux.notes.showDue": "\u0639\u0631\u0636",
+    "ux.notes.openTimeline": "\u0641\u062A\u062D \u0627\u0644\u0633\u062C\u0644 \u203A",
+    "ux.notes.remind": "\u0630\u0643\u0651\u0631\u0646\u064A \u0628\u0627\u0644\u0645\u062A\u0627\u0628\u0639\u0629",
+    "ux.notes.recentObs": "\u0627\u0644\u0645\u0634\u0627\u0647\u062F\u0627\u062A \u0627\u0644\u0623\u062E\u064A\u0631\u0629:",
+    "ux.notes.noteOnly": "\u0645\u0644\u0627\u062D\u0638\u0629",
+    "ux.notes.noObs": "\u0644\u0627 \u0634\u064A\u0621 \u0628\u0639\u062F",
+    "ux.notes.searchNames": "\u0627\u0628\u062D\u062B \u0641\u064A \u0627\u0644\u0645\u0644\u0627\u062D\u0638\u0627\u062A \u0623\u0648 \u0627\u0644\u0623\u0633\u0645\u0627\u0621",
+    "ux.notes.allStudents": "\u0639\u0631\u0636 \u0643\u0644 \u0627\u0644\u0637\u0644\u0627\u0628",
+    "ux.notes.due.one": "\u0645\u062A\u0627\u0628\u0639\u0629 \u0648\u0627\u062D\u062F\u0629 \u0645\u0633\u062A\u062D\u0642\u0629",
+    "ux.notes.due.two": "\u0645\u062A\u0627\u0628\u0639\u062A\u0627\u0646 \u0645\u0633\u062A\u062D\u0642\u062A\u0627\u0646",
+    "ux.notes.due.few": "{n} \u0645\u062A\u0627\u0628\u0639\u0627\u062A \u0645\u0633\u062A\u062D\u0642\u0629",
+    "ux.notes.due.many": "{n} \u0645\u062A\u0627\u0628\u0639\u0629 \u0645\u0633\u062A\u062D\u0642\u0629",
+    "ux.notes.due.other": "{n} \u0645\u062A\u0627\u0628\u0639\u0629 \u0645\u0633\u062A\u062D\u0642\u0629"
   };
 
   // src/core/actions.js
@@ -29855,6 +30027,149 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       "meaning": "ux.profile.close"
     },
     {
+      "id": "ux.obs.mode",
+      "labelKey": "ux.obs.modes",
+      "icon": null,
+      "shortcut": null,
+      "availability": "rendered-and-not-disabled",
+      "canonicalHome": "obs:context",
+      "events": [
+        "onClick"
+      ],
+      "source": "src/modules",
+      "meaning": "ux.obs.mode"
+    },
+    {
+      "id": "ux.obs.pick",
+      "labelKey": "ux.obs.pick",
+      "icon": null,
+      "shortcut": null,
+      "availability": "rendered-and-not-disabled",
+      "canonicalHome": "obs:context",
+      "events": [
+        "onClick"
+      ],
+      "source": "src/modules",
+      "meaning": "ux.obs.pick"
+    },
+    {
+      "id": "ux.obs.unpick",
+      "labelKey": "ux.obs.clearChoice",
+      "icon": null,
+      "shortcut": null,
+      "availability": "rendered-and-not-disabled",
+      "canonicalHome": "obs:context",
+      "events": [
+        "onClick"
+      ],
+      "source": "src/modules",
+      "meaning": "ux.obs.unpick"
+    },
+    {
+      "id": "ux.obs.more",
+      "labelKey": "ux.obs.more",
+      "icon": null,
+      "shortcut": null,
+      "availability": "rendered-and-not-disabled",
+      "canonicalHome": "obs:context",
+      "events": [
+        "onClick"
+      ],
+      "source": "src/modules",
+      "meaning": "ux.obs.more"
+    },
+    {
+      "id": "ux.obs.edit",
+      "labelKey": "ux.obs.edit",
+      "icon": null,
+      "shortcut": null,
+      "availability": "rendered-and-not-disabled",
+      "canonicalHome": "obs:context",
+      "events": [
+        "onClick"
+      ],
+      "source": "src/modules",
+      "meaning": "ux.obs.edit"
+    },
+    {
+      "id": "ux.obs.cancelEdit",
+      "labelKey": "ux.obs.cancelEdit",
+      "icon": null,
+      "shortcut": null,
+      "availability": "rendered-and-not-disabled",
+      "canonicalHome": "obs:context",
+      "events": [
+        "onClick"
+      ],
+      "source": "src/modules",
+      "meaning": "ux.obs.cancelEdit"
+    },
+    {
+      "id": "ux.obs.saveEdit",
+      "labelKey": "ux.obs.saveEdit",
+      "icon": null,
+      "shortcut": null,
+      "availability": "rendered-and-not-disabled",
+      "canonicalHome": "obs:context",
+      "events": [
+        "onClick"
+      ],
+      "source": "src/modules",
+      "meaning": "ux.obs.saveEdit"
+    },
+    {
+      "id": "ux.notes.save",
+      "labelKey": "ux.notes.save",
+      "icon": null,
+      "shortcut": null,
+      "availability": "rendered-and-not-disabled",
+      "canonicalHome": "notes:context",
+      "events": [
+        "onClick"
+      ],
+      "source": "src/modules",
+      "meaning": "ux.notes.save"
+    },
+    {
+      "id": "ux.notes.cancelEdit",
+      "labelKey": "ux.notes.cancelEdit",
+      "icon": null,
+      "shortcut": null,
+      "availability": "rendered-and-not-disabled",
+      "canonicalHome": "notes:context",
+      "events": [
+        "onClick"
+      ],
+      "source": "src/modules",
+      "meaning": "ux.notes.cancelEdit"
+    },
+    {
+      "id": "ux.notes.showDue",
+      "labelKey": "ux.notes.showDue",
+      "icon": null,
+      "shortcut": null,
+      "availability": "rendered-and-not-disabled",
+      "canonicalHome": "notes:context",
+      "events": [
+        "onClick"
+      ],
+      "source": "src/modules",
+      "meaning": "ux.notes.showDue"
+    },
+    {
+      "id": "ux.notes.openTimeline",
+      "labelKey": "ux.notes.openTimeline",
+      "icon": null,
+      "shortcut": null,
+      "availability": "rendered-and-not-disabled",
+      "canonicalHome": "notes:context",
+      "events": [
+        "onClick"
+      ],
+      "source": "src/modules",
+      "meaning": "ux.notes.openTimeline"
+    },
+    {
       "id": "ux.report.sort",
       "labelKey": "ux.report.sort",
       "icon": null,
@@ -32453,6 +32768,32 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       ],
       "source": "src/modules",
       "meaning": "ux.workspace.selectAll"
+    },
+    {
+      "id": "ux.obs.search",
+      "labelKey": "ux.obs.search",
+      "icon": null,
+      "shortcut": null,
+      "availability": "rendered-and-not-disabled",
+      "canonicalHome": "obs:context",
+      "events": [
+        "onChange"
+      ],
+      "source": "src/modules",
+      "meaning": "ux.obs.search"
+    },
+    {
+      "id": "ux.notes.followSwitch",
+      "labelKey": "ux.notes.remind",
+      "icon": null,
+      "shortcut": null,
+      "availability": "rendered-and-not-disabled",
+      "canonicalHome": "notes:context",
+      "events": [
+        "onChange"
+      ],
+      "source": "src/modules",
+      "meaning": "ux.notes.followSwitch"
     }
   ];
 
@@ -36725,10 +37066,14 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
   function setTags(doc, tags) {
     return updateObservations(doc, (o) => ({ ...o, settings: { ...o.settings, tags } }));
   }
+  function canConvert(doc, item, kind) {
+    const tags = observations(doc.cp?.observations).settings.tags, kinds2 = new Set((item?.tagIds || []).map((id) => tags.find((tag) => tag.id === id)?.kind).filter(Boolean));
+    return kind === "participation" ? kinds2.has("positive") : kind === "behaviour" ? kinds2.has("support") : false;
+  }
   function convertObservation(doc, studentId, id, kind, comment) {
     if (!["participation", "behaviour"].includes(kind)) throw new Error("Invalid observation conversion");
     const item = observations(doc.cp?.observations).byStudent[studentId]?.find((item2) => item2.id === id);
-    if (!item || item.conversions?.[kind]) return doc;
+    if (!item || item.conversions?.[kind] || !canConvert(doc, item, kind)) return doc;
     const student = doc.students.find((s) => s.id === studentId);
     if (!student) return doc;
     let changed;
@@ -36738,12 +37083,17 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       const step = col.step != null ? col.step : doc.settings.participationIncrement != null ? doc.settings.participationIncrement : 1;
       changed = awardParticipation(student, col, step, comment);
       if (changed === student) return doc;
+      const entries2 = changed.tallies?.[col.id];
+      if (entries2?.length) {
+        const last = entries2[entries2.length - 1];
+        changed = { ...changed, tallies: { ...changed.tallies, [col.id]: [...entries2.slice(0, -1), { ...last, date: item.date }] } };
+      }
     } else {
       const handler = behaviourDeductionHandler(+(doc.settings.deductionWeight || 1), item.date, comment);
       changed = handler(student);
     }
     const next = { ...doc, students: doc.students.map((s) => s.id === studentId ? changed : s) };
-    return editObservation(next, studentId, id, { conversions: { ...item.conversions, [kind]: { at: Date.now(), observationDate: item.date, date: kind === "participation" ? todayISO() : item.date, comment } } });
+    return editObservation(next, studentId, id, { conversions: { ...item.conversions, [kind]: { at: Date.now(), observationDate: item.date, date: item.date, comment } } });
   }
 
   // src/modules/lesson-actions/model.js
@@ -37054,6 +37404,10 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
   Object.assign(uxClick, { "assess.filter": "assess.filter", "assess.addDate": "assess.addDate", "assess.editDate": "assess.changeDate", "assess.showLessons": "assess.showLessons", "workspace.reorder": "workspace.reorder", "workspace.closeReorder": "workspace.closeReorder" });
   Object.assign(uxChange, { "workspace.selectAll": "workspace.selectAll" });
   Object.assign(uxClick, { "bell.edit": "bell.edit", "bell.cancel": "bell.cancel", "bell.createMenu": "bell.createMenu", "bell.allowSound": "bell.allowSound", "settings.app": "settings.app", "profile.close": "profile.close" });
+  Object.assign(uxClick, { "obs.mode": "obs.modes", "obs.pick": "obs.pick", "obs.unpick": "obs.clearChoice", "obs.more": "obs.more", "obs.edit": "obs.edit", "obs.cancelEdit": "obs.cancelEdit", "obs.saveEdit": "obs.saveEdit" });
+  Object.assign(uxChange, { "obs.search": "obs.search" });
+  Object.assign(uxClick, { "notes.save": "notes.save", "notes.cancelEdit": "notes.cancelEdit", "notes.showDue": "notes.showDue", "notes.openTimeline": "notes.openTimeline" });
+  Object.assign(uxChange, { "notes.followSwitch": "notes.remind" });
   var uxActions = [...Object.entries(uxClick).map(([id, key4]) => [id, key4, "onClick"]), ...Object.entries(uxChange).map(([id, key4]) => [id, key4, "onChange"])].map(([id, key4, event]) => ({ id: "ux." + id, labelKey: "ux." + key4, icon: null, shortcut: null, availability: "rendered-and-not-disabled", canonicalHome: id.startsWith("nav.") ? "Workspace:sidebar" : id.startsWith("appearance.") ? "Workspace:context" : id.split(".")[0] + ":context", events: [event], source: "src/modules", meaning: "ux." + id }));
 
   // src/i18n/ux-copy.js
@@ -38999,14 +39353,8 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       "Save teacher comment phrases",
       "\u062D\u0641\u0638 \u0639\u0628\u0627\u0631\u0627\u062A \u062A\u0639\u0644\u064A\u0642\u0627\u062A \u0627\u0644\u0645\u0639\u0644\u0645"
     ],
-    "lessonActions.title": [
-      "Reviewed lesson actions",
-      "\u0625\u062C\u0631\u0627\u0621\u0627\u062A \u0627\u0644\u062D\u0635\u0629 \u0628\u0639\u062F \u0627\u0644\u0645\u0631\u0627\u062C\u0639\u0629"
-    ],
-    "lessonActions.hint": [
-      "Use the selected learners and the editable note above. Attendance filters use the active lesson only; without an active lesson present/absent filters are empty. Applying a reviewed action creates one shared undo step.",
-      "\u0627\u0633\u062A\u062E\u062F\u0645 \u0627\u0644\u0637\u0644\u0628\u0629 \u0627\u0644\u0645\u062D\u062F\u062F\u064A\u0646 \u0648\u0627\u0644\u0645\u0644\u0627\u062D\u0638\u0629 \u0627\u0644\u0642\u0627\u0628\u0644\u0629 \u0644\u0644\u062A\u0639\u062F\u064A\u0644 \u0623\u0639\u0644\u0627\u0647. \u062A\u0633\u062A\u062E\u062F\u0645 \u0645\u0631\u0634\u062D\u0627\u062A \u0627\u0644\u062D\u0636\u0648\u0631 \u0627\u0644\u062D\u0635\u0629 \u0627\u0644\u0646\u0634\u0637\u0629 \u0641\u0642\u0637\u061B \u0648\u062A\u0628\u0642\u0649 \u0641\u0627\u0631\u063A\u0629 \u062F\u0648\u0646 \u062D\u0635\u0629 \u0646\u0634\u0637\u0629. \u064A\u0646\u0634\u0626 \u0627\u0644\u062A\u0637\u0628\u064A\u0642 \u0628\u0639\u062F \u0627\u0644\u0645\u0631\u0627\u062C\u0639\u0629 \u062E\u0637\u0648\u0629 \u062A\u0631\u0627\u062C\u0639 \u0645\u0634\u062A\u0631\u0643\u0629 \u0648\u0627\u062D\u062F\u0629."
-    ],
+    "lessonActions.title": ["Apply a lesson action\u2026", "\u062A\u0637\u0628\u064A\u0642 \u0625\u062C\u0631\u0627\u0621 \u0639\u0644\u0649 \u0627\u0644\u062D\u0635\u0629\u2026"],
+    "lessonActions.hint": ["Applies an action to the students chosen above, using the note above. You will see a preview first; one Undo reverses it.", "\u064A\u0637\u0628\u0651\u0642 \u0625\u062C\u0631\u0627\u0621\u064B \u0639\u0644\u0649 \u0627\u0644\u0637\u0644\u0627\u0628 \u0627\u0644\u0645\u062E\u062A\u0627\u0631\u064A\u0646 \u0623\u0639\u0644\u0627\u0647 \u0645\u0639 \u0627\u0644\u0645\u0644\u0627\u062D\u0638\u0629 \u0627\u0644\u0645\u0643\u062A\u0648\u0628\u0629. \u0633\u062A\u0638\u0647\u0631 \u0645\u0639\u0627\u064A\u0646\u0629 \u0623\u0648\u0644\u064B\u0627\u060C \u0648\u062A\u0631\u0627\u062C\u0639 \u0648\u0627\u062D\u062F \u064A\u0644\u063A\u064A\u0647."],
     "lessonActions.kind": [
       "Bulk action type",
       "\u0646\u0648\u0639 \u0627\u0644\u0625\u062C\u0631\u0627\u0621 \u0627\u0644\u062C\u0645\u0627\u0639\u064A"
@@ -40082,8 +40430,8 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "att.lead": ["Mark who is here, then go on with the lesson.", "\u0633\u062C\u0651\u0644 \u0627\u0644\u062D\u0627\u0636\u0631\u064A\u0646\u060C \u062B\u0645 \u062A\u0627\u0628\u0639 \u0627\u0644\u062D\u0635\u0629."],
     "att.then": ["After attendance", "\u0628\u0639\u062F \u0627\u0644\u062D\u0636\u0648\u0631"],
     "att.marked": ["marked", "\u0645\u0633\u062C\u064E\u0651\u0644"],
-    "lead.observations": ["Quick notes on what students do in class.", "\u0645\u0644\u0627\u062D\u0638\u0627\u062A \u0633\u0631\u064A\u0639\u0629 \u0639\u0645\u0651\u0627 \u064A\u0641\u0639\u0644\u0647 \u0627\u0644\u0637\u0644\u0627\u0628 \u0641\u064A \u0627\u0644\u062D\u0635\u0629."],
-    "lead.notes": ["Private notes about one student.", "\u0645\u0644\u0627\u062D\u0638\u0627\u062A \u062E\u0627\u0635\u0629 \u0639\u0646 \u0637\u0627\u0644\u0628 \u0648\u0627\u062D\u062F."],
+    "lead.observations": ["What students do in class \u2014 for your reports, not a score.", "\u0645\u0627 \u064A\u0641\u0639\u0644\u0647 \u0627\u0644\u0637\u0644\u0627\u0628 \u0641\u064A \u0627\u0644\u062D\u0635\u0629 \u2014 \u0644\u062A\u0642\u0627\u0631\u064A\u0631\u0643\u060C \u0648\u0644\u064A\u0633 \u062F\u0631\u062C\u0629."],
+    "lead.notes": ["Private notes about one student \u2014 only you see them.", "\u0645\u0644\u0627\u062D\u0638\u0627\u062A \u062E\u0627\u0635\u0629 \u0639\u0646 \u0637\u0627\u0644\u0628 \u0648\u0627\u062D\u062F \u2014 \u0644\u0627 \u064A\u0631\u0627\u0647\u0627 \u063A\u064A\u0631\u0643."],
     "lead.plans": ["Plan your lessons week by week.", "\u062E\u0637\u0651\u0637 \u062F\u0631\u0648\u0633\u0643 \u0623\u0633\u0628\u0648\u0639\u064B\u0627 \u0628\u0623\u0633\u0628\u0648\u0639."],
     "lead.certificates": ["Celebrate a student with a certificate.", "\u0643\u0631\u0651\u0645 \u0637\u0627\u0644\u0628\u064B\u0627 \u0628\u0634\u0647\u0627\u062F\u0629."],
     "lead.workspace": ["Your classes, files and backups.", "\u0634\u0639\u0628\u0643 \u0648\u0645\u0644\u0641\u0627\u062A\u0643 \u0648\u0646\u0633\u062E\u0643 \u0627\u0644\u0627\u062D\u062A\u064A\u0627\u0637\u064A\u0629."],
@@ -40602,7 +40950,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "newClass.label": ["Class name", "\u0627\u0633\u0645 \u0627\u0644\u0635\u0641"],
     "newClass.confirm": ["Choose where to save", "\u0627\u062E\u062A\u064A\u0627\u0631 \u0645\u0643\u0627\u0646 \u0627\u0644\u062D\u0641\u0638"],
     "obs.reasonTitle": ["Add a reason from the code of conduct for {who}", "\u0623\u0636\u0641 \u0633\u0628\u0628\u064B\u0627 \u0645\u0646 \u0644\u0627\u0626\u062D\u0629 \u0627\u0644\u0633\u0644\u0648\u0643 \u0644\u0640 {who}"],
-    "obs.reasonDone": ["No reason needed", "\u0644\u0627 \u062D\u0627\u062C\u0629 \u0625\u0644\u0649 \u0633\u0628\u0628"],
+    "obs.reasonDone": ["Skip", "\u062A\u062E\u0637\u064D\u0651"],
     "obs.reasonAdded": ["Reason added.", "\u0623\u064F\u0636\u064A\u0641 \u0627\u0644\u0633\u0628\u0628."],
     "bv.find": ["Find a student", "\u0627\u0628\u062D\u062B \u0639\u0646 \u0637\u0627\u0644\u0628"],
     "bv.findHint": ["Type a name to highlight the card; absent students today are dimmed.", "\u0627\u0643\u062A\u0628 \u0627\u0633\u0645\u064B\u0627 \u0644\u0625\u0628\u0631\u0627\u0632 \u0627\u0644\u0628\u0637\u0627\u0642\u0629\u061B \u0627\u0644\u0637\u0644\u0628\u0629 \u0627\u0644\u063A\u0627\u0626\u0628\u0648\u0646 \u0627\u0644\u064A\u0648\u0645 \u0628\u0627\u0647\u062A\u0648\u0646."],
@@ -40836,7 +41184,56 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "tb.classSettings": ["Class settings", "\u0625\u0639\u062F\u0627\u062F\u0627\u062A \u0627\u0644\u0635\u0641"],
     "att.remindTitle": ["Reminder", "\u0627\u0644\u062A\u0630\u0643\u064A\u0631"],
     "settings.classButton": ["Class", "\u0627\u0644\u0635\u0641"],
-    "settings.classButtonLabel": ["Class settings", "\u0625\u0639\u062F\u0627\u062F\u0627\u062A \u0627\u0644\u0635\u0641"]
+    "settings.classButtonLabel": ["Class settings", "\u0625\u0639\u062F\u0627\u062F\u0627\u062A \u0627\u0644\u0635\u0641"],
+    "obs.search": ["Search students", "\u0627\u0628\u062D\u062B \u0639\u0646 \u0637\u0627\u0644\u0628"],
+    "obs.modes": ["Choose students", "\u0627\u062E\u062A\u064A\u0627\u0631 \u0627\u0644\u0637\u0644\u0627\u0628"],
+    "obs.pick": ["Choose this student", "\u0627\u062E\u062A\u064A\u0627\u0631 \u0647\u0630\u0627 \u0627\u0644\u0637\u0627\u0644\u0628"],
+    "obs.mode.one": ["One", "\u0637\u0627\u0644\u0628 \u0648\u0627\u062D\u062F"],
+    "obs.mode.several": ["Several", "\u0639\u062F\u0629 \u0637\u0644\u0627\u0628"],
+    "obs.mode.class": ["Whole class", "\u0627\u0644\u0635\u0641 \u0643\u0644\u0647"],
+    "obs.weekCount": ["numbers = observations this week", "\u0627\u0644\u0623\u0631\u0642\u0627\u0645 = \u0645\u0634\u0627\u0647\u062F\u0627\u062A \u0647\u0630\u0627 \u0627\u0644\u0623\u0633\u0628\u0648\u0639"],
+    "obs.noMatch": ["No student matches.", "\u0644\u0627 \u064A\u0648\u062C\u062F \u0637\u0627\u0644\u0628 \u0645\u0637\u0627\u0628\u0642."],
+    "obs.recordingFor": ["Recording for:", "\u0627\u0644\u062A\u0633\u062C\u064A\u0644 \u0644\u0640:"],
+    "obs.chooseFirst": ["choose a student on the left", "\u0627\u062E\u062A\u0631 \u0637\u0627\u0644\u0628\u064B\u0627 \u0645\u0646 \u0627\u0644\u0642\u0627\u0626\u0645\u0629"],
+    "obs.clearChoice": ["Clear the choice", "\u0625\u0644\u063A\u0627\u0621 \u0627\u0644\u0627\u062E\u062A\u064A\u0627\u0631"],
+    "obs.remove": ["Remove {who}", "\u0625\u0632\u0627\u0644\u0629 {who}"],
+    "obs.saveNoteOnly": ["Save note only", "\u062D\u0641\u0638 \u0627\u0644\u0645\u0644\u0627\u062D\u0638\u0629 \u0641\u0642\u0637"],
+    "obs.noteHint": ["The note goes with your next tap. Use \u201CSave note only\u201D to record a note with no button.", "\u062A\u064F\u0631\u0641\u0642 \u0627\u0644\u0645\u0644\u0627\u062D\u0638\u0629 \u0628\u0627\u0644\u0632\u0631 \u0627\u0644\u0630\u064A \u062A\u0646\u0642\u0631\u0647 \u0628\u0639\u062F\u0647\u0627. \u0627\u0633\u062A\u062E\u062F\u0645 \xAB\u062D\u0641\u0638 \u0627\u0644\u0645\u0644\u0627\u062D\u0638\u0629 \u0641\u0642\u0637\xBB \u0644\u062A\u0633\u062C\u064A\u0644 \u0645\u0644\u0627\u062D\u0638\u0629 \u0628\u0644\u0627 \u0632\u0631."],
+    "obs.why": ["Why \u201C{tag}\u201D for {who}?", "\u0644\u0645\u0627\u0630\u0627 \xAB{tag}\xBB \u0644\u0640 {who}\u061F"],
+    "obs.recordedTag": ["Recorded \u201C{tag}\u201D for {who}", "\u0633\u064F\u062C\u0651\u0644 \xAB{tag}\xBB \u0644\u0640 {who}"],
+    "obs.recordedNote": ["Note recorded for {who}", "\u0633\u064F\u062C\u0651\u0644\u062A \u0627\u0644\u0645\u0644\u0627\u062D\u0638\u0629 \u0644\u0640 {who}"],
+    "obs.summary": ["{p} positive \xB7 {s} support", "{p} \u0625\u064A\u062C\u0627\u0628\u064A\u0629 \xB7 {s} \u062A\u062D\u062A\u0627\u062C \u062F\u0639\u0645\u064B\u0627"],
+    "obs.justRecorded": ["Just recorded", "\u0633\u064F\u062C\u0651\u0644 \u0644\u0644\u062A\u0648"],
+    "obs.today": ["Today", "\u0627\u0644\u064A\u0648\u0645"],
+    "obs.nothingToday": ["Nothing recorded today yet.", "\u0644\u0645 \u064A\u064F\u0633\u062C\u064E\u0651\u0644 \u0634\u064A\u0621 \u0627\u0644\u064A\u0648\u0645 \u0628\u0639\u062F."],
+    "obs.pickForTimeline": ["Choose one student to see their full timeline.", "\u0627\u062E\u062A\u0631 \u0637\u0627\u0644\u0628\u064B\u0627 \u0648\u0627\u062D\u062F\u064B\u0627 \u0644\u062A\u0631\u0649 \u0633\u062C\u0644\u0647 \u0643\u0627\u0645\u0644\u064B\u0627."],
+    "obs.awarded": ["Awarded participation", "\u0645\u064F\u0646\u062D\u062A \u0646\u0642\u0637\u0629 \u0645\u0634\u0627\u0631\u0643\u0629"],
+    "obs.deducted": ["Behaviour deducted", "\u062E\u064F\u0635\u0645 \u0645\u0646 \u0627\u0644\u0633\u0644\u0648\u0643"],
+    "obs.more": ["More actions", "\u0625\u062C\u0631\u0627\u0621\u0627\u062A \u0623\u062E\u0631\u0649"],
+    "obs.edit": ["Edit", "\u062A\u0639\u062F\u064A\u0644"],
+    "obs.cancelEdit": ["Cancel", "\u0625\u0644\u063A\u0627\u0621"],
+    "obs.saveEdit": ["Save", "\u062D\u0641\u0638"],
+    "obs.convert.participation": ["Award participation", "\u0645\u0646\u062D \u0646\u0642\u0637\u0629 \u0645\u0634\u0627\u0631\u0643\u0629"],
+    "obs.convert.behaviour": ["Deduct behaviour", "\u062E\u0635\u0645 \u0645\u0646 \u0627\u0644\u0633\u0644\u0648\u0643"],
+    "obs.convertOnly.participation": ["Only for positive observations", "\u0644\u0644\u0645\u0634\u0627\u0647\u062F\u0627\u062A \u0627\u0644\u0625\u064A\u062C\u0627\u0628\u064A\u0629 \u0641\u0642\u0637"],
+    "obs.convertOnly.behaviour": ["Only for observations that need support", "\u0644\u0644\u0645\u0634\u0627\u0647\u062F\u0627\u062A \u0627\u0644\u062A\u064A \u062A\u062D\u062A\u0627\u062C \u062F\u0639\u0645\u064B\u0627 \u0641\u0642\u0637"],
+    "obs.convertBody.participation": ["Adds a participation point in the marks sheet, dated {date}.", "\u062A\u064F\u0636\u0627\u0641 \u0646\u0642\u0637\u0629 \u0645\u0634\u0627\u0631\u0643\u0629 \u0641\u064A \u0633\u062C\u0644 \u0627\u0644\u062F\u0631\u062C\u0627\u062A \u0628\u062A\u0627\u0631\u064A\u062E {date}."],
+    "obs.convertBody.behaviour": ["Deducts from behaviour in the marks sheet, dated {date}.", "\u064A\u064F\u062E\u0635\u0645 \u0645\u0646 \u0627\u0644\u0633\u0644\u0648\u0643 \u0641\u064A \u0633\u062C\u0644 \u0627\u0644\u062F\u0631\u062C\u0627\u062A \u0628\u062A\u0627\u0631\u064A\u062E {date}."],
+    "notes.save": ["Save changes", "\u062D\u0641\u0638 \u0627\u0644\u062A\u063A\u064A\u064A\u0631\u0627\u062A"],
+    "notes.cancelEdit": ["Cancel", "\u0625\u0644\u063A\u0627\u0621"],
+    "notes.showDue": ["Show", "\u0639\u0631\u0636"],
+    "notes.openTimeline": ["Open timeline \u203A", "\u0641\u062A\u062D \u0627\u0644\u0633\u062C\u0644 \u203A"],
+    "notes.remind": ["Remind me to follow up", "\u0630\u0643\u0651\u0631\u0646\u064A \u0628\u0627\u0644\u0645\u062A\u0627\u0628\u0639\u0629"],
+    "notes.recentObs": ["Recent observations:", "\u0627\u0644\u0645\u0634\u0627\u0647\u062F\u0627\u062A \u0627\u0644\u0623\u062E\u064A\u0631\u0629:"],
+    "notes.noteOnly": ["Note", "\u0645\u0644\u0627\u062D\u0638\u0629"],
+    "notes.noObs": ["none yet", "\u0644\u0627 \u0634\u064A\u0621 \u0628\u0639\u062F"],
+    "notes.searchNames": ["Search notes or names", "\u0627\u0628\u062D\u062B \u0641\u064A \u0627\u0644\u0645\u0644\u0627\u062D\u0638\u0627\u062A \u0623\u0648 \u0627\u0644\u0623\u0633\u0645\u0627\u0621"],
+    "notes.allStudents": ["Show all students", "\u0639\u0631\u0636 \u0643\u0644 \u0627\u0644\u0637\u0644\u0627\u0628"],
+    "notes.due.one": ["{n} follow-up due", "\u0645\u062A\u0627\u0628\u0639\u0629 \u0648\u0627\u062D\u062F\u0629 \u0645\u0633\u062A\u062D\u0642\u0629"],
+    "notes.due.two": ["{n} follow-ups due", "\u0645\u062A\u0627\u0628\u0639\u062A\u0627\u0646 \u0645\u0633\u062A\u062D\u0642\u062A\u0627\u0646"],
+    "notes.due.few": ["{n} follow-ups due", "{n} \u0645\u062A\u0627\u0628\u0639\u0627\u062A \u0645\u0633\u062A\u062D\u0642\u0629"],
+    "notes.due.many": ["{n} follow-ups due", "{n} \u0645\u062A\u0627\u0628\u0639\u0629 \u0645\u0633\u062A\u062D\u0642\u0629"],
+    "notes.due.other": ["{n} follow-ups due", "{n} \u0645\u062A\u0627\u0628\u0639\u0629 \u0645\u0633\u062A\u062D\u0642\u0629"]
   };
   var uxEn = Object.fromEntries(Object.entries(pairs).map(([key4, value]) => ["ux." + key4, value[0]]));
   var uxAr = Object.fromEntries(Object.entries(pairs).map(([key4, value]) => ["ux." + key4, value[1]]));
@@ -43727,10 +44124,31 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     if (!count) return null;
     return /* @__PURE__ */ cpJsx("button", { ...actionProps("m3.notes.open", () => window.dispatchEvent(new CustomEvent("cp:open-notes", { detail: { studentId } })), studentId), "aria-label": t("notes.open"), title: t("notes.count") + " \xB7 " + count, style: B({ padding: "1px 5px", fontSize: 10, color: "var(--n-600)", background: "var(--n-100)", display: "inline-flex", alignItems: "center", gap: 3 }) }, /* @__PURE__ */ cpJsx(Icn, { n: "doc", sz: 11 }), count);
   }
+  var PIN = /* @__PURE__ */ cpJsx("svg", { "aria-hidden": "true", viewBox: "0 0 24 24", width: "13", height: "13", fill: "currentColor" }, /* @__PURE__ */ cpJsx("path", { d: "M14 3l7 7-3 1-4 4 1 5-2 1-4-4-5 5-1-1 5-5-4-4 1-2 5 1 4-4z" }));
+  var plusDays = (iso, n) => {
+    const d = /* @__PURE__ */ new Date(iso + "T00:00:00");
+    d.setDate(d.getDate() + n);
+    return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
+  };
+  function OpenNote({ doc, note, onUpdate, setOpen, setView }) {
+    const [draft, setDraft] = useState(() => ({ date: note.date, followUpDate: note.followUpDate || "", completed: !!note.completed, text: note.text }));
+    useEffect(() => setDraft({ date: note.date, followUpDate: note.followUpDate || "", completed: !!note.completed, text: note.text }), [note.id, note.updatedAt]);
+    const changed = draft.date !== note.date || draft.followUpDate !== (note.followUpDate || "") || draft.completed !== !!note.completed || draft.text !== note.text, student = doc.students.find((s) => s.id === note.studentId);
+    const obs = observations(doc.cp?.observations), recent = [...obs.byStudent[note.studentId] || []].sort((a, b) => b.date.localeCompare(a.date) || b.createdAt - a.createdAt).slice(0, 3);
+    const save = () => onUpdate((d) => editNote(d, note.studentId, note.id, { date: draft.date, followUpDate: draft.followUpDate, completed: draft.followUpDate ? draft.completed : false, text: draft.text }));
+    return /* @__PURE__ */ cpJsx(Inspector, { title: student?.name || "", footer: /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx(Button, { action: note.pinned ? "m3.notes.unpin" : "m3.notes.pin", context: note.id, onClick: () => onUpdate((d) => editNote(d, note.studentId, note.id, { pinned: !note.pinned })) }), /* @__PURE__ */ cpJsx(Button, { action: "m3.notes.remove", role: "danger", context: note.id, onClick: () => {
+      onUpdate((d) => removeNote(d, note.studentId, note.id));
+      setOpen("new");
+      notify(ux("notes.removed"), { undo: true });
+    } }), /* @__PURE__ */ cpJsx("span", { className: "cp-notes-gap" }), /* @__PURE__ */ cpJsx(Button, { action: "ux.notes.close", role: "tertiary", onClick: () => setOpen("new") }), changed && /* @__PURE__ */ cpJsx(Button, { action: "ux.notes.cancelEdit", context: note.id, onClick: () => setDraft({ date: note.date, followUpDate: note.followUpDate || "", completed: !!note.completed, text: note.text }) }), /* @__PURE__ */ cpJsx(Button, { action: "ux.notes.save", role: "primary", context: note.id, disabled: !changed || !draft.date || !draft.text.trim(), onClick: save })) }, /* @__PURE__ */ cpJsx(Field, { action: "m3.notes.editDate", context: note.id, label: "notes.date", type: "date", value: draft.date, onChange: (e) => setDraft({ ...draft, date: e.target.value }) }), /* @__PURE__ */ cpJsx(Field, { action: "m3.notes.editText", context: note.id, label: "notes.text", as: "textarea", rows: 7, value: draft.text, onChange: (e) => setDraft({ ...draft, text: e.target.value }) }), /* @__PURE__ */ cpJsx("div", { className: "cp-notes-follow" }, /* @__PURE__ */ cpJsx("label", { className: "cp-notes-switch" }, /* @__PURE__ */ cpJsx("input", { type: "checkbox", role: "switch", checked: !!draft.followUpDate, ...controlProps("ux.notes.followSwitch", (e) => setDraft({ ...draft, followUpDate: e.target.checked ? plusDays(todayISO(), 3) : "", completed: e.target.checked ? draft.completed : false }), note.id) }), /* @__PURE__ */ cpJsx("span", null, ux("notes.remind"))), draft.followUpDate && /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx(Field, { action: "improve.followUpDate", context: note.id, label: "improve.followUpDate", type: "date", value: draft.followUpDate, onChange: (e) => setDraft({ ...draft, followUpDate: e.target.value }) }), /* @__PURE__ */ cpJsx(Check, { action: "improve.completed", context: note.id, label: "improve.completed", checked: draft.completed, onChange: (e) => setDraft({ ...draft, completed: e.target.checked }) }))), /* @__PURE__ */ cpJsx("div", { className: "cp-notes-obs" }, /* @__PURE__ */ cpJsx("span", null, ux("notes.recentObs")), recent.length ? recent.map((o) => {
+      const tag = obs.settings.tags.find((t2) => t2.id === o.tagIds[0]);
+      return /* @__PURE__ */ cpJsx("span", { key: o.id, className: "cp-obs-tt", "data-kind": tag?.kind || "note" }, cpRaw((tag ? tag.label || t(tag.labelKey) : ux("notes.noteOnly")) + " \xB7 " + displayDate(o.date, { weekday: true, year: false })));
+    }) : /* @__PURE__ */ cpJsx("em", null, ux("notes.noObs")), setView && /* @__PURE__ */ cpJsx("button", { type: "button", className: "cp-notes-link", ...actionProps("ux.notes.openTimeline", () => window.dispatchEvent(new CustomEvent("cp:student-module", { detail: { studentId: note.studentId, view: "module:observations" } })), note.studentId) }, ux("notes.openTimeline"))));
+  }
   function NotesView({ doc, onUpdate, studentId: requestedId, setView }) {
     useLanguage();
     const classId = doc.cp.classId, known = (id) => doc.students.some((s) => s.id === id), newest = (id) => searchNotes(doc, "", id)[0]?.id;
-    const [studentId, setStudentId] = useRetainedState("notes-student:" + classId, () => known(requestedId) ? requestedId : doc.students[0]?.id || ""), [date5, setDate] = useRetainedState("notes-date:" + classId, todayISO), [query, setQuery] = useState(""), [pendingOnly, setPendingOnly] = useState(false), [filter, setFilter] = useState(known(requestedId) ? requestedId : "");
+    const [studentId, setStudentId] = useRetainedState("notes-student:" + classId, () => known(requestedId) ? requestedId : doc.students[0]?.id || ""), [date5, setDate] = useState(todayISO), [query, setQuery] = useState(""), [pendingOnly, setPendingOnly] = useState(false), [filter, setFilter] = useState(known(requestedId) ? requestedId : "");
     const [open, setOpen] = useState(() => known(requestedId) && newest(requestedId) || "new"), [saved, flash] = useSavedFlash();
     useEffect(() => {
       if (requestedId && known(requestedId)) {
@@ -43742,8 +44160,13 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     useEffect(() => {
       if (!known(studentId)) setStudentId(doc.students[0]?.id || "");
     }, [doc.students, studentId]);
+    useEffect(() => {
+      if (filter && known(filter)) setStudentId(filter);
+    }, [filter]);
     const [text7, setText, acceptText, textDirty] = useRetainedState("note:" + classId + ":" + studentId, "", { warn: true });
-    const all2 = searchNotes(doc), entries2 = searchNotes(doc, query, filter).filter((n) => !pendingOnly || n.followUpDate && !n.completed), studentById = new Map(doc.students.map((s) => [s.id, s])), note = open === "new" ? null : all2.find((n) => n.id === open);
+    const today = todayISO(), studentById = new Map(doc.students.map((s) => [s.id, s])), needle = query.trim().toLocaleLowerCase(), all2 = searchNotes(doc);
+    const entries2 = searchNotes(doc, "", filter).filter((n) => !needle || n.text.toLocaleLowerCase().includes(needle) || String(studentById.get(n.studentId)?.name || "").toLocaleLowerCase().includes(needle)).filter((n) => !pendingOnly || n.followUpDate && !n.completed);
+    const due = all2.filter((n) => n.followUpDate && !n.completed && n.followUpDate <= today), note = open === "new" ? null : all2.find((n) => n.id === open);
     const filtered = !!(query.trim() || filter || pendingOnly), clearFilters = () => {
       setQuery("");
       setFilter("");
@@ -43754,16 +44177,19 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       acceptText("");
       flash();
     };
-    const edit = (patch) => onUpdate((d) => editNote(d, note.studentId, note.id, patch));
-    const collection = /* @__PURE__ */ cpJsx("section", { className: "cp-card cp-tpl-stack", "aria-label": t("shell.notes") }, /* @__PURE__ */ cpJsx("div", { className: "cp-tpl-bar" }, /* @__PURE__ */ cpJsx(Field, { action: "m3.notes.search", label: "notes.search", type: "search", value: query, onChange: (e) => setQuery(e.target.value) }), /* @__PURE__ */ cpJsx(Field, { action: "m3.notes.filter", label: "module.chooseStudent", as: "select", value: filter, onChange: (e) => setFilter(e.target.value) }, /* @__PURE__ */ cpJsx("option", { value: "" }, t("module.allStudents")), doc.students.map((s) => /* @__PURE__ */ cpJsx("option", { key: s.id, value: s.id }, cpRaw(s.name)))), /* @__PURE__ */ cpJsx(Check, { action: "improve.pendingFollowups", label: "improve.pendingFollowups", checked: pendingOnly, onChange: (e) => setPendingOnly(e.target.checked) }), /* @__PURE__ */ cpJsx("small", { className: "cp-meta" }, cpRaw(countText(entries2.length, "notes.count")))), /* @__PURE__ */ cpJsx("div", { style: { padding: "0 var(--cp-sp-4) var(--cp-sp-4)" } }, entries2.length ? /* @__PURE__ */ cpJsx("ul", { className: "cp-tpl-list" }, entries2.map((n) => /* @__PURE__ */ cpJsx("li", { key: n.id, "data-note-id": n.id }, /* @__PURE__ */ cpJsx("button", { type: "button", className: "cp-row-button", ...actionProps("ux.notes.select", () => setOpen(n.id), n.id), "aria-current": open === n.id }, /* @__PURE__ */ cpJsx("span", null, /* @__PURE__ */ cpJsx("b", null, /* @__PURE__ */ cpJsx("bdi", null, cpRaw(studentById.get(n.studentId).name))), /* @__PURE__ */ cpJsx("small", null, /* @__PURE__ */ cpJsx("bdi", { dir: "ltr" }, cpRaw(n.date))), n.pinned && /* @__PURE__ */ cpJsx("small", null, ux("notes.pinned")), n.followUpDate && /* @__PURE__ */ cpJsx("small", null, n.completed ? ux("notes.done") : cpRaw(ux("notes.followUp").replace("{date}", n.followUpDate)))), /* @__PURE__ */ cpJsx("span", { className: "cp-row-text" }, /* @__PURE__ */ cpJsx("bdi", null, cpRaw(n.text.split("\n")[0]))))))) : filtered ? /* @__PURE__ */ cpJsx(EmptyState, { kind: "filtered", title: ux("notes.filteredTitle") }, /* @__PURE__ */ cpJsx(Button, { action: "ux.notes.clearFilters", onClick: clearFilters })) : /* @__PURE__ */ cpJsx(EmptyState, { kind: "nothing", title: ux("notes.emptyTitle"), text: ux("notes.emptyText") })));
-    const editor = note ? /* @__PURE__ */ cpJsx(Inspector, { title: studentById.get(note.studentId)?.name || "", footer: /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx(Button, { action: note.pinned ? "m3.notes.unpin" : "m3.notes.pin", context: note.id, onClick: () => edit({ pinned: !note.pinned }) }), /* @__PURE__ */ cpJsx(Button, { action: "m3.notes.remove", role: "danger", context: note.id, onClick: () => {
-      onUpdate((d) => removeNote(d, note.studentId, note.id));
+    const collection = /* @__PURE__ */ cpJsx("section", { className: "cp-card cp-tpl-stack cp-notes-list", "aria-label": t("shell.notes") }, due.length > 0 && /* @__PURE__ */ cpJsx("div", { className: "cp-notes-due", role: "status" }, /* @__PURE__ */ cpJsx("b", null, cpRaw(countText(due.length, "notes.due"))), /* @__PURE__ */ cpJsx("span", null, /* @__PURE__ */ cpJsx("bdi", null, cpRaw([...new Set(due.map((n) => studentById.get(n.studentId)?.name).filter(Boolean))].slice(0, 3).join(" \xB7 ")))), /* @__PURE__ */ cpJsx(Button, { action: "ux.notes.showDue", role: "tertiary", onClick: () => {
+      setPendingOnly(true);
+      setFilter("");
+      setQuery("");
+    } })), /* @__PURE__ */ cpJsx("div", { className: "cp-tpl-bar" }, /* @__PURE__ */ cpJsx(Field, { action: "m3.notes.search", label: "notes.search", labelText: ux("notes.searchNames"), type: "search", value: query, onChange: (e) => setQuery(e.target.value) }), /* @__PURE__ */ cpJsx(Field, { action: "m3.notes.filter", label: "module.chooseStudent", as: "select", value: filter, onChange: (e) => setFilter(e.target.value) }, /* @__PURE__ */ cpJsx("option", { value: "" }, t("module.allStudents")), doc.students.map((s) => /* @__PURE__ */ cpJsx("option", { key: s.id, value: s.id }, cpRaw(s.name)))), /* @__PURE__ */ cpJsx(Check, { action: "improve.pendingFollowups", label: "improve.pendingFollowups", checked: pendingOnly, onChange: (e) => setPendingOnly(e.target.checked) })), /* @__PURE__ */ cpJsx("div", { className: "cp-notes-items" }, entries2.length ? /* @__PURE__ */ cpJsx("ul", { className: "cp-tpl-list" }, entries2.map((n) => {
+      const late = n.followUpDate && !n.completed && n.followUpDate <= today;
+      return /* @__PURE__ */ cpJsx("li", { key: n.id, "data-note-id": n.id }, /* @__PURE__ */ cpJsx("button", { type: "button", className: "cp-row-button", ...actionProps("ux.notes.select", () => setOpen(n.id), n.id), "aria-current": open === n.id }, /* @__PURE__ */ cpJsx("span", { className: "cp-notes-rowhead" }, n.pinned && /* @__PURE__ */ cpJsx("span", { className: "cp-notes-pin", title: ux("notes.pinned") }, PIN, /* @__PURE__ */ cpJsx("span", { className: "cp-visually-hidden" }, ux("notes.pinned"))), /* @__PURE__ */ cpJsx("b", null, /* @__PURE__ */ cpJsx("bdi", null, cpRaw(studentById.get(n.studentId).name))), /* @__PURE__ */ cpJsx("small", null, cpRaw(displayDate(n.date, { year: false }))), n.followUpDate && /* @__PURE__ */ cpJsx("span", { className: "cp-notes-badge", "data-state": n.completed ? "done" : late ? "due" : "later" }, n.completed ? ux("notes.done") : cpRaw(ux("notes.followUp").replace("{date}", displayDate(n.followUpDate, { year: false }))))), /* @__PURE__ */ cpJsx("span", { className: "cp-row-text" }, /* @__PURE__ */ cpJsx("bdi", null, cpRaw(n.text.split("\n")[0])))));
+    })) : filtered ? /* @__PURE__ */ cpJsx(EmptyState, { kind: "filtered", title: ux("notes.filteredTitle") }, /* @__PURE__ */ cpJsx(Button, { action: "ux.notes.clearFilters", onClick: clearFilters })) : /* @__PURE__ */ cpJsx(EmptyState, { kind: "nothing", title: ux("notes.emptyTitle"), text: ux("notes.emptyText") }), /* @__PURE__ */ cpJsx("small", { className: "cp-meta" }, cpRaw(countText(entries2.length, "notes.count")), filter && entries2.length > 0 && /* @__PURE__ */ cpJsx(React.Fragment, null, cpRaw(" \xB7 "), /* @__PURE__ */ cpJsx("button", { type: "button", className: "cp-notes-link", ...actionProps("ux.notes.clearFilters", clearFilters, "inline") }, ux("notes.allStudents"))))));
+    const editor = note ? /* @__PURE__ */ cpJsx(OpenNote, { doc, note, onUpdate, setOpen, setView }) : /* @__PURE__ */ cpJsx(Inspector, { title: ux("notes.new"), status: /* @__PURE__ */ cpJsx(DraftStatus, { dirty: textDirty, context: "note", onDiscard: () => acceptText("") }), footer: /* @__PURE__ */ cpJsx(React.Fragment, null, saved && /* @__PURE__ */ cpJsx(SaveStatus, { state: "saved" }), /* @__PURE__ */ cpJsx(Button, { action: "m3.notes.add", role: "primary", disabled: !date5 || !text7.trim(), onClick: add })) }, /* @__PURE__ */ cpJsx(Field, { action: "m3.notes.student", label: "module.chooseStudent", as: "select", value: studentId, onChange: (e) => setStudentId(e.target.value) }, doc.students.map((s) => /* @__PURE__ */ cpJsx("option", { key: s.id, value: s.id }, cpRaw(s.name)))), /* @__PURE__ */ cpJsx(Field, { action: "m3.notes.date", label: "notes.date", type: "date", value: date5, onChange: (e) => setDate(e.target.value) }), /* @__PURE__ */ cpJsx(Field, { action: "m3.notes.text", label: "notes.text", as: "textarea", rows: 6, value: text7, onChange: (e) => setText(e.target.value) }));
+    return /* @__PURE__ */ cpJsx(PageTemplate, { kind: "B", titleKey: "shell.notes", icon: "notes", lead: "ux.lead.notes", info: /* @__PURE__ */ cpJsx(React.Fragment, null, t("notes.separate"), " ", t("improve.draftNotice")), actions: doc.students.length ? /* @__PURE__ */ cpJsx(Button, { action: "ux.notes.new", role: "primary", onClick: () => {
+      if (filter) setStudentId(filter);
       setOpen("new");
-      notify(ux("notes.removed"), { undo: true });
-    } }), /* @__PURE__ */ cpJsx(Button, { action: "ux.notes.close", role: "tertiary", onClick: () => setOpen("new") })) }, /* @__PURE__ */ cpJsx("div", { className: "cp-kit-grid" }, /* @__PURE__ */ cpJsx(Field, { action: "m3.notes.editDate", context: note.id, label: "notes.date", type: "date", value: note.date, onChange: (e) => {
-      if (e.target.value) edit({ date: e.target.value });
-    } }), /* @__PURE__ */ cpJsx(Field, { action: "improve.followUpDate", context: note.id, label: "improve.followUpDate", type: "date", value: note.followUpDate || "", onChange: (e) => edit({ followUpDate: e.target.value }) })), /* @__PURE__ */ cpJsx(Check, { action: "improve.completed", context: note.id, label: "improve.completed", checked: !!note.completed, onChange: (e) => edit({ completed: e.target.checked }) }), /* @__PURE__ */ cpJsx(Field, { action: "m3.notes.editText", context: note.id, label: "notes.text", as: "textarea", rows: 8, value: note.text, onChange: (e) => edit({ text: e.target.value }) })) : /* @__PURE__ */ cpJsx(Inspector, { title: ux("notes.new"), status: /* @__PURE__ */ cpJsx(DraftStatus, { dirty: textDirty, context: "note", onDiscard: () => acceptText("") }), footer: /* @__PURE__ */ cpJsx(React.Fragment, null, saved && /* @__PURE__ */ cpJsx(SaveStatus, { state: "saved" }), /* @__PURE__ */ cpJsx(Button, { action: "m3.notes.add", role: "primary", disabled: !date5 || !text7.trim(), onClick: add })) }, /* @__PURE__ */ cpJsx(StudentPicker, { students: doc.students, mode: "one", action: "m3.notes.student", label: t("module.chooseStudent"), value: studentId, onChange: setStudentId }), /* @__PURE__ */ cpJsx(Field, { action: "m3.notes.date", label: "notes.date", type: "date", value: date5, onChange: (e) => setDate(e.target.value) }), /* @__PURE__ */ cpJsx(Field, { action: "m3.notes.text", label: "notes.text", as: "textarea", rows: 6, value: text7, onChange: (e) => setText(e.target.value) }));
-    return /* @__PURE__ */ cpJsx(PageTemplate, { kind: "B", titleKey: "shell.notes", icon: "notes", lead: "ux.lead.notes", info: /* @__PURE__ */ cpJsx(React.Fragment, null, t("notes.separate"), " ", t("improve.draftNotice")), actions: doc.students.length ? /* @__PURE__ */ cpJsx(Button, { action: "ux.notes.new", role: "primary", onClick: () => setOpen("new") }) : null, collection: doc.students.length ? collection : /* @__PURE__ */ cpJsx(EmptyRoster, null), editor: doc.students.length ? editor : null }, setView && /* @__PURE__ */ cpJsx(HomeEnhancements, { part: "private", doc, profile: getProfile(), setView }));
+    } }) : null, collection: doc.students.length ? collection : /* @__PURE__ */ cpJsx(EmptyRoster, null), editor: doc.students.length ? editor : null }, setView && /* @__PURE__ */ cpJsx(HomeEnhancements, { part: "private", doc, profile: getProfile(), setView }));
   }
   var notes_default = manifest("notes", { defaults: notes(), migrate: notes }, [{ id: "module:notes", labelKey: "shell.notes", Component: NotesView }]);
 
@@ -49015,7 +49441,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     return [...(profile2.bellSchedule || []).filter((rule) => rule.source !== "timetable"), ...generated];
   }
 
-  // inline-worker:/workspace/ClassPilot/src/modules/bell/worker.js
+  // inline-worker:/home/user/ClassPilot/src/modules/bell/worker.js
   var worker_default = '(() => {\n  // src/gradebook/calendar.jsx\n  function pad2(n) {\n    return (n < 10 ? "0" : "") + n;\n  }\n  function isoOf(d) {\n    return d.getFullYear() + "-" + pad2(d.getMonth() + 1) + "-" + pad2(d.getDate());\n  }\n  function parseISO(s) {\n    var p = String(s).split("-");\n    return new Date(+p[0], +p[1] - 1, +p[2]);\n  }\n  function addDays(d, n) {\n    var x = new Date(d);\n    x.setDate(x.getDate() + n);\n    return x;\n  }\n  function isSchoolDay(iso, settings) {\n    if (!iso) return false;\n    var d = parseISO(iso);\n    var w = d.getDay();\n    var sd2 = settings && settings.schoolDays || [0, 1, 2, 3, 4];\n    if (sd2.indexOf(w) < 0) return false;\n    var hs = settings && settings.holidays || [];\n    for (var i = 0; i < hs.length; i++) {\n      var h = hs[i];\n      if (h && iso >= h.from && iso <= (h.to || h.from)) return false;\n    }\n    return true;\n  }\n\n  // src/modules/bell/scheduler.js\n  function bellOccurrences(rules, calendar, from, to) {\n    const events = [];\n    if (to < from) return events;\n    for (let day = parseISO(isoOf(new Date(from))), end = parseISO(isoOf(new Date(to))); day <= end; day = addDays(day, 1)) {\n      const date = isoOf(day);\n      if (!isSchoolDay(date, calendar)) continue;\n      for (const rule of rules) {\n        if (!rule.enabled || !rule.weekdays.includes(day.getDay())) continue;\n        const [h, m, s = 0] = rule.time.split(":").map(Number), scheduled = new Date(day.getFullYear(), day.getMonth(), day.getDate(), h, m, s).getTime();\n        if (scheduled > from && scheduled <= to) events.push({ occurrenceId: rule.id + "@" + date + "@" + rule.time, ruleId: rule.id, scheduledAt: scheduled, observedAt: to, lateMs: to - scheduled, status: to - scheduled < 6e4 ? "due" : "missed" });\n      }\n    }\n    return events.sort((a, b) => a.scheduledAt - b.scheduledAt || a.ruleId.localeCompare(b.ruleId));\n  }\n  function createBellScheduler(now = Date.now()) {\n    let last = now, config = { enabled: false, rules: [], calendar: { schoolDays: [], holidays: [] } };\n    const seen = /* @__PURE__ */ new Set();\n    return { configure(next, at = Date.now()) {\n      config = next;\n      last = at;\n    }, check(at = Date.now()) {\n      if (at < last) {\n        last = at;\n        return [];\n      }\n      const events = config.enabled ? bellOccurrences(config.rules, config.calendar, last, at).filter((e) => !seen.has(e.occurrenceId)) : [];\n      last = at;\n      for (const event of events) seen.add(event.occurrenceId);\n      return events;\n    } };\n  }\n\n  // src/modules/bell/worker.js\n  var generation = 0;\n  var scheduler = createBellScheduler();\n  function check(now) {\n    const events = scheduler.check(now);\n    if (events.length) self.postMessage({ type: "events", events, generation });\n  }\n  self.onmessage = (event) => {\n    const message = event.data;\n    if (message.type === "configure") {\n      if (generation !== message.generation) scheduler = createBellScheduler(message.now);\n      generation = message.generation;\n      scheduler.configure(message.config, message.now);\n    }\n    if (message.type === "check") check(message.now);\n  };\n  setInterval(() => check(Date.now()), 100);\n})();\n';
 
   // src/modules/bell/audio.js
@@ -50430,12 +50856,12 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     if (!terms.length) return null;
     const first = parseISO(terms[0].from), last = parseISO(terms.at(-1).to), months = [];
     for (let m = new Date(first.getFullYear(), first.getMonth(), 1); m <= last; m = new Date(m.getFullYear(), m.getMonth() + 1, 1)) months.push(m);
-    const holidays = calendar.holidays || [], schoolDays = calendar.schoolDays?.length ? calendar.schoolDays : [1, 2, 3, 4, 5], weekStart = Math.min(...schoolDays);
+    const holidays = calendar.holidays || [], schoolDays = calendar.schoolDays?.length ? calendar.schoolDays : [1, 2, 3, 4, 5], weekStart2 = Math.min(...schoolDays);
     const weekNo = /* @__PURE__ */ new Map();
     for (const term of terms) for (const week of teachingWeeks(calendar, term)) for (const day of week.days) weekNo.set(day, term.id + " \xB7 " + uxText("pace.week") + " " + week.n);
     return /* @__PURE__ */ cpJsx("div", { className: "cp-year-months" }, months.map((month) => {
-      const lead = (month.getDay() - weekStart + 7) % 7, days = new Date(month.getFullYear(), month.getMonth() + 1, 0).getDate();
-      return /* @__PURE__ */ cpJsx("section", { key: isoOf(month), className: "cp-year-month" }, /* @__PURE__ */ cpJsx("h4", null, new Intl.DateTimeFormat(locale2(), { month: "long", year: "numeric" }).format(month)), /* @__PURE__ */ cpJsx("div", { className: "cp-year-grid" }, Array.from({ length: 7 }, (_, i) => /* @__PURE__ */ cpJsx("span", { key: "h" + i, className: "cp-year-dow" }, new Intl.DateTimeFormat(locale2(), { weekday: "narrow" }).format(addDays(month, ((weekStart + i - month.getDay()) % 7 + 7) % 7)))), Array.from({ length: lead }, (_, i) => /* @__PURE__ */ cpJsx("span", { key: "b" + i })), Array.from({ length: days }, (_, i) => {
+      const lead = (month.getDay() - weekStart2 + 7) % 7, days = new Date(month.getFullYear(), month.getMonth() + 1, 0).getDate();
+      return /* @__PURE__ */ cpJsx("section", { key: isoOf(month), className: "cp-year-month" }, /* @__PURE__ */ cpJsx("h4", null, new Intl.DateTimeFormat(locale2(), { month: "long", year: "numeric" }).format(month)), /* @__PURE__ */ cpJsx("div", { className: "cp-year-grid" }, Array.from({ length: 7 }, (_, i) => /* @__PURE__ */ cpJsx("span", { key: "h" + i, className: "cp-year-dow" }, new Intl.DateTimeFormat(locale2(), { weekday: "narrow" }).format(addDays(month, ((weekStart2 + i - month.getDay()) % 7 + 7) % 7)))), Array.from({ length: lead }, (_, i) => /* @__PURE__ */ cpJsx("span", { key: "b" + i })), Array.from({ length: days }, (_, i) => {
         const date5 = new Date(month.getFullYear(), month.getMonth(), i + 1), iso = isoOf(date5), term = terms.find((t2) => iso >= t2.from && iso <= t2.to), holiday = holidays.some((h) => iso >= h.from && iso <= (h.to || h.from)), weekend = !schoolDays.includes(date5.getDay()), school = term && isSchoolDay(iso, calendar), noLessons = school ? noTeachingOn(calendar, iso) : null, kind = holiday && term ? "holiday" : noLessons ? "noteach" : school ? "term" : term ? "off" : "out";
         return /* @__PURE__ */ cpJsx("span", { key: iso, className: "cp-year-day", "data-kind": kind, "data-weekend": weekend ? "true" : void 0, "data-today": iso === today ? "true" : void 0, title: [iso, holiday ? uxText("pace.holiday") : noLessons ? uxText("pace.kind." + noLessons.kind) : weekNo.get(iso) || ""].filter(Boolean).join(" \xB7 ") }, cpRaw(String(i + 1)));
       })));
@@ -52050,19 +52476,29 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
 
   // src/modules/observations/index.jsx
   var tagName = (tag) => tag.label || t(tag.labelKey);
+  function TagNameField({ tag, onSave }) {
+    const [value, setValue] = useState(tagName(tag));
+    useEffect(() => setValue(tagName(tag)), [tag.label, tag.labelKey]);
+    return /* @__PURE__ */ cpJsx(Field2, { id: "observations.tagName", context: tag.id, label: "observations.tagName", value, onChange: (e) => setValue(e.target.value), onBlur: () => {
+      if (value.trim() !== tagName(tag)) onSave(value.trim(), () => setValue(tagName(tag)));
+    }, onKeyDown: (e) => {
+      if (e.key === "Enter") e.currentTarget.blur();
+    } });
+  }
   function TagSettings({ doc, onUpdate }) {
     const tags = observations(doc.cp?.observations).settings.tags, [name, setName] = useState(""), [kind, setKind] = useState("positive"), [color, setColor] = useState("#dcfce7"), [error2, setError] = useState("");
-    function saveTag(id, patch) {
+    function saveTag(id, patch, revert) {
       const next = tags.map((tag) => tag.id === id ? { ...tag, ...patch } : tag);
       const labels = next.filter((t2) => t2.active).map((tag) => tagName(tag).trim());
       if (labels.some((l) => !l) || new Set(labels).size !== labels.length) {
         setError(t("observations.invalidTag"));
+        revert?.();
         return;
       }
       setError("");
       onUpdate((d) => setTags(d, next));
     }
-    return /* @__PURE__ */ cpJsx("div", { style: { ...panel, marginBlock: 14 } }, /* @__PURE__ */ cpJsx("h2", { style: { fontSize: "var(--cp-fs-label)" } }, t("observations.editTags")), tags.map((tag) => /* @__PURE__ */ cpJsx("div", { key: tag.id, style: { ...row, marginBlock: 8 } }, /* @__PURE__ */ cpJsx(Field2, { id: "observations.tagName", context: tag.id, label: "observations.tagName", value: tagName(tag), onChange: (e) => saveTag(tag.id, { label: e.target.value }) }), /* @__PURE__ */ cpJsx("label", null, t("observations.kind"), /* @__PURE__ */ cpJsx("select", { value: tag.kind, "aria-label": t("observations.kind"), ...controlProps("m3.observations.kind", (e) => saveTag(tag.id, { kind: e.target.value }), tag.id), style: field }, ["positive", "support"].map((k) => /* @__PURE__ */ cpJsx("option", { key: k, value: k }, t("observations." + k))))), /* @__PURE__ */ cpJsx(Field2, { id: "observations.color", context: tag.id, label: "observations.color", type: "color", value: tag.color, onChange: (e) => saveTag(tag.id, { color: e.target.value }) }), /* @__PURE__ */ cpJsx(Command, { id: tag.active ? "observations.archiveTag" : "observations.restoreTag", context: tag.id, onClick: () => saveTag(tag.id, { active: !tag.active }) }, t(tag.active ? "observations.archiveTag" : "observations.restoreTag")))), /* @__PURE__ */ cpJsx("div", { style: { ...row, marginBlockStart: 14 } }, /* @__PURE__ */ cpJsx(Field2, { id: "observations.tagName", context: "new", label: "observations.tagName", value: name, onChange: (e) => setName(e.target.value) }), /* @__PURE__ */ cpJsx("label", null, t("observations.kind"), /* @__PURE__ */ cpJsx("select", { value: kind, "aria-label": t("observations.kind"), ...controlProps("m3.observations.kind", (e) => setKind(e.target.value), "new"), style: field }, ["positive", "support"].map((k) => /* @__PURE__ */ cpJsx("option", { key: k, value: k }, t("observations." + k))))), /* @__PURE__ */ cpJsx(Field2, { id: "observations.color", context: "new", label: "observations.color", type: "color", value: color, onChange: (e) => setColor(e.target.value) }), /* @__PURE__ */ cpJsx(Command, { id: "observations.addTag", onClick: () => {
+    return /* @__PURE__ */ cpJsx("div", { className: "cp-obs-tags-edit" }, /* @__PURE__ */ cpJsx("h2", null, t("observations.editTags")), tags.map((tag) => /* @__PURE__ */ cpJsx("div", { key: tag.id, className: "cp-obs-tag-row" }, /* @__PURE__ */ cpJsx(TagNameField, { tag, onSave: (label, revert) => saveTag(tag.id, { label }, revert) }), /* @__PURE__ */ cpJsx("label", { className: "cp-ux-field" }, /* @__PURE__ */ cpJsx("span", null, t("observations.kind")), /* @__PURE__ */ cpJsx("select", { value: tag.kind, "aria-label": t("observations.kind"), ...controlProps("m3.observations.kind", (e) => saveTag(tag.id, { kind: e.target.value }), tag.id), style: field }, ["positive", "support"].map((k) => /* @__PURE__ */ cpJsx("option", { key: k, value: k }, t("observations." + k))))), /* @__PURE__ */ cpJsx(Field2, { id: "observations.color", context: tag.id, label: "observations.color", type: "color", value: tag.color, onChange: (e) => saveTag(tag.id, { color: e.target.value }) }), /* @__PURE__ */ cpJsx(Command, { id: tag.active ? "observations.archiveTag" : "observations.restoreTag", context: tag.id, onClick: () => saveTag(tag.id, { active: !tag.active }) }, t(tag.active ? "observations.archiveTag" : "observations.restoreTag")))), /* @__PURE__ */ cpJsx("div", { className: "cp-obs-tag-row" }, /* @__PURE__ */ cpJsx(Field2, { id: "observations.tagName", context: "new", label: "observations.tagName", value: name, onChange: (e) => setName(e.target.value) }), /* @__PURE__ */ cpJsx("label", { className: "cp-ux-field" }, /* @__PURE__ */ cpJsx("span", null, t("observations.kind")), /* @__PURE__ */ cpJsx("select", { value: kind, "aria-label": t("observations.kind"), ...controlProps("m3.observations.kind", (e) => setKind(e.target.value), "new"), style: field }, ["positive", "support"].map((k) => /* @__PURE__ */ cpJsx("option", { key: k, value: k }, t("observations." + k))))), /* @__PURE__ */ cpJsx(Field2, { id: "observations.color", context: "new", label: "observations.color", type: "color", value: color, onChange: (e) => setColor(e.target.value) }), /* @__PURE__ */ cpJsx(Command, { id: "observations.addTag", onClick: () => {
       if (!name.trim() || tags.some((tag) => tagName(tag) === name.trim())) {
         setError(t("observations.invalidTag"));
         return;
@@ -52072,27 +52508,83 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       setError("");
     } }, t("observations.addTag"))), error2 && /* @__PURE__ */ cpJsx("p", { role: "alert" }, error2));
   }
+  var ICON2 = { positive: "M5 12l5 5 9-10", support: "M12 6v8M12 18v.5" };
+  var TagIcon = ({ kind }) => /* @__PURE__ */ cpJsx("span", { className: "cp-obs-tagicon", "aria-hidden": "true" }, /* @__PURE__ */ cpJsx("svg", { viewBox: "0 0 24 24", width: "13", height: "13", fill: "none", stroke: "currentColor", strokeWidth: "2.6", strokeLinecap: "round", strokeLinejoin: "round" }, /* @__PURE__ */ cpJsx("path", { d: ICON2[kind] || ICON2.positive })));
+  var weekStart = (iso) => {
+    const d = /* @__PURE__ */ new Date(iso + "T00:00:00");
+    d.setDate(d.getDate() - (d.getDay() + 1) % 7);
+    return d.toISOString().slice(0, 10);
+  };
+  function Entry({ doc, item, studentId, tags, showName, onUpdate, convert }) {
+    const [menu, setMenu] = useState(false), [edit, setEdit] = useState(null), name = doc.students.find((s) => s.id === studentId)?.name || "";
+    useEffect(() => {
+      if (!menu) return;
+      const close = (e) => {
+        if (!e.target.closest?.(".cp-obs-menu,.cp-obs-more")) setMenu(false);
+      };
+      const key4 = (e) => {
+        if (e.key === "Escape") setMenu(false);
+      };
+      document.addEventListener("mousedown", close);
+      document.addEventListener("keydown", key4);
+      return () => {
+        document.removeEventListener("mousedown", close);
+        document.removeEventListener("keydown", key4);
+      };
+    }, [menu]);
+    const itemTags = item.tagIds.map((id) => tags.find((tag) => tag.id === id)).filter(Boolean), conv = item.conversions || {};
+    return /* @__PURE__ */ cpJsx("li", { className: "cp-obs-entry", "data-observation-id": item.id }, /* @__PURE__ */ cpJsx("span", { className: "cp-obs-when" }, cpRaw(showName ? displayTime(((d) => String(d.getHours()).padStart(2, "0") + ":" + String(d.getMinutes()).padStart(2, "0"))(new Date(item.createdAt))) : displayDate(item.date, { year: false }))), /* @__PURE__ */ cpJsx("div", { className: "cp-obs-what" }, showName && /* @__PURE__ */ cpJsx("b", { dir: "auto" }, cpRaw(name)), itemTags.map((tag) => /* @__PURE__ */ cpJsx("span", { key: tag.id, className: "cp-obs-tt", "data-kind": tag.kind }, cpRaw(tagName(tag)))), conv.participation && /* @__PURE__ */ cpJsx("span", { className: "cp-obs-badge", "data-kind": "positive" }, uxText("obs.awarded")), conv.behaviour && /* @__PURE__ */ cpJsx("span", { className: "cp-obs-badge" }, uxText("obs.deducted")), item.note && /* @__PURE__ */ cpJsx("span", { className: "cp-obs-notetext", dir: "auto" }, cpRaw(item.note))), /* @__PURE__ */ cpJsx("div", { className: "cp-obs-menuwrap" }, /* @__PURE__ */ cpJsx("button", { type: "button", className: "cp-obs-more", "aria-expanded": menu, "aria-label": uxText("obs.more") + ": " + name, title: uxText("obs.more"), ...actionProps("ux.obs.more", () => setMenu(!menu), item.id) }, /* @__PURE__ */ cpJsx("svg", { "aria-hidden": "true", viewBox: "0 0 24 24", width: "16", height: "16", fill: "currentColor" }, /* @__PURE__ */ cpJsx("circle", { cx: "5", cy: "12", r: "1.8" }), /* @__PURE__ */ cpJsx("circle", { cx: "12", cy: "12", r: "1.8" }), /* @__PURE__ */ cpJsx("circle", { cx: "19", cy: "12", r: "1.8" }))), menu && /* @__PURE__ */ cpJsx("div", { className: "cp-obs-menu", role: "menu" }, /* @__PURE__ */ cpJsx("button", { type: "button", role: "menuitem", ...actionProps("ux.obs.edit", () => {
+      setEdit({ date: item.date, note: item.note || "" });
+      setMenu(false);
+    }, item.id) }, uxText("obs.edit")), ["participation", "behaviour"].map((kind) => {
+      const fits = canConvert(doc, item, kind), done = !!conv[kind];
+      return /* @__PURE__ */ cpJsx(Command, { key: kind, id: "observations." + kind, context: item.id, role: "menuitem", disabled: !fits || done, title: done ? t("observations.converted") : fits ? t("observations." + kind) : uxText("obs.convertOnly." + kind), onClick: () => {
+        setMenu(false);
+        convert(studentId, item, kind);
+      } }, uxText("obs.convert." + kind));
+    }), /* @__PURE__ */ cpJsx(Command, { id: "observations.remove", context: item.id, role: "menuitem", className: "cp-obs-danger", onClick: () => {
+      setMenu(false);
+      onUpdate((d) => removeObservation(d, studentId, item.id));
+      notify(uxText("obs.removed"), { undo: true });
+    } }, t("observations.remove")))), edit && /* @__PURE__ */ cpJsx("div", { className: "cp-obs-editbox" }, /* @__PURE__ */ cpJsx(Field2, { id: "observations.editDate", context: item.id, label: "observations.date", type: "date", value: edit.date, onChange: (e) => setEdit({ ...edit, date: e.target.value }) }), /* @__PURE__ */ cpJsx(Field2, { id: "observations.editNote", context: item.id, label: "observations.note", maxLength: 500, value: edit.note, onChange: (e) => setEdit({ ...edit, note: e.target.value }) }), /* @__PURE__ */ cpJsx("div", { className: "cp-obs-editfoot" }, /* @__PURE__ */ cpJsx("button", { type: "button", className: "cp-ux-button", ...actionProps("ux.obs.cancelEdit", () => setEdit(null), item.id) }, uxText("obs.cancelEdit")), /* @__PURE__ */ cpJsx("button", { type: "button", className: "cp-ux-button cp-obs-primary", disabled: !edit.date, ...actionProps("ux.obs.saveEdit", () => {
+      onUpdate((d) => editObservation(d, studentId, item.id, { date: edit.date, note: edit.note.replace(/[\r\n]+/g, " ") }));
+      setEdit(null);
+    }, item.id) }, uxText("obs.saveEdit")))));
+  }
   function ObservationsView({ doc, onUpdate }) {
     useLanguage();
     const latestDoc = useRef(doc);
     latestDoc.current = doc;
-    const [date5, setDate] = useState(() => activeLesson(doc)?.date || todayISO()), [selected, setSelected] = useState({}), [studentId, setStudentId] = useState(() => getRequestedStudent() || doc.students[0]?.id || ""), [editing, setEditing] = useState(false), [lastSupport, setLastSupport] = useState(null);
+    const requested2 = getRequestedStudent();
+    const [date5, setDate] = useState(() => activeLesson(doc)?.date || todayISO()), [mode, setMode] = useState("one"), [studentId, setStudentId] = useState(() => doc.students.some((s) => s.id === requested2) ? requested2 : ""), [selected, setSelected] = useState({}), [query, setQuery] = useState(""), [editing, setEditing] = useState(false), [lastSupport, setLastSupport] = useState(null);
     const noteKey2 = "obs-note:" + doc.cp.classId, [note, setNote, acceptNote, noteDirty] = useRetainedState(noteKey2, "", { warn: true });
     useEffect(() => subscribeLesson(() => {
       const lesson = activeLesson(doc);
       if (lesson) setDate(lesson.date);
     }), [doc.cp.classId]);
     useEffect(() => {
-      if (!doc.students.some((s) => s.id === studentId)) setStudentId(doc.students[0]?.id || "");
+      if (studentId && !doc.students.some((s) => s.id === studentId)) setStudentId("");
     }, [doc.students, studentId]);
-    const data = observations(doc.cp?.observations), tags = data.settings.tags, selectedIds = doc.students.filter((s) => selected[s.id]).map((s) => s.id), targetIds = selectedIds.length ? selectedIds : [studentId], timeline = [...data.byStudent[studentId] || []].sort((a, b) => b.date.localeCompare(a.date) || b.createdAt - a.createdAt);
-    const nameOf2 = (id) => doc.students.find((s) => s.id === id)?.name || "", who = targetIds.length === 1 ? nameOf2(targetIds[0]) : countText(targetIds.length, "obs.students");
+    const data = observations(doc.cp?.observations), tags = data.settings.tags, nameOf2 = (id) => doc.students.find((s) => s.id === id)?.name || "";
+    const targetIds = mode === "class" ? doc.students.map((s) => s.id) : mode === "several" ? doc.students.filter((s) => selected[s.id]).map((s) => s.id) : studentId ? [studentId] : [];
+    const who = targetIds.length === 1 ? nameOf2(targetIds[0]) : countText(targetIds.length, "obs.students"), needle = query.trim().toLocaleLowerCase(), shown2 = doc.students.filter((s) => !needle || String(s.name || "").toLocaleLowerCase().includes(needle));
+    const week = weekStart(todayISO()), weekCount = (id) => (data.byStudent[id] || []).filter((o) => o.date >= week).length;
+    const single = mode === "one" && studentId ? studentId : null, timeline = single ? [...data.byStudent[single] || []].sort((a, b) => b.date.localeCompare(a.date) || b.createdAt - a.createdAt) : [];
+    const today = todayISO(), recent = Object.entries(data.byStudent).filter(([id]) => doc.students.some((s) => s.id === id)).flatMap(([id, list2]) => list2.filter((o) => new Date(o.createdAt).toISOString().slice(0, 10) === today || o.date === today).map((o) => ({ id, o }))).sort((a, b) => b.o.createdAt - a.o.createdAt).slice(0, 12);
+    const termCounts = (kind) => timeline.filter((o) => o.tagIds.some((id) => tags.find((tag) => tag.id === id)?.kind === kind)).length;
+    const clearTarget = () => {
+      setStudentId("");
+      setSelected({});
+      if (mode === "class") setMode("one");
+    };
     function record(tagIds) {
-      onUpdate((d) => addObservations(d, targetIds, date5, tagIds, note));
+      if (!targetIds.length) return;
+      const ids = [...targetIds], label = tagIds.length ? tagName(tags.find((tag) => tag.id === tagIds[0]) || {}) : "", support2 = tagIds.find((id) => tags.find((tag) => tag.id === id)?.kind === "support");
+      onUpdate((d) => addObservations(d, ids, date5, tagIds, note));
       acceptNote("");
-      toast(uxText("obs.recordedFor").replace("{who}", who));
-      const support2 = tagIds.find((id) => tags.find((tag) => tag.id === id)?.kind === "support");
-      setLastSupport(support2 ? { tagId: support2, date: date5, ids: [...targetIds], who } : null);
+      notify((label ? uxText("obs.recordedTag").replace("{tag}", label) : uxText("obs.recordedNote")).replace("{who}", who), { undo: true });
+      setLastSupport(support2 ? { tagId: support2, date: date5, ids, who, label: tagName(tags.find((tag) => tag.id === support2) || {}) } : null);
+      clearTarget();
     }
     function addReason(reason) {
       const last = lastSupport;
@@ -52102,30 +52594,36 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
         return item ? editObservation(doc2, id, item.id, { note: item.note ? item.note + " \xB7 " + reason : reason }) : doc2;
       }, d));
       setLastSupport(null);
-      toast(uxText("obs.reasonAdded"));
+      notify(uxText("obs.reasonAdded"));
     }
-    async function convert(item, kind) {
-      const reason = await askText({ title: t("observations." + kind), body: t("observations.convertConfirm"), label: t("observations.reason"), value: item.note || item.tagIds.map((id) => {
+    async function convert(sid, item, kind) {
+      const reason = await askText({ title: uxText("obs.convert." + kind), body: uxText("obs.convertBody." + kind).replace("{date}", displayDate(item.date)), label: t("observations.reason"), value: item.note || item.tagIds.map((id) => {
         const tag = tags.find((t2) => t2.id === id);
         return tag ? tagName(tag) : "";
       }).filter(Boolean).join(", "), confirm: uxText("convert.confirm"), context: item.id });
       if (!reason) return;
-      const current4 = latestDoc.current, next = convertObservation(current4, studentId, item.id, kind, reason);
+      const current4 = latestDoc.current, next = convertObservation(current4, sid, item.id, kind, reason);
       if (next === current4) {
-        toast(t("observations.noParticipation"));
+        notify(t("observations.noParticipation"));
         return;
       }
-      onUpdate((d) => d === current4 ? next : convertObservation(d, studentId, item.id, kind, reason));
+      onUpdate((d) => d === current4 ? next : convertObservation(d, sid, item.id, kind, reason));
     }
-    return /* @__PURE__ */ cpJsx(ModuleFrame, { titleKey: "shell.observations", icon: "observations", lead: "ux.lead.observations", info: t("observations.notScore") }, !doc.students.length ? /* @__PURE__ */ cpJsx(EmptyRoster, null) : /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx("div", { className: "cp-obs-layout" }, /* @__PURE__ */ cpJsx("div", { className: "cp-obs-main" }, /* @__PURE__ */ cpJsx("div", { style: panel }, /* @__PURE__ */ cpJsx("h3", { className: "cp-step-title" }, /* @__PURE__ */ cpJsx("b", null, "1"), uxText("obs.who")), /* @__PURE__ */ cpJsx("div", { className: "cp-obs-who" }, /* @__PURE__ */ cpJsx(StudentSelect, { doc, id: "observations.student", value: studentId, onChange: (e) => setStudentId(e.target.value) }), /* @__PURE__ */ cpJsx(Field2, { id: "observations.date", label: "observations.date", type: "date", value: date5, onChange: (e) => setDate(e.target.value) })), /* @__PURE__ */ cpJsx("div", { className: "cp-obs-pick" }, /* @__PURE__ */ cpJsx("label", { className: "cp-pick-chip cp-pick-all" }, /* @__PURE__ */ cpJsx("input", { type: "checkbox", checked: selectedIds.length === doc.students.length, ...controlProps("m3.observations.selectAll", (e) => setSelected(e.target.checked ? Object.fromEntries(doc.students.map((s) => [s.id, true])) : {})) }), t("observations.selectAll")), /* @__PURE__ */ cpJsx("span", null, t("module.selection"), ": ", selectedIds.length), doc.students.map((student) => /* @__PURE__ */ cpJsx("label", { key: student.id, className: "cp-pick-chip" }, /* @__PURE__ */ cpJsx("input", { type: "checkbox", checked: !!selected[student.id], ...controlProps("m3.observations.select", (e) => setSelected({ ...selected, [student.id]: e.target.checked }), student.id) }), cpRaw(student.name)))), /* @__PURE__ */ cpJsx("h3", { className: "cp-step-title" }, /* @__PURE__ */ cpJsx("b", null, "2"), uxText("obs.what")), /* @__PURE__ */ cpJsx("p", { className: "cp-obs-target", "data-count": targetIds.length }, uxText("obs.recordsFor"), " ", /* @__PURE__ */ cpJsx("b", null, /* @__PURE__ */ cpJsx("bdi", null, cpRaw(who)))), /* @__PURE__ */ cpJsx("div", { className: "cp-obs-palette", role: "group", "aria-label": t("observations.palette") }, tags.filter((tag) => tag.active).map((tag) => /* @__PURE__ */ cpJsx(Command, { key: tag.id, id: "observations.tag", context: tag.id, disabled: !date5, "aria-label": tagName(tag) + " \u2192 " + who, title: tagName(tag) + " \u2192 " + who, onClick: () => record([tag.id]), style: { background: tag.color, color: colourText(tag.color) } }, cpRaw(tagName(tag)), /* @__PURE__ */ cpJsx("span", { style: { fontSize: "var(--cp-fs-caption)", marginInlineStart: 6 } }, t("observations." + tag.kind)))), /* @__PURE__ */ cpJsx(Command, { id: "observations.editTags", active: editing, onClick: () => setEditing(!editing) }, t("observations.editTags"))), /* @__PURE__ */ cpJsx("div", { className: "cp-obs-note" }, /* @__PURE__ */ cpJsx(Field2, { id: "observations.note", label: "observations.note", maxLength: 500, value: note, onChange: (e) => setNote(e.target.value) }), /* @__PURE__ */ cpJsx(DraftStatus, { dirty: noteDirty, context: "observation", onDiscard: () => acceptNote("") }), /* @__PURE__ */ cpJsx(Command, { id: "observations.record", disabled: !date5 || !note.trim(), onClick: () => record([]) }, t("observations.record"))), lastSupport && /* @__PURE__ */ cpJsx("div", { className: "cp-obs-reason", role: "group", "aria-label": uxText("obs.reasonTitle").replace("{who}", lastSupport.who) }, /* @__PURE__ */ cpJsx("span", null, uxText("obs.reasonTitle").replace("{who}", lastSupport.who)), /* @__PURE__ */ cpJsx(PhrasePicker, { kind: "behaviour", context: "observation-reason", onChange: (reason) => addReason(reason) }), /* @__PURE__ */ cpJsx("button", { type: "button", className: "cp-ux-button", ...actionProps("ux.obs.reasonDone", () => setLastSupport(null)) }, uxText("obs.reasonDone")))), editing && /* @__PURE__ */ cpJsx(TagSettings, { doc, onUpdate }), /* @__PURE__ */ cpJsx(LessonActionPanel, { doc, onUpdate, selectedIds: targetIds, date: date5, note, onNote: setNote })), /* @__PURE__ */ cpJsx("section", { className: "cp-obs-timeline" }, /* @__PURE__ */ cpJsx("h2", { style: { fontSize: "var(--cp-fs-label)", marginBlockStart: 18 } }, t("observations.timeline")), !timeline.length && /* @__PURE__ */ cpJsx("p", null, t("module.noEntries")), /* @__PURE__ */ cpJsx("div", { style: { display: "flex", flexDirection: "column", gap: 10 } }, timeline.map((item) => /* @__PURE__ */ cpJsx("article", { key: item.id, "data-observation-id": item.id, style: panel }, /* @__PURE__ */ cpJsx("div", { style: row }, /* @__PURE__ */ cpJsx(Field2, { id: "observations.editDate", context: item.id, label: "observations.date", type: "date", value: item.date, onChange: (e) => {
-      if (e.target.value) onUpdate((d) => editObservation(d, studentId, item.id, { date: e.target.value }));
-    } }), item.tagIds.map((id) => {
-      const tag = tags.find((t2) => t2.id === id);
-      return tag && /* @__PURE__ */ cpJsx("span", { key: id, style: { padding: "4px 8px", borderRadius: 5, background: tag.color, color: colourText(tag.color) } }, cpRaw(tagName(tag)), /* @__PURE__ */ cpJsx("span", { style: { fontSize: "var(--cp-fs-caption)", marginInlineStart: 5 } }, t("observations." + tag.kind)));
-    }), /* @__PURE__ */ cpJsx(Field2, { id: "observations.editNote", context: item.id, label: "observations.note", maxLength: 500, value: item.note || "", onChange: (e) => onUpdate((d) => editObservation(d, studentId, item.id, { note: e.target.value })) })), /* @__PURE__ */ cpJsx("div", { style: { ...row, marginBlockStart: 10 } }, ["participation", "behaviour"].map((kind) => /* @__PURE__ */ cpJsx(Command, { key: kind, id: "observations." + kind, context: item.id, disabled: !!item.conversions?.[kind], title: item.conversions?.[kind] ? t("observations.converted") : t("observations." + kind), onClick: () => convert(item, kind) }, t("observations." + kind))), /* @__PURE__ */ cpJsx(Command, { id: "observations.remove", context: item.id, onClick: () => {
-      onUpdate((d) => removeObservation(d, studentId, item.id));
-      notify(uxText("obs.removed"), { undo: true });
-    } }, t("observations.remove"))))))))));
+    const modes = [["one", "obs.mode.one"], ["several", "obs.mode.several"], ["class", "obs.mode.class"]];
+    return /* @__PURE__ */ cpJsx(ModuleFrame, { titleKey: "shell.observations", icon: "observations", lead: "ux.lead.observations", info: t("observations.notScore") }, !doc.students.length ? /* @__PURE__ */ cpJsx(EmptyRoster, null) : /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx("div", { className: "cp-obs2" }, /* @__PURE__ */ cpJsx("aside", { className: "cp-obs-roster", "aria-label": uxText("obs.who") }, /* @__PURE__ */ cpJsx("label", { className: "cp-obs-search" }, /* @__PURE__ */ cpJsx("span", { className: "cp-visually-hidden" }, uxText("obs.search")), /* @__PURE__ */ cpJsx("input", { type: "search", placeholder: uxText("obs.search"), "aria-label": uxText("obs.search"), value: query, ...controlProps("ux.obs.search", (e) => setQuery(e.target.value)) })), /* @__PURE__ */ cpJsx("div", { className: "cp-obs-modes", role: "group", "aria-label": uxText("obs.modes") }, modes.map(([id, key4]) => /* @__PURE__ */ cpJsx("button", { key: id, type: "button", "aria-pressed": mode === id, ...actionProps("ux.obs.mode", () => {
+      setMode(id);
+      if (id === "several" && studentId) setSelected({ [studentId]: true });
+      if (id === "one") {
+        const first = Object.keys(selected).find((k) => selected[k]);
+        setStudentId(first || "");
+      }
+    }, id) }, uxText(key4)))), /* @__PURE__ */ cpJsx("ul", { className: "cp-obs-list" }, shown2.map((student) => {
+      const on = targetIds.includes(student.id), n = weekCount(student.id);
+      return /* @__PURE__ */ cpJsx("li", { key: student.id }, mode === "one" ? /* @__PURE__ */ cpJsx("button", { type: "button", className: "cp-obs-st", "aria-pressed": on, ...actionProps("ux.obs.pick", () => setStudentId(on ? "" : student.id), student.id) }, /* @__PURE__ */ cpJsx("span", { className: "cp-obs-av", "aria-hidden": "true" }, cpRaw(initialsOf(student.name) || "\xB7")), /* @__PURE__ */ cpJsx("bdi", null, cpRaw(student.name)), n > 0 && /* @__PURE__ */ cpJsx("small", { title: uxText("obs.weekCount") }, n)) : /* @__PURE__ */ cpJsx("label", { className: "cp-obs-st", "data-on": on ? "true" : "false" }, /* @__PURE__ */ cpJsx("input", { type: "checkbox", checked: on, disabled: mode === "class", ...controlProps("m3.observations.select", (e) => setSelected({ ...selected, [student.id]: e.target.checked }), student.id) }), /* @__PURE__ */ cpJsx("span", { className: "cp-obs-av", "aria-hidden": "true" }, cpRaw(initialsOf(student.name) || "\xB7")), /* @__PURE__ */ cpJsx("bdi", null, cpRaw(student.name)), n > 0 && /* @__PURE__ */ cpJsx("small", { title: uxText("obs.weekCount") }, n)));
+    }), !shown2.length && /* @__PURE__ */ cpJsx("li", { className: "cp-obs-none" }, uxText("obs.noMatch"))), /* @__PURE__ */ cpJsx("p", { className: "cp-obs-rosterfoot" }, cpRaw(countText(doc.students.length, "obs.students")), cpRaw(" \xB7 "), uxText("obs.weekCount"))), /* @__PURE__ */ cpJsx("section", { className: "cp-obs-record", "aria-label": uxText("obs.what") }, /* @__PURE__ */ cpJsx("div", { className: "cp-obs-targetbar", "data-count": targetIds.length }, /* @__PURE__ */ cpJsx("span", null, uxText("obs.recordingFor")), targetIds.length === 0 ? /* @__PURE__ */ cpJsx("em", null, uxText("obs.chooseFirst")) : mode === "class" ? /* @__PURE__ */ cpJsx("span", { className: "cp-obs-chip" }, uxText("obs.mode.class"), /* @__PURE__ */ cpJsx("button", { type: "button", "aria-label": uxText("obs.clearChoice"), ...actionProps("ux.obs.unpick", () => clearTarget(), "class") }, "\xD7")) : targetIds.slice(0, 6).map((id) => /* @__PURE__ */ cpJsx("span", { key: id, className: "cp-obs-chip" }, /* @__PURE__ */ cpJsx("bdi", null, cpRaw(nameOf2(id))), /* @__PURE__ */ cpJsx("button", { type: "button", "aria-label": uxText("obs.remove").replace("{who}", nameOf2(id)), ...actionProps("ux.obs.unpick", () => {
+      if (mode === "one") setStudentId("");
+      else setSelected({ ...selected, [id]: false });
+    }, id) }, "\xD7"))), mode === "several" && targetIds.length > 6 && /* @__PURE__ */ cpJsx("span", { className: "cp-obs-chip" }, cpRaw("+" + (targetIds.length - 6))), /* @__PURE__ */ cpJsx("span", { className: "cp-obs-gap" }), /* @__PURE__ */ cpJsx(Field2, { id: "observations.date", label: "observations.date", type: "date", value: date5, onChange: (e) => setDate(e.target.value) })), /* @__PURE__ */ cpJsx("div", { className: "cp-obs-palette", role: "group", "aria-label": t("observations.palette") }, tags.filter((tag) => tag.active).map((tag) => /* @__PURE__ */ cpJsx(Command, { key: tag.id, id: "observations.tag", context: tag.id, disabled: !date5 || !targetIds.length, "data-kind": tag.kind, "aria-label": tagName(tag) + " \u2192 " + (targetIds.length ? who : uxText("obs.chooseFirst")), title: tagName(tag), onClick: () => record([tag.id]), style: { background: tag.color, color: colourText(tag.color) } }, /* @__PURE__ */ cpJsx(TagIcon, { kind: tag.kind }), cpRaw(tagName(tag))))), /* @__PURE__ */ cpJsx("div", { className: "cp-obs-note" }, /* @__PURE__ */ cpJsx(Field2, { id: "observations.note", label: "observations.note", maxLength: 500, value: note, onChange: (e) => setNote(e.target.value) }), /* @__PURE__ */ cpJsx(Command, { id: "observations.record", disabled: !date5 || !note.trim() || !targetIds.length, onClick: () => record([]) }, uxText("obs.saveNoteOnly"))), /* @__PURE__ */ cpJsx("p", { className: "cp-obs-hint" }, uxText("obs.noteHint")), /* @__PURE__ */ cpJsx(DraftStatus, { dirty: noteDirty, context: "observation", onDiscard: () => acceptNote("") }), lastSupport && /* @__PURE__ */ cpJsx("div", { className: "cp-obs-reason", role: "group", "aria-label": uxText("obs.why").replace("{tag}", lastSupport.label).replace("{who}", lastSupport.who) }, /* @__PURE__ */ cpJsx("div", { className: "cp-obs-reasonhead" }, /* @__PURE__ */ cpJsx("b", null, uxText("obs.why").replace("{tag}", lastSupport.label).replace("{who}", lastSupport.who)), /* @__PURE__ */ cpJsx("button", { type: "button", className: "cp-obs-quiet", ...actionProps("ux.obs.reasonDone", () => setLastSupport(null)) }, uxText("obs.reasonDone"))), /* @__PURE__ */ cpJsx(PhrasePicker, { kind: "behaviour", context: "observation-reason", onChange: (reason) => addReason(reason) })), /* @__PURE__ */ cpJsx("div", { className: "cp-obs-tools" }, /* @__PURE__ */ cpJsx(Command, { id: "observations.editTags", active: editing, onClick: () => setEditing(!editing) }, t("observations.editTags"))), editing && /* @__PURE__ */ cpJsx(TagSettings, { doc, onUpdate }), /* @__PURE__ */ cpJsx(LessonActionPanel, { doc, onUpdate, selectedIds: targetIds, date: date5, note, onNote: setNote })), /* @__PURE__ */ cpJsx("section", { className: "cp-obs-side", "aria-labelledby": "cp-obs-side-title" }, single ? /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx("header", null, /* @__PURE__ */ cpJsx("h2", { id: "cp-obs-side-title", dir: "auto" }, cpRaw(nameOf2(single))), /* @__PURE__ */ cpJsx("span", null, uxText("obs.summary").replace("{p}", String(termCounts("positive"))).replace("{s}", String(termCounts("support"))))), timeline.length ? /* @__PURE__ */ cpJsx("ol", { className: "cp-obs-entries" }, timeline.map((item) => /* @__PURE__ */ cpJsx(Entry, { key: item.id, doc, item, studentId: single, tags, onUpdate, convert }))) : /* @__PURE__ */ cpJsx("p", { className: "cp-obs-empty" }, t("module.noEntries"))) : /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx("header", null, /* @__PURE__ */ cpJsx("h2", { id: "cp-obs-side-title" }, uxText("obs.justRecorded")), /* @__PURE__ */ cpJsx("span", null, uxText("obs.today"))), recent.length ? /* @__PURE__ */ cpJsx("ol", { className: "cp-obs-entries" }, recent.map(({ id, o }) => /* @__PURE__ */ cpJsx(Entry, { key: o.id, doc, item: o, studentId: id, tags, showName: true, onUpdate, convert }))) : /* @__PURE__ */ cpJsx("p", { className: "cp-obs-empty" }, uxText("obs.nothingToday")), /* @__PURE__ */ cpJsx("p", { className: "cp-obs-empty" }, uxText("obs.pickForTimeline")))))));
   }
   var observations_default = manifest("observations", { defaults: observations(), migrate: observations }, [{ id: "module:observations", labelKey: "shell.observations", Component: ObservationsView }], [{ id: "observations.tags", Component: TagSettings }]);
 
@@ -53238,17 +53736,17 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     if (filter === "needs") return !isReviewed(summary) && notePrompts(summary).some((prompt2) => prompt2.id !== "praise");
     return true;
   }
-  function putWeek(doc, weekStart, patch) {
-    const store4 = weekly(doc.cp?.weekly), old = store4.weeks[weekStart] || { work: [], notes: {} };
-    return { ...doc, cp: { ...doc.cp, weekly: { ...store4, weeks: { ...store4.weeks, [weekStart]: { ...old, ...patch } } } } };
+  function putWeek(doc, weekStart2, patch) {
+    const store4 = weekly(doc.cp?.weekly), old = store4.weeks[weekStart2] || { work: [], notes: {} };
+    return { ...doc, cp: { ...doc.cp, weekly: { ...store4, weeks: { ...store4.weeks, [weekStart2]: { ...old, ...patch } } } } };
   }
-  function putNote(doc, weekStart, studentId, note) {
-    const old = weekly(doc.cp?.weekly).weeks[weekStart] || { work: [], notes: {} };
-    return putWeek(doc, weekStart, { notes: { ...old.notes || {}, [studentId]: { text: "", strengths: "", next: "", noNote: false, ...(old.notes || {})[studentId], ...note } } });
+  function putNote(doc, weekStart2, studentId, note) {
+    const old = weekly(doc.cp?.weekly).weeks[weekStart2] || { work: [], notes: {} };
+    return putWeek(doc, weekStart2, { notes: { ...old.notes || {}, [studentId]: { text: "", strengths: "", next: "", noNote: false, ...(old.notes || {})[studentId], ...note } } });
   }
-  function snapshotWeek(doc, weekStart, preparedAt = (/* @__PURE__ */ new Date()).toISOString()) {
+  function snapshotWeek(doc, weekStart2, preparedAt = (/* @__PURE__ */ new Date()).toISOString()) {
     const grades = liveGrades(doc);
-    return putWeek(doc, weekStart, { grades, classAverage: average(Object.values(grades)), preparedAt });
+    return putWeek(doc, weekStart2, { grades, classAverage: average(Object.values(grades)), preparedAt });
   }
   var REPORT_PARTS = ["sections", "progress", "behaviour", "participation", "stars", "strengths", "home", "attendance", "details"];
   var defaultParts = { sections: true, progress: true, behaviour: true, participation: true, stars: true, attendance: false, strengths: true, home: true, details: false };
