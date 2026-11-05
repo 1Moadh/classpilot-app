@@ -802,6 +802,8 @@ body{background:var(--cp-background);color:var(--cp-text)}
 
 /* M37: one AI student reports window in three numbered steps (as the original workflow). */
 .cp-ai-center-backdrop{position:fixed;inset:0;z-index:1200;background:rgba(15,23,42,.48);display:flex;align-items:center;justify-content:center;padding:18px}
+dialog.cp-ai-center-backdrop{margin:0;inline-size:100%;block-size:100%;max-inline-size:none;max-block-size:none;border:0;box-sizing:border-box;color:inherit}
+dialog.cp-ai-center-backdrop::backdrop{background:transparent}
 .cp-ai-center{width:min(1040px,96vw);height:min(860px,95vh);display:flex;flex-direction:column;background:var(--cp-surface);color:var(--cp-text);border:1px solid var(--cp-border);border-radius:12px;box-shadow:var(--e-3);font-size:var(--cp-fs-body);overflow:hidden}
 .cp-ai-center-head{display:flex;align-items:center;gap:10px;padding:12px 16px;border-block-end:1px solid var(--cp-border)}
 .cp-ai-center-head h1{font-size:var(--cp-fs-label);margin:0}.cp-ai-center-head p{font-size:var(--cp-fs-caption);margin:2px 0 0;color:var(--cp-muted)}
@@ -36140,6 +36142,44 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       };
     }, [active3]);
   }
+  function useModalLayer(active3, onClose, { initialFocus, returnFocus, keepEditorEscape = false } = {}) {
+    const layer = useRef(null);
+    const cancel = () => {
+      if (keepEditorEscape && document.activeElement?.matches("textarea,select,input:not([type=checkbox]):not([type=radio])")) return;
+      onClose();
+    };
+    useEscape(active3, cancel);
+    useLayoutEffect(() => {
+      if (!active3) return;
+      const dialog = layer.current, opener = document.activeElement;
+      dialog.showModal();
+      dialog.querySelector(initialFocus || "button:not(:disabled)")?.focus();
+      return () => {
+        dialog.close();
+        queueMicrotask(() => {
+          if (document.body.dataset.cpLocked) return;
+          const target = opener?.isConnected && opener !== document.body ? opener : returnFocus ? document.querySelector(returnFocus) : null;
+          target?.focus();
+        });
+      };
+    }, [active3]);
+    const trap = (event) => {
+      if (event.key !== "Tab") return;
+      const items2 = [...layer.current.querySelectorAll("button,input,select,textarea,summary,a[href],[tabindex]")].filter((item) => !item.disabled && item.tabIndex >= 0 && item.getClientRects().length && getComputedStyle(item).visibility !== "hidden");
+      const first = items2[0], last = items2.at(-1);
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last?.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first?.focus();
+      }
+    };
+    return { ref: layer, onCancel: (event) => {
+      event.preventDefault();
+      cancel();
+    }, onKeyDown: trap };
+  }
   function Button({ action: action2, role = "secondary", size = "m", context, onClick, children, className = "", ...props }) {
     return /* @__PURE__ */ cpJsx("button", { type: "button", ...actionProps(action2, onClick, context), className: ("cp-btn " + className).trim(), "data-role": role, "data-size": size, ...props }, children ?? t(getAction(action2)?.labelKey || action2));
   }
@@ -41380,8 +41420,9 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
   // src/modules/m5-print.jsx
   var printText = (key4, language2) => (language2 === "ar" ? m5Ar : m5En)[key4] || key4;
   var documentLanguages = (language2) => language2 === "bilingual" ? ["en", "ar"] : [language2];
-  function PrintPortal({ children, onClose, orientation = "portrait", fixed = false, title = "" }) {
+  function PrintPortal({ children, onClose, orientation = "portrait", fixed = false, title = "", modal = false }) {
     const container = useRef(null), [overflow, setOverflow] = useState(false);
+    const layer = useModalLayer(modal, onClose, { initialFocus: '[data-cp-action="m5.print.close"]' }), Layer = modal ? "dialog" : "div";
     useEffect(() => {
       if (!title) return;
       const old = document.title;
@@ -41401,7 +41442,10 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       return () => observer.disconnect();
     }, [children, fixed]);
     const width = orientation === "landscape" ? "281mm" : "194mm", height = orientation === "landscape" ? "194mm" : "281mm";
-    return ReactDOM.createPortal(/* @__PURE__ */ cpJsx("div", { ref: container, className: "cp-m5-print", role: "dialog", "aria-label": t("print.now"), style: { position: "fixed", inset: 0, zIndex: 450, overflow: "auto", background: "#e2e8f0", color: "#0f172a", "--cp-paper-width": width, "--cp-paper-height": height } }, /* @__PURE__ */ cpJsx("style", null, `.cp-m5-print,.cp-m5-print *{-webkit-print-color-adjust:exact;print-color-adjust:exact}.cp-m5-paper{position:relative;box-sizing:border-box;background:white;width:var(--cp-paper-width);${fixed ? "height:var(--cp-paper-height);" : "min-height:var(--cp-paper-height);"}margin:20px auto;padding:10mm;font-family:Arial,Tahoma,system-ui,sans-serif;box-shadow:0 2px 12px #0f172a26;overflow-wrap:anywhere}.cp-m5-text{white-space:pre-wrap;line-height:1.6}.cp-m5-plan-section{break-inside:avoid;margin-block:2mm}.cp-m5-plan-section h3{font-size:11pt;line-height:1.4;margin-block:0 1mm}.cp-m5-plan-section p{font-size:10.5pt;margin:0;orphans:3;widows:3}@media print{body>*:not(.cp-m5-print){display:none!important}.cp-m5-print{position:static!important;overflow:visible!important;background:white!important}.cp-m5-toolbar{display:none!important}.cp-m5-paper{margin:0!important;box-shadow:none!important;break-after:page}.cp-m5-paper:last-child{break-after:auto}@page{size:A4 ${orientation};margin:8mm}}`), /* @__PURE__ */ cpJsx("div", { className: "cp-m5-toolbar", style: { position: "sticky", top: 0, zIndex: 1, padding: 12, background: "#fff", borderBlockEnd: "1px solid #cbd5e1" } }, /* @__PURE__ */ cpJsx("div", { style: row }, /* @__PURE__ */ cpJsx(M5Button, { id: "print.now", disabled: overflow, onClick: () => window.print() }, t("print.now")), /* @__PURE__ */ cpJsx(M5Button, { id: "print.close", onClick: onClose }, t("print.close")), /* @__PURE__ */ cpJsx("span", { style: { fontSize: 12 } }, t("print.pdfHint"))), overflow && /* @__PURE__ */ cpJsx("p", { role: "alert", style: { color: "#b91c1c" } }, t("print.overflow"))), children), document.body);
+    return ReactDOM.createPortal(/* @__PURE__ */ cpJsx(Layer, { ...modal ? layer : {}, ref: (node) => {
+      container.current = node;
+      if (modal) layer.ref.current = node;
+    }, className: "cp-m5-print", role: "dialog", "aria-modal": modal ? true : void 0, "aria-label": t("print.now"), style: { position: "fixed", inset: 0, zIndex: 450, overflow: "auto", background: "#e2e8f0", color: "#0f172a", ...modal ? { margin: 0, padding: 0, border: 0, boxSizing: "border-box", inlineSize: "100%", blockSize: "100%", maxInlineSize: "none", maxBlockSize: "none" } : {}, "--cp-paper-width": width, "--cp-paper-height": height } }, /* @__PURE__ */ cpJsx("style", null, `.cp-m5-print,.cp-m5-print *{-webkit-print-color-adjust:exact;print-color-adjust:exact}.cp-m5-paper{position:relative;box-sizing:border-box;background:white;width:var(--cp-paper-width);${fixed ? "height:var(--cp-paper-height);" : "min-height:var(--cp-paper-height);"}margin:20px auto;padding:10mm;font-family:Arial,Tahoma,system-ui,sans-serif;box-shadow:0 2px 12px #0f172a26;overflow-wrap:anywhere}.cp-m5-text{white-space:pre-wrap;line-height:1.6}.cp-m5-plan-section{break-inside:avoid;margin-block:2mm}.cp-m5-plan-section h3{font-size:11pt;line-height:1.4;margin-block:0 1mm}.cp-m5-plan-section p{font-size:10.5pt;margin:0;orphans:3;widows:3}@media print{body>*:not(.cp-m5-print){display:none!important}.cp-m5-print{position:static!important;overflow:visible!important;background:white!important}.cp-m5-print:modal{block-size:auto!important}.cp-m5-toolbar{display:none!important}.cp-m5-paper{margin:0!important;box-shadow:none!important;break-after:page}.cp-m5-paper:last-child{break-after:auto}@page{size:A4 ${orientation};margin:8mm}}`), /* @__PURE__ */ cpJsx("div", { className: "cp-m5-toolbar", style: { position: "sticky", top: 0, zIndex: 1, padding: 12, background: "#fff", borderBlockEnd: "1px solid #cbd5e1" } }, /* @__PURE__ */ cpJsx("div", { style: row }, /* @__PURE__ */ cpJsx(M5Button, { id: "print.now", disabled: overflow, onClick: () => window.print() }, t("print.now")), /* @__PURE__ */ cpJsx(M5Button, { id: "print.close", onClick: onClose }, t("print.close")), /* @__PURE__ */ cpJsx("span", { style: { fontSize: 12 } }, t("print.pdfHint"))), overflow && /* @__PURE__ */ cpJsx("p", { role: "alert", style: { color: "#b91c1c" } }, t("print.overflow"))), children), document.body);
   }
   function PrintValue({ label, value, language: language2 }) {
     return /* @__PURE__ */ cpJsx("section", { className: "cp-m5-plan-section" }, /* @__PURE__ */ cpJsx("h3", null, cpRaw(printText(label, language2))), /* @__PURE__ */ cpJsx("p", { className: "cp-m5-text" }, cpRaw(value || "\u2013")));
@@ -53363,8 +53407,8 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
 
   // src/modules/plans/index.jsx
   function PlanEditor({ record, doc, profile: profile2, onSave, onCopy, onClose, onPreview }) {
-    const draftKey = "plan:" + doc.cp.classId + ":" + record.id;
-    const [draft, setDraft, acceptDraft, dirty] = useRetainedState(draftKey, record, { warn: true }), [duplicateDate, setDuplicateDate] = useState(record.date), [language2, setLanguage2] = useState(getLanguage);
+    const draftKey2 = "plan:" + doc.cp.classId + ":" + record.id;
+    const [draft, setDraft, acceptDraft, dirty] = useRetainedState(draftKey2, record, { warn: true }), [duplicateDate, setDuplicateDate] = useState(record.date), [language2, setLanguage2] = useState(getLanguage);
     const timing = planTiming(draft, profile2), valid4 = !!draft.title.trim() && /^\d{4}-\d{2}-\d{2}$/.test(draft.date) && draft.activities.every((a) => Number.isFinite(a.minutes) && a.minutes >= 0);
     const change2 = (key4, value) => setDraft((p) => ({ ...p, [key4]: value }));
     const activity = (id, patch) => setDraft((p) => ({ ...p, activities: p.activities.map((a) => a.id === id ? { ...a, ...patch } : a) }));
@@ -53386,7 +53430,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       onSave(draft);
       acceptDraft(draft);
     } }, t(draft.kind === "template" ? "plans.saveTemplateEdit" : "plans.save")), /* @__PURE__ */ cpJsx(M5Button, { id: "plans.saveTemplate", disabled: !valid4, onClick: () => onCopy(copyPlan(draft, draft.date, "template")) }, t("plans.saveTemplate")), /* @__PURE__ */ cpJsx(ScopeChip, { label: t("ux.plans.duplicateTo"), value: duplicateDate || "\u2026", context: "plan-duplicate" }, /* @__PURE__ */ cpJsx(M5Field, { id: "plans.duplicateDate", type: "date", value: duplicateDate, onChange: (e) => setDuplicateDate(e.target.value) }), /* @__PURE__ */ cpJsx(M5Button, { id: "plans.duplicate", disabled: !valid4 || !duplicateDate, onClick: () => onCopy(copyPlan(draft, duplicateDate)) }, t("plans.duplicate"))), /* @__PURE__ */ cpJsx(ScopeChip, { label: t("ux.plans.output"), value: t("print." + language2), context: "plan-output" }, /* @__PURE__ */ cpJsx(DocumentLanguage, { id: "plans.language", value: language2, onChange: (e) => setLanguage2(e.target.value) }), /* @__PURE__ */ cpJsx(M5Button, { id: "plans.preview", disabled: !valid4, onClick: () => onPreview(draft, language2) }, t("plans.preview")), /* @__PURE__ */ cpJsx(UxButton, { id: "plans.word", disabled: !valid4, onClick: () => downloadWord({ title: draft.title, language: language2 === "ar" ? "ar" : "en", blocks: planWordBlocks(draft, doc, profile2, language2) }, "ClassPilot_lesson_plan.docx") })), /* @__PURE__ */ cpJsx("span", { className: "cp-plan-close" }, /* @__PURE__ */ cpJsx(M5Button, { id: "plans.cancel", onClick: () => {
-      clearDraft(draftKey);
+      clearDraft(draftKey2);
       onClose();
     } }, t("plans.cancel")))));
   }
@@ -55787,6 +55831,23 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     return /* @__PURE__ */ cpJsx("section", { className: "cp-profile-panel", dir: doc.settings.dir || "ltr", "aria-label": t("profile.title") }, /* @__PURE__ */ cpJsx("div", { className: "cp-profile-body" }, !linked && /* @__PURE__ */ cpJsx("p", { className: "cp-profile-note" }, t("profile.unlinked")), /* @__PURE__ */ cpJsx("h3", { className: "cp-profile-group" }, t("ux.profile.you")), fields2.map(([key4, label]) => /* @__PURE__ */ cpJsx("label", { key: key4, className: "cp-profile-field" }, /* @__PURE__ */ cpJsx("span", null, t(label)), /* @__PURE__ */ cpJsx("input", { "aria-label": t(label), disabled: !linked, value: profile2.reportHeader[key4] || "", ...controlProps("cp.header-" + key4, (e) => header2(key4, e.target.value)) }))), /* @__PURE__ */ cpJsx("h3", { className: "cp-profile-group" }, t("ux.profile.reportHeader")), /* @__PURE__ */ cpJsx("div", { className: "cp-profile-preview" }, profile2.reportBranding?.logo ? /* @__PURE__ */ cpJsx("img", { src: profile2.reportBranding.logo, alt: t("ux.branding.logo") }) : /* @__PURE__ */ cpJsx("span", { className: "cp-profile-logo", "aria-hidden": "true" }), /* @__PURE__ */ cpJsx("div", null, /* @__PURE__ */ cpJsx("b", { dir: "auto" }, cpRaw(profile2.reportHeader.school || "")), /* @__PURE__ */ cpJsx("span", { dir: "auto" }, cpRaw([profile2.reportBranding?.subject, profile2.reportHeader.teacher, profile2.reportHeader.academicYear].filter(Boolean).join(" \xB7 "))))), /* @__PURE__ */ cpJsx(ReportBrandingEditor, { value: profile2.reportBranding, onChange: (value) => updateProfile((p) => ({ ...p, reportBranding: value })) }), error2 && /* @__PURE__ */ cpJsx("p", { role: "alert", className: "cp-profile-error" }, error2), saved && /* @__PURE__ */ cpJsx("p", { role: "status", className: "cp-profile-note" }, t("profile.saved"))), /* @__PURE__ */ cpJsx("footer", { className: "cp-profile-foot" }, /* @__PURE__ */ cpJsx("button", { ...actionProps("cp.profile-backup", () => downloadBackup(profile2)), style: B() }, t("profile.backup")), /* @__PURE__ */ cpJsx("span", { className: "cp-profile-gap" }), /* @__PURE__ */ cpJsx("button", { ...actionProps("cp.profile-open", invoke(withUi(openProfile))), style: B() }, t("profile.open")), /* @__PURE__ */ cpJsx("button", { ...actionProps("cp.profile-create", invoke(withUi(createProfile))), style: B() }, t("profile.create"))));
   }
 
+  // src/modules/aireports/drafts.js
+  var drafts = /* @__PURE__ */ new Map();
+  var draftKey = (doc, field2) => JSON.stringify([doc.cp.classId, field2]);
+  function clearAIDrafts(doc, fields2) {
+    for (const field2 of fields2) drafts.delete(draftKey(doc, field2));
+  }
+  function useAIDraft(doc, field2, initial) {
+    const key4 = draftKey(doc, field2);
+    const [value, setValue] = useState(() => drafts.has(key4) ? drafts.get(key4) : typeof initial === "function" ? initial() : initial);
+    const set = (change2) => setValue((previous) => {
+      const next = typeof change2 === "function" ? change2(previous) : change2;
+      drafts.set(key4, next);
+      return next;
+    });
+    return [value, set];
+  }
+
   // src/modules/aireports/prompt.js
   var EN_PROMPT2 = m7En["ai2.promptTemplate"], AR_PROMPT2 = m7Ar["ai2.promptTemplate"];
   function promptFor(options) {
@@ -56247,7 +56308,7 @@ Reply with JSON only, exactly in the shape of "response_schema", one report per 
   }
   var DATA = DATA_CHOICES;
   function ProgressExport({ doc, onUpdate }) {
-    const today = todayISO(), last = lastProgressPeriod(doc), [opts, setOpts] = useState(() => withChoices(progressDefaults(today, last), getProfile()?.ui?.aiChoices)), [scope, setScope] = useState("all"), [chosen, setChosen] = useState([]), [built, setBuilt] = useState(null), [error2, setError] = useState(""), [saved, setSaved] = useState(""), [decisions, setDecisions] = useState({}), [asked, setAsked] = useState(false);
+    const today = todayISO(), last = lastProgressPeriod(doc), [opts, setOpts] = useAIDraft(doc, "exportOptions", () => withChoices(progressDefaults(today, last), getProfile()?.ui?.aiChoices)), [scope, setScope] = useAIDraft(doc, "exportScope", "all"), [chosen, setChosen] = useAIDraft(doc, "exportStudents", []), [built, setBuilt] = useState(null), [error2, setError] = useState(""), [saved, setSaved] = useState(""), [decisions, setDecisions] = useState({}), [asked, setAsked] = useState(false);
     const remember2 = (next) => {
       try {
         updateProfile((p) => ({ ...p, ui: { ...p.ui || {}, aiChoices: choicesOf(next) } }));
@@ -56297,6 +56358,7 @@ Reply with JSON only, exactly in the shape of "response_schema", one report per 
       aiDownload(name, JSON.stringify(built.payload, null, 2), "application/json");
       setSaved(name);
       setBuilt(null);
+      clearAIDrafts(doc, ["exportOptions", "exportScope", "exportStudents"]);
     }
     const nameOf2 = (id) => doc.students.find((s) => s.id === id)?.name || "";
     return /* @__PURE__ */ cpJsx("section", { className: "cp-ai3", "aria-labelledby": "cp-ai3-title" }, /* @__PURE__ */ cpJsx("h2", { id: "cp-ai3-title" }, uxText("ai3.title")), /* @__PURE__ */ cpJsx("p", null, uxText("ai3.lead")), saved && /* @__PURE__ */ cpJsx("p", { role: "status", className: "cp-ai3-saved" }, uxText("ai3.saved").replace("{file}", saved)), saved && /* @__PURE__ */ cpJsx("div", { className: "cp-ai3-fix", "data-ai-ask": true }, /* @__PURE__ */ cpJsx("p", { className: "cp-ai3-hint" }, uxText("ai3.askLead")), /* @__PURE__ */ cpJsx("pre", { dir: "ltr" }, cpRaw(askMessage(saved))), /* @__PURE__ */ cpJsx("div", { className: "cp-ai3-row" }, /* @__PURE__ */ cpJsx(UxButton, { id: "ai3.copyAsk", onClick: () => {
@@ -56329,7 +56391,7 @@ Reply with JSON only, exactly in the shape of "response_schema", one report per 
     return where + uxText("ai3.issue." + issue.code);
   };
   function ProgressImport({ doc, onUpdate, onDone }) {
-    const [raw, setRaw] = useState(""), [name, setName] = useState(""), [result, setResult] = useState(null), [done, setDone2] = useState(""), [fix, setFix] = useState(null);
+    const [raw, setRaw] = useAIDraft(doc, "importText", ""), [name, setName] = useState(""), [result, setResult] = useState(() => raw.trim() ? checkProgressResponse(raw, doc) : null), [done, setDone2] = useState(""), [fix, setFix] = useState(null);
     const codes = Object.fromEntries(Object.entries(doc.cp?.aiMeta?.pseudonyms || {}).map(([id, code]) => [code, id])), nameOf2 = (code) => doc.students.find((s) => s.id === codes[code])?.name || code;
     const check = (text7) => {
       setDone2("");
@@ -56378,7 +56440,7 @@ Reply with JSON only, exactly in the shape of "response_schema", one report per 
   }
   var FIELDS3 = ["performance_summary", "notes_analysis", "parent_comment", "student_comment", "teacher_summary"];
   function ProgressHistory({ doc, onUpdate }) {
-    const students = doc.students.filter((s) => analysesFor(doc, s.id).length), [selected, setSelected] = useState(students[0]?.id || ""), [editing, setEditing] = useState(null), [draft, setDraft] = useState(null), [error2, setError] = useState("");
+    const students = doc.students.filter((s) => analysesFor(doc, s.id).length), [selected, setSelected] = useAIDraft(doc, "historyStudent", students[0]?.id || ""), [editing, setEditing] = useAIDraft(doc, "historyEditing", null), [draft, setDraft] = useAIDraft(doc, "historyDraft", null), [error2, setError] = useState("");
     const student = doc.students.find((s) => s.id === selected), list2 = student ? [...analysesFor(doc, student.id)].reverse() : [];
     const evidence = (entry2) => evidenceOf(doc, entry2, student.id);
     const save = (entry2, edited, approved) => {
@@ -56395,11 +56457,18 @@ Reply with JSON only, exactly in the shape of "response_schema", one report per 
     return /* @__PURE__ */ cpJsx("section", { className: "cp-ai3", "aria-labelledby": "cp-ai3-history" }, /* @__PURE__ */ cpJsx("h2", { id: "cp-ai3-history" }, uxText("ai3.historyTitle")), /* @__PURE__ */ cpJsx("p", null, uxText("ai3.historyLead")), /* @__PURE__ */ cpJsx("label", { className: "cp-ux-field" }, /* @__PURE__ */ cpJsx("span", null, uxText("ai3.col.student")), /* @__PURE__ */ cpJsx("select", { value: selected, ...controlProps("ux.ai3.historyStudent", (e) => {
       setSelected(e.target.value);
       setEditing(null);
+      setDraft(null);
     }), "aria-label": uxText("ai3.col.student") }, students.map((s) => /* @__PURE__ */ cpJsx("option", { key: s.id, value: s.id }, cpRaw(s.name), " (", analysesFor(doc, s.id).length, ")")))), error2 && /* @__PURE__ */ cpJsx("p", { role: "alert" }, error2), /* @__PURE__ */ cpJsx("ol", { className: "cp-ai3-timeline" }, list2.map((entry2) => {
       const r = editing === entry2.exportId ? draft : entry2.edited, name = (text7) => withName(text7, student);
       return /* @__PURE__ */ cpJsx("li", { key: entry2.exportId, className: "cp-ai3-entry", "data-ready": entry2.approved ? "true" : "false" }, /* @__PURE__ */ cpJsx("header", null, /* @__PURE__ */ cpJsx("b", null, /* @__PURE__ */ cpJsx("bdi", { dir: "ltr" }, cpRaw(entry2.period.from + " \u2013 " + entry2.period.to))), /* @__PURE__ */ cpJsx("span", null, uxText("ai3.importedOn").replace("{date}", isoOf(new Date(entry2.importedAt)))), entry2.approved && /* @__PURE__ */ cpJsx("span", { className: "cp-ai3-ready" }, uxText("ai3.ready"))), r.progress_since_last.summary && /* @__PURE__ */ cpJsx("p", { className: "cp-ai3-progress" }, cpRaw(name(r.progress_since_last.summary))), editing === entry2.exportId ? /* @__PURE__ */ cpJsx("div", { className: "cp-ai3-edit" }, FIELDS3.map((field2) => /* @__PURE__ */ cpJsx("label", { key: field2, className: "cp-ai3-instructions" }, /* @__PURE__ */ cpJsx("span", null, uxText("ai3.field." + field2)), /* @__PURE__ */ cpJsx("textarea", { ...controlProps("ux.ai3.editField", (e) => setDraft((old) => ({ ...old, [field2]: e.target.value })), field2), value: draft[field2], dir: entry2.language === "ar" ? "rtl" : "ltr" }))), /* @__PURE__ */ cpJsx("div", { className: "cp-ai3-row" }, /* @__PURE__ */ cpJsx(UxButton, { id: "ai3.saveEdit", primary: true, onClick: () => {
-        if (save(entry2, draft, entry2.approved)) setEditing(null);
-      } }), /* @__PURE__ */ cpJsx(UxButton, { id: "ai3.cancelEdit", onClick: () => setEditing(null) }))) : /* @__PURE__ */ cpJsx("dl", { className: "cp-ai3-fields" }, FIELDS3.map((field2) => r[field2] && /* @__PURE__ */ cpJsx("div", { key: field2 }, /* @__PURE__ */ cpJsx("dt", null, uxText("ai3.field." + field2)), /* @__PURE__ */ cpJsx("dd", { dir: entry2.language === "ar" ? "rtl" : "ltr" }, cpRaw(name(r[field2]))))), [["strengths", r.strengths], ["concerns", r.concerns], ["targeted_observations", r.targeted_observations]].map(([key4, items2]) => items2.length > 0 && /* @__PURE__ */ cpJsx("div", { key: key4 }, /* @__PURE__ */ cpJsx("dt", null, uxText("ai3.field." + key4)), /* @__PURE__ */ cpJsx("dd", null, /* @__PURE__ */ cpJsx("ul", null, items2.map((item, i) => /* @__PURE__ */ cpJsx("li", { key: i }, cpRaw(name(item.text)), /* @__PURE__ */ cpJsx(Evidence, { keys: item.evidence, map: evidence(entry2), student }))))))), r.recommendations.length > 0 && /* @__PURE__ */ cpJsx("div", null, /* @__PURE__ */ cpJsx("dt", null, uxText("ai3.field.recommendations")), /* @__PURE__ */ cpJsx("dd", null, /* @__PURE__ */ cpJsx("ul", null, r.recommendations.map((step, i) => /* @__PURE__ */ cpJsx("li", { key: i }, cpRaw(name(step.action)), " ", /* @__PURE__ */ cpJsx("small", null, "(", uxText("ai3.who." + step.who), " \xB7 ", uxText("ai3.when." + step.when.replace(" ", "_")), ")"))))))), editing !== entry2.exportId && /* @__PURE__ */ cpJsx("div", { className: "cp-ai3-row" }, /* @__PURE__ */ cpJsx(UxCheck, { id: "ai3.ready", context: entry2.exportId, checked: entry2.approved, onChange: (e) => save(entry2, entry2.edited, e.target.checked) }), /* @__PURE__ */ cpJsx(UxButton, { id: "ai3.edit", context: entry2.exportId, onClick: () => {
+        if (save(entry2, draft, entry2.approved)) {
+          setEditing(null);
+          setDraft(null);
+        }
+      } }), /* @__PURE__ */ cpJsx(UxButton, { id: "ai3.cancelEdit", onClick: () => {
+        setEditing(null);
+        setDraft(null);
+      } }))) : /* @__PURE__ */ cpJsx("dl", { className: "cp-ai3-fields" }, FIELDS3.map((field2) => r[field2] && /* @__PURE__ */ cpJsx("div", { key: field2 }, /* @__PURE__ */ cpJsx("dt", null, uxText("ai3.field." + field2)), /* @__PURE__ */ cpJsx("dd", { dir: entry2.language === "ar" ? "rtl" : "ltr" }, cpRaw(name(r[field2]))))), [["strengths", r.strengths], ["concerns", r.concerns], ["targeted_observations", r.targeted_observations]].map(([key4, items2]) => items2.length > 0 && /* @__PURE__ */ cpJsx("div", { key: key4 }, /* @__PURE__ */ cpJsx("dt", null, uxText("ai3.field." + key4)), /* @__PURE__ */ cpJsx("dd", null, /* @__PURE__ */ cpJsx("ul", null, items2.map((item, i) => /* @__PURE__ */ cpJsx("li", { key: i }, cpRaw(name(item.text)), /* @__PURE__ */ cpJsx(Evidence, { keys: item.evidence, map: evidence(entry2), student }))))))), r.recommendations.length > 0 && /* @__PURE__ */ cpJsx("div", null, /* @__PURE__ */ cpJsx("dt", null, uxText("ai3.field.recommendations")), /* @__PURE__ */ cpJsx("dd", null, /* @__PURE__ */ cpJsx("ul", null, r.recommendations.map((step, i) => /* @__PURE__ */ cpJsx("li", { key: i }, cpRaw(name(step.action)), " ", /* @__PURE__ */ cpJsx("small", null, "(", uxText("ai3.who." + step.who), " \xB7 ", uxText("ai3.when." + step.when.replace(" ", "_")), ")"))))))), editing !== entry2.exportId && /* @__PURE__ */ cpJsx("div", { className: "cp-ai3-row" }, /* @__PURE__ */ cpJsx(UxCheck, { id: "ai3.ready", context: entry2.exportId, checked: entry2.approved, onChange: (e) => save(entry2, entry2.edited, e.target.checked) }), /* @__PURE__ */ cpJsx(UxButton, { id: "ai3.edit", context: entry2.exportId, onClick: () => {
         setDraft(JSON.parse(JSON.stringify(entry2.edited)));
         setEditing(entry2.exportId);
       } })));
@@ -56567,28 +56636,22 @@ Reply with JSON only, exactly in the shape of "response_schema", one report per 
   var PRINT_CSS = `.cp-m5-print{z-index:1800!important}.cp-ai-paper{font-family:Arial,Tahoma,system-ui,sans-serif;color:#0f172a}.cp-ai-paper>h1{font-size:20pt;margin-block:0 4mm;border-block-end:2px solid #334155;padding-block-end:3mm}.cp-ai-body h2{font-size:17pt;margin-block:3mm}.cp-ai-body h3{font-size:11pt;margin-block:2mm}.cp-ai-body p,.cp-ai-body li{font-size:10.5pt;line-height:1.55;white-space:pre-wrap}.cp-ai-body p{margin-block:1.5mm}.cp-ai-body ul{padding-inline-start:6mm}.cp-ai-section,.cp-ai-tail{break-inside:avoid;margin-block:2mm}.cp-ai-meta{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:3mm;font-size:9pt;background:#f1f5f9;padding:3mm}.cp-ai-unready{font-weight:700;color:#b45309}.cp-ai-body footer{border-block-start:1px solid #cbd5e1;padding-block-start:3mm;font-size:9pt;line-height:1.6}.cp-ai-bilingual{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:6mm}.cp-ai-bilingual .cp-ai-body{min-width:0}@media print{html,body{background:white!important}.cp-ai-paper{break-after:page}.cp-ai-paper:last-child{break-after:auto}}`;
   function ProgressPrint({ selection, kind, language: language2, onClose }) {
     const head = language2 === "ar" ? "ar" : "en", l = (key4) => printLabel(key4, head), title = l(kind === "parent" ? "parentReport" : kind === "teacher" ? "teacherSheet" : "actionList");
-    return /* @__PURE__ */ cpJsx(PrintPortal, { onClose, title: title + (selection.className ? " - " + selection.className : "") }, /* @__PURE__ */ cpJsx("style", null, PRINT_CSS), kind === "actions" ? /* @__PURE__ */ cpJsx("article", { lang: head, dir: head === "ar" ? "rtl" : "ltr", className: "cp-m5-paper cp-ai-paper", "data-ai-print": "actions" }, /* @__PURE__ */ cpJsx("h1", null, cpRaw(title)), progressActionGroups(selection).map((group) => /* @__PURE__ */ cpJsx("section", { key: group.who + group.when, className: "cp-ai-section" }, /* @__PURE__ */ cpJsx("h2", { style: { fontSize: "14pt" } }, cpRaw(l("role." + group.who)), " \xB7 ", cpRaw(l(whenKey(group.when)))), group.actions.map((action2, i) => /* @__PURE__ */ cpJsx("p", { key: i, lang: action2.language, dir: action2.language === "ar" ? "rtl" : "ltr", style: { fontSize: "10.5pt", lineHeight: 1.7 } }, /* @__PURE__ */ cpJsx("strong", null, cpRaw(action2.student.name)), ": ", cpRaw(action2.action), !action2.ready && /* @__PURE__ */ cpJsx("small", null, " \xB7 ", cpRaw(printLabel("notReady", action2.language)))))))) : selection.rows.map((row2) => /* @__PURE__ */ cpJsx("article", { key: row2.student.id, className: "cp-m5-paper cp-ai-paper", "data-ai-print": kind }, /* @__PURE__ */ cpJsx("h1", null, cpRaw(title)), /* @__PURE__ */ cpJsx("div", { className: language2 === "bilingual" ? "cp-ai-bilingual" : "" }, row2.items.map((item) => /* @__PURE__ */ cpJsx(Report, { key: item.language, student: row2.student, item, kind, className: selection.className }))))));
+    return /* @__PURE__ */ cpJsx(PrintPortal, { modal: true, onClose, title: title + (selection.className ? " - " + selection.className : "") }, /* @__PURE__ */ cpJsx("style", null, PRINT_CSS), kind === "actions" ? /* @__PURE__ */ cpJsx("article", { lang: head, dir: head === "ar" ? "rtl" : "ltr", className: "cp-m5-paper cp-ai-paper", "data-ai-print": "actions" }, /* @__PURE__ */ cpJsx("h1", null, cpRaw(title)), progressActionGroups(selection).map((group) => /* @__PURE__ */ cpJsx("section", { key: group.who + group.when, className: "cp-ai-section" }, /* @__PURE__ */ cpJsx("h2", { style: { fontSize: "14pt" } }, cpRaw(l("role." + group.who)), " \xB7 ", cpRaw(l(whenKey(group.when)))), group.actions.map((action2, i) => /* @__PURE__ */ cpJsx("p", { key: i, lang: action2.language, dir: action2.language === "ar" ? "rtl" : "ltr", style: { fontSize: "10.5pt", lineHeight: 1.7 } }, /* @__PURE__ */ cpJsx("strong", null, cpRaw(action2.student.name)), ": ", cpRaw(action2.action), !action2.ready && /* @__PURE__ */ cpJsx("small", null, " \xB7 ", cpRaw(printLabel("notReady", action2.language)))))))) : selection.rows.map((row2) => /* @__PURE__ */ cpJsx("article", { key: row2.student.id, className: "cp-m5-paper cp-ai-paper", "data-ai-print": kind }, /* @__PURE__ */ cpJsx("h1", null, cpRaw(title)), /* @__PURE__ */ cpJsx("div", { className: language2 === "bilingual" ? "cp-ai-bilingual" : "" }, row2.items.map((item) => /* @__PURE__ */ cpJsx(Report, { key: item.language, student: row2.student, item, kind, className: selection.className }))))));
   }
 
   // src/modules/aireports/center.jsx
   var STEPS = ["export", "import", "history"];
   function AIReportCenter2({ doc, onUpdate, onClose }) {
     useLanguage();
-    const [step, setStep] = useState("export"), [notice, setNotice] = useState("");
-    useEffect(() => {
-      const key4 = (event) => {
-        if (event.key === "Escape" && !event.defaultPrevented && !event.target.matches?.("textarea,select,input:not([type=checkbox]):not([type=radio])")) onClose();
-      };
-      document.addEventListener("keydown", key4);
-      return () => document.removeEventListener("keydown", key4);
-    }, [onClose]);
+    const [step, setStep] = useAIDraft(doc, "step", "export"), [notice, setNotice] = useState("");
+    const layer = useModalLayer(true, onClose, { initialFocus: '[data-cp-action="ux.ai3.close"]', returnFocus: '[data-cp-action="gb.chrome.6544"]', keepEditorEscape: true });
     const go = (key4) => {
       setStep(key4);
       setNotice("");
     };
-    return ReactDOM.createPortal(/* @__PURE__ */ cpJsx("div", { className: "cp-ai-center-backdrop", onMouseDown: (event) => {
+    return ReactDOM.createPortal(/* @__PURE__ */ cpJsx("dialog", { ...layer, className: "cp-ai-center-backdrop", "aria-modal": "true", "aria-labelledby": "cp-ai-center-title", onClick: (event) => {
       if (event.target === event.currentTarget) onClose();
-    } }, /* @__PURE__ */ cpJsx("section", { className: "cp-ai-center", role: "dialog", "aria-modal": "true", "aria-labelledby": "cp-ai-center-title", dir: doc.settings.dir || "ltr" }, /* @__PURE__ */ cpJsx("header", { className: "cp-ai-center-head" }, /* @__PURE__ */ cpJsx("span", { className: "cp-ai-center-badge", "aria-hidden": "true" }, /* @__PURE__ */ cpJsx("svg", { viewBox: "0 0 24 24", width: "18", height: "18" }, /* @__PURE__ */ cpJsx("path", { d: "M12 3l2.1 6.9L21 12l-6.9 2.1L12 21l-2.1-6.9L3 12l6.9-2.1z", fill: "currentColor" }))), /* @__PURE__ */ cpJsx("div", null, /* @__PURE__ */ cpJsx("h1", { id: "cp-ai-center-title" }, uxText("ai3.center.title")), /* @__PURE__ */ cpJsx("p", null, uxText("ai3.center.sub"))), /* @__PURE__ */ cpJsx(UxButton, { id: "ai3.close", className: "cp-ai-center-close", onClick: onClose })), /* @__PURE__ */ cpJsx("nav", { className: "cp-ai-center-steps", "aria-label": uxText("ai3.steps") }, STEPS.map((key4, i) => /* @__PURE__ */ cpJsx(UxButton, { key: key4, id: "ai3.view." + key4, active: step === key4, "aria-current": step === key4 ? "step" : void 0, onClick: () => go(key4) }, /* @__PURE__ */ cpJsx("b", null, String(i + 1) + " \xB7 " + uxText("ai3.view." + key4)), /* @__PURE__ */ cpJsx("small", null, uxText("ai3.view." + key4 + ".sub"))))), /* @__PURE__ */ cpJsx("div", { className: "cp-ai-center-body" }, notice && /* @__PURE__ */ cpJsx("p", { role: "status", className: "cp-ai3-saved" }, notice), step === "export" && /* @__PURE__ */ cpJsx(ProgressExport, { doc, onUpdate }), step === "import" && /* @__PURE__ */ cpJsx(ProgressImport, { doc, onUpdate, onDone: (message) => {
+    } }, /* @__PURE__ */ cpJsx("section", { className: "cp-ai-center", dir: doc.settings.dir || "ltr" }, /* @__PURE__ */ cpJsx("header", { className: "cp-ai-center-head" }, /* @__PURE__ */ cpJsx("span", { className: "cp-ai-center-badge", "aria-hidden": "true" }, /* @__PURE__ */ cpJsx("svg", { viewBox: "0 0 24 24", width: "18", height: "18" }, /* @__PURE__ */ cpJsx("path", { d: "M12 3l2.1 6.9L21 12l-6.9 2.1L12 21l-2.1-6.9L3 12l6.9-2.1z", fill: "currentColor" }))), /* @__PURE__ */ cpJsx("div", null, /* @__PURE__ */ cpJsx("h1", { id: "cp-ai-center-title" }, uxText("ai3.center.title")), /* @__PURE__ */ cpJsx("p", null, uxText("ai3.center.sub"))), /* @__PURE__ */ cpJsx(UxButton, { id: "ai3.close", className: "cp-ai-center-close", onClick: onClose })), /* @__PURE__ */ cpJsx("nav", { className: "cp-ai-center-steps", "aria-label": uxText("ai3.steps") }, STEPS.map((key4, i) => /* @__PURE__ */ cpJsx(UxButton, { key: key4, id: "ai3.view." + key4, active: step === key4, "aria-current": step === key4 ? "step" : void 0, onClick: () => go(key4) }, /* @__PURE__ */ cpJsx("b", null, String(i + 1) + " \xB7 " + uxText("ai3.view." + key4)), /* @__PURE__ */ cpJsx("small", null, uxText("ai3.view." + key4 + ".sub"))))), /* @__PURE__ */ cpJsx("div", { className: "cp-ai-center-body" }, notice && /* @__PURE__ */ cpJsx("p", { role: "status", className: "cp-ai3-saved" }, notice), step === "export" && /* @__PURE__ */ cpJsx(ProgressExport, { doc, onUpdate }), step === "import" && /* @__PURE__ */ cpJsx(ProgressImport, { doc, onUpdate, onDone: (message) => {
       setStep("history");
       setNotice(message || "");
     } }), step === "history" && /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx(ProgressOutputs, { doc }), /* @__PURE__ */ cpJsx(ProgressHistory, { doc, onUpdate }), /* @__PURE__ */ cpJsx(OlderReports, { doc }))), /* @__PURE__ */ cpJsx("footer", { className: "cp-ai-center-foot" }, /* @__PURE__ */ cpJsx("b", null, uxText("ai3.center.privacyLabel")), " ", uxText("ai3.center.privacy")))), document.body);
