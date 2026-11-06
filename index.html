@@ -1753,6 +1753,52 @@ td[data-cp-att],th[data-cp-att]{background:var(--cp-att-bg)!important;box-shadow
 .cp-info-btn:hover,.cp-info-btn[aria-expanded=true]{background:var(--cp-active);color:var(--cp-text)}
 .cp-module .cp-cmd{min-height:34px}
 .cp-module :is(.cp-shelf,.cp-seg,.cp-groups-tools,.cp-bv-arrange) .cp-cmd{min-height:0}
+/* SP06 Detailed reports (owner-approved SP03 image): options on the start side, the preview with one output bar. */
+.cp-rep2{display:grid;grid-template-columns:300px minmax(0,1fr);gap:16px;align-items:start}
+.cp-rep2>.cp-inspector{order:-1}
+.cp-rep2-scope{display:flex;flex-direction:column;gap:10px;align-items:stretch}
+.cp-rep2-scope .cp-scope{display:block;position:relative;min-width:0}
+.cp-rep2-scope,.cp-rep2-scope>*{min-width:0;max-width:100%}
+.cp-rep2-scope .cp-chip{min-width:0;display:flex;flex-direction:column;align-items:stretch;gap:5px;width:100%;border:0;background:transparent;padding:0;text-align:start;border-radius:8px}
+.cp-rep2-scope .cp-chip>span{font-size:11.5px;font-weight:600;color:var(--cp-muted)}
+.cp-rep2-scope .cp-chip>b{min-width:0;display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:34px;padding:0 10px;border:1px solid var(--cp-border);border-radius:8px;background:var(--cp-surface);font-weight:500;font-size:var(--cp-fs-body);white-space:normal;padding-block:6px;line-height:1.35;overflow:hidden}
+.cp-rep2-scope .cp-chip>b::after{content:"";flex:none;width:7px;height:7px;border-right:1.6px solid var(--cp-muted);border-bottom:1.6px solid var(--cp-muted);transform:translateY(-2px) rotate(45deg)}
+.cp-rep2-scope .cp-scope-pop{inset-inline-start:0;min-width:100%}
+.cp-rep2-step{display:grid;grid-template-columns:30px minmax(0,1fr) 30px;gap:6px;align-items:end}
+.cp-rep2-step>*{min-width:0}
+.cp-rep2-icon{width:30px;height:34px;display:inline-grid;place-items:center;border:1px solid var(--cp-border);border-radius:8px;background:var(--cp-surface);color:var(--cp-text);cursor:pointer;padding:0}
+.cp-rep2-icon:hover{background:var(--cp-active)}
+[dir=rtl] .cp-flip{transform:scaleX(-1)}
+.cp-rep2-several{display:inline-flex;align-items:center;gap:7px;align-self:flex-start;margin-block:12px 4px;border:0;background:transparent;color:var(--cp-link);font:600 var(--cp-fs-body) var(--cp-font);cursor:pointer;padding:4px 0}
+.cp-rep2-several b{display:inline-grid;place-items:center;min-width:20px;height:18px;border-radius:9px;background:var(--cp-text);color:var(--cp-surface);font-size:11px;padding:0 5px}
+.cp-rep2-h{font-size:var(--cp-fs-label);font-weight:700;margin:14px 0 6px;padding-top:12px;border-top:1px solid var(--cp-border)}
+.cp-rep2-preview{background:var(--cp-surface);border:1px solid var(--cp-border);border-radius:12px;min-width:0;overflow:hidden}
+.cp-rep2-out{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 14px;border-block-end:1px solid var(--cp-border)}
+.cp-rep2-who{min-width:0;color:var(--cp-muted)}
+.cp-rep2-who b{color:var(--cp-text)}
+.cp-rep2-status{display:flex;align-items:center;gap:8px;margin-inline-start:auto;color:var(--cp-muted);font-size:var(--cp-fs-body)}
+.cp-rep2-menu{position:relative}
+.cp-rep2-download{display:inline-flex;align-items:center;gap:7px;min-height:34px;padding:0 14px;border:1px solid var(--cp-border);border-radius:8px;background:var(--cp-surface);color:var(--cp-text);font:600 var(--cp-fs-body) var(--cp-font);cursor:pointer}
+.cp-rep2-download:disabled{opacity:.5;cursor:default}
+.cp-rep2-list{position:absolute;z-index:20;inset-block-start:calc(100% + 6px);inset-inline-end:0;min-width:180px;display:flex;flex-direction:column;gap:2px;padding:5px;background:var(--cp-surface);border:1px solid var(--cp-border);border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,.14)}
+.cp-rep2-list[hidden]{display:none}
+.cp-rep2-list .cp-cmd{border-color:transparent!important;background:transparent!important;text-align:start;justify-content:flex-start}
+.cp-rep2-list .cp-cmd:hover{background:var(--cp-active)!important}
+.cp-rep2-out [data-cp-action="m6.reports.preview"]{display:inline-flex;align-items:center;gap:7px}
+.cp-rep2-body{padding:20px 28px 28px;border:0}
+.cp-rep2-body .cp-ux-report-screen{border:0;box-shadow:none}
+.cp-rep2-preview>.cp-empty{margin:16px}
+.cp-rep2-dialog{width:min(640px,92vw);display:flex;flex-direction:column;gap:12px}
+.cp-rep2-dialog header{display:flex;align-items:baseline;gap:12px}
+.cp-rep2-dialog header h2{margin:0;font-size:18px}
+.cp-rep2-dialog header span{margin-inline-start:auto;color:var(--cp-muted)}
+.cp-rep2-dialog p{margin:0;color:var(--cp-muted)}
+.cp-rep2-tools{display:flex;align-items:flex-end;gap:8px;flex-wrap:wrap}
+.cp-rep2-tools>label{flex:1 1 200px}
+.cp-rep2-pick{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:4px 16px;max-height:min(46vh,340px);overflow:auto}
+.cp-rep2-dialog footer{display:flex;justify-content:flex-end;gap:8px}
+@media(max-width:1100px){.cp-rep2{grid-template-columns:250px minmax(0,1fr)}}
+@media(max-width:820px){.cp-rep2{grid-template-columns:1fr}}
 /* M56 design foundations (owner-supplied Master Implementation Brief, M56; design report §7–§8).
    One set of tokens for the frame and the new modules. Protected Gradebook views (Marks, Groups, Behaviour,
    Adjustments, Analysis, the original wheel, the Settings drawer and the class manager) do not use them. */
@@ -5978,18 +6024,18 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "improve.settingsJump": "Go to section",
     "improve.settingsIndex": "Settings sections",
     "ux.search": "Search",
-    "ux.selectAll": "Select all recipients",
-    "ux.selectNone": "Clear recipient selection",
+    "ux.selectAll": "Select all",
+    "ux.selectNone": "Clear",
     "ux.notRecorded": "Not recorded",
     "ux.noData": "No records match this scope. Choose a different period or record the missing information.",
-    "ux.report.generate": "Build detailed report",
+    "ux.report.generate": "Update preview",
     "ux.report.today": "Today only",
     "ux.report.week": "Last 7 days",
     "ux.report.month": "Last 30 days",
     "ux.report.term": "From term start",
-    "ux.report.csv": "Download this report as CSV",
-    "ux.report.xlsx": "Download this report as Excel",
-    "ux.report.word": "Download editable Word document",
+    "ux.report.csv": "CSV",
+    "ux.report.xlsx": "Excel (.xlsx)",
+    "ux.report.word": "Word (.docx)",
     "ux.report.batch": "Preview selected student reports",
     "ux.report.openStudent": "Open student report",
     "ux.report.scope": "Attendance counting",
@@ -6007,17 +6053,17 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.report.intro": "Choose the audience, evidence and period, then preview a complete report. Your original grades stay authoritative.",
     "ux.report.filters": "Report scope",
     "ux.report.sections": "Content and supporting evidence",
-    "ux.report.files": "Original workbook and extra sheets",
+    "ux.report.files": "Whole-class Excel workbook",
     "ux.report.sourceHelp": "Daily summaries use the latest edited register on each recorded date. Lesson mode counts each recorded register separately. Excused and unmarked entries are shown separately and excluded from the attendance percentage.",
-    "ux.report.privateHelp": "Private student notes are excluded. Event comments are opt-in. AI text must already be approved in AI Reports.",
+    "ux.report.privateHelp": "Private student notes are never included.",
     "ux.report.originalHelp": "This action keeps the original whole-class workbook. Optional sheets are appended. Use the generated report toolbar for the selected report only.",
     "ux.report.generated": "Generated report",
-    "ux.report.stale": "The form has changed. Build the report again to apply the new scope.",
+    "ux.report.stale": "Options changed since this preview.",
     "ux.report.recipients": "Batch recipients",
     "ux.report.previewHint": "Build a report to see the summary cards, charts, evidence and session detail here.",
     "ux.report.attendanceChart": "Attendance by recorded status",
-    "ux.report.gradesChart": "Original section results (%)",
-    "ux.report.trendChart": "Original term results (%)",
+    "ux.report.gradesChart": "Results by section (%)",
+    "ux.report.trendChart": "Term results (%)",
     "ux.report.behaviourChart": "Recorded behaviour events",
     "ux.report.ledger": "Lesson attendance ledger",
     "ux.report.events": "Recorded event timeline",
@@ -6038,10 +6084,10 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.report.excused": "Excused",
     "ux.report.unmarked": "Unmarked",
     "ux.report.percent": "Attendance (%)",
-    "ux.report.final": "Original final (%)",
-    "ux.report.participation": "Original participation",
-    "ux.report.behaviour": "Original behaviour",
-    "ux.report.strikes": "Recorded strikes",
+    "ux.report.final": "Final grade (%)",
+    "ux.report.participation": "Participation",
+    "ux.report.behaviour": "Behaviour",
+    "ux.report.strikes": "Strikes",
     "ux.report.sessions": "Recorded units",
     "ux.report.deductions": "Deduction events",
     "ux.report.observations": "Observations",
@@ -6610,9 +6656,9 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.report.assessments": "Assessment results and units",
     "ux.report.assessmentScope": "Released assessments from the selected original term. Raw values use the original value reader; percentages come from its recorded term projection. Configured column weights may differ from effective released or adjusted weights. An unrecorded direct mark is shown explicitly.",
     "ux.report.assessmentName": "Assessment and section",
-    "ux.report.rawMaximum": "Raw mark / maximum",
-    "ux.report.configuredWeight": "Configured weight (%)",
-    "ux.report.originalPercent": "Original term percentage",
+    "ux.report.rawMaximum": "Mark",
+    "ux.report.configuredWeight": "Weight (%)",
+    "ux.report.originalPercent": "Percentage",
     "ux.report.noAssessmentDetail": "This term does not include the original per-assessment detail. No current assessments are substituted.",
     "ux.notebook.removed": "Removed teacher notebook entries",
     "ux.notebook.restore": "Restore teacher notebook entry",
@@ -6636,7 +6682,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.documents.wordHint": "Word exports contain editable text and tables. Use Print/PDF to retain the page design and charts.",
     "ux.analysis.capture": "Capture this student\u2019s charts for Reports",
     "ux.analysis.captured": "The displayed student charts are available in Reports for this browser session.",
-    "ux.report.originalCharts": "Include captured original Analysis charts",
+    "ux.report.originalCharts": "Captured Analysis charts",
     "ux.report.chartSnapshotHint": "Manual snapshot of the original live Student Profile charts, with Analysis\u2019s own filters/mode and capture language. It is not recalculated for this report\u2019s term or dates. Capture again after changes; snapshots stay in memory only.",
     "ux.report.noChartCapture": "No original Student Profile chart has been captured for this learner in this session.",
     "ux.plans.word": "Export editable lesson plan to Word",
@@ -7791,7 +7837,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.report.outcome.student": "Parent meeting",
     "ux.report.outcome.class": "Class summary",
     "ux.report.outcome.attendance": "Attendance report",
-    "ux.report.print": "Print report",
+    "ux.report.print": "Print",
     "ux.report.chip.student": "Student",
     "ux.report.chip.term": "Grade term",
     "ux.report.chip.dates": "Attendance dates",
@@ -8010,7 +8056,25 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.notes.due.two": "{n} follow-ups due",
     "ux.notes.due.few": "{n} follow-ups due",
     "ux.notes.due.many": "{n} follow-ups due",
-    "ux.notes.due.other": "{n} follow-ups due"
+    "ux.notes.due.other": "{n} follow-ups due",
+    "ux.report.for": "Report for",
+    "ux.report.include": "Include",
+    "ux.report.several": "Several students\u2026",
+    "ux.report.severalTitle": "Several students",
+    "ux.report.severalHint": "Choose who gets a report. Each report uses the options on the left.",
+    "ux.report.severalClose": "Cancel",
+    "ux.report.prevStudent": "Previous student",
+    "ux.report.nextStudent": "Next student",
+    "ux.report.download": "Download",
+    "ux.report.chosen.one": "{n} of {total} selected",
+    "ux.report.chosen.other": "{n} of {total} selected",
+    "ux.report.batchCount.zero": "Preview reports",
+    "ux.report.batchCount.one": "Preview 1 report",
+    "ux.report.batchCount.two": "Preview 2 reports",
+    "ux.report.batchCount.few": "Preview {n} reports",
+    "ux.report.batchCount.many": "Preview {n} reports",
+    "ux.report.batchCount.other": "Preview {n} reports",
+    "ux.report.teacherLabel": "Teacher"
   };
 
   // src/i18n/plain-copy.js
@@ -11608,18 +11672,18 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "improve.settingsJump": "\u0627\u0644\u0627\u0646\u062A\u0642\u0627\u0644 \u0625\u0644\u0649 \u0627\u0644\u0642\u0633\u0645",
     "improve.settingsIndex": "\u0623\u0642\u0633\u0627\u0645 \u0627\u0644\u0625\u0639\u062F\u0627\u062F\u0627\u062A",
     "ux.search": "\u0628\u062D\u062B",
-    "ux.selectAll": "\u062A\u062D\u062F\u064A\u062F \u062C\u0645\u064A\u0639 \u0627\u0644\u0645\u0633\u062A\u0644\u0645\u064A\u0646",
-    "ux.selectNone": "\u0625\u0644\u063A\u0627\u0621 \u062A\u062D\u062F\u064A\u062F \u0627\u0644\u0645\u0633\u062A\u0644\u0645\u064A\u0646",
+    "ux.selectAll": "\u062D\u062F\u0651\u062F \u0627\u0644\u0643\u0644",
+    "ux.selectNone": "\u0627\u0645\u0633\u062D \u0627\u0644\u062A\u062D\u062F\u064A\u062F",
     "ux.notRecorded": "\u0644\u0645 \u064A\u064F\u0633\u062C\u0651\u0644",
     "ux.noData": "\u0644\u0627 \u062A\u0648\u062C\u062F \u0633\u062C\u0644\u0627\u062A \u0636\u0645\u0646 \u0627\u0644\u0646\u0637\u0627\u0642 \u0627\u0644\u0645\u062D\u062F\u062F. \u0627\u062E\u062A\u0631 \u0641\u062A\u0631\u0629 \u0623\u062E\u0631\u0649 \u0623\u0648 \u0633\u062C\u0651\u0644 \u0627\u0644\u0645\u0639\u0644\u0648\u0645\u0627\u062A \u0627\u0644\u0646\u0627\u0642\u0635\u0629.",
-    "ux.report.generate": "\u0625\u0646\u0634\u0627\u0621 \u0627\u0644\u062A\u0642\u0631\u064A\u0631 \u0627\u0644\u0645\u0641\u0635\u0651\u0644",
+    "ux.report.generate": "\u062D\u062F\u0651\u062B \u0627\u0644\u0645\u0639\u0627\u064A\u0646\u0629",
     "ux.report.today": "\u0627\u0644\u064A\u0648\u0645 \u0641\u0642\u0637",
     "ux.report.week": "\u0622\u062E\u0631 7 \u0623\u064A\u0627\u0645",
     "ux.report.month": "\u0622\u062E\u0631 30 \u064A\u0648\u0645\u0627\u064B",
     "ux.report.term": "\u0645\u0646 \u0628\u062F\u0627\u064A\u0629 \u0627\u0644\u0641\u0635\u0644",
-    "ux.report.csv": "\u062A\u0646\u0632\u064A\u0644 \u0647\u0630\u0627 \u0627\u0644\u062A\u0642\u0631\u064A\u0631 \u0628\u0635\u064A\u063A\u0629 CSV",
-    "ux.report.xlsx": "\u062A\u0646\u0632\u064A\u0644 \u0647\u0630\u0627 \u0627\u0644\u062A\u0642\u0631\u064A\u0631 \u0628\u0635\u064A\u063A\u0629 Excel",
-    "ux.report.word": "\u062A\u0646\u0632\u064A\u0644 \u0645\u0633\u062A\u0646\u062F Word \u0642\u0627\u0628\u0644 \u0644\u0644\u062A\u062D\u0631\u064A\u0631",
+    "ux.report.csv": "CSV",
+    "ux.report.xlsx": "Excel (.xlsx)",
+    "ux.report.word": "Word (.docx)",
     "ux.report.batch": "\u0645\u0639\u0627\u064A\u0646\u0629 \u062A\u0642\u0627\u0631\u064A\u0631 \u0627\u0644\u0637\u0644\u0627\u0628 \u0627\u0644\u0645\u062D\u062F\u062F\u064A\u0646",
     "ux.report.openStudent": "\u0641\u062A\u062D \u062A\u0642\u0631\u064A\u0631 \u0627\u0644\u0637\u0627\u0644\u0628",
     "ux.report.scope": "\u0637\u0631\u064A\u0642\u0629 \u0627\u062D\u062A\u0633\u0627\u0628 \u0627\u0644\u062D\u0636\u0648\u0631",
@@ -11637,17 +11701,17 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.report.intro": "\u0627\u062E\u062A\u0631 \u0627\u0644\u0645\u0633\u062A\u0641\u064A\u062F \u0648\u0627\u0644\u0623\u062F\u0644\u0629 \u0648\u0627\u0644\u0641\u062A\u0631\u0629\u060C \u062B\u0645 \u0639\u0627\u064A\u0646 \u0627\u0644\u062A\u0642\u0631\u064A\u0631 \u0627\u0644\u0643\u0627\u0645\u0644. \u062A\u0628\u0642\u0649 \u0627\u0644\u062F\u0631\u062C\u0627\u062A \u0627\u0644\u0623\u0635\u0644\u064A\u0629 \u0647\u064A \u0627\u0644\u0645\u0631\u062C\u0639.",
     "ux.report.filters": "\u0646\u0637\u0627\u0642 \u0627\u0644\u062A\u0642\u0631\u064A\u0631",
     "ux.report.sections": "\u0627\u0644\u0645\u062D\u062A\u0648\u0649 \u0648\u0627\u0644\u0623\u062F\u0644\u0629 \u0627\u0644\u062F\u0627\u0639\u0645\u0629",
-    "ux.report.files": "\u0627\u0644\u0645\u0635\u0646\u0641 \u0627\u0644\u0623\u0635\u0644\u064A \u0648\u0627\u0644\u0623\u0648\u0631\u0627\u0642 \u0627\u0644\u0625\u0636\u0627\u0641\u064A\u0629",
+    "ux.report.files": "\u0645\u0635\u0646\u0641 Excel \u0644\u0644\u0635\u0641 \u0643\u0627\u0645\u0644\u064B\u0627",
     "ux.report.sourceHelp": "\u064A\u0633\u062A\u062E\u062F\u0645 \u0627\u0644\u0645\u0644\u062E\u0635 \u0627\u0644\u064A\u0648\u0645\u064A \u0622\u062E\u0631 \u0633\u062C\u0644 \u0639\u064F\u062F\u0651\u0644 \u0641\u064A \u0643\u0644 \u062A\u0627\u0631\u064A\u062E \u0645\u0633\u062C\u0651\u0644. \u064A\u062D\u062A\u0633\u0628 \u0648\u0636\u0639 \u0627\u0644\u062D\u0635\u0635 \u0643\u0644 \u0633\u062C\u0644 \u062D\u0635\u0629 \u0639\u0644\u0649 \u062D\u062F\u0629. \u062A\u064F\u0639\u0631\u0636 \u062D\u0627\u0644\u0627\u062A \u0627\u0644\u0639\u0630\u0631 \u0648\u0639\u062F\u0645 \u0627\u0644\u062A\u0633\u062C\u064A\u0644 \u0645\u0646\u0641\u0635\u0644\u0629\u060C \u0648\u0644\u0627 \u062A\u062F\u062E\u0644 \u0641\u064A \u0646\u0633\u0628\u0629 \u0627\u0644\u062D\u0636\u0648\u0631.",
-    "ux.report.privateHelp": "\u062A\u064F\u0633\u062A\u0628\u0639\u062F \u0645\u0644\u0627\u062D\u0638\u0627\u062A \u0627\u0644\u0637\u0627\u0644\u0628 \u0627\u0644\u062E\u0627\u0635\u0629. \u0625\u062F\u0631\u0627\u062C \u062A\u0639\u0644\u064A\u0642\u0627\u062A \u0627\u0644\u0623\u062D\u062F\u0627\u062B \u0627\u062E\u062A\u064A\u0627\u0631\u064A\u060C \u0648\u064A\u062C\u0628 \u0627\u0639\u062A\u0645\u0627\u062F \u0646\u0635 \u0627\u0644\u0630\u0643\u0627\u0621 \u0627\u0644\u0627\u0635\u0637\u0646\u0627\u0639\u064A \u0645\u0633\u0628\u0642\u0627\u064B \u0641\u064A \u062A\u0642\u0627\u0631\u064A\u0631\u0647.",
+    "ux.report.privateHelp": "\u0644\u0627 \u062A\u064F\u0636\u0645\u064E\u0651\u0646 \u0645\u0644\u0627\u062D\u0638\u0627\u062A \u0627\u0644\u0637\u0644\u0627\u0628 \u0627\u0644\u062E\u0627\u0635\u0629 \u0623\u0628\u062F\u064B\u0627.",
     "ux.report.originalHelp": "\u064A\u062D\u0627\u0641\u0638 \u0647\u0630\u0627 \u0627\u0644\u0625\u062C\u0631\u0627\u0621 \u0639\u0644\u0649 \u0627\u0644\u0645\u0635\u0646\u0641 \u0627\u0644\u0623\u0635\u0644\u064A \u0644\u062C\u0645\u064A\u0639 \u0637\u0644\u0627\u0628 \u0627\u0644\u0635\u0641\u060C \u0648\u062A\u064F\u0636\u0627\u0641 \u0627\u0644\u0623\u0648\u0631\u0627\u0642 \u0627\u0644\u0627\u062E\u062A\u064A\u0627\u0631\u064A\u0629 \u0625\u0644\u064A\u0647. \u0627\u0633\u062A\u062E\u062F\u0645 \u0634\u0631\u064A\u0637 \u0627\u0644\u062A\u0642\u0631\u064A\u0631 \u0627\u0644\u0646\u0627\u062A\u062C \u0644\u062A\u0646\u0632\u064A\u0644 \u0627\u0644\u062A\u0642\u0631\u064A\u0631 \u0627\u0644\u0645\u062D\u062F\u062F \u0641\u0642\u0637.",
     "ux.report.generated": "\u0627\u0644\u062A\u0642\u0631\u064A\u0631 \u0627\u0644\u0646\u0627\u062A\u062C",
-    "ux.report.stale": "\u062A\u063A\u064A\u0651\u0631 \u0627\u0644\u0646\u0645\u0648\u0630\u062C. \u0623\u0646\u0634\u0626 \u0627\u0644\u062A\u0642\u0631\u064A\u0631 \u0645\u0646 \u062C\u062F\u064A\u062F \u0644\u062A\u0637\u0628\u064A\u0642 \u0627\u0644\u0646\u0637\u0627\u0642 \u0627\u0644\u062C\u062F\u064A\u062F.",
+    "ux.report.stale": "\u062A\u063A\u064A\u0651\u0631\u062A \u0627\u0644\u062E\u064A\u0627\u0631\u0627\u062A \u0628\u0639\u062F \u0647\u0630\u0647 \u0627\u0644\u0645\u0639\u0627\u064A\u0646\u0629.",
     "ux.report.recipients": "\u0645\u0633\u062A\u0644\u0645\u0648 \u0627\u0644\u062F\u0641\u0639\u0629",
     "ux.report.previewHint": "\u0623\u0646\u0634\u0626 \u062A\u0642\u0631\u064A\u0631\u0627\u064B \u0644\u0639\u0631\u0636 \u0628\u0637\u0627\u0642\u0627\u062A \u0627\u0644\u0645\u0644\u062E\u0635 \u0648\u0627\u0644\u0631\u0633\u0648\u0645 \u0648\u0627\u0644\u0623\u062F\u0644\u0629 \u0648\u062A\u0641\u0627\u0635\u064A\u0644 \u0627\u0644\u062D\u0635\u0635 \u0647\u0646\u0627.",
     "ux.report.attendanceChart": "\u0627\u0644\u062D\u0636\u0648\u0631 \u0628\u062D\u0633\u0628 \u0627\u0644\u062D\u0627\u0644\u0629 \u0627\u0644\u0645\u0633\u062C\u0651\u0644\u0629",
-    "ux.report.gradesChart": "\u0646\u062A\u0627\u0626\u062C \u0627\u0644\u0623\u0642\u0633\u0627\u0645 \u0627\u0644\u0623\u0635\u0644\u064A\u0629 (%)",
-    "ux.report.trendChart": "\u0646\u062A\u0627\u0626\u062C \u0627\u0644\u0641\u0635\u0648\u0644 \u0627\u0644\u0623\u0635\u0644\u064A\u0629 (%)",
+    "ux.report.gradesChart": "\u0627\u0644\u0646\u062A\u0627\u0626\u062C \u062D\u0633\u0628 \u0627\u0644\u0642\u0633\u0645 (%)",
+    "ux.report.trendChart": "\u0646\u062A\u0627\u0626\u062C \u0627\u0644\u0641\u0635\u0648\u0644 (%)",
     "ux.report.behaviourChart": "\u0623\u062D\u062F\u0627\u062B \u0627\u0644\u0633\u0644\u0648\u0643 \u0627\u0644\u0645\u0633\u062C\u0651\u0644\u0629",
     "ux.report.ledger": "\u0633\u062C\u0644 \u062D\u0636\u0648\u0631 \u0627\u0644\u062D\u0635\u0635",
     "ux.report.events": "\u0627\u0644\u062A\u0633\u0644\u0633\u0644 \u0627\u0644\u0632\u0645\u0646\u064A \u0644\u0644\u0623\u062D\u062F\u0627\u062B \u0627\u0644\u0645\u0633\u062C\u0651\u0644\u0629",
@@ -11668,10 +11732,10 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.report.excused": "\u0628\u0639\u0630\u0631",
     "ux.report.unmarked": "\u063A\u064A\u0631 \u0645\u0633\u062C\u0651\u0644",
     "ux.report.percent": "\u0646\u0633\u0628\u0629 \u0627\u0644\u062D\u0636\u0648\u0631 (%)",
-    "ux.report.final": "\u0627\u0644\u0646\u062A\u064A\u062C\u0629 \u0627\u0644\u0623\u0635\u0644\u064A\u0629 (%)",
-    "ux.report.participation": "\u0627\u0644\u0645\u0634\u0627\u0631\u0643\u0629 \u0627\u0644\u0623\u0635\u0644\u064A\u0629",
-    "ux.report.behaviour": "\u0627\u0644\u0633\u0644\u0648\u0643 \u0627\u0644\u0623\u0635\u0644\u064A",
-    "ux.report.strikes": "\u0627\u0644\u0645\u062E\u0627\u0644\u0641\u0627\u062A \u0627\u0644\u0645\u0633\u062C\u0651\u0644\u0629",
+    "ux.report.final": "\u0627\u0644\u0646\u062A\u064A\u062C\u0629 \u0627\u0644\u0646\u0647\u0627\u0626\u064A\u0629 (%)",
+    "ux.report.participation": "\u0627\u0644\u0645\u0634\u0627\u0631\u0643\u0629",
+    "ux.report.behaviour": "\u0627\u0644\u0633\u0644\u0648\u0643",
+    "ux.report.strikes": "\u0627\u0644\u0645\u062E\u0627\u0644\u0641\u0627\u062A",
     "ux.report.sessions": "\u0627\u0644\u0648\u062D\u062F\u0627\u062A \u0627\u0644\u0645\u0633\u062C\u0651\u0644\u0629",
     "ux.report.deductions": "\u0623\u062D\u062F\u0627\u062B \u0627\u0644\u062E\u0635\u0645",
     "ux.report.observations": "\u0627\u0644\u0645\u0644\u0627\u062D\u0638\u0627\u062A \u0627\u0644\u0635\u0641\u064A\u0629",
@@ -12240,9 +12304,9 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.report.assessments": "\u0646\u062A\u0627\u0626\u062C \u0627\u0644\u062A\u0642\u064A\u064A\u0645\u0627\u062A \u0648\u0648\u062D\u062F\u0627\u062A\u0647\u0627",
     "ux.report.assessmentScope": "\u0627\u0644\u062A\u0642\u064A\u064A\u0645\u0627\u062A \u0627\u0644\u0645\u062A\u0627\u062D\u0629 \u0645\u0646 \u0627\u0644\u0641\u0635\u0644 \u0627\u0644\u0623\u0635\u0644\u064A \u0627\u0644\u0645\u062D\u062F\u062F. \u062A\u0633\u062A\u062E\u062F\u0645 \u0627\u0644\u0642\u064A\u0645 \u0627\u0644\u062E\u0627\u0645 \u0642\u0627\u0631\u0626 \u0627\u0644\u0642\u064A\u0645 \u0627\u0644\u0623\u0635\u0644\u064A\u060C \u0648\u062A\u0623\u062A\u064A \u0627\u0644\u0646\u0633\u0628 \u0645\u0646 \u0646\u062A\u0627\u0626\u062C \u0627\u0644\u0641\u0635\u0644 \u0627\u0644\u0645\u0633\u062C\u0644\u0629. \u0642\u062F \u062A\u062E\u062A\u0644\u0641 \u0623\u0648\u0632\u0627\u0646 \u0627\u0644\u0623\u0639\u0645\u062F\u0629 \u0627\u0644\u0645\u0636\u0628\u0648\u0637\u0629 \u0639\u0646 \u0627\u0644\u0623\u0648\u0632\u0627\u0646 \u0627\u0644\u0641\u0639\u0644\u064A\u0629 \u0627\u0644\u0645\u062A\u0627\u062D\u0629 \u0623\u0648 \u0627\u0644\u0645\u0639\u062F\u0644\u0629. \u062A\u064F\u0628\u064A\u064E\u0651\u0646 \u0627\u0644\u062F\u0631\u062C\u0629 \u0627\u0644\u0645\u0628\u0627\u0634\u0631\u0629 \u063A\u064A\u0631 \u0627\u0644\u0645\u0633\u062C\u0644\u0629 \u0635\u0631\u0627\u062D\u0629\u064B.",
     "ux.report.assessmentName": "\u0627\u0644\u062A\u0642\u064A\u064A\u0645 \u0648\u0627\u0644\u0642\u0633\u0645",
-    "ux.report.rawMaximum": "\u0627\u0644\u062F\u0631\u062C\u0629 \u0627\u0644\u062E\u0627\u0645 / \u0627\u0644\u0642\u0635\u0648\u0649",
-    "ux.report.configuredWeight": "\u0627\u0644\u0648\u0632\u0646 \u0627\u0644\u0645\u0636\u0628\u0648\u0637 (%)",
-    "ux.report.originalPercent": "\u0627\u0644\u0646\u0633\u0628\u0629 \u0627\u0644\u0623\u0635\u0644\u064A\u0629 \u0641\u064A \u0627\u0644\u0641\u0635\u0644",
+    "ux.report.rawMaximum": "\u0627\u0644\u062F\u0631\u062C\u0629",
+    "ux.report.configuredWeight": "\u0627\u0644\u0648\u0632\u0646 (%)",
+    "ux.report.originalPercent": "\u0627\u0644\u0646\u0633\u0628\u0629",
     "ux.report.noAssessmentDetail": "\u0644\u0627 \u064A\u062A\u0636\u0645\u0646 \u0647\u0630\u0627 \u0627\u0644\u0641\u0635\u0644 \u0627\u0644\u062A\u0641\u0627\u0635\u064A\u0644 \u0627\u0644\u0623\u0635\u0644\u064A\u0629 \u0644\u0643\u0644 \u062A\u0642\u064A\u064A\u0645. \u0644\u0627 \u062A\u064F\u0633\u062A\u0628\u062F\u0644 \u0628\u0647\u0627 \u062A\u0642\u064A\u064A\u0645\u0627\u062A \u062D\u0627\u0644\u064A\u0629.",
     "ux.notebook.removed": "\u0625\u062F\u062E\u0627\u0644\u0627\u062A \u062F\u0641\u062A\u0631 \u0627\u0644\u0645\u0639\u0644\u0645 \u0627\u0644\u0645\u062D\u0630\u0648\u0641\u0629",
     "ux.notebook.restore": "\u0627\u0633\u062A\u0639\u0627\u062F\u0629 \u0625\u062F\u062E\u0627\u0644 \u062F\u0641\u062A\u0631 \u0627\u0644\u0645\u0639\u0644\u0645",
@@ -12266,7 +12330,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.documents.wordHint": "\u062A\u062D\u062A\u0648\u064A \u0635\u0627\u062F\u0631\u0627\u062A Word \u0639\u0644\u0649 \u0646\u0635 \u0648\u062C\u062F\u0627\u0648\u0644 \u0642\u0627\u0628\u0644\u0629 \u0644\u0644\u062A\u0639\u062F\u064A\u0644. \u0627\u0633\u062A\u062E\u062F\u0645 \u0627\u0644\u0637\u0628\u0627\u0639\u0629 \u0623\u0648 PDF \u0644\u0644\u0627\u062D\u062A\u0641\u0627\u0638 \u0628\u062A\u0635\u0645\u064A\u0645 \u0627\u0644\u0635\u0641\u062D\u0629 \u0648\u0627\u0644\u0631\u0633\u0648\u0645.",
     "ux.analysis.capture": "\u062D\u0641\u0638 \u0644\u0642\u0637\u0629 \u0631\u0633\u0648\u0645 \u0647\u0630\u0627 \u0627\u0644\u0637\u0627\u0644\u0628 \u0644\u0644\u062A\u0642\u0627\u0631\u064A\u0631",
     "ux.analysis.captured": "\u0623\u0635\u0628\u062D\u062A \u0631\u0633\u0648\u0645 \u0627\u0644\u0637\u0627\u0644\u0628 \u0627\u0644\u0645\u0639\u0631\u0648\u0636\u0629 \u0645\u062A\u0627\u062D\u0629 \u0641\u064A \u0627\u0644\u062A\u0642\u0627\u0631\u064A\u0631 \u0644\u0647\u0630\u0647 \u0627\u0644\u062C\u0644\u0633\u0629.",
-    "ux.report.originalCharts": "\u062A\u0636\u0645\u064A\u0646 \u0644\u0642\u0637\u0627\u062A \u0631\u0633\u0648\u0645 \u0627\u0644\u062A\u062D\u0644\u064A\u0644 \u0627\u0644\u0623\u0635\u0644\u064A\u0629",
+    "ux.report.originalCharts": "\u0631\u0633\u0648\u0645 \u0627\u0644\u062A\u062D\u0644\u064A\u0644 \u0627\u0644\u0645\u0644\u062A\u0642\u0637\u0629",
     "ux.report.chartSnapshotHint": "\u0644\u0642\u0637\u0629 \u064A\u062F\u0648\u064A\u0629 \u0644\u0631\u0633\u0648\u0645 \u0645\u0644\u0641 \u0627\u0644\u0637\u0627\u0644\u0628 \u0627\u0644\u062D\u0627\u0644\u064A \u0627\u0644\u0623\u0635\u0644\u064A \u0628\u0645\u0631\u0634\u062D\u0627\u062A \u0627\u0644\u062A\u062D\u0644\u064A\u0644 \u0648\u0648\u0636\u0639\u0647 \u0648\u0644\u063A\u0629 \u0627\u0644\u0627\u0644\u062A\u0642\u0627\u0637. \u0644\u0627 \u064A\u064F\u0639\u0627\u062F \u062D\u0633\u0627\u0628\u0647\u0627 \u0648\u0641\u0642 \u0641\u0635\u0644 \u0627\u0644\u062A\u0642\u0631\u064A\u0631 \u0623\u0648 \u062A\u0648\u0627\u0631\u064A\u062E\u0647. \u0623\u0639\u062F \u0627\u0644\u0627\u0644\u062A\u0642\u0627\u0637 \u0628\u0639\u062F \u0627\u0644\u062A\u063A\u064A\u064A\u0631\u0627\u062A\u061B \u062A\u0628\u0642\u0649 \u0627\u0644\u0644\u0642\u0637\u0627\u062A \u0641\u064A \u0627\u0644\u0630\u0627\u0643\u0631\u0629 \u0641\u0642\u0637.",
     "ux.report.noChartCapture": "\u0644\u0645 \u062A\u064F\u0644\u062A\u0642\u064E\u0637 \u0631\u0633\u0648\u0645 \u0645\u0644\u0641 \u0627\u0644\u0637\u0627\u0644\u0628 \u0627\u0644\u0623\u0635\u0644\u064A \u0644\u0647\u0630\u0627 \u0627\u0644\u0645\u062A\u0639\u0644\u0645 \u0641\u064A \u0647\u0630\u0647 \u0627\u0644\u062C\u0644\u0633\u0629.",
     "ux.plans.word": "\u062A\u0635\u062F\u064A\u0631 \u062E\u0637\u0629 \u0627\u0644\u062F\u0631\u0633 \u0625\u0644\u0649 Word \u0642\u0627\u0628\u0644 \u0644\u0644\u062A\u0639\u062F\u064A\u0644",
@@ -13421,7 +13485,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.report.outcome.student": "\u0627\u062C\u062A\u0645\u0627\u0639 \u0648\u0644\u064A \u0627\u0644\u0623\u0645\u0631",
     "ux.report.outcome.class": "\u0645\u0644\u062E\u0635 \u0627\u0644\u0635\u0641",
     "ux.report.outcome.attendance": "\u062A\u0642\u0631\u064A\u0631 \u0627\u0644\u062D\u0636\u0648\u0631",
-    "ux.report.print": "\u0637\u0628\u0627\u0639\u0629 \u0627\u0644\u062A\u0642\u0631\u064A\u0631",
+    "ux.report.print": "\u0627\u0637\u0628\u0639",
     "ux.report.chip.student": "\u0627\u0644\u0637\u0627\u0644\u0628",
     "ux.report.chip.term": "\u0641\u0635\u0644 \u0627\u0644\u062F\u0631\u062C\u0627\u062A",
     "ux.report.chip.dates": "\u0641\u062A\u0631\u0629 \u0627\u0644\u062D\u0636\u0648\u0631",
@@ -13640,7 +13704,25 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.notes.due.two": "\u0645\u062A\u0627\u0628\u0639\u062A\u0627\u0646 \u0645\u0633\u062A\u062D\u0642\u062A\u0627\u0646",
     "ux.notes.due.few": "{n} \u0645\u062A\u0627\u0628\u0639\u0627\u062A \u0645\u0633\u062A\u062D\u0642\u0629",
     "ux.notes.due.many": "{n} \u0645\u062A\u0627\u0628\u0639\u0629 \u0645\u0633\u062A\u062D\u0642\u0629",
-    "ux.notes.due.other": "{n} \u0645\u062A\u0627\u0628\u0639\u0629 \u0645\u0633\u062A\u062D\u0642\u0629"
+    "ux.notes.due.other": "{n} \u0645\u062A\u0627\u0628\u0639\u0629 \u0645\u0633\u062A\u062D\u0642\u0629",
+    "ux.report.for": "\u0627\u0644\u062A\u0642\u0631\u064A\u0631 \u0639\u0646",
+    "ux.report.include": "\u0627\u0644\u0645\u062D\u062A\u0648\u0649",
+    "ux.report.several": "\u0639\u062F\u0629 \u0637\u0644\u0627\u0628\u2026",
+    "ux.report.severalTitle": "\u0639\u062F\u0629 \u0637\u0644\u0627\u0628",
+    "ux.report.severalHint": "\u0627\u062E\u062A\u0631 \u0645\u0646 \u064A\u062D\u0635\u0644 \u0639\u0644\u0649 \u062A\u0642\u0631\u064A\u0631. \u064A\u0633\u062A\u062E\u062F\u0645 \u0643\u0644 \u062A\u0642\u0631\u064A\u0631 \u0627\u0644\u062E\u064A\u0627\u0631\u0627\u062A \u0627\u0644\u0645\u062D\u062F\u062F\u0629.",
+    "ux.report.severalClose": "\u0625\u0644\u063A\u0627\u0621",
+    "ux.report.prevStudent": "\u0627\u0644\u0637\u0627\u0644\u0628 \u0627\u0644\u0633\u0627\u0628\u0642",
+    "ux.report.nextStudent": "\u0627\u0644\u0637\u0627\u0644\u0628 \u0627\u0644\u062A\u0627\u0644\u064A",
+    "ux.report.download": "\u0646\u0632\u0651\u0644",
+    "ux.report.chosen.one": "\u0645\u062D\u062F\u062F {n} \u0645\u0646 {total}",
+    "ux.report.chosen.other": "\u0645\u062D\u062F\u062F {n} \u0645\u0646 {total}",
+    "ux.report.batchCount.zero": "\u0639\u0627\u064A\u0646 \u0627\u0644\u062A\u0642\u0627\u0631\u064A\u0631",
+    "ux.report.batchCount.one": "\u0639\u0627\u064A\u0646 \u062A\u0642\u0631\u064A\u0631\u064B\u0627 \u0648\u0627\u062D\u062F\u064B\u0627",
+    "ux.report.batchCount.two": "\u0639\u0627\u064A\u0646 \u062A\u0642\u0631\u064A\u0631\u064A\u0646",
+    "ux.report.batchCount.few": "\u0639\u0627\u064A\u0646 {n} \u062A\u0642\u0627\u0631\u064A\u0631",
+    "ux.report.batchCount.many": "\u0639\u0627\u064A\u0646 {n} \u062A\u0642\u0631\u064A\u0631\u064B\u0627",
+    "ux.report.batchCount.other": "\u0639\u0627\u064A\u0646 {n} \u062A\u0642\u0631\u064A\u0631",
+    "ux.report.teacherLabel": "\u0627\u0644\u0645\u0639\u0644\u0645"
   };
 
   // src/core/actions.js
@@ -30182,6 +30264,71 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       "meaning": "ux.notes.openTimeline"
     },
     {
+      "id": "ux.report.prevStudent",
+      "labelKey": "ux.report.prevStudent",
+      "icon": null,
+      "shortcut": null,
+      "availability": "rendered-and-not-disabled",
+      "canonicalHome": "report:context",
+      "events": [
+        "onClick"
+      ],
+      "source": "src/modules",
+      "meaning": "ux.report.prevStudent"
+    },
+    {
+      "id": "ux.report.nextStudent",
+      "labelKey": "ux.report.nextStudent",
+      "icon": null,
+      "shortcut": null,
+      "availability": "rendered-and-not-disabled",
+      "canonicalHome": "report:context",
+      "events": [
+        "onClick"
+      ],
+      "source": "src/modules",
+      "meaning": "ux.report.nextStudent"
+    },
+    {
+      "id": "ux.report.several",
+      "labelKey": "ux.report.several",
+      "icon": null,
+      "shortcut": null,
+      "availability": "rendered-and-not-disabled",
+      "canonicalHome": "report:context",
+      "events": [
+        "onClick"
+      ],
+      "source": "src/modules",
+      "meaning": "ux.report.several"
+    },
+    {
+      "id": "ux.report.severalClose",
+      "labelKey": "ux.report.severalClose",
+      "icon": null,
+      "shortcut": null,
+      "availability": "rendered-and-not-disabled",
+      "canonicalHome": "report:context",
+      "events": [
+        "onClick"
+      ],
+      "source": "src/modules",
+      "meaning": "ux.report.severalClose"
+    },
+    {
+      "id": "ux.report.download",
+      "labelKey": "ux.report.download",
+      "icon": null,
+      "shortcut": null,
+      "availability": "rendered-and-not-disabled",
+      "canonicalHome": "report:context",
+      "events": [
+        "onClick"
+      ],
+      "source": "src/modules",
+      "meaning": "ux.report.download"
+    },
+    {
       "id": "ux.report.sort",
       "labelKey": "ux.report.sort",
       "icon": null,
@@ -37426,6 +37573,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
   Object.assign(uxChange, { "obs.search": "obs.search" });
   Object.assign(uxClick, { "notes.save": "notes.save", "notes.cancelEdit": "notes.cancelEdit", "notes.showDue": "notes.showDue", "notes.openTimeline": "notes.openTimeline" });
   Object.assign(uxChange, { "notes.followSwitch": "notes.remind" });
+  Object.assign(uxClick, { "report.prevStudent": "report.prevStudent", "report.nextStudent": "report.nextStudent", "report.several": "report.several", "report.severalClose": "report.severalClose", "report.download": "report.download" });
   var uxActions = [...Object.entries(uxClick).map(([id, key4]) => [id, key4, "onClick"]), ...Object.entries(uxChange).map(([id, key4]) => [id, key4, "onChange"])].map(([id, key4, event]) => ({ id: "ux." + id, labelKey: "ux." + key4, icon: null, shortcut: null, availability: "rendered-and-not-disabled", canonicalHome: id.startsWith("nav.") ? "Workspace:sidebar" : id.startsWith("appearance.") ? "Workspace:context" : id.split(".")[0] + ":context", events: [event], source: "src/modules", meaning: "ux." + id }));
 
   // src/i18n/ux-copy.js
@@ -37435,12 +37583,12 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       "\u0628\u062D\u062B"
     ],
     "selectAll": [
-      "Select all recipients",
-      "\u062A\u062D\u062F\u064A\u062F \u062C\u0645\u064A\u0639 \u0627\u0644\u0645\u0633\u062A\u0644\u0645\u064A\u0646"
+      "Select all",
+      "\u062D\u062F\u0651\u062F \u0627\u0644\u0643\u0644"
     ],
     "selectNone": [
-      "Clear recipient selection",
-      "\u0625\u0644\u063A\u0627\u0621 \u062A\u062D\u062F\u064A\u062F \u0627\u0644\u0645\u0633\u062A\u0644\u0645\u064A\u0646"
+      "Clear",
+      "\u0627\u0645\u0633\u062D \u0627\u0644\u062A\u062D\u062F\u064A\u062F"
     ],
     "notRecorded": [
       "Not recorded",
@@ -37451,8 +37599,8 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       "\u0644\u0627 \u062A\u0648\u062C\u062F \u0633\u062C\u0644\u0627\u062A \u0636\u0645\u0646 \u0627\u0644\u0646\u0637\u0627\u0642 \u0627\u0644\u0645\u062D\u062F\u062F. \u0627\u062E\u062A\u0631 \u0641\u062A\u0631\u0629 \u0623\u062E\u0631\u0649 \u0623\u0648 \u0633\u062C\u0651\u0644 \u0627\u0644\u0645\u0639\u0644\u0648\u0645\u0627\u062A \u0627\u0644\u0646\u0627\u0642\u0635\u0629."
     ],
     "report.generate": [
-      "Build detailed report",
-      "\u0625\u0646\u0634\u0627\u0621 \u0627\u0644\u062A\u0642\u0631\u064A\u0631 \u0627\u0644\u0645\u0641\u0635\u0651\u0644"
+      "Update preview",
+      "\u062D\u062F\u0651\u062B \u0627\u0644\u0645\u0639\u0627\u064A\u0646\u0629"
     ],
     "report.today": [
       "Today only",
@@ -37471,16 +37619,16 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       "\u0645\u0646 \u0628\u062F\u0627\u064A\u0629 \u0627\u0644\u0641\u0635\u0644"
     ],
     "report.csv": [
-      "Download this report as CSV",
-      "\u062A\u0646\u0632\u064A\u0644 \u0647\u0630\u0627 \u0627\u0644\u062A\u0642\u0631\u064A\u0631 \u0628\u0635\u064A\u063A\u0629 CSV"
+      "CSV",
+      "CSV"
     ],
     "report.xlsx": [
-      "Download this report as Excel",
-      "\u062A\u0646\u0632\u064A\u0644 \u0647\u0630\u0627 \u0627\u0644\u062A\u0642\u0631\u064A\u0631 \u0628\u0635\u064A\u063A\u0629 Excel"
+      "Excel (.xlsx)",
+      "Excel (.xlsx)"
     ],
     "report.word": [
-      "Download editable Word document",
-      "\u062A\u0646\u0632\u064A\u0644 \u0645\u0633\u062A\u0646\u062F Word \u0642\u0627\u0628\u0644 \u0644\u0644\u062A\u062D\u0631\u064A\u0631"
+      "Word (.docx)",
+      "Word (.docx)"
     ],
     "report.batch": [
       "Preview selected student reports",
@@ -37551,16 +37699,16 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       "\u0627\u0644\u0645\u062D\u062A\u0648\u0649 \u0648\u0627\u0644\u0623\u062F\u0644\u0629 \u0627\u0644\u062F\u0627\u0639\u0645\u0629"
     ],
     "report.files": [
-      "Original workbook and extra sheets",
-      "\u0627\u0644\u0645\u0635\u0646\u0641 \u0627\u0644\u0623\u0635\u0644\u064A \u0648\u0627\u0644\u0623\u0648\u0631\u0627\u0642 \u0627\u0644\u0625\u0636\u0627\u0641\u064A\u0629"
+      "Whole-class Excel workbook",
+      "\u0645\u0635\u0646\u0641 Excel \u0644\u0644\u0635\u0641 \u0643\u0627\u0645\u0644\u064B\u0627"
     ],
     "report.sourceHelp": [
       "Daily summaries use the latest edited register on each recorded date. Lesson mode counts each recorded register separately. Excused and unmarked entries are shown separately and excluded from the attendance percentage.",
       "\u064A\u0633\u062A\u062E\u062F\u0645 \u0627\u0644\u0645\u0644\u062E\u0635 \u0627\u0644\u064A\u0648\u0645\u064A \u0622\u062E\u0631 \u0633\u062C\u0644 \u0639\u064F\u062F\u0651\u0644 \u0641\u064A \u0643\u0644 \u062A\u0627\u0631\u064A\u062E \u0645\u0633\u062C\u0651\u0644. \u064A\u062D\u062A\u0633\u0628 \u0648\u0636\u0639 \u0627\u0644\u062D\u0635\u0635 \u0643\u0644 \u0633\u062C\u0644 \u062D\u0635\u0629 \u0639\u0644\u0649 \u062D\u062F\u0629. \u062A\u064F\u0639\u0631\u0636 \u062D\u0627\u0644\u0627\u062A \u0627\u0644\u0639\u0630\u0631 \u0648\u0639\u062F\u0645 \u0627\u0644\u062A\u0633\u062C\u064A\u0644 \u0645\u0646\u0641\u0635\u0644\u0629\u060C \u0648\u0644\u0627 \u062A\u062F\u062E\u0644 \u0641\u064A \u0646\u0633\u0628\u0629 \u0627\u0644\u062D\u0636\u0648\u0631."
     ],
     "report.privateHelp": [
-      "Private student notes are excluded. Event comments are opt-in. AI text must already be approved in AI Reports.",
-      "\u062A\u064F\u0633\u062A\u0628\u0639\u062F \u0645\u0644\u0627\u062D\u0638\u0627\u062A \u0627\u0644\u0637\u0627\u0644\u0628 \u0627\u0644\u062E\u0627\u0635\u0629. \u0625\u062F\u0631\u0627\u062C \u062A\u0639\u0644\u064A\u0642\u0627\u062A \u0627\u0644\u0623\u062D\u062F\u0627\u062B \u0627\u062E\u062A\u064A\u0627\u0631\u064A\u060C \u0648\u064A\u062C\u0628 \u0627\u0639\u062A\u0645\u0627\u062F \u0646\u0635 \u0627\u0644\u0630\u0643\u0627\u0621 \u0627\u0644\u0627\u0635\u0637\u0646\u0627\u0639\u064A \u0645\u0633\u0628\u0642\u0627\u064B \u0641\u064A \u062A\u0642\u0627\u0631\u064A\u0631\u0647."
+      "Private student notes are never included.",
+      "\u0644\u0627 \u062A\u064F\u0636\u0645\u064E\u0651\u0646 \u0645\u0644\u0627\u062D\u0638\u0627\u062A \u0627\u0644\u0637\u0644\u0627\u0628 \u0627\u0644\u062E\u0627\u0635\u0629 \u0623\u0628\u062F\u064B\u0627."
     ],
     "report.originalHelp": [
       "This action keeps the original whole-class workbook. Optional sheets are appended. Use the generated report toolbar for the selected report only.",
@@ -37571,8 +37719,8 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       "\u0627\u0644\u062A\u0642\u0631\u064A\u0631 \u0627\u0644\u0646\u0627\u062A\u062C"
     ],
     "report.stale": [
-      "The form has changed. Build the report again to apply the new scope.",
-      "\u062A\u063A\u064A\u0651\u0631 \u0627\u0644\u0646\u0645\u0648\u0630\u062C. \u0623\u0646\u0634\u0626 \u0627\u0644\u062A\u0642\u0631\u064A\u0631 \u0645\u0646 \u062C\u062F\u064A\u062F \u0644\u062A\u0637\u0628\u064A\u0642 \u0627\u0644\u0646\u0637\u0627\u0642 \u0627\u0644\u062C\u062F\u064A\u062F."
+      "Options changed since this preview.",
+      "\u062A\u063A\u064A\u0651\u0631\u062A \u0627\u0644\u062E\u064A\u0627\u0631\u0627\u062A \u0628\u0639\u062F \u0647\u0630\u0647 \u0627\u0644\u0645\u0639\u0627\u064A\u0646\u0629."
     ],
     "report.recipients": [
       "Batch recipients",
@@ -37587,12 +37735,12 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       "\u0627\u0644\u062D\u0636\u0648\u0631 \u0628\u062D\u0633\u0628 \u0627\u0644\u062D\u0627\u0644\u0629 \u0627\u0644\u0645\u0633\u062C\u0651\u0644\u0629"
     ],
     "report.gradesChart": [
-      "Original section results (%)",
-      "\u0646\u062A\u0627\u0626\u062C \u0627\u0644\u0623\u0642\u0633\u0627\u0645 \u0627\u0644\u0623\u0635\u0644\u064A\u0629 (%)"
+      "Results by section (%)",
+      "\u0627\u0644\u0646\u062A\u0627\u0626\u062C \u062D\u0633\u0628 \u0627\u0644\u0642\u0633\u0645 (%)"
     ],
     "report.trendChart": [
-      "Original term results (%)",
-      "\u0646\u062A\u0627\u0626\u062C \u0627\u0644\u0641\u0635\u0648\u0644 \u0627\u0644\u0623\u0635\u0644\u064A\u0629 (%)"
+      "Term results (%)",
+      "\u0646\u062A\u0627\u0626\u062C \u0627\u0644\u0641\u0635\u0648\u0644 (%)"
     ],
     "report.behaviourChart": [
       "Recorded behaviour events",
@@ -37675,20 +37823,20 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       "\u0646\u0633\u0628\u0629 \u0627\u0644\u062D\u0636\u0648\u0631 (%)"
     ],
     "report.final": [
-      "Original final (%)",
-      "\u0627\u0644\u0646\u062A\u064A\u062C\u0629 \u0627\u0644\u0623\u0635\u0644\u064A\u0629 (%)"
+      "Final grade (%)",
+      "\u0627\u0644\u0646\u062A\u064A\u062C\u0629 \u0627\u0644\u0646\u0647\u0627\u0626\u064A\u0629 (%)"
     ],
     "report.participation": [
-      "Original participation",
-      "\u0627\u0644\u0645\u0634\u0627\u0631\u0643\u0629 \u0627\u0644\u0623\u0635\u0644\u064A\u0629"
+      "Participation",
+      "\u0627\u0644\u0645\u0634\u0627\u0631\u0643\u0629"
     ],
     "report.behaviour": [
-      "Original behaviour",
-      "\u0627\u0644\u0633\u0644\u0648\u0643 \u0627\u0644\u0623\u0635\u0644\u064A"
+      "Behaviour",
+      "\u0627\u0644\u0633\u0644\u0648\u0643"
     ],
     "report.strikes": [
-      "Recorded strikes",
-      "\u0627\u0644\u0645\u062E\u0627\u0644\u0641\u0627\u062A \u0627\u0644\u0645\u0633\u062C\u0651\u0644\u0629"
+      "Strikes",
+      "\u0627\u0644\u0645\u062E\u0627\u0644\u0641\u0627\u062A"
     ],
     "report.sessions": [
       "Recorded units",
@@ -39765,16 +39913,16 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       "\u0627\u0644\u062A\u0642\u064A\u064A\u0645 \u0648\u0627\u0644\u0642\u0633\u0645"
     ],
     "report.rawMaximum": [
-      "Raw mark / maximum",
-      "\u0627\u0644\u062F\u0631\u062C\u0629 \u0627\u0644\u062E\u0627\u0645 / \u0627\u0644\u0642\u0635\u0648\u0649"
+      "Mark",
+      "\u0627\u0644\u062F\u0631\u062C\u0629"
     ],
     "report.configuredWeight": [
-      "Configured weight (%)",
-      "\u0627\u0644\u0648\u0632\u0646 \u0627\u0644\u0645\u0636\u0628\u0648\u0637 (%)"
+      "Weight (%)",
+      "\u0627\u0644\u0648\u0632\u0646 (%)"
     ],
     "report.originalPercent": [
-      "Original term percentage",
-      "\u0627\u0644\u0646\u0633\u0628\u0629 \u0627\u0644\u0623\u0635\u0644\u064A\u0629 \u0641\u064A \u0627\u0644\u0641\u0635\u0644"
+      "Percentage",
+      "\u0627\u0644\u0646\u0633\u0628\u0629"
     ],
     "report.noAssessmentDetail": [
       "This term does not include the original per-assessment detail. No current assessments are substituted.",
@@ -39854,8 +40002,8 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       "\u0623\u0635\u0628\u062D\u062A \u0631\u0633\u0648\u0645 \u0627\u0644\u0637\u0627\u0644\u0628 \u0627\u0644\u0645\u0639\u0631\u0648\u0636\u0629 \u0645\u062A\u0627\u062D\u0629 \u0641\u064A \u0627\u0644\u062A\u0642\u0627\u0631\u064A\u0631 \u0644\u0647\u0630\u0647 \u0627\u0644\u062C\u0644\u0633\u0629."
     ],
     "report.originalCharts": [
-      "Include captured original Analysis charts",
-      "\u062A\u0636\u0645\u064A\u0646 \u0644\u0642\u0637\u0627\u062A \u0631\u0633\u0648\u0645 \u0627\u0644\u062A\u062D\u0644\u064A\u0644 \u0627\u0644\u0623\u0635\u0644\u064A\u0629"
+      "Captured Analysis charts",
+      "\u0631\u0633\u0648\u0645 \u0627\u0644\u062A\u062D\u0644\u064A\u0644 \u0627\u0644\u0645\u0644\u062A\u0642\u0637\u0629"
     ],
     "report.chartSnapshotHint": [
       "Manual snapshot of the original live Student Profile charts, with Analysis\u2019s own filters/mode and capture language. It is not recalculated for this report\u2019s term or dates. Capture again after changes; snapshots stay in memory only.",
@@ -41032,7 +41180,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "report.outcome.student": ["Parent meeting", "\u0627\u062C\u062A\u0645\u0627\u0639 \u0648\u0644\u064A \u0627\u0644\u0623\u0645\u0631"],
     "report.outcome.class": ["Class summary", "\u0645\u0644\u062E\u0635 \u0627\u0644\u0635\u0641"],
     "report.outcome.attendance": ["Attendance report", "\u062A\u0642\u0631\u064A\u0631 \u0627\u0644\u062D\u0636\u0648\u0631"],
-    "report.print": ["Print report", "\u0637\u0628\u0627\u0639\u0629 \u0627\u0644\u062A\u0642\u0631\u064A\u0631"],
+    "report.print": ["Print", "\u0627\u0637\u0628\u0639"],
     "report.chip.student": ["Student", "\u0627\u0644\u0637\u0627\u0644\u0628"],
     "report.chip.term": ["Grade term", "\u0641\u0635\u0644 \u0627\u0644\u062F\u0631\u062C\u0627\u062A"],
     "report.chip.dates": ["Attendance dates", "\u0641\u062A\u0631\u0629 \u0627\u0644\u062D\u0636\u0648\u0631"],
@@ -41251,7 +41399,25 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "notes.due.two": ["{n} follow-ups due", "\u0645\u062A\u0627\u0628\u0639\u062A\u0627\u0646 \u0645\u0633\u062A\u062D\u0642\u062A\u0627\u0646"],
     "notes.due.few": ["{n} follow-ups due", "{n} \u0645\u062A\u0627\u0628\u0639\u0627\u062A \u0645\u0633\u062A\u062D\u0642\u0629"],
     "notes.due.many": ["{n} follow-ups due", "{n} \u0645\u062A\u0627\u0628\u0639\u0629 \u0645\u0633\u062A\u062D\u0642\u0629"],
-    "notes.due.other": ["{n} follow-ups due", "{n} \u0645\u062A\u0627\u0628\u0639\u0629 \u0645\u0633\u062A\u062D\u0642\u0629"]
+    "notes.due.other": ["{n} follow-ups due", "{n} \u0645\u062A\u0627\u0628\u0639\u0629 \u0645\u0633\u062A\u062D\u0642\u0629"],
+    "report.for": ["Report for", "\u0627\u0644\u062A\u0642\u0631\u064A\u0631 \u0639\u0646"],
+    "report.include": ["Include", "\u0627\u0644\u0645\u062D\u062A\u0648\u0649"],
+    "report.several": ["Several students\u2026", "\u0639\u062F\u0629 \u0637\u0644\u0627\u0628\u2026"],
+    "report.severalTitle": ["Several students", "\u0639\u062F\u0629 \u0637\u0644\u0627\u0628"],
+    "report.severalHint": ["Choose who gets a report. Each report uses the options on the left.", "\u0627\u062E\u062A\u0631 \u0645\u0646 \u064A\u062D\u0635\u0644 \u0639\u0644\u0649 \u062A\u0642\u0631\u064A\u0631. \u064A\u0633\u062A\u062E\u062F\u0645 \u0643\u0644 \u062A\u0642\u0631\u064A\u0631 \u0627\u0644\u062E\u064A\u0627\u0631\u0627\u062A \u0627\u0644\u0645\u062D\u062F\u062F\u0629."],
+    "report.severalClose": ["Cancel", "\u0625\u0644\u063A\u0627\u0621"],
+    "report.prevStudent": ["Previous student", "\u0627\u0644\u0637\u0627\u0644\u0628 \u0627\u0644\u0633\u0627\u0628\u0642"],
+    "report.nextStudent": ["Next student", "\u0627\u0644\u0637\u0627\u0644\u0628 \u0627\u0644\u062A\u0627\u0644\u064A"],
+    "report.download": ["Download", "\u0646\u0632\u0651\u0644"],
+    "report.chosen.one": ["{n} of {total} selected", "\u0645\u062D\u062F\u062F {n} \u0645\u0646 {total}"],
+    "report.chosen.other": ["{n} of {total} selected", "\u0645\u062D\u062F\u062F {n} \u0645\u0646 {total}"],
+    "report.batchCount.zero": ["Preview reports", "\u0639\u0627\u064A\u0646 \u0627\u0644\u062A\u0642\u0627\u0631\u064A\u0631"],
+    "report.batchCount.one": ["Preview 1 report", "\u0639\u0627\u064A\u0646 \u062A\u0642\u0631\u064A\u0631\u064B\u0627 \u0648\u0627\u062D\u062F\u064B\u0627"],
+    "report.batchCount.two": ["Preview 2 reports", "\u0639\u0627\u064A\u0646 \u062A\u0642\u0631\u064A\u0631\u064A\u0646"],
+    "report.batchCount.few": ["Preview {n} reports", "\u0639\u0627\u064A\u0646 {n} \u062A\u0642\u0627\u0631\u064A\u0631"],
+    "report.batchCount.many": ["Preview {n} reports", "\u0639\u0627\u064A\u0646 {n} \u062A\u0642\u0631\u064A\u0631\u064B\u0627"],
+    "report.batchCount.other": ["Preview {n} reports", "\u0639\u0627\u064A\u0646 {n} \u062A\u0642\u0631\u064A\u0631"],
+    "report.teacherLabel": ["Teacher", "\u0627\u0644\u0645\u0639\u0644\u0645"]
   };
   var uxEn = Object.fromEntries(Object.entries(pairs).map(([key4, value]) => ["ux." + key4, value[0]]));
   var uxAr = Object.fromEntries(Object.entries(pairs).map(([key4, value]) => ["ux." + key4, value[1]]));
@@ -52353,7 +52519,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     if (!d) return /* @__PURE__ */ cpJsx("p", null, cpRaw(text7("noData")));
     const a = d.attendance, r = d.record, items2 = [["present", "#15803d"], ["absent", "#b91c1c"], ["late", "#a16207"], ["excused", "#1d4ed8"], ["unmarked", "#64748b"]].map(([key4, color]) => ({ key: "report." + key4, value: a[key4], color }));
     const metrics = [["report.final", r?.final, options.include.grades], ["report.percent", a.presentPercent, options.include.attendance], ["report.sessions", a.units, options.include.attendance], ["report.participation", r?.participation, options.include.grades], ["report.behaviour", r?.behaviour, options.include.behaviour], ["report.strikes", r?.strikeCount, options.include.behaviour]].filter((x2) => x2[2]);
-    return /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx("div", { className: "cp-ux-report-identity" }, /* @__PURE__ */ cpJsx("h2", null, cpRaw(d.student.name)), /* @__PURE__ */ cpJsx("p", null, cpRaw(options.header.className), " \xB7 ", cpRaw(d.student.studentId || "")), /* @__PURE__ */ cpJsx("p", null, cpRaw(d.source), " \xB7 ", /* @__PURE__ */ cpJsx("bdi", { dir: "ltr" }, cpRaw(options.from + " \u2013 " + options.through)), " \xB7 ", cpRaw(text7("report." + (options.attendanceMode || "daily"))))), /* @__PURE__ */ cpJsx("dl", { className: "cp-ux-metrics" }, metrics.map(([key4, value]) => /* @__PURE__ */ cpJsx("div", { className: "cp-ux-metric", key: key4 }, /* @__PURE__ */ cpJsx("dt", null, cpRaw(text7(key4))), /* @__PURE__ */ cpJsx("dd", null, cpRaw(value == null ? text7("notRecorded") : format(value)))))), /* @__PURE__ */ cpJsx("div", { className: "cp-ux-split" }, options.include.attendance && /* @__PURE__ */ cpJsx(ProportionChart, { text: text7, title: "report.attendanceChart", items: items2 }), options.include.grades && /* @__PURE__ */ cpJsx(ValueBars, { text: text7, title: "report.gradesChart", rows: d.sections.map((s) => ({ label: s.name, value: s.pct })) }), options.include.trend && /* @__PURE__ */ cpJsx(ValueBars, { text: text7, title: "report.trendChart", rows: d.terms }), options.include.behaviour && /* @__PURE__ */ cpJsx(ValueBars, { text: text7, title: "report.behaviourChart", max: Math.max(r?.strikeCount || 0, d.deductions, 1), rows: [{ label: text7("report.strikes"), value: r?.strikeCount ?? null }, { label: text7("report.deductions"), value: d.deductions }] })), options.include.grades && /* @__PURE__ */ cpJsx("section", { className: "cp-ux-paper-section" }, /* @__PURE__ */ cpJsx("h2", null, cpRaw(text7("report.assessments"))), /* @__PURE__ */ cpJsx("p", { className: "cp-ux-source" }, cpRaw(text7("report.assessmentScope"))), d.assessments.length ? /* @__PURE__ */ cpJsx("div", { className: "cp-ux-table-wrap" }, /* @__PURE__ */ cpJsx("table", { className: "cp-ux-table cp-report-assessments" }, /* @__PURE__ */ cpJsx("thead", null, /* @__PURE__ */ cpJsx("tr", null, ["assessmentName", "rawMaximum", "configuredWeight", "originalPercent"].map((key4) => /* @__PURE__ */ cpJsx("th", { key: key4 }, cpRaw(text7("report." + key4)))))), /* @__PURE__ */ cpJsx("tbody", null, d.assessments.map((a2) => /* @__PURE__ */ cpJsx("tr", { key: a2.id }, /* @__PURE__ */ cpJsx("td", null, cpRaw(a2.section), " \xB7 ", cpRaw(a2.label)), /* @__PURE__ */ cpJsx("td", null, /* @__PURE__ */ cpJsx("bdi", { dir: "ltr" }, cpRaw(a2.raw == null ? text7("notRecorded") : format(a2.raw)), " / ", a2.max)), /* @__PURE__ */ cpJsx("td", null, a2.weight, "%"), /* @__PURE__ */ cpJsx("td", null, cpRaw(a2.percent == null ? text7("notRecorded") : format(a2.percent) + "%"))))))) : /* @__PURE__ */ cpJsx("p", null, cpRaw(text7("report.noAssessmentDetail")))), options.include.focus && d.focus?.length > 0 && /* @__PURE__ */ cpJsx("section", { className: "cp-ux-paper-section" }, /* @__PURE__ */ cpJsx("h2", null, cpRaw(text7("report.focusTitle"))), /* @__PURE__ */ cpJsx("ul", null, d.focus.map((id) => /* @__PURE__ */ cpJsx("li", { key: id }, cpRaw(text7("report.focus." + id)))))), !d.sections.length && /* @__PURE__ */ cpJsx("p", { className: "cp-ux-source" }, cpRaw(text7("report.noGrades"))), options.includeOriginalCharts && /* @__PURE__ */ cpJsx(CapturedStudentCharts, { classId: doc.cp.classId, studentId: options.studentId, text: text7 }), options.approvedText && /* @__PURE__ */ cpJsx("section", { className: "cp-ux-paper-section" }, /* @__PURE__ */ cpJsx("h2", null, cpRaw(text7("report.approved"))), d.prose ? /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx("p", { className: "cp-ux-source" }, cpRaw(text7("report.approvedSource")), ": ", cpRaw(d.prose.exportId), " \xB7 ", cpRaw(d.prose.createdAt || ""), d.prose.period ? cpRaw(" \xB7 " + text7("report.analysisPeriod") + " " + d.prose.period.from + " \u2013 " + d.prose.period.to) : null), /* @__PURE__ */ cpJsx("h3", null, cpRaw(d.prose.headline)), /* @__PURE__ */ cpJsx("p", null, cpRaw(d.prose.summary)), /* @__PURE__ */ cpJsx("ul", null, [...d.prose.strengths, ...d.prose.support].map((x2, i) => /* @__PURE__ */ cpJsx("li", { key: i }, cpRaw(x2)))), /* @__PURE__ */ cpJsx("ol", null, d.prose.actions.map((x2, i) => /* @__PURE__ */ cpJsx("li", { key: i }, cpRaw(x2.action)))), d.prose.studentMessage && /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx("h3", null, cpRaw(text7("report.toStudent"))), /* @__PURE__ */ cpJsx("p", null, cpRaw(d.prose.studentMessage)))) : /* @__PURE__ */ cpJsx("p", null, cpRaw(text7("report.noApproved")))), options.eventComments && /* @__PURE__ */ cpJsx("section", { className: "cp-ux-paper-section" }, /* @__PURE__ */ cpJsx("h2", null, cpRaw(text7("report.events"))), d.events.length ? /* @__PURE__ */ cpJsx("ol", { className: "cp-ux-timeline" }, d.events.map((x2, i) => /* @__PURE__ */ cpJsx("li", { key: i }, /* @__PURE__ */ cpJsx("strong", null, cpRaw(text7(x2.kind))), " \xB7 ", /* @__PURE__ */ cpJsx("bdi", { dir: "ltr" }, cpRaw(x2.date)), x2.period && /* @__PURE__ */ cpJsx("span", null, " \xB7 ", cpRaw(x2.period)), /* @__PURE__ */ cpJsx("p", null, cpRaw(x2.text))))) : /* @__PURE__ */ cpJsx("p", null, cpRaw(text7("report.noEvents")))), options.include.attendance && options.lessonLedger !== false && /* @__PURE__ */ cpJsx("section", { className: "cp-ux-lesson-ledger" }, /* @__PURE__ */ cpJsx("h2", { className: "cp-ux-section-title" }, cpRaw(text7("report.ledger"))), /* @__PURE__ */ cpJsx("div", { className: "cp-ux-table-wrap" }, /* @__PURE__ */ cpJsx("table", { className: "cp-ux-table" }, /* @__PURE__ */ cpJsx("thead", null, /* @__PURE__ */ cpJsx("tr", null, ["date", "period", "status", ...options.eventComments ? ["note"] : []].map((key4) => /* @__PURE__ */ cpJsx("th", { key: key4 }, cpRaw(text7("report." + key4)))))), /* @__PURE__ */ cpJsx("tbody", null, d.ledger.map((x2) => /* @__PURE__ */ cpJsx("tr", { key: x2.key }, /* @__PURE__ */ cpJsx("td", null, /* @__PURE__ */ cpJsx("bdi", { dir: "ltr" }, cpRaw(x2.date))), /* @__PURE__ */ cpJsx("td", null, cpRaw(x2.period), /* @__PURE__ */ cpJsx("small", { dir: "ltr" }, cpRaw(x2.time))), /* @__PURE__ */ cpJsx("td", null, cpRaw(text7("report." + x2.status))), options.eventComments && /* @__PURE__ */ cpJsx("td", null, cpRaw(x2.note))))))), !d.ledger.length && /* @__PURE__ */ cpJsx("p", null, cpRaw(text7("noData")))), /* @__PURE__ */ cpJsx("p", { className: "cp-ux-paper-source" }, cpRaw(text7("report.sourceHelp"))));
+    return /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx("div", { className: "cp-ux-report-identity" }, /* @__PURE__ */ cpJsx("h2", null, cpRaw(d.student.name)), /* @__PURE__ */ cpJsx("p", null, cpRaw(options.header.className), " \xB7 ", cpRaw(d.student.studentId || "")), /* @__PURE__ */ cpJsx("p", null, cpRaw(d.source), " \xB7 ", /* @__PURE__ */ cpJsx("bdi", { dir: "ltr" }, cpRaw(options.from + " \u2013 " + options.through)), " \xB7 ", cpRaw(text7("report." + (options.attendanceMode || "daily"))))), /* @__PURE__ */ cpJsx("dl", { className: "cp-ux-metrics" }, metrics.map(([key4, value]) => /* @__PURE__ */ cpJsx("div", { className: "cp-ux-metric", key: key4 }, /* @__PURE__ */ cpJsx("dt", null, cpRaw(text7(key4))), /* @__PURE__ */ cpJsx("dd", null, cpRaw(value == null ? text7("notRecorded") : format(value)))))), /* @__PURE__ */ cpJsx("div", { className: "cp-ux-split" }, options.include.attendance && /* @__PURE__ */ cpJsx(ProportionChart, { text: text7, title: "report.attendanceChart", items: items2 }), options.include.grades && /* @__PURE__ */ cpJsx(ValueBars, { text: text7, title: "report.gradesChart", rows: d.sections.map((s) => ({ label: s.name, value: s.pct })) }), options.include.trend && /* @__PURE__ */ cpJsx(ValueBars, { text: text7, title: "report.trendChart", rows: d.terms }), options.include.behaviour && /* @__PURE__ */ cpJsx(ValueBars, { text: text7, title: "report.behaviourChart", max: Math.max(r?.strikeCount || 0, d.deductions, 1), rows: [{ label: text7("report.strikes"), value: r?.strikeCount ?? null }, { label: text7("report.deductions"), value: d.deductions }] })), options.include.grades && /* @__PURE__ */ cpJsx("section", { className: "cp-ux-paper-section" }, /* @__PURE__ */ cpJsx("h2", null, cpRaw(text7("report.assessments"))), d.assessments.length ? /* @__PURE__ */ cpJsx("div", { className: "cp-ux-table-wrap" }, /* @__PURE__ */ cpJsx("table", { className: "cp-ux-table cp-report-assessments" }, /* @__PURE__ */ cpJsx("thead", null, /* @__PURE__ */ cpJsx("tr", null, ["assessmentName", "rawMaximum", "configuredWeight", "originalPercent"].map((key4) => /* @__PURE__ */ cpJsx("th", { key: key4 }, cpRaw(text7("report." + key4)))))), /* @__PURE__ */ cpJsx("tbody", null, d.assessments.map((a2) => /* @__PURE__ */ cpJsx("tr", { key: a2.id }, /* @__PURE__ */ cpJsx("td", null, cpRaw(a2.section), " \xB7 ", cpRaw(a2.label)), /* @__PURE__ */ cpJsx("td", null, /* @__PURE__ */ cpJsx("bdi", { dir: "ltr" }, cpRaw(a2.raw == null ? text7("notRecorded") : format(a2.raw)), " / ", a2.max)), /* @__PURE__ */ cpJsx("td", null, a2.weight, "%"), /* @__PURE__ */ cpJsx("td", null, cpRaw(a2.percent == null ? text7("notRecorded") : format(a2.percent) + "%"))))))) : /* @__PURE__ */ cpJsx("p", null, cpRaw(text7("report.noAssessmentDetail")))), options.include.focus && d.focus?.length > 0 && /* @__PURE__ */ cpJsx("section", { className: "cp-ux-paper-section" }, /* @__PURE__ */ cpJsx("h2", null, cpRaw(text7("report.focusTitle"))), /* @__PURE__ */ cpJsx("ul", null, d.focus.map((id) => /* @__PURE__ */ cpJsx("li", { key: id }, cpRaw(text7("report.focus." + id)))))), !d.sections.length && /* @__PURE__ */ cpJsx("p", { className: "cp-ux-source" }, cpRaw(text7("report.noGrades"))), options.includeOriginalCharts && /* @__PURE__ */ cpJsx(CapturedStudentCharts, { classId: doc.cp.classId, studentId: options.studentId, text: text7 }), options.approvedText && /* @__PURE__ */ cpJsx("section", { className: "cp-ux-paper-section" }, /* @__PURE__ */ cpJsx("h2", null, cpRaw(text7("report.approved"))), d.prose ? /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx("p", { className: "cp-ux-source" }, cpRaw(text7("report.approvedSource")), ": ", cpRaw(d.prose.exportId), " \xB7 ", cpRaw(d.prose.createdAt || ""), d.prose.period ? cpRaw(" \xB7 " + text7("report.analysisPeriod") + " " + d.prose.period.from + " \u2013 " + d.prose.period.to) : null), /* @__PURE__ */ cpJsx("h3", null, cpRaw(d.prose.headline)), /* @__PURE__ */ cpJsx("p", null, cpRaw(d.prose.summary)), /* @__PURE__ */ cpJsx("ul", null, [...d.prose.strengths, ...d.prose.support].map((x2, i) => /* @__PURE__ */ cpJsx("li", { key: i }, cpRaw(x2)))), /* @__PURE__ */ cpJsx("ol", null, d.prose.actions.map((x2, i) => /* @__PURE__ */ cpJsx("li", { key: i }, cpRaw(x2.action)))), d.prose.studentMessage && /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx("h3", null, cpRaw(text7("report.toStudent"))), /* @__PURE__ */ cpJsx("p", null, cpRaw(d.prose.studentMessage)))) : /* @__PURE__ */ cpJsx("p", null, cpRaw(text7("report.noApproved")))), options.eventComments && /* @__PURE__ */ cpJsx("section", { className: "cp-ux-paper-section" }, /* @__PURE__ */ cpJsx("h2", null, cpRaw(text7("report.events"))), d.events.length ? /* @__PURE__ */ cpJsx("ol", { className: "cp-ux-timeline" }, d.events.map((x2, i) => /* @__PURE__ */ cpJsx("li", { key: i }, /* @__PURE__ */ cpJsx("strong", null, cpRaw(text7(x2.kind))), " \xB7 ", /* @__PURE__ */ cpJsx("bdi", { dir: "ltr" }, cpRaw(x2.date)), x2.period && /* @__PURE__ */ cpJsx("span", null, " \xB7 ", cpRaw(x2.period)), /* @__PURE__ */ cpJsx("p", null, cpRaw(x2.text))))) : /* @__PURE__ */ cpJsx("p", null, cpRaw(text7("report.noEvents")))), options.include.attendance && options.lessonLedger !== false && /* @__PURE__ */ cpJsx("section", { className: "cp-ux-lesson-ledger" }, /* @__PURE__ */ cpJsx("h2", { className: "cp-ux-section-title" }, cpRaw(text7("report.ledger"))), /* @__PURE__ */ cpJsx("div", { className: "cp-ux-table-wrap" }, /* @__PURE__ */ cpJsx("table", { className: "cp-ux-table" }, /* @__PURE__ */ cpJsx("thead", null, /* @__PURE__ */ cpJsx("tr", null, ["date", "period", "status", ...options.eventComments ? ["note"] : []].map((key4) => /* @__PURE__ */ cpJsx("th", { key: key4 }, cpRaw(text7("report." + key4)))))), /* @__PURE__ */ cpJsx("tbody", null, d.ledger.map((x2) => /* @__PURE__ */ cpJsx("tr", { key: x2.key }, /* @__PURE__ */ cpJsx("td", null, /* @__PURE__ */ cpJsx("bdi", { dir: "ltr" }, cpRaw(x2.date))), /* @__PURE__ */ cpJsx("td", null, cpRaw(x2.period), /* @__PURE__ */ cpJsx("small", { dir: "ltr" }, cpRaw(x2.time))), /* @__PURE__ */ cpJsx("td", null, cpRaw(text7("report." + x2.status))), options.eventComments && /* @__PURE__ */ cpJsx("td", null, cpRaw(x2.note))))))), !d.ledger.length && /* @__PURE__ */ cpJsx("p", null, cpRaw(text7("noData")))));
   }
 
   // src/modules/reports/print.jsx
@@ -52368,7 +52534,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     const bands = [];
     for (let start = 2; start < table.headers.length; start += 4) bands.push([0, 1, ...Array.from({ length: Math.min(4, table.headers.length - start) }, (_, i) => start + i)]);
     if (!bands.length) bands.push([0, 1]);
-    return /* @__PURE__ */ cpJsx("article", { className: screen2 ? "cp-ux-report-screen" : "cp-m5-paper cp-m6-report", lang: language2, dir: language2 === "ar" ? "rtl" : "ltr" }, /* @__PURE__ */ cpJsx("style", null, `.cp-m6-report table{border-collapse:collapse;width:100%;font-size:9pt;table-layout:fixed;margin-block:4mm}.cp-m6-report thead{display:table-header-group}.cp-m6-report tr{break-inside:avoid}.cp-m6-report th{background:#f1f5f9}.cp-m6-report p{font-size:9pt;line-height:1.6}`), /* @__PURE__ */ cpJsx("header", { style: { borderBlockEnd: "2px solid #334155", paddingBlockEnd: "3mm" } }, /* @__PURE__ */ cpJsx(BrandingHeader, { branding: options.branding }), /* @__PURE__ */ cpJsx("h1", { style: { fontSize: "20pt", lineHeight: 1.5, marginBlock: "0 1mm" } }, cpRaw(table.title)), /* @__PURE__ */ cpJsx("p", null, cpRaw(text7("reports.custom"))), /* @__PURE__ */ cpJsx("div", { style: { display: "grid", gridTemplateColumns: "repeat(3,minmax(0,1fr))", gap: "2mm 4mm", fontSize: "9pt" } }, HEADER_FIELDS.map((key4) => /* @__PURE__ */ cpJsx("div", { key: key4 }, /* @__PURE__ */ cpJsx("strong", null, cpRaw(text7("reports." + key4))), /* @__PURE__ */ cpJsx("div", { style: { whiteSpace: "pre-wrap" } }, cpRaw(options.header[key4])))))), /* @__PURE__ */ cpJsx("p", null, cpRaw(text7("reports.sourceTerm")), ": ", cpRaw(table.source), " \xB7 ", cpRaw(table.gradeMode), /* @__PURE__ */ cpJsx("br", null), cpRaw(text7("reports.attendanceRange")), ": ", /* @__PURE__ */ cpJsx("bdi", { dir: "ltr" }, cpRaw(table.range))), options.type === "student" && /* @__PURE__ */ cpJsx(StudentReportContent, { doc, options }), (options.type !== "student" || options.dataTable) && /* @__PURE__ */ cpJsx("h2", { className: "cp-ux-section-title" }, cpRaw(text7("reports.fields"))), options.type === "student" ? !options.dataTable ? null : /* @__PURE__ */ cpJsx("table", null, /* @__PURE__ */ cpJsx("tbody", null, table.headers.map((heading, index) => /* @__PURE__ */ cpJsx("tr", { key: index }, /* @__PURE__ */ cpJsx("th", { style: { ...cell, width: "42%" } }, cpRaw(heading)), /* @__PURE__ */ cpJsx("td", { style: cell }, cpRaw(value(table.rows[0]?.[index]))))))) : bands.map((indices, band) => /* @__PURE__ */ cpJsx("table", { key: band }, /* @__PURE__ */ cpJsx("thead", null, /* @__PURE__ */ cpJsx("tr", null, indices.map((index) => /* @__PURE__ */ cpJsx("th", { key: index, style: cell }, cpRaw(table.headers[index]))))), /* @__PURE__ */ cpJsx("tbody", null, table.rows.map((row2, i) => /* @__PURE__ */ cpJsx("tr", { key: i }, indices.map((index) => /* @__PURE__ */ cpJsx("td", { key: index, style: cell }, cpRaw(value(row2[index]))))))))), !table.rows.length && /* @__PURE__ */ cpJsx("p", null, cpRaw(text7("reports.empty"))), /* @__PURE__ */ cpJsx("p", null, cpRaw(text7("analytics.hint"))));
+    return /* @__PURE__ */ cpJsx("article", { className: screen2 ? "cp-ux-report-screen" : "cp-m5-paper cp-m6-report", lang: language2, dir: language2 === "ar" ? "rtl" : "ltr" }, /* @__PURE__ */ cpJsx("style", null, `.cp-m6-report table{border-collapse:collapse;width:100%;font-size:9pt;table-layout:fixed;margin-block:4mm}.cp-m6-report thead{display:table-header-group}.cp-m6-report tr{break-inside:avoid}.cp-m6-report th{background:#f1f5f9}.cp-m6-report p{font-size:9pt;line-height:1.6}`), /* @__PURE__ */ cpJsx("header", { style: { borderBlockEnd: "2px solid #334155", paddingBlockEnd: "3mm" } }, /* @__PURE__ */ cpJsx(BrandingHeader, { branding: options.branding }), /* @__PURE__ */ cpJsx("h1", { style: { fontSize: "20pt", lineHeight: 1.5, marginBlock: "0 1mm" } }, cpRaw(table.title)), /* @__PURE__ */ cpJsx("p", { className: "cp-report-docline", style: { display: "flex", flexWrap: "wrap", gap: "1mm 5mm", fontSize: "9pt", color: "#475569" } }, HEADER_FIELDS.filter((key4) => key4 !== "academicYear" && String(options.header[key4] || "").trim()).map((key4) => /* @__PURE__ */ cpJsx("span", { key: key4 }, cpRaw((key4 === "teacher" ? uxText2("report.teacherLabel", language2) + ": " : "") + options.header[key4] + (key4 === "term" && String(options.header.academicYear || "").trim() ? " \xB7 " + options.header.academicYear : "")))))), options.type !== "student" && /* @__PURE__ */ cpJsx("p", null, cpRaw(text7("reports.sourceTerm")), ": ", cpRaw(table.source), " \xB7 ", cpRaw(table.gradeMode), /* @__PURE__ */ cpJsx("br", null), cpRaw(text7("reports.attendanceRange")), ": ", /* @__PURE__ */ cpJsx("bdi", { dir: "ltr" }, cpRaw(table.range))), options.type === "student" && /* @__PURE__ */ cpJsx(StudentReportContent, { doc, options }), (options.type !== "student" || options.dataTable) && /* @__PURE__ */ cpJsx("h2", { className: "cp-ux-section-title" }, cpRaw(text7("reports.fields"))), options.type === "student" ? !options.dataTable ? null : /* @__PURE__ */ cpJsx("table", null, /* @__PURE__ */ cpJsx("tbody", null, table.headers.map((heading, index) => /* @__PURE__ */ cpJsx("tr", { key: index }, /* @__PURE__ */ cpJsx("th", { style: { ...cell, width: "42%" } }, cpRaw(heading)), /* @__PURE__ */ cpJsx("td", { style: cell }, cpRaw(value(table.rows[0]?.[index]))))))) : bands.map((indices, band) => /* @__PURE__ */ cpJsx("table", { key: band }, /* @__PURE__ */ cpJsx("thead", null, /* @__PURE__ */ cpJsx("tr", null, indices.map((index) => /* @__PURE__ */ cpJsx("th", { key: index, style: cell }, cpRaw(table.headers[index]))))), /* @__PURE__ */ cpJsx("tbody", null, table.rows.map((row2, i) => /* @__PURE__ */ cpJsx("tr", { key: i }, indices.map((index) => /* @__PURE__ */ cpJsx("td", { key: index, style: cell }, cpRaw(value(row2[index]))))))))), !table.rows.length && /* @__PURE__ */ cpJsx("p", null, cpRaw(text7("reports.empty"))), /* @__PURE__ */ cpJsx("p", null, cpRaw(text7("analytics.hint"))));
   }
 
   // src/modules/attendance/export.js
@@ -54574,7 +54740,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
   function ReportsView({ doc, onUpdate }) {
     const language2 = useLanguage(), profile2 = useProfile(), key4 = doc.cp.classId;
     const [draft, setDraft, accept] = useRetainedState("reports:" + key4, () => ({ ...reportDefaults(doc, profile2, getLanguage()), attendanceMode: "daily", sessionKey: "", lessonLedger: true, eventComments: false, approvedText: false, includeOriginalCharts: false, termStart: doc.settings.termStart || "" }), { warn: true });
-    const [generated, setGenerated] = useRetainedState("reports:generated:" + key4, null), [preview, setPreview] = useState(null), [error2, setError] = useState(""), [query, setQuery] = useState(""), [recipients, setRecipients] = useState([]), [sort, setSort] = useState(false), [returnReport, setReturnReport] = useState(null);
+    const [generated, setGenerated] = useRetainedState("reports:generated:" + key4, null), [preview, setPreview] = useState(null), [error2, setError] = useState(""), [query, setQuery] = useState(""), [recipients, setRecipients] = useState([]), [sort, setSort] = useState(false), [returnReport, setReturnReport] = useState(null), [several, setSeveral] = useState(false), [downloads, setDownloads] = useState(false);
     const previousPreferences = useRef(doc.cp?.reports);
     useEffect(() => {
       if (previousPreferences.current !== doc.cp?.reports) {
@@ -54599,6 +54765,16 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     function build() {
       setGenerated({ ...draft, branding: currentBranding });
       setError("");
+    }
+    useEffect(() => {
+      if (!generated && !problem) build();
+    }, [generated, problem]);
+    function step(by) {
+      const list2 = doc.students, at = list2.findIndex((s) => s.id === draft.studentId), next = list2[(at + by + list2.length) % list2.length];
+      if (!next) return;
+      const fresh = !stale;
+      setDraft((p) => ({ ...p, studentId: next.id }));
+      if (fresh && generated?.type === "student") setGenerated((g) => ({ ...g, studentId: next.id }));
     }
     function openStudent(id) {
       setReturnReport(generated);
@@ -54626,27 +54802,34 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     const studentName = doc.students.find((s) => s.id === draft.studentId)?.name, termName2 = terms.find((term) => term.id === draft.termId)?.label || "";
     const check = (key5) => /* @__PURE__ */ cpJsx(ReportCheck, { key: key5, id: "reports.include." + key5, label: key5 === "attendance" ? "reports.includeAttendance" : "reports." + key5, checked: draft.include[key5], onChange: (e) => nested("include", key5, e.target.checked) });
     const included = draft.type !== "attendance";
-    return /* @__PURE__ */ cpJsx(ModuleFrame, { titleKey: "shell.reports", icon: "reports", lead: "ux.lead.reports", info: /* @__PURE__ */ cpJsx(React.Fragment, null, uxText("report.intro"), " ", uxText("documents.wordHint")), actions: /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx(Segmented, { label: uxText("report.outcome") }, OUTCOMES.map(([id, type, include]) => /* @__PURE__ */ cpJsx(Command, { namespace: "improve", key: id, id, active: draft.type === type, "aria-pressed": draft.type === type, onClick: () => setDraft((p) => ({ ...p, type, include: { ...p.include, ...include }, sheets: { student: false, class: false, attendance: false, analytics: false } })) }, uxText("report.outcome." + type)))), /* @__PURE__ */ cpJsx(ReportButton, { id: "reports.preview", className: "cp-ux-primary", disabled: !!problem, onClick: () => {
-      setGenerated({ ...draft });
-      setPreview({ ...draft, branding: currentBranding });
-    } }, uxText("report.print"))), more: /* @__PURE__ */ cpJsx(ReportButton, { id: "reports.save", disabled: !!saveProblem, onClick: () => {
+    const outputBlocked = !generated || stale || !!problem, generatedName = generated?.type === "student" ? doc.students.find((s) => s.id === generated.studentId)?.name : uxText("report.outcome." + (generated?.type || draft.type));
+    const generatedTerm = generated ? terms.find((term) => term.id === generated.termId)?.label || "" : "";
+    const severalLayer = useModalLayer(several, () => setSeveral(false), { initialFocus: '[data-cp-action="ux.report.search"]' });
+    const iconPath = { prev: "M15 18l-6-6 6-6", next: "M9 18l6-6-6-6", down: "M12 4v11M7 10l5 5 5-5M5 20h14", print: "M7 9V3h10v6M7 17H4v-7h16v7h-3M7 14h10v7H7z", users: "M9 11.5a3.5 3.5 0 100-7 3.5 3.5 0 000 7zM2.5 20c.5-3.5 3.3-5.5 6.5-5.5s6 2 6.5 5.5M16 4.5a3.5 3.5 0 010 7M18 14.5c2 .7 3.3 2.6 3.5 5.5" };
+    const icon3 = (name, flip) => /* @__PURE__ */ cpJsx("svg", { className: flip ? "cp-flip" : void 0, width: "16", height: "16", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "1.8", strokeLinecap: "round", strokeLinejoin: "round", "aria-hidden": "true" }, /* @__PURE__ */ cpJsx("path", { d: iconPath[name] }));
+    return /* @__PURE__ */ cpJsx(ModuleFrame, { titleKey: "shell.reports", icon: "reports", lead: "ux.lead.reports", info: /* @__PURE__ */ cpJsx(React.Fragment, null, uxText("report.intro"), " ", uxText("documents.wordHint")), actions: /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx(Segmented, { label: uxText("report.outcome") }, OUTCOMES.map(([id, type, include]) => /* @__PURE__ */ cpJsx(Command, { namespace: "improve", key: id, id, active: draft.type === type, "aria-pressed": draft.type === type, onClick: () => setDraft((p) => ({ ...p, type, include: { ...p.include, ...include }, sheets: { student: false, class: false, attendance: false, analytics: false } })) }, uxText("report.outcome." + type))))), more: /* @__PURE__ */ cpJsx(ReportButton, { id: "reports.save", disabled: !!saveProblem, onClick: () => {
       onUpdate((d) => putPreferences(d, "reports", draft));
       accept(draft);
-    } }, t("reports.save")) }, /* @__PURE__ */ cpJsx("div", { className: "cp-report-studio" }, /* @__PURE__ */ cpJsx("div", { className: "cp-report-main" }, /* @__PURE__ */ cpJsx("div", { className: "cp-report-scope", role: "group", "aria-label": uxText("report.filters") }, draft.type === "student" && /* @__PURE__ */ cpJsx(ScopeChip, { label: uxText("report.chip.student"), value: studentName || t("reports.missingStudent"), context: "report-student" }, /* @__PURE__ */ cpJsx(UxField, { id: "report.search", label: "search", value: query, onChange: (e) => setQuery(e.target.value) }), /* @__PURE__ */ cpJsx(ReportSelect, { id: "reports.studentId", label: "reports.studentChoice", value: draft.studentId, onChange: (e) => change2("studentId", e.target.value) }, /* @__PURE__ */ cpJsx("option", { value: "" }, t("reports.missingStudent")), doc.students.filter((s) => people.includes(s) || s.id === draft.studentId).map((student) => /* @__PURE__ */ cpJsx("option", { key: student.id, value: student.id }, cpRaw(student.name))))), /* @__PURE__ */ cpJsx(ScopeChip, { label: uxText("report.chip.term"), value: termName2 + (draft.raw ? " \xB7 " + t("reports.raw") : ""), context: "report-term" }, /* @__PURE__ */ cpJsx(ReportSelect, { id: "reports.termId", label: "reports.termChoice", value: draft.termId, onChange: (e) => {
+    } }, t("reports.save")) }, /* @__PURE__ */ cpJsx("div", { className: "cp-report-studio cp-rep2" }, /* @__PURE__ */ cpJsx(Inspector, { title: uxText("report.for"), label: uxText("report.for") }, /* @__PURE__ */ cpJsx("div", { className: "cp-report-scope cp-rep2-scope", role: "group", "aria-label": uxText("report.filters") }, draft.type === "student" && /* @__PURE__ */ cpJsx("div", { className: "cp-rep2-step" }, /* @__PURE__ */ cpJsx("button", { type: "button", className: "cp-rep2-icon", ...actionProps("ux.report.prevStudent", () => step(-1)), "aria-label": uxText("report.prevStudent"), title: uxText("report.prevStudent") }, icon3("prev", true)), draft.type === "student" && /* @__PURE__ */ cpJsx(ScopeChip, { label: uxText("report.chip.student"), value: studentName || t("reports.missingStudent"), context: "report-student" }, /* @__PURE__ */ cpJsx(ReportSelect, { id: "reports.studentId", label: "reports.studentChoice", value: draft.studentId, onChange: (e) => change2("studentId", e.target.value) }, /* @__PURE__ */ cpJsx("option", { value: "" }, t("reports.missingStudent")), doc.students.map((student) => /* @__PURE__ */ cpJsx("option", { key: student.id, value: student.id }, cpRaw(student.name))))), /* @__PURE__ */ cpJsx("button", { type: "button", className: "cp-rep2-icon", ...actionProps("ux.report.nextStudent", () => step(1)), "aria-label": uxText("report.nextStudent"), title: uxText("report.nextStudent") }, icon3("next", true))), /* @__PURE__ */ cpJsx(ScopeChip, { label: uxText("report.chip.term"), value: termName2 + (draft.raw ? " \xB7 " + t("reports.raw") : ""), context: "report-term" }, /* @__PURE__ */ cpJsx(ReportSelect, { id: "reports.termId", label: "reports.termChoice", value: draft.termId, onChange: (e) => {
       const term = terms.find((term2) => term2.id === e.target.value);
       setDraft((p) => ({ ...p, termId: e.target.value, header: { ...p.header, term: term?.label || "" } }));
-    } }, terms.map((term) => /* @__PURE__ */ cpJsx("option", { key: term.id, value: term.id }, cpRaw(term.label)))), /* @__PURE__ */ cpJsx(ReportCheck, { id: "reports.raw", checked: draft.raw, onChange: (e) => change2("raw", e.target.checked) })), /* @__PURE__ */ cpJsx(ScopeChip, { label: uxText("report.chip.dates"), value: (draft.from && draft.through ? displayDates(draft.from, draft.through) : (draft.from || "\u2026") + " \u2013 " + (draft.through || "\u2026")) + " \xB7 " + uxText("report." + (draft.attendanceMode || "daily")), context: "report-dates" }, /* @__PURE__ */ cpJsx("div", { className: "cp-ux-form" }, /* @__PURE__ */ cpJsx(ReportField, { id: "reports.from", type: "date", value: draft.from, max: draft.through, onChange: (e) => change2("from", e.target.value) }), /* @__PURE__ */ cpJsx(ReportField, { id: "reports.through", type: "date", value: draft.through, min: draft.from, onChange: (e) => change2("through", e.target.value) })), /* @__PURE__ */ cpJsx("div", { className: "cp-ux-actions" }, ["today", "week", "month", "term"].map((kind) => /* @__PURE__ */ cpJsx(UxButton, { key: kind, id: "report." + kind, onClick: () => range(kind) }))), /* @__PURE__ */ cpJsx(UxSelect, { id: "report.scope", value: draft.attendanceMode || "daily", onChange: (e) => setDraft((p) => ({ ...p, attendanceMode: e.target.value, sessionKey: sessions[0]?.[0] || "" })) }, ["daily", "lessons", "single"].map((mode) => /* @__PURE__ */ cpJsx("option", { key: mode, value: mode }, uxText("report." + mode)))), draft.attendanceMode === "single" && /* @__PURE__ */ cpJsx(UxSelect, { id: "report.session", value: draft.sessionKey || "", onChange: (e) => change2("sessionKey", e.target.value) }, /* @__PURE__ */ cpJsx("option", { value: "" }, uxText("notRecorded")), sessions.map(([id, s]) => /* @__PURE__ */ cpJsx("option", { key: id, value: id }, cpRaw(s.date + " \xB7 " + s.period + (s.lesson ? " \xB7 " + s.lesson.start : "")))))), /* @__PURE__ */ cpJsx(ScopeChip, { label: uxText("report.chip.language"), value: t("print." + draft.language), context: "report-language" }, /* @__PURE__ */ cpJsx(ReportSelect, { id: "reports.language", label: "print.language", value: draft.language, onChange: (e) => change2("language", e.target.value) }, ["en", "ar"].map((lang) => /* @__PURE__ */ cpJsx("option", { key: lang, value: lang }, t("print." + lang)))))), /* @__PURE__ */ cpJsx("div", { className: "cp-ux-actions cp-report-build" }, /* @__PURE__ */ cpJsx(UxButton, { id: "report.generate", disabled: !!problem, onClick: build }), problem && /* @__PURE__ */ cpJsx("span", { role: "status" }, t(problem)), error2 && /* @__PURE__ */ cpJsx("span", { role: "alert" }, t(error2)), stale && /* @__PURE__ */ cpJsx("span", { role: "status" }, uxText("report.stale"))), generated ? /* @__PURE__ */ cpJsx(UxPanel, { title: "report.generated", className: "cp-ux-result" }, /* @__PURE__ */ cpJsx("div", { className: "cp-ux-actions" }, /* @__PURE__ */ cpJsx(React.Fragment, null, returnReport && /* @__PURE__ */ cpJsx(UxButton, { id: "report.back", onClick: () => {
-      setDraft(returnReport);
-      setGenerated(returnReport);
-      setReturnReport(null);
-    } })), /* @__PURE__ */ cpJsx(UxButton, { id: "report.word", onClick: () => selectedExport("word") }), /* @__PURE__ */ cpJsx(UxButton, { id: "report.xlsx", onClick: () => selectedExport("xlsx") }), /* @__PURE__ */ cpJsx(UxButton, { id: "report.csv", onClick: () => selectedExport("csv") })), generated.type === "student" ? /* @__PURE__ */ cpJsx("div", { style: { overflow: "auto" } }, /* @__PURE__ */ cpJsx(ReportPaper, { screen: true, doc, options: generated })) : /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx(UxCheck, { id: "report.sort", checked: sort, onChange: (e) => setSort(e.target.checked) }), /* @__PURE__ */ cpJsx("div", { className: "cp-ux-table-wrap" }, /* @__PURE__ */ cpJsx("table", { className: "cp-ux-table" }, /* @__PURE__ */ cpJsx("thead", null, /* @__PURE__ */ cpJsx("tr", null, /* @__PURE__ */ cpJsx("th", null, uxText("report.selected")), result.headers.map((h, i) => /* @__PURE__ */ cpJsx("th", { key: i }, cpRaw(h))))), /* @__PURE__ */ cpJsx("tbody", null, indices.map(({ student, index }) => /* @__PURE__ */ cpJsx("tr", { key: student.id }, /* @__PURE__ */ cpJsx("td", null, /* @__PURE__ */ cpJsx(UxCheck, { id: "report.selected", context: student.id, checked: chosen.includes(student.id), onChange: () => toggle(student.id) })), result.rows[index]?.map((value, i) => /* @__PURE__ */ cpJsx("td", { key: i }, i === 0 ? /* @__PURE__ */ cpJsx(UxButton, { id: "report.student", context: student.id, onClick: () => openStudent(student.id) }, cpRaw(value)) : cpRaw(value ?? uxText("notRecorded"))))))))))) : /* @__PURE__ */ cpJsx(EmptyState, { kind: "nothing", title: uxText("report.emptyTitle"), text: uxText("report.previewHint") }), /* @__PURE__ */ cpJsx(UxPanel, { title: "report.recipients" }, generated?.type !== "class" && generated?.type !== "attendance" && /* @__PURE__ */ cpJsx("div", { className: "cp-ux-selection" }, people.map((student) => /* @__PURE__ */ cpJsx(UxCheck, { key: student.id, id: "report.selected", context: student.id, checked: chosen.includes(student.id), onChange: () => toggle(student.id), label: "report.selected", text: student.name, "aria-label": student.name }))), /* @__PURE__ */ cpJsx("div", { className: "cp-ux-actions" }, /* @__PURE__ */ cpJsx(UxButton, { id: "report.all", onClick: () => setRecipients(people.map((s) => s.id)) }), /* @__PURE__ */ cpJsx(UxButton, { id: "report.none", onClick: () => setRecipients([]) }), /* @__PURE__ */ cpJsx("strong", null, chosen.length, " / ", doc.students.length), /* @__PURE__ */ cpJsx(UxButton, { id: "report.batch", disabled: !chosen.length || !!saveProblem, onClick: () => setPreview({ ...draft, branding: currentBranding, batchIds: chosen }) })))), /* @__PURE__ */ cpJsx(Inspector, { title: uxText("report.sections"), label: uxText("report.sections") }, included && /* @__PURE__ */ cpJsx("fieldset", { className: "cp-report-group" }, /* @__PURE__ */ cpJsx("legend", null, uxText("report.group.grades")), check("grades"), check("trend"), draft.type === "student" && /* @__PURE__ */ cpJsx(UxCheck, { id: "report.dataTable", checked: !!draft.dataTable, onChange: (e) => change2("dataTable", e.target.checked) }), /* @__PURE__ */ cpJsx(UxCheck, { id: "report.originalCharts", checked: !!draft.includeOriginalCharts, onChange: (e) => change2("includeOriginalCharts", e.target.checked) })), /* @__PURE__ */ cpJsx("fieldset", { className: "cp-report-group" }, /* @__PURE__ */ cpJsx("legend", null, uxText("report.group.attendance")), included && check("attendance"), /* @__PURE__ */ cpJsx(UxCheck, { id: "report.details", checked: draft.lessonLedger !== false, onChange: (e) => change2("lessonLedger", e.target.checked) })), included && /* @__PURE__ */ cpJsx("fieldset", { className: "cp-report-group" }, /* @__PURE__ */ cpJsx("legend", null, uxText("report.group.behaviour")), check("behaviour"), check("focus"), draft.include.focus && /* @__PURE__ */ cpJsx("div", { className: "cp-report-tags" }, focusDefinitions().map((tag) => /* @__PURE__ */ cpJsx(ReportCheck, { key: tag.id, id: "reports.tag", label: focusLabel(tag, language2), context: tag.id, checked: draft.focusTagIds.includes(tag.id), onChange: (e) => change2("focusTagIds", e.target.checked ? [...draft.focusTagIds, tag.id] : draft.focusTagIds.filter((id) => id !== tag.id)) })))), /* @__PURE__ */ cpJsx("fieldset", { className: "cp-report-group" }, /* @__PURE__ */ cpJsx("legend", null, uxText("report.group.notes")), /* @__PURE__ */ cpJsx(UxCheck, { id: "report.comments", checked: !!draft.eventComments, onChange: (e) => change2("eventComments", e.target.checked) }), /* @__PURE__ */ cpJsx(UxCheck, { id: "report.prose", checked: !!draft.approvedText, onChange: (e) => change2("approvedText", e.target.checked) }), /* @__PURE__ */ cpJsx("p", { className: "cp-ux-source" }, uxText("report.privateHelp"))), /* @__PURE__ */ cpJsx("details", { className: "cp-report-more", "data-part": "header" }, /* @__PURE__ */ cpJsx("summary", null, uxText("report.headerTitle")), /* @__PURE__ */ cpJsx("div", { className: "cp-ux-form" }, HEADER_FIELDS.map((key5) => /* @__PURE__ */ cpJsx(ReportField, { key: key5, id: "reports.header." + key5, label: "reports." + key5, value: draft.header[key5], onChange: (e) => nested("header", key5, e.target.value) })))), /* @__PURE__ */ cpJsx("details", { className: "cp-report-more", "data-part": "files" }, /* @__PURE__ */ cpJsx("summary", null, uxText("report.files")), /* @__PURE__ */ cpJsx("p", { className: "cp-ux-source" }, uxText("report.originalHelp")), /* @__PURE__ */ cpJsx("p", { className: "cp-ux-source" }, t("improve.reportScope")), /* @__PURE__ */ cpJsx("div", { className: "cp-ux-actions" }, SHEET_FIELDS.map((key5) => /* @__PURE__ */ cpJsx(ReportCheck, { key: key5, id: "reports.sheet." + key5, label: "reports.sheet" + key5[0].toUpperCase() + key5.slice(1), checked: draft.sheets[key5], onChange: (e) => nested("sheets", key5, e.target.checked) }))), /* @__PURE__ */ cpJsx(ReportButton, { id: "reports.excel", disabled: !!exportProblem, onClick: () => {
+    } }, terms.map((term) => /* @__PURE__ */ cpJsx("option", { key: term.id, value: term.id }, cpRaw(term.label)))), /* @__PURE__ */ cpJsx(ReportCheck, { id: "reports.raw", checked: draft.raw, onChange: (e) => change2("raw", e.target.checked) })), /* @__PURE__ */ cpJsx(ScopeChip, { label: uxText("report.chip.dates"), value: (draft.from && draft.through ? displayDates(draft.from, draft.through) : (draft.from || "\u2026") + " \u2013 " + (draft.through || "\u2026")) + " \xB7 " + uxText("report." + (draft.attendanceMode || "daily")), context: "report-dates" }, /* @__PURE__ */ cpJsx("div", { className: "cp-ux-form" }, /* @__PURE__ */ cpJsx(ReportField, { id: "reports.from", type: "date", value: draft.from, max: draft.through, onChange: (e) => change2("from", e.target.value) }), /* @__PURE__ */ cpJsx(ReportField, { id: "reports.through", type: "date", value: draft.through, min: draft.from, onChange: (e) => change2("through", e.target.value) })), /* @__PURE__ */ cpJsx("div", { className: "cp-ux-actions" }, ["today", "week", "month", "term"].map((kind) => /* @__PURE__ */ cpJsx(UxButton, { key: kind, id: "report." + kind, onClick: () => range(kind) }))), /* @__PURE__ */ cpJsx(UxSelect, { id: "report.scope", value: draft.attendanceMode || "daily", onChange: (e) => setDraft((p) => ({ ...p, attendanceMode: e.target.value, sessionKey: sessions[0]?.[0] || "" })) }, ["daily", "lessons", "single"].map((mode) => /* @__PURE__ */ cpJsx("option", { key: mode, value: mode }, uxText("report." + mode)))), draft.attendanceMode === "single" && /* @__PURE__ */ cpJsx(UxSelect, { id: "report.session", value: draft.sessionKey || "", onChange: (e) => change2("sessionKey", e.target.value) }, /* @__PURE__ */ cpJsx("option", { value: "" }, uxText("notRecorded")), sessions.map(([id, s]) => /* @__PURE__ */ cpJsx("option", { key: id, value: id }, cpRaw(s.date + " \xB7 " + s.period + (s.lesson ? " \xB7 " + s.lesson.start : "")))))), /* @__PURE__ */ cpJsx(ScopeChip, { label: uxText("report.chip.language"), value: t("print." + draft.language), context: "report-language" }, /* @__PURE__ */ cpJsx(ReportSelect, { id: "reports.language", label: "print.language", value: draft.language, onChange: (e) => change2("language", e.target.value) }, ["en", "ar"].map((lang) => /* @__PURE__ */ cpJsx("option", { key: lang, value: lang }, t("print." + lang)))))), /* @__PURE__ */ cpJsx("button", { type: "button", className: "cp-rep2-several", ...actionProps("ux.report.several", () => setSeveral(true)) }, icon3("users"), /* @__PURE__ */ cpJsx("span", null, uxText("report.several")), chosen.length > 0 && /* @__PURE__ */ cpJsx("b", null, chosen.length)), /* @__PURE__ */ cpJsx("h3", { className: "cp-rep2-h" }, uxText("report.include")), included && /* @__PURE__ */ cpJsx("fieldset", { className: "cp-report-group" }, /* @__PURE__ */ cpJsx("legend", null, uxText("report.group.grades")), check("grades"), check("trend"), draft.type === "student" && /* @__PURE__ */ cpJsx(UxCheck, { id: "report.dataTable", checked: !!draft.dataTable, onChange: (e) => change2("dataTable", e.target.checked) }), /* @__PURE__ */ cpJsx(UxCheck, { id: "report.originalCharts", checked: !!draft.includeOriginalCharts, onChange: (e) => change2("includeOriginalCharts", e.target.checked) })), /* @__PURE__ */ cpJsx("fieldset", { className: "cp-report-group" }, /* @__PURE__ */ cpJsx("legend", null, uxText("report.group.attendance")), included && check("attendance"), /* @__PURE__ */ cpJsx(UxCheck, { id: "report.details", checked: draft.lessonLedger !== false, onChange: (e) => change2("lessonLedger", e.target.checked) })), included && /* @__PURE__ */ cpJsx("fieldset", { className: "cp-report-group" }, /* @__PURE__ */ cpJsx("legend", null, uxText("report.group.behaviour")), check("behaviour"), check("focus"), draft.include.focus && /* @__PURE__ */ cpJsx("div", { className: "cp-report-tags" }, focusDefinitions().map((tag) => /* @__PURE__ */ cpJsx(ReportCheck, { key: tag.id, id: "reports.tag", label: focusLabel(tag, language2), context: tag.id, checked: draft.focusTagIds.includes(tag.id), onChange: (e) => change2("focusTagIds", e.target.checked ? [...draft.focusTagIds, tag.id] : draft.focusTagIds.filter((id) => id !== tag.id)) })))), /* @__PURE__ */ cpJsx("fieldset", { className: "cp-report-group" }, /* @__PURE__ */ cpJsx("legend", null, uxText("report.group.notes")), /* @__PURE__ */ cpJsx(UxCheck, { id: "report.comments", checked: !!draft.eventComments, onChange: (e) => change2("eventComments", e.target.checked) }), /* @__PURE__ */ cpJsx(UxCheck, { id: "report.prose", checked: !!draft.approvedText, onChange: (e) => change2("approvedText", e.target.checked) }), /* @__PURE__ */ cpJsx("p", { className: "cp-ux-source" }, uxText("report.privateHelp"))), /* @__PURE__ */ cpJsx("details", { className: "cp-report-more", "data-part": "header" }, /* @__PURE__ */ cpJsx("summary", null, uxText("report.headerTitle")), /* @__PURE__ */ cpJsx("div", { className: "cp-ux-form" }, HEADER_FIELDS.map((key5) => /* @__PURE__ */ cpJsx(ReportField, { key: key5, id: "reports.header." + key5, label: "reports." + key5, value: draft.header[key5], onChange: (e) => nested("header", key5, e.target.value) })))), /* @__PURE__ */ cpJsx("details", { className: "cp-report-more", "data-part": "files" }, /* @__PURE__ */ cpJsx("summary", null, uxText("report.files")), /* @__PURE__ */ cpJsx("p", { className: "cp-ux-source" }, uxText("report.originalHelp")), /* @__PURE__ */ cpJsx("p", { className: "cp-ux-source" }, t("improve.reportScope")), /* @__PURE__ */ cpJsx("div", { className: "cp-ux-actions" }, SHEET_FIELDS.map((key5) => /* @__PURE__ */ cpJsx(ReportCheck, { key: key5, id: "reports.sheet." + key5, label: "reports.sheet" + key5[0].toUpperCase() + key5.slice(1), checked: draft.sheets[key5], onChange: (e) => nested("sheets", key5, e.target.checked) }))), /* @__PURE__ */ cpJsx(ReportButton, { id: "reports.excel", disabled: !!exportProblem, onClick: () => {
       try {
         exportReportsWorkbook(doc, draft, draft.language);
         setError("");
       } catch {
         setError("reports.exportError");
       }
-    } }, t("reports.excel"))), /* @__PURE__ */ cpJsx("details", { className: "cp-report-more", "data-part": "how" }, /* @__PURE__ */ cpJsx("summary", null, uxText("report.howCalculated")), /* @__PURE__ */ cpJsx("p", { className: "cp-ux-source" }, uxText("report.sourceHelp")), /* @__PURE__ */ cpJsx("p", { className: "cp-ux-source" }, t("reports.sourceHint"))))), preview && /* @__PURE__ */ cpJsx(ReportPrint, { doc, options: preview, onClose: () => setPreview(null) }));
+    } }, t("reports.excel"))), /* @__PURE__ */ cpJsx("details", { className: "cp-report-more", "data-part": "how" }, /* @__PURE__ */ cpJsx("summary", null, uxText("report.howCalculated")), /* @__PURE__ */ cpJsx("p", { className: "cp-ux-source" }, uxText("report.sourceHelp")), /* @__PURE__ */ cpJsx("p", { className: "cp-ux-source" }, uxText("report.assessmentScope")), result && /* @__PURE__ */ cpJsx("p", { className: "cp-ux-source" }, t("reports.sourceTerm"), ": ", cpRaw(result.source), " \xB7 ", cpRaw(result.gradeMode)), /* @__PURE__ */ cpJsx("p", { className: "cp-ux-source" }, t("reports.sourceHint")))), /* @__PURE__ */ cpJsx("section", { className: "cp-report-main cp-rep2-preview", "aria-label": uxText("report.generated") }, /* @__PURE__ */ cpJsx("div", { className: "cp-rep2-out" }, returnReport && /* @__PURE__ */ cpJsx(UxButton, { id: "report.back", onClick: () => {
+      setDraft(returnReport);
+      setGenerated(returnReport);
+      setReturnReport(null);
+    } }), /* @__PURE__ */ cpJsx("span", { className: "cp-rep2-who" }, /* @__PURE__ */ cpJsx("b", null, cpRaw(generatedName || "")), generated && /* @__PURE__ */ cpJsx("span", null, cpRaw(" \xB7 " + generatedTerm + " \xB7 " + t("print." + generated.language)))), /* @__PURE__ */ cpJsx("span", { className: "cp-rep2-status" }, problem && /* @__PURE__ */ cpJsx("span", { role: "status" }, t(problem)), error2 && /* @__PURE__ */ cpJsx("span", { role: "alert" }, t(error2)), stale && !problem && /* @__PURE__ */ cpJsx("span", { role: "status" }, uxText("report.stale")), (stale || !generated) && /* @__PURE__ */ cpJsx(UxButton, { id: "report.generate", disabled: !!problem, onClick: build })), /* @__PURE__ */ cpJsx("span", { className: "cp-rep2-menu" }, /* @__PURE__ */ cpJsx("button", { type: "button", className: "cp-cmd cp-rep2-download", ...actionProps("ux.report.download", () => setDownloads(!downloads)), "aria-haspopup": "true", "aria-expanded": downloads, disabled: outputBlocked }, icon3("down"), /* @__PURE__ */ cpJsx("span", null, uxText("report.download"))), /* @__PURE__ */ cpJsx("span", { className: "cp-rep2-list", hidden: !downloads || outputBlocked, onClick: () => setDownloads(false) }, /* @__PURE__ */ cpJsx(UxButton, { id: "report.word", onClick: () => selectedExport("word") }), /* @__PURE__ */ cpJsx(UxButton, { id: "report.xlsx", onClick: () => selectedExport("xlsx") }), /* @__PURE__ */ cpJsx(UxButton, { id: "report.csv", onClick: () => selectedExport("csv") }))), /* @__PURE__ */ cpJsx(ReportButton, { id: "reports.preview", className: "cp-ux-primary", disabled: outputBlocked, onClick: () => setPreview({ ...generated }) }, icon3("print"), uxText("report.print"))), generated ? /* @__PURE__ */ cpJsx("div", { className: "cp-ux-result cp-rep2-body", "data-cp-document": "report-preview" }, generated.type === "student" ? /* @__PURE__ */ cpJsx("div", { style: { overflow: "auto" } }, /* @__PURE__ */ cpJsx(ReportPaper, { screen: true, doc, options: generated })) : /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx(UxCheck, { id: "report.sort", checked: sort, onChange: (e) => setSort(e.target.checked) }), /* @__PURE__ */ cpJsx("div", { className: "cp-ux-table-wrap" }, /* @__PURE__ */ cpJsx("table", { className: "cp-ux-table" }, /* @__PURE__ */ cpJsx("thead", null, /* @__PURE__ */ cpJsx("tr", null, /* @__PURE__ */ cpJsx("th", null, uxText("report.selected")), result.headers.map((h, i) => /* @__PURE__ */ cpJsx("th", { key: i }, cpRaw(h))))), /* @__PURE__ */ cpJsx("tbody", null, indices.map(({ student, index }) => /* @__PURE__ */ cpJsx("tr", { key: student.id }, /* @__PURE__ */ cpJsx("td", null, /* @__PURE__ */ cpJsx(UxCheck, { id: "report.selected", context: student.id, checked: chosen.includes(student.id), onChange: () => toggle(student.id) })), result.rows[index]?.map((value, i) => /* @__PURE__ */ cpJsx("td", { key: i }, i === 0 ? /* @__PURE__ */ cpJsx(UxButton, { id: "report.student", context: student.id, onClick: () => openStudent(student.id) }, cpRaw(value)) : cpRaw(value ?? uxText("notRecorded"))))))))))) : /* @__PURE__ */ cpJsx(EmptyState, { kind: "nothing", title: uxText("report.emptyTitle"), text: problem ? t(problem) : uxText("report.previewHint") }))), several && /* @__PURE__ */ cpJsx("dialog", { ref: severalLayer.ref, onCancel: severalLayer.onCancel, onKeyDown: severalLayer.onKeyDown, onMouseDown: (event) => {
+      if (event.target === event.currentTarget) setSeveral(false);
+    }, className: "cp-dialog-layer cp-kit-layer", "aria-labelledby": "cp-rep2-several-title" }, /* @__PURE__ */ cpJsx("div", { className: "cp-dialog cp-rep2-dialog" }, /* @__PURE__ */ cpJsx("header", null, /* @__PURE__ */ cpJsx("h2", { id: "cp-rep2-several-title" }, uxText("report.severalTitle")), /* @__PURE__ */ cpJsx("span", null, cpRaw(countText(chosen.length, "report.chosen").replace("{total}", String(doc.students.length))))), /* @__PURE__ */ cpJsx("p", null, uxText("report.severalHint")), /* @__PURE__ */ cpJsx("div", { className: "cp-rep2-tools" }, /* @__PURE__ */ cpJsx(UxField, { id: "report.search", label: "search", value: query, onChange: (e) => setQuery(e.target.value) }), /* @__PURE__ */ cpJsx(UxButton, { id: "report.all", onClick: () => setRecipients(people.map((s) => s.id)) }), /* @__PURE__ */ cpJsx(UxButton, { id: "report.none", onClick: () => setRecipients([]) })), /* @__PURE__ */ cpJsx("div", { className: "cp-ux-selection cp-rep2-pick" }, people.map((student) => /* @__PURE__ */ cpJsx(UxCheck, { key: student.id, id: "report.selected", context: student.id, checked: chosen.includes(student.id), onChange: () => toggle(student.id), label: "report.selected", text: student.name, "aria-label": student.name }))), /* @__PURE__ */ cpJsx("footer", null, /* @__PURE__ */ cpJsx(UxButton, { id: "report.severalClose", onClick: () => setSeveral(false) }), /* @__PURE__ */ cpJsx(UxButton, { id: "report.batch", primary: true, disabled: !chosen.length || !!saveProblem || outputBlocked, onClick: () => {
+      setSeveral(false);
+      setPreview({ ...generated, type: "student", batchIds: chosen });
+    } }, cpRaw(countText(chosen.length, "report.batchCount")))))), preview && /* @__PURE__ */ cpJsx(ReportPrint, { doc, options: preview, onClose: () => setPreview(null) }));
   }
   var reports_default = m6Manifest("reports", ReportsView);
 
