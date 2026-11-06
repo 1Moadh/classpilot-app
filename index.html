@@ -1799,6 +1799,51 @@ td[data-cp-att],th[data-cp-att]{background:var(--cp-att-bg)!important;box-shadow
 .cp-rep2-dialog footer{display:flex;justify-content:flex-end;gap:8px}
 @media(max-width:1100px){.cp-rep2{grid-template-columns:250px minmax(0,1fr)}}
 @media(max-width:820px){.cp-rep2{grid-template-columns:1fr}}
+/* SP07 Classes & files (owner-approved SP03 image): one table, one row per class, row actions in a ⋯ menu. */
+.cp-cf{background:var(--cp-surface);border:1px solid var(--cp-border);border-radius:12px;overflow:visible}
+.cp-cf-tools{display:flex;align-items:flex-end;gap:10px;flex-wrap:wrap;padding:12px 14px;border-block-end:1px solid var(--cp-border)}
+.cp-cf-tools>label{min-width:170px}
+.cp-cf-quiet{border:0;background:transparent;color:var(--cp-link);font:600 var(--cp-fs-body) var(--cp-font);min-height:34px;padding:0 8px;cursor:pointer}
+.cp-cf .cp-ux-table-wrap{border:0;border-radius:0;overflow:visible}
+.cp-cf-table{border:0}
+.cp-cf-table td{vertical-align:middle}
+.cp-cf-table tr[data-open=true] td{background:color-mix(in srgb,var(--cp-active) 55%,transparent)}
+.cp-cf-name{display:flex;align-items:center;gap:9px}
+.cp-cf-name b{display:block;font-weight:700}
+.cp-cf-name small{display:block;color:var(--cp-muted);font-size:11.5px}
+.cp-cf-dot{width:8px;height:8px;border-radius:50%;flex:none;background:var(--cp-border)}
+.cp-cf-dot[data-state=open]{background:#2f9e44}
+.cp-cf-dot[data-state=elsewhere]{background:transparent;border:1.5px dashed var(--cp-muted)}
+.cp-cf-row-actions{display:flex;align-items:center;justify-content:flex-end;gap:6px}
+.cp-cf-menu{position:relative;display:inline-flex}
+.cp-cf-more{width:32px;height:32px;border:1px solid var(--cp-border);border-radius:8px;background:var(--cp-surface);color:var(--cp-text);cursor:pointer;display:inline-grid;place-items:center;padding:0}
+.cp-cf-more::before{content:"\22EF";font-size:16px;line-height:1}
+.cp-cf-more:hover,.cp-cf-more[aria-expanded=true]{background:var(--cp-active)}
+.cp-cf-list{position:absolute;z-index:30;inset-block-start:calc(100% + 6px);inset-inline-end:0;min-width:230px;display:flex;flex-direction:column;padding:5px;background:var(--cp-surface);border:1px solid var(--cp-border);border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,.14)}
+.cp-cf-list[hidden]{display:none}
+.cp-cf-list>button,.cp-cf-list .cp-cmd{display:flex!important;width:100%;justify-content:flex-start;text-align:start;border:0!important;background:transparent!important;color:var(--cp-text)!important;padding:8px 10px!important;border-radius:6px!important;font:500 var(--cp-fs-body) var(--cp-font)!important;min-height:0;cursor:pointer}
+.cp-cf-list>button:hover,.cp-cf-list .cp-cmd:hover{background:var(--cp-active)!important}
+.cp-cf-list .cp-cf-danger{color:#c92a2a!important;border-block-start:1px solid var(--cp-border)!important;border-radius:0 0 6px 6px!important;margin-block-start:4px}
+.cp-cf-list>button:disabled{opacity:.5;cursor:default}
+.cp-cf-head{display:inline-flex!important;align-items:center;gap:7px}
+.cp-cf-empty{padding:14px 16px;margin:0;color:var(--cp-muted)}
+.cp-cf-across-head{display:flex;align-items:center;gap:10px}
+.cp-cf-across-head h2{margin:0}
+.cp-cf-badge{display:inline-flex;align-items:center;height:22px;padding:0 9px;border-radius:11px;background:var(--cp-active);font-size:11px;font-weight:700}
+.cp-cf-foot{display:flex;flex-wrap:wrap;gap:6px 18px;color:var(--cp-muted);font-size:12px;margin:12px 2px 0}
+.cp-cf-foot [data-ok=true]::before{content:"\2713  ";color:#2f9e44}
+.cp-module .cp-ws-across{margin-block-start:16px}
+.cp-ws-across .cp-ws-grid{gap:0!important;background:var(--cp-surface);border:1px solid var(--cp-border);border-radius:12px;overflow:hidden}
+.cp-ws-across .cp-ws-grid>*{border:0!important;border-radius:0!important;box-shadow:none!important;background:transparent!important;margin:0!important}
+.cp-ws-across .cp-ws-grid>*+*{border-inline-start:1px solid var(--cp-border)!important}
+@media(max-width:1180px){.cp-ws-across .cp-ws-grid>*+*{border-inline-start:0!important;border-block-start:1px solid var(--cp-border)!important}}
+.cp-ws-across .cp-ws-grid h2{font-family:var(--cp-font)!important;font-size:var(--cp-fs-label)!important;font-weight:700!important}
+.cp-cf-head,.cp-cf-row-actions>button.cp-cmd{min-height:34px;padding:0 14px;border:1px solid var(--cp-border);border-radius:8px;background:var(--cp-surface);color:var(--cp-text);font:600 var(--cp-fs-body) var(--cp-font);cursor:pointer}
+.cp-cf-head:hover:not(:disabled),.cp-cf-row-actions>button.cp-cmd:hover{background:var(--cp-active)}
+.cp-cf-head.cp-ux-primary{background:var(--ux-primary);border-color:var(--ux-primary);color:var(--cp-primary-fg)}
+.cp-cf-head:disabled{opacity:.5;cursor:default}
+.cp-cf-name small,.cp-cf-foot{font-size:11px}
+.cp-ws-across .cp-cf-across-head h2{font-family:var(--cp-font)!important;font-size:var(--cp-fs-label)!important;font-weight:700}
 /* M56 design foundations (owner-supplied Master Implementation Brief, M56; design report §7–§8).
    One set of tokens for the frame and the new modules. Protected Gradebook views (Marks, Groups, Behaviour,
    Adjustments, Analysis, the original wheel, the Settings drawer and the class manager) do not use them. */
@@ -7960,7 +8005,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.assess.lessonCount.few": "{n} lessons",
     "ux.assess.lessonCount.many": "{n} lessons",
     "ux.assess.lessonCount.other": "{n} lessons",
-    "ux.workspace.across": "Across your classes",
+    "ux.workspace.across": "With the ticked classes",
     "ux.workspace.selectAll": "Include all classes",
     "ux.workspace.current": "Open",
     "ux.workspace.reorder": "Reorder roster\u2026",
@@ -8074,7 +8119,25 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.report.batchCount.few": "Preview {n} reports",
     "ux.report.batchCount.many": "Preview {n} reports",
     "ux.report.batchCount.other": "Preview {n} reports",
-    "ux.report.teacherLabel": "Teacher"
+    "ux.report.teacherLabel": "Teacher",
+    "ux.classes.linkFile": "Link existing file",
+    "ux.classes.newClass": "New class",
+    "ux.classes.openNow": "Open now",
+    "ux.classes.linkedHere": "Linked on this computer",
+    "ux.classes.notLinkedHere": "Not linked on this computer",
+    "ux.classes.open": "Open",
+    "ux.classes.actions": "Actions",
+    "ux.classes.rowMenu": "More for {name}",
+    "ux.classes.rename": "Rename in list",
+    "ux.classes.replace": "Replace file\u2026",
+    "ux.classes.remove": "Remove from list (file stays)",
+    "ux.classes.filesHelp": "Each class is its own JSON file. Opening a class loads that file and edits save back to it; nothing in one class touches another. Removing a class from the list never deletes its file.",
+    "ux.classes.ticked.zero": "No class ticked",
+    "ux.classes.ticked.one": "1 class ticked",
+    "ux.classes.ticked.two": "2 classes ticked",
+    "ux.classes.ticked.few": "{n} classes ticked",
+    "ux.classes.ticked.many": "{n} classes ticked",
+    "ux.classes.ticked.other": "{n} classes ticked"
   };
 
   // src/i18n/plain-copy.js
@@ -13608,7 +13671,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.assess.lessonCount.few": "{n} \u062F\u0631\u0648\u0633",
     "ux.assess.lessonCount.many": "{n} \u062F\u0631\u0633\u064B\u0627",
     "ux.assess.lessonCount.other": "{n} \u062F\u0631\u0633",
-    "ux.workspace.across": "\u0639\u0628\u0631 \u0635\u0641\u0648\u0641\u0643",
+    "ux.workspace.across": "\u0645\u0639 \u0627\u0644\u0635\u0641\u0648\u0641 \u0627\u0644\u0645\u062D\u062F\u062F\u0629",
     "ux.workspace.selectAll": "\u062A\u0636\u0645\u064A\u0646 \u0643\u0644 \u0627\u0644\u0635\u0641\u0648\u0641",
     "ux.workspace.current": "\u0645\u0641\u062A\u0648\u062D",
     "ux.workspace.reorder": "\u0625\u0639\u0627\u062F\u0629 \u062A\u0631\u062A\u064A\u0628 \u0627\u0644\u0637\u0644\u0627\u0628\u2026",
@@ -13722,7 +13785,25 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.report.batchCount.few": "\u0639\u0627\u064A\u0646 {n} \u062A\u0642\u0627\u0631\u064A\u0631",
     "ux.report.batchCount.many": "\u0639\u0627\u064A\u0646 {n} \u062A\u0642\u0631\u064A\u0631\u064B\u0627",
     "ux.report.batchCount.other": "\u0639\u0627\u064A\u0646 {n} \u062A\u0642\u0631\u064A\u0631",
-    "ux.report.teacherLabel": "\u0627\u0644\u0645\u0639\u0644\u0645"
+    "ux.report.teacherLabel": "\u0627\u0644\u0645\u0639\u0644\u0645",
+    "ux.classes.linkFile": "\u0627\u0631\u0628\u0637 \u0645\u0644\u0641\u064B\u0627 \u0645\u0648\u062C\u0648\u062F\u064B\u0627",
+    "ux.classes.newClass": "\u0635\u0641 \u062C\u062F\u064A\u062F",
+    "ux.classes.openNow": "\u0645\u0641\u062A\u0648\u062D \u0627\u0644\u0622\u0646",
+    "ux.classes.linkedHere": "\u0645\u0631\u062A\u0628\u0637 \u0639\u0644\u0649 \u0647\u0630\u0627 \u0627\u0644\u062C\u0647\u0627\u0632",
+    "ux.classes.notLinkedHere": "\u063A\u064A\u0631 \u0645\u0631\u062A\u0628\u0637 \u0639\u0644\u0649 \u0647\u0630\u0627 \u0627\u0644\u062C\u0647\u0627\u0632",
+    "ux.classes.open": "\u0627\u0641\u062A\u062D",
+    "ux.classes.actions": "\u0627\u0644\u0625\u062C\u0631\u0627\u0621\u0627\u062A",
+    "ux.classes.rowMenu": "\u0627\u0644\u0645\u0632\u064A\u062F \u0644\u0640 {name}",
+    "ux.classes.rename": "\u0623\u0639\u062F \u0627\u0644\u062A\u0633\u0645\u064A\u0629 \u0641\u064A \u0627\u0644\u0642\u0627\u0626\u0645\u0629",
+    "ux.classes.replace": "\u0627\u0633\u062A\u0628\u062F\u0644 \u0627\u0644\u0645\u0644\u0641\u2026",
+    "ux.classes.remove": "\u0623\u0632\u0644 \u0645\u0646 \u0627\u0644\u0642\u0627\u0626\u0645\u0629 (\u064A\u0628\u0642\u0649 \u0627\u0644\u0645\u0644\u0641)",
+    "ux.classes.filesHelp": "\u0643\u0644 \u0635\u0641 \u0645\u0644\u0641 JSON \u0645\u0633\u062A\u0642\u0644. \u0641\u062A\u062D \u0635\u0641 \u064A\u062D\u0645\u0651\u0644 \u0645\u0644\u0641\u0647 \u0648\u062A\u064F\u062D\u0641\u0638 \u0627\u0644\u062A\u0639\u062F\u064A\u0644\u0627\u062A \u0641\u064A\u0647\u060C \u0648\u0644\u0627 \u064A\u0624\u062B\u0631 \u0635\u0641 \u0641\u064A \u0622\u062E\u0631. \u0625\u0632\u0627\u0644\u0629 \u0635\u0641 \u0645\u0646 \u0627\u0644\u0642\u0627\u0626\u0645\u0629 \u0644\u0627 \u062A\u062D\u0630\u0641 \u0645\u0644\u0641\u0647 \u0623\u0628\u062F\u064B\u0627.",
+    "ux.classes.ticked.zero": "\u0644\u0627 \u0635\u0641 \u0645\u062D\u062F\u062F",
+    "ux.classes.ticked.one": "\u0635\u0641 \u0648\u0627\u062D\u062F \u0645\u062D\u062F\u062F",
+    "ux.classes.ticked.two": "\u0635\u0641\u0627\u0646 \u0645\u062D\u062F\u062F\u0627\u0646",
+    "ux.classes.ticked.few": "{n} \u0635\u0641\u0648\u0641 \u0645\u062D\u062F\u062F\u0629",
+    "ux.classes.ticked.many": "{n} \u0635\u0641\u064B\u0627 \u0645\u062D\u062F\u062F\u064B\u0627",
+    "ux.classes.ticked.other": "{n} \u0635\u0641 \u0645\u062D\u062F\u062F"
   };
 
   // src/core/actions.js
@@ -30329,6 +30410,32 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       "meaning": "ux.report.download"
     },
     {
+      "id": "ux.classes.rowMenu",
+      "labelKey": "ux.classes.rowMenu",
+      "icon": null,
+      "shortcut": null,
+      "availability": "rendered-and-not-disabled",
+      "canonicalHome": "classes:context",
+      "events": [
+        "onClick"
+      ],
+      "source": "src/modules",
+      "meaning": "ux.classes.rowMenu"
+    },
+    {
+      "id": "ux.classes.showAddSchool",
+      "labelKey": "ux.workspace.addSchool",
+      "icon": null,
+      "shortcut": null,
+      "availability": "rendered-and-not-disabled",
+      "canonicalHome": "classes:context",
+      "events": [
+        "onClick"
+      ],
+      "source": "src/modules",
+      "meaning": "ux.classes.showAddSchool"
+    },
+    {
       "id": "ux.report.sort",
       "labelKey": "ux.report.sort",
       "icon": null,
@@ -37574,6 +37681,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
   Object.assign(uxClick, { "notes.save": "notes.save", "notes.cancelEdit": "notes.cancelEdit", "notes.showDue": "notes.showDue", "notes.openTimeline": "notes.openTimeline" });
   Object.assign(uxChange, { "notes.followSwitch": "notes.remind" });
   Object.assign(uxClick, { "report.prevStudent": "report.prevStudent", "report.nextStudent": "report.nextStudent", "report.several": "report.several", "report.severalClose": "report.severalClose", "report.download": "report.download" });
+  Object.assign(uxClick, { "classes.rowMenu": "classes.rowMenu", "classes.showAddSchool": "workspace.addSchool" });
   var uxActions = [...Object.entries(uxClick).map(([id, key4]) => [id, key4, "onClick"]), ...Object.entries(uxChange).map(([id, key4]) => [id, key4, "onChange"])].map(([id, key4, event]) => ({ id: "ux." + id, labelKey: "ux." + key4, icon: null, shortcut: null, availability: "rendered-and-not-disabled", canonicalHome: id.startsWith("nav.") ? "Workspace:sidebar" : id.startsWith("appearance.") ? "Workspace:context" : id.split(".")[0] + ":context", events: [event], source: "src/modules", meaning: "ux." + id }));
 
   // src/i18n/ux-copy.js
@@ -41303,7 +41411,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "assess.lessonCount.few": ["{n} lessons", "{n} \u062F\u0631\u0648\u0633"],
     "assess.lessonCount.many": ["{n} lessons", "{n} \u062F\u0631\u0633\u064B\u0627"],
     "assess.lessonCount.other": ["{n} lessons", "{n} \u062F\u0631\u0633"],
-    "workspace.across": ["Across your classes", "\u0639\u0628\u0631 \u0635\u0641\u0648\u0641\u0643"],
+    "workspace.across": ["With the ticked classes", "\u0645\u0639 \u0627\u0644\u0635\u0641\u0648\u0641 \u0627\u0644\u0645\u062D\u062F\u062F\u0629"],
     "workspace.selectAll": ["Include all classes", "\u062A\u0636\u0645\u064A\u0646 \u0643\u0644 \u0627\u0644\u0635\u0641\u0648\u0641"],
     "workspace.current": ["Open", "\u0645\u0641\u062A\u0648\u062D"],
     "workspace.reorder": ["Reorder roster\u2026", "\u0625\u0639\u0627\u062F\u0629 \u062A\u0631\u062A\u064A\u0628 \u0627\u0644\u0637\u0644\u0627\u0628\u2026"],
@@ -41417,7 +41525,25 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "report.batchCount.few": ["Preview {n} reports", "\u0639\u0627\u064A\u0646 {n} \u062A\u0642\u0627\u0631\u064A\u0631"],
     "report.batchCount.many": ["Preview {n} reports", "\u0639\u0627\u064A\u0646 {n} \u062A\u0642\u0631\u064A\u0631\u064B\u0627"],
     "report.batchCount.other": ["Preview {n} reports", "\u0639\u0627\u064A\u0646 {n} \u062A\u0642\u0631\u064A\u0631"],
-    "report.teacherLabel": ["Teacher", "\u0627\u0644\u0645\u0639\u0644\u0645"]
+    "report.teacherLabel": ["Teacher", "\u0627\u0644\u0645\u0639\u0644\u0645"],
+    "classes.linkFile": ["Link existing file", "\u0627\u0631\u0628\u0637 \u0645\u0644\u0641\u064B\u0627 \u0645\u0648\u062C\u0648\u062F\u064B\u0627"],
+    "classes.newClass": ["New class", "\u0635\u0641 \u062C\u062F\u064A\u062F"],
+    "classes.openNow": ["Open now", "\u0645\u0641\u062A\u0648\u062D \u0627\u0644\u0622\u0646"],
+    "classes.linkedHere": ["Linked on this computer", "\u0645\u0631\u062A\u0628\u0637 \u0639\u0644\u0649 \u0647\u0630\u0627 \u0627\u0644\u062C\u0647\u0627\u0632"],
+    "classes.notLinkedHere": ["Not linked on this computer", "\u063A\u064A\u0631 \u0645\u0631\u062A\u0628\u0637 \u0639\u0644\u0649 \u0647\u0630\u0627 \u0627\u0644\u062C\u0647\u0627\u0632"],
+    "classes.open": ["Open", "\u0627\u0641\u062A\u062D"],
+    "classes.actions": ["Actions", "\u0627\u0644\u0625\u062C\u0631\u0627\u0621\u0627\u062A"],
+    "classes.rowMenu": ["More for {name}", "\u0627\u0644\u0645\u0632\u064A\u062F \u0644\u0640 {name}"],
+    "classes.rename": ["Rename in list", "\u0623\u0639\u062F \u0627\u0644\u062A\u0633\u0645\u064A\u0629 \u0641\u064A \u0627\u0644\u0642\u0627\u0626\u0645\u0629"],
+    "classes.replace": ["Replace file\u2026", "\u0627\u0633\u062A\u0628\u062F\u0644 \u0627\u0644\u0645\u0644\u0641\u2026"],
+    "classes.remove": ["Remove from list (file stays)", "\u0623\u0632\u0644 \u0645\u0646 \u0627\u0644\u0642\u0627\u0626\u0645\u0629 (\u064A\u0628\u0642\u0649 \u0627\u0644\u0645\u0644\u0641)"],
+    "classes.filesHelp": ["Each class is its own JSON file. Opening a class loads that file and edits save back to it; nothing in one class touches another. Removing a class from the list never deletes its file.", "\u0643\u0644 \u0635\u0641 \u0645\u0644\u0641 JSON \u0645\u0633\u062A\u0642\u0644. \u0641\u062A\u062D \u0635\u0641 \u064A\u062D\u0645\u0651\u0644 \u0645\u0644\u0641\u0647 \u0648\u062A\u064F\u062D\u0641\u0638 \u0627\u0644\u062A\u0639\u062F\u064A\u0644\u0627\u062A \u0641\u064A\u0647\u060C \u0648\u0644\u0627 \u064A\u0624\u062B\u0631 \u0635\u0641 \u0641\u064A \u0622\u062E\u0631. \u0625\u0632\u0627\u0644\u0629 \u0635\u0641 \u0645\u0646 \u0627\u0644\u0642\u0627\u0626\u0645\u0629 \u0644\u0627 \u062A\u062D\u0630\u0641 \u0645\u0644\u0641\u0647 \u0623\u0628\u062F\u064B\u0627."],
+    "classes.ticked.zero": ["No class ticked", "\u0644\u0627 \u0635\u0641 \u0645\u062D\u062F\u062F"],
+    "classes.ticked.one": ["1 class ticked", "\u0635\u0641 \u0648\u0627\u062D\u062F \u0645\u062D\u062F\u062F"],
+    "classes.ticked.two": ["2 classes ticked", "\u0635\u0641\u0627\u0646 \u0645\u062D\u062F\u062F\u0627\u0646"],
+    "classes.ticked.few": ["{n} classes ticked", "{n} \u0635\u0641\u0648\u0641 \u0645\u062D\u062F\u062F\u0629"],
+    "classes.ticked.many": ["{n} classes ticked", "{n} \u0635\u0641\u064B\u0627 \u0645\u062D\u062F\u062F\u064B\u0627"],
+    "classes.ticked.other": ["{n} classes ticked", "{n} \u0635\u0641 \u0645\u062D\u062F\u062F"]
   };
   var uxEn = Object.fromEntries(Object.entries(pairs).map(([key4, value]) => ["ux." + key4, value[0]]));
   var uxAr = Object.fromEntries(Object.entries(pairs).map(([key4, value]) => ["ux." + key4, value[1]]));
@@ -49322,7 +49448,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     return /* @__PURE__ */ cpJsx("div", { className: "cp-classes-slot", ref: setSlot });
   }
   function ClassesMount({ open, onOpen, onClose, view, setView, children }) {
-    const node = useSlot(), active3 = view === PAGE, wasOpen = useRef(open), wasActive = useRef(false), back = useRef(null);
+    const active3 = view === PAGE, wasOpen = useRef(open), wasActive = useRef(false), back = useRef(null);
     useEffect(() => {
       if (!active3) back.current = view;
     }, [view]);
@@ -49337,7 +49463,32 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       wasActive.current = active3;
     }, [active3, open]);
     useEscape(active3 && open, onClose);
-    return active3 && node ? ReactDOM.createPortal(/* @__PURE__ */ cpJsx("div", { className: "cp-classes-mount" }, children), node) : null;
+    const props = active3 && open && children ? children.props : null;
+    useEffect(() => {
+      setManager(props);
+    });
+    useEffect(() => () => setManager(null), []);
+    return null;
+  }
+  var manager = null;
+  var managerListeners = /* @__PURE__ */ new Set();
+  function setManager(next) {
+    if (manager === next) return;
+    manager = next;
+    managerListeners.forEach((listener) => listener());
+  }
+  function useClassManager() {
+    const [, tick] = useState(0);
+    useEffect(() => {
+      const listener = () => tick((n) => n + 1);
+      managerListeners.add(listener);
+      return () => managerListeners.delete(listener);
+    }, []);
+    return manager;
+  }
+  async function forgetReference(ref, profile2) {
+    const lessons = (profile2.timetable || []).filter((cell2) => cell2.classId === ref.classId).length;
+    if (await askConfirm({ title: t("ux.forget.title").replace("{name}", ref.displayName), body: t("ux.profile.forgetConfirm").replace("{name}", ref.displayName).replace("{n}", String(lessons)), confirm: t("ux.forget.confirm").replace("{name}", ref.displayName), danger: true, context: ref.classId })) updateProfile((p) => forgetClass(p, ref.classId));
   }
   function ClassesElsewhere({ classes, onLinkExisting }) {
     useLanguage();
@@ -50559,11 +50710,29 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
   function FileHealth({ canOpen }) {
     return /* @__PURE__ */ cpJsx("p", { className: "cp-classes-health" }, /* @__PURE__ */ cpJsx("b", { className: "cp-visually-hidden" }, t("improve.fileHealth")), /* @__PURE__ */ cpJsx("span", { "data-ok": canOpen ? "true" : "false" }, t(canOpen ? "improve.classLinked" : "improve.classUnlinked")), /* @__PURE__ */ cpJsx("span", { "data-ok": isProfileLinked() && !isProfileDirty() ? "true" : "false" }, t(isProfileLinked() ? isProfileDirty() ? "improve.profilePending" : "improve.profileLinked" : "improve.profileUnlinked")));
   }
+  function RowMenu({ id, name, children }) {
+    const [open, setOpen] = useState(false), box = useRef(null);
+    useEscape(open, () => setOpen(false));
+    useEffect(() => {
+      if (!open) return;
+      const outside = (e) => {
+        if (!box.current?.contains(e.target)) setOpen(false);
+      };
+      document.addEventListener("mousedown", outside);
+      return () => document.removeEventListener("mousedown", outside);
+    }, [open]);
+    return /* @__PURE__ */ cpJsx("span", { className: "cp-cf-menu", ref: box }, /* @__PURE__ */ cpJsx("button", { type: "button", className: "cp-cf-more", ...actionProps("ux.classes.rowMenu", () => setOpen(!open), id), "aria-haspopup": "true", "aria-expanded": open, "aria-label": uxText("classes.rowMenu").replace("{name}", name), title: uxText("classes.rowMenu").replace("{name}", name) }), /* @__PURE__ */ cpJsx("span", { className: "cp-cf-list", hidden: !open, onClick: (e) => {
+      if (e.target.closest("button")) setOpen(false);
+    } }, children));
+  }
   function WorkspaceView({ doc, onUpdate, onOpenClass, onManageClasses, classes, onLinkExisting, setView }) {
     useLanguage();
-    const profile2 = useProfile(), [selected, setSelected] = useState([]), [excel, setExcel] = useState(true), [attachments, setAttachments] = useState(true), [error2, setError] = useState(""), [notice, setNotice] = useState(""), [busy, setBusy] = useState(false), [review, setReview] = useState(null), [snapshot, setSnapshot] = useState(null), [school, setSchool] = useState(""), [newSchool, setNewSchool] = useState(""), [grade, setGrade] = useState(""), [privateSummary, setPrivateSummary] = useState(false), [reorder, setReorder] = useState(false);
+    const profile2 = useProfile(), [selected, setSelected] = useState([]), [excel, setExcel] = useState(true), [attachments, setAttachments] = useState(true), [error2, setError] = useState(""), [notice, setNotice] = useState(""), [busy, setBusy] = useState(false), [review, setReview] = useState(null), [snapshot, setSnapshot] = useState(null), [school, setSchool] = useState(""), [newSchool, setNewSchool] = useState(""), [grade, setGrade] = useState(""), [privateSummary, setPrivateSummary] = useState(false), [reorder, setReorder] = useState(false), [addingSchool, setAddingSchool] = useState(false);
+    const manager2 = useClassManager(), files = manager2?.classes || [];
+    const refFor = (classId) => profile2.classReferences.find((r) => r.classId === classId);
+    const rows = [...files.map((c) => ({ key: c.id, file: c, ref: c.classId ? refFor(c.classId) : null })), ...profile2.classReferences.filter((r) => !files.some((c) => c.classId === r.classId)).map((r) => ({ key: "ref:" + r.classId, ref: r }))].filter((row2) => (!school || row2.ref?.schoolId === school) && (!grade || row2.ref?.grade === grade));
     const GRADES = ["5", "6", "7", "8", "9", "10", "11", "12"];
-    const refs = profile2.classReferences.filter((r) => (!school || r.schoolId === school) && (!grade || r.grade === grade)), schools = profile2.schools || [], grades = [...new Set(refs.map((r) => r.grade).filter(Boolean))].sort();
+    const refs = profile2.classReferences.filter((r) => (!school || r.schoolId === school) && (!grade || r.grade === grade)), schools = profile2.schools || [], grades = [...new Set(profile2.classReferences.map((r) => r.grade).filter(Boolean))].sort();
     async function run2(fn) {
       setBusy(true);
       setError("");
@@ -50582,19 +50751,22 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       await flushProfile();
       return checkedClasses(selected);
     }
-    return /* @__PURE__ */ cpJsx(ModuleFrame, { titleKey: "ux.workspace.title", icon: "hub-manage", lead: "ux.lead.workspace", info: uxText("workspace.boundary") }, /* @__PURE__ */ cpJsx("section", { className: "cp-classes-top" }, /* @__PURE__ */ cpJsx(ClassesSlot, null), /* @__PURE__ */ cpJsx(ClassesElsewhere, { classes, onLinkExisting }), /* @__PURE__ */ cpJsx(FileHealth, { canOpen: !!classes?.length }), /* @__PURE__ */ cpJsx("p", { className: "cp-classes-backups" }, uxText("classes.backups"))), /* @__PURE__ */ cpJsx(UxPanel, { title: "workspace.organization" }, /* @__PURE__ */ cpJsx("div", { className: "cp-ux-form cp-ws-toolbar" }, /* @__PURE__ */ cpJsx(UxSelect, { id: "workspace.school", value: school, onChange: (e) => {
+    return /* @__PURE__ */ cpJsx(ModuleFrame, { titleKey: "ux.workspace.title", icon: "hub-manage", lead: "ux.lead.workspace", info: /* @__PURE__ */ cpJsx(React.Fragment, null, uxText("workspace.boundary"), " ", uxText("classes.filesHelp")), actions: /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx("button", { type: "button", className: "cp-cmd cp-cf-head", ...actionProps("gb.class-manager.3467", () => manager2?.onAddExisting(), "singleton"), disabled: !manager2 }, /* @__PURE__ */ cpJsx("svg", { width: "16", height: "16", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "1.8", strokeLinecap: "round", strokeLinejoin: "round", "aria-hidden": "true" }, /* @__PURE__ */ cpJsx("path", { d: "M10 14a4 4 0 006 0l3-3a4 4 0 00-6-6l-1 1M14 10a4 4 0 00-6 0l-3 3a4 4 0 006 6l1-1" })), uxText("classes.linkFile")), /* @__PURE__ */ cpJsx("button", { type: "button", className: "cp-cmd cp-ux-primary cp-cf-head", ...actionProps("gb.class-manager.3667", () => manager2?.onCreateNew(), "singleton"), disabled: !manager2 }, /* @__PURE__ */ cpJsx("svg", { width: "16", height: "16", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", "aria-hidden": "true" }, /* @__PURE__ */ cpJsx("path", { d: "M12 5v14M5 12h14" })), uxText("classes.newClass"))) }, /* @__PURE__ */ cpJsx("section", { className: "cp-cf", "aria-label": uxText("workspace.title") }, /* @__PURE__ */ cpJsx("div", { className: "cp-cf-tools" }, /* @__PURE__ */ cpJsx(UxSelect, { id: "workspace.school", value: school, onChange: (e) => {
       setSchool(e.target.value);
       setGrade("");
-    } }, /* @__PURE__ */ cpJsx("option", { value: "" }, uxText("workspace.allSchools")), schools.map((s) => /* @__PURE__ */ cpJsx("option", { key: s.id, value: s.id }, cpRaw(s.name)))), /* @__PURE__ */ cpJsx(UxSelect, { id: "workspace.gradeFilter", value: grade, onChange: (e) => setGrade(e.target.value) }, /* @__PURE__ */ cpJsx("option", { value: "" }, uxText("workspace.allGrades")), grades.map((g) => /* @__PURE__ */ cpJsx("option", { value: g, key: g }, cpRaw(g)))), /* @__PURE__ */ cpJsx(UxField, { id: "workspace.newSchool", value: newSchool, maxLength: 120, onChange: (e) => setNewSchool(e.target.value) }), /* @__PURE__ */ cpJsx(UxButton, { id: "workspace.addSchool", disabled: !newSchool.trim(), onClick: () => {
+    } }, /* @__PURE__ */ cpJsx("option", { value: "" }, uxText("workspace.allSchools")), schools.map((s) => /* @__PURE__ */ cpJsx("option", { key: s.id, value: s.id }, cpRaw(s.name)))), /* @__PURE__ */ cpJsx(UxSelect, { id: "workspace.gradeFilter", value: grade, onChange: (e) => setGrade(e.target.value) }, /* @__PURE__ */ cpJsx("option", { value: "" }, uxText("workspace.allGrades")), grades.map((g) => /* @__PURE__ */ cpJsx("option", { value: g, key: g }, cpRaw(g)))), addingSchool ? /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx(UxField, { id: "workspace.newSchool", value: newSchool, maxLength: 120, onChange: (e) => setNewSchool(e.target.value) }), /* @__PURE__ */ cpJsx(UxButton, { id: "workspace.addSchool", disabled: !newSchool.trim(), onClick: () => {
       updateProfile((p) => ({ ...p, schools: [...p.schools || [], { id: crypto.randomUUID(), name: newSchool.trim() }] }));
       setNewSchool("");
-    } }), /* @__PURE__ */ cpJsx(UxButton, { id: "workspace.classes", onClick: onManageClasses })), /* @__PURE__ */ cpJsx("div", { className: "cp-ux-table-wrap" }, /* @__PURE__ */ cpJsx("table", { className: "cp-ux-table cp-ws-classes" }, /* @__PURE__ */ cpJsx("thead", null, /* @__PURE__ */ cpJsx("tr", null, /* @__PURE__ */ cpJsx("th", null, /* @__PURE__ */ cpJsx(UxCheck, { id: "workspace.selectAll", checked: refs.length > 0 && refs.every((r) => selected.includes(r.classId)), onChange: (e) => setSelected(e.target.checked ? [.../* @__PURE__ */ new Set([...selected, ...refs.map((r) => r.classId)])] : selected.filter((id) => !refs.some((r) => r.classId === id))) })), ["class", "schoolAssignment", "grade", "section", "rosterOrder"].map((k) => /* @__PURE__ */ cpJsx("th", { key: k }, uxText("workspace." + k))))), /* @__PURE__ */ cpJsx("tbody", null, refs.map((r) => /* @__PURE__ */ cpJsx("tr", { key: r.classId }, /* @__PURE__ */ cpJsx("td", null, /* @__PURE__ */ cpJsx(UxCheck, { id: "workspace.selected", context: r.classId, checked: selected.includes(r.classId), onChange: (e) => setSelected(e.target.checked ? [...selected, r.classId] : selected.filter((id) => id !== r.classId)) })), /* @__PURE__ */ cpJsx("td", null, /* @__PURE__ */ cpJsx(UxButton, { id: "workspace.open", context: r.classId, onClick: () => onOpenClass(r.classId) }, cpRaw(r.displayName)), r.classId === doc.cp.classId && /* @__PURE__ */ cpJsx("span", { className: "cp-ws-open" }, uxText("workspace.current"))), /* @__PURE__ */ cpJsx("td", null, /* @__PURE__ */ cpJsx(UxSelect, { id: "workspace.schoolAssignment", context: r.classId, value: r.schoolId || "", onChange: (e) => updateProfile((p) => ({ ...p, classReferences: p.classReferences.map((ref) => ref.classId === r.classId ? { ...ref, schoolId: e.target.value } : ref) })) }, /* @__PURE__ */ cpJsx("option", { value: "" }, uxText("workspace.unassigned")), schools.map((s) => /* @__PURE__ */ cpJsx("option", { key: s.id, value: s.id }, cpRaw(s.name))))), /* @__PURE__ */ cpJsx("td", null, /* @__PURE__ */ cpJsx(UxSelect, { id: "workspace.grade", context: r.classId, value: r.grade || "", onChange: (e) => updateProfile((p) => ({ ...p, classReferences: p.classReferences.map((ref) => ref.classId === r.classId ? { ...ref, grade: e.target.value } : ref) })) }, /* @__PURE__ */ cpJsx("option", { value: "" }, uxText("workspace.noGrade")), [...GRADES, ...r.grade && !GRADES.includes(r.grade) ? [r.grade] : []].map((g) => /* @__PURE__ */ cpJsx("option", { key: g, value: g }, cpRaw(g))))), /* @__PURE__ */ cpJsx("td", null, /* @__PURE__ */ cpJsx(UxField, { id: "workspace.section", context: r.classId, value: r.section || "", onChange: (e) => updateProfile((p) => ({ ...p, classReferences: p.classReferences.map((ref) => ref.classId === r.classId ? { ...ref, section: e.target.value } : ref) })) })), /* @__PURE__ */ cpJsx("td", null, r.classId === doc.cp.classId ? /* @__PURE__ */ cpJsx(UxButton, { id: "workspace.reorder", onClick: () => setReorder(true) }) : /* @__PURE__ */ cpJsx("span", { className: "cp-ws-none", title: uxText("workspace.openToOrder") }, /* @__PURE__ */ cpJsx("span", { "aria-hidden": "true" }, cpRaw("\u2014")), /* @__PURE__ */ cpJsx("span", { className: "cp-visually-hidden" }, uxText("workspace.openToOrder"))))))))), !refs.length && /* @__PURE__ */ cpJsx("p", null, uxText("workspace.empty")), refs.length > 0 && /* @__PURE__ */ cpJsx("p", { className: "cp-ws-foot" }, uxText("workspace.tickNote"))), reorder && /* @__PURE__ */ cpJsx(PanelDialog, { title: uxText("workspace.reorderTitle").replace("{class}", doc.settings.className || ""), closeAction: "ux.workspace.closeReorder", onClose: () => setReorder(false) }, /* @__PURE__ */ cpJsx(RosterOrder, { doc, onUpdate })), school && /* @__PURE__ */ cpJsx(ReportBrandingEditor, { context: school, value: schools.find((s) => s.id === school)?.branding, onChange: (value) => updateProfile((p) => ({ ...p, schools: p.schools.map((s) => s.id === school ? { ...s, branding: value } : s) })) }), /* @__PURE__ */ cpJsx("section", { className: "cp-ws-across", "aria-labelledby": "cp-ws-across" }, /* @__PURE__ */ cpJsx("h2", { id: "cp-ws-across" }, uxText("workspace.across")), /* @__PURE__ */ cpJsx("div", { className: "cp-ws-grid" }, /* @__PURE__ */ cpJsx(AssessmentPresets, { doc, onUpdate, profile: profile2 }), /* @__PURE__ */ cpJsx(UxPanel, { title: "workspace.overview", description: "workspace.snapshotHint" }, /* @__PURE__ */ cpJsx(UxCheck, { id: "workspace.private", checked: privateSummary, onChange: (e) => {
+    } })) : /* @__PURE__ */ cpJsx("button", { type: "button", className: "cp-cf-quiet", ...actionProps("ux.classes.showAddSchool", () => setAddingSchool(true)) }, cpRaw("+ "), uxText("workspace.addSchool"))), /* @__PURE__ */ cpJsx("div", { className: "cp-ux-table-wrap" }, /* @__PURE__ */ cpJsx("table", { className: "cp-ux-table cp-ws-classes cp-cf-table" }, /* @__PURE__ */ cpJsx("thead", null, /* @__PURE__ */ cpJsx("tr", null, /* @__PURE__ */ cpJsx("th", null, /* @__PURE__ */ cpJsx(UxCheck, { id: "workspace.selectAll", checked: refs.length > 0 && refs.every((r) => selected.includes(r.classId)), onChange: (e) => setSelected(e.target.checked ? [.../* @__PURE__ */ new Set([...selected, ...refs.map((r) => r.classId)])] : selected.filter((id) => !refs.some((r) => r.classId === id))) })), ["class", "schoolAssignment", "grade", "section"].map((k) => /* @__PURE__ */ cpJsx("th", { key: k }, uxText("workspace." + k))), /* @__PURE__ */ cpJsx("th", null, /* @__PURE__ */ cpJsx("span", { className: "cp-visually-hidden" }, uxText("classes.actions"))))), /* @__PURE__ */ cpJsx("tbody", null, rows.map(({ key: key4, file, ref: r }) => {
+      const id = r?.classId || file?.classId, isOpen = file ? file.id === manager2?.activeId : false, name = r?.displayName || file?.name || "";
+      return /* @__PURE__ */ cpJsx("tr", { key: key4, "data-cp-class": file ? file.id : void 0, "data-open": isOpen ? "true" : void 0 }, /* @__PURE__ */ cpJsx("td", null, id && r ? /* @__PURE__ */ cpJsx(UxCheck, { id: "workspace.selected", context: r.classId, checked: selected.includes(r.classId), onChange: (e) => setSelected(e.target.checked ? [...selected, r.classId] : selected.filter((x2) => x2 !== r.classId)) }) : null), /* @__PURE__ */ cpJsx("td", null, /* @__PURE__ */ cpJsx("div", { className: "cp-cf-name" }, file && manager2?.onReorder && files.length > 1 && /* @__PURE__ */ cpJsx(DragGrip, { id: file.id, visible: files.map((x2) => x2.id), list: files, onMove: manager2.onReorder, action: "ux.classes.drag", label: "classes.drag", rowAttr: "data-cp-class" }), /* @__PURE__ */ cpJsx("span", { className: "cp-cf-dot", "data-state": isOpen ? "open" : file ? "linked" : "elsewhere" }), /* @__PURE__ */ cpJsx("div", null, /* @__PURE__ */ cpJsx("b", null, cpRaw(name)), /* @__PURE__ */ cpJsx("small", null, uxText(isOpen ? "classes.openNow" : file ? "classes.linkedHere" : "classes.notLinkedHere"))))), /* @__PURE__ */ cpJsx("td", null, r ? /* @__PURE__ */ cpJsx(UxSelect, { id: "workspace.schoolAssignment", context: r.classId, value: r.schoolId || "", onChange: (e) => updateProfile((p) => ({ ...p, classReferences: p.classReferences.map((ref) => ref.classId === r.classId ? { ...ref, schoolId: e.target.value } : ref) })) }, /* @__PURE__ */ cpJsx("option", { value: "" }, uxText("workspace.unassigned")), schools.map((s) => /* @__PURE__ */ cpJsx("option", { key: s.id, value: s.id }, cpRaw(s.name)))) : null), /* @__PURE__ */ cpJsx("td", null, r ? /* @__PURE__ */ cpJsx(UxSelect, { id: "workspace.grade", context: r.classId, value: r.grade || "", onChange: (e) => updateProfile((p) => ({ ...p, classReferences: p.classReferences.map((ref) => ref.classId === r.classId ? { ...ref, grade: e.target.value } : ref) })) }, /* @__PURE__ */ cpJsx("option", { value: "" }, uxText("workspace.noGrade")), [...GRADES, ...r.grade && !GRADES.includes(r.grade) ? [r.grade] : []].map((g) => /* @__PURE__ */ cpJsx("option", { key: g, value: g }, cpRaw(g)))) : null), /* @__PURE__ */ cpJsx("td", null, r ? /* @__PURE__ */ cpJsx(UxField, { id: "workspace.section", context: r.classId, value: r.section || "", onChange: (e) => updateProfile((p) => ({ ...p, classReferences: p.classReferences.map((ref) => ref.classId === r.classId ? { ...ref, section: e.target.value } : ref) })) }) : null), /* @__PURE__ */ cpJsx("td", null, /* @__PURE__ */ cpJsx("div", { className: "cp-cf-row-actions" }, file && !isOpen && id && /* @__PURE__ */ cpJsx(UxButton, { id: "workspace.open", context: id, onClick: () => onOpenClass(id) }, uxText("classes.open")), !file && r && /* @__PURE__ */ cpJsx("button", { type: "button", className: "cp-cmd", ...actionProps("cp.profile-relink", onLinkExisting, r.classId) }, t("profile.relink")), /* @__PURE__ */ cpJsx(RowMenu, { id: key4, name }, file && manager2 && /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx("button", { type: "button", ...actionProps("gb.class-manager.2714", () => manager2.onRename(file.id), '[["' + file.id + '"]]') }, uxText("classes.rename")), /* @__PURE__ */ cpJsx("button", { type: "button", ...actionProps("gb.class-manager.2897", () => manager2.onReplace(file.id), '[["' + file.id + '"]]') }, uxText("classes.replace"))), isOpen && /* @__PURE__ */ cpJsx(UxButton, { id: "workspace.reorder", onClick: () => setReorder(true) }), file && manager2 && /* @__PURE__ */ cpJsx("button", { type: "button", className: "cp-cf-danger", ...actionProps("gb.class-manager.3123", () => manager2.onRemove(file.id), '[["' + file.id + '"]]') }, uxText("classes.remove")), !file && r && /* @__PURE__ */ cpJsx("button", { type: "button", className: "cp-cf-danger", ...actionProps("ux.profile.forget", () => forgetReference(r, profile2), r.classId), disabled: !isProfileLinked() }, t("ux.profile.forget"))))));
+    })))), !rows.length && /* @__PURE__ */ cpJsx("p", { className: "cp-cf-empty" }, uxText("workspace.empty"))), reorder && /* @__PURE__ */ cpJsx(PanelDialog, { title: uxText("workspace.reorderTitle").replace("{class}", doc.settings.className || ""), closeAction: "ux.workspace.closeReorder", onClose: () => setReorder(false) }, /* @__PURE__ */ cpJsx(RosterOrder, { doc, onUpdate })), school && /* @__PURE__ */ cpJsx(ReportBrandingEditor, { context: school, value: schools.find((s) => s.id === school)?.branding, onChange: (value) => updateProfile((p) => ({ ...p, schools: p.schools.map((s) => s.id === school ? { ...s, branding: value } : s) })) }), /* @__PURE__ */ cpJsx("section", { className: "cp-ws-across", "aria-labelledby": "cp-ws-across" }, /* @__PURE__ */ cpJsx("header", { className: "cp-cf-across-head" }, /* @__PURE__ */ cpJsx("h2", { id: "cp-ws-across" }, uxText("workspace.across")), /* @__PURE__ */ cpJsx("span", { className: "cp-cf-badge" }, cpRaw(selected.length ? countText(selected.length, "classes.ticked") : uxText("classes.ticked.zero")))), /* @__PURE__ */ cpJsx("div", { className: "cp-ws-grid" }, /* @__PURE__ */ cpJsx(AssessmentPresets, { doc, onUpdate, profile: profile2 }), /* @__PURE__ */ cpJsx(UxPanel, { title: "workspace.overview", description: "workspace.snapshotHint" }, /* @__PURE__ */ cpJsx(UxCheck, { id: "workspace.private", checked: privateSummary, onChange: (e) => {
       setPrivateSummary(e.target.checked);
       setSnapshot(null);
     } }), /* @__PURE__ */ cpJsx("p", null, uxText("workspace.privateHint")), /* @__PURE__ */ cpJsx(UxButton, { id: "workspace.refresh", disabled: busy || !selected.length, onClick: () => run2(async () => {
       const classes2 = await readSelected();
       setSnapshot({ at: Date.now(), rows: classes2.map(({ doc: doc2 }) => {
-        const rows = allTermViews(doc2).find((t2) => t2.live).students, known = rows.filter((r) => r.final != null);
+        const rows2 = allTermViews(doc2).find((t2) => t2.live).students, known = rows2.filter((r) => r.final != null);
         return { id: doc2.cp.classId, name: doc2.settings.className, students: doc2.students.length, known: known.length, mean: known.length ? known.reduce((n, r) => n + r.final, 0) / known.length : null, attendance: Object.keys(doc2.cp?.attendance?.sessions || {}).length, ...privateSummary ? { recognition: certificateSuggestions(doc2, { from: todayISO(), through: todayISO() }).participation.map((id) => ({ id, name: doc2.students.find((s) => s.id === id)?.name || "" })), followup: doc2.students.filter((s) => attendanceFlags(s, doc2).length).map((s) => ({ id: s.id, name: s.name })) } : {} };
       }) });
     }) }), snapshot && /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx("p", null, uxText("workspace.readAt"), ": ", cpRaw(new Date(snapshot.at).toLocaleString())), /* @__PURE__ */ cpJsx("table", { className: "cp-ux-table" }, /* @__PURE__ */ cpJsx("thead", null, /* @__PURE__ */ cpJsx("tr", null, ["class", "rosterCount", "knownResults", "mean", "registers"].map((k) => /* @__PURE__ */ cpJsx("th", { key: k }, uxText("workspace." + k))))), /* @__PURE__ */ cpJsx("tbody", null, snapshot.rows.map((r) => /* @__PURE__ */ cpJsx("tr", { key: r.id }, /* @__PURE__ */ cpJsx("td", null, cpRaw(r.name)), /* @__PURE__ */ cpJsx("td", null, r.students), /* @__PURE__ */ cpJsx("td", null, r.known), /* @__PURE__ */ cpJsx("td", null, r.mean == null ? uxText("notRecorded") : r.mean.toFixed(2)), /* @__PURE__ */ cpJsx("td", null, r.attendance))))), privateSummary && snapshot.rows.map((r) => /* @__PURE__ */ cpJsx("section", { key: r.id, className: "cp-ux-note-card" }, /* @__PURE__ */ cpJsx("h3", null, cpRaw(r.name)), /* @__PURE__ */ cpJsx("div", { className: "cp-ux-split" }, /* @__PURE__ */ cpJsx("section", null, /* @__PURE__ */ cpJsx("h4", null, uxText("home.recognition")), /* @__PURE__ */ cpJsx("ul", null, r.recognition?.map((s) => /* @__PURE__ */ cpJsx("li", { key: s.id }, cpRaw(s.name))))), /* @__PURE__ */ cpJsx("section", null, /* @__PURE__ */ cpJsx("h4", null, uxText("home.followup")), /* @__PURE__ */ cpJsx("ul", null, r.followup?.map((s) => /* @__PURE__ */ cpJsx("li", { key: s.id }, cpRaw(s.name)))))), /* @__PURE__ */ cpJsx(UxButton, { id: "workspace.open", context: "private:" + r.id, onClick: () => onOpenClass(r.id) }, uxText("workspace.openPrivate"))))), !selected.length && /* @__PURE__ */ cpJsx("p", { className: "cp-ws-need" }, uxText("workspace.tickFirst"))), /* @__PURE__ */ cpJsx(UxPanel, { title: "workspace.archive", description: "workspace.archiveHint" }, /* @__PURE__ */ cpJsx(UxCheck, { id: "workspace.excel", checked: excel, onChange: (e) => setExcel(e.target.checked) }), /* @__PURE__ */ cpJsx(UxCheck, { id: "workspace.attachments", checked: attachments, onChange: (e) => setAttachments(e.target.checked) }), /* @__PURE__ */ cpJsx("p", null, uxText("workspace.sidecars")), /* @__PURE__ */ cpJsx("div", { className: "cp-ux-actions" }, /* @__PURE__ */ cpJsx(UxButton, { id: "workspace.backup", primary: true, disabled: busy || !selected.length, onClick: () => run2(async () => {
@@ -50611,10 +50783,10 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       });
     } })), review && /* @__PURE__ */ cpJsx("section", { className: "cp-ux-preview" }, /* @__PURE__ */ cpJsx("h3", null, uxText("workspace.review")), /* @__PURE__ */ cpJsx("p", null, cpRaw(review.manifest.createdAt), " \xB7 ", cpRaw(review.manifest.appVersion)), /* @__PURE__ */ cpJsx("table", { className: "cp-ux-table" }, /* @__PURE__ */ cpJsx("thead", null, /* @__PURE__ */ cpJsx("tr", null, /* @__PURE__ */ cpJsx("th", null, uxText("workspace.file")), /* @__PURE__ */ cpJsx("th", null, uxText("workspace.bytes")), /* @__PURE__ */ cpJsx("th", null, uxText("workspace.integrity")))), /* @__PURE__ */ cpJsx("tbody", null, review.manifest.records.map((r) => /* @__PURE__ */ cpJsx("tr", { key: r.path }, /* @__PURE__ */ cpJsx("td", null, cpRaw(r.path)), /* @__PURE__ */ cpJsx("td", null, r.size), /* @__PURE__ */ cpJsx("td", null, /* @__PURE__ */ cpJsx("code", null, cpRaw(r.sha256))))))), review.manifest.sidecarAttachments?.length > 0 && /* @__PURE__ */ cpJsx("p", null, uxText(review.manifest.sidecarsIncluded ? "workspace.sidecarsIncluded" : "workspace.sidecarsOmitted"), ": ", review.manifest.sidecarAttachments.length), !review.backupOnly && /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx("p", null, uxText("workspace.restoreHint")), /* @__PURE__ */ cpJsx(UxButton, { id: "workspace.restore", disabled: busy || !window.showDirectoryPicker, onClick: () => run2(async () => {
       const directory = await showDirectoryPicker({ mode: "readwrite" });
-      const files = await restoreArchiveCopy(review, directory);
-      setNotice(uxText("workspace.restored") + " " + files.length);
+      const files2 = await restoreArchiveCopy(review, directory);
+      setNotice(uxText("workspace.restored") + " " + files2.length);
       setReview(null);
-    }) })), /* @__PURE__ */ cpJsx(UxButton, { id: "workspace.close", onClick: () => setReview(null) })), !selected.length && /* @__PURE__ */ cpJsx("p", { className: "cp-ws-need" }, uxText("workspace.tickFirst")))), /* @__PURE__ */ cpJsx("p", { className: "cp-ws-tip" }, uxText("workspace.tip"))), busy && /* @__PURE__ */ cpJsx("p", { role: "status" }, uxText("workspace.busy")), notice && /* @__PURE__ */ cpJsx("p", { role: "status" }, notice), error2 && /* @__PURE__ */ cpJsx("p", { role: "alert" }, error2));
+    }) })), /* @__PURE__ */ cpJsx(UxButton, { id: "workspace.close", onClick: () => setReview(null) })), !selected.length && /* @__PURE__ */ cpJsx("p", { className: "cp-ws-need" }, uxText("workspace.tickFirst")))), /* @__PURE__ */ cpJsx("p", { className: "cp-ws-tip" }, uxText("workspace.tip"))), /* @__PURE__ */ cpJsx("p", { className: "cp-cf-foot" }, /* @__PURE__ */ cpJsx("span", { "data-ok": isProfileLinked() && !isProfileDirty() ? "true" : "false" }, t(isProfileLinked() ? isProfileDirty() ? "improve.profilePending" : "improve.profileLinked" : "improve.profileUnlinked")), /* @__PURE__ */ cpJsx("span", null, uxText("classes.backups"))), busy && /* @__PURE__ */ cpJsx("p", { role: "status" }, uxText("workspace.busy")), notice && /* @__PURE__ */ cpJsx("p", { role: "status" }, notice), error2 && /* @__PURE__ */ cpJsx("p", { role: "alert" }, error2));
   }
   function RosterOrder({ doc, onUpdate }) {
     const [student, setStudent] = useState(doc.students[0]?.id || ""), [before, setBefore] = useState("");
