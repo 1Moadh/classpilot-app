@@ -7669,6 +7669,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.weekly.r.inclBonus": "incl. {n} bonus",
     "ux.weekly.r.star.bonus": "Bonus marks earned",
     "ux.att.period": "Period",
+    "ux.att.chooseRegister": "Choose a register",
     "ux.att.wholeDay": "Whole day (no period)",
     "ux.att.otherPeriod": "Other (type a name)\u2026",
     "ux.att.noLessons": "No lessons for this class in the timetable on this day",
@@ -13351,6 +13352,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.weekly.r.inclBonus": "\u0645\u0646\u0647\u0627 {n} \u0625\u0636\u0627\u0641\u064A\u0629",
     "ux.weekly.r.star.bonus": "\u062F\u0631\u062C\u0627\u062A \u0625\u0636\u0627\u0641\u064A\u0629 \u0645\u0643\u062A\u0633\u0628\u0629",
     "ux.att.period": "\u0627\u0644\u062D\u0635\u0629",
+    "ux.att.chooseRegister": "\u0627\u062E\u062A\u0631 \u0633\u062C\u0644 \u0627\u0644\u062D\u0636\u0648\u0631",
     "ux.att.wholeDay": "\u0627\u0644\u064A\u0648\u0645 \u0643\u0627\u0645\u0644\u064B\u0627 (\u062F\u0648\u0646 \u062D\u0635\u0629)",
     "ux.att.otherPeriod": "\u0623\u062E\u0631\u0649 (\u0627\u0643\u062A\u0628 \u0627\u0633\u0645\u064B\u0627)\u2026",
     "ux.att.noLessons": "\u0644\u0627 \u062D\u0635\u0635 \u0644\u0647\u0630\u0627 \u0627\u0644\u0635\u0641 \u0641\u064A \u0627\u0644\u062C\u062F\u0648\u0644 \u0641\u064A \u0647\u0630\u0627 \u0627\u0644\u064A\u0648\u0645",
@@ -37330,6 +37332,25 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
   // src/core/lesson-context.js
   var active2 = null, pending2 = null, sequence = 0;
   var listeners3 = /* @__PURE__ */ new Set();
+  var scopeKey = "cp:attendance-scope";
+  var registerScope;
+  function getRegisterScope(doc) {
+    if (registerScope === void 0) {
+      try {
+        registerScope = JSON.parse(globalThis.sessionStorage?.getItem(scopeKey) || "null");
+      } catch {
+        registerScope = null;
+      }
+    }
+    return registerScope?.classId === doc.cp?.classId ? registerScope : null;
+  }
+  function rememberRegisterScope(doc, date5, period) {
+    registerScope = { classId: doc.cp?.classId, date: date5, period };
+    try {
+      globalThis.sessionStorage?.setItem(scopeKey, JSON.stringify(registerScope));
+    } catch {
+    }
+  }
   var emit2 = () => {
     for (const fn of listeners3) fn();
   };
@@ -37338,9 +37359,15 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     return () => listeners3.delete(fn);
   };
   var getLesson = () => active2;
+  var hasPendingLesson = (doc) => !!pending2 && pending2.classId === doc.cp?.classId;
   function clearLesson() {
     active2 = null;
     pending2 = null;
+    registerScope = null;
+    try {
+      globalThis.sessionStorage?.removeItem(scopeKey);
+    } catch {
+    }
     emit2();
   }
   async function requestLesson(intent, open) {
@@ -37358,6 +37385,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     pending2 = null;
     if (classId === next.classId && linked) {
       active2 = next;
+      rememberRegisterScope({ cp: { classId } }, next.date, lessonPeriod(next));
       route(next.view);
       emit2();
     }
@@ -37372,10 +37400,12 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     return lesson ? { lessonId: lesson.cell.id, label: lesson.period.label, start: lesson.period.start, end: lesson.period.end, periodId: lesson.period.id } : "";
   }
   function selectRegisterContext(doc, date5, period) {
-    if (typeof period !== "object") {
+    if (!period || typeof period !== "object") {
       clearLesson();
+      rememberRegisterScope(doc, date5, period);
       return;
     }
+    rememberRegisterScope(doc, date5, period);
     active2 = { classId: doc.cp.classId, date: date5, cell: { id: period.lessonId }, period: { id: period.periodId, label: period.label, start: period.start, end: period.end }, view: "module:attendance", requestId: ++sequence };
     pending2 = null;
     emit2();
@@ -41221,6 +41251,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "weekly.r.inclBonus": ["incl. {n} bonus", "\u0645\u0646\u0647\u0627 {n} \u0625\u0636\u0627\u0641\u064A\u0629"],
     "weekly.r.star.bonus": ["Bonus marks earned", "\u062F\u0631\u062C\u0627\u062A \u0625\u0636\u0627\u0641\u064A\u0629 \u0645\u0643\u062A\u0633\u0628\u0629"],
     "att.period": ["Period", "\u0627\u0644\u062D\u0635\u0629"],
+    "att.chooseRegister": ["Choose a register", "\u0627\u062E\u062A\u0631 \u0633\u062C\u0644 \u0627\u0644\u062D\u0636\u0648\u0631"],
     "att.wholeDay": ["Whole day (no period)", "\u0627\u0644\u064A\u0648\u0645 \u0643\u0627\u0645\u0644\u064B\u0627 (\u062F\u0648\u0646 \u062D\u0635\u0629)"],
     "att.otherPeriod": ["Other (type a name)\u2026", "\u0623\u062E\u0631\u0649 (\u0627\u0643\u062A\u0628 \u0627\u0633\u0645\u064B\u0627)\u2026"],
     "att.noLessons": ["No lessons for this class in the timetable on this day", "\u0644\u0627 \u062D\u0635\u0635 \u0644\u0647\u0630\u0627 \u0627\u0644\u0635\u0641 \u0641\u064A \u0627\u0644\u062C\u062F\u0648\u0644 \u0641\u064A \u0647\u0630\u0627 \u0627\u0644\u064A\u0648\u0645"],
@@ -51649,6 +51680,15 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       return override ? { ...lesson, period: { ...lesson.period, start: override.start || lesson.period.start, end: override.end || lesson.period.end }, cell: { ...lesson.cell, classId: override.classId || lesson.cell.classId }, cancelled: override.cancelled, override } : lesson;
     }).sort((a, b) => timeMinutes(a.period.start) - timeMinutes(b.period.start));
   }
+  function currentTeachingLessons(lessons, date5, now = Date.now()) {
+    const clock = new Date(now);
+    if (date5 !== isoOf(clock)) return [];
+    const minute = clock.getHours() * 60 + clock.getMinutes() + clock.getSeconds() / 60;
+    return lessons.filter((lesson) => {
+      const start = timeMinutes(lesson.period.start), end = timeMinutes(lesson.period.end);
+      return !lesson.cancelled && start !== null && end !== null && minute >= start && minute < end;
+    });
+  }
   function setLessonOverride(profile2, value) {
     return { ...profile2, lessonOverrides: [...(profile2.lessonOverrides || []).filter((o) => o.date !== value.date || o.slotId !== value.slotId), value] };
   }
@@ -51757,7 +51797,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     useLanguage();
     const profile2 = useProfile(), now = useClock(1e3), [date5, setDate] = useState(todayISO), [override, setOverride] = useState(null), [busy, setBusy] = useState(false), [error2, setError] = useState(""), [registerSnapshot, setRegisterSnapshot] = useState(null), [contactsOpen, setContactsOpen] = useState(false);
     useEscape(contactsOpen, () => setContactsOpen(false));
-    const lessons = teachingLessons(profile2, date5), clock = new Date(now), minute = clock.getHours() * 60 + clock.getMinutes() + clock.getSeconds() / 60, today = date5 === todayISO(), past = date5 < todayISO(), next = lessons.find((l) => !l.cancelled && timeMinutes(l.period.end) > minute);
+    const lessons = teachingLessons(profile2, date5), clock = new Date(now), minute = clock.getHours() * 60 + clock.getMinutes() + clock.getSeconds() / 60, today = date5 === todayISO(), past = date5 < todayISO(), next = lessons.find((l) => !l.cancelled && timeMinutes(l.period.end) > minute), currentLessons = currentTeachingLessons(lessons, date5, now);
     async function open(lesson, view) {
       setBusy(true);
       setError("");
@@ -51772,7 +51812,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     const due = searchNotes(doc).filter((n) => n.followUpDate && n.followUpDate <= date5 && !n.completed);
     const reminders = profile2.reminders?.attendance !== false;
     const info = lessons.map((lesson) => {
-      const ref = profile2.classReferences.find((r) => r.classId === lesson.cell.classId), open_ = lesson.cell.classId === doc.cp.classId, session = open_ ? getSession(doc, date5, lessonPeriod(lesson)) : null, snapshot = registerSnapshot?.classes[lesson.cell.classId], marked = open_ ? session ? Object.values(session.records).filter((r) => r.status).length : 0 : snapshot ? snapshot.counts[sessionKey(date5, lessonPeriod(lesson))] || 0 : void 0, roster = open_ ? doc.students.length : snapshot?.roster, current4 = today && !lesson.cancelled && minute >= minutesOf(lesson.period.start) && minute < minutesOf(lesson.period.end), done = past || today && minute >= minutesOf(lesson.period.end);
+      const ref = profile2.classReferences.find((r) => r.classId === lesson.cell.classId), open_ = lesson.cell.classId === doc.cp.classId, session = open_ ? getSession(doc, date5, lessonPeriod(lesson)) : null, snapshot = registerSnapshot?.classes[lesson.cell.classId], marked = open_ ? session ? Object.values(session.records).filter((r) => r.status).length : 0 : snapshot ? snapshot.counts[sessionKey(date5, lessonPeriod(lesson))] || 0 : void 0, roster = open_ ? doc.students.length : snapshot?.roster, current4 = currentLessons.includes(lesson), done = past || today && minute >= minutesOf(lesson.period.end);
       return { lesson, ref, marked, roster, current: current4, done, started: current4 || done };
     });
     const missing = info.filter((i) => !i.lesson.cancelled && i.started && i.marked !== void 0 && i.roster > 0 && i.marked < i.roster), unknown = info.filter((i) => !i.lesson.cancelled && i.started && i.marked === void 0);
@@ -51881,6 +51921,24 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     if (home) action2.canonicalHome = home;
   }
   var manifest_default = { id: "lock", schema: { defaults: { lockHash: null, lockSettings: { idleMinutes: 5 } }, migrate: (value) => value }, views: [], actions: m8Actions, settingsSections: [{ id: "lock", home: "ProfilePanel" }], exports: [], i18n: { en: m8En, ar: m8Ar } };
+
+  // src/modules/attendance/scope.js
+  function validRegisterScope(doc, profile2, scope) {
+    if (!scope || scope.classId !== doc.cp?.classId || !/^\d{4}-\d{2}-\d{2}$/.test(scope.date || "") || isoOf(parseISO(scope.date)) !== scope.date) return false;
+    const period = scope.period;
+    if (typeof period === "string") return period.length <= 80 && (period === "" || !!period.trim());
+    if (!period || !["lessonId", "periodId", "label", "start", "end"].every((key4) => typeof period[key4] === "string") || timeMinutes(period.start) === null || timeMinutes(period.end) === null || timeMinutes(period.start) >= timeMinutes(period.end)) return false;
+    return !!getSession(doc, scope.date, period) || teachingLessons(profile2, scope.date).some((l) => !l.cancelled && l.cell.classId === scope.classId && l.cell.id === period.lessonId);
+  }
+  function initialAttendanceScope(doc, profile2, now = Date.now()) {
+    const retained = getRegisterScope(doc);
+    if (validRegisterScope(doc, profile2, retained)) return { date: retained.date, period: retained.period };
+    const lesson = activeLesson(doc), explicit = lesson && { classId: doc.cp?.classId, date: lesson.date, period: lessonPeriod(lesson) };
+    if (validRegisterScope(doc, profile2, explicit)) return { date: explicit.date, period: explicit.period };
+    const date5 = isoOf(new Date(now)), current4 = currentTeachingLessons(teachingLessons(profile2, date5), date5, now);
+    if (current4.length > 1 && current4.some((l) => l.cell.classId === doc.cp?.classId)) return { date: date5, period: null };
+    return { date: date5, period: current4.length === 1 && current4[0].cell.classId === doc.cp?.classId ? lessonPeriod(current4[0]) : "" };
+  }
 
   // src/modules/attendance/matrix.jsx
   function AttendanceMatrix({ doc, date: date5, period, session, statuses, canEdit, override, onUpdate }) {
@@ -53011,20 +53069,17 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
   function PeriodPicker({ doc, date: date5, period, setPeriod, saved, onSaved }) {
     const lessons = teachingLessons(getProfile(), date5).filter((lesson) => lesson.cell.classId === doc.cp?.classId && !lesson.cancelled), [other, setOther] = useState(false);
     const lessonIds = new Set(lessons.map((lesson) => lesson.cell.id)), extra = saved.filter(([, s]) => s.period && !(s.lesson && lessonIds.has(s.lesson.id)));
-    const value = typeof period === "object" ? "lesson:" + period.lessonId : other ? "other" : period ? extra.some(([, s]) => !s.lesson && s.period === period) ? "saved:" + extra.find(([, s]) => !s.lesson && s.period === period)[0] : "other" : "";
+    const savedLesson = period && typeof period === "object" && !lessonIds.has(period.lessonId) ? extra.find(([, s]) => s.lesson?.id === period.lessonId) : null;
+    const value = savedLesson ? "saved:" + savedLesson[0] : period && typeof period === "object" ? "lesson:" + period.lessonId : other ? "other" : period === null ? "choose" : period ? extra.some(([, s]) => !s.lesson && s.period === period) ? "saved:" + extra.find(([, s]) => !s.lesson && s.period === period)[0] : "other" : "";
     const choose = (next) => {
       if (next === "") {
         setOther(false);
         setPeriod("");
-        clearLesson();
         return;
       }
       if (next === "other") {
         setOther(true);
-        if (typeof period === "object") {
-          setPeriod("");
-          clearLesson();
-        }
+        if (!period || typeof period === "object") setPeriod(null);
         return;
       }
       if (next.startsWith("saved:")) {
@@ -53037,14 +53092,12 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       const chosen = lessonPeriod(lesson);
       setOther(false);
       setPeriod(chosen);
-      selectRegisterContext(doc, date5, chosen);
     };
-    return /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx("label", { className: "cp-ux-field cp-att-period" }, /* @__PURE__ */ cpJsx("span", null, uxText("att.period")), /* @__PURE__ */ cpJsx("select", { style: field, value, ...controlProps("ux.att.period", (e) => choose(e.target.value)) }, /* @__PURE__ */ cpJsx("option", { value: "" }, uxText("att.wholeDay")), lessons.map((lesson) => /* @__PURE__ */ cpJsx("option", { key: lesson.cell.id, value: "lesson:" + lesson.cell.id }, cpRaw(lesson.period.label + " \xB7 " + displayRange(lesson.period.start, lesson.period.end) + (lesson.cell.subject ? " \xB7 " + lesson.cell.subject : "")))), !lessons.length && /* @__PURE__ */ cpJsx("option", { value: "none", disabled: true }, uxText("att.noLessons")), extra.map(([key4, s]) => /* @__PURE__ */ cpJsx("option", { key: key4, value: "saved:" + key4 }, cpRaw(s.period + (s.lesson ? " \xB7 " + displayRange(s.lesson.start, s.lesson.end) : "")))), /* @__PURE__ */ cpJsx("option", { value: "other" }, uxText("att.otherPeriod")))), value === "other" && /* @__PURE__ */ cpJsx(Field2, { id: "attendance.period", label: "ux.att.periodName", value: typeof period === "object" ? "" : period, maxLength: 80, onChange: (e) => setPeriod(e.target.value) }));
+    return /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx("label", { className: "cp-ux-field cp-att-period" }, /* @__PURE__ */ cpJsx("span", null, uxText("att.period")), /* @__PURE__ */ cpJsx("select", { style: field, value, ...controlProps("ux.att.period", (e) => choose(e.target.value)) }, /* @__PURE__ */ cpJsx("option", { value: "" }, uxText("att.wholeDay")), period === null && !other && /* @__PURE__ */ cpJsx("option", { value: "choose", disabled: true }, uxText("att.chooseRegister")), lessons.map((lesson) => /* @__PURE__ */ cpJsx("option", { key: lesson.cell.id, value: "lesson:" + lesson.cell.id }, cpRaw(lesson.period.label + " \xB7 " + displayRange(lesson.period.start, lesson.period.end) + (lesson.cell.subject ? " \xB7 " + lesson.cell.subject : "")))), !lessons.length && /* @__PURE__ */ cpJsx("option", { value: "none", disabled: true }, uxText("att.noLessons")), extra.map(([key4, s]) => /* @__PURE__ */ cpJsx("option", { key: key4, value: "saved:" + key4 }, cpRaw(s.period + (s.lesson ? " \xB7 " + displayRange(s.lesson.start, s.lesson.end) : "")))), /* @__PURE__ */ cpJsx("option", { value: "other" }, uxText("att.otherPeriod")))), value === "other" && /* @__PURE__ */ cpJsx(Field2, { id: "attendance.period", label: "ux.att.periodName", value: period === null || typeof period === "object" ? "" : period, maxLength: 80, onChange: (e) => setPeriod(e.target.value.trim() ? e.target.value : null) }));
   }
   function AttendanceView({ doc, onUpdate, onOpenClass, setView }) {
     useLanguage();
-    const lesson = activeLesson(doc);
-    const [tab, setTab] = useState("day"), [date5, setDate] = useState(() => lesson?.date || todayISO()), [period, setPeriod] = useState(() => lesson ? lessonPeriod(lesson) : ""), [selected, setSelected] = useState(() => getRequestedStudent() || doc.students[0]?.id || ""), [override, setOverride] = useState(false), [month, setMonth] = useState(todayISO().slice(0, 7)), [through, setThrough] = useState(todayISO), [print, setPrint] = useState(false);
+    const [initial] = useState(() => initialAttendanceScope(doc, getProfile())), [tab, setTab] = useState("day"), [date5, setDate] = useState(initial.date), [period, setPeriod] = useState(initial.period), [selected, setSelected] = useState(() => getRequestedStudent() || doc.students[0]?.id || ""), [override, setOverride] = useState(false), [month, setMonth] = useState(todayISO().slice(0, 7)), [through, setThrough] = useState(todayISO), [print, setPrint] = useState(false);
     const sheet = useRef(null);
     const [lessonReport, setLessonReport] = useState(null), [opening2, setOpening] = useState(false), [openError, setOpenError] = useState(false);
     useEffect(() => subscribeLesson(() => {
@@ -53056,9 +53109,19 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       }
     }), [doc.cp.classId]);
     useEffect(() => {
+      if (!hasPendingLesson(doc)) selectRegisterContext(doc, initial.date, initial.period);
+    }, [doc.cp.classId]);
+    function selectScope(nextDate, nextPeriod) {
+      setDate(nextDate);
+      setPeriod(nextPeriod);
+      if (nextDate !== date5) setOverride(false);
+      selectRegisterContext(doc, nextDate, nextPeriod);
+    }
+    const isLesson = !!period && typeof period === "object";
+    useEffect(() => {
       if (!doc.students.some((s) => s.id === selected)) setSelected(doc.students[0]?.id || "");
     }, [doc.students, selected]);
-    const data = attendance(doc.cp?.attendance), statuses = data.settings.statuses, session = getSession(doc, date5, period), record = session?.records?.[selected] || {}, canEdit = isSchoolDay(date5, doc.settings) || override || session?.overrideNonSchoolDay;
+    const data = attendance(doc.cp?.attendance), statuses = data.settings.statuses, session = period === null ? void 0 : getSession(doc, date5, period), record = session?.records?.[selected] || {}, canEdit = period !== null && !hasPendingLesson(doc) && (isSchoolDay(date5, doc.settings) || override || session?.overrideNonSchoolDay);
     function mark(status, id = selected) {
       onUpdate((d) => setRecords(d, date5, period, [id], { status }, override));
     }
@@ -53078,21 +53141,20 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
         mark(STATUS_IDS[+e.key - 1]);
       }
     }
-    const savedRegisters = Object.entries(doc.cp?.attendance?.sessions || {}).filter(([, s]) => s.date === date5), currentRegister = sessionKey(date5, period);
+    const savedRegisters = Object.entries(doc.cp?.attendance?.sessions || {}).filter(([, s]) => s.date === date5), currentRegister = sessionKey(date5, period ?? "");
     function chooseRegister(key4) {
       const entry2 = savedRegisters.find(([id]) => id === key4)?.[1];
       if (!entry2) return;
       const next = entry2.lesson ? { lessonId: entry2.lesson.id, periodId: entry2.lesson.periodId, label: entry2.period, start: entry2.lesson.start, end: entry2.lesson.end } : entry2.period;
-      setPeriod(next);
-      selectRegisterContext(doc, date5, next);
+      selectScope(date5, next);
     }
     const totals = doc.students.map((s) => ({ student: s, ...studentSummary(doc, s.id, through) }));
     const sum = (key4) => totals.reduce((n, s) => n + s[key4], 0), denom = sum("present") + sum("late") + sum("absent");
     const count = (status) => doc.students.filter((s) => (session?.records[s.id]?.status || "unmarked") === status).length, marked = doc.students.filter((s) => session?.records[s.id]?.status).length;
-    const copySource = canEdit && typeof period === "object" && !Object.values(session?.records || {}).some((r) => r.status) ? earlierSession(doc, date5, period) : null;
+    const copySource = canEdit && isLesson && !Object.values(session?.records || {}).some((r) => r.status) ? earlierSession(doc, date5, period) : null;
     const copyLabel = copySource ? uxText("att.copyFrom").replace("{lesson}", (copySource.period || "") + (copySource.lesson?.start ? " \xB7 " + displayTime(copySource.lesson.start) : "")) : "";
-    const scopeLabel = (typeof period === "object" ? period.label : period || uxText("att.wholeDay")) + " \xB7 " + displayDate(date5);
-    const nextLesson = typeof period === "object" ? teachingLessons(getProfile(), date5).find((l) => !l.cancelled && l.period.start >= period.end) : null;
+    const scopeLabel = (isLesson ? period.label : period === null ? uxText("att.chooseRegister") : period || uxText("att.wholeDay")) + " \xB7 " + displayDate(date5);
+    const nextLesson = isLesson ? teachingLessons(getProfile(), date5).find((l) => !l.cancelled && l.period.start >= period.end) : null;
     async function advance() {
       if (!nextLesson) return;
       setOpening(true);
@@ -53107,18 +53169,13 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     }
     const views = /* @__PURE__ */ cpJsx(Segmented, { label: t("shell.attendance") }, /* @__PURE__ */ cpJsx(Command, { id: "attendance.day", active: tab === "day", "aria-pressed": tab === "day", onClick: () => setTab("day") }, t("attendance.day")), /* @__PURE__ */ cpJsx(UxButton, { id: "attendance.matrix", active: tab === "matrix", "aria-pressed": tab === "matrix", onClick: () => setTab("matrix") }), ["month", "summary"].map((value) => /* @__PURE__ */ cpJsx(Command, { key: value, id: "attendance." + value, active: tab === value, "aria-pressed": tab === value, onClick: () => setTab(value) }, t("attendance." + value))));
     const more = /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx(Command, { id: "attendance.settings", active: tab === "settings", onClick: () => setTab("settings") }, t("attendance.settings")), /* @__PURE__ */ cpJsx(Command, { id: "attendance.excel", onClick: () => exportAttendance(doc) }, t("attendance.excel")), /* @__PURE__ */ cpJsx(Command, { id: "attendance.print", onClick: () => setPrint(true) }, t("attendance.print")));
-    return /* @__PURE__ */ cpJsx(ModuleFrame, { titleKey: "shell.attendance", icon: "attendance", lead: "ux.att.lead", info: /* @__PURE__ */ cpJsx(React.Fragment, null, t("attendance.keys"), " ", t("improve.registerHint"), " ", uxText("attendance.contextHelp"), " ", t("improve.lessonRegister"), " ", t("improve.copyRegisterHint")), actions: views, more }, !doc.students.length ? /* @__PURE__ */ cpJsx(EmptyRoster, null) : /* @__PURE__ */ cpJsx(React.Fragment, null, (tab === "day" || tab === "matrix") && /* @__PURE__ */ cpJsx("div", { ref: sheet, tabIndex: 0, onKeyDown: bindAction("m3.attendance.keyboard", "singleton", "onKeyDown", keyboard), style: panel }, /* @__PURE__ */ cpJsx("div", { className: "cp-att-bar" }, /* @__PURE__ */ cpJsx("div", { className: "cp-att-scope", "data-lesson": typeof period === "object" ? "true" : "false" }, /* @__PURE__ */ cpJsx("span", { className: "cp-att-scope-label" }, cpRaw(scopeLabel)), /* @__PURE__ */ cpJsx(Field2, { id: "attendance.date", label: "attendance.date", type: "date", value: date5, onChange: (e) => {
-      setDate(e.target.value);
-      setPeriod("");
-      clearLesson();
-      setOverride(false);
-    } }), /* @__PURE__ */ cpJsx(PeriodPicker, { doc, date: date5, period, setPeriod, saved: savedRegisters, onSaved: chooseRegister })), /* @__PURE__ */ cpJsx(Command, { id: "attendance.allPresent", className: "cp-ux-primary cp-att-icon", disabled: !canEdit, title: t("attendance.allPresent"), "aria-label": t("attendance.allPresent"), onClick: () => onUpdate((d) => setRecords(d, date5, period, d.students.map((s) => s.id), { status: "present" }, override)), style: { background: "var(--ux-primary)", color: "var(--cp-primary-fg)", border: "1px solid var(--ux-primary)" } }, /* @__PURE__ */ cpJsx(AllPresentIcon, null)), canEdit && marked > 0 && /* @__PURE__ */ cpJsx(UxButton, { id: "att.clearAll", className: "cp-att-icon", title: uxText("att.clearAll"), "aria-label": uxText("att.clearAll"), onClick: () => onUpdate((d) => setRecords(d, date5, period, d.students.map((s) => s.id), { status: null }, override)) }, /* @__PURE__ */ cpJsx(ClearAllIcon, null)), copySource && /* @__PURE__ */ cpJsx(Command, { namespace: "improve", id: "copyRegister", className: "cp-att-copy cp-att-icon", title: copyLabel, "aria-label": copyLabel, onClick: () => onUpdate((d) => copyEarlierSession(d, date5, period, override)) }, /* @__PURE__ */ cpJsx(CopyIcon, null)), /* @__PURE__ */ cpJsx("span", { role: "status", className: "cp-att-progress" }, uxText("attendance.progress"), ": ", marked, "/", doc.students.length, " \xB7 ", uxText(!session ? "attendance.empty" : marked === doc.students.length ? "attendance.complete" : "attendance.partial"))), !isSchoolDay(date5, doc.settings) && /* @__PURE__ */ cpJsx("div", { style: { ...row, marginBlock: 10 } }, /* @__PURE__ */ cpJsx("span", null, t("attendance.nonSchool")), /* @__PURE__ */ cpJsx("label", null, /* @__PURE__ */ cpJsx("input", { type: "checkbox", checked: override, ...controlProps("m3.attendance.override", (e) => setOverride(e.target.checked)) }), t("attendance.override"))), /* @__PURE__ */ cpJsx(StatusBar, { statuses, count, total: doc.students.length }), tab === "matrix" ? /* @__PURE__ */ cpJsx(AttendanceMatrix, { doc, date: date5, period, session, statuses, canEdit, override, onUpdate }) : /* @__PURE__ */ cpJsx("div", { style: { display: "grid", gridTemplateColumns: "minmax(220px,1fr) minmax(320px,2fr)", gap: 16 } }, /* @__PURE__ */ cpJsx("div", { style: { maxHeight: 430, overflow: "auto", display: "flex", flexDirection: "column", gap: 5 } }, doc.students.map((student) => {
+    return /* @__PURE__ */ cpJsx(ModuleFrame, { titleKey: "shell.attendance", icon: "attendance", lead: "ux.att.lead", info: /* @__PURE__ */ cpJsx(React.Fragment, null, t("attendance.keys"), " ", t("improve.registerHint"), " ", uxText("attendance.contextHelp"), " ", t("improve.lessonRegister"), " ", t("improve.copyRegisterHint")), actions: views, more }, !doc.students.length ? /* @__PURE__ */ cpJsx(EmptyRoster, null) : /* @__PURE__ */ cpJsx(React.Fragment, null, (tab === "day" || tab === "matrix") && /* @__PURE__ */ cpJsx("div", { ref: sheet, tabIndex: 0, onKeyDown: bindAction("m3.attendance.keyboard", "singleton", "onKeyDown", keyboard), style: panel }, /* @__PURE__ */ cpJsx("div", { className: "cp-att-bar" }, /* @__PURE__ */ cpJsx("div", { className: "cp-att-scope", "data-lesson": isLesson ? "true" : "false" }, /* @__PURE__ */ cpJsx("span", { className: "cp-att-scope-label" }, cpRaw(scopeLabel)), /* @__PURE__ */ cpJsx(Field2, { id: "attendance.date", label: "attendance.date", type: "date", value: date5, onChange: (e) => selectScope(e.target.value, "") }), /* @__PURE__ */ cpJsx(PeriodPicker, { key: date5, doc, date: date5, period, setPeriod: (next) => selectScope(date5, next), saved: savedRegisters, onSaved: chooseRegister })), /* @__PURE__ */ cpJsx(Command, { id: "attendance.allPresent", className: "cp-ux-primary cp-att-icon", disabled: !canEdit, title: t("attendance.allPresent"), "aria-label": t("attendance.allPresent"), onClick: () => onUpdate((d) => setRecords(d, date5, period, d.students.map((s) => s.id), { status: "present" }, override)), style: { background: "var(--ux-primary)", color: "var(--cp-primary-fg)", border: "1px solid var(--ux-primary)" } }, /* @__PURE__ */ cpJsx(AllPresentIcon, null)), canEdit && marked > 0 && /* @__PURE__ */ cpJsx(UxButton, { id: "att.clearAll", className: "cp-att-icon", title: uxText("att.clearAll"), "aria-label": uxText("att.clearAll"), onClick: () => onUpdate((d) => setRecords(d, date5, period, d.students.map((s) => s.id), { status: null }, override)) }, /* @__PURE__ */ cpJsx(ClearAllIcon, null)), copySource && /* @__PURE__ */ cpJsx(Command, { namespace: "improve", id: "copyRegister", className: "cp-att-copy cp-att-icon", title: copyLabel, "aria-label": copyLabel, onClick: () => onUpdate((d) => copyEarlierSession(d, date5, period, override)) }, /* @__PURE__ */ cpJsx(CopyIcon, null)), /* @__PURE__ */ cpJsx("span", { role: "status", className: "cp-att-progress" }, uxText("attendance.progress"), ": ", marked, "/", doc.students.length, " \xB7 ", uxText(!session ? "attendance.empty" : marked === doc.students.length ? "attendance.complete" : "attendance.partial"))), !isSchoolDay(date5, doc.settings) && /* @__PURE__ */ cpJsx("div", { style: { ...row, marginBlock: 10 } }, /* @__PURE__ */ cpJsx("span", null, t("attendance.nonSchool")), /* @__PURE__ */ cpJsx("label", null, /* @__PURE__ */ cpJsx("input", { type: "checkbox", checked: override, ...controlProps("m3.attendance.override", (e) => setOverride(e.target.checked)) }), t("attendance.override"))), /* @__PURE__ */ cpJsx(StatusBar, { statuses, count, total: doc.students.length }), tab === "matrix" ? /* @__PURE__ */ cpJsx(AttendanceMatrix, { doc, date: date5, period, session, statuses, canEdit, override, onUpdate }) : /* @__PURE__ */ cpJsx("div", { style: { display: "grid", gridTemplateColumns: "minmax(220px,1fr) minmax(320px,2fr)", gap: 16 } }, /* @__PURE__ */ cpJsx("div", { style: { maxHeight: 430, overflow: "auto", display: "flex", flexDirection: "column", gap: 5 } }, doc.students.map((student) => {
       const r = session?.records?.[student.id], status = statuses.find((s) => s.id === r?.status);
       return /* @__PURE__ */ cpJsx(Command, { key: student.id, id: "attendance.student", context: student.id, "data-attendance-student": student.id, active: selected === student.id, onClick: () => setSelected(student.id), style: { display: "flex", justifyContent: "space-between", textAlign: "start", padding: "10px 12px" } }, /* @__PURE__ */ cpJsx("span", { dir: doc.settings.studentsDir || doc.settings.dir }, cpRaw(student.name)), /* @__PURE__ */ cpJsx("span", { style: { background: status?.color || "#f1f5f9", color: colourText(status?.color || "#f1f5f9"), padding: "2px 6px", borderRadius: 5 } }, status ? /* @__PURE__ */ cpJsx("span", { className: "cp-att-chip" }, /* @__PURE__ */ cpJsx(StatusIcon, { status, size: 14 }), cpRaw(statusName(status))) : t("attendance.unmarked")));
-    })), /* @__PURE__ */ cpJsx("div", null, /* @__PURE__ */ cpJsx("strong", { style: { fontSize: "var(--cp-fs-label)" } }, cpRaw(doc.students.find((s) => s.id === selected)?.name || "")), /* @__PURE__ */ cpJsx("div", { style: { display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, marginBlock: 14 } }, statuses.map((status, index) => /* @__PURE__ */ cpJsx(Command, { key: status.id, id: "attendance." + status.id, disabled: !canEdit, "aria-pressed": record.status === status.id, onClick: () => mark(status.id), style: { padding: 18, fontSize: "var(--cp-fs-label)", background: status.color, color: colourText(status.color), border: record.status === status.id ? "2px solid var(--n-800)" : "2px solid transparent" } }, /* @__PURE__ */ cpJsx("span", { className: "cp-att-status-label" }, /* @__PURE__ */ cpJsx(StatusIcon, { status, size: 22 }), cpRaw(statusName(status))), /* @__PURE__ */ cpJsx("span", { className: "cp-att-key" }, index + 1)))), /* @__PURE__ */ cpJsx("div", { style: row }, /* @__PURE__ */ cpJsx(Field2, { id: "attendance.minutes", label: "attendance.minutes", type: "number", min: "0", step: "1", disabled: !canEdit, value: record.minutesLate ?? "", onChange: (e) => onUpdate((d) => setRecords(d, date5, period, [selected], { minutesLate: e.target.value === "" ? null : Math.max(0, Math.floor(+e.target.value || 0)) }, override)) }), /* @__PURE__ */ cpJsx(Field2, { id: "attendance.note", label: "attendance.note", disabled: !canEdit, maxLength: 500, value: record.note || "", onChange: (e) => onUpdate((d) => setRecords(d, date5, period, [selected], { note: e.target.value.replace(/[\r\n]/g, " ") }, override)) }), /* @__PURE__ */ cpJsx(Command, { id: "attendance.clear", disabled: !canEdit, onClick: () => mark(null) }, t("attendance.clear"))))), /* @__PURE__ */ cpJsx("div", { className: "cp-ux-actions cp-att-then", "data-complete": session && marked === doc.students.length ? "true" : "false" }, /* @__PURE__ */ cpJsx("span", null, uxText("att.then"), cpRaw(" \xB7 " + scopeLabel)), nextLesson && /* @__PURE__ */ cpJsx(UxButton, { id: "attendance.next", disabled: opening2, onClick: advance }), /* @__PURE__ */ cpJsx(UxButton, { id: "attendance.behaviour", onClick: () => setView("Behaviour") }), /* @__PURE__ */ cpJsx(UxButton, { id: "attendance.participation", onClick: () => setView("Marks") }), /* @__PURE__ */ cpJsx(UxButton, { id: "attendance.observations", onClick: () => setView("module:observations") }), /* @__PURE__ */ cpJsx(UxButton, { id: "attendance.lessonReport", disabled: !session, onClick: () => setLessonReport({ ...reportDefaults(doc, getProfile()), type: "class", from: date5, through: date5, attendanceMode: "single", sessionKey: sessionKey(date5, period), lessonLedger: true, eventComments: false }) })), openError && /* @__PURE__ */ cpJsx("p", { role: "alert" }, uxText("attendance.openError"))), tab === "month" && /* @__PURE__ */ cpJsx("div", { style: panel }, /* @__PURE__ */ cpJsx("div", { style: row }, /* @__PURE__ */ cpJsx(Field2, { id: "attendance.monthInput", label: "attendance.month", type: "month", value: month, onChange: (e) => setMonth(e.target.value) }), /* @__PURE__ */ cpJsx(Field2, { id: "attendance.period", label: "attendance.period", value: typeof period === "object" ? period.label : period, disabled: typeof period === "object", maxLength: 80, onChange: (e) => setPeriod(e.target.value) }), /* @__PURE__ */ cpJsx("label", null, /* @__PURE__ */ cpJsx("input", { type: "checkbox", checked: override, ...controlProps("m3.attendance.override", (e) => setOverride(e.target.checked)) }), t("attendance.override"))), /* @__PURE__ */ cpJsx("div", { style: { overflow: "auto", marginBlockStart: 12 } }, /* @__PURE__ */ cpJsx("table", { style: { borderCollapse: "collapse", fontSize: "var(--cp-fs-caption)", width: "100%" } }, /* @__PURE__ */ cpJsx("thead", null, /* @__PURE__ */ cpJsx("tr", null, /* @__PURE__ */ cpJsx("th", { style: { textAlign: "start" } }, t("attendance.student")), monthDates(month).map((day) => /* @__PURE__ */ cpJsx("th", { key: day, style: { background: isSchoolDay(day, doc.settings) ? "#fff" : "#f1f5f9", padding: 4 } }, day.slice(-2))))), /* @__PURE__ */ cpJsx("tbody", null, doc.students.map((student) => /* @__PURE__ */ cpJsx("tr", { key: student.id }, /* @__PURE__ */ cpJsx("th", { style: { whiteSpace: "nowrap", textAlign: "start", paddingInlineEnd: 8 } }, cpRaw(student.name)), monthDates(month).map((day) => {
-      const s = getSession(doc, day, period), r = s?.records?.[student.id], status = statuses.find((v) => v.id === r?.status), school = isSchoolDay(day, doc.settings);
-      return /* @__PURE__ */ cpJsx("td", { key: day, style: { background: school ? "#fff" : "#f1f5f9", padding: 2 } }, /* @__PURE__ */ cpJsx(Command, { id: "attendance.monthCell", context: student.id + ":" + day, title: day + " \xB7 " + (status ? statusName(status) : t("attendance.unmarked")), disabled: !school && !override && !s?.overrideNonSchoolDay, onClick: () => {
-        setDate(day);
+    })), /* @__PURE__ */ cpJsx("div", null, /* @__PURE__ */ cpJsx("strong", { style: { fontSize: "var(--cp-fs-label)" } }, cpRaw(doc.students.find((s) => s.id === selected)?.name || "")), /* @__PURE__ */ cpJsx("div", { style: { display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, marginBlock: 14 } }, statuses.map((status, index) => /* @__PURE__ */ cpJsx(Command, { key: status.id, id: "attendance." + status.id, disabled: !canEdit, "aria-pressed": record.status === status.id, onClick: () => mark(status.id), style: { padding: 18, fontSize: "var(--cp-fs-label)", background: status.color, color: colourText(status.color), border: record.status === status.id ? "2px solid var(--n-800)" : "2px solid transparent" } }, /* @__PURE__ */ cpJsx("span", { className: "cp-att-status-label" }, /* @__PURE__ */ cpJsx(StatusIcon, { status, size: 22 }), cpRaw(statusName(status))), /* @__PURE__ */ cpJsx("span", { className: "cp-att-key" }, index + 1)))), /* @__PURE__ */ cpJsx("div", { style: row }, /* @__PURE__ */ cpJsx(Field2, { id: "attendance.minutes", label: "attendance.minutes", type: "number", min: "0", step: "1", disabled: !canEdit, value: record.minutesLate ?? "", onChange: (e) => onUpdate((d) => setRecords(d, date5, period, [selected], { minutesLate: e.target.value === "" ? null : Math.max(0, Math.floor(+e.target.value || 0)) }, override)) }), /* @__PURE__ */ cpJsx(Field2, { id: "attendance.note", label: "attendance.note", disabled: !canEdit, maxLength: 500, value: record.note || "", onChange: (e) => onUpdate((d) => setRecords(d, date5, period, [selected], { note: e.target.value.replace(/[\r\n]/g, " ") }, override)) }), /* @__PURE__ */ cpJsx(Command, { id: "attendance.clear", disabled: !canEdit, onClick: () => mark(null) }, t("attendance.clear"))))), /* @__PURE__ */ cpJsx("div", { className: "cp-ux-actions cp-att-then", "data-complete": session && marked === doc.students.length ? "true" : "false" }, /* @__PURE__ */ cpJsx("span", null, uxText("att.then"), cpRaw(" \xB7 " + scopeLabel)), nextLesson && /* @__PURE__ */ cpJsx(UxButton, { id: "attendance.next", disabled: opening2, onClick: advance }), /* @__PURE__ */ cpJsx(UxButton, { id: "attendance.behaviour", onClick: () => setView("Behaviour") }), /* @__PURE__ */ cpJsx(UxButton, { id: "attendance.participation", onClick: () => setView("Marks") }), /* @__PURE__ */ cpJsx(UxButton, { id: "attendance.observations", onClick: () => setView("module:observations") }), /* @__PURE__ */ cpJsx(UxButton, { id: "attendance.lessonReport", disabled: !session, onClick: () => setLessonReport({ ...reportDefaults(doc, getProfile()), type: "class", from: date5, through: date5, attendanceMode: "single", sessionKey: sessionKey(date5, period), lessonLedger: true, eventComments: false }) })), openError && /* @__PURE__ */ cpJsx("p", { role: "alert" }, uxText("attendance.openError"))), tab === "month" && /* @__PURE__ */ cpJsx("div", { style: panel }, /* @__PURE__ */ cpJsx("div", { style: row }, /* @__PURE__ */ cpJsx(Field2, { id: "attendance.monthInput", label: "attendance.month", type: "month", value: month, onChange: (e) => setMonth(e.target.value) }), /* @__PURE__ */ cpJsx(Field2, { id: "attendance.period", label: "attendance.period", value: isLesson ? period.label : period || "", disabled: isLesson, maxLength: 80, onChange: (e) => selectScope(date5, e.target.value) }), /* @__PURE__ */ cpJsx("label", null, /* @__PURE__ */ cpJsx("input", { type: "checkbox", checked: override, ...controlProps("m3.attendance.override", (e) => setOverride(e.target.checked)) }), t("attendance.override"))), /* @__PURE__ */ cpJsx("div", { style: { overflow: "auto", marginBlockStart: 12 } }, /* @__PURE__ */ cpJsx("table", { style: { borderCollapse: "collapse", fontSize: "var(--cp-fs-caption)", width: "100%" } }, /* @__PURE__ */ cpJsx("thead", null, /* @__PURE__ */ cpJsx("tr", null, /* @__PURE__ */ cpJsx("th", { style: { textAlign: "start" } }, t("attendance.student")), monthDates(month).map((day) => /* @__PURE__ */ cpJsx("th", { key: day, style: { background: isSchoolDay(day, doc.settings) ? "#fff" : "#f1f5f9", padding: 4 } }, day.slice(-2))))), /* @__PURE__ */ cpJsx("tbody", null, doc.students.map((student) => /* @__PURE__ */ cpJsx("tr", { key: student.id }, /* @__PURE__ */ cpJsx("th", { style: { whiteSpace: "nowrap", textAlign: "start", paddingInlineEnd: 8 } }, cpRaw(student.name)), monthDates(month).map((day) => {
+      const s = period === null ? void 0 : getSession(doc, day, period), r = s?.records?.[student.id], status = statuses.find((v) => v.id === r?.status), school = isSchoolDay(day, doc.settings);
+      return /* @__PURE__ */ cpJsx("td", { key: day, style: { background: school ? "#fff" : "#f1f5f9", padding: 2 } }, /* @__PURE__ */ cpJsx(Command, { id: "attendance.monthCell", context: student.id + ":" + day, title: day + " \xB7 " + (status ? statusName(status) : t("attendance.unmarked")), disabled: period === null || !school && !override && !s?.overrideNonSchoolDay, onClick: () => {
+        selectScope(day, period);
         setSelected(student.id);
         setTab("day");
       }, style: { padding: "5px", minWidth: 28, background: status?.color || "transparent", color: colourText(status?.color || "#ffffff") } }, cpRaw(status?.icon || "\xB7")));
