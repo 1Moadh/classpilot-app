@@ -1906,6 +1906,50 @@ td[data-cp-att],th[data-cp-att]{background:var(--cp-att-bg)!important;box-shadow
 .cp-module .cp-lesson-card{outline:none!important}
 .cp-lesson-what{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 8px}
 .cp-lesson-what b{margin:0}
+
+/* SP10: owner-approved certificate studio, 6 November 2026. The paper and domain handlers stay original. */
+.cp-cert-studio{display:grid!important;grid-template-columns:280px minmax(0,1fr)!important;gap:16px!important;align-items:start}
+.cp-cert-studio>.cp-cert-recipients{grid-column:auto!important;display:grid;gap:12px;min-inline-size:0}
+.cp-cert-suggest{padding:12px!important;border:1px solid var(--cp-border)!important;background:var(--cp-surface)!important;border-radius:12px!important}
+.cp-cert-suggest>h2{margin:0 0 8px!important;font-size:var(--cp-fs-label)!important}
+.cp-cert-suggest li{display:flex!important;align-items:start!important;gap:8px!important;padding-block:6px!important;border-block-end:1px solid var(--cp-border)}
+.cp-cert-suggest li:last-child{border-block-end:0}
+.cp-cert-suggest li>div{flex:1;min-inline-size:0}
+.cp-cert-members-toggle{display:flex;align-items:center;gap:6px;inline-size:100%;min-block-size:32px;cursor:pointer;border:0;padding:0;background:transparent;color:var(--cp-text);font:inherit;text-align:start}
+.cp-cert-members-toggle::before{content:'›';font-size:18px;color:var(--cp-muted)}
+.cp-cert-members-toggle:dir(rtl)::before{transform:rotate(180deg)}
+.cp-cert-members-toggle[aria-expanded=true]::before{transform:rotate(90deg)}
+.cp-cert-members-toggle>b{flex:1;font-size:var(--cp-fs-body)!important}
+.cp-cert-count{font-variant-numeric:tabular-nums;font-size:var(--cp-fs-body);font-weight:700;min-inline-size:24px;text-align:center;border-radius:5px;background:var(--cp-bg);padding:2px 4px}
+.cp-cert-members{max-block-size:144px;overflow:auto;padding-block:6px;padding-inline:16px 0;font-size:var(--cp-fs-caption);line-height:1.8;color:var(--cp-muted)}
+.cp-cert-members:not([hidden]){display:block}
+.cp-cert-members>bdi{display:block}
+.cp-cert-range{margin-block-start:8px}
+.cp-cert-recipients .cp-picker{padding:12px!important}
+.cp-cert-recipients .cp-picker-list{max-block-size:310px!important}
+.cp-cert-centre{min-inline-size:0;gap:12px}
+.cp-cert-toolbar{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.cp-cert-preview-tools{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.cp-cert-preview-tools .cp-draft-note{margin:0;padding:4px 8px;font-size:var(--cp-fs-caption);border-radius:5px;display:flex;align-items:center;gap:6px}
+.cp-certificate-live.cp-cert-stage{max-block-size:none!important;min-block-size:480px!important;padding:20px!important;border:1px solid var(--cp-border)!important;border-radius:12px!important;background:var(--cp-bg)!important}
+.cp-cert-stage .cp-empty{border:0!important;background:transparent!important;box-shadow:none!important}
+.cp-cert-stage .cp-empty>b{font-size:var(--cp-fs-label)!important;color:var(--cp-text)!important}
+.cp-cert-log{margin-block-start:16px!important;border-block-start:1px solid var(--cp-border);padding-block-start:12px}
+.cp-cert-design{margin:auto;inline-size:min(900px,calc(100vw - 48px));max-block-size:calc(100vh - 64px);padding:0;border:1px solid var(--cp-border);border-radius:12px;background:var(--cp-surface);color:var(--cp-text);box-shadow:0 24px 80px #0005;overflow:auto}
+.cp-cert-design::backdrop{background:#0006}
+.cp-cert-design>header{display:flex;align-items:center;justify-content:space-between;position:sticky;inset-block-start:0;z-index:1;padding:12px 16px;border-block-end:1px solid var(--cp-border);background:var(--cp-surface)}
+.cp-cert-design>header h2{margin:0;font-size:var(--cp-fs-label)}
+.cp-cert-design>header button{min-inline-size:32px;min-block-size:32px;border:1px solid var(--cp-border);border-radius:8px;background:var(--cp-surface);color:var(--cp-text);font:inherit;cursor:pointer}
+.cp-cert-design-body{padding:16px}
+.cp-cert-design .cp-cert-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+.cp-cert-design .cp-cert-text{grid-template-columns:1fr 1fr!important}
+.cp-cert-design .cp-cert-text>label{min-inline-size:0}
+.cp-cert-design textarea{min-block-size:80px}
+.cp-cert-design .cp-cert-other{margin-block:12px}
+@media(min-width:1600px){.cp-cert-studio{grid-template-columns:300px minmax(0,1fr)!important}}
+@media(max-width:1150px){.cp-cert-studio{grid-template-columns:250px minmax(0,1fr)!important;gap:12px!important}.cp-certificate-live.cp-cert-stage{padding:12px!important;min-block-size:360px!important}.cp-cert-toolbar{align-items:start}.cp-cert-design .cp-cert-grid{grid-template-columns:1fr 1fr!important}}
+@media(max-width:850px){.cp-cert-studio{grid-template-columns:minmax(0,1fr)!important}.cp-cert-design .cp-cert-text{grid-template-columns:1fr!important}}
+@media print{.cp-cert-design{display:none!important}}
 /* M56 design foundations (owner-supplied Master Implementation Brief, M56; design report §7–§8).
    One set of tokens for the frame and the new modules. Protected Gradebook views (Marks, Groups, Behaviour,
    Adjustments, Analysis, the original wheel, the Settings drawer and the class manager) do not use them. */
@@ -7937,7 +7981,10 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.cert.showing": "{n} of {total}",
     "ux.cert.chooseToPreview": "Choose recipients to preview",
     "ux.cert.chooseToPreviewHint": "Tick students in the recipients list, or use a suggestion.",
-    "ux.cert.design": "Design and text",
+    "ux.cert.designClose": "Close",
+    "ux.cert.members": "Show suggestion members",
+    "ux.cert.draft": "Draft",
+    "ux.cert.design": "Design & text",
     "ux.cert.otherText.ar": "Arabic text (for bilingual or Arabic printing)",
     "ux.cert.otherText.en": "English text (for bilingual or English printing)",
     "ux.cert.filled": "Filled in",
@@ -13610,7 +13657,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.cert.why.participation": "\u0623\u0639\u0644\u0649 \u0645\u0634\u0627\u0631\u0643\u0629",
     "ux.cert.why.attendance": "\u062D\u0636\u0648\u0631 \u0643\u0627\u0645\u0644 \u0641\u064A \u0627\u0644\u0641\u062A\u0631\u0629 \u0627\u0644\u0645\u062E\u062A\u0627\u0631\u0629",
     "ux.cert.noneFound": "\u0644\u0627 \u0623\u062D\u062F \u0628\u0639\u062F.",
-    "ux.cert.use": "\u0627\u062E\u062A\u064A\u0627\u0631",
+    "ux.cert.use": "\u0627\u062E\u062A\u0631",
     "ux.cert.rangeTitle": "\u0641\u062A\u0631\u0629 \u0627\u0644\u062D\u0636\u0648\u0631 \u0644\u0644\u0645\u0642\u062A\u0631\u062D\u0627\u062A",
     "ux.cert.zoom": "\u062D\u062C\u0645 \u0627\u0644\u0645\u0639\u0627\u064A\u0646\u0629",
     "ux.cert.zoom.fit": "\u0645\u0644\u0627\u0621\u0645\u0629",
@@ -13620,6 +13667,9 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.cert.showing": "{n} \u0645\u0646 {total}",
     "ux.cert.chooseToPreview": "\u0627\u062E\u062A\u0631 \u0627\u0644\u0645\u0633\u062A\u0644\u0645\u064A\u0646 \u0644\u0644\u0645\u0639\u0627\u064A\u0646\u0629",
     "ux.cert.chooseToPreviewHint": "\u062D\u062F\u0651\u062F \u0627\u0644\u0637\u0644\u0628\u0629 \u0641\u064A \u0642\u0627\u0626\u0645\u0629 \u0627\u0644\u0645\u0633\u062A\u0644\u0645\u064A\u0646\u060C \u0623\u0648 \u0627\u0633\u062A\u062E\u062F\u0645 \u0623\u062D\u062F \u0627\u0644\u0645\u0642\u062A\u0631\u062D\u0627\u062A.",
+    "ux.cert.designClose": "\u0625\u063A\u0644\u0627\u0642",
+    "ux.cert.members": "\u0639\u0631\u0636 \u0637\u0644\u0627\u0628 \u0627\u0644\u0627\u0642\u062A\u0631\u0627\u062D",
+    "ux.cert.draft": "\u0645\u0633\u0648\u062F\u0629",
     "ux.cert.design": "\u0627\u0644\u062A\u0635\u0645\u064A\u0645 \u0648\u0627\u0644\u0646\u0635",
     "ux.cert.otherText.ar": "\u0627\u0644\u0646\u0635 \u0627\u0644\u0639\u0631\u0628\u064A (\u0644\u0644\u0637\u0628\u0627\u0639\u0629 \u0627\u0644\u062B\u0646\u0627\u0626\u064A\u0629 \u0627\u0644\u0644\u063A\u0629 \u0623\u0648 \u0627\u0644\u0639\u0631\u0628\u064A\u0629)",
     "ux.cert.otherText.en": "\u0627\u0644\u0646\u0635 \u0627\u0644\u0625\u0646\u062C\u0644\u064A\u0632\u064A (\u0644\u0644\u0637\u0628\u0627\u0639\u0629 \u0627\u0644\u062B\u0646\u0627\u0626\u064A\u0629 \u0627\u0644\u0644\u063A\u0629 \u0623\u0648 \u0627\u0644\u0625\u0646\u062C\u0644\u064A\u0632\u064A\u0629)",
@@ -23780,7 +23830,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       "icon": null,
       "shortcut": null,
       "availability": "rendered-and-not-disabled",
-      "canonicalHome": "cert:context",
+      "canonicalHome": "CertificateDesignDialog:fields",
       "events": [
         "onClick"
       ],
@@ -24144,7 +24194,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       "icon": null,
       "shortcut": null,
       "availability": "rendered-and-not-disabled",
-      "canonicalHome": "cert:context",
+      "canonicalHome": "CertificateDesignDialog:fields",
       "events": [
         "onChange"
       ],
@@ -24157,7 +24207,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       "icon": null,
       "shortcut": null,
       "availability": "rendered-and-not-disabled",
-      "canonicalHome": "cert:context",
+      "canonicalHome": "CertificateDesignDialog:fields",
       "events": [
         "onChange"
       ],
@@ -24170,7 +24220,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       "icon": null,
       "shortcut": null,
       "availability": "rendered-and-not-disabled",
-      "canonicalHome": "cert:context",
+      "canonicalHome": "CertificateDesignDialog:fields",
       "events": [
         "onChange"
       ],
@@ -24183,7 +24233,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       "icon": null,
       "shortcut": null,
       "availability": "rendered-and-not-disabled",
-      "canonicalHome": "cert:context",
+      "canonicalHome": "CertificateDesignDialog:fields",
       "events": [
         "onChange"
       ],
@@ -24196,7 +24246,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       "icon": null,
       "shortcut": null,
       "availability": "rendered-and-not-disabled",
-      "canonicalHome": "cert:context",
+      "canonicalHome": "CertificateDesignDialog:fields",
       "events": [
         "onChange"
       ],
@@ -24209,7 +24259,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       "icon": null,
       "shortcut": null,
       "availability": "rendered-and-not-disabled",
-      "canonicalHome": "cert:context",
+      "canonicalHome": "CertificateDesignDialog:fields",
       "events": [
         "onChange"
       ],
@@ -24222,7 +24272,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       "icon": null,
       "shortcut": null,
       "availability": "rendered-and-not-disabled",
-      "canonicalHome": "cert:context",
+      "canonicalHome": "CertificateDesignDialog:fields",
       "events": [
         "onChange"
       ],
@@ -24235,7 +24285,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       "icon": null,
       "shortcut": null,
       "availability": "rendered-and-not-disabled",
-      "canonicalHome": "cert:context",
+      "canonicalHome": "CertificateDesignDialog:fields",
       "events": [
         "onChange"
       ],
@@ -24248,7 +24298,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       "icon": null,
       "shortcut": null,
       "availability": "rendered-and-not-disabled",
-      "canonicalHome": "cert:context",
+      "canonicalHome": "CertificateDesignDialog:fields",
       "events": [
         "onChange"
       ],
@@ -24261,7 +24311,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       "icon": null,
       "shortcut": null,
       "availability": "rendered-and-not-disabled",
-      "canonicalHome": "cert:context",
+      "canonicalHome": "CertificateDesignDialog:fields",
       "events": [
         "onChange"
       ],
@@ -24274,7 +24324,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       "icon": null,
       "shortcut": null,
       "availability": "rendered-and-not-disabled",
-      "canonicalHome": "cert:context",
+      "canonicalHome": "CertificateDesignDialog:fields",
       "events": [
         "onChange"
       ],
@@ -24287,7 +24337,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       "icon": null,
       "shortcut": null,
       "availability": "rendered-and-not-disabled",
-      "canonicalHome": "cert:context",
+      "canonicalHome": "CertificateDesignDialog:fields",
       "events": [
         "onChange"
       ],
@@ -24300,7 +24350,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       "icon": null,
       "shortcut": null,
       "availability": "rendered-and-not-disabled",
-      "canonicalHome": "cert:context",
+      "canonicalHome": "CertificateDesignDialog:fields",
       "events": [
         "onChange"
       ],
@@ -24313,7 +24363,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       "icon": null,
       "shortcut": null,
       "availability": "rendered-and-not-disabled",
-      "canonicalHome": "cert:context",
+      "canonicalHome": "CertificateDesignDialog:fields",
       "events": [
         "onChange"
       ],
@@ -24326,7 +24376,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       "icon": null,
       "shortcut": null,
       "availability": "rendered-and-not-disabled",
-      "canonicalHome": "cert:context",
+      "canonicalHome": "CertificateDesignDialog:fields",
       "events": [
         "onChange"
       ],
@@ -30561,6 +30611,45 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       "meaning": "ux.setup.expand"
     },
     {
+      "id": "ux.cert.designOpen",
+      "labelKey": "ux.cert.design",
+      "icon": null,
+      "shortcut": null,
+      "availability": "rendered-and-not-disabled",
+      "canonicalHome": "Certificates:preview.toolbar",
+      "events": [
+        "onClick"
+      ],
+      "source": "src/modules",
+      "meaning": "ux.cert.designOpen"
+    },
+    {
+      "id": "ux.cert.designClose",
+      "labelKey": "ux.cert.designClose",
+      "icon": null,
+      "shortcut": null,
+      "availability": "rendered-and-not-disabled",
+      "canonicalHome": "CertificateDesignDialog:header",
+      "events": [
+        "onClick"
+      ],
+      "source": "src/modules",
+      "meaning": "ux.cert.designClose"
+    },
+    {
+      "id": "ux.cert.members",
+      "labelKey": "ux.cert.members",
+      "icon": null,
+      "shortcut": null,
+      "availability": "rendered-and-not-disabled",
+      "canonicalHome": "Certificates:suggestions",
+      "events": [
+        "onClick"
+      ],
+      "source": "src/modules",
+      "meaning": "ux.cert.members"
+    },
+    {
       "id": "ux.report.sort",
       "labelKey": "ux.report.sort",
       "icon": null,
@@ -31502,7 +31591,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       "icon": null,
       "shortcut": null,
       "availability": "rendered-and-not-disabled",
-      "canonicalHome": "cert:context",
+      "canonicalHome": "CertificateDesignDialog:fields",
       "events": [
         "onChange"
       ],
@@ -31515,7 +31604,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       "icon": null,
       "shortcut": null,
       "availability": "rendered-and-not-disabled",
-      "canonicalHome": "cert:context",
+      "canonicalHome": "CertificateDesignDialog:fields",
       "events": [
         "onChange"
       ],
@@ -33114,7 +33203,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       "icon": null,
       "shortcut": null,
       "availability": "rendered-and-not-disabled",
-      "canonicalHome": "cert:context",
+      "canonicalHome": "CertificateDesignDialog:fields",
       "events": [
         "onChange"
       ],
@@ -33127,7 +33216,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       "icon": null,
       "shortcut": null,
       "availability": "rendered-and-not-disabled",
-      "canonicalHome": "cert:context",
+      "canonicalHome": "CertificateDesignDialog:fields",
       "events": [
         "onChange"
       ],
@@ -36831,8 +36920,8 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     }, [at]);
     return [!!at, () => setAt(Date.now())];
   }
-  function DraftStatus({ dirty, context, onDiscard }) {
-    return dirty ? /* @__PURE__ */ cpJsx("p", { className: "cp-draft-note cp-status", "data-state": "draft", role: "status" }, /* @__PURE__ */ cpJsx("span", null, copy("draft.kept")), onDiscard && /* @__PURE__ */ cpJsx(Button, { action: "ux.draft.discard", role: "tertiary", context, onClick: onDiscard })) : null;
+  function DraftStatus({ dirty, context, onDiscard, label }) {
+    return dirty ? /* @__PURE__ */ cpJsx("p", { className: "cp-draft-note cp-status", "data-state": "draft", role: "status" }, /* @__PURE__ */ cpJsx("span", null, cpRaw(label ?? copy("draft.kept"))), onDiscard && /* @__PURE__ */ cpJsx(Button, { action: "ux.draft.discard", role: "tertiary", context, onClick: onDiscard })) : null;
   }
   function pickerMatches(students, query) {
     const needle = query.trim().toLocaleLowerCase();
@@ -37769,6 +37858,20 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     notify3();
   }
 
+  // src/modules/certificates/action-homes.js
+  var designFields = /* @__PURE__ */ new Set([
+    ...CERT_FIELDS.map((key4) => "m5.cert." + key4),
+    ...["template", "orientation", "language", "date", "logo", "removeLogo"].map((key4) => "m5.cert." + key4),
+    ...["gender", "reason", "subject", "subjectAr"].map((key4) => "ux.cert." + key4)
+  ]);
+  function certificateActionHome(id) {
+    if (designFields.has(id)) return "CertificateDesignDialog:fields";
+    if (id === "ux.cert.designOpen") return "Certificates:preview.toolbar";
+    if (id === "ux.cert.designClose") return "CertificateDesignDialog:header";
+    if (id === "ux.cert.members") return "Certificates:suggestions";
+    return null;
+  }
+
   // src/core/ux-actions.js
   var uxClick = {
     "report.generate": "report.generate",
@@ -37920,7 +38023,8 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
   Object.assign(uxClick, { "report.prevStudent": "report.prevStudent", "report.nextStudent": "report.nextStudent", "report.several": "report.several", "report.severalClose": "report.severalClose", "report.download": "report.download" });
   Object.assign(uxClick, { "classes.rowMenu": "classes.rowMenu", "classes.showAddSchool": "workspace.addSchool" });
   Object.assign(uxClick, { "home.nowMenu": "home.nowMenu", "setup.expand": "setup.expand" });
-  var uxActions = [...Object.entries(uxClick).map(([id, key4]) => [id, key4, "onClick"]), ...Object.entries(uxChange).map(([id, key4]) => [id, key4, "onChange"])].map(([id, key4, event]) => ({ id: "ux." + id, labelKey: "ux." + key4, icon: null, shortcut: null, availability: "rendered-and-not-disabled", canonicalHome: navigationHome("ux." + id) || (id.startsWith("nav.") ? "Workspace:sidebar" : id.startsWith("appearance.") ? "Workspace:context" : id.split(".")[0] + ":context"), events: [event], source: "src/modules", meaning: "ux." + id }));
+  Object.assign(uxClick, { "cert.designOpen": "cert.design", "cert.designClose": "cert.designClose", "cert.members": "cert.members" });
+  var uxActions = [...Object.entries(uxClick).map(([id, key4]) => [id, key4, "onClick"]), ...Object.entries(uxChange).map(([id, key4]) => [id, key4, "onChange"])].map(([id, key4, event]) => ({ id: "ux." + id, labelKey: "ux." + key4, icon: null, shortcut: null, availability: "rendered-and-not-disabled", canonicalHome: navigationHome("ux." + id) || certificateActionHome("ux." + id) || (id.startsWith("nav.") ? "Workspace:sidebar" : id.startsWith("appearance.") ? "Workspace:context" : id.split(".")[0] + ":context"), events: [event], source: "src/modules", meaning: "ux." + id }));
 
   // src/i18n/ux-copy.js
   var pairs = {
@@ -41509,7 +41613,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "cert.why.participation": ["Most participation", "\u0623\u0639\u0644\u0649 \u0645\u0634\u0627\u0631\u0643\u0629"],
     "cert.why.attendance": ["Perfect attendance in the chosen dates", "\u062D\u0636\u0648\u0631 \u0643\u0627\u0645\u0644 \u0641\u064A \u0627\u0644\u0641\u062A\u0631\u0629 \u0627\u0644\u0645\u062E\u062A\u0627\u0631\u0629"],
     "cert.noneFound": ["No student yet.", "\u0644\u0627 \u0623\u062D\u062F \u0628\u0639\u062F."],
-    "cert.use": ["Use", "\u0627\u062E\u062A\u064A\u0627\u0631"],
+    "cert.use": ["Use", "\u0627\u062E\u062A\u0631"],
     "cert.rangeTitle": ["Attendance dates for the suggestions", "\u0641\u062A\u0631\u0629 \u0627\u0644\u062D\u0636\u0648\u0631 \u0644\u0644\u0645\u0642\u062A\u0631\u062D\u0627\u062A"],
     "cert.zoom": ["Preview size", "\u062D\u062C\u0645 \u0627\u0644\u0645\u0639\u0627\u064A\u0646\u0629"],
     "cert.zoom.fit": ["Fit", "\u0645\u0644\u0627\u0621\u0645\u0629"],
@@ -41519,7 +41623,10 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "cert.showing": ["{n} of {total}", "{n} \u0645\u0646 {total}"],
     "cert.chooseToPreview": ["Choose recipients to preview", "\u0627\u062E\u062A\u0631 \u0627\u0644\u0645\u0633\u062A\u0644\u0645\u064A\u0646 \u0644\u0644\u0645\u0639\u0627\u064A\u0646\u0629"],
     "cert.chooseToPreviewHint": ["Tick students in the recipients list, or use a suggestion.", "\u062D\u062F\u0651\u062F \u0627\u0644\u0637\u0644\u0628\u0629 \u0641\u064A \u0642\u0627\u0626\u0645\u0629 \u0627\u0644\u0645\u0633\u062A\u0644\u0645\u064A\u0646\u060C \u0623\u0648 \u0627\u0633\u062A\u062E\u062F\u0645 \u0623\u062D\u062F \u0627\u0644\u0645\u0642\u062A\u0631\u062D\u0627\u062A."],
-    "cert.design": ["Design and text", "\u0627\u0644\u062A\u0635\u0645\u064A\u0645 \u0648\u0627\u0644\u0646\u0635"],
+    "cert.designClose": ["Close", "\u0625\u063A\u0644\u0627\u0642"],
+    "cert.members": ["Show suggestion members", "\u0639\u0631\u0636 \u0637\u0644\u0627\u0628 \u0627\u0644\u0627\u0642\u062A\u0631\u0627\u062D"],
+    "cert.draft": ["Draft", "\u0645\u0633\u0648\u062F\u0629"],
+    "cert.design": ["Design & text", "\u0627\u0644\u062A\u0635\u0645\u064A\u0645 \u0648\u0627\u0644\u0646\u0635"],
     "cert.otherText.ar": ["Arabic text (for bilingual or Arabic printing)", "\u0627\u0644\u0646\u0635 \u0627\u0644\u0639\u0631\u0628\u064A (\u0644\u0644\u0637\u0628\u0627\u0639\u0629 \u0627\u0644\u062B\u0646\u0627\u0626\u064A\u0629 \u0627\u0644\u0644\u063A\u0629 \u0623\u0648 \u0627\u0644\u0639\u0631\u0628\u064A\u0629)"],
     "cert.otherText.en": ["English text (for bilingual or English printing)", "\u0627\u0644\u0646\u0635 \u0627\u0644\u0625\u0646\u062C\u0644\u064A\u0632\u064A (\u0644\u0644\u0637\u0628\u0627\u0639\u0629 \u0627\u0644\u062B\u0646\u0627\u0626\u064A\u0629 \u0627\u0644\u0644\u063A\u0629 \u0623\u0648 \u0627\u0644\u0625\u0646\u062C\u0644\u064A\u0632\u064A\u0629)"],
     "cert.filled": ["Filled in", "\u0645\u0643\u062A\u0645\u0644"],
@@ -54061,7 +54168,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "print.close": "print.close"
   };
   var controls3 = { ...Object.fromEntries(PLAN_FIELDS.map((key4) => ["plans." + key4, "plans." + key4])), "plans.date": "plans.date", "plans.status": "plans.status", "plans.period": "plans.period", "plans.activity": "plans.activity", "plans.minutes": "plans.minutes", "plans.search": "plans.search", "plans.weekDate": "plans.weekDate", "plans.duplicateDate": "plans.duplicateDate", "plans.language": "print.language", ...Object.fromEntries(CERT_FIELDS.map((key4) => ["cert." + key4, "cert." + key4])), "cert.template": "cert.template", "cert.orientation": "cert.orientation", "cert.language": "print.language", "cert.date": "cert.date", "cert.logo": "cert.logo", "cert.select": "cert.select", "cert.from": "cert.from", "cert.through": "cert.through" };
-  var definition3 = (id, labelKey, event) => ({ id: "m5." + id, labelKey, icon: null, shortcut: null, availability: "rendered-and-not-disabled", canonicalHome: navigationHome("m5." + id) || (id.startsWith("nav.") ? "ShellBar:toolbar" : id.split(".")[0] + ":context"), events: [event], source: "src/modules", meaning: "m5." + id });
+  var definition3 = (id, labelKey, event) => ({ id: "m5." + id, labelKey, icon: null, shortcut: null, availability: "rendered-and-not-disabled", canonicalHome: navigationHome("m5." + id) || certificateActionHome("m5." + id) || (id.startsWith("nav.") ? "ShellBar:toolbar" : id.split(".")[0] + ":context"), events: [event], source: "src/modules", meaning: "m5." + id });
   var m5Actions = [...Object.entries(clicks5).map(([id, key4]) => definition3(id, key4, "onClick")), ...Object.entries(controls3).map(([id, key4]) => definition3(id, key4, "onChange"))];
   function m5Manifest(id, schema, Component) {
     const prefix = id === "certificates" ? "cert" : id;
@@ -54135,6 +54242,71 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     return /* @__PURE__ */ cpJsx(ModuleFrame, { titleKey: "shell.plans", icon: "plans", lead: "ux.lead.plans", info: /* @__PURE__ */ cpJsx(React.Fragment, null, t("plans.draftHint"), " ", t("improve.draftNotice")), actions: record ? null : /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx(Segmented, { label: t("shell.plans") }, ["list", "week", "templates"].map((id) => /* @__PURE__ */ cpJsx(M5Button, { key: id, id: "plans." + id, active: tab === id, "aria-pressed": tab === id, onClick: () => setTab(id) }, t("plans." + id)))), /* @__PURE__ */ cpJsx(M5Button, { id: "plans.new", className: "cp-ux-primary", style: primary, onClick: create }, t("plans.new"))) }, record ? /* @__PURE__ */ cpJsx(PlanEditor, { key: record.id + JSON.stringify(record), record, doc, profile: profile2, onSave: save, onCopy: copy5, onClose: () => setEditing(null), onPreview: (plan, language2) => setPreview({ plan, language: language2 }) }) : /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx("div", { className: "cp-filter-bar cp-plan-filters" }, /* @__PURE__ */ cpJsx(M5Field, { id: "plans.search", type: "search", value: query, onChange: (e) => setQuery(e.target.value) }), /* @__PURE__ */ cpJsx(M5Field, { id: "plans.weekDate", type: "date", value: week, onChange: (e) => e.target.value && setWeek(e.target.value) })), /* @__PURE__ */ cpJsx("div", { className: "cp-plan-collection" }, tab === "week" ? /* @__PURE__ */ cpJsx("div", { style: { overflow: "auto" } }, /* @__PURE__ */ cpJsx("div", { style: { display: "grid", gridTemplateColumns: "repeat(7,minmax(150px,1fr))", gap: 8 } }, planWeek(week, profile2.calendar.schoolDays[0] ?? 1).map((date5) => /* @__PURE__ */ cpJsx("section", { key: date5, style: { padding: 8, background: isSchoolDay(date5, doc.settings) ? "var(--cp-surface)" : "var(--cp-background)", border: "1px solid var(--cp-border)", borderRadius: 8 } }, /* @__PURE__ */ cpJsx("h2", { style: { fontSize: "var(--cp-fs-body)" } }, date5), cards(visible.filter((p) => p.date === date5)))))) : visible.length ? /* @__PURE__ */ cpJsx("div", { className: "cp-plan-cards" }, cards(visible)) : /* @__PURE__ */ cpJsx(EmptyState, { kind: query.trim() ? "filtered" : "nothing", title: t(tab === "templates" ? "plans.emptyTemplates" : "plans.empty"), text: t(tab === "templates" ? "ux.plans.emptyTemplatesHint" : "ux.plans.emptyHint") }))), preview && /* @__PURE__ */ cpJsx(PlanPrint, { ...preview, doc, profile: profile2, onClose: () => setPreview(null) }));
   }
   var plans_default = m5Manifest("plans", { defaults: [], migrate: (value) => value || [] }, PlansView);
+
+  // src/modules/certificates/design-dialog.jsx
+  function CertificateDesignDialog({ open, onClose, children, direction = "ltr" }) {
+    const layer = useModalLayer(open, onClose, {
+      initialFocus: '[data-cp-action="m5.cert.template"]',
+      returnFocus: '[data-cp-action="ux.cert.designOpen"]'
+    });
+    useLayoutEffect(() => {
+      if (open) layer.ref.current.scrollTop = 0;
+    }, [open]);
+    return /* @__PURE__ */ cpJsx(
+      "dialog",
+      {
+        ...layer,
+        dir: direction,
+        className: "cp-cert-design cp-kit-layer cp-no-print",
+        "aria-modal": "true",
+        "aria-labelledby": "cp-cert-design-title",
+        onMouseDown: (event) => {
+          if (event.target === event.currentTarget) onClose();
+        }
+      },
+      /* @__PURE__ */ cpJsx("header", null, /* @__PURE__ */ cpJsx("h2", { id: "cp-cert-design-title" }, t("ux.cert.design")), /* @__PURE__ */ cpJsx(
+        "button",
+        {
+          type: "button",
+          ...actionProps("ux.cert.designClose", onClose),
+          "aria-label": t("ux.cert.designClose"),
+          title: t("ux.cert.designClose")
+        },
+        "\xD7"
+      )),
+      /* @__PURE__ */ cpJsx("div", { className: "cp-cert-design-body" }, children)
+    );
+  }
+
+  // src/modules/certificates/suggestions.jsx
+  function CertificateSuggestions({ students, suggestions: suggestions2, onChoose }) {
+    const [expanded, setExpanded] = useState({});
+    return /* @__PURE__ */ cpJsx("ul", null, ["top", "improved", "participation", "attendance"].map((kind) => {
+      const ids = suggestions2[kind], open = !!expanded[kind], membersId = "cp-cert-members-" + kind;
+      return /* @__PURE__ */ cpJsx("li", { key: kind, "data-kind": kind }, /* @__PURE__ */ cpJsx("div", null, /* @__PURE__ */ cpJsx(
+        "button",
+        {
+          type: "button",
+          className: "cp-cert-members-toggle",
+          ...actionProps("ux.cert.members", () => setExpanded((value) => ({ ...value, [kind]: !value[kind] })), kind),
+          "aria-expanded": open,
+          "aria-controls": membersId
+        },
+        /* @__PURE__ */ cpJsx("b", null, uxText("cert.why." + kind)),
+        /* @__PURE__ */ cpJsx("span", { className: "cp-cert-count" }, cpRaw(String(ids.length)))
+      ), /* @__PURE__ */ cpJsx("div", { id: membersId, className: "cp-cert-members", hidden: !open }, ids.length ? ids.map((id) => /* @__PURE__ */ cpJsx("bdi", { key: id, dir: "auto" }, cpRaw(students.find((student) => student.id === id)?.name || ""))) : uxText("cert.noneFound"))), /* @__PURE__ */ cpJsx(
+        M5Button,
+        {
+          id: "cert." + kind,
+          disabled: !ids.length,
+          "aria-label": t("cert." + kind),
+          title: t("cert." + kind),
+          onClick: () => onChoose(ids)
+        },
+        uxText("cert.use")
+      ));
+    }));
+  }
 
   // src/modules/certificates/enhancements.js
   function certificateDefaults(profile2, language2) {
@@ -54245,12 +54417,12 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     useEffect(() => {
       if (proposal && suggestions2[proposal]?.length) change2("studentIds", suggestions2[proposal]);
     }, []);
-    const [zoom2, setZoom] = useState("fit"), [otherOpen, setOtherOpen] = useState(false), [shown2, setShown] = useState(0), stage = useRef(null), [fit, setFit] = useState(0.5);
+    const [designOpen, setDesignOpen] = useState(false), [zoom2, setZoom] = useState("fit"), [otherOpen, setOtherOpen] = useState(false), [shown2, setShown] = useState(0), stage = useRef(null), [fit, setFit] = useState(0.5);
     const recipients = draft.studentIds.map((id) => doc.students.find((s) => s.id === id)).filter(Boolean), at = Math.min(shown2, Math.max(0, recipients.length - 1)), [paperWidth, paperHeight] = PAPER[draft.orientation] || PAPER.landscape;
     useLayoutEffect(() => {
       const box = stage.current;
       if (!box || typeof ResizeObserver !== "function") return;
-      const measure = () => setFit(Math.max(0.2, Math.min(1, Math.floor((box.clientWidth - 24) / paperWidth * 1e3) / 1e3)));
+      const measure = () => setFit(Math.max(0.2, Math.min(1, Math.floor((box.clientWidth - (parseFloat(getComputedStyle(box).paddingInlineStart) || 0) - (parseFloat(getComputedStyle(box).paddingInlineEnd) || 0)) / paperWidth * 1e3) / 1e3)));
       measure();
       const watch = new ResizeObserver(measure);
       watch.observe(box);
@@ -54272,10 +54444,13 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       /* @__PURE__ */ cpJsx(UxField, { key: "subject", id: lang === "ar" ? "cert.subjectAr" : "cert.subject", value: draft[lang === "ar" ? "subjectAr" : "subject"] || "", dir: lang === "ar" ? "rtl" : "ltr", onChange: (e) => change2(lang === "ar" ? "subjectAr" : "subject", e.target.value) })
     ];
     const otherDone = !!draft[other === "ar" ? "titleAr" : "title"].trim() && !!draft[other === "ar" ? "achievementAr" : "achievement"].trim();
-    return /* @__PURE__ */ cpJsx(ModuleFrame, { titleKey: "shell.certificates", icon: "certificates", lead: "ux.lead.certificates", info: /* @__PURE__ */ cpJsx(React.Fragment, null, t("cert.previewHint"), " ", t("improve.certificateContentHint"), " ", uxText("documents.wordHint")), actions: /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx(M5Button, { id: "cert.preview", disabled: !ready, onClick: () => setPreview({ ...draft }) }, uxText("cert.previewPrint")), /* @__PURE__ */ cpJsx(M5Button, { id: "cert.issue", className: "cp-ux-primary", disabled: !ready, onClick: issue }, recipients.length ? cpRaw(countText(recipients.length, "cert.issueTo")) : uxText("cert.issueNone"))), more: /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx(UxButton, { id: "cert.word", disabled: !ready, onClick: () => downloadWord({ title: draft.language === "ar" ? draft.titleAr : draft.title, language: draft.language === "ar" ? "ar" : "en", blocks: certificateWordBlocks(doc, draft), landscape: draft.orientation === "landscape" }, "ClassPilot_certificates.docx") }), /* @__PURE__ */ cpJsx(UxButton, { id: "cert.defaults", disabled: !isProfileLinked(), onClick: () => updateProfile((p) => saveCertificateDefaults(p, draft)) })) }, !doc.students.length ? /* @__PURE__ */ cpJsx(EmptyRoster, null) : /* @__PURE__ */ cpJsx("div", { className: "cp-cert-studio" }, /* @__PURE__ */ cpJsx("nav", { className: "cp-cert-recipients", "aria-label": t("cert.recipient") }, /* @__PURE__ */ cpJsx("section", { className: "cp-cert-suggest" }, /* @__PURE__ */ cpJsx("h2", null, t("cert.suggestions")), proposal && suggestions2[proposal]?.length > 0 && /* @__PURE__ */ cpJsx("p", { className: "cp-proposal", role: "status" }, uxText("cert.proposed").replace("{n}", String(suggestions2[proposal].length))), /* @__PURE__ */ cpJsx("ul", null, ["top", "improved", "participation", "attendance"].map((kind) => /* @__PURE__ */ cpJsx("li", { key: kind, "data-kind": kind }, /* @__PURE__ */ cpJsx("div", null, /* @__PURE__ */ cpJsx("b", null, uxText("cert.why." + kind)), /* @__PURE__ */ cpJsx("small", null, suggestions2[kind].length ? cpRaw(suggestions2[kind].map((id) => doc.students.find((s) => s.id === id)?.name).filter(Boolean).join(" \xB7 ")) : uxText("cert.noneFound"))), /* @__PURE__ */ cpJsx(M5Button, { id: "cert." + kind, disabled: !suggestions2[kind].length, "aria-label": t("cert." + kind), title: t("cert." + kind), onClick: () => change2("studentIds", suggestions2[kind]) }, uxText("cert.use"), " (", suggestions2[kind].length, ")")))), /* @__PURE__ */ cpJsx("details", { className: "cp-cert-range" }, /* @__PURE__ */ cpJsx("summary", null, uxText("cert.rangeTitle")), /* @__PURE__ */ cpJsx("div", { className: "cp-cert-dates" }, /* @__PURE__ */ cpJsx(M5Field, { id: "cert.from", type: "date", value: draft.from, max: draft.through, onChange: (e) => change2("from", e.target.value) }), /* @__PURE__ */ cpJsx(M5Field, { id: "cert.through", type: "date", value: draft.through, min: draft.from, onChange: (e) => change2("through", e.target.value) })), /* @__PURE__ */ cpJsx("p", null, t("cert.criteria")))), /* @__PURE__ */ cpJsx(StudentPicker, { students: doc.students, mode: "several", value: draft.studentIds, onChange: (ids) => {
+    return /* @__PURE__ */ cpJsx(ModuleFrame, { titleKey: "shell.certificates", icon: "certificates", lead: "ux.lead.certificates", info: /* @__PURE__ */ cpJsx(React.Fragment, null, t("cert.previewHint"), " ", t("improve.certificateContentHint"), " ", uxText("documents.wordHint")), actions: /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx(M5Button, { id: "cert.preview", disabled: !ready, onClick: () => setPreview({ ...draft }) }, uxText("cert.previewPrint")), /* @__PURE__ */ cpJsx(M5Button, { id: "cert.issue", className: "cp-ux-primary", disabled: !ready, onClick: issue }, recipients.length ? cpRaw(countText(recipients.length, "cert.issueTo")) : uxText("cert.issueNone"))), more: /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx(UxButton, { id: "cert.word", disabled: !ready, onClick: () => downloadWord({ title: draft.language === "ar" ? draft.titleAr : draft.title, language: draft.language === "ar" ? "ar" : "en", blocks: certificateWordBlocks(doc, draft), landscape: draft.orientation === "landscape" }, "ClassPilot_certificates.docx") }), /* @__PURE__ */ cpJsx(UxButton, { id: "cert.defaults", disabled: !isProfileLinked(), onClick: () => updateProfile((p) => saveCertificateDefaults(p, draft)) })) }, !doc.students.length ? /* @__PURE__ */ cpJsx(EmptyRoster, null) : /* @__PURE__ */ cpJsx("div", { className: "cp-cert-studio", dir: doc.settings.dir || "ltr" }, /* @__PURE__ */ cpJsx("nav", { className: "cp-cert-recipients", "aria-label": t("cert.recipient") }, /* @__PURE__ */ cpJsx("section", { className: "cp-cert-suggest" }, /* @__PURE__ */ cpJsx("h2", null, t("cert.suggestions")), proposal && suggestions2[proposal]?.length > 0 && /* @__PURE__ */ cpJsx("p", { className: "cp-proposal", role: "status" }, uxText("cert.proposed").replace("{n}", String(suggestions2[proposal].length))), /* @__PURE__ */ cpJsx(CertificateSuggestions, { students: doc.students, suggestions: suggestions2, onChoose: (ids) => {
       change2("studentIds", ids);
       setShown(0);
-    }, context: "certificates", label: t("cert.recipient"), itemAction: "m5.cert.select" })), /* @__PURE__ */ cpJsx("div", { className: "cp-cert-centre" }, /* @__PURE__ */ cpJsx("div", { className: "cp-cert-toolbar" }, /* @__PURE__ */ cpJsx("span", { className: "cp-seg", role: "group", "aria-label": uxText("cert.zoom") }, ["fit", "actual"].map((value) => /* @__PURE__ */ cpJsx(UxButton, { key: value, id: "cert.zoom", context: value, active: zoom2 === value, "aria-pressed": zoom2 === value, onClick: () => setZoom(value) }, uxText("cert.zoom." + value)))), recipients.length > 1 && /* @__PURE__ */ cpJsx("span", { className: "cp-cert-which" }, /* @__PURE__ */ cpJsx(UxButton, { id: "cert.prevRecipient", disabled: at === 0, onClick: () => setShown(at - 1) }), /* @__PURE__ */ cpJsx("span", null, cpRaw(uxText("cert.showing").replace("{n}", String(at + 1)).replace("{total}", String(recipients.length)))), /* @__PURE__ */ cpJsx(UxButton, { id: "cert.nextRecipient", disabled: at === recipients.length - 1, onClick: () => setShown(at + 1) }))), /* @__PURE__ */ cpJsx("div", { className: "cp-cert-stage cp-certificate-live", ref: stage, "data-zoom": zoom2 }, recipients.length ? /* @__PURE__ */ cpJsx("div", { className: "cp-cert-sheet", "data-cp-document": "", style: { inlineSize: paperWidth + "px", blockSize: paperHeight + "px", zoom: zoom2 === "fit" ? fit : 1 } }, /* @__PURE__ */ cpJsx(CertificatePaper, { screen: true, record: draft, student: recipients[at] })) : /* @__PURE__ */ cpJsx(EmptyState, { kind: "nothing", title: uxText("cert.chooseToPreview"), text: uxText("cert.chooseToPreviewHint") }))), /* @__PURE__ */ cpJsx(Inspector, { title: uxText("cert.design"), label: uxText("cert.design"), status: /* @__PURE__ */ cpJsx(DraftStatus, { dirty: draftDirty, context: "certificate", onDiscard: () => acceptDraft(certificateDefaults(profile2, getLanguage())) }) }, !ready && /* @__PURE__ */ cpJsx("p", { role: "status", className: "cp-cert-required" }, t("cert.required")), error2 && /* @__PURE__ */ cpJsx("p", { role: "alert", style: { color: "#b91c1c" } }, error2), /* @__PURE__ */ cpJsx("div", { className: "cp-cert-grid" }, /* @__PURE__ */ cpJsx(M5Select, { id: "cert.template", value: draft.template, onChange: (e) => change2("template", e.target.value) }, ["royal", "ivory", "emerald", "formal", "modern", "playful", "bordered", "ribbon"].map((id) => /* @__PURE__ */ cpJsx("option", { key: id, value: id }, ["bordered", "ribbon", "royal", "ivory", "emerald"].includes(id) ? uxText("cert." + id) : t("cert." + id)))), /* @__PURE__ */ cpJsx(M5Select, { id: "cert.orientation", value: draft.orientation, onChange: (e) => change2("orientation", e.target.value) }, ["landscape", "portrait"].map((id) => /* @__PURE__ */ cpJsx("option", { key: id, value: id }, t("cert." + id)))), /* @__PURE__ */ cpJsx(DocumentLanguage, { id: "cert.language", value: draft.language, onChange: (e) => change2("language", e.target.value) }), /* @__PURE__ */ cpJsx(M5Field, { id: "cert.date", type: "date", value: draft.date, onChange: (e) => change2("date", e.target.value) }), /* @__PURE__ */ cpJsx(UxSelect, { id: "cert.gender", value: draft.gender || "neutral", onChange: (e) => change2("gender", e.target.value) }, ["neutral", "masculine", "feminine"].map((gender) => /* @__PURE__ */ cpJsx("option", { key: gender, value: gender }, uxText("cert." + gender))))), /* @__PURE__ */ cpJsx(UxSelect, { id: "cert.reason", value: "", onChange: (e) => {
+    } }), /* @__PURE__ */ cpJsx("details", { className: "cp-cert-range" }, /* @__PURE__ */ cpJsx("summary", null, uxText("cert.rangeTitle")), /* @__PURE__ */ cpJsx("div", { className: "cp-cert-dates" }, /* @__PURE__ */ cpJsx(M5Field, { id: "cert.from", type: "date", value: draft.from, max: draft.through, onChange: (e) => change2("from", e.target.value) }), /* @__PURE__ */ cpJsx(M5Field, { id: "cert.through", type: "date", value: draft.through, min: draft.from, onChange: (e) => change2("through", e.target.value) })), /* @__PURE__ */ cpJsx("p", null, t("cert.criteria")))), /* @__PURE__ */ cpJsx(StudentPicker, { students: doc.students, mode: "several", value: draft.studentIds, onChange: (ids) => {
+      change2("studentIds", ids);
+      setShown(0);
+    }, context: "certificates", label: t("cert.recipient"), itemAction: "m5.cert.select" })), /* @__PURE__ */ cpJsx("div", { className: "cp-cert-centre" }, /* @__PURE__ */ cpJsx("div", { className: "cp-cert-toolbar" }, /* @__PURE__ */ cpJsx("div", { className: "cp-cert-preview-tools" }, /* @__PURE__ */ cpJsx("span", { className: "cp-seg", role: "group", "aria-label": uxText("cert.zoom") }, ["fit", "actual"].map((value) => /* @__PURE__ */ cpJsx(UxButton, { key: value, id: "cert.zoom", context: value, active: zoom2 === value, "aria-pressed": zoom2 === value, onClick: () => setZoom(value) }, uxText("cert.zoom." + value)))), /* @__PURE__ */ cpJsx(UxButton, { id: "cert.designOpen", "aria-haspopup": "dialog", "aria-expanded": designOpen, title: !ready ? t("cert.required") : uxText("cert.design"), onClick: () => setDesignOpen(true) }), /* @__PURE__ */ cpJsx(DraftStatus, { dirty: draftDirty, label: uxText("cert.draft"), context: "certificate", onDiscard: () => acceptDraft(certificateDefaults(profile2, getLanguage())) })), recipients.length > 1 && /* @__PURE__ */ cpJsx("span", { className: "cp-cert-which" }, /* @__PURE__ */ cpJsx(UxButton, { id: "cert.prevRecipient", disabled: at === 0, onClick: () => setShown(at - 1) }), /* @__PURE__ */ cpJsx("span", null, cpRaw(uxText("cert.showing").replace("{n}", String(at + 1)).replace("{total}", String(recipients.length)))), /* @__PURE__ */ cpJsx(UxButton, { id: "cert.nextRecipient", disabled: at === recipients.length - 1, onClick: () => setShown(at + 1) }))), /* @__PURE__ */ cpJsx("div", { className: "cp-cert-stage cp-certificate-live", ref: stage, "data-zoom": zoom2 }, recipients.length ? /* @__PURE__ */ cpJsx("div", { className: "cp-cert-sheet", "data-cp-document": "", style: { inlineSize: paperWidth + "px", blockSize: paperHeight + "px", zoom: zoom2 === "fit" ? fit : 1 } }, /* @__PURE__ */ cpJsx(CertificatePaper, { screen: true, record: draft, student: recipients[at] })) : /* @__PURE__ */ cpJsx(EmptyState, { kind: "nothing", title: uxText("cert.chooseToPreview") })))), /* @__PURE__ */ cpJsx(CertificateDesignDialog, { direction: doc.settings.dir || "ltr", open: designOpen, onClose: () => setDesignOpen(false) }, !ready && /* @__PURE__ */ cpJsx("p", { role: "status", className: "cp-cert-required" }, t("cert.required")), error2 && /* @__PURE__ */ cpJsx("p", { role: "alert", style: { color: "#b91c1c" } }, error2), /* @__PURE__ */ cpJsx("div", { className: "cp-cert-grid" }, /* @__PURE__ */ cpJsx(M5Select, { id: "cert.template", value: draft.template, onChange: (e) => change2("template", e.target.value) }, ["royal", "ivory", "emerald", "formal", "modern", "playful", "bordered", "ribbon"].map((id) => /* @__PURE__ */ cpJsx("option", { key: id, value: id }, ["bordered", "ribbon", "royal", "ivory", "emerald"].includes(id) ? uxText("cert." + id) : t("cert." + id)))), /* @__PURE__ */ cpJsx(M5Select, { id: "cert.orientation", value: draft.orientation, onChange: (e) => change2("orientation", e.target.value) }, ["landscape", "portrait"].map((id) => /* @__PURE__ */ cpJsx("option", { key: id, value: id }, t("cert." + id)))), /* @__PURE__ */ cpJsx(DocumentLanguage, { id: "cert.language", value: draft.language, onChange: (e) => change2("language", e.target.value) }), /* @__PURE__ */ cpJsx(M5Field, { id: "cert.date", type: "date", value: draft.date, onChange: (e) => change2("date", e.target.value) }), /* @__PURE__ */ cpJsx(UxSelect, { id: "cert.gender", value: draft.gender || "neutral", onChange: (e) => change2("gender", e.target.value) }, ["neutral", "masculine", "feminine"].map((gender) => /* @__PURE__ */ cpJsx("option", { key: gender, value: gender }, uxText("cert." + gender))))), /* @__PURE__ */ cpJsx(UxSelect, { id: "cert.reason", value: "", onChange: (e) => {
       if (e.target.value) {
         change2("achievement", uxText("cert.reason." + e.target.value + ".en"));
         change2("achievementAr", uxText("cert.reason." + e.target.value + ".ar"));
@@ -54289,7 +54464,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
         setError(t(error3.message));
       }
       e.target.value = "";
-    }) })), draft.logo && /* @__PURE__ */ cpJsx("div", { style: row }, /* @__PURE__ */ cpJsx("img", { src: draft.logo, alt: t("cert.logoAlt"), style: { width: 80, height: 60, objectFit: "contain" } }), /* @__PURE__ */ cpJsx(M5Button, { id: "cert.removeLogo", onClick: () => change2("logo", null) }, t("cert.removeLogo")))))), /* @__PURE__ */ cpJsx("section", { className: "cp-cert-log" }, /* @__PURE__ */ cpJsx("h2", { style: { fontSize: "var(--cp-fs-label)" } }, t("cert.log")), !(doc.cp?.certificates || []).length && /* @__PURE__ */ cpJsx("p", null, t("cert.emptyLog")), [...doc.cp?.certificates || []].reverse().map((record) => /* @__PURE__ */ cpJsx("article", { key: record.id, style: { ...panel, marginBlockEnd: 10 } }, /* @__PURE__ */ cpJsx("strong", null, cpRaw(displayDate(record.date)), " \xB7 ", ["bordered", "ribbon"].includes(record.template) ? uxText("cert." + record.template) : t("cert." + record.template), " \xB7 ", record.studentIds.length), /* @__PURE__ */ cpJsx("div", { style: { ...row, marginBlockStart: 10 } }, /* @__PURE__ */ cpJsx(M5Button, { id: "cert.reprint", context: record.id, disabled: record.studentIds.some((id) => !knownIds.has(id)), onClick: () => setPreview(record) }, t("cert.reprint")), /* @__PURE__ */ cpJsx(M5Button, { id: "cert.reuse", context: record.id, onClick: () => {
+    }) })), draft.logo && /* @__PURE__ */ cpJsx("div", { style: row }, /* @__PURE__ */ cpJsx("img", { src: draft.logo, alt: t("cert.logoAlt"), style: { width: 80, height: 60, objectFit: "contain" } }), /* @__PURE__ */ cpJsx(M5Button, { id: "cert.removeLogo", onClick: () => change2("logo", null) }, t("cert.removeLogo"))))), /* @__PURE__ */ cpJsx("section", { className: "cp-cert-log" }, /* @__PURE__ */ cpJsx("h2", { style: { fontSize: "var(--cp-fs-label)" } }, t("cert.log")), !(doc.cp?.certificates || []).length && /* @__PURE__ */ cpJsx("p", null, t("cert.emptyLog")), [...doc.cp?.certificates || []].reverse().map((record) => /* @__PURE__ */ cpJsx("article", { key: record.id, style: { ...panel, marginBlockEnd: 10 } }, /* @__PURE__ */ cpJsx("strong", null, cpRaw(displayDate(record.date)), " \xB7 ", ["bordered", "ribbon"].includes(record.template) ? uxText("cert." + record.template) : t("cert." + record.template), " \xB7 ", record.studentIds.length), /* @__PURE__ */ cpJsx("div", { style: { ...row, marginBlockStart: 10 } }, /* @__PURE__ */ cpJsx(M5Button, { id: "cert.reprint", context: record.id, disabled: record.studentIds.some((id) => !knownIds.has(id)), onClick: () => setPreview(record) }, t("cert.reprint")), /* @__PURE__ */ cpJsx(M5Button, { id: "cert.reuse", context: record.id, onClick: () => {
       acceptDraft({ ...record, studentIds: record.studentIds.filter((id) => knownIds.has(id)) });
       setError("");
     } }, t("cert.reuse")), /* @__PURE__ */ cpJsx(M5Button, { id: "cert.delete", context: record.id, onClick: () => {
