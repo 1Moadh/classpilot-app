@@ -1973,6 +1973,41 @@ td[data-cp-att],th[data-cp-att]{background:var(--cp-att-bg)!important;box-shadow
 .cp-notes-page .cp-inspector>header h2{min-inline-size:0;overflow-wrap:anywhere}
 .cp-notes-page .cp-draft-note{margin:0}
 .cp-notes-page .cp-draft-note .cp-btn{height:26px;min-block-size:26px;padding-inline:4px}
+
+/* SP11: the existing notebook collection beside its single active editor. */
+.cp-notebook-page>.cp-ux-split{display:grid!important;grid-template-columns:340px minmax(0,1fr)!important;align-items:start!important;gap:16px!important}
+.cp-notebook-page .cp-notebook-collection,.cp-notebook-page .cp-notebook-editor{min-inline-size:0;box-shadow:none!important}
+.cp-notebook-page .cp-notebook-collection{padding:12px!important}
+.cp-notebook-page .cp-notebook-editor{padding:16px!important}
+.cp-notebook-page .cp-ux-panel>header h2{font-family:var(--cp-font-body)!important;font-size:var(--cp-fs-body)!important;font-weight:650!important}
+.cp-notebook-page .cp-notebook-editor textarea{min-block-size:248px;font-weight:400}
+.cp-notebook-page .cp-notebook-titlerow{grid-template-columns:minmax(0,1fr) 176px;gap:12px}
+.cp-notebook-page .cp-notebook-collection>header{margin-block-end:12px}
+.cp-notebook-search{display:grid;gap:12px}
+.cp-notebook-filters{border-block-end:1px solid var(--cp-border);padding-block-end:12px;margin-block-end:12px}
+.cp-notebook-filters>summary{font-weight:600;cursor:pointer;min-block-size:32px;display:flex;gap:8px;align-items:center;color:var(--cp-text)}
+.cp-notebook-filters>summary::before{content:'▸';display:inline-block}
+.cp-notebook-filters[open]>summary::before{transform:rotate(90deg)}
+.cp-notebook-filters>summary small{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--cp-muted);font-weight:400;font-size:var(--cp-fs-caption)}
+.cp-notebook-filters[open]>.cp-ux-form{display:grid!important;grid-template-columns:minmax(0,1fr)!important;gap:12px!important}
+.cp-notebook-search-help{font-size:var(--cp-fs-caption);color:var(--cp-muted);padding-block:8px}
+.cp-notebook-page .cp-ux-note-card{padding:12px!important;margin-block:8px!important;position:relative;min-inline-size:0;background:var(--cp-surface)!important;border-inline-start-width:3px!important}
+.cp-notebook-page .cp-ux-note-card>header{display:flex!important;flex-direction:column;align-items:start!important;gap:4px!important;padding-inline-end:28px}
+.cp-notebook-page .cp-ux-note-card>header h3{margin-block:0;inline-size:100%}
+.cp-notebook-page .cp-ux-note-card>header span{font-size:var(--cp-fs-caption);text-align:start!important}
+.cp-notebook-page .cp-notebook-entry-select{display:block!important;padding:0!important;inline-size:100%;text-align:start;border:0!important;background:transparent!important;color:var(--cp-text)!important;min-block-size:28px;font-weight:650!important;box-shadow:none!important;white-space:normal!important}
+.cp-notebook-page .cp-notebook-snippet{margin-block:8px!important;color:var(--cp-muted)!important;font-size:var(--cp-fs-body);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.cp-notebook-page .cp-notebook-remove{position:absolute;inset-inline-end:8px;inset-block-start:10px;inline-size:28px;block-size:28px;min-inline-size:28px;min-block-size:28px;padding:0!important;border:0!important;background:transparent!important;color:var(--cp-muted)!important}
+.cp-notebook-entry-tools{font-size:var(--cp-fs-caption);margin-block-start:8px}
+.cp-notebook-entry-tools>summary{cursor:pointer;min-block-size:28px}
+.cp-notebook-entry-tools .cp-ux-actions{display:grid;gap:8px}
+.cp-notebook-page .cp-notebook-part{margin-block:12px}
+.cp-notebook-page .cp-notebook-foot{display:flex;gap:12px;align-items:center;justify-content:end}
+.cp-notebook-page .cp-notebook-foot>p{order:-1;margin-inline-end:auto;color:var(--cp-muted)}
+.cp-notebook-page .cp-notebook-protection{margin-block:12px}
+.cp-notebook-page .cp-ux-note-card[data-active]{outline:2px solid var(--cp-gold);outline-offset:-2px}
+@media(max-width:1150px){.cp-notebook-page>.cp-ux-split{grid-template-columns:280px minmax(0,1fr)!important;gap:12px!important}.cp-notebook-page .cp-notebook-titlerow{grid-template-columns:minmax(0,1fr)}.cp-notebook-page .cp-notebook-editor textarea{min-block-size:200px}}
+@media(max-width:850px){.cp-notebook-page>.cp-ux-split{grid-template-columns:minmax(0,1fr)!important}}
 /* M56 design foundations (owner-supplied Master Implementation Brief, M56; design report §7–§8).
    One set of tokens for the frame and the new modules. Protected Gradebook views (Marks, Groups, Behaviour,
    Adjustments, Analysis, the original wheel, the Settings drawer and the class manager) do not use them. */
@@ -6398,7 +6433,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.notebook.pinned": "Pin this note",
     "ux.notebook.text": "Note content",
     "ux.notebook.protect": "Encrypt title and content with a password",
-    "ux.notebook.encryptionHint": "At least 10 characters. A forgotten password cannot be recovered. Saved title/content are encrypted; dates, categories and attachment metadata remain readable, and attachment files are not encrypted. Working drafts stay in memory until saved or the browser closes; old backups are not re-encrypted.",
+    "ux.notebook.encryptionHint": "At least 10 characters. A forgotten password cannot be recovered. Saved title/content are encrypted; dates, categories and attachment metadata remain readable, and attachment files are not encrypted. Drafts may be retained unencrypted by this browser; old backups are not re-encrypted.",
     "ux.notebook.password": "Password for protected note",
     "ux.notebook.attachmentHint": "Attachments are separate local files (up to 100 MB each). Choose a new sidecar file; keep it with your backups. Opening an attachment downloads a checked copy.",
     "ux.notebook.attachment": "Attach a local document or image",
@@ -8288,7 +8323,14 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.home.lessonsToday": "Today\u2019s lessons",
     "ux.home.timetableLink": "Timetable",
     "ux.notes.draft": "Draft",
-    "ux.notes.showDueLabel": "Show due follow-ups"
+    "ux.notes.showDueLabel": "Show due follow-ups",
+    "ux.notebook.collection": "Notes",
+    "ux.notebook.searchShort": "Search notes",
+    "ux.notebook.filters": "Filters & dates",
+    "ux.notebook.searchHelp": "Locked notes can be found by date and category only.",
+    "ux.notebook.entryTools": "Attachments & lock",
+    "ux.notebook.unsavedShort": "Unsaved changes",
+    "ux.notebook.emptyPlain": "No notes yet"
   };
 
   // src/i18n/plain-copy.js
@@ -12086,7 +12128,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.notebook.pinned": "\u062A\u062B\u0628\u064A\u062A \u0627\u0644\u0645\u0644\u0627\u062D\u0638\u0629",
     "ux.notebook.text": "\u0645\u062D\u062A\u0648\u0649 \u0627\u0644\u0645\u0644\u0627\u062D\u0638\u0629",
     "ux.notebook.protect": "\u062A\u0634\u0641\u064A\u0631 \u0627\u0644\u0639\u0646\u0648\u0627\u0646 \u0648\u0627\u0644\u0645\u062D\u062A\u0648\u0649 \u0628\u0643\u0644\u0645\u0629 \u0645\u0631\u0648\u0631",
-    "ux.notebook.encryptionHint": "\u0639\u0634\u0631\u0629 \u0623\u062D\u0631\u0641 \u0639\u0644\u0649 \u0627\u0644\u0623\u0642\u0644. \u0644\u0627 \u064A\u0645\u0643\u0646 \u0627\u0633\u062A\u0639\u0627\u062F\u0629 \u0643\u0644\u0645\u0629 \u0645\u0631\u0648\u0631 \u0645\u0646\u0633\u064A\u0629. \u064A\u064F\u0634\u0641\u064E\u0651\u0631 \u0627\u0644\u0639\u0646\u0648\u0627\u0646 \u0648\u0627\u0644\u0645\u062D\u062A\u0648\u0649 \u0627\u0644\u0645\u062D\u0641\u0648\u0638\u0627\u0646\u060C \u0648\u062A\u0638\u0644 \u0627\u0644\u062A\u0648\u0627\u0631\u064A\u062E \u0648\u0627\u0644\u0641\u0626\u0627\u062A \u0648\u0628\u064A\u0627\u0646\u0627\u062A \u0627\u0644\u0645\u0631\u0641\u0642\u0627\u062A \u0645\u0642\u0631\u0648\u0621\u0629\u060C \u0648\u0644\u0627 \u062A\u064F\u0634\u0641\u064E\u0651\u0631 \u0645\u0644\u0641\u0627\u062A \u0627\u0644\u0645\u0631\u0641\u0642\u0627\u062A. \u062A\u0628\u0642\u0649 \u0627\u0644\u0645\u0633\u0648\u062F\u0627\u062A \u0641\u064A \u0627\u0644\u0630\u0627\u0643\u0631\u0629 \u062D\u062A\u0649 \u0627\u0644\u062D\u0641\u0638 \u0623\u0648 \u0625\u063A\u0644\u0627\u0642 \u0627\u0644\u0645\u062A\u0635\u0641\u062D\u060C \u0648\u0644\u0627 \u064A\u064F\u0639\u0627\u062F \u062A\u0634\u0641\u064A\u0631 \u0627\u0644\u0646\u0633\u062E \u0627\u0644\u0627\u062D\u062A\u064A\u0627\u0637\u064A\u0629 \u0627\u0644\u0633\u0627\u0628\u0642\u0629.",
+    "ux.notebook.encryptionHint": "\u0639\u0634\u0631\u0629 \u0623\u062D\u0631\u0641 \u0639\u0644\u0649 \u0627\u0644\u0623\u0642\u0644. \u0644\u0627 \u064A\u0645\u0643\u0646 \u0627\u0633\u062A\u0639\u0627\u062F\u0629 \u0643\u0644\u0645\u0629 \u0645\u0631\u0648\u0631 \u0645\u0646\u0633\u064A\u0629. \u064A\u064F\u0634\u0641\u064E\u0651\u0631 \u0627\u0644\u0639\u0646\u0648\u0627\u0646 \u0648\u0627\u0644\u0645\u062D\u062A\u0648\u0649 \u0627\u0644\u0645\u062D\u0641\u0648\u0638\u0627\u0646\u060C \u0648\u062A\u0638\u0644 \u0627\u0644\u062A\u0648\u0627\u0631\u064A\u062E \u0648\u0627\u0644\u0641\u0626\u0627\u062A \u0648\u0628\u064A\u0627\u0646\u0627\u062A \u0627\u0644\u0645\u0631\u0641\u0642\u0627\u062A \u0645\u0642\u0631\u0648\u0621\u0629\u060C \u0648\u0644\u0627 \u062A\u064F\u0634\u0641\u064E\u0651\u0631 \u0645\u0644\u0641\u0627\u062A \u0627\u0644\u0645\u0631\u0641\u0642\u0627\u062A. \u0642\u062F \u064A\u062D\u062A\u0641\u0638 \u0647\u0630\u0627 \u0627\u0644\u0645\u062A\u0635\u0641\u062D \u0628\u0645\u0633\u0648\u062F\u0627\u062A \u063A\u064A\u0631 \u0645\u0634\u0641\u0651\u0631\u0629\u061B \u0648\u0644\u0627 \u064A\u064F\u0639\u0627\u062F \u062A\u0634\u0641\u064A\u0631 \u0627\u0644\u0646\u0633\u062E \u0627\u0644\u0627\u062D\u062A\u064A\u0627\u0637\u064A\u0629 \u0627\u0644\u0633\u0627\u0628\u0642\u0629.",
     "ux.notebook.password": "\u0643\u0644\u0645\u0629 \u0645\u0631\u0648\u0631 \u0627\u0644\u0645\u0644\u0627\u062D\u0638\u0629 \u0627\u0644\u0645\u0634\u0641\u0631\u0629",
     "ux.notebook.attachmentHint": "\u0627\u0644\u0645\u0631\u0641\u0642\u0627\u062A \u0645\u0644\u0641\u0627\u062A \u0645\u062D\u0644\u064A\u0629 \u0645\u0646\u0641\u0635\u0644\u0629\u060C \u0628\u062D\u062F \u0623\u0642\u0635\u0649 100 \u0645\u064A\u063A\u0627\u0628\u0627\u064A\u062A \u0644\u0643\u0644 \u0645\u0644\u0641. \u0627\u062E\u062A\u0631 \u0645\u0644\u0641\u0627\u064B \u062C\u062F\u064A\u062F\u0627\u064B \u0648\u0627\u062D\u062A\u0641\u0638 \u0628\u0647 \u0636\u0645\u0646 \u0627\u0644\u0646\u0633\u062E \u0627\u0644\u0627\u062D\u062A\u064A\u0627\u0637\u064A\u0629. \u064A\u062A\u064A\u062D \u0641\u062A\u062D \u0627\u0644\u0645\u0631\u0641\u0642 \u062A\u0646\u0632\u064A\u0644 \u0646\u0633\u062E\u0629 \u0645\u062A\u062D\u0642\u0642 \u0645\u0646\u0647\u0627.",
     "ux.notebook.attachment": "\u0625\u0631\u0641\u0627\u0642 \u0645\u0633\u062A\u0646\u062F \u0623\u0648 \u0635\u0648\u0631\u0629 \u0645\u062D\u0644\u064A\u0629",
@@ -13976,7 +14018,14 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.home.lessonsToday": "\u062D\u0635\u0635 \u0627\u0644\u064A\u0648\u0645",
     "ux.home.timetableLink": "\u0627\u0644\u062C\u062F\u0648\u0644",
     "ux.notes.draft": "\u0645\u0633\u0648\u062F\u0629",
-    "ux.notes.showDueLabel": "\u0639\u0631\u0636 \u0627\u0644\u0645\u062A\u0627\u0628\u0639\u0627\u062A \u0627\u0644\u0645\u0633\u062A\u062D\u0642\u0629"
+    "ux.notes.showDueLabel": "\u0639\u0631\u0636 \u0627\u0644\u0645\u062A\u0627\u0628\u0639\u0627\u062A \u0627\u0644\u0645\u0633\u062A\u062D\u0642\u0629",
+    "ux.notebook.collection": "\u0627\u0644\u0645\u0644\u0627\u062D\u0638\u0627\u062A",
+    "ux.notebook.searchShort": "\u0627\u0628\u062D\u062B \u0641\u064A \u0627\u0644\u0645\u0644\u0627\u062D\u0638\u0627\u062A",
+    "ux.notebook.filters": "\u0627\u0644\u062A\u0635\u0641\u064A\u0629 \u0648\u0627\u0644\u062A\u0648\u0627\u0631\u064A\u062E",
+    "ux.notebook.searchHelp": "\u064A\u0645\u0643\u0646 \u0627\u0644\u0639\u062B\u0648\u0631 \u0639\u0644\u0649 \u0627\u0644\u0645\u0644\u0627\u062D\u0638\u0627\u062A \u0627\u0644\u0645\u0642\u0641\u0644\u0629 \u0628\u0627\u0644\u062A\u0627\u0631\u064A\u062E \u0648\u0627\u0644\u0641\u0626\u0629 \u0641\u0642\u0637.",
+    "ux.notebook.entryTools": "\u0627\u0644\u0645\u0631\u0641\u0642\u0627\u062A \u0648\u0627\u0644\u0642\u0641\u0644",
+    "ux.notebook.unsavedShort": "\u062A\u063A\u064A\u064A\u0631\u0627\u062A \u063A\u064A\u0631 \u0645\u062D\u0641\u0648\u0638\u0629",
+    "ux.notebook.emptyPlain": "\u0644\u0627 \u062A\u0648\u062C\u062F \u0645\u0644\u0627\u062D\u0638\u0627\u062A \u0628\u0639\u062F"
   };
 
   // src/core/actions.js
@@ -38842,8 +38891,8 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       "\u062A\u0634\u0641\u064A\u0631 \u0627\u0644\u0639\u0646\u0648\u0627\u0646 \u0648\u0627\u0644\u0645\u062D\u062A\u0648\u0649 \u0628\u0643\u0644\u0645\u0629 \u0645\u0631\u0648\u0631"
     ],
     "notebook.encryptionHint": [
-      "At least 10 characters. A forgotten password cannot be recovered. Saved title/content are encrypted; dates, categories and attachment metadata remain readable, and attachment files are not encrypted. Working drafts stay in memory until saved or the browser closes; old backups are not re-encrypted.",
-      "\u0639\u0634\u0631\u0629 \u0623\u062D\u0631\u0641 \u0639\u0644\u0649 \u0627\u0644\u0623\u0642\u0644. \u0644\u0627 \u064A\u0645\u0643\u0646 \u0627\u0633\u062A\u0639\u0627\u062F\u0629 \u0643\u0644\u0645\u0629 \u0645\u0631\u0648\u0631 \u0645\u0646\u0633\u064A\u0629. \u064A\u064F\u0634\u0641\u064E\u0651\u0631 \u0627\u0644\u0639\u0646\u0648\u0627\u0646 \u0648\u0627\u0644\u0645\u062D\u062A\u0648\u0649 \u0627\u0644\u0645\u062D\u0641\u0648\u0638\u0627\u0646\u060C \u0648\u062A\u0638\u0644 \u0627\u0644\u062A\u0648\u0627\u0631\u064A\u062E \u0648\u0627\u0644\u0641\u0626\u0627\u062A \u0648\u0628\u064A\u0627\u0646\u0627\u062A \u0627\u0644\u0645\u0631\u0641\u0642\u0627\u062A \u0645\u0642\u0631\u0648\u0621\u0629\u060C \u0648\u0644\u0627 \u062A\u064F\u0634\u0641\u064E\u0651\u0631 \u0645\u0644\u0641\u0627\u062A \u0627\u0644\u0645\u0631\u0641\u0642\u0627\u062A. \u062A\u0628\u0642\u0649 \u0627\u0644\u0645\u0633\u0648\u062F\u0627\u062A \u0641\u064A \u0627\u0644\u0630\u0627\u0643\u0631\u0629 \u062D\u062A\u0649 \u0627\u0644\u062D\u0641\u0638 \u0623\u0648 \u0625\u063A\u0644\u0627\u0642 \u0627\u0644\u0645\u062A\u0635\u0641\u062D\u060C \u0648\u0644\u0627 \u064A\u064F\u0639\u0627\u062F \u062A\u0634\u0641\u064A\u0631 \u0627\u0644\u0646\u0633\u062E \u0627\u0644\u0627\u062D\u062A\u064A\u0627\u0637\u064A\u0629 \u0627\u0644\u0633\u0627\u0628\u0642\u0629."
+      "At least 10 characters. A forgotten password cannot be recovered. Saved title/content are encrypted; dates, categories and attachment metadata remain readable, and attachment files are not encrypted. Drafts may be retained unencrypted by this browser; old backups are not re-encrypted.",
+      "\u0639\u0634\u0631\u0629 \u0623\u062D\u0631\u0641 \u0639\u0644\u0649 \u0627\u0644\u0623\u0642\u0644. \u0644\u0627 \u064A\u0645\u0643\u0646 \u0627\u0633\u062A\u0639\u0627\u062F\u0629 \u0643\u0644\u0645\u0629 \u0645\u0631\u0648\u0631 \u0645\u0646\u0633\u064A\u0629. \u064A\u064F\u0634\u0641\u064E\u0651\u0631 \u0627\u0644\u0639\u0646\u0648\u0627\u0646 \u0648\u0627\u0644\u0645\u062D\u062A\u0648\u0649 \u0627\u0644\u0645\u062D\u0641\u0648\u0638\u0627\u0646\u060C \u0648\u062A\u0638\u0644 \u0627\u0644\u062A\u0648\u0627\u0631\u064A\u062E \u0648\u0627\u0644\u0641\u0626\u0627\u062A \u0648\u0628\u064A\u0627\u0646\u0627\u062A \u0627\u0644\u0645\u0631\u0641\u0642\u0627\u062A \u0645\u0642\u0631\u0648\u0621\u0629\u060C \u0648\u0644\u0627 \u062A\u064F\u0634\u0641\u064E\u0651\u0631 \u0645\u0644\u0641\u0627\u062A \u0627\u0644\u0645\u0631\u0641\u0642\u0627\u062A. \u0642\u062F \u064A\u062D\u062A\u0641\u0638 \u0647\u0630\u0627 \u0627\u0644\u0645\u062A\u0635\u0641\u062D \u0628\u0645\u0633\u0648\u062F\u0627\u062A \u063A\u064A\u0631 \u0645\u0634\u0641\u0651\u0631\u0629\u061B \u0648\u0644\u0627 \u064A\u064F\u0639\u0627\u062F \u062A\u0634\u0641\u064A\u0631 \u0627\u0644\u0646\u0633\u062E \u0627\u0644\u0627\u062D\u062A\u064A\u0627\u0637\u064A\u0629 \u0627\u0644\u0633\u0627\u0628\u0642\u0629."
     ],
     "notebook.password": [
       "Password for protected note",
@@ -41934,7 +41983,14 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "home.lessonsToday": ["Today\u2019s lessons", "\u062D\u0635\u0635 \u0627\u0644\u064A\u0648\u0645"],
     "home.timetableLink": ["Timetable", "\u0627\u0644\u062C\u062F\u0648\u0644"],
     "notes.draft": ["Draft", "\u0645\u0633\u0648\u062F\u0629"],
-    "notes.showDueLabel": ["Show due follow-ups", "\u0639\u0631\u0636 \u0627\u0644\u0645\u062A\u0627\u0628\u0639\u0627\u062A \u0627\u0644\u0645\u0633\u062A\u062D\u0642\u0629"]
+    "notes.showDueLabel": ["Show due follow-ups", "\u0639\u0631\u0636 \u0627\u0644\u0645\u062A\u0627\u0628\u0639\u0627\u062A \u0627\u0644\u0645\u0633\u062A\u062D\u0642\u0629"],
+    "notebook.collection": ["Notes", "\u0627\u0644\u0645\u0644\u0627\u062D\u0638\u0627\u062A"],
+    "notebook.searchShort": ["Search notes", "\u0627\u0628\u062D\u062B \u0641\u064A \u0627\u0644\u0645\u0644\u0627\u062D\u0638\u0627\u062A"],
+    "notebook.filters": ["Filters & dates", "\u0627\u0644\u062A\u0635\u0641\u064A\u0629 \u0648\u0627\u0644\u062A\u0648\u0627\u0631\u064A\u062E"],
+    "notebook.searchHelp": ["Locked notes can be found by date and category only.", "\u064A\u0645\u0643\u0646 \u0627\u0644\u0639\u062B\u0648\u0631 \u0639\u0644\u0649 \u0627\u0644\u0645\u0644\u0627\u062D\u0638\u0627\u062A \u0627\u0644\u0645\u0642\u0641\u0644\u0629 \u0628\u0627\u0644\u062A\u0627\u0631\u064A\u062E \u0648\u0627\u0644\u0641\u0626\u0629 \u0641\u0642\u0637."],
+    "notebook.entryTools": ["Attachments & lock", "\u0627\u0644\u0645\u0631\u0641\u0642\u0627\u062A \u0648\u0627\u0644\u0642\u0641\u0644"],
+    "notebook.unsavedShort": ["Unsaved changes", "\u062A\u063A\u064A\u064A\u0631\u0627\u062A \u063A\u064A\u0631 \u0645\u062D\u0641\u0648\u0638\u0629"],
+    "notebook.emptyPlain": ["No notes yet", "\u0644\u0627 \u062A\u0648\u062C\u062F \u0645\u0644\u0627\u062D\u0638\u0627\u062A \u0628\u0639\u062F"]
   };
   var uxEn = Object.fromEntries(Object.entries(pairs).map(([key4, value]) => ["ux." + key4, value[0]]));
   var uxAr = Object.fromEntries(Object.entries(pairs).map(([key4, value]) => ["ux." + key4, value[1]]));
@@ -51555,16 +51611,50 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       setPassword("");
     }
     const visible = entries2.filter((e) => !e.encrypted || unlocked[e.id]).map((e) => unlocked[e.id] || e);
-    return /* @__PURE__ */ cpJsx(ModuleFrame, { titleKey: "ux.notebook.title", icon: "notebook", lead: "ux.lead.notebook", info: uxText("notebook.intro"), actions: /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx(UxSelect, { id: "notebook.scope", value: scope, onChange: (e) => {
+    const collection = /* @__PURE__ */ cpJsx(UxPanel, { title: "notebook.collection", className: "cp-notebook-collection" }, /* @__PURE__ */ cpJsx("div", { className: "cp-notebook-search" }, /* @__PURE__ */ cpJsx(UxField, { id: "notebook.search", label: "notebook.searchShort", title: uxText("notebook.search"), type: "search", value: query, onChange: (e) => setQuery(e.target.value) })), /* @__PURE__ */ cpJsx("details", { className: "cp-notebook-filters" }, /* @__PURE__ */ cpJsx("summary", null, uxText("notebook.filters"), /* @__PURE__ */ cpJsx("small", null, cpRaw([category, kind ? uxText("notebook." + kind) : "", view !== "archive" ? uxText("notebook." + view) + " \xB7 " + displayDate(date5) : ""].filter(Boolean).join(" \xB7 ")))), /* @__PURE__ */ cpJsx("div", { className: "cp-ux-form" }, /* @__PURE__ */ cpJsx(UxSelect, { id: "notebook.filterCategory", value: category, onChange: (e) => setCategory(e.target.value) }, /* @__PURE__ */ cpJsx("option", { value: "" }, uxText("notebook.allCategories")), categories.map((c) => /* @__PURE__ */ cpJsx("option", { key: c, value: c }, cpRaw(c)))), /* @__PURE__ */ cpJsx(UxSelect, { id: "notebook.filterKind", value: kind, onChange: (e) => setKind(e.target.value) }, /* @__PURE__ */ cpJsx("option", { value: "" }, uxText("notebook.allKinds")), ["reference", "diary", "teaching"].map((x2) => /* @__PURE__ */ cpJsx("option", { key: x2, value: x2 }, uxText("notebook." + x2)))), /* @__PURE__ */ cpJsx(UxField, { id: "notebook.filterDate", type: "date", value: date5, onChange: (e) => setDate(e.target.value) }), /* @__PURE__ */ cpJsx(UxSelect, { id: "notebook.view", value: view, onChange: (e) => setView(e.target.value) }, ["archive", "day", "week", "month"].map((x2) => /* @__PURE__ */ cpJsx("option", { key: x2, value: x2 }, uxText("notebook." + x2)))), /* @__PURE__ */ cpJsx("p", { className: "cp-notebook-search-help" }, uxText("notebook.searchHelp")))), view === "month" && /* @__PURE__ */ cpJsx("div", { className: "cp-ux-calendar" }, Array.from({ length: new Date(+date5.slice(0, 4), +date5.slice(5, 7), 0).getDate() }, (_, index) => {
+      const day = date5.slice(0, 8) + String(index + 1).padStart(2, "0"), count = entries2.filter((e) => e.date === day).length;
+      return /* @__PURE__ */ cpJsx(UxButton, { key: day, id: "notebook.calendarDay", context: day, onClick: () => {
+        setDate(day);
+        setView("day");
+      } }, index + 1, " ", count > 0 && /* @__PURE__ */ cpJsx("strong", null, "(", count, ")"));
+    })), !entries2.length && /* @__PURE__ */ cpJsx("p", null, uxText(!data.entries.length && !query && !category && !kind && view === "archive" ? "notebook.emptyPlain" : "notebook.empty")), entries2.map((saved) => {
+      const entry2 = unlocked[saved.id] || saved, locked = saved.encrypted && !unlocked[saved.id];
+      return /* @__PURE__ */ cpJsx("article", { className: "cp-ux-note-card", key: entry2.id, "data-active": draft.id === entry2.id ? "" : void 0, style: { borderInlineStart: "4px solid " + entry2.color } }, /* @__PURE__ */ cpJsx("header", null, /* @__PURE__ */ cpJsx("h3", null, locked ? uxText("notebook.locked") : /* @__PURE__ */ cpJsx(UxButton, { id: "notebook.edit", disabled: busy, context: entry2.id, onClick: () => leave(() => {
+        acceptDraft(entry2);
+        acceptProtect(!!saved.encrypted);
+        setPassword("");
+      }), className: "cp-notebook-entry-select", "aria-current": draft.id === entry2.id ? "true" : void 0, "aria-label": uxText("notebook.edit") + " \xB7 " + entry2.title }, cpRaw(entry2.title))), /* @__PURE__ */ cpJsx("span", null, cpRaw(displayDate(entry2.date)), " \xB7 ", cpRaw(entry2.category), " ", entry2.pinned ? "\u25CF" : "")), locked ? /* @__PURE__ */ cpJsx(UxButton, { id: "notebook.unlock", disabled: busy, context: entry2.id, onClick: () => run2(async (current4) => {
+        const value2 = await unlockEntry(saved, password);
+        if (!current4()) return;
+        setPassword("");
+        setUnlocked((p) => ({ ...p, [entry2.id]: value2 }));
+      }) }) : /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx("p", { className: "cp-notebook-snippet", style: { whiteSpace: "pre-wrap" } }, cpRaw(entry2.text)), (saved.encrypted || entry2.attachments.length > 0) && /* @__PURE__ */ cpJsx("details", { className: "cp-notebook-entry-tools" }, /* @__PURE__ */ cpJsx("summary", null, uxText(saved.encrypted ? "notebook.entryTools" : "notebook.attachments")), /* @__PURE__ */ cpJsx("div", { className: "cp-ux-actions" }, saved.encrypted && /* @__PURE__ */ cpJsx(UxButton, { id: "notebook.relock", disabled: busy, context: entry2.id, onClick: () => {
+        setUnlocked((p) => {
+          const next = { ...p };
+          delete next[entry2.id];
+          return next;
+        });
+        if (draft.id === entry2.id) leave(newDraft);
+      } }), entry2.attachments.map((meta) => /* @__PURE__ */ cpJsx("span", { key: meta.id }, cpRaw(meta.name), " ", /* @__PURE__ */ cpJsx(UxButton, { id: "notebook.download", disabled: busy, context: meta.id, onClick: () => run2(() => openAttachment(meta)) }), /* @__PURE__ */ cpJsx(UxButton, { id: "notebook.relink", disabled: busy, context: meta.id, onClick: () => run2(() => openAttachment(meta, true)) })))))), /* @__PURE__ */ cpJsx(UxButton, { id: "notebook.remove", disabled: busy, context: entry2.id, onClick: () => {
+        write((v) => removeEntry(v, entry2.id, scope === "teacher"));
+        setUnlocked((previous) => {
+          const next = { ...previous };
+          delete next[entry2.id];
+          return next;
+        });
+        notify(uxText("notebook.entryRemoved"), { undo: true });
+      }, className: "cp-notebook-remove", "aria-label": uxText("notebook.remove"), title: uxText("notebook.remove") }, /* @__PURE__ */ cpJsx("svg", { "aria-hidden": "true", viewBox: "0 0 24 24", width: "16", height: "16", fill: "none", stroke: "currentColor", strokeWidth: "1.6", strokeLinecap: "round", strokeLinejoin: "round" }, /* @__PURE__ */ cpJsx("path", { d: "M4 6h16M9 6V3h6v3M6 6l1 15h10l1-15M10 10v7m4-7v7" }))));
+    }));
+    return /* @__PURE__ */ cpJsx(ModuleFrame, { className: "cp-notebook-page", titleKey: "ux.notebook.title", icon: "notebook", lead: "ux.lead.notebook", info: uxText("notebook.intro"), actions: /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx(UxSelect, { id: "notebook.scope", value: scope, onChange: (e) => {
       const next = e.target.value;
       leave(() => {
         setScope(next);
         newDraft();
         setUnlocked({});
       });
-    } }, /* @__PURE__ */ cpJsx("option", { value: "teacher" }, uxText("notebook.teacher")), /* @__PURE__ */ cpJsx("option", { value: "class" }, uxText("notebook.class"))), /* @__PURE__ */ cpJsx(UxButton, { id: "notebook.new", primary: true, disabled: busy, onClick: () => leave(newDraft) })), more: /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx(UxButton, { id: "notebook.print", disabled: !visible.length, onClick: () => setPrinting(true) }), /* @__PURE__ */ cpJsx(UxButton, { id: "notebook.word", disabled: !visible.length, onClick: () => downloadWord({ title: uxText("notebook.title"), language: profile2.ui.language, blocks: visible.flatMap((e) => [{ heading: true, text: e.date + " \xB7 " + e.title }, { text: e.text }]) }, "ClassPilot_notebook.docx") })) }, scope === "teacher" && !isProfileLinked() && /* @__PURE__ */ cpJsx("p", { role: "status" }, uxText("notebook.linkProfile")), /* @__PURE__ */ cpJsx("div", { className: "cp-ux-split" }, /* @__PURE__ */ cpJsx(UxPanel, { title: "notebook.editor", className: "cp-notebook-editor" }, /* @__PURE__ */ cpJsx("fieldset", { disabled: busy, style: { border: 0, padding: 0, margin: 0, minWidth: 0 } }, /* @__PURE__ */ cpJsx("div", { className: "cp-notebook-titlerow" }, /* @__PURE__ */ cpJsx(UxField, { id: "notebook.titleInput", value: draft.title, maxLength: 200, onChange: (e) => change2("title", e.target.value) }), /* @__PURE__ */ cpJsx(UxField, { id: "notebook.date", type: "date", value: draft.date, onChange: (e) => change2("date", e.target.value) })), /* @__PURE__ */ cpJsx("label", { className: "cp-ux-field" }, /* @__PURE__ */ cpJsx("span", null, uxText("notebook.text")), /* @__PURE__ */ cpJsx("textarea", { rows: "9", maxLength: 2e5, value: draft.text, "aria-label": uxText("notebook.text"), ...controlProps("ux.notebook.text", (e) => change2("text", e.target.value)) })), /* @__PURE__ */ cpJsx("details", { className: "cp-notebook-part", "data-part": "organise" }, /* @__PURE__ */ cpJsx("summary", null, uxText("notebook.organise"), /* @__PURE__ */ cpJsx("small", null, cpRaw([uxText("notebook." + draft.kind), draft.category, draft.pinned ? uxText("notebook.pinnedShort") : "", protect ? uxText("notebook.encryptedShort") : ""].filter(Boolean).join(" \xB7 ")))), /* @__PURE__ */ cpJsx("div", { className: "cp-ux-form" }, /* @__PURE__ */ cpJsx(UxSelect, { id: "notebook.kind", value: draft.kind, onChange: (e) => change2("kind", e.target.value) }, ["reference", "diary", "teaching"].map((x2) => /* @__PURE__ */ cpJsx("option", { key: x2, value: x2 }, uxText("notebook." + x2)))), /* @__PURE__ */ cpJsx(UxField, { id: "notebook.category", value: draft.category, maxLength: 80, onChange: (e) => change2("category", e.target.value) }), /* @__PURE__ */ cpJsx(UxField, { id: "notebook.color", type: "color", value: draft.color, onChange: (e) => change2("color", e.target.value) }), /* @__PURE__ */ cpJsx(UxCheck, { id: "notebook.pinned", checked: draft.pinned, onChange: (e) => change2("pinned", e.target.checked) })), /* @__PURE__ */ cpJsx(UxCheck, { id: "notebook.protect", checked: protect, onChange: (e) => {
+    } }, /* @__PURE__ */ cpJsx("option", { value: "teacher" }, uxText("notebook.teacher")), /* @__PURE__ */ cpJsx("option", { value: "class" }, uxText("notebook.class"))), /* @__PURE__ */ cpJsx(UxButton, { id: "notebook.new", disabled: busy, onClick: () => leave(newDraft) })), more: /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx(UxButton, { id: "notebook.print", disabled: !visible.length, onClick: () => setPrinting(true) }), /* @__PURE__ */ cpJsx(UxButton, { id: "notebook.word", disabled: !visible.length, onClick: () => downloadWord({ title: uxText("notebook.title"), language: profile2.ui.language, blocks: visible.flatMap((e) => [{ heading: true, text: e.date + " \xB7 " + e.title }, { text: e.text }]) }, "ClassPilot_notebook.docx") })) }, scope === "teacher" && !isProfileLinked() && /* @__PURE__ */ cpJsx("p", { role: "status" }, uxText("notebook.linkProfile")), /* @__PURE__ */ cpJsx("div", { className: "cp-ux-split" }, collection, /* @__PURE__ */ cpJsx(UxPanel, { "aria-label": uxText("notebook.editor"), className: "cp-notebook-editor" }, /* @__PURE__ */ cpJsx("fieldset", { disabled: busy, style: { border: 0, padding: 0, margin: 0, minWidth: 0 } }, /* @__PURE__ */ cpJsx("div", { className: "cp-notebook-titlerow" }, /* @__PURE__ */ cpJsx(UxField, { id: "notebook.titleInput", value: draft.title, maxLength: 200, onChange: (e) => change2("title", e.target.value) }), /* @__PURE__ */ cpJsx(UxField, { id: "notebook.date", type: "date", value: draft.date, onChange: (e) => change2("date", e.target.value) })), /* @__PURE__ */ cpJsx("label", { className: "cp-ux-field" }, /* @__PURE__ */ cpJsx("span", null, uxText("notebook.text")), /* @__PURE__ */ cpJsx("textarea", { rows: "9", maxLength: 2e5, value: draft.text, "aria-label": uxText("notebook.text"), ...controlProps("ux.notebook.text", (e) => change2("text", e.target.value)) })), /* @__PURE__ */ cpJsx("details", { className: "cp-notebook-part", "data-part": "organise" }, /* @__PURE__ */ cpJsx("summary", null, uxText("notebook.organise"), /* @__PURE__ */ cpJsx("small", null, cpRaw([uxText("notebook." + draft.kind), draft.category, draft.pinned ? uxText("notebook.pinnedShort") : "", protect ? uxText("notebook.encryptedShort") : ""].filter(Boolean).join(" \xB7 ")))), /* @__PURE__ */ cpJsx("div", { className: "cp-ux-form" }, /* @__PURE__ */ cpJsx(UxSelect, { id: "notebook.kind", value: draft.kind, onChange: (e) => change2("kind", e.target.value) }, ["reference", "diary", "teaching"].map((x2) => /* @__PURE__ */ cpJsx("option", { key: x2, value: x2 }, uxText("notebook." + x2)))), /* @__PURE__ */ cpJsx(UxField, { id: "notebook.category", value: draft.category, maxLength: 80, onChange: (e) => change2("category", e.target.value) }), /* @__PURE__ */ cpJsx(UxField, { id: "notebook.color", type: "color", value: draft.color, onChange: (e) => change2("color", e.target.value) }), /* @__PURE__ */ cpJsx(UxCheck, { id: "notebook.pinned", checked: draft.pinned, onChange: (e) => change2("pinned", e.target.checked) })), /* @__PURE__ */ cpJsx(UxCheck, { id: "notebook.protect", checked: protect, onChange: (e) => {
       setProtect(e.target.checked);
-    } })), /* @__PURE__ */ cpJsx("details", { className: "cp-notebook-part", "data-part": "attachments" }, /* @__PURE__ */ cpJsx("summary", null, uxText("notebook.attachments"), /* @__PURE__ */ cpJsx("small", null, cpRaw(String(draft.attachments.length)))), /* @__PURE__ */ cpJsx("p", null, uxText("notebook.attachmentHint")), /* @__PURE__ */ cpJsx(UxField, { id: "notebook.attachment", type: "file", disabled: busy, onChange: (e) => {
+    } })), /* @__PURE__ */ cpJsx("details", { className: "cp-notebook-part", "data-part": "attachments" }, /* @__PURE__ */ cpJsx("summary", null, uxText("notebook.attachments"), draft.attachments.length > 0 && /* @__PURE__ */ cpJsx("small", null, cpRaw(String(draft.attachments.length)))), /* @__PURE__ */ cpJsx("p", null, uxText("notebook.attachmentHint")), /* @__PURE__ */ cpJsx(UxField, { id: "notebook.attachment", type: "file", disabled: busy, onChange: (e) => {
       const file = e.target.files?.[0];
       e.target.value = "";
       if (file) attach(file);
@@ -51589,40 +51679,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       write((v) => putEntry(v, entry2));
       setUnlocked({});
       newDraft();
-    }) }), dirty && /* @__PURE__ */ cpJsx("p", { role: "status" }, uxText("notebook.unsaved"))))), /* @__PURE__ */ cpJsx(UxPanel, { title: "notebook.archive" }, /* @__PURE__ */ cpJsx("div", { className: "cp-ux-form" }, /* @__PURE__ */ cpJsx(UxField, { id: "notebook.search", type: "search", value: query, onChange: (e) => setQuery(e.target.value) }), /* @__PURE__ */ cpJsx(UxSelect, { id: "notebook.filterCategory", value: category, onChange: (e) => setCategory(e.target.value) }, /* @__PURE__ */ cpJsx("option", { value: "" }, uxText("notebook.allCategories")), categories.map((c) => /* @__PURE__ */ cpJsx("option", { key: c, value: c }, cpRaw(c)))), /* @__PURE__ */ cpJsx(UxSelect, { id: "notebook.filterKind", value: kind, onChange: (e) => setKind(e.target.value) }, /* @__PURE__ */ cpJsx("option", { value: "" }, uxText("notebook.allKinds")), ["reference", "diary", "teaching"].map((x2) => /* @__PURE__ */ cpJsx("option", { key: x2, value: x2 }, uxText("notebook." + x2)))), /* @__PURE__ */ cpJsx(UxField, { id: "notebook.filterDate", type: "date", value: date5, onChange: (e) => setDate(e.target.value) }), /* @__PURE__ */ cpJsx(UxSelect, { id: "notebook.view", value: view, onChange: (e) => setView(e.target.value) }, ["archive", "day", "week", "month"].map((x2) => /* @__PURE__ */ cpJsx("option", { key: x2, value: x2 }, uxText("notebook." + x2))))), view === "month" && /* @__PURE__ */ cpJsx("div", { className: "cp-ux-calendar" }, Array.from({ length: new Date(+date5.slice(0, 4), +date5.slice(5, 7), 0).getDate() }, (_, index) => {
-      const day = date5.slice(0, 8) + String(index + 1).padStart(2, "0"), count = entries2.filter((e) => e.date === day).length;
-      return /* @__PURE__ */ cpJsx(UxButton, { key: day, id: "notebook.calendarDay", context: day, onClick: () => {
-        setDate(day);
-        setView("day");
-      } }, index + 1, " ", count > 0 && /* @__PURE__ */ cpJsx("strong", null, "(", count, ")"));
-    })), !entries2.length && /* @__PURE__ */ cpJsx("p", null, uxText("notebook.empty")), entries2.map((saved) => {
-      const entry2 = unlocked[saved.id] || saved, locked = saved.encrypted && !unlocked[saved.id];
-      return /* @__PURE__ */ cpJsx("article", { className: "cp-ux-note-card", key: entry2.id, style: { borderInlineStart: "4px solid " + entry2.color } }, /* @__PURE__ */ cpJsx("header", null, /* @__PURE__ */ cpJsx("h3", null, locked ? uxText("notebook.locked") : cpRaw(entry2.title)), /* @__PURE__ */ cpJsx("span", null, cpRaw(displayDate(entry2.date)), " \xB7 ", cpRaw(entry2.category), " ", entry2.pinned ? "\u25CF" : "")), locked ? /* @__PURE__ */ cpJsx(UxButton, { id: "notebook.unlock", disabled: busy, context: entry2.id, onClick: () => run2(async (current4) => {
-        const value2 = await unlockEntry(saved, password);
-        if (!current4()) return;
-        setPassword("");
-        setUnlocked((p) => ({ ...p, [entry2.id]: value2 }));
-      }) }) : /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx("p", { style: { whiteSpace: "pre-wrap" } }, cpRaw(entry2.text)), /* @__PURE__ */ cpJsx("div", { className: "cp-ux-actions" }, /* @__PURE__ */ cpJsx(UxButton, { id: "notebook.edit", disabled: busy, context: entry2.id, onClick: () => leave(() => {
-        acceptDraft(entry2);
-        acceptProtect(!!saved.encrypted);
-        setPassword("");
-      }) }), saved.encrypted && /* @__PURE__ */ cpJsx(UxButton, { id: "notebook.relock", disabled: busy, context: entry2.id, onClick: () => {
-        setUnlocked((p) => {
-          const next = { ...p };
-          delete next[entry2.id];
-          return next;
-        });
-        if (draft.id === entry2.id) leave(newDraft);
-      } }), entry2.attachments.map((meta) => /* @__PURE__ */ cpJsx("span", { key: meta.id }, cpRaw(meta.name), " ", /* @__PURE__ */ cpJsx(UxButton, { id: "notebook.download", disabled: busy, context: meta.id, onClick: () => run2(() => openAttachment(meta)) }), /* @__PURE__ */ cpJsx(UxButton, { id: "notebook.relink", disabled: busy, context: meta.id, onClick: () => run2(() => openAttachment(meta, true)) }))))), /* @__PURE__ */ cpJsx(UxButton, { id: "notebook.remove", disabled: busy, context: entry2.id, onClick: () => {
-        write((v) => removeEntry(v, entry2.id, scope === "teacher"));
-        setUnlocked((previous) => {
-          const next = { ...previous };
-          delete next[entry2.id];
-          return next;
-        });
-        notify(uxText("notebook.entryRemoved"), { undo: true });
-      } }));
-    }))), scope === "teacher" && (data.removed || []).length > 0 && /* @__PURE__ */ cpJsx(UxPanel, { title: "notebook.removed" }, data.removed.map((entry2) => /* @__PURE__ */ cpJsx("p", { key: entry2.id }, entry2.encrypted ? uxText("notebook.locked") : cpRaw(entry2.title), " \xB7 ", cpRaw(displayDate(entry2.date)), " ", /* @__PURE__ */ cpJsx(UxButton, { id: "notebook.restore", disabled: busy, context: entry2.id, onClick: () => write((v) => restoreNotebookEntry(v, entry2.id)) })))), error2 && /* @__PURE__ */ cpJsx("p", { role: "alert" }, error2), printing && /* @__PURE__ */ cpJsx(PrintPortal, { onClose: () => setPrinting(false) }, /* @__PURE__ */ cpJsx("article", { className: "cp-m5-paper" }, /* @__PURE__ */ cpJsx("h1", null, uxText("notebook.title")), visible.map((e) => /* @__PURE__ */ cpJsx("section", { key: e.id }, /* @__PURE__ */ cpJsx("h2", null, cpRaw(e.title)), /* @__PURE__ */ cpJsx("p", null, e.date, " \xB7 ", cpRaw(e.category)), /* @__PURE__ */ cpJsx("p", { style: { whiteSpace: "pre-wrap" } }, cpRaw(e.text)))))));
+    }) }), dirty && /* @__PURE__ */ cpJsx("p", { role: "status" }, uxText("notebook.unsavedShort")))))), scope === "teacher" && (data.removed || []).length > 0 && /* @__PURE__ */ cpJsx(UxPanel, { title: "notebook.removed" }, data.removed.map((entry2) => /* @__PURE__ */ cpJsx("p", { key: entry2.id }, entry2.encrypted ? uxText("notebook.locked") : cpRaw(entry2.title), " \xB7 ", cpRaw(displayDate(entry2.date)), " ", /* @__PURE__ */ cpJsx(UxButton, { id: "notebook.restore", disabled: busy, context: entry2.id, onClick: () => write((v) => restoreNotebookEntry(v, entry2.id)) })))), error2 && /* @__PURE__ */ cpJsx("p", { role: "alert" }, error2), printing && /* @__PURE__ */ cpJsx(PrintPortal, { onClose: () => setPrinting(false) }, /* @__PURE__ */ cpJsx("article", { className: "cp-m5-paper" }, /* @__PURE__ */ cpJsx("h1", null, uxText("notebook.title")), visible.map((e) => /* @__PURE__ */ cpJsx("section", { key: e.id }, /* @__PURE__ */ cpJsx("h2", null, cpRaw(e.title)), /* @__PURE__ */ cpJsx("p", null, e.date, " \xB7 ", cpRaw(e.category)), /* @__PURE__ */ cpJsx("p", { style: { whiteSpace: "pre-wrap" } }, cpRaw(e.text)))))));
   }
   var notebook_default = { id: "notebook", navigation: navigationFor("notebook"), schema: { defaults: notebook(), migrate: notebook }, views: [{ id: "module:notebook", labelKey: navigationFor("notebook").titleKey, Component: NotebookView }], actions: uxActions.filter((a) => a.id.startsWith("ux.notebook.") || a.id === "ux.nav.notebook"), settingsSections: [], exports: [{ id: "notebook.word", format: "docx" }], i18n: { en: uxEn, ar: uxAr } };
 
