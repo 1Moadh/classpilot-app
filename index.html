@@ -1950,6 +1950,29 @@ td[data-cp-att],th[data-cp-att]{background:var(--cp-att-bg)!important;box-shadow
 @media(max-width:1150px){.cp-cert-studio{grid-template-columns:250px minmax(0,1fr)!important;gap:12px!important}.cp-certificate-live.cp-cert-stage{padding:12px!important;min-block-size:360px!important}.cp-cert-toolbar{align-items:start}.cp-cert-design .cp-cert-grid{grid-template-columns:1fr 1fr!important}}
 @media(max-width:850px){.cp-cert-studio{grid-template-columns:minmax(0,1fr)!important}.cp-cert-design .cp-cert-text{grid-template-columns:1fr!important}}
 @media print{.cp-cert-design{display:none!important}}
+
+/* SP11: owner-approved notes collection/editor; reminder is available before first save. */
+.cp-notes-page .cp-tpl-split{display:grid!important;grid-template-columns:340px minmax(0,1fr)!important;align-items:start!important;gap:16px!important}
+.cp-notes-page .cp-notes-list,.cp-notes-page .cp-inspector{min-inline-size:0;box-shadow:none!important}
+.cp-notes-page .cp-tpl-bar{display:grid!important;grid-template-columns:minmax(0,1fr)!important;padding:12px!important;gap:12px!important}
+.cp-notes-page .cp-notes-due{margin:12px 12px 0;padding:8px;gap:8px;flex-wrap:wrap}
+.cp-notes-page .cp-notes-due>span{display:none}
+.cp-notes-page .cp-notes-due>button{margin-inline-start:auto}
+.cp-notes-page .cp-notes-items{padding:0 12px 12px}
+.cp-notes-page .cp-notes-rowhead{gap:6px}
+.cp-notes-page .cp-notes-rowhead .cp-notes-badge{margin-inline-start:0}
+.cp-notes-page .cp-row-text{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.cp-notes-context{display:grid;grid-template-columns:minmax(0,1fr) 176px;gap:12px}
+.cp-notes-page .cp-inspector textarea{min-block-size:220px}
+.cp-notes-page .cp-inspector>header{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.cp-notes-draft{font-size:var(--cp-fs-caption);color:var(--cp-muted);font-weight:500}
+@media(max-width:1150px){.cp-notes-page .cp-tpl-split{grid-template-columns:280px minmax(0,1fr)!important;gap:12px!important}.cp-notes-context{grid-template-columns:minmax(0,1fr)}.cp-notes-page .cp-inspector textarea{min-block-size:180px}}
+@media(max-width:850px){.cp-notes-page .cp-tpl-split{grid-template-columns:minmax(0,1fr)!important}}
+
+.cp-notes-page .cp-inspector>header{padding:8px 16px;min-block-size:42px}
+.cp-notes-page .cp-inspector>header h2{min-inline-size:0;overflow-wrap:anywhere}
+.cp-notes-page .cp-draft-note{margin:0}
+.cp-notes-page .cp-draft-note .cp-btn{height:26px;min-block-size:26px;padding-inline:4px}
 /* M56 design foundations (owner-supplied Master Implementation Brief, M56; design report §7–§8).
    One set of tokens for the frame and the new modules. Protected Gradebook views (Marks, Groups, Behaviour,
    Adjustments, Analysis, the original wheel, the Settings drawer and the class manager) do not use them. */
@@ -8263,7 +8286,9 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.home.notTaken": "Not taken yet",
     "ux.home.nowMenu": "More for this lesson",
     "ux.home.lessonsToday": "Today\u2019s lessons",
-    "ux.home.timetableLink": "Timetable"
+    "ux.home.timetableLink": "Timetable",
+    "ux.notes.draft": "Draft",
+    "ux.notes.showDueLabel": "Show due follow-ups"
   };
 
   // src/i18n/plain-copy.js
@@ -13949,7 +13974,9 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.home.notTaken": "\u0644\u0645 \u064A\u064F\u0633\u062C\u064E\u0651\u0644 \u0628\u0639\u062F",
     "ux.home.nowMenu": "\u0627\u0644\u0645\u0632\u064A\u062F \u0644\u0647\u0630\u0647 \u0627\u0644\u062D\u0635\u0629",
     "ux.home.lessonsToday": "\u062D\u0635\u0635 \u0627\u0644\u064A\u0648\u0645",
-    "ux.home.timetableLink": "\u0627\u0644\u062C\u062F\u0648\u0644"
+    "ux.home.timetableLink": "\u0627\u0644\u062C\u062F\u0648\u0644",
+    "ux.notes.draft": "\u0645\u0633\u0648\u062F\u0629",
+    "ux.notes.showDueLabel": "\u0639\u0631\u0636 \u0627\u0644\u0645\u062A\u0627\u0628\u0639\u0627\u062A \u0627\u0644\u0645\u0633\u062A\u062D\u0642\u0629"
   };
 
   // src/core/actions.js
@@ -37339,8 +37366,8 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
   function Segmented({ label, children }) {
     return /* @__PURE__ */ cpJsx("span", { className: "cp-seg", role: "group", "aria-label": label }, children);
   }
-  function ModuleFrame({ titleKey, icon: icon3, lead, info, actions, more, compact = false, template, children }) {
-    return /* @__PURE__ */ cpJsx("section", { className: "cp-module", "data-template": template, style: { padding: "var(--cp-space,18px) var(--cp-space,22px)", fontSize: "var(--cp-fs-body)", color: "var(--cp-text)", maxWidth: 1500, marginInline: "auto" } }, !compact && /* @__PURE__ */ cpJsx("header", { className: "cp-page-head" }, /* @__PURE__ */ cpJsx("div", { className: "cp-page-title" }, /* @__PURE__ */ cpJsx("h1", { style: { fontFamily: "var(--cp-font-display)", fontSize: 24, fontWeight: 600, margin: 0 } }, t(titleKey)), info && /* @__PURE__ */ cpJsx(InfoTip, { id: titleKey }, info)), (actions || more) && /* @__PURE__ */ cpJsx("div", { className: "cp-page-actions" }, actions, more && /* @__PURE__ */ cpJsx(MoreMenu, { id: titleKey }, more))), children);
+  function ModuleFrame({ titleKey, icon: icon3, lead, info, actions, more, compact = false, template, children, className = "" }) {
+    return /* @__PURE__ */ cpJsx("section", { className: className ? "cp-module " + className : "cp-module", "data-template": template, style: { padding: "var(--cp-space,18px) var(--cp-space,22px)", fontSize: "var(--cp-fs-body)", color: "var(--cp-text)", maxWidth: 1500, marginInline: "auto" } }, !compact && /* @__PURE__ */ cpJsx("header", { className: "cp-page-head" }, /* @__PURE__ */ cpJsx("div", { className: "cp-page-title" }, /* @__PURE__ */ cpJsx("h1", { style: { fontFamily: "var(--cp-font-display)", fontSize: 24, fontWeight: 600, margin: 0 } }, t(titleKey)), info && /* @__PURE__ */ cpJsx(InfoTip, { id: titleKey }, info)), (actions || more) && /* @__PURE__ */ cpJsx("div", { className: "cp-page-actions" }, actions, more && /* @__PURE__ */ cpJsx(MoreMenu, { id: titleKey }, more))), children);
   }
   function colourText(hex2) {
     const rgb = [1, 3, 5].map((start) => parseInt(hex2.slice(start, start + 2), 16) / 255);
@@ -41905,7 +41932,9 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "home.notTaken": ["Not taken yet", "\u0644\u0645 \u064A\u064F\u0633\u062C\u064E\u0651\u0644 \u0628\u0639\u062F"],
     "home.nowMenu": ["More for this lesson", "\u0627\u0644\u0645\u0632\u064A\u062F \u0644\u0647\u0630\u0647 \u0627\u0644\u062D\u0635\u0629"],
     "home.lessonsToday": ["Today\u2019s lessons", "\u062D\u0635\u0635 \u0627\u0644\u064A\u0648\u0645"],
-    "home.timetableLink": ["Timetable", "\u0627\u0644\u062C\u062F\u0648\u0644"]
+    "home.timetableLink": ["Timetable", "\u0627\u0644\u062C\u062F\u0648\u0644"],
+    "notes.draft": ["Draft", "\u0645\u0633\u0648\u062F\u0629"],
+    "notes.showDueLabel": ["Show due follow-ups", "\u0639\u0631\u0636 \u0627\u0644\u0645\u062A\u0627\u0628\u0639\u0627\u062A \u0627\u0644\u0645\u0633\u062A\u062D\u0642\u0629"]
   };
   var uxEn = Object.fromEntries(Object.entries(pairs).map(([key4, value]) => ["ux." + key4, value[0]]));
   var uxAr = Object.fromEntries(Object.entries(pairs).map(([key4, value]) => ["ux." + key4, value[1]]));
@@ -44092,6 +44121,42 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     };
   }
 
+  // src/modules/notes/model.js
+  function notes(value = {}) {
+    return { ...value, schemaVersion: 1, byStudent: value.byStudent || {} };
+  }
+  function updateNotes(doc, fn) {
+    return { ...doc, cp: { ...doc.cp, notes: fn(notes(doc.cp?.notes)) } };
+  }
+  function addNote(doc, studentId, date5, text7) {
+    if (!date5 || !text7.trim() || !doc.students.some((s) => s.id === studentId)) return doc;
+    return updateNotes(doc, (n) => ({ ...n, byStudent: { ...n.byStudent, [studentId]: [...n.byStudent[studentId] || [], { id: mkId(), date: date5, text: text7, pinned: false, createdAt: Date.now(), updatedAt: Date.now() }] } }));
+  }
+  function editNote(doc, studentId, id, patch) {
+    return updateNotes(doc, (n) => ({ ...n, byStudent: { ...n.byStudent, [studentId]: (n.byStudent[studentId] || []).map((note) => note.id === id ? { ...note, ...patch, updatedAt: Date.now() } : note) } }));
+  }
+  function removeNote(doc, studentId, id) {
+    return updateNotes(doc, (n) => ({ ...n, byStudent: { ...n.byStudent, [studentId]: (n.byStudent[studentId] || []).filter((note) => note.id !== id) } }));
+  }
+  function noteCount(doc, studentId) {
+    return (doc.cp?.notes?.byStudent?.[studentId] || []).length;
+  }
+  function searchNotes(doc, query = "", studentId = "") {
+    const queryLower = query.trim().toLocaleLowerCase(), roster = new Set(doc.students.map((s) => s.id)), rows = [];
+    for (const [id, list2] of Object.entries(doc.cp?.notes?.byStudent || {})) if (roster.has(id) && (!studentId || id === studentId)) {
+      for (const note of list2) if (!queryLower || note.text.toLocaleLowerCase().includes(queryLower)) rows.push({ ...note, studentId: id });
+    }
+    return rows.sort((a, b) => Number(b.pinned) - Number(a.pinned) || b.date.localeCompare(a.date) || b.createdAt - a.createdAt);
+  }
+
+  // src/modules/notes/new-note.js
+  function addNoteWithReminder(doc, studentId, date5, text7, followUpDate = "") {
+    const next = addNote(doc, studentId, date5, text7);
+    if (next === doc || !followUpDate) return next;
+    const created = next.cp.notes.byStudent[studentId].at(-1);
+    return editNote(next, studentId, created.id, { followUpDate, completed: false });
+  }
+
   // src/modules/notebook/attachments.js
   var MAX_ATTACHMENT = 100 * 1024 * 1024;
   var digest = async (file) => Array.from(new Uint8Array(await crypto.subtle.digest("SHA-256", await file.arrayBuffer())), (n) => n.toString(16).padStart(2, "0")).join("");
@@ -44797,34 +44862,6 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     return { id, navigation: navigationFor(id), schema, views, actions: moduleActions.filter((a) => a.id.startsWith("m3." + id + ".") || a.id === "m3.nav." + id), settingsSections, exports, i18n: { en: modulesEn, ar: modulesAr } };
   }
 
-  // src/modules/notes/model.js
-  function notes(value = {}) {
-    return { ...value, schemaVersion: 1, byStudent: value.byStudent || {} };
-  }
-  function updateNotes(doc, fn) {
-    return { ...doc, cp: { ...doc.cp, notes: fn(notes(doc.cp?.notes)) } };
-  }
-  function addNote(doc, studentId, date5, text7) {
-    if (!date5 || !text7.trim() || !doc.students.some((s) => s.id === studentId)) return doc;
-    return updateNotes(doc, (n) => ({ ...n, byStudent: { ...n.byStudent, [studentId]: [...n.byStudent[studentId] || [], { id: mkId(), date: date5, text: text7, pinned: false, createdAt: Date.now(), updatedAt: Date.now() }] } }));
-  }
-  function editNote(doc, studentId, id, patch) {
-    return updateNotes(doc, (n) => ({ ...n, byStudent: { ...n.byStudent, [studentId]: (n.byStudent[studentId] || []).map((note) => note.id === id ? { ...note, ...patch, updatedAt: Date.now() } : note) } }));
-  }
-  function removeNote(doc, studentId, id) {
-    return updateNotes(doc, (n) => ({ ...n, byStudent: { ...n.byStudent, [studentId]: (n.byStudent[studentId] || []).filter((note) => note.id !== id) } }));
-  }
-  function noteCount(doc, studentId) {
-    return (doc.cp?.notes?.byStudent?.[studentId] || []).length;
-  }
-  function searchNotes(doc, query = "", studentId = "") {
-    const queryLower = query.trim().toLocaleLowerCase(), roster = new Set(doc.students.map((s) => s.id)), rows = [];
-    for (const [id, list2] of Object.entries(doc.cp?.notes?.byStudent || {})) if (roster.has(id) && (!studentId || id === studentId)) {
-      for (const note of list2) if (!queryLower || note.text.toLocaleLowerCase().includes(queryLower)) rows.push({ ...note, studentId: id });
-    }
-    return rows.sort((a, b) => Number(b.pinned) - Number(a.pinned) || b.date.localeCompare(a.date) || b.createdAt - a.createdAt);
-  }
-
   // src/modules/notes/index.jsx
   var ux = (key4) => t("ux." + key4);
   function NoteBadge({ doc, studentId }) {
@@ -44848,10 +44885,13 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       onUpdate((d) => removeNote(d, note.studentId, note.id));
       setOpen("new");
       notify(ux("notes.removed"), { undo: true });
-    } }), /* @__PURE__ */ cpJsx("span", { className: "cp-notes-gap" }), /* @__PURE__ */ cpJsx(Button, { action: "ux.notes.close", role: "tertiary", onClick: () => setOpen("new") }), changed && /* @__PURE__ */ cpJsx(Button, { action: "ux.notes.cancelEdit", context: note.id, onClick: () => setDraft({ date: note.date, followUpDate: note.followUpDate || "", completed: !!note.completed, text: note.text }) }), /* @__PURE__ */ cpJsx(Button, { action: "ux.notes.save", role: "primary", context: note.id, disabled: !changed || !draft.date || !draft.text.trim(), onClick: save })) }, /* @__PURE__ */ cpJsx(Field, { action: "m3.notes.editDate", context: note.id, label: "notes.date", type: "date", value: draft.date, onChange: (e) => setDraft({ ...draft, date: e.target.value }) }), /* @__PURE__ */ cpJsx(Field, { action: "m3.notes.editText", context: note.id, label: "notes.text", as: "textarea", rows: 7, value: draft.text, onChange: (e) => setDraft({ ...draft, text: e.target.value }) }), /* @__PURE__ */ cpJsx("div", { className: "cp-notes-follow" }, /* @__PURE__ */ cpJsx("label", { className: "cp-notes-switch" }, /* @__PURE__ */ cpJsx("input", { type: "checkbox", role: "switch", checked: !!draft.followUpDate, ...controlProps("ux.notes.followSwitch", (e) => setDraft({ ...draft, followUpDate: e.target.checked ? plusDays(todayISO(), 3) : "", completed: e.target.checked ? draft.completed : false }), note.id) }), /* @__PURE__ */ cpJsx("span", null, ux("notes.remind"))), draft.followUpDate && /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx(Field, { action: "improve.followUpDate", context: note.id, label: "improve.followUpDate", type: "date", value: draft.followUpDate, onChange: (e) => setDraft({ ...draft, followUpDate: e.target.value }) }), /* @__PURE__ */ cpJsx(Check, { action: "improve.completed", context: note.id, label: "improve.completed", checked: draft.completed, onChange: (e) => setDraft({ ...draft, completed: e.target.checked }) }))), /* @__PURE__ */ cpJsx("div", { className: "cp-notes-obs" }, /* @__PURE__ */ cpJsx("span", null, ux("notes.recentObs")), recent.length ? recent.map((o) => {
+    } }), /* @__PURE__ */ cpJsx("span", { className: "cp-notes-gap" }), /* @__PURE__ */ cpJsx(Button, { action: "ux.notes.close", role: "tertiary", onClick: () => setOpen("new") }), changed && /* @__PURE__ */ cpJsx(Button, { action: "ux.notes.cancelEdit", context: note.id, onClick: () => setDraft({ date: note.date, followUpDate: note.followUpDate || "", completed: !!note.completed, text: note.text }) }), /* @__PURE__ */ cpJsx(Button, { action: "ux.notes.save", role: "primary", context: note.id, disabled: !changed || !draft.date || !draft.text.trim(), onClick: save })) }, /* @__PURE__ */ cpJsx(Field, { action: "m3.notes.editDate", context: note.id, label: "notes.date", type: "date", value: draft.date, onChange: (e) => setDraft({ ...draft, date: e.target.value }) }), /* @__PURE__ */ cpJsx(Field, { action: "m3.notes.editText", context: note.id, label: "notes.text", as: "textarea", rows: 7, value: draft.text, onChange: (e) => setDraft({ ...draft, text: e.target.value }) }), /* @__PURE__ */ cpJsx(NoteReminder, { context: note.id, date: draft.followUpDate, completed: draft.completed, onChange: (patch) => setDraft({ ...draft, ...patch }) }), /* @__PURE__ */ cpJsx("div", { className: "cp-notes-obs" }, /* @__PURE__ */ cpJsx("span", null, ux("notes.recentObs")), recent.length ? recent.map((o) => {
       const tag = obs.settings.tags.find((t2) => t2.id === o.tagIds[0]);
       return /* @__PURE__ */ cpJsx("span", { key: o.id, className: "cp-obs-tt", "data-kind": tag?.kind || "note" }, cpRaw((tag ? tag.label || t(tag.labelKey) : ux("notes.noteOnly")) + " \xB7 " + displayDate(o.date, { weekday: true, year: false })));
     }) : /* @__PURE__ */ cpJsx("em", null, ux("notes.noObs")), setView && /* @__PURE__ */ cpJsx("button", { type: "button", className: "cp-notes-link", ...actionProps("ux.notes.openTimeline", () => window.dispatchEvent(new CustomEvent("cp:student-module", { detail: { studentId: note.studentId, view: "module:observations" } })), note.studentId) }, ux("notes.openTimeline"))));
+  }
+  function NoteReminder({ context, date: date5, completed = false, onChange, allowCompletion = true }) {
+    return /* @__PURE__ */ cpJsx("div", { className: "cp-notes-follow" }, /* @__PURE__ */ cpJsx("label", { className: "cp-notes-switch" }, /* @__PURE__ */ cpJsx("input", { type: "checkbox", role: "switch", checked: !!date5, ...controlProps("ux.notes.followSwitch", (e) => onChange({ followUpDate: e.target.checked ? plusDays(todayISO(), 3) : "", completed: e.target.checked ? completed : false }), context) }), /* @__PURE__ */ cpJsx("span", null, ux("notes.remind"))), date5 && /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx(Field, { action: "improve.followUpDate", context, label: "improve.followUpDate", type: "date", value: date5, onChange: (e) => onChange({ followUpDate: e.target.value }) }), allowCompletion && /* @__PURE__ */ cpJsx(Check, { action: "improve.completed", context, label: "improve.completed", checked: completed, onChange: (e) => onChange({ completed: e.target.checked }) })));
   }
   function NotesView({ doc, onUpdate, studentId: requestedId, setView }) {
     useLanguage();
@@ -44872,6 +44912,11 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       if (filter && known(filter)) setStudentId(filter);
     }, [filter]);
     const [text7, setText, acceptText, textDirty] = useRetainedState("note:" + classId + ":" + studentId, "", { warn: true });
+    const [reminder, setReminder, acceptReminder, reminderDirty] = useRetainedState("note-reminder:" + classId + ":" + studentId, "", { warn: true }), dirty = textDirty || reminderDirty;
+    const discard = () => {
+      acceptText("");
+      acceptReminder("");
+    };
     const today = todayISO(), studentById = new Map(doc.students.map((s) => [s.id, s])), needle = query.trim().toLocaleLowerCase(), all2 = searchNotes(doc);
     const entries2 = searchNotes(doc, "", filter).filter((n) => !needle || n.text.toLocaleLowerCase().includes(needle) || String(studentById.get(n.studentId)?.name || "").toLocaleLowerCase().includes(needle)).filter((n) => !pendingOnly || n.followUpDate && !n.completed);
     const due = all2.filter((n) => n.followUpDate && !n.completed && n.followUpDate <= today), note = open === "new" ? null : all2.find((n) => n.id === open);
@@ -44881,20 +44926,20 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       setPendingOnly(false);
     };
     const add = () => {
-      onUpdate((d) => addNote(d, studentId, date5, text7));
-      acceptText("");
+      onUpdate((d) => addNoteWithReminder(d, studentId, date5, text7, reminder));
+      discard();
       flash();
     };
-    const collection = /* @__PURE__ */ cpJsx("section", { className: "cp-card cp-tpl-stack cp-notes-list", "aria-label": t("shell.notes") }, due.length > 0 && /* @__PURE__ */ cpJsx("div", { className: "cp-notes-due", role: "status" }, /* @__PURE__ */ cpJsx("b", null, cpRaw(countText(due.length, "notes.due"))), /* @__PURE__ */ cpJsx("span", null, /* @__PURE__ */ cpJsx("bdi", null, cpRaw([...new Set(due.map((n) => studentById.get(n.studentId)?.name).filter(Boolean))].slice(0, 3).join(" \xB7 ")))), /* @__PURE__ */ cpJsx(Button, { action: "ux.notes.showDue", role: "tertiary", onClick: () => {
+    const collection = /* @__PURE__ */ cpJsx("section", { className: "cp-card cp-tpl-stack cp-notes-list", "aria-label": t("shell.notes") }, due.length > 0 && /* @__PURE__ */ cpJsx("div", { className: "cp-notes-due", role: "status" }, /* @__PURE__ */ cpJsx("b", null, cpRaw(countText(due.length, "notes.due"))), /* @__PURE__ */ cpJsx("span", null, /* @__PURE__ */ cpJsx("bdi", null, cpRaw([...new Set(due.map((n) => studentById.get(n.studentId)?.name).filter(Boolean))].slice(0, 3).join(" \xB7 ")))), /* @__PURE__ */ cpJsx(Button, { action: "ux.notes.showDue", "aria-label": ux("notes.showDueLabel"), title: ux("notes.showDueLabel"), role: "tertiary", onClick: () => {
       setPendingOnly(true);
       setFilter("");
       setQuery("");
     } })), /* @__PURE__ */ cpJsx("div", { className: "cp-tpl-bar" }, /* @__PURE__ */ cpJsx(Field, { action: "m3.notes.search", label: "notes.search", labelText: ux("notes.searchNames"), type: "search", value: query, onChange: (e) => setQuery(e.target.value) }), /* @__PURE__ */ cpJsx(Field, { action: "m3.notes.filter", label: "module.chooseStudent", as: "select", value: filter, onChange: (e) => setFilter(e.target.value) }, /* @__PURE__ */ cpJsx("option", { value: "" }, t("module.allStudents")), doc.students.map((s) => /* @__PURE__ */ cpJsx("option", { key: s.id, value: s.id }, cpRaw(s.name)))), /* @__PURE__ */ cpJsx(Check, { action: "improve.pendingFollowups", label: "improve.pendingFollowups", checked: pendingOnly, onChange: (e) => setPendingOnly(e.target.checked) })), /* @__PURE__ */ cpJsx("div", { className: "cp-notes-items" }, entries2.length ? /* @__PURE__ */ cpJsx("ul", { className: "cp-tpl-list" }, entries2.map((n) => {
       const late = n.followUpDate && !n.completed && n.followUpDate <= today;
       return /* @__PURE__ */ cpJsx("li", { key: n.id, "data-note-id": n.id }, /* @__PURE__ */ cpJsx("button", { type: "button", className: "cp-row-button", ...actionProps("ux.notes.select", () => setOpen(n.id), n.id), "aria-current": open === n.id }, /* @__PURE__ */ cpJsx("span", { className: "cp-notes-rowhead" }, n.pinned && /* @__PURE__ */ cpJsx("span", { className: "cp-notes-pin", title: ux("notes.pinned") }, PIN, /* @__PURE__ */ cpJsx("span", { className: "cp-visually-hidden" }, ux("notes.pinned"))), /* @__PURE__ */ cpJsx("b", null, /* @__PURE__ */ cpJsx("bdi", null, cpRaw(studentById.get(n.studentId).name))), /* @__PURE__ */ cpJsx("small", null, cpRaw(displayDate(n.date, { year: false }))), n.followUpDate && /* @__PURE__ */ cpJsx("span", { className: "cp-notes-badge", "data-state": n.completed ? "done" : late ? "due" : "later" }, n.completed ? ux("notes.done") : cpRaw(ux("notes.followUp").replace("{date}", displayDate(n.followUpDate, { year: false }))))), /* @__PURE__ */ cpJsx("span", { className: "cp-row-text" }, /* @__PURE__ */ cpJsx("bdi", null, cpRaw(n.text.split("\n")[0])))));
-    })) : filtered ? /* @__PURE__ */ cpJsx(EmptyState, { kind: "filtered", title: ux("notes.filteredTitle") }, /* @__PURE__ */ cpJsx(Button, { action: "ux.notes.clearFilters", onClick: clearFilters })) : /* @__PURE__ */ cpJsx(EmptyState, { kind: "nothing", title: ux("notes.emptyTitle"), text: ux("notes.emptyText") }), /* @__PURE__ */ cpJsx("small", { className: "cp-meta" }, cpRaw(countText(entries2.length, "notes.count")), filter && entries2.length > 0 && /* @__PURE__ */ cpJsx(React.Fragment, null, cpRaw(" \xB7 "), /* @__PURE__ */ cpJsx("button", { type: "button", className: "cp-notes-link", ...actionProps("ux.notes.clearFilters", clearFilters, "inline") }, ux("notes.allStudents"))))));
-    const editor = note ? /* @__PURE__ */ cpJsx(OpenNote, { doc, note, onUpdate, setOpen, setView }) : /* @__PURE__ */ cpJsx(Inspector, { title: ux("notes.new"), status: /* @__PURE__ */ cpJsx(DraftStatus, { dirty: textDirty, context: "note", onDiscard: () => acceptText("") }), footer: /* @__PURE__ */ cpJsx(React.Fragment, null, saved && /* @__PURE__ */ cpJsx(SaveStatus, { state: "saved" }), /* @__PURE__ */ cpJsx(Button, { action: "m3.notes.add", role: "primary", disabled: !date5 || !text7.trim(), onClick: add })) }, /* @__PURE__ */ cpJsx(Field, { action: "m3.notes.student", label: "module.chooseStudent", as: "select", value: studentId, onChange: (e) => setStudentId(e.target.value) }, doc.students.map((s) => /* @__PURE__ */ cpJsx("option", { key: s.id, value: s.id }, cpRaw(s.name)))), /* @__PURE__ */ cpJsx(Field, { action: "m3.notes.date", label: "notes.date", type: "date", value: date5, onChange: (e) => setDate(e.target.value) }), /* @__PURE__ */ cpJsx(Field, { action: "m3.notes.text", label: "notes.text", as: "textarea", rows: 6, value: text7, onChange: (e) => setText(e.target.value) }));
-    return /* @__PURE__ */ cpJsx(PageTemplate, { kind: "B", titleKey: "shell.notes", icon: "notes", lead: "ux.lead.notes", info: /* @__PURE__ */ cpJsx(React.Fragment, null, t("notes.separate"), " ", t("improve.draftNotice")), actions: doc.students.length ? /* @__PURE__ */ cpJsx(Button, { action: "ux.notes.new", role: "primary", onClick: () => {
+    })) : filtered ? /* @__PURE__ */ cpJsx(EmptyState, { kind: "filtered", title: ux("notes.filteredTitle") }, /* @__PURE__ */ cpJsx(Button, { action: "ux.notes.clearFilters", onClick: clearFilters })) : /* @__PURE__ */ cpJsx(EmptyState, { kind: "nothing", title: ux("notes.emptyTitle") }), entries2.length > 0 && /* @__PURE__ */ cpJsx("small", { className: "cp-meta" }, cpRaw(countText(entries2.length, "notes.count")), filter && entries2.length > 0 && /* @__PURE__ */ cpJsx(React.Fragment, null, cpRaw(" \xB7 "), /* @__PURE__ */ cpJsx("button", { type: "button", className: "cp-notes-link", ...actionProps("ux.notes.clearFilters", clearFilters, "inline") }, ux("notes.allStudents"))))));
+    const editor = note ? /* @__PURE__ */ cpJsx(OpenNote, { doc, note, onUpdate, setOpen, setView }) : /* @__PURE__ */ cpJsx(Inspector, { title: studentById.get(studentId)?.name || ux("notes.new"), status: dirty ? /* @__PURE__ */ cpJsx(DraftStatus, { dirty: true, label: ux("notes.draft"), context: "note", onDiscard: discard }) : /* @__PURE__ */ cpJsx("span", { className: "cp-notes-draft" }, ux("notes.draft")), footer: /* @__PURE__ */ cpJsx(React.Fragment, null, saved && /* @__PURE__ */ cpJsx(SaveStatus, { state: "saved" }), /* @__PURE__ */ cpJsx(Button, { action: "m3.notes.add", role: "primary", disabled: !date5 || !text7.trim(), onClick: add })) }, /* @__PURE__ */ cpJsx("div", { className: "cp-notes-context" }, /* @__PURE__ */ cpJsx(Field, { action: "m3.notes.student", label: "module.chooseStudent", as: "select", value: studentId, onChange: (e) => setStudentId(e.target.value) }, doc.students.map((s) => /* @__PURE__ */ cpJsx("option", { key: s.id, value: s.id }, cpRaw(s.name)))), /* @__PURE__ */ cpJsx(Field, { action: "m3.notes.date", label: "notes.date", type: "date", value: date5, onChange: (e) => setDate(e.target.value) })), /* @__PURE__ */ cpJsx(Field, { action: "m3.notes.text", label: "notes.text", as: "textarea", rows: 6, value: text7, onChange: (e) => setText(e.target.value) }), /* @__PURE__ */ cpJsx(NoteReminder, { context: "new", date: reminder, allowCompletion: false, onChange: (patch) => setReminder(patch.followUpDate) }));
+    return /* @__PURE__ */ cpJsx(PageTemplate, { className: "cp-notes-page", kind: "B", titleKey: "shell.notes", icon: "notes", lead: "ux.lead.notes", info: /* @__PURE__ */ cpJsx(React.Fragment, null, t("notes.separate"), " ", t("improve.draftNotice")), actions: doc.students.length ? /* @__PURE__ */ cpJsx(Button, { action: "ux.notes.new", role: "secondary", onClick: () => {
       if (filter) setStudentId(filter);
       setOpen("new");
     } }) : null, collection: doc.students.length ? collection : /* @__PURE__ */ cpJsx(EmptyRoster, null), editor: doc.students.length ? editor : null }, setView && /* @__PURE__ */ cpJsx(HomeEnhancements, { part: "private", doc, profile: getProfile(), setView }));
