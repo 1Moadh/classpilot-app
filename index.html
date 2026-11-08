@@ -1095,41 +1095,6 @@ dialog.cp-ai-center-backdrop::backdrop{background:transparent}
 .cp-plan-card{display:grid;gap:6px;padding:12px;border:1px solid var(--cp-border);border-radius:12px;background:var(--cp-surface)}
 .cp-plan-meta{font-size:var(--cp-fs-caption);color:var(--cp-muted)}
 .cp-plan-collection{margin-block-start:14px}
-.cp-plan-editor{display:flex;flex-direction:column;border:1px solid var(--cp-border);border-radius:12px;background:var(--cp-surface)}
-.cp-plan-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 16px;border-block-end:1px solid var(--cp-border)}
-.cp-plan-head h2{margin:0;font-size:var(--cp-fs-label)}
-.cp-plan-head>div{display:grid;gap:4px}
-.cp-plan-sections{display:grid;grid-template-columns:1fr;gap:14px;padding:16px}
-@media(min-width:1280px){.cp-plan-sections{grid-template-columns:1fr 1fr}}
-.cp-plan-section{display:grid;gap:10px;align-content:start;padding:12px;border:1px solid var(--cp-border);border-radius:10px;min-width:0}
-.cp-plan-section h3{margin:0;font-size:var(--cp-fs-label)}
-.cp-plan-section h4{margin:4px 0 0;font-size:var(--cp-fs-body)}
-.cp-plan-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:10px}
-.cp-plan-activity{display:flex;gap:8px;align-items:end;flex-wrap:wrap}
-.cp-plan-curriculum{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:var(--cp-fs-body)}
-.cp-plan-curriculum>span{color:var(--cp-muted);font-weight:600}
-.cp-plan-budget{display:grid;gap:6px;padding:10px;border-radius:8px;background:var(--cp-background);border:1px solid var(--cp-border)}
-.cp-plan-budget[data-state=over]{border-color:#d97706;background:color-mix(in srgb,#f59e0b 12%,var(--cp-surface))}
-.cp-plan-budget-line{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;font-size:var(--cp-fs-body)}
-.cp-plan-budget-line b{font-variant-numeric:tabular-nums;font-size:var(--cp-fs-label)}
-.cp-plan-bar{block-size:8px;border-radius:99px;background:var(--cp-border);overflow:hidden}
-.cp-plan-bar i{display:block;block-size:100%;background:var(--ux-primary)}
-.cp-plan-budget[data-state=over] .cp-plan-bar i{background:#d97706}
-.cp-plan-budget small{font-size:var(--cp-fs-caption);color:var(--cp-muted)}
-.cp-plan-foot{position:sticky;inset-block-end:0;z-index:3;display:flex;gap:8px;flex-wrap:wrap;align-items:center;padding:10px 16px;border-block-start:1px solid var(--cp-border);background:var(--cp-surface);border-end-start-radius:12px;border-end-end-radius:12px;box-shadow:0 -6px 16px -12px rgba(15,23,42,.35)}
-.cp-plan-close{margin-inline-start:auto}
-.cp-plan-foot>p{flex-basis:100%;margin:0;font-size:var(--cp-fs-body);color:var(--cp-muted)}
-.cp-plan-foot .cp-scope-pop{display:grid;gap:8px;min-inline-size:240px;inset-block-end:calc(100% + 6px);inset-block-start:auto}
-/* M63b (design report §9.7, template B): Learner support as a collection and a step-by-step editor. */
-.cp-support-editor{display:flex;flex-direction:column;border:1px solid var(--cp-border);border-radius:12px;background:var(--cp-surface)}
-.cp-support-steps{list-style:none;margin:0;padding:16px;display:grid;grid-template-columns:1fr;gap:14px}
-@media(min-width:1280px){.cp-support-steps{grid-template-columns:1fr 1fr}}
-.cp-support-steps h3{display:flex;gap:8px;align-items:center}
-.cp-support-steps h3 b{display:inline-grid;place-items:center;inline-size:22px;block-size:22px;border-radius:50%;background:var(--ux-primary);color:var(--cp-primary-fg);font-size:var(--cp-fs-body)}
-.cp-support-candidates{display:grid;gap:8px;padding:10px;border:1px dashed var(--cp-border);border-radius:8px}
-.cp-support-candidates p{margin:0;font-size:var(--cp-fs-body);color:var(--cp-muted)}
-.cp-support-found b{color:var(--cp-text)}
-.cp-support-goals{margin:0 16px 16px}
 .cp-support-draft{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-block:10px}
 .cp-support-records{margin-block:12px}
 .cp-support-more{margin-block-start:12px}
@@ -2051,6 +2016,90 @@ td[data-cp-att],th[data-cp-att]{background:var(--cp-att-bg)!important;box-shadow
 .cp-assessments-page .cp-term-plan>li>ul{margin-block-start:8px}
 .cp-assessments-page .cp-info-pop>p,.cp-assessments-page .cp-info-pop>span{display:block;margin:0 0 8px;padding:0;border:0;font-size:var(--cp-fs-body)}
 .cp-assessments-page .cp-info-pop>:last-child{margin:0}
+
+/* SP12.3: approved focused editors. Collections and all other module styles keep their existing homes. */
+
+.cp-editor-mode>.cp-page-head{margin-block-end:12px!important}
+.cp-editor-mode>.cp-page-head h1{font:600 var(--cp-fs-body) var(--cp-font-body)!important;color:var(--cp-muted)}
+.cp-editor-mode .cp-plan-editor,.cp-editor-mode .cp-support-editor{display:flex;flex-direction:column;min-block-size:calc(100dvh - 166px);border:0;background:transparent;border-radius:0;box-shadow:none}
+.cp-editor-mode .cp-plan-head{display:block;padding:0 0 20px;border:0}
+.cp-editor-mode .cp-plan-head>div:not(.cp-editor-title){display:grid;gap:8px;margin-block-start:8px}
+.cp-editor-mode .cp-plan-head h2{font:500 var(--cp-fs-caption) var(--cp-font-body);color:var(--cp-muted);margin:0}
+.cp-editor-mode .cp-editor-title{display:grid;gap:4px;max-inline-size:100%}
+.cp-editor-mode .cp-editor-title>label>span{position:absolute;inline-size:1px;block-size:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.cp-editor-mode .cp-editor-title input{inline-size:100%;min-block-size:44px!important;padding:4px 0!important;font-size:24px!important;font-weight:650!important;background:transparent!important;border:1px solid transparent!important;border-radius:5px!important;box-shadow:none!important}
+.cp-editor-mode .cp-editor-title input:focus{border-color:var(--cp-gold)!important;padding-inline:8px!important}
+.cp-editor-workbench{flex:1;display:grid;grid-template-columns:210px minmax(0,1fr);gap:28px;align-items:start}
+.cp-editor-rail{display:grid;gap:24px;min-inline-size:0}
+.cp-editor-nav{display:grid;gap:4px}
+.cp-editor-nav button{display:flex;align-items:center;gap:12px;min-block-size:48px;padding:12px;text-align:start;border:1px solid transparent;border-radius:8px;background:transparent;color:var(--cp-muted);font:600 var(--cp-fs-body) var(--cp-font-body);cursor:pointer}
+.cp-editor-nav button:hover{background:var(--cp-active);color:var(--cp-text)}
+.cp-editor-nav button[aria-selected=true]{background:var(--cp-active);color:var(--cp-text);border-color:var(--cp-border)}
+.cp-editor-nav button[aria-selected=true] .cp-editor-number{background:var(--cp-gold);color:#211a0e}
+.cp-editor-number{display:grid;place-items:center;flex:none;inline-size:26px;block-size:26px;border-radius:8px;border:1px solid var(--cp-border);color:var(--cp-muted);font:600 11px var(--cp-font-body);font-variant-numeric:tabular-nums}
+.cp-editor-nav button:focus-visible{outline:2px solid var(--cp-focus,var(--cp-gold));outline-offset:2px}
+.cp-editor-context{display:grid;gap:12px;padding:16px 12px;border-block-start:1px solid var(--cp-border);min-inline-size:0}
+.cp-editor-context>h3{font-size:var(--cp-fs-body);margin:0}
+.cp-editor-context label{min-inline-size:0}
+.cp-editor-context label input,.cp-editor-context label select{inline-size:100%!important;min-inline-size:0}
+.cp-editor-details{display:grid;gap:12px}.cp-editor-details>summary{cursor:pointer;min-block-size:32px;font-weight:600;font-size:var(--cp-fs-body)}.cp-editor-details[open]>label{margin-block-start:12px}
+.cp-editor-context p{max-block-size:160px;overflow:auto;margin:0;font-size:var(--cp-fs-caption);line-height:1.7;color:var(--cp-muted)}
+.cp-editor-context .cp-editor-recipient{display:block;color:var(--cp-text)}
+.cp-editor-panel{min-inline-size:0;min-block-size:500px;padding:24px;background:var(--cp-surface);border:1px solid var(--cp-border);border-radius:12px;box-shadow:0 2px 4px color-mix(in srgb,var(--cp-text) 3%,transparent)}
+.cp-editor-panel[hidden]{display:none!important}
+.cp-editor-panel-heading{display:flex;gap:12px;align-items:center;border-block-end:1px solid var(--cp-border);padding-block-end:16px;margin-block-end:20px}
+.cp-editor-panel-heading .cp-editor-number{inline-size:32px;block-size:32px;background:var(--cp-background);color:var(--cp-muted)}
+.cp-editor-panel-heading h3{font-size:18px!important;font-weight:650!important;margin:0}
+.cp-editor-panel .cp-plan-section{display:grid;gap:16px;min-inline-size:0;padding:0;border:0;background:transparent;border-radius:0;align-content:start}
+.cp-editor-panel .cp-plan-section>h3,.cp-editor-panel .cp-support-steps h3 b{display:none}
+.cp-editor-panel label{min-inline-size:0}
+.cp-editor-panel textarea{min-block-size:88px!important;font-weight:400!important;line-height:1.65!important}
+.cp-editor-panel .cp-editor-lead-field textarea{min-block-size:128px!important}
+.cp-editor-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.cp-editor-panel .cp-plan-curriculum{display:flex;gap:8px;flex-wrap:wrap;padding-block-start:16px;border-block-start:1px solid var(--cp-border)}
+.cp-editor-panel .cp-plan-curriculum>span{flex-basis:100%;font-size:var(--cp-fs-caption);color:var(--cp-muted)}
+.cp-editor-panel .cp-plan-activity{display:grid;grid-template-columns:26px minmax(0,1fr) 72px auto;gap:10px;align-items:end;padding-block:12px;border-block-start:1px solid var(--cp-border)}
+.cp-editor-panel .cp-plan-activity>.cp-editor-number{margin-block-end:4px}
+.cp-editor-panel .cp-plan-activity label:has([data-cp-action="m5.plans.minutes"]){inline-size:72px!important}
+.cp-editor-panel .cp-plan-activity button{display:grid;place-items:center;inline-size:32px;min-block-size:32px;padding:0!important;background:transparent!important;border-color:transparent!important;color:var(--cp-muted)!important}
+.cp-editor-panel .cp-plan-section>h4{font-size:var(--cp-fs-body);margin:0}
+.cp-editor-panel .cp-plan-budget{display:grid;gap:8px;padding:16px;border:1px solid var(--cp-border);border-radius:8px;background:var(--cp-background)}
+.cp-editor-panel .cp-plan-budget-line{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.cp-editor-panel .cp-plan-budget-line b{font-size:18px; font-variant-numeric:tabular-nums}
+.cp-editor-panel .cp-plan-budget-line span,.cp-editor-panel .cp-plan-budget small{font-size:var(--cp-fs-caption)}
+.cp-editor-panel .cp-plan-bar{block-size:4px;background:var(--cp-border);border-radius:8px;overflow:hidden}
+.cp-editor-panel .cp-plan-bar i{display:block;block-size:100%;background:var(--cp-gold)}
+.cp-editor-panel .cp-plan-budget[data-state=over]{border-color:#d97706}
+.cp-editor-panel .cp-plan-budget[data-state=over] .cp-plan-bar i{background:#d97706}
+.cp-editor-learners-layout{display:grid;grid-template-columns:minmax(0,1fr) 220px;gap:20px;align-items:start}
+.cp-editor-panel .cp-picker{display:grid;gap:12px}
+.cp-editor-panel .cp-picker-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));max-block-size:260px;overflow:auto;gap:2px;padding:4px}
+.cp-editor-panel .cp-picker-list label{min-block-size:30px;min-inline-size:0;padding:4px;display:flex;align-items:center;gap:6px}
+.cp-editor-panel .cp-picker-list bdi{overflow-wrap:anywhere}
+.cp-editor-panel .cp-support-candidates{padding:16px;border:1px solid var(--cp-border);border-radius:8px;background:var(--cp-background);display:grid;gap:12px}
+.cp-editor-panel .cp-support-candidates h4{margin:0;font-size:var(--cp-fs-body)}
+.cp-editor-panel .cp-support-candidates p{margin:0;font-size:var(--cp-fs-caption);line-height:1.6;color:var(--cp-muted)}
+.cp-editor-panel .cp-support-candidates .cp-ux-form{display:grid;grid-template-columns:minmax(0,1fr)!important;gap:12px}
+.cp-editor-panel label:has([data-cp-action="ux.support.actionType"]){max-inline-size:320px}
+.cp-editor-panel .cp-support-goals{display:grid;gap:12px;border:0;border-block-start:1px solid var(--cp-border);border-radius:0;padding:20px 0 0;margin:8px 0 0}
+.cp-editor-panel .cp-support-goals>h3{display:block!important;font-size:var(--cp-fs-body)!important;margin:0}
+.cp-editor-panel .cp-ux-note-card{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;padding:12px!important;background:transparent!important;box-shadow:none!important;border:1px solid var(--cp-border)!important}
+.cp-editor-panel .cp-ux-note-card>label:first-child{grid-column:1 / -1}
+.cp-editor-panel .cp-ux-note-card>button{justify-self:end;grid-column:2}
+.cp-editor-review-goal{display:grid;gap:16px;padding-block:20px;border-block-start:1px solid var(--cp-border)}
+.cp-editor-review-goal h4{font-size:var(--cp-fs-body);line-height:1.6;margin:0}
+.cp-editor-mode .cp-plan-foot{position:sticky;inset-block-end:0;z-index:3;margin-block-start:20px;padding:12px 0;border-radius:0;border:0;border-block-start:1px solid var(--cp-border);background:var(--cp-background);box-shadow:none;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.cp-editor-mode .cp-plan-foot>p{flex-basis:100%;margin:0}
+.cp-editor-mode .cp-plan-close{margin-inline-start:auto}
+.cp-editor-mode .cp-plan-foot .cp-scope-pop{background:var(--cp-surface)}
+@media(max-width:1150px){.cp-editor-workbench{grid-template-columns:180px minmax(0,1fr);gap:20px}.cp-editor-panel{padding:20px;min-block-size:420px}.cp-editor-learners-layout{grid-template-columns:minmax(0,1fr)}.cp-editor-panel .cp-support-candidates{grid-template-columns:1fr 1fr}.cp-editor-panel .cp-support-candidates>p,.cp-editor-panel .cp-support-candidates>h4{grid-column:1 / -1}.cp-editor-panel .cp-picker-list{max-block-size:220px}.cp-editor-panel .cp-plan-activity{grid-template-columns:22px minmax(0,1fr) 64px;gap:8px}.cp-editor-panel .cp-plan-activity>button{grid-column:2 / -1;justify-self:end}.cp-editor-panel .cp-plan-activity label:has([data-cp-action="m5.plans.minutes"]){inline-size:64px!important}.cp-editor-panel .cp-editor-lead-field textarea{min-block-size:104px!important}}
+
+.cp-editor-panel .cp-plan-curriculum{align-items:center;font-size:var(--cp-fs-body)}
+.cp-editor-panel .cp-plan-curriculum>span{font-weight:600}
+.cp-editor-panel .cp-plan-budget small{color:var(--cp-muted)}
+.cp-editor-panel .cp-support-found b{color:var(--cp-text)}
+.cp-editor-mode .cp-plan-foot>p{font-size:var(--cp-fs-body);color:var(--cp-muted)}
+.cp-editor-mode .cp-plan-foot .cp-scope-pop{display:grid;gap:8px;min-inline-size:240px;inset-block-end:calc(100% + 6px);inset-block-start:auto}
 /* M56 design foundations (owner-supplied Master Implementation Brief, M56; design report §7–§8).
    One set of tokens for the frame and the new modules. Protected Gradebook views (Marks, Groups, Behaviour,
    Adjustments, Analysis, the original wheel, the Settings drawer and the class manager) do not use them. */
@@ -8373,7 +8422,21 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.notebook.searchHelp": "Locked notes can be found by date and category only.",
     "ux.notebook.entryTools": "Attachments & lock",
     "ux.notebook.unsavedShort": "Unsaved changes",
-    "ux.notebook.emptyPlain": "No notes yet"
+    "ux.notebook.emptyPlain": "No notes yet",
+    "ux.editor.sections": "Plan sections",
+    "ux.editor.learning": "Learning goals",
+    "ux.editor.flow": "Lesson flow",
+    "ux.editor.support": "Support",
+    "ux.editor.after": "After the lesson",
+    "ux.editor.learners": "Learners",
+    "ux.editor.focus": "Focus",
+    "ux.editor.action": "Action & goals",
+    "ux.editor.review": "Review",
+    "ux.editor.lessonDetails": "Lesson details",
+    "ux.editor.selected": "Selected learners",
+    "ux.editor.noneSelected": "No learners selected",
+    "ux.editor.suggestions": "Suggestions",
+    "ux.editor.goals": "Goals"
   };
 
   // src/i18n/plain-copy.js
@@ -14068,7 +14131,21 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.notebook.searchHelp": "\u064A\u0645\u0643\u0646 \u0627\u0644\u0639\u062B\u0648\u0631 \u0639\u0644\u0649 \u0627\u0644\u0645\u0644\u0627\u062D\u0638\u0627\u062A \u0627\u0644\u0645\u0642\u0641\u0644\u0629 \u0628\u0627\u0644\u062A\u0627\u0631\u064A\u062E \u0648\u0627\u0644\u0641\u0626\u0629 \u0641\u0642\u0637.",
     "ux.notebook.entryTools": "\u0627\u0644\u0645\u0631\u0641\u0642\u0627\u062A \u0648\u0627\u0644\u0642\u0641\u0644",
     "ux.notebook.unsavedShort": "\u062A\u063A\u064A\u064A\u0631\u0627\u062A \u063A\u064A\u0631 \u0645\u062D\u0641\u0648\u0638\u0629",
-    "ux.notebook.emptyPlain": "\u0644\u0627 \u062A\u0648\u062C\u062F \u0645\u0644\u0627\u062D\u0638\u0627\u062A \u0628\u0639\u062F"
+    "ux.notebook.emptyPlain": "\u0644\u0627 \u062A\u0648\u062C\u062F \u0645\u0644\u0627\u062D\u0638\u0627\u062A \u0628\u0639\u062F",
+    "ux.editor.sections": "\u0623\u0642\u0633\u0627\u0645 \u0627\u0644\u062E\u0637\u0629",
+    "ux.editor.learning": "\u0623\u0647\u062F\u0627\u0641 \u0627\u0644\u062A\u0639\u0644\u0651\u0645",
+    "ux.editor.flow": "\u0633\u064A\u0631 \u0627\u0644\u062F\u0631\u0633",
+    "ux.editor.support": "\u0627\u0644\u062F\u0639\u0645",
+    "ux.editor.after": "\u0628\u0639\u062F \u0627\u0644\u062F\u0631\u0633",
+    "ux.editor.learners": "\u0627\u0644\u0645\u062A\u0639\u0644\u0645\u0648\u0646",
+    "ux.editor.focus": "\u0645\u062D\u0648\u0631 \u0627\u0644\u062E\u0637\u0629",
+    "ux.editor.action": "\u0627\u0644\u0625\u062C\u0631\u0627\u0621 \u0648\u0627\u0644\u0623\u0647\u062F\u0627\u0641",
+    "ux.editor.review": "\u0627\u0644\u0645\u0631\u0627\u062C\u0639\u0629",
+    "ux.editor.lessonDetails": "\u062A\u0641\u0627\u0635\u064A\u0644 \u0627\u0644\u062F\u0631\u0633",
+    "ux.editor.selected": "\u0627\u0644\u0645\u062A\u0639\u0644\u0645\u0648\u0646 \u0627\u0644\u0645\u062D\u062F\u062F\u0648\u0646",
+    "ux.editor.noneSelected": "\u0644\u0645 \u064A\u064F\u062D\u062F\u062F \u0645\u062A\u0639\u0644\u0645\u0648\u0646",
+    "ux.editor.suggestions": "\u0627\u0642\u062A\u0631\u0627\u062D\u0627\u062A",
+    "ux.editor.goals": "\u0627\u0644\u0623\u0647\u062F\u0627\u0641"
   };
 
   // src/core/actions.js
@@ -30769,6 +30846,34 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       "meaning": "ux.cert.members"
     },
     {
+      "id": "ux.plans.section",
+      "labelKey": "ux.editor.sections",
+      "icon": null,
+      "shortcut": null,
+      "availability": "rendered-and-not-disabled",
+      "canonicalHome": "plans:context",
+      "events": [
+        "onClick",
+        "onKeyDown"
+      ],
+      "source": "src/modules",
+      "meaning": "ux.plans.section"
+    },
+    {
+      "id": "ux.support.section",
+      "labelKey": "ux.editor.sections",
+      "icon": null,
+      "shortcut": null,
+      "availability": "rendered-and-not-disabled",
+      "canonicalHome": "support:context",
+      "events": [
+        "onClick",
+        "onKeyDown"
+      ],
+      "source": "src/modules",
+      "meaning": "ux.support.section"
+    },
+    {
       "id": "ux.report.sort",
       "labelKey": "ux.report.sort",
       "icon": null,
@@ -37894,6 +37999,30 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
   var displayRange = (start, end, options) => displayTime(start, options) + "\u2013" + displayTime(end, options);
   var displayDates = (from, to, options) => displayDate(from, { ...options, year: (options?.year ?? true) && String(from).slice(0, 4) !== String(to).slice(0, 4) }) + " \u2013 " + displayDate(to, options);
 
+  // src/modules/editor-sections.jsx
+  function EditorSections({ kind, value, onChange, sections, context }) {
+    const selected = sections.some((section) => section.id === value) ? value : sections[0].id;
+    const number2 = (index) => String(index + 1).padStart(2, "0");
+    return /* @__PURE__ */ cpJsx("div", { className: "cp-editor-workbench" }, /* @__PURE__ */ cpJsx("aside", { className: "cp-editor-rail" }, /* @__PURE__ */ cpJsx("div", { className: "cp-editor-nav", role: "tablist", "aria-orientation": "vertical", "aria-label": t("ux.editor.sections") }, sections.map((section, index) => {
+      const id = "cp-editor-" + kind + "-" + section.id;
+      return /* @__PURE__ */ cpJsx("button", { key: section.id, type: "button", id: id + "-tab", ...actionProps("ux." + kind + ".section", () => onChange(section.id), section.id), role: "tab", "aria-controls": id, "aria-selected": selected === section.id, tabIndex: selected === section.id ? 0 : -1, onKeyDown: (event) => {
+        const next = { ArrowDown: (index + 1) % sections.length, ArrowUp: (index + sections.length - 1) % sections.length, Home: 0, End: sections.length - 1 }[event.key];
+        if (next !== void 0) {
+          event.preventDefault();
+          event.stopPropagation();
+          onChange(sections[next].id);
+          event.currentTarget.parentElement.querySelectorAll('[role="tab"]')[next].focus();
+        }
+      } }, /* @__PURE__ */ cpJsx("span", { className: "cp-editor-number", "aria-hidden": "true" }, number2(index)), /* @__PURE__ */ cpJsx("span", null, t(section.labelKey)));
+    })), /* @__PURE__ */ cpJsx("section", { className: "cp-editor-context" }, context)), /* @__PURE__ */ cpJsx("div", { className: "cp-editor-panels" }, sections.map((section, index) => {
+      const id = "cp-editor-" + kind + "-" + section.id;
+      return /* @__PURE__ */ cpJsx("section", { key: section.id, className: "cp-editor-panel", id, "data-editor-section": section.id, role: "tabpanel", "aria-labelledby": id + "-tab", tabIndex: 0, hidden: selected !== section.id }, /* @__PURE__ */ cpJsx("header", { className: "cp-editor-panel-heading" }, /* @__PURE__ */ cpJsx("span", { className: "cp-editor-number", "aria-hidden": "true" }, number2(index)), /* @__PURE__ */ cpJsx("h3", null, t(section.labelKey))), section.content);
+    })));
+  }
+  function EditorRemoveIcon() {
+    return /* @__PURE__ */ cpJsx("svg", { "aria-hidden": "true", width: "16", height: "16", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "1.6", strokeLinecap: "round", strokeLinejoin: "round" }, /* @__PURE__ */ cpJsx("path", { d: "M4 6h16M9 6V3h6v3M6 6l1 15h10l1-15M10 10v7m4-7v7" }));
+  }
+
   // src/core/drafts.js
   var entries = /* @__PURE__ */ new Map(), listeners5 = /* @__PURE__ */ new Set();
   var same2 = (a, b) => JSON.stringify(a) === JSON.stringify(b);
@@ -38143,7 +38272,8 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
   Object.assign(uxClick, { "classes.rowMenu": "classes.rowMenu", "classes.showAddSchool": "workspace.addSchool" });
   Object.assign(uxClick, { "home.nowMenu": "home.nowMenu", "setup.expand": "setup.expand" });
   Object.assign(uxClick, { "cert.designOpen": "cert.design", "cert.designClose": "cert.designClose", "cert.members": "cert.members" });
-  var uxActions = [...Object.entries(uxClick).map(([id, key4]) => [id, key4, "onClick"]), ...Object.entries(uxChange).map(([id, key4]) => [id, key4, "onChange"])].map(([id, key4, event]) => ({ id: "ux." + id, labelKey: "ux." + key4, icon: null, shortcut: null, availability: "rendered-and-not-disabled", canonicalHome: navigationHome("ux." + id) || certificateActionHome("ux." + id) || (id.startsWith("nav.") ? "Workspace:sidebar" : id.startsWith("appearance.") ? "Workspace:context" : id.split(".")[0] + ":context"), events: [event], source: "src/modules", meaning: "ux." + id }));
+  Object.assign(uxClick, { "plans.section": "editor.sections", "support.section": "editor.sections" });
+  var uxActions = [...Object.entries(uxClick).map(([id, key4]) => [id, key4, "onClick"]), ...Object.entries(uxChange).map(([id, key4]) => [id, key4, "onChange"])].map(([id, key4, event]) => ({ id: "ux." + id, labelKey: "ux." + key4, icon: null, shortcut: null, availability: "rendered-and-not-disabled", canonicalHome: navigationHome("ux." + id) || certificateActionHome("ux." + id) || (id.startsWith("nav.") ? "Workspace:sidebar" : id.startsWith("appearance.") ? "Workspace:context" : id.split(".")[0] + ":context"), events: id === "plans.section" || id === "support.section" ? [event, "onKeyDown"] : [event], source: "src/modules", meaning: "ux." + id }));
 
   // src/i18n/ux-copy.js
   var pairs = {
@@ -42033,7 +42163,21 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "notebook.searchHelp": ["Locked notes can be found by date and category only.", "\u064A\u0645\u0643\u0646 \u0627\u0644\u0639\u062B\u0648\u0631 \u0639\u0644\u0649 \u0627\u0644\u0645\u0644\u0627\u062D\u0638\u0627\u062A \u0627\u0644\u0645\u0642\u0641\u0644\u0629 \u0628\u0627\u0644\u062A\u0627\u0631\u064A\u062E \u0648\u0627\u0644\u0641\u0626\u0629 \u0641\u0642\u0637."],
     "notebook.entryTools": ["Attachments & lock", "\u0627\u0644\u0645\u0631\u0641\u0642\u0627\u062A \u0648\u0627\u0644\u0642\u0641\u0644"],
     "notebook.unsavedShort": ["Unsaved changes", "\u062A\u063A\u064A\u064A\u0631\u0627\u062A \u063A\u064A\u0631 \u0645\u062D\u0641\u0648\u0638\u0629"],
-    "notebook.emptyPlain": ["No notes yet", "\u0644\u0627 \u062A\u0648\u062C\u062F \u0645\u0644\u0627\u062D\u0638\u0627\u062A \u0628\u0639\u062F"]
+    "notebook.emptyPlain": ["No notes yet", "\u0644\u0627 \u062A\u0648\u062C\u062F \u0645\u0644\u0627\u062D\u0638\u0627\u062A \u0628\u0639\u062F"],
+    "editor.sections": ["Plan sections", "\u0623\u0642\u0633\u0627\u0645 \u0627\u0644\u062E\u0637\u0629"],
+    "editor.learning": ["Learning goals", "\u0623\u0647\u062F\u0627\u0641 \u0627\u0644\u062A\u0639\u0644\u0651\u0645"],
+    "editor.flow": ["Lesson flow", "\u0633\u064A\u0631 \u0627\u0644\u062F\u0631\u0633"],
+    "editor.support": ["Support", "\u0627\u0644\u062F\u0639\u0645"],
+    "editor.after": ["After the lesson", "\u0628\u0639\u062F \u0627\u0644\u062F\u0631\u0633"],
+    "editor.learners": ["Learners", "\u0627\u0644\u0645\u062A\u0639\u0644\u0645\u0648\u0646"],
+    "editor.focus": ["Focus", "\u0645\u062D\u0648\u0631 \u0627\u0644\u062E\u0637\u0629"],
+    "editor.action": ["Action & goals", "\u0627\u0644\u0625\u062C\u0631\u0627\u0621 \u0648\u0627\u0644\u0623\u0647\u062F\u0627\u0641"],
+    "editor.review": ["Review", "\u0627\u0644\u0645\u0631\u0627\u062C\u0639\u0629"],
+    "editor.lessonDetails": ["Lesson details", "\u062A\u0641\u0627\u0635\u064A\u0644 \u0627\u0644\u062F\u0631\u0633"],
+    "editor.selected": ["Selected learners", "\u0627\u0644\u0645\u062A\u0639\u0644\u0645\u0648\u0646 \u0627\u0644\u0645\u062D\u062F\u062F\u0648\u0646"],
+    "editor.noneSelected": ["No learners selected", "\u0644\u0645 \u064A\u064F\u062D\u062F\u062F \u0645\u062A\u0639\u0644\u0645\u0648\u0646"],
+    "editor.suggestions": ["Suggestions", "\u0627\u0642\u062A\u0631\u0627\u062D\u0627\u062A"],
+    "editor.goals": ["Goals", "\u0627\u0644\u0623\u0647\u062F\u0627\u0641"]
   };
   var uxEn = Object.fromEntries(Object.entries(pairs).map(([key4, value]) => ["ux." + key4, value[0]]));
   var uxAr = Object.fromEntries(Object.entries(pairs).map(([key4, value]) => ["ux." + key4, value[1]]));
@@ -42323,6 +42467,10 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     useLanguage();
     const profile2 = useProfile(), data = support(doc.cp?.support), [kind, setKind] = useState("intervention"), [draft, setDraft, acceptDraft, draftDirty] = useRetainedState("support:" + doc.cp.classId + ":" + kind, () => ({ ...supportDraft(kind), studentIds: studentId ? [studentId] : [] }), { warn: true }), [selected, setSelected] = useState(studentId || doc.students[0]?.id || ""), [filter, setFilter] = useState(""), [query, setQuery] = useState(""), [threshold, setThreshold] = useState(50), [candidateKind, setCandidateKind] = useState("below"), [preview, setPreview] = useState(null), [error2, setError] = useState(""), [library, setLibrary] = useState({ grade: "", field: "strategy", text: "" });
     const [open, setOpen] = useRetainedState("support-open:" + doc.cp.classId + ":" + kind, !!studentId);
+    const [editorSection, setEditorSection] = useState("learners");
+    useEffect(() => {
+      setEditorSection("learners");
+    }, [doc.cp.classId, kind, draft.id]);
     const person = doc.students.find((s) => s.id === selected), learner = data.profiles[selected] || { type: "none", needs: "", strengths: "", current: "" }, candidates = supportCandidates(doc, { threshold, kind: candidateKind }), records = data.plans.filter((p) => p.kind === kind && (!filter || p.status === filter) && (!query || [p.title, ...p.studentIds.map((id) => doc.students.find((s) => s.id === id)?.name || "")].join(" ").toLocaleLowerCase().includes(query.toLocaleLowerCase()))), change2 = (key4, value) => setDraft((p) => ({ ...p, [key4]: value })), text7 = (k) => uxText2(k, getLanguage());
     function output(record) {
       const names = record.studentIds.map((id) => doc.students.find((s) => s.id === id)?.name).filter(Boolean);
@@ -42333,9 +42481,14 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       if (e.target.value) change2(field2, [draft[field2], e.target.value].filter(Boolean).join("\n"));
     } }, /* @__PURE__ */ cpJsx("option", { value: "" }, uxText("support.choosePhrase")), phrases(profile2, kind, draft.grade, field2).map((p, i) => /* @__PURE__ */ cpJsx("option", { key: i, value: p }, cpRaw(p)))));
     const editing = data.plans.some((p) => p.id === draft.id);
-    const editor = /* @__PURE__ */ cpJsx("section", { className: "cp-support-editor", "aria-labelledby": "cp-support-identity" }, /* @__PURE__ */ cpJsx("header", { className: "cp-plan-head" }, /* @__PURE__ */ cpJsx("div", null, /* @__PURE__ */ cpJsx("h2", { id: "cp-support-identity" }, cpRaw(uxText("support." + kind) + " \xB7 " + (draft.title.trim() || uxText(editing ? "support.untitled" : "support.newTitle")))), /* @__PURE__ */ cpJsx(DraftStatus, { dirty: draftDirty, context: "support:" + kind, onDiscard: () => acceptDraft(supportDraft(kind)) }))), /* @__PURE__ */ cpJsx("ol", { className: "cp-support-steps" }, /* @__PURE__ */ cpJsx("li", { className: "cp-plan-section", "data-step": "learners" }, /* @__PURE__ */ cpJsx("h3", null, /* @__PURE__ */ cpJsx("b", null, "1"), uxText("support.stepLearners")), /* @__PURE__ */ cpJsx(StudentPicker, { students: doc.students, mode: "several", value: draft.studentIds, onChange: (ids) => change2("studentIds", ids), context: "support", label: uxText("support.targets"), itemAction: "ux.support.target" }), /* @__PURE__ */ cpJsx("div", { className: "cp-support-candidates" }, /* @__PURE__ */ cpJsx("p", null, uxText("support.suggestionHint")), /* @__PURE__ */ cpJsx("div", { className: "cp-ux-form" }, /* @__PURE__ */ cpJsx(UxSelect, { id: "support.queryKind", value: candidateKind, onChange: (e) => setCandidateKind(e.target.value) }, ["below", "above", "attendance"].map((s) => /* @__PURE__ */ cpJsx("option", { value: s, key: s }, uxText("support." + s)))), candidateKind !== "attendance" && /* @__PURE__ */ cpJsx(UxField, { id: "support.threshold", type: "number", min: "0", max: "100", value: threshold, onChange: (e) => setThreshold(Math.max(0, Math.min(100, +e.target.value))) })), /* @__PURE__ */ cpJsx("p", { className: "cp-support-found" }, /* @__PURE__ */ cpJsx("b", null, cpRaw(uxText("support.found").replace("{n}", String(candidates.length)))), " ", cpRaw(candidates.slice(0, 6).map((s) => doc.students.find((p) => p.id === s.id)?.name + (s.final != null ? " (" + s.final + ")" : "")).join(" \xB7 ") + (candidates.length > 6 ? " \u2026" : ""))), /* @__PURE__ */ cpJsx(UxButton, { id: "support.useCandidates", disabled: !candidates.length, onClick: () => change2("studentIds", candidates.map((s) => s.id)) }))), /* @__PURE__ */ cpJsx("li", { className: "cp-plan-section", "data-step": "need" }, /* @__PURE__ */ cpJsx("h3", null, /* @__PURE__ */ cpJsx("b", null, "2"), uxText("support.stepNeed")), /* @__PURE__ */ cpJsx(UxField, { id: "support.titleInput", value: draft.title, maxLength: 200, onChange: (e) => change2("title", e.target.value) }), /* @__PURE__ */ cpJsx(UxField, { id: "support.grade", value: draft.grade, maxLength: 40, onChange: (e) => change2("grade", e.target.value) }), ["needs", "strengths", "current", "longTerm"].map(textArea)), /* @__PURE__ */ cpJsx("li", { className: "cp-plan-section", "data-step": "action" }, /* @__PURE__ */ cpJsx("h3", null, /* @__PURE__ */ cpJsx("b", null, "3"), uxText("support.stepAction")), /* @__PURE__ */ cpJsx(UxSelect, { id: "support.actionType", value: draft.actionType, onChange: (e) => change2("actionType", e.target.value) }, ["classroom", "practice", "family", "collaboration", "extension"].map((type) => /* @__PURE__ */ cpJsx("option", { key: type, value: type }, uxText("support." + type)))), ["strategy", "action"].map(textArea)), /* @__PURE__ */ cpJsx("li", { className: "cp-plan-section", "data-step": "review" }, /* @__PURE__ */ cpJsx("h3", null, /* @__PURE__ */ cpJsx("b", null, "4"), uxText("support.stepReview")), /* @__PURE__ */ cpJsx("div", { className: "cp-ux-form" }, /* @__PURE__ */ cpJsx(UxField, { id: "support.start", type: "date", value: draft.start, onChange: (e) => change2("start", e.target.value) }), /* @__PURE__ */ cpJsx(UxField, { id: "support.review", type: "date", min: draft.start, value: draft.review, onChange: (e) => change2("review", e.target.value) }), /* @__PURE__ */ cpJsx(UxSelect, { id: "support.status", value: draft.status, onChange: (e) => change2("status", e.target.value) }, ["planned", "active", "review", "completed"].map((status) => /* @__PURE__ */ cpJsx("option", { key: status, value: status }, uxText("support." + (status === "review" ? "reviewState" : status)))))))), /* @__PURE__ */ cpJsx("section", { className: "cp-plan-section cp-support-goals" }, /* @__PURE__ */ cpJsx("h3", null, uxText("support.goals")), draft.goals.map((goal) => /* @__PURE__ */ cpJsx("div", { key: goal.id, className: "cp-ux-note-card" }, /* @__PURE__ */ cpJsx(UxField, { id: "support.goal", context: goal.id, value: goal.text, onChange: (e) => change2("goals", draft.goals.map((g) => g.id === goal.id ? { ...g, text: e.target.value } : g)) }), /* @__PURE__ */ cpJsx(UxSelect, { id: "support.goalPhrase", context: goal.id, value: "", onChange: (e) => {
-      if (e.target.value) change2("goals", draft.goals.map((g) => g.id === goal.id ? { ...g, text: e.target.value } : g));
-    } }, /* @__PURE__ */ cpJsx("option", { value: "" }, uxText("support.choosePhrase")), phrases(profile2, kind, draft.grade, "goals").map((p, i) => /* @__PURE__ */ cpJsx("option", { value: p, key: i }, cpRaw(p)))), /* @__PURE__ */ cpJsx(UxField, { id: "support.baseline", context: goal.id, value: goal.baseline, onChange: (e) => change2("goals", draft.goals.map((g) => g.id === goal.id ? { ...g, baseline: e.target.value } : g)) }), /* @__PURE__ */ cpJsx(UxField, { id: "support.review", context: goal.id, type: "date", value: goal.review, onChange: (e) => change2("goals", draft.goals.map((g) => g.id === goal.id ? { ...g, review: e.target.value } : g)) }), /* @__PURE__ */ cpJsx(UxSelect, { id: "support.progress", context: goal.id, value: goal.progress, onChange: (e) => change2("goals", draft.goals.map((g) => g.id === goal.id ? { ...g, progress: e.target.value } : g)) }, ["notStarted", "developing", "achieved"].map((s) => /* @__PURE__ */ cpJsx("option", { key: s, value: s }, uxText("support." + s)))), /* @__PURE__ */ cpJsx(UxButton, { id: "support.removeGoal", context: goal.id, onClick: () => change2("goals", draft.goals.filter((g) => g.id !== goal.id)) }))), /* @__PURE__ */ cpJsx(UxButton, { id: "support.addGoal", onClick: () => change2("goals", [...draft.goals, { id: crypto.randomUUID(), text: "", baseline: "", review: draft.review, progress: "notStarted" }]) })), /* @__PURE__ */ cpJsx("footer", { className: "cp-plan-foot" }, !valid4 && /* @__PURE__ */ cpJsx("p", { role: "status" }, uxText("support.requiredHint")), /* @__PURE__ */ cpJsx(UxButton, { id: "support.save", primary: true, disabled: !valid4, onClick: () => {
+    const editor = /* @__PURE__ */ cpJsx("section", { className: "cp-support-editor", "aria-labelledby": "cp-support-identity" }, /* @__PURE__ */ cpJsx("header", { className: "cp-plan-head" }, /* @__PURE__ */ cpJsx("div", { className: "cp-editor-title" }, /* @__PURE__ */ cpJsx(UxField, { id: "support.titleInput", value: draft.title, maxLength: 200, placeholder: uxText("support.titleInput"), onChange: (e) => change2("title", e.target.value) })), /* @__PURE__ */ cpJsx("div", null, /* @__PURE__ */ cpJsx("h2", { id: "cp-support-identity" }, uxText("support." + kind)), /* @__PURE__ */ cpJsx(DraftStatus, { dirty: draftDirty, context: "support:" + kind, onDiscard: () => acceptDraft(supportDraft(kind)) }))), /* @__PURE__ */ cpJsx(EditorSections, { kind: "support", value: editorSection, onChange: setEditorSection, context: /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx("h3", null, uxText("editor.selected"), draft.studentIds.length > 8 ? /* @__PURE__ */ cpJsx(React.Fragment, null, " (", draft.studentIds.length, ")") : null), /* @__PURE__ */ cpJsx("p", { tabIndex: draft.studentIds.length > 8 ? 0 : void 0, role: draft.studentIds.length > 8 ? "region" : void 0, "aria-label": draft.studentIds.length > 8 ? uxText("editor.selected") : void 0 }, draft.studentIds.length ? doc.students.filter((student) => draft.studentIds.includes(student.id)).map((student) => /* @__PURE__ */ cpJsx("span", { key: student.id, className: "cp-editor-recipient" }, cpRaw(student.name))) : uxText("editor.noneSelected"))), sections: [
+      { id: "learners", labelKey: "ux.editor.learners", content: /* @__PURE__ */ cpJsx("div", { className: "cp-editor-learners-layout" }, /* @__PURE__ */ cpJsx(StudentPicker, { students: doc.students, mode: "several", value: draft.studentIds, onChange: (ids) => change2("studentIds", ids), context: "support", label: uxText("support.targets"), itemAction: "ux.support.target" }), /* @__PURE__ */ cpJsx("div", { className: "cp-support-candidates" }, /* @__PURE__ */ cpJsx("h4", null, uxText("editor.suggestions")), /* @__PURE__ */ cpJsx("p", null, uxText("support.suggestionHint")), /* @__PURE__ */ cpJsx("div", { className: "cp-ux-form" }, /* @__PURE__ */ cpJsx(UxSelect, { id: "support.queryKind", value: candidateKind, onChange: (e) => setCandidateKind(e.target.value) }, ["below", "above", "attendance"].map((s) => /* @__PURE__ */ cpJsx("option", { value: s, key: s }, uxText("support." + s)))), candidateKind !== "attendance" && /* @__PURE__ */ cpJsx(UxField, { id: "support.threshold", type: "number", min: "0", max: "100", value: threshold, onChange: (e) => setThreshold(Math.max(0, Math.min(100, +e.target.value))) })), /* @__PURE__ */ cpJsx("p", { className: "cp-support-found" }, /* @__PURE__ */ cpJsx("b", null, cpRaw(uxText("support.found").replace("{n}", String(candidates.length)))), " ", cpRaw(candidates.slice(0, 6).map((s) => doc.students.find((p) => p.id === s.id)?.name + (s.final != null ? " (" + s.final + ")" : "")).join(" \xB7 ") + (candidates.length > 6 ? " \u2026" : ""))), /* @__PURE__ */ cpJsx(UxButton, { id: "support.useCandidates", disabled: !candidates.length, onClick: () => change2("studentIds", candidates.map((s) => s.id)) }))) },
+      { id: "focus", labelKey: "ux.editor.focus", content: /* @__PURE__ */ cpJsx("section", { className: "cp-plan-section" }, /* @__PURE__ */ cpJsx("div", { className: "cp-editor-lead-field" }, textArea("needs")), /* @__PURE__ */ cpJsx("div", { className: "cp-editor-grid" }, ["strengths", "current"].map(textArea)), textArea("longTerm"), /* @__PURE__ */ cpJsx(UxField, { id: "support.grade", value: draft.grade, maxLength: 40, onChange: (e) => change2("grade", e.target.value) })) },
+      { id: "action", labelKey: "ux.editor.action", content: /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx("section", { className: "cp-plan-section" }, /* @__PURE__ */ cpJsx(UxSelect, { id: "support.actionType", value: draft.actionType, onChange: (e) => change2("actionType", e.target.value) }, ["classroom", "practice", "family", "collaboration", "extension"].map((type) => /* @__PURE__ */ cpJsx("option", { key: type, value: type }, uxText("support." + type)))), /* @__PURE__ */ cpJsx("div", { className: "cp-editor-grid" }, ["strategy", "action"].map(textArea))), /* @__PURE__ */ cpJsx("section", { className: "cp-plan-section cp-support-goals" }, /* @__PURE__ */ cpJsx("h3", null, uxText("editor.goals")), draft.goals.map((goal) => /* @__PURE__ */ cpJsx("div", { key: goal.id, className: "cp-ux-note-card" }, /* @__PURE__ */ cpJsx(UxField, { id: "support.goal", context: goal.id, value: goal.text, onChange: (e) => change2("goals", draft.goals.map((g) => g.id === goal.id ? { ...g, text: e.target.value } : g)) }), /* @__PURE__ */ cpJsx(UxSelect, { id: "support.goalPhrase", context: goal.id, value: "", onChange: (e) => {
+        if (e.target.value) change2("goals", draft.goals.map((g) => g.id === goal.id ? { ...g, text: e.target.value } : g));
+      } }, /* @__PURE__ */ cpJsx("option", { value: "" }, uxText("support.choosePhrase")), phrases(profile2, kind, draft.grade, "goals").map((p, i) => /* @__PURE__ */ cpJsx("option", { value: p, key: i }, cpRaw(p)))), /* @__PURE__ */ cpJsx(UxField, { id: "support.baseline", context: goal.id, value: goal.baseline, onChange: (e) => change2("goals", draft.goals.map((g) => g.id === goal.id ? { ...g, baseline: e.target.value } : g)) }), /* @__PURE__ */ cpJsx(UxButton, { id: "support.removeGoal", context: goal.id, onClick: () => change2("goals", draft.goals.filter((g) => g.id !== goal.id)) }))), /* @__PURE__ */ cpJsx(UxButton, { id: "support.addGoal", onClick: () => change2("goals", [...draft.goals, { id: crypto.randomUUID(), text: "", baseline: "", review: draft.review, progress: "notStarted" }]) }))) },
+      { id: "review", labelKey: "ux.editor.review", content: /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx("div", { className: "cp-ux-form cp-editor-grid" }, /* @__PURE__ */ cpJsx(UxField, { id: "support.start", type: "date", value: draft.start, onChange: (e) => change2("start", e.target.value) }), /* @__PURE__ */ cpJsx(UxField, { id: "support.review", type: "date", min: draft.start, value: draft.review, onChange: (e) => change2("review", e.target.value) }), /* @__PURE__ */ cpJsx(UxSelect, { id: "support.status", value: draft.status, onChange: (e) => change2("status", e.target.value) }, ["planned", "active", "review", "completed"].map((status) => /* @__PURE__ */ cpJsx("option", { key: status, value: status }, uxText("support." + (status === "review" ? "reviewState" : status)))))), draft.goals.map((goal) => /* @__PURE__ */ cpJsx("section", { key: goal.id, className: "cp-editor-review-goal" }, /* @__PURE__ */ cpJsx("h4", null, goal.text.trim() ? cpRaw(goal.text) : uxText("support.goal")), /* @__PURE__ */ cpJsx("div", { className: "cp-editor-grid" }, /* @__PURE__ */ cpJsx(UxField, { id: "support.review", context: goal.id, type: "date", value: goal.review, onChange: (e) => change2("goals", draft.goals.map((g) => g.id === goal.id ? { ...g, review: e.target.value } : g)) }), /* @__PURE__ */ cpJsx(UxSelect, { id: "support.progress", context: goal.id, value: goal.progress, onChange: (e) => change2("goals", draft.goals.map((g) => g.id === goal.id ? { ...g, progress: e.target.value } : g)) }, ["notStarted", "developing", "achieved"].map((s) => /* @__PURE__ */ cpJsx("option", { key: s, value: s }, uxText("support." + s)))))))) }
+    ] }), /* @__PURE__ */ cpJsx("footer", { className: "cp-plan-foot" }, !valid4 && /* @__PURE__ */ cpJsx("p", { role: "status" }, uxText("support.requiredHint")), /* @__PURE__ */ cpJsx(UxButton, { id: "support.save", primary: true, disabled: !valid4, onClick: () => {
       try {
         onUpdate((d) => saveSupport(d, draft));
         acceptDraft(supportDraft(kind));
@@ -42352,7 +42505,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       onUpdate((d) => removeSupport(d, record.id));
       notify(uxText("support.removed"), { undo: true });
     } }))))) : /* @__PURE__ */ cpJsx(EmptyState, { kind: query || filter ? "filtered" : "nothing", title: uxText(query || filter ? "support.empty" : "support.emptyTitle"), text: query || filter ? void 0 : uxText("support.emptyHint") }), /* @__PURE__ */ cpJsx("details", { className: "cp-ux-panel cp-support-more" }, /* @__PURE__ */ cpJsx("summary", null, uxText("support.profile")), /* @__PURE__ */ cpJsx(UxSelect, { id: "support.student", value: selected, onChange: (e) => setSelected(e.target.value) }, doc.students.map((s) => /* @__PURE__ */ cpJsx("option", { key: s.id, value: s.id }, cpRaw(s.name)))), person && /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx(UxSelect, { id: "support.type", value: learner.type || "none", onChange: (e) => onUpdate((d) => putSupportProfile(d, selected, { type: e.target.value })) }, ["none", "accommodations", "modifications", "individual"].map((type) => /* @__PURE__ */ cpJsx("option", { key: type, value: type }, uxText("support." + type)))), ["needs", "strengths", "current"].map((key4) => /* @__PURE__ */ cpJsx(TextField, { key: key4, id: "support." + key4, context: "profile", value: learner[key4] || "", onChange: (e) => onUpdate((d) => putSupportProfile(d, selected, { [key4]: e.target.value })) })))), /* @__PURE__ */ cpJsx("details", { className: "cp-ux-panel cp-support-more" }, /* @__PURE__ */ cpJsx("summary", null, uxText("support.library")), /* @__PURE__ */ cpJsx("p", null, uxText("support.libraryHint")), /* @__PURE__ */ cpJsx("div", { className: "cp-ux-form" }, /* @__PURE__ */ cpJsx(UxField, { id: "support.libraryGrade", value: library.grade, onChange: (e) => setLibrary({ ...library, grade: e.target.value, text: phrases(profile2, kind, e.target.value, library.field).join("\n") }) }), /* @__PURE__ */ cpJsx(UxSelect, { id: "support.libraryField", value: library.field, onChange: (e) => setLibrary({ ...library, field: e.target.value, text: phrases(profile2, kind, library.grade, e.target.value).join("\n") }) }, [...fields, "goals"].map((f) => /* @__PURE__ */ cpJsx("option", { key: f, value: f }, uxText("support." + f))))), /* @__PURE__ */ cpJsx(TextField, { id: "support.libraryText", value: library.text, onChange: (e) => setLibrary({ ...library, text: e.target.value }) }), /* @__PURE__ */ cpJsx(UxButton, { id: "support.saveLibrary", disabled: !isProfileLinked(), onClick: () => updateProfile((p) => setPhraseBank(p, { ...library, kind })) })));
-    return /* @__PURE__ */ cpJsx(ModuleFrame, { titleKey: "ux.support.title", icon: "support", lead: "ux.lead.support", info: uxText("support.boundary"), actions: open ? null : /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx(Segmented, { label: uxText("support.title") }, kinds.map((k) => /* @__PURE__ */ cpJsx(UxButton, { key: k, id: "support." + k, active: kind === k, "aria-pressed": kind === k, onClick: () => setKind(k) }))), /* @__PURE__ */ cpJsx(UxButton, { id: "support.new", primary: true, onClick: () => {
+    return /* @__PURE__ */ cpJsx(ModuleFrame, { className: open ? "cp-editor-mode" : "", titleKey: "ux.support.title", icon: "support", lead: "ux.lead.support", info: uxText("support.boundary"), actions: open ? null : /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx(Segmented, { label: uxText("support.title") }, kinds.map((k) => /* @__PURE__ */ cpJsx(UxButton, { key: k, id: "support." + k, active: kind === k, "aria-pressed": kind === k, onClick: () => setKind(k) }))), /* @__PURE__ */ cpJsx(UxButton, { id: "support.new", primary: true, onClick: () => {
       acceptDraft({ ...supportDraft(kind), studentIds: studentId && !draftDirty ? [studentId] : [] });
       setOpen(true);
     } })) }, open ? editor : collection, error2 && /* @__PURE__ */ cpJsx("p", { role: "alert" }, error2), preview && /* @__PURE__ */ cpJsx(PrintPortal, { onClose: () => setPreview(null) }, preview.studentIds.map((id) => {
@@ -54327,13 +54480,13 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
   }
 
   // src/modules/plans/index.jsx
-  function PlanEditor({ record, doc, profile: profile2, onSave, onCopy, onClose, onPreview }) {
+  function PlanEditor({ record, doc, profile: profile2, onSave, onCopy, onClose, onPreview, section, onSection }) {
     const draftKey2 = "plan:" + doc.cp.classId + ":" + record.id;
     const [draft, setDraft, acceptDraft, dirty] = useRetainedState(draftKey2, record, { warn: true }), [duplicateDate, setDuplicateDate] = useState(record.date), [language2, setLanguage2] = useState(getLanguage);
     const timing = planTiming(draft, profile2), valid4 = !!draft.title.trim() && /^\d{4}-\d{2}-\d{2}$/.test(draft.date) && draft.activities.every((a) => Number.isFinite(a.minutes) && a.minutes >= 0);
     const change2 = (key4, value) => setDraft((p) => ({ ...p, [key4]: value }));
     const activity = (id, patch) => setDraft((p) => ({ ...p, activities: p.activities.map((a) => a.id === id ? { ...a, ...patch } : a) }));
-    const field2 = (key4, multiline = true) => /* @__PURE__ */ cpJsx(M5Field, { key: key4, id: "plans." + key4, multiline, rows: multiline ? 3 : void 0, value: draft[key4], onChange: (e) => change2(key4, e.target.value) });
+    const field2 = (key4, multiline = true, props = {}) => /* @__PURE__ */ cpJsx(M5Field, { key: key4, id: "plans." + key4, multiline, rows: multiline ? 3 : void 0, value: draft[key4], onChange: (e) => change2(key4, e.target.value), ...props });
     const slots = /^\d{4}-\d{2}-\d{2}$/.test(draft.date) ? planSlots(profile2, doc, draft.date) : [], slot3 = slots.find(({ cell: cell2 }) => cell2 && cell2.id === draft.slotId), period = slot3?.period || slots.find(({ period: period2 }) => period2.id === draft.periodId)?.period;
     const identity = [t(draft.kind === "template" ? "ux.plans.template" : "ux.plans.plan"), doc.settings.className, /^\d{4}-\d{2}-\d{2}$/.test(draft.date) ? dayMonth(draft.date) : "", period?.label].filter(Boolean).join(" \xB7 ");
     const week = /^\d{4}-\d{2}-\d{2}$/.test(draft.date) ? pace(doc, profile2.calendar, draft.date) : null, curriculumLessons = week?.state === "term" ? week.thisWeek : [];
@@ -54343,11 +54496,16 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       else if (!draft.objectives.includes(label)) change2("objectives", (draft.objectives.trim() ? draft.objectives.trimEnd() + "\n" : "") + label);
     };
     const budget = timing.duration ? Math.min(100, Math.round(timing.minutes / timing.duration * 100)) : 0;
-    return /* @__PURE__ */ cpJsx("section", { className: "cp-plan-editor", "data-plan-editor": true, "aria-labelledby": "cp-plan-identity" }, /* @__PURE__ */ cpJsx("header", { className: "cp-plan-head" }, /* @__PURE__ */ cpJsx("div", null, /* @__PURE__ */ cpJsx("h2", { id: "cp-plan-identity" }, cpRaw(identity)), /* @__PURE__ */ cpJsx(DraftStatus, { dirty, context: "plan" }))), /* @__PURE__ */ cpJsx("div", { className: "cp-plan-sections" }, /* @__PURE__ */ cpJsx("section", { className: "cp-plan-section", "data-section": "lesson" }, /* @__PURE__ */ cpJsx("h3", null, t("ux.plans.sectionLesson")), /* @__PURE__ */ cpJsx("div", { className: "cp-plan-row" }, /* @__PURE__ */ cpJsx(M5Field, { id: "plans.date", type: "date", value: draft.date, onChange: (e) => setDraft((p) => ({ ...p, date: e.target.value, slotId: null })) }), /* @__PURE__ */ cpJsx(M5Select, { id: "plans.period", value: draft.slotId ? "slot:" + draft.slotId : draft.periodId ? "period:" + draft.periodId : "", onChange: (e) => {
+    return /* @__PURE__ */ cpJsx("section", { className: "cp-plan-editor", "data-plan-editor": true, "aria-labelledby": "cp-plan-identity" }, /* @__PURE__ */ cpJsx("header", { className: "cp-plan-head" }, /* @__PURE__ */ cpJsx("div", { className: "cp-editor-title" }, field2("title", false, { placeholder: t("plans.title") })), /* @__PURE__ */ cpJsx("div", null, /* @__PURE__ */ cpJsx("h2", { id: "cp-plan-identity" }, cpRaw(identity)), /* @__PURE__ */ cpJsx(DraftStatus, { dirty, context: "plan" }))), /* @__PURE__ */ cpJsx(EditorSections, { kind: "plans", value: section, onChange: onSection, context: /* @__PURE__ */ cpJsx("details", { className: "cp-editor-details", open: !record.periodId }, /* @__PURE__ */ cpJsx("summary", null, t("ux.editor.lessonDetails")), /* @__PURE__ */ cpJsx(M5Field, { id: "plans.date", type: "date", value: draft.date, onChange: (e) => setDraft((p) => ({ ...p, date: e.target.value, slotId: null })) }), /* @__PURE__ */ cpJsx(M5Select, { id: "plans.period", value: draft.slotId ? "slot:" + draft.slotId : draft.periodId ? "period:" + draft.periodId : "", onChange: (e) => {
       const value = e.target.value, separator = value.indexOf(":"), kind = value.slice(0, separator), id = value.slice(separator + 1);
       const cell2 = (profile2.timetable || []).find((c) => c.id === id);
       setDraft((p) => ({ ...p, periodId: kind === "slot" ? cell2.periodId : kind === "period" ? id : null, slotId: kind === "slot" ? id : null }));
-    } }, /* @__PURE__ */ cpJsx("option", { value: "" }, t("plans.noPeriod")), slots.flatMap(({ period: period2, cell: cell2 }) => [/* @__PURE__ */ cpJsx("option", { key: period2.id, value: "period:" + period2.id }, cpRaw(period2.label + " \xB7 " + displayRange(period2.start, period2.end))), ...cell2 ? [/* @__PURE__ */ cpJsx("option", { key: cell2.id, value: "slot:" + cell2.id }, cpRaw([period2.label, displayDate(draft.date), cell2.room].filter(Boolean).join(" \xB7 ")))] : []]), timing.missing && /* @__PURE__ */ cpJsx("option", { value: draft.slotId ? "slot:" + draft.slotId : "period:" + draft.periodId }, t("plans.missingPeriod")))), curriculumLessons.length > 0 && /* @__PURE__ */ cpJsx("div", { className: "cp-plan-curriculum", role: "group", "aria-label": t("ux.plans.curriculum") }, /* @__PURE__ */ cpJsx("span", null, t("ux.plans.curriculum")), curriculumLessons.map((lesson) => /* @__PURE__ */ cpJsx(UxButton, { key: lesson.id, id: "plans.curriculum", context: lesson.id, className: "cp-chip", title: t("ux.plans.curriculumHint"), onClick: () => useLesson(lesson) }, cpRaw("+ " + lessonLabel(lesson))))), field2("unit", false), field2("title", false), field2("objectives"), field2("outcomes"), field2("priorKnowledge")), /* @__PURE__ */ cpJsx("section", { className: "cp-plan-section", "data-section": "sequence" }, /* @__PURE__ */ cpJsx("h3", null, t("ux.plans.sectionSequence")), field2("starter"), /* @__PURE__ */ cpJsx("h4", null, t("plans.activities")), draft.activities.map((a) => /* @__PURE__ */ cpJsx("div", { key: a.id, className: "cp-plan-activity" }, /* @__PURE__ */ cpJsx(M5Field, { id: "plans.activity", context: a.id, value: a.text, onChange: (e) => activity(a.id, { text: e.target.value }), style: { flex: 1 } }), /* @__PURE__ */ cpJsx(M5Field, { id: "plans.minutes", context: a.id, type: "number", min: "0", step: "1", value: a.minutes, onChange: (e) => activity(a.id, { minutes: +e.target.value }), style: { width: 96 } }), /* @__PURE__ */ cpJsx(M5Button, { id: "plans.removeActivity", context: a.id, onClick: () => change2("activities", draft.activities.filter((item) => item.id !== a.id)) }, t("plans.removeActivity")))), /* @__PURE__ */ cpJsx(M5Button, { id: "plans.addActivity", onClick: () => change2("activities", [...draft.activities, { id: crypto.randomUUID(), text: "", minutes: 0 }]) }, t("plans.addActivity")), /* @__PURE__ */ cpJsx("div", { role: "status", className: "cp-plan-budget", "data-state": timing.missing ? "missing" : timing.difference === null ? "none" : timing.difference > 0 ? "over" : timing.difference < 0 ? "under" : "exact" }, /* @__PURE__ */ cpJsx("div", { className: "cp-plan-budget-line" }, /* @__PURE__ */ cpJsx("b", null, cpRaw(timing.duration !== null ? timing.minutes + " / " + timing.duration + " " + t("ux.plans.min") : timing.minutes + " " + t("ux.plans.min"))), /* @__PURE__ */ cpJsx("span", null, timing.missing ? t("plans.missingPeriod") : timing.difference === null ? t("plans.noPeriod") : timing.difference > 0 ? t("plans.over") + " " + timing.difference : timing.difference < 0 ? t("plans.under") + " " + -timing.difference : t("plans.exact"))), timing.duration !== null && /* @__PURE__ */ cpJsx("div", { className: "cp-plan-bar", "aria-hidden": "true" }, /* @__PURE__ */ cpJsx("i", { style: { inlineSize: budget + "%" } })), /* @__PURE__ */ cpJsx("small", null, t("plans.allocated"), ": ", timing.minutes, timing.duration !== null && /* @__PURE__ */ cpJsx(React.Fragment, null, " \xB7 ", t("plans.duration"), ": ", timing.duration), " \xB7 ", t("plans.timingHint")))), /* @__PURE__ */ cpJsx("section", { className: "cp-plan-section", "data-section": "support" }, /* @__PURE__ */ cpJsx("h3", null, t("ux.plans.sectionSupport")), field2("support"), field2("extension"), field2("resources"), field2("checks")), /* @__PURE__ */ cpJsx("section", { className: "cp-plan-section", "data-section": "after" }, /* @__PURE__ */ cpJsx("h3", null, t("ux.plans.sectionAfter")), field2("homework"), field2("reflection"), /* @__PURE__ */ cpJsx(M5Select, { id: "plans.status", value: draft.status, onChange: (e) => change2("status", e.target.value) }, ["planned", "taught", "skipped"].map((status) => /* @__PURE__ */ cpJsx("option", { key: status, value: status }, t("plans." + status)))))), /* @__PURE__ */ cpJsx("footer", { className: "cp-plan-foot" }, !valid4 && /* @__PURE__ */ cpJsx("p", { role: "status" }, t("plans.required")), /* @__PURE__ */ cpJsx(M5Button, { id: "plans.save", className: "cp-ux-primary", disabled: !valid4, onClick: () => {
+    } }, /* @__PURE__ */ cpJsx("option", { value: "" }, t("plans.noPeriod")), slots.flatMap(({ period: period2, cell: cell2 }) => [/* @__PURE__ */ cpJsx("option", { key: period2.id, value: "period:" + period2.id }, cpRaw(period2.label + " \xB7 " + displayRange(period2.start, period2.end))), ...cell2 ? [/* @__PURE__ */ cpJsx("option", { key: cell2.id, value: "slot:" + cell2.id }, cpRaw([period2.label, displayDate(draft.date), cell2.room].filter(Boolean).join(" \xB7 ")))] : []]), timing.missing && /* @__PURE__ */ cpJsx("option", { value: draft.slotId ? "slot:" + draft.slotId : "period:" + draft.periodId }, t("plans.missingPeriod"))), field2("unit", false)), sections: [
+      { id: "learning", labelKey: "ux.editor.learning", content: /* @__PURE__ */ cpJsx("section", { className: "cp-plan-section", "data-section": "lesson" }, /* @__PURE__ */ cpJsx("div", { className: "cp-editor-lead-field" }, field2("objectives")), /* @__PURE__ */ cpJsx("div", { className: "cp-editor-grid" }, field2("outcomes"), field2("priorKnowledge")), curriculumLessons.length > 0 && /* @__PURE__ */ cpJsx("div", { className: "cp-plan-curriculum", role: "group", "aria-label": t("ux.plans.curriculum") }, /* @__PURE__ */ cpJsx("span", null, t("ux.plans.curriculum")), curriculumLessons.map((lesson) => /* @__PURE__ */ cpJsx(UxButton, { key: lesson.id, id: "plans.curriculum", context: lesson.id, className: "cp-chip", title: t("ux.plans.curriculumHint"), onClick: () => useLesson(lesson) }, cpRaw("+ " + lessonLabel(lesson)))))) },
+      { id: "flow", labelKey: "ux.editor.flow", content: /* @__PURE__ */ cpJsx("section", { className: "cp-plan-section", "data-section": "sequence" }, /* @__PURE__ */ cpJsx("div", { role: "status", className: "cp-plan-budget", "data-state": timing.missing ? "missing" : timing.difference === null ? "none" : timing.difference > 0 ? "over" : timing.difference < 0 ? "under" : "exact" }, /* @__PURE__ */ cpJsx("div", { className: "cp-plan-budget-line" }, /* @__PURE__ */ cpJsx("b", null, cpRaw(timing.duration !== null ? timing.minutes + " / " + timing.duration + " " + t("ux.plans.min") : timing.minutes + " " + t("ux.plans.min"))), /* @__PURE__ */ cpJsx("span", null, timing.missing ? t("plans.missingPeriod") : timing.difference === null ? t("plans.noPeriod") : timing.difference > 0 ? t("plans.over") + " " + timing.difference : timing.difference < 0 ? t("plans.under") + " " + -timing.difference : t("plans.exact"))), timing.duration !== null && /* @__PURE__ */ cpJsx("div", { className: "cp-plan-bar", "aria-hidden": "true" }, /* @__PURE__ */ cpJsx("i", { style: { inlineSize: budget + "%" } })), /* @__PURE__ */ cpJsx("small", null, t("plans.allocated"), ": ", timing.minutes, timing.duration !== null && /* @__PURE__ */ cpJsx(React.Fragment, null, " \xB7 ", t("plans.duration"), ": ", timing.duration), " \xB7 ", t("plans.timingHint"))), field2("starter"), /* @__PURE__ */ cpJsx("h4", null, t("plans.activities")), draft.activities.map((a, index) => /* @__PURE__ */ cpJsx("div", { key: a.id, className: "cp-plan-activity" }, /* @__PURE__ */ cpJsx("span", { className: "cp-editor-number", "aria-hidden": "true" }, String(index + 1).padStart(2, "0")), /* @__PURE__ */ cpJsx(M5Field, { id: "plans.activity", context: a.id, value: a.text, onChange: (e) => activity(a.id, { text: e.target.value }), style: { flex: 1 } }), /* @__PURE__ */ cpJsx(M5Field, { id: "plans.minutes", context: a.id, type: "number", min: "0", step: "1", value: a.minutes, onChange: (e) => activity(a.id, { minutes: +e.target.value }), style: { width: 96 } }), /* @__PURE__ */ cpJsx(M5Button, { id: "plans.removeActivity", context: a.id, "aria-label": t("plans.removeActivity"), title: t("plans.removeActivity"), onClick: () => change2("activities", draft.activities.filter((item) => item.id !== a.id)) }, /* @__PURE__ */ cpJsx(EditorRemoveIcon, null)))), /* @__PURE__ */ cpJsx(M5Button, { id: "plans.addActivity", onClick: () => change2("activities", [...draft.activities, { id: crypto.randomUUID(), text: "", minutes: 0 }]) }, t("plans.addActivity"))) },
+      { id: "support", labelKey: "ux.editor.support", content: /* @__PURE__ */ cpJsx("section", { className: "cp-plan-section", "data-section": "support" }, /* @__PURE__ */ cpJsx("div", { className: "cp-editor-grid" }, field2("support"), field2("extension")), /* @__PURE__ */ cpJsx("div", { className: "cp-editor-grid" }, field2("resources"), field2("checks"))) },
+      { id: "after", labelKey: "ux.editor.after", content: /* @__PURE__ */ cpJsx("section", { className: "cp-plan-section", "data-section": "after" }, field2("homework"), field2("reflection"), /* @__PURE__ */ cpJsx(M5Select, { id: "plans.status", value: draft.status, onChange: (e) => change2("status", e.target.value) }, ["planned", "taught", "skipped"].map((status) => /* @__PURE__ */ cpJsx("option", { key: status, value: status }, t("plans." + status))))) }
+    ] }), /* @__PURE__ */ cpJsx("footer", { className: "cp-plan-foot" }, !valid4 && /* @__PURE__ */ cpJsx("p", { role: "status" }, t("plans.required")), /* @__PURE__ */ cpJsx(M5Button, { id: "plans.save", className: "cp-ux-primary", disabled: !valid4, onClick: () => {
       onSave(draft);
       acceptDraft(draft);
     } }, t(draft.kind === "template" ? "plans.saveTemplateEdit" : "plans.save")), /* @__PURE__ */ cpJsx(M5Button, { id: "plans.saveTemplate", disabled: !valid4, onClick: () => onCopy(copyPlan(draft, draft.date, "template")) }, t("plans.saveTemplate")), /* @__PURE__ */ cpJsx(ScopeChip, { label: t("ux.plans.duplicateTo"), value: duplicateDate || "\u2026", context: "plan-duplicate" }, /* @__PURE__ */ cpJsx(M5Field, { id: "plans.duplicateDate", type: "date", value: duplicateDate, onChange: (e) => setDuplicateDate(e.target.value) }), /* @__PURE__ */ cpJsx(M5Button, { id: "plans.duplicate", disabled: !valid4 || !duplicateDate, onClick: () => onCopy(copyPlan(draft, duplicateDate)) }, t("plans.duplicate"))), /* @__PURE__ */ cpJsx(ScopeChip, { label: t("ux.plans.output"), value: t("print." + language2), context: "plan-output" }, /* @__PURE__ */ cpJsx(DocumentLanguage, { id: "plans.language", value: language2, onChange: (e) => setLanguage2(e.target.value) }), /* @__PURE__ */ cpJsx(M5Button, { id: "plans.preview", disabled: !valid4, onClick: () => onPreview(draft, language2) }, t("plans.preview")), /* @__PURE__ */ cpJsx(UxButton, { id: "plans.word", disabled: !valid4, onClick: () => downloadWord({ title: draft.title, language: language2 === "ar" ? "ar" : "en", blocks: planWordBlocks(draft, doc, profile2, language2) }, "ClassPilot_lesson_plan.docx") })), /* @__PURE__ */ cpJsx("span", { className: "cp-plan-close" }, /* @__PURE__ */ cpJsx(M5Button, { id: "plans.cancel", onClick: () => {
@@ -54357,7 +54515,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
   }
   function PlansView({ doc, onUpdate }) {
     useLanguage();
-    const profile2 = useProfile(), [tab, setTab] = useState("list"), [query, setQuery] = useState(""), [week, setWeek] = useState(todayISO), [editing, setEditing] = useRetainedState("plans-editor:" + doc.cp.classId, null), [preview, setPreview] = useState(null), [handledLesson, setHandledLesson] = useRetainedState("plans-request:" + doc.cp.classId, null);
+    const profile2 = useProfile(), [tab, setTab] = useState("list"), [query, setQuery] = useState(""), [week, setWeek] = useState(todayISO), [editing, setEditing] = useRetainedState("plans-editor:" + doc.cp.classId, null), [preview, setPreview] = useState(null), [handledLesson, setHandledLesson] = useRetainedState("plans-request:" + doc.cp.classId, null), [editorSection, setEditorSection] = useState("learning");
     const lesson = activeLesson(doc);
     useEffect(() => {
       if (!lesson || lesson.view !== "module:plans" || handledLesson === lesson.requestId) return;
@@ -54368,6 +54526,9 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       setEditing({ id: seed.id, isNew: !found, seed: found ? null : seed, lessonKey });
     }, [lesson?.requestId]);
     const all2 = plans(doc), record = editing && (all2.find((p) => p.id === editing.id) || (editing.isNew ? editing.seed : null)), visible = all2.filter((p) => (tab === "templates" ? p.kind === "template" : p.kind === "plan") && planMatches(p, query));
+    useEffect(() => {
+      setEditorSection("learning");
+    }, [record?.id]);
     const edit = (p) => setEditing({ id: p.id, isNew: false }), save = (p) => {
       onUpdate((d) => putPlan(d, p));
       edit(p);
@@ -54384,7 +54545,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       if (editing?.id === p.id) setEditing(null);
       notify(t("ux.plans.deleted"), { undo: true });
     } }, t("plans.delete")))));
-    return /* @__PURE__ */ cpJsx(ModuleFrame, { titleKey: "shell.plans", icon: "plans", lead: "ux.lead.plans", info: /* @__PURE__ */ cpJsx(React.Fragment, null, t("plans.draftHint"), " ", t("improve.draftNotice")), actions: record ? null : /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx(Segmented, { label: t("shell.plans") }, ["list", "week", "templates"].map((id) => /* @__PURE__ */ cpJsx(M5Button, { key: id, id: "plans." + id, active: tab === id, "aria-pressed": tab === id, onClick: () => setTab(id) }, t("plans." + id)))), /* @__PURE__ */ cpJsx(M5Button, { id: "plans.new", className: "cp-ux-primary", style: primary, onClick: create }, t("plans.new"))) }, record ? /* @__PURE__ */ cpJsx(PlanEditor, { key: record.id + JSON.stringify(record), record, doc, profile: profile2, onSave: save, onCopy: copy5, onClose: () => setEditing(null), onPreview: (plan, language2) => setPreview({ plan, language: language2 }) }) : /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx("div", { className: "cp-filter-bar cp-plan-filters" }, /* @__PURE__ */ cpJsx(M5Field, { id: "plans.search", type: "search", value: query, onChange: (e) => setQuery(e.target.value) }), /* @__PURE__ */ cpJsx(M5Field, { id: "plans.weekDate", type: "date", value: week, onChange: (e) => e.target.value && setWeek(e.target.value) })), /* @__PURE__ */ cpJsx("div", { className: "cp-plan-collection" }, tab === "week" ? /* @__PURE__ */ cpJsx("div", { style: { overflow: "auto" } }, /* @__PURE__ */ cpJsx("div", { style: { display: "grid", gridTemplateColumns: "repeat(7,minmax(150px,1fr))", gap: 8 } }, planWeek(week, profile2.calendar.schoolDays[0] ?? 1).map((date5) => /* @__PURE__ */ cpJsx("section", { key: date5, style: { padding: 8, background: isSchoolDay(date5, doc.settings) ? "var(--cp-surface)" : "var(--cp-background)", border: "1px solid var(--cp-border)", borderRadius: 8 } }, /* @__PURE__ */ cpJsx("h2", { style: { fontSize: "var(--cp-fs-body)" } }, date5), cards(visible.filter((p) => p.date === date5)))))) : visible.length ? /* @__PURE__ */ cpJsx("div", { className: "cp-plan-cards" }, cards(visible)) : /* @__PURE__ */ cpJsx(EmptyState, { kind: query.trim() ? "filtered" : "nothing", title: t(tab === "templates" ? "plans.emptyTemplates" : "plans.empty"), text: t(tab === "templates" ? "ux.plans.emptyTemplatesHint" : "ux.plans.emptyHint") }))), preview && /* @__PURE__ */ cpJsx(PlanPrint, { ...preview, doc, profile: profile2, onClose: () => setPreview(null) }));
+    return /* @__PURE__ */ cpJsx(ModuleFrame, { className: record ? "cp-editor-mode" : "", titleKey: "shell.plans", icon: "plans", lead: "ux.lead.plans", info: /* @__PURE__ */ cpJsx(React.Fragment, null, t("plans.draftHint"), " ", t("improve.draftNotice")), actions: record ? null : /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx(Segmented, { label: t("shell.plans") }, ["list", "week", "templates"].map((id) => /* @__PURE__ */ cpJsx(M5Button, { key: id, id: "plans." + id, active: tab === id, "aria-pressed": tab === id, onClick: () => setTab(id) }, t("plans." + id)))), /* @__PURE__ */ cpJsx(M5Button, { id: "plans.new", className: "cp-ux-primary", style: primary, onClick: create }, t("plans.new"))) }, record ? /* @__PURE__ */ cpJsx(PlanEditor, { key: record.id + JSON.stringify(record), record, doc, profile: profile2, section: editorSection, onSection: setEditorSection, onSave: save, onCopy: copy5, onClose: () => setEditing(null), onPreview: (plan, language2) => setPreview({ plan, language: language2 }) }) : /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx("div", { className: "cp-filter-bar cp-plan-filters" }, /* @__PURE__ */ cpJsx(M5Field, { id: "plans.search", type: "search", value: query, onChange: (e) => setQuery(e.target.value) }), /* @__PURE__ */ cpJsx(M5Field, { id: "plans.weekDate", type: "date", value: week, onChange: (e) => e.target.value && setWeek(e.target.value) })), /* @__PURE__ */ cpJsx("div", { className: "cp-plan-collection" }, tab === "week" ? /* @__PURE__ */ cpJsx("div", { style: { overflow: "auto" } }, /* @__PURE__ */ cpJsx("div", { style: { display: "grid", gridTemplateColumns: "repeat(7,minmax(150px,1fr))", gap: 8 } }, planWeek(week, profile2.calendar.schoolDays[0] ?? 1).map((date5) => /* @__PURE__ */ cpJsx("section", { key: date5, style: { padding: 8, background: isSchoolDay(date5, doc.settings) ? "var(--cp-surface)" : "var(--cp-background)", border: "1px solid var(--cp-border)", borderRadius: 8 } }, /* @__PURE__ */ cpJsx("h2", { style: { fontSize: "var(--cp-fs-body)" } }, date5), cards(visible.filter((p) => p.date === date5)))))) : visible.length ? /* @__PURE__ */ cpJsx("div", { className: "cp-plan-cards" }, cards(visible)) : /* @__PURE__ */ cpJsx(EmptyState, { kind: query.trim() ? "filtered" : "nothing", title: t(tab === "templates" ? "plans.emptyTemplates" : "plans.empty"), text: t(tab === "templates" ? "ux.plans.emptyTemplatesHint" : "ux.plans.emptyHint") }))), preview && /* @__PURE__ */ cpJsx(PlanPrint, { ...preview, doc, profile: profile2, onClose: () => setPreview(null) }));
   }
   var plans_default = m5Manifest("plans", { defaults: [], migrate: (value) => value || [] }, PlansView);
 
