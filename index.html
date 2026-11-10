@@ -2155,6 +2155,71 @@ td[data-cp-att],th[data-cp-att]{background:var(--cp-att-bg)!important;box-shadow
 .cp-timetable-page .cp-info-pop{inline-size:min(420px,calc(100vw - 260px));max-block-size:360px;overflow:auto;z-index:65}
 .cp-timetable-page .cp-info-pop>span{display:block;margin-block-start:10px}
 @media(max-width:1150px){.cp-timetable-page>.cp-page-head{align-items:start}.cp-timetable-page>.cp-page-head .cp-page-title{flex-basis:100%}.cp-timetable-page .cp-tt-bell{grid-template-columns:24px minmax(100px,1.4fr) 100px 100px 60px minmax(95px,1fr) 28px;gap:6px}.cp-timetable-page .cp-tt-bells{padding:12px}.cp-timetable-page .cp-tt-grid{border-spacing:3px}.cp-timetable-page .cp-tt-grid .cp-tt-cell{padding:5px}.cp-timetable-page .cp-tt-when{display:grid;gap:2px}.cp-timetable-page .cp-tt-grid th{font-size:12.5px}.cp-timetable-page .cp-tt-week-surface{padding:8px!important}}
+
+/* SP12.5: owner-approved Observations workspace (10 Nov 2026); existing draft owners, handlers and scoring stay. */
+
+.cp-observations>.cp-page-head{margin-block-end:12px!important;gap:12px}
+.cp-observations>.cp-page-head h1{font:650 18px var(--cp-font)!important}
+.cp-observations .cp-obs2{grid-template-columns:232px minmax(0,1fr);gap:20px;align-items:start}
+.cp-observations .cp-obs-roster{max-block-size:calc(100vh - 184px);position:sticky;inset-block-start:8px;padding:12px;border-radius:12px}
+.cp-observations .cp-obs-search input{font-size:12.5px}
+.cp-observations .cp-obs-modes{margin-block:10px 8px}
+.cp-observations .cp-obs-modes button{min-block-size:26px;display:inline-flex;align-items:center;justify-content:center;padding-block:2px;padding-inline:2px;min-inline-size:0;flex:1 1 0;white-space:nowrap;font-size:11px}
+.cp-observations .cp-obs-list:focus-visible{outline:2px solid var(--cp-focus,var(--cp-gold));outline-offset:2px;border-radius:8px}
+.cp-observations .cp-obs-st bdi{min-inline-size:0;overflow-wrap:anywhere}
+.cp-observations .cp-obs-st{min-block-size:36px;font-size:12.5px;padding:5px 8px}
+.cp-observations .cp-obs-rosterfoot{margin-block-start:10px;font-size:11px}
+.cp-obs-workspace{min-inline-size:0;background:var(--cp-surface);border:1px solid var(--cp-border);border-radius:12px;padding:16px 20px}
+.cp-observations .cp-obs-record,.cp-observations .cp-obs-side{border:0;border-radius:0;background:transparent;padding:0;min-inline-size:0}
+.cp-observations .cp-obs-record{gap:12px}
+.cp-observations .cp-obs-targetbar{padding:0 0 12px;border:0;border-block-end:1px solid var(--cp-border);border-radius:0;background:transparent!important;min-block-size:38px;gap:8px}
+.cp-observations .cp-obs-targetbar>span:first-child{position:absolute;inline-size:1px;block-size:1px;overflow:hidden;clip-path:inset(50%)}
+.cp-observations .cp-obs-targetbar em{font:600 14px var(--cp-font);color:var(--cp-text);font-style:normal}
+.cp-observations .cp-obs-chip{min-block-size:32px;block-size:auto;max-inline-size:100%;padding-block:2px;border-radius:8px;font-size:14px;padding-inline:10px 4px}
+.cp-observations .cp-obs-chip bdi{min-inline-size:0;overflow-wrap:anywhere}
+.cp-observations .cp-obs-chip button{flex:none;min-inline-size:24px;min-block-size:24px}
+.cp-observations .cp-obs-targetbar input{block-size:32px;inline-size:142px;font-size:12.5px}
+.cp-observations .cp-obs-note{margin:0;flex-wrap:nowrap;gap:12px}
+.cp-observations .cp-obs-note>label{min-inline-size:0}
+.cp-observations .cp-obs-note input{block-size:34px;font-size:12.5px}
+.cp-observations .cp-obs-note .cp-cmd{min-block-size:34px;font-size:12.5px!important;white-space:nowrap}
+.cp-observations .cp-obs-palette{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.cp-observations .cp-obs-palette .cp-cmd{overflow-wrap:anywhere;min-block-size:44px!important;min-height:44px!important;padding:8px 12px!important;border-radius:8px!important;font-size:12.5px!important;justify-content:start;line-height:1.3!important}
+.cp-obs-record-label{margin:0;font:600 12.5px var(--cp-font);color:var(--cp-muted)}
+.cp-observations .cp-obs-record>details.cp-ux-panel{margin:0;padding:0;border:0;border-block-start:1px solid var(--cp-border);border-radius:0;background:transparent}
+.cp-observations .cp-obs-record>details.cp-ux-panel>summary{padding-block:8px;min-block-size:24px;font-size:12.5px}
+.cp-observations .cp-obs-record>details.cp-ux-panel[open]{padding-block-end:12px}
+.cp-observations .cp-obs-side{grid-column:auto;margin-block-start:16px;border-block-start:1px solid var(--cp-border);padding-block-start:16px}
+.cp-observations .cp-obs-side header{margin-block-end:8px;align-items:center;flex-wrap:wrap}
+.cp-observations .cp-obs-side h2{font:650 14px var(--cp-font)}
+.cp-observations .cp-obs-side header>span{font-size:11px}
+.cp-observations .cp-obs-entry{padding-block:12px;grid-template-columns:76px minmax(0,1fr) 28px;gap:12px}
+.cp-observations .cp-obs-when{font-size:11px;line-height:1.5}
+.cp-observations .cp-obs-what{font-size:12.5px;line-height:1.5;gap:6px}
+.cp-observations .cp-obs-notetext{font-size:12.5px;color:var(--cp-text);overflow-wrap:anywhere}
+.cp-observations .cp-obs-tt,.cp-observations .cp-obs-badge{font-size:11px}
+.cp-observations .cp-obs-side>.cp-obs-empty:last-child:not(:first-child){font-size:12.5px}
+.cp-observations .cp-obs-editbox{grid-template-columns:150px minmax(0,1fr);padding:12px;gap:12px}
+.cp-observations .cp-obs-editfoot{grid-column:1/-1}
+.cp-observations .cp-obs-menu>.cp-obs-danger{color:var(--cp-danger)!important}
+.cp-observations .cp-obs-reason{background:var(--cp-warning-bg,var(--cp-active));border-color:var(--cp-border);font-size:12.5px}
+.cp-observations .cp-obs-tags-edit{margin-block:0 8px;padding:12px 0 0;border:0;border-block-start:1px solid var(--cp-border);border-radius:0;background:transparent}
+.cp-observations .cp-obs-tags-edit h2{font:600 14px var(--cp-font);margin-block:0 12px}
+.cp-observations .cp-obs-tag-row,.cp-obs-tag-head{display:grid;grid-template-columns:minmax(0,1fr) 112px 56px 176px;gap:8px;align-items:center}
+.cp-obs-tag-head{padding-block:0 8px;color:var(--cp-muted);font-size:11px}
+.cp-observations .cp-obs-tag-row{margin:0;padding-block:8px;border-block-start:1px solid var(--cp-border)}
+.cp-observations .cp-obs-tag-row>label{position:relative;min-inline-size:0}
+.cp-observations .cp-obs-tag-row>label>span{position:absolute;inline-size:1px;block-size:1px;overflow:hidden;clip-path:inset(50%)}
+.cp-observations .cp-obs-tag-row input:not([type=color]),.cp-observations .cp-obs-tag-row select{box-sizing:border-box;inline-size:100%!important;min-inline-size:0;font-size:12.5px!important;block-size:32px}
+.cp-observations .cp-obs-tag-row input[type=color]{box-sizing:border-box;inline-size:44px;min-inline-size:24px;block-size:32px;padding:4px}
+.cp-observations .cp-obs-tag-row>.cp-cmd{font-size:12.5px!important;min-block-size:32px;padding:7px 8px!important}
+
+.cp-observations .cp-info-btn{min-inline-size:24px;min-block-size:24px}
+.cp-observations .cp-info-pop{inline-size:min(420px,calc(100vw - 260px));max-block-size:360px;overflow:auto}
+.cp-observations .cp-info-pop>span{display:block;margin-block-start:10px}
+.cp-observations .cp-page-actions .cp-cmd{font-size:12.5px!important;min-block-size:32px}
+@media(min-width:1380px){.cp-observations .cp-obs-palette{grid-template-columns:repeat(auto-fit,minmax(128px,1fr))}}
+@media(max-width:1180px){.cp-observations .cp-obs2{grid-template-columns:216px minmax(0,1fr);gap:16px}.cp-obs-workspace{padding:16px}.cp-observations .cp-obs-targetbar{row-gap:8px}.cp-observations .cp-obs-chip{font-size:12.5px}.cp-observations .cp-obs-entry{grid-template-columns:66px minmax(0,1fr) 28px;gap:8px}}
 /* M56 design foundations (owner-supplied Master Implementation Brief, M56; design report §7–§8).
    One set of tokens for the frame and the new modules. Protected Gradebook views (Marks, Groups, Behaviour,
    Adjustments, Analysis, the original wheel, the Settings drawer and the class manager) do not use them. */
@@ -8495,7 +8560,14 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.tt.assignments": "Class assignments",
     "ux.tt.editSections": "Timetable editing",
     "ux.tt.planningTools": "Planning tools",
-    "ux.tt.noPeriods": "No periods yet"
+    "ux.tt.noPeriods": "No periods yet",
+    "ux.obs.chooseTarget": "Choose students",
+    "ux.obs.recordHeading": "Record observation",
+    "ux.obs.lessonActionsShort": "Lesson actions",
+    "ux.obs.timelineHeading": "Timeline",
+    "ux.obs.tagNameShort": "Name",
+    "ux.obs.tagKindShort": "Category",
+    "ux.obs.tagColourShort": "Colour"
   };
 
   // src/i18n/plain-copy.js
@@ -14208,7 +14280,14 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.tt.assignments": "\u062A\u0648\u0632\u064A\u0639 \u0627\u0644\u0634\u0639\u0628",
     "ux.tt.editSections": "\u062A\u0639\u062F\u064A\u0644 \u0627\u0644\u062C\u062F\u0648\u0644",
     "ux.tt.planningTools": "\u0623\u062F\u0648\u0627\u062A \u0627\u0644\u062A\u062E\u0637\u064A\u0637",
-    "ux.tt.noPeriods": "\u0644\u0627 \u062A\u0648\u062C\u062F \u062D\u0635\u0635 \u0628\u0639\u062F"
+    "ux.tt.noPeriods": "\u0644\u0627 \u062A\u0648\u062C\u062F \u062D\u0635\u0635 \u0628\u0639\u062F",
+    "ux.obs.chooseTarget": "\u0627\u062E\u062A\u0631 \u0627\u0644\u0637\u0644\u0627\u0628",
+    "ux.obs.recordHeading": "\u062A\u0633\u062C\u064A\u0644 \u0645\u0634\u0627\u0647\u062F\u0629",
+    "ux.obs.lessonActionsShort": "\u0625\u062C\u0631\u0627\u0621\u0627\u062A \u0627\u0644\u062D\u0635\u0629",
+    "ux.obs.timelineHeading": "\u0627\u0644\u0633\u062C\u0644",
+    "ux.obs.tagNameShort": "\u0627\u0644\u0627\u0633\u0645",
+    "ux.obs.tagKindShort": "\u0627\u0644\u0641\u0626\u0629",
+    "ux.obs.tagColourShort": "\u0627\u0644\u0644\u0648\u0646"
   };
 
   // src/core/actions.js
@@ -42259,7 +42338,14 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "tt.assignments": ["Class assignments", "\u062A\u0648\u0632\u064A\u0639 \u0627\u0644\u0634\u0639\u0628"],
     "tt.editSections": ["Timetable editing", "\u062A\u0639\u062F\u064A\u0644 \u0627\u0644\u062C\u062F\u0648\u0644"],
     "tt.planningTools": ["Planning tools", "\u0623\u062F\u0648\u0627\u062A \u0627\u0644\u062A\u062E\u0637\u064A\u0637"],
-    "tt.noPeriods": ["No periods yet", "\u0644\u0627 \u062A\u0648\u062C\u062F \u062D\u0635\u0635 \u0628\u0639\u062F"]
+    "tt.noPeriods": ["No periods yet", "\u0644\u0627 \u062A\u0648\u062C\u062F \u062D\u0635\u0635 \u0628\u0639\u062F"],
+    "obs.chooseTarget": ["Choose students", "\u0627\u062E\u062A\u0631 \u0627\u0644\u0637\u0644\u0627\u0628"],
+    "obs.recordHeading": ["Record observation", "\u062A\u0633\u062C\u064A\u0644 \u0645\u0634\u0627\u0647\u062F\u0629"],
+    "obs.lessonActionsShort": ["Lesson actions", "\u0625\u062C\u0631\u0627\u0621\u0627\u062A \u0627\u0644\u062D\u0635\u0629"],
+    "obs.timelineHeading": ["Timeline", "\u0627\u0644\u0633\u062C\u0644"],
+    "obs.tagNameShort": ["Name", "\u0627\u0644\u0627\u0633\u0645"],
+    "obs.tagKindShort": ["Category", "\u0627\u0644\u0641\u0626\u0629"],
+    "obs.tagColourShort": ["Colour", "\u0627\u0644\u0644\u0648\u0646"]
   };
   var uxEn = Object.fromEntries(Object.entries(pairs).map(([key4, value]) => ["ux." + key4, value[0]]));
   var uxAr = Object.fromEntries(Object.entries(pairs).map(([key4, value]) => ["ux." + key4, value[1]]));
@@ -43043,7 +43129,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
   }
   function LessonActionPanel({ doc, onUpdate, selectedIds, date: date5, note, onNote }) {
     const profile2 = useProfile(), [kind, setKind] = useState("note"), [scope, setScope] = useState("all"), [preview, setPreview] = useState(null), [bankKind, setBankKind] = useState("behaviour"), [bank, setBank] = useState(phrases(profile2, "behaviour", "", "comment").join("\n")), [milestones, setMilestones] = useState((profile2.participationMilestones || []).join(", ")), canParticipate = !!findParticipationCol(doc.sections), ids = lessonRecipients(doc, selectedIds, scope), levels = participationMilestones(doc, profile2.participationMilestones || []);
-    return /* @__PURE__ */ cpJsx("details", { className: "cp-ux-panel" }, /* @__PURE__ */ cpJsx("summary", null, uxText("lessonActions.title")), /* @__PURE__ */ cpJsx("p", null, uxText("lessonActions.hint")), /* @__PURE__ */ cpJsx("div", { className: "cp-ux-form" }, /* @__PURE__ */ cpJsx(UxSelect, { id: "lessonActions.kind", value: kind, onChange: (e) => {
+    return /* @__PURE__ */ cpJsx("details", { className: "cp-ux-panel" }, /* @__PURE__ */ cpJsx("summary", { title: uxText("lessonActions.title") }, uxText("obs.lessonActionsShort")), /* @__PURE__ */ cpJsx("p", null, uxText("lessonActions.hint")), /* @__PURE__ */ cpJsx("div", { className: "cp-ux-form" }, /* @__PURE__ */ cpJsx(UxSelect, { id: "lessonActions.kind", value: kind, onChange: (e) => {
       setKind(e.target.value);
       setPreview(null);
     } }, ["note", "participation", "behaviour"].map((k) => /* @__PURE__ */ cpJsx("option", { key: k, value: k }, uxText("lessonActions." + k)))), /* @__PURE__ */ cpJsx(UxSelect, { id: "lessonActions.scope", value: scope, onChange: (e) => {
@@ -53685,7 +53771,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       if (e.key === "Enter") e.currentTarget.blur();
     } });
   }
-  function TagSettings({ doc, onUpdate }) {
+  function TagSettings({ doc, onUpdate, compact = false }) {
     const tags = observations(doc.cp?.observations).settings.tags, [name, setName] = useState(""), [kind, setKind] = useState("positive"), [color, setColor] = useState("#dcfce7"), [error2, setError] = useState("");
     function saveTag(id, patch, revert) {
       const next = tags.map((tag) => tag.id === id ? { ...tag, ...patch } : tag);
@@ -53698,7 +53784,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       setError("");
       onUpdate((d) => setTags(d, next));
     }
-    return /* @__PURE__ */ cpJsx("div", { className: "cp-obs-tags-edit" }, /* @__PURE__ */ cpJsx("h2", null, t("observations.editTags")), tags.map((tag) => /* @__PURE__ */ cpJsx("div", { key: tag.id, className: "cp-obs-tag-row" }, /* @__PURE__ */ cpJsx(TagNameField, { tag, onSave: (label, revert) => saveTag(tag.id, { label }, revert) }), /* @__PURE__ */ cpJsx("label", { className: "cp-ux-field" }, /* @__PURE__ */ cpJsx("span", null, t("observations.kind")), /* @__PURE__ */ cpJsx("select", { value: tag.kind, "aria-label": t("observations.kind"), ...controlProps("m3.observations.kind", (e) => saveTag(tag.id, { kind: e.target.value }), tag.id), style: field }, ["positive", "support"].map((k) => /* @__PURE__ */ cpJsx("option", { key: k, value: k }, t("observations." + k))))), /* @__PURE__ */ cpJsx(Field2, { id: "observations.color", context: tag.id, label: "observations.color", type: "color", value: tag.color, onChange: (e) => saveTag(tag.id, { color: e.target.value }) }), /* @__PURE__ */ cpJsx(Command, { id: tag.active ? "observations.archiveTag" : "observations.restoreTag", context: tag.id, onClick: () => saveTag(tag.id, { active: !tag.active }) }, t(tag.active ? "observations.archiveTag" : "observations.restoreTag")))), /* @__PURE__ */ cpJsx("div", { className: "cp-obs-tag-row" }, /* @__PURE__ */ cpJsx(Field2, { id: "observations.tagName", context: "new", label: "observations.tagName", value: name, onChange: (e) => setName(e.target.value) }), /* @__PURE__ */ cpJsx("label", { className: "cp-ux-field" }, /* @__PURE__ */ cpJsx("span", null, t("observations.kind")), /* @__PURE__ */ cpJsx("select", { value: kind, "aria-label": t("observations.kind"), ...controlProps("m3.observations.kind", (e) => setKind(e.target.value), "new"), style: field }, ["positive", "support"].map((k) => /* @__PURE__ */ cpJsx("option", { key: k, value: k }, t("observations." + k))))), /* @__PURE__ */ cpJsx(Field2, { id: "observations.color", context: "new", label: "observations.color", type: "color", value: color, onChange: (e) => setColor(e.target.value) }), /* @__PURE__ */ cpJsx(Command, { id: "observations.addTag", onClick: () => {
+    return /* @__PURE__ */ cpJsx("div", { className: "cp-obs-tags-edit" }, /* @__PURE__ */ cpJsx("h2", null, t("observations.editTags")), compact && /* @__PURE__ */ cpJsx("div", { className: "cp-obs-tag-head", "aria-hidden": "true" }, /* @__PURE__ */ cpJsx("span", null, uxText("obs.tagNameShort")), /* @__PURE__ */ cpJsx("span", null, uxText("obs.tagKindShort")), /* @__PURE__ */ cpJsx("span", null, uxText("obs.tagColourShort")), /* @__PURE__ */ cpJsx("span", null)), tags.map((tag) => /* @__PURE__ */ cpJsx("div", { key: tag.id, className: "cp-obs-tag-row" }, /* @__PURE__ */ cpJsx(TagNameField, { tag, onSave: (label, revert) => saveTag(tag.id, { label }, revert) }), /* @__PURE__ */ cpJsx("label", { className: "cp-ux-field" }, /* @__PURE__ */ cpJsx("span", null, t("observations.kind")), /* @__PURE__ */ cpJsx("select", { value: tag.kind, "aria-label": t("observations.kind"), ...controlProps("m3.observations.kind", (e) => saveTag(tag.id, { kind: e.target.value }), tag.id), style: field }, ["positive", "support"].map((k) => /* @__PURE__ */ cpJsx("option", { key: k, value: k }, t("observations." + k))))), /* @__PURE__ */ cpJsx(Field2, { id: "observations.color", context: tag.id, label: "observations.color", type: "color", value: tag.color, onChange: (e) => saveTag(tag.id, { color: e.target.value }) }), /* @__PURE__ */ cpJsx(Command, { id: tag.active ? "observations.archiveTag" : "observations.restoreTag", context: tag.id, onClick: () => saveTag(tag.id, { active: !tag.active }) }, t(tag.active ? "observations.archiveTag" : "observations.restoreTag")))), /* @__PURE__ */ cpJsx("div", { className: "cp-obs-tag-row" }, /* @__PURE__ */ cpJsx(Field2, { id: "observations.tagName", context: "new", label: "observations.tagName", value: name, onChange: (e) => setName(e.target.value) }), /* @__PURE__ */ cpJsx("label", { className: "cp-ux-field" }, /* @__PURE__ */ cpJsx("span", null, t("observations.kind")), /* @__PURE__ */ cpJsx("select", { value: kind, "aria-label": t("observations.kind"), ...controlProps("m3.observations.kind", (e) => setKind(e.target.value), "new"), style: field }, ["positive", "support"].map((k) => /* @__PURE__ */ cpJsx("option", { key: k, value: k }, t("observations." + k))))), /* @__PURE__ */ cpJsx(Field2, { id: "observations.color", context: "new", label: "observations.color", type: "color", value: color, onChange: (e) => setColor(e.target.value) }), /* @__PURE__ */ cpJsx(Command, { id: "observations.addTag", onClick: () => {
       if (!name.trim() || tags.some((tag) => tagName(tag) === name.trim())) {
         setError(t("observations.invalidTag"));
         return;
@@ -53810,20 +53896,20 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       onUpdate((d) => d === current4 ? next : convertObservation(d, sid, item.id, kind, reason));
     }
     const modes = [["one", "obs.mode.one"], ["several", "obs.mode.several"], ["class", "obs.mode.class"]];
-    return /* @__PURE__ */ cpJsx(ModuleFrame, { titleKey: "shell.observations", icon: "observations", lead: "ux.lead.observations", info: t("observations.notScore") }, !doc.students.length ? /* @__PURE__ */ cpJsx(EmptyRoster, null) : /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx("div", { className: "cp-obs2" }, /* @__PURE__ */ cpJsx("aside", { className: "cp-obs-roster", "aria-label": uxText("obs.who") }, /* @__PURE__ */ cpJsx("label", { className: "cp-obs-search" }, /* @__PURE__ */ cpJsx("span", { className: "cp-visually-hidden" }, uxText("obs.search")), /* @__PURE__ */ cpJsx("input", { type: "search", placeholder: uxText("obs.search"), "aria-label": uxText("obs.search"), value: query, ...controlProps("ux.obs.search", (e) => setQuery(e.target.value)) })), /* @__PURE__ */ cpJsx("div", { className: "cp-obs-modes", role: "group", "aria-label": uxText("obs.modes") }, modes.map(([id, key4]) => /* @__PURE__ */ cpJsx("button", { key: id, type: "button", "aria-pressed": mode === id, ...actionProps("ux.obs.mode", () => {
+    return /* @__PURE__ */ cpJsx(ModuleFrame, { titleKey: "shell.observations", icon: "observations", lead: "ux.lead.observations", className: "cp-observations", infoTabIndex: 0, info: /* @__PURE__ */ cpJsx(React.Fragment, null, t("observations.notScore"), doc.students.length > 0 && /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx("span", null, uxText("obs.noteHint")), /* @__PURE__ */ cpJsx("span", null, uxText("obs.weekCount")), /* @__PURE__ */ cpJsx("span", null, uxText("obs.pickForTimeline")))), actions: doc.students.length > 0 && /* @__PURE__ */ cpJsx(Command, { id: "observations.editTags", active: editing, onClick: () => setEditing(!editing) }, t("observations.editTags")) }, !doc.students.length ? /* @__PURE__ */ cpJsx(EmptyRoster, null) : /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx("div", { className: "cp-obs2" }, /* @__PURE__ */ cpJsx("aside", { className: "cp-obs-roster", "aria-label": uxText("obs.who") }, /* @__PURE__ */ cpJsx("label", { className: "cp-obs-search" }, /* @__PURE__ */ cpJsx("span", { className: "cp-visually-hidden" }, uxText("obs.search")), /* @__PURE__ */ cpJsx("input", { type: "search", placeholder: uxText("obs.search"), "aria-label": uxText("obs.search"), value: query, ...controlProps("ux.obs.search", (e) => setQuery(e.target.value)) })), /* @__PURE__ */ cpJsx("div", { className: "cp-obs-modes", role: "group", "aria-label": uxText("obs.modes") }, modes.map(([id, key4]) => /* @__PURE__ */ cpJsx("button", { key: id, type: "button", "aria-pressed": mode === id, ...actionProps("ux.obs.mode", () => {
       setMode(id);
       if (id === "several" && studentId) setSelected({ [studentId]: true });
       if (id === "one") {
         const first = Object.keys(selected).find((k) => selected[k]);
         setStudentId(first || "");
       }
-    }, id) }, uxText(key4)))), /* @__PURE__ */ cpJsx("ul", { className: "cp-obs-list" }, shown2.map((student) => {
+    }, id) }, uxText(key4)))), /* @__PURE__ */ cpJsx("ul", { className: "cp-obs-list", tabIndex: 0, "aria-label": uxText("obs.who") }, shown2.map((student) => {
       const on = targetIds.includes(student.id), n = weekCount(student.id);
       return /* @__PURE__ */ cpJsx("li", { key: student.id }, mode === "one" ? /* @__PURE__ */ cpJsx("button", { type: "button", className: "cp-obs-st", "aria-pressed": on, ...actionProps("ux.obs.pick", () => setStudentId(on ? "" : student.id), student.id) }, /* @__PURE__ */ cpJsx("span", { className: "cp-obs-av", "aria-hidden": "true" }, cpRaw(initialsOf(student.name) || "\xB7")), /* @__PURE__ */ cpJsx("bdi", null, cpRaw(student.name)), n > 0 && /* @__PURE__ */ cpJsx("small", { title: uxText("obs.weekCount") }, n)) : /* @__PURE__ */ cpJsx("label", { className: "cp-obs-st", "data-on": on ? "true" : "false" }, /* @__PURE__ */ cpJsx("input", { type: "checkbox", checked: on, disabled: mode === "class", ...controlProps("m3.observations.select", (e) => setSelected({ ...selected, [student.id]: e.target.checked }), student.id) }), /* @__PURE__ */ cpJsx("span", { className: "cp-obs-av", "aria-hidden": "true" }, cpRaw(initialsOf(student.name) || "\xB7")), /* @__PURE__ */ cpJsx("bdi", null, cpRaw(student.name)), n > 0 && /* @__PURE__ */ cpJsx("small", { title: uxText("obs.weekCount") }, n)));
-    }), !shown2.length && /* @__PURE__ */ cpJsx("li", { className: "cp-obs-none" }, uxText("obs.noMatch"))), /* @__PURE__ */ cpJsx("p", { className: "cp-obs-rosterfoot" }, cpRaw(countText(doc.students.length, "obs.students")), cpRaw(" \xB7 "), uxText("obs.weekCount"))), /* @__PURE__ */ cpJsx("section", { className: "cp-obs-record", "aria-label": uxText("obs.what") }, /* @__PURE__ */ cpJsx("div", { className: "cp-obs-targetbar", "data-count": targetIds.length }, /* @__PURE__ */ cpJsx("span", null, uxText("obs.recordingFor")), targetIds.length === 0 ? /* @__PURE__ */ cpJsx("em", null, uxText("obs.chooseFirst")) : mode === "class" ? /* @__PURE__ */ cpJsx("span", { className: "cp-obs-chip" }, uxText("obs.mode.class"), /* @__PURE__ */ cpJsx("button", { type: "button", "aria-label": uxText("obs.clearChoice"), ...actionProps("ux.obs.unpick", () => clearTarget(), "class") }, "\xD7")) : targetIds.slice(0, 6).map((id) => /* @__PURE__ */ cpJsx("span", { key: id, className: "cp-obs-chip" }, /* @__PURE__ */ cpJsx("bdi", null, cpRaw(nameOf2(id))), /* @__PURE__ */ cpJsx("button", { type: "button", "aria-label": uxText("obs.remove").replace("{who}", nameOf2(id)), ...actionProps("ux.obs.unpick", () => {
+    }), !shown2.length && /* @__PURE__ */ cpJsx("li", { className: "cp-obs-none" }, uxText("obs.noMatch"))), /* @__PURE__ */ cpJsx("p", { className: "cp-obs-rosterfoot" }, cpRaw(countText(doc.students.length, "obs.students")))), /* @__PURE__ */ cpJsx("div", { className: "cp-obs-workspace" }, /* @__PURE__ */ cpJsx("section", { className: "cp-obs-record", "aria-label": uxText("obs.what") }, /* @__PURE__ */ cpJsx("div", { className: "cp-obs-targetbar", "data-count": targetIds.length }, /* @__PURE__ */ cpJsx("span", null, uxText("obs.recordingFor")), targetIds.length === 0 ? /* @__PURE__ */ cpJsx("em", null, uxText("obs.chooseTarget")) : mode === "class" ? /* @__PURE__ */ cpJsx("span", { className: "cp-obs-chip" }, uxText("obs.mode.class"), /* @__PURE__ */ cpJsx("button", { type: "button", "aria-label": uxText("obs.clearChoice"), ...actionProps("ux.obs.unpick", () => clearTarget(), "class") }, "\xD7")) : targetIds.slice(0, 6).map((id) => /* @__PURE__ */ cpJsx("span", { key: id, className: "cp-obs-chip" }, /* @__PURE__ */ cpJsx("bdi", null, cpRaw(nameOf2(id))), /* @__PURE__ */ cpJsx("button", { type: "button", "aria-label": uxText("obs.remove").replace("{who}", nameOf2(id)), ...actionProps("ux.obs.unpick", () => {
       if (mode === "one") setStudentId("");
       else setSelected({ ...selected, [id]: false });
-    }, id) }, "\xD7"))), mode === "several" && targetIds.length > 6 && /* @__PURE__ */ cpJsx("span", { className: "cp-obs-chip" }, cpRaw("+" + (targetIds.length - 6))), /* @__PURE__ */ cpJsx("span", { className: "cp-obs-gap" }), /* @__PURE__ */ cpJsx(Field2, { id: "observations.date", label: "observations.date", type: "date", value: date5, onChange: (e) => setDate(e.target.value) })), /* @__PURE__ */ cpJsx("div", { className: "cp-obs-palette", role: "group", "aria-label": t("observations.palette") }, tags.filter((tag) => tag.active).map((tag) => /* @__PURE__ */ cpJsx(Command, { key: tag.id, id: "observations.tag", context: tag.id, disabled: !date5 || !targetIds.length, "data-kind": tag.kind, "aria-label": tagName(tag) + " \u2192 " + (targetIds.length ? who : uxText("obs.chooseFirst")), title: tagName(tag), onClick: () => record([tag.id]), style: { background: tag.color, color: colourText(tag.color) } }, /* @__PURE__ */ cpJsx(TagIcon, { kind: tag.kind }), cpRaw(tagName(tag))))), /* @__PURE__ */ cpJsx("div", { className: "cp-obs-note" }, /* @__PURE__ */ cpJsx(Field2, { id: "observations.note", label: "observations.note", maxLength: 500, value: note, onChange: (e) => setNote(e.target.value) }), /* @__PURE__ */ cpJsx(Command, { id: "observations.record", disabled: !date5 || !note.trim() || !targetIds.length, onClick: () => record([]) }, uxText("obs.saveNoteOnly"))), /* @__PURE__ */ cpJsx("p", { className: "cp-obs-hint" }, uxText("obs.noteHint")), /* @__PURE__ */ cpJsx(DraftStatus, { dirty: noteDirty, context: "observation", onDiscard: () => acceptNote("") }), lastSupport && /* @__PURE__ */ cpJsx("div", { className: "cp-obs-reason", role: "group", "aria-label": uxText("obs.why").replace("{tag}", lastSupport.label).replace("{who}", lastSupport.who) }, /* @__PURE__ */ cpJsx("div", { className: "cp-obs-reasonhead" }, /* @__PURE__ */ cpJsx("b", null, uxText("obs.why").replace("{tag}", lastSupport.label).replace("{who}", lastSupport.who)), /* @__PURE__ */ cpJsx("button", { type: "button", className: "cp-obs-quiet", ...actionProps("ux.obs.reasonDone", () => setLastSupport(null)) }, uxText("obs.reasonDone"))), /* @__PURE__ */ cpJsx(PhrasePicker, { kind: "behaviour", context: "observation-reason", onChange: (reason) => addReason(reason) })), /* @__PURE__ */ cpJsx("div", { className: "cp-obs-tools" }, /* @__PURE__ */ cpJsx(Command, { id: "observations.editTags", active: editing, onClick: () => setEditing(!editing) }, t("observations.editTags"))), editing && /* @__PURE__ */ cpJsx(TagSettings, { doc, onUpdate }), /* @__PURE__ */ cpJsx(LessonActionPanel, { doc, onUpdate, selectedIds: targetIds, date: date5, note, onNote: setNote })), /* @__PURE__ */ cpJsx("section", { className: "cp-obs-side", "aria-labelledby": "cp-obs-side-title" }, single ? /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx("header", null, /* @__PURE__ */ cpJsx("h2", { id: "cp-obs-side-title", dir: "auto" }, cpRaw(nameOf2(single))), /* @__PURE__ */ cpJsx("span", null, uxText("obs.summary").replace("{p}", String(termCounts("positive"))).replace("{s}", String(termCounts("support"))))), timeline.length ? /* @__PURE__ */ cpJsx("ol", { className: "cp-obs-entries" }, timeline.map((item) => /* @__PURE__ */ cpJsx(Entry, { key: item.id, doc, item, studentId: single, tags, onUpdate, convert }))) : /* @__PURE__ */ cpJsx("p", { className: "cp-obs-empty" }, t("module.noEntries"))) : /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx("header", null, /* @__PURE__ */ cpJsx("h2", { id: "cp-obs-side-title" }, uxText("obs.justRecorded")), /* @__PURE__ */ cpJsx("span", null, uxText("obs.today"))), recent.length ? /* @__PURE__ */ cpJsx("ol", { className: "cp-obs-entries" }, recent.map(({ id, o }) => /* @__PURE__ */ cpJsx(Entry, { key: o.id, doc, item: o, studentId: id, tags, showName: true, onUpdate, convert }))) : /* @__PURE__ */ cpJsx("p", { className: "cp-obs-empty" }, uxText("obs.nothingToday")), /* @__PURE__ */ cpJsx("p", { className: "cp-obs-empty" }, uxText("obs.pickForTimeline")))))));
+    }, id) }, "\xD7"))), mode === "several" && targetIds.length > 6 && /* @__PURE__ */ cpJsx("span", { className: "cp-obs-chip" }, cpRaw("+" + (targetIds.length - 6))), /* @__PURE__ */ cpJsx("span", { className: "cp-obs-gap" }), /* @__PURE__ */ cpJsx(Field2, { id: "observations.date", label: "observations.date", type: "date", value: date5, onChange: (e) => setDate(e.target.value) })), /* @__PURE__ */ cpJsx("div", { className: "cp-obs-note" }, /* @__PURE__ */ cpJsx(Field2, { id: "observations.note", label: "observations.note", maxLength: 500, value: note, onChange: (e) => setNote(e.target.value) }), /* @__PURE__ */ cpJsx(Command, { id: "observations.record", disabled: !date5 || !note.trim() || !targetIds.length, onClick: () => record([]) }, uxText("obs.saveNoteOnly"))), /* @__PURE__ */ cpJsx("p", { className: "cp-obs-record-label" }, uxText("obs.recordHeading")), /* @__PURE__ */ cpJsx("div", { className: "cp-obs-palette", role: "group", "aria-label": t("observations.palette") }, tags.filter((tag) => tag.active).map((tag) => /* @__PURE__ */ cpJsx(Command, { key: tag.id, id: "observations.tag", context: tag.id, disabled: !date5 || !targetIds.length, "data-kind": tag.kind, "aria-label": tagName(tag) + " \u2192 " + (targetIds.length ? who : uxText("obs.chooseTarget")), title: tagName(tag), onClick: () => record([tag.id]), style: { background: tag.color, color: colourText(tag.color) } }, /* @__PURE__ */ cpJsx(TagIcon, { kind: tag.kind }), cpRaw(tagName(tag))))), /* @__PURE__ */ cpJsx(DraftStatus, { dirty: noteDirty, context: "observation", onDiscard: () => acceptNote("") }), lastSupport && /* @__PURE__ */ cpJsx("div", { className: "cp-obs-reason", role: "group", "aria-label": uxText("obs.why").replace("{tag}", lastSupport.label).replace("{who}", lastSupport.who) }, /* @__PURE__ */ cpJsx("div", { className: "cp-obs-reasonhead" }, /* @__PURE__ */ cpJsx("b", null, uxText("obs.why").replace("{tag}", lastSupport.label).replace("{who}", lastSupport.who)), /* @__PURE__ */ cpJsx("button", { type: "button", className: "cp-obs-quiet", ...actionProps("ux.obs.reasonDone", () => setLastSupport(null)) }, uxText("obs.reasonDone"))), /* @__PURE__ */ cpJsx(PhrasePicker, { kind: "behaviour", context: "observation-reason", onChange: (reason) => addReason(reason) })), editing && /* @__PURE__ */ cpJsx(TagSettings, { doc, onUpdate, compact: true }), /* @__PURE__ */ cpJsx(LessonActionPanel, { doc, onUpdate, selectedIds: targetIds, date: date5, note, onNote: setNote })), /* @__PURE__ */ cpJsx("section", { className: "cp-obs-side", "aria-labelledby": "cp-obs-side-title" }, single ? /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx("header", null, /* @__PURE__ */ cpJsx("h2", { id: "cp-obs-side-title", dir: "auto" }, uxText("obs.timelineHeading")), /* @__PURE__ */ cpJsx("span", null, uxText("obs.summary").replace("{p}", String(termCounts("positive"))).replace("{s}", String(termCounts("support"))))), timeline.length ? /* @__PURE__ */ cpJsx("ol", { className: "cp-obs-entries" }, timeline.map((item) => /* @__PURE__ */ cpJsx(Entry, { key: item.id, doc, item, studentId: single, tags, onUpdate, convert }))) : /* @__PURE__ */ cpJsx("p", { className: "cp-obs-empty" }, t("module.noEntries"))) : /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx("header", null, /* @__PURE__ */ cpJsx("h2", { id: "cp-obs-side-title" }, uxText("obs.justRecorded")), /* @__PURE__ */ cpJsx("span", null, uxText("obs.today"))), recent.length ? /* @__PURE__ */ cpJsx("ol", { className: "cp-obs-entries" }, recent.map(({ id, o }) => /* @__PURE__ */ cpJsx(Entry, { key: o.id, doc, item: o, studentId: id, tags, showName: true, onUpdate, convert }))) : /* @__PURE__ */ cpJsx("p", { className: "cp-obs-empty" }, uxText("obs.nothingToday"))))))));
   }
   var observations_default = manifest("observations", { defaults: observations(), migrate: observations }, [{ id: "module:observations", labelKey: navigationFor("observations").titleKey, Component: ObservationsView }], [{ id: "observations.tags", Component: TagSettings }]);
 
