@@ -2164,11 +2164,11 @@ td[data-cp-att],th[data-cp-att]{background:var(--cp-att-bg)!important;box-shadow
 .cp-observations .cp-obs-roster{max-block-size:calc(100vh - 184px);position:sticky;inset-block-start:8px;padding:12px;border-radius:12px}
 .cp-observations .cp-obs-search input{font-size:12.5px}
 .cp-observations .cp-obs-modes{margin-block:10px 8px}
-.cp-observations .cp-obs-modes button{min-block-size:26px;display:inline-flex;align-items:center;justify-content:center;padding-block:2px;padding-inline:2px;min-inline-size:0;flex:1 1 0;white-space:nowrap;font-size:11px}
+.cp-observations .cp-obs-modes button{min-block-size:26px;display:inline-flex;align-items:center;justify-content:center;padding-block:2px;padding-inline:2px;min-inline-size:0;flex:1 1 0;white-space:nowrap;font-size:var(--cp-fs-caption)}
 .cp-observations .cp-obs-list:focus-visible{outline:2px solid var(--cp-focus,var(--cp-gold));outline-offset:2px;border-radius:8px}
 .cp-observations .cp-obs-st bdi{min-inline-size:0;overflow-wrap:anywhere}
 .cp-observations .cp-obs-st{min-block-size:36px;font-size:12.5px;padding:5px 8px}
-.cp-observations .cp-obs-rosterfoot{margin-block-start:10px;font-size:11px}
+.cp-observations .cp-obs-rosterfoot{margin-block-start:10px;font-size:var(--cp-fs-caption)}
 .cp-obs-workspace{min-inline-size:0;background:var(--cp-surface);border:1px solid var(--cp-border);border-radius:12px;padding:16px 20px}
 .cp-observations .cp-obs-record,.cp-observations .cp-obs-side{border:0;border-radius:0;background:transparent;padding:0;min-inline-size:0}
 .cp-observations .cp-obs-record{gap:12px}
@@ -2192,12 +2192,12 @@ td[data-cp-att],th[data-cp-att]{background:var(--cp-att-bg)!important;box-shadow
 .cp-observations .cp-obs-side{grid-column:auto;margin-block-start:16px;border-block-start:1px solid var(--cp-border);padding-block-start:16px}
 .cp-observations .cp-obs-side header{margin-block-end:8px;align-items:center;flex-wrap:wrap}
 .cp-observations .cp-obs-side h2{font:650 14px var(--cp-font)}
-.cp-observations .cp-obs-side header>span{font-size:11px}
+.cp-observations .cp-obs-side header>span{font-size:var(--cp-fs-caption)}
 .cp-observations .cp-obs-entry{padding-block:12px;grid-template-columns:76px minmax(0,1fr) 28px;gap:12px}
-.cp-observations .cp-obs-when{font-size:11px;line-height:1.5}
+.cp-observations .cp-obs-when{font-size:var(--cp-fs-caption);line-height:1.5}
 .cp-observations .cp-obs-what{font-size:12.5px;line-height:1.5;gap:6px}
 .cp-observations .cp-obs-notetext{font-size:12.5px;color:var(--cp-text);overflow-wrap:anywhere}
-.cp-observations .cp-obs-tt,.cp-observations .cp-obs-badge{font-size:11px}
+.cp-observations .cp-obs-tt,.cp-observations .cp-obs-badge{font-size:var(--cp-fs-caption)}
 .cp-observations .cp-obs-side>.cp-obs-empty:last-child:not(:first-child){font-size:12.5px}
 .cp-observations .cp-obs-editbox{grid-template-columns:150px minmax(0,1fr);padding:12px;gap:12px}
 .cp-observations .cp-obs-editfoot{grid-column:1/-1}
@@ -2206,7 +2206,7 @@ td[data-cp-att],th[data-cp-att]{background:var(--cp-att-bg)!important;box-shadow
 .cp-observations .cp-obs-tags-edit{margin-block:0 8px;padding:12px 0 0;border:0;border-block-start:1px solid var(--cp-border);border-radius:0;background:transparent}
 .cp-observations .cp-obs-tags-edit h2{font:600 14px var(--cp-font);margin-block:0 12px}
 .cp-observations .cp-obs-tag-row,.cp-obs-tag-head{display:grid;grid-template-columns:minmax(0,1fr) 112px 56px 176px;gap:8px;align-items:center}
-.cp-obs-tag-head{padding-block:0 8px;color:var(--cp-muted);font-size:11px}
+.cp-obs-tag-head{padding-block:0 8px;color:var(--cp-muted);font-size:var(--cp-fs-caption)}
 .cp-observations .cp-obs-tag-row{margin:0;padding-block:8px;border-block-start:1px solid var(--cp-border)}
 .cp-observations .cp-obs-tag-row>label{position:relative;min-inline-size:0}
 .cp-observations .cp-obs-tag-row>label>span{position:absolute;inline-size:1px;block-size:1px;overflow:hidden;clip-path:inset(50%)}
@@ -2359,6 +2359,9 @@ td[data-cp-att],th[data-cp-att]{background:var(--cp-att-bg)!important;box-shadow
 .cp-priv-body .cp-priv-link::after{content:" →"}
 [dir=rtl] .cp-priv-body .cp-priv-link::after{content:" ←"}
 .cp-priv-hint .cp-priv-link::after{content:none!important}
+/* SP13 (final verification, 13 November 2026): the printed timetable's time and room lines were muted grey on the
+   class tints and failed colour contrast; they print in a dark ink instead. The on-screen timetable is unchanged. */
+.cp-timetable-print .cp-tt-when,.cp-timetable-print .cp-tt-meta{color:#334155!important}
 /* M56 design foundations (owner-supplied Master Implementation Brief, M56; design report §7–§8).
    One set of tokens for the frame and the new modules. Protected Gradebook views (Marks, Groups, Behaviour,
    Adjustments, Analysis, the original wheel, the Settings drawer and the class manager) do not use them. */
