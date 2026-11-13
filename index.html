@@ -5796,7 +5796,7 @@ var ClassPilot = (() => {
     "file.invalidNamespace": "This class file has a damaged ClassPilot section, so it was not opened. Your file was not changed.",
     "file.invalidProfile": "This is not a ClassPilot teacher-profile file, so it was not opened. The file was not changed. Choose your profile .json file.",
     "about.title": "ClassPilot",
-    "about.version": "Version 0.12.0",
+    "about.version": "Version 0.13.0",
     "about.license": "MIT",
     "about.privacy": "Data stays on this computer.",
     "attendance.day": "One by one",
@@ -11609,7 +11609,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "file.invalidNamespace": "\u0641\u064A \u0645\u0644\u0641 \u0627\u0644\u0635\u0641 \u0647\u0630\u0627 \u0642\u0633\u0645 \u062A\u0627\u0644\u0641 \u062E\u0627\u0635 \u0628\u0640 ClassPilot\u060C \u0644\u0630\u0644\u0643 \u0644\u0645 \u064A\u064F\u0641\u062A\u062D. \u0644\u0645 \u064A\u062A\u063A\u064A\u0651\u0631 \u0645\u0644\u0641\u0643.",
     "file.invalidProfile": "\u0647\u0630\u0627 \u0644\u064A\u0633 \u0645\u0644\u0641 \u0645\u0639\u0644\u0645 \u0645\u0646 ClassPilot\u060C \u0644\u0630\u0644\u0643 \u0644\u0645 \u064A\u064F\u0641\u062A\u062D. \u0644\u0645 \u064A\u062A\u063A\u064A\u0651\u0631 \u0627\u0644\u0645\u0644\u0641. \u0627\u062E\u062A\u0631 \u0645\u0644\u0641 \u0627\u0644\u0645\u0639\u0644\u0645 \u0628\u0635\u064A\u063A\u0629 \u200E.json.",
     "about.title": "ClassPilot",
-    "about.version": "\u0627\u0644\u0625\u0635\u062F\u0627\u0631 0.12.0",
+    "about.version": "\u0627\u0644\u0625\u0635\u062F\u0627\u0631 0.13.0",
     "about.license": "MIT",
     "about.privacy": "\u062A\u0628\u0642\u0649 \u0627\u0644\u0628\u064A\u0627\u0646\u0627\u062A \u0639\u0644\u0649 \u0647\u0630\u0627 \u0627\u0644\u0643\u0645\u0628\u064A\u0648\u062A\u0631.",
     "attendance.day": "\u0637\u0627\u0644\u0628\u064B\u0627 \u0637\u0627\u0644\u0628\u064B\u0627",
@@ -38242,6 +38242,10 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
 
   // src/modules/observations/model.js
   var DEFAULT_TAGS = [["prepared", "positive"], ["helpful", "positive"], ["reasoning", "positive"], ["support", "support"], ["practice", "support"], ["offTask", "support"]].map(([id, kind]) => ({ id, kind, label: null, labelKey: "observations.tag." + id, color: kind === "positive" ? "#dcfce7" : "#fef3c7", active: true }));
+  function weekStartOf(iso, settings) {
+    const days = Array.isArray(settings?.schoolDays) && settings.schoolDays.length ? settings.schoolDays : [0, 1, 2, 3, 4], first = Math.min(...days), d = parseISO(iso);
+    return isoOf(addDays(d, -((d.getDay() - first + 7) % 7)));
+  }
   function observations(value = {}) {
     return { ...value, schemaVersion: 1, settings: { ...value.settings, tags: value.settings?.tags || DEFAULT_TAGS.map((t2) => ({ ...t2 })) }, byStudent: value.byStudent || {} };
   }
@@ -52353,12 +52357,12 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     if (!terms.length) return null;
     const first = parseISO(terms[0].from), last = parseISO(terms.at(-1).to), months = [];
     for (let m = new Date(first.getFullYear(), first.getMonth(), 1); m <= last; m = new Date(m.getFullYear(), m.getMonth() + 1, 1)) months.push(m);
-    const holidays = calendar.holidays || [], schoolDays = calendar.schoolDays?.length ? calendar.schoolDays : [1, 2, 3, 4, 5], weekStart2 = Math.min(...schoolDays);
+    const holidays = calendar.holidays || [], schoolDays = calendar.schoolDays?.length ? calendar.schoolDays : [1, 2, 3, 4, 5], weekStart = Math.min(...schoolDays);
     const weekNo = /* @__PURE__ */ new Map();
     for (const term of terms) for (const week of teachingWeeks(calendar, term)) for (const day of week.days) weekNo.set(day, term.id + " \xB7 " + uxText("pace.week") + " " + week.n);
     return /* @__PURE__ */ cpJsx("div", { className: "cp-year-months" }, months.map((month) => {
-      const lead = (month.getDay() - weekStart2 + 7) % 7, days = new Date(month.getFullYear(), month.getMonth() + 1, 0).getDate();
-      return /* @__PURE__ */ cpJsx("section", { key: isoOf(month), className: "cp-year-month" }, /* @__PURE__ */ cpJsx("h4", null, new Intl.DateTimeFormat(locale2(), { month: "long", year: "numeric" }).format(month)), /* @__PURE__ */ cpJsx("div", { className: "cp-year-grid" }, Array.from({ length: 7 }, (_, i) => /* @__PURE__ */ cpJsx("span", { key: "h" + i, className: "cp-year-dow" }, new Intl.DateTimeFormat(locale2(), { weekday: "narrow" }).format(addDays(month, ((weekStart2 + i - month.getDay()) % 7 + 7) % 7)))), Array.from({ length: lead }, (_, i) => /* @__PURE__ */ cpJsx("span", { key: "b" + i })), Array.from({ length: days }, (_, i) => {
+      const lead = (month.getDay() - weekStart + 7) % 7, days = new Date(month.getFullYear(), month.getMonth() + 1, 0).getDate();
+      return /* @__PURE__ */ cpJsx("section", { key: isoOf(month), className: "cp-year-month" }, /* @__PURE__ */ cpJsx("h4", null, new Intl.DateTimeFormat(locale2(), { month: "long", year: "numeric" }).format(month)), /* @__PURE__ */ cpJsx("div", { className: "cp-year-grid" }, Array.from({ length: 7 }, (_, i) => /* @__PURE__ */ cpJsx("span", { key: "h" + i, className: "cp-year-dow" }, new Intl.DateTimeFormat(locale2(), { weekday: "narrow" }).format(addDays(month, ((weekStart + i - month.getDay()) % 7 + 7) % 7)))), Array.from({ length: lead }, (_, i) => /* @__PURE__ */ cpJsx("span", { key: "b" + i })), Array.from({ length: days }, (_, i) => {
         const date5 = new Date(month.getFullYear(), month.getMonth(), i + 1), iso = isoOf(date5), term = terms.find((t2) => iso >= t2.from && iso <= t2.to), holiday = holidays.some((h) => iso >= h.from && iso <= (h.to || h.from)), weekend = !schoolDays.includes(date5.getDay()), school = term && isSchoolDay(iso, calendar), noLessons = school ? noTeachingOn(calendar, iso) : null, kind = holiday && term ? "holiday" : noLessons ? "noteach" : school ? "term" : term ? "off" : "out";
         return /* @__PURE__ */ cpJsx("span", { key: iso, className: "cp-year-day", "data-kind": kind, "data-weekend": weekend ? "true" : void 0, "data-today": iso === today ? "true" : void 0, title: [iso, holiday ? uxText("pace.holiday") : noLessons ? uxText("pace.kind." + noLessons.kind) : weekNo.get(iso) || ""].filter(Boolean).join(" \xB7 ") }, cpRaw(String(i + 1)));
       })));
@@ -54073,11 +54077,6 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
   }
   var ICON3 = { positive: "M5 12l5 5 9-10", support: "M12 6v8M12 18v.5" };
   var TagIcon = ({ kind }) => /* @__PURE__ */ cpJsx("span", { className: "cp-obs-tagicon", "aria-hidden": "true" }, /* @__PURE__ */ cpJsx("svg", { viewBox: "0 0 24 24", width: "13", height: "13", fill: "none", stroke: "currentColor", strokeWidth: "2.6", strokeLinecap: "round", strokeLinejoin: "round" }, /* @__PURE__ */ cpJsx("path", { d: ICON3[kind] || ICON3.positive })));
-  var weekStart = (iso) => {
-    const d = /* @__PURE__ */ new Date(iso + "T00:00:00");
-    d.setDate(d.getDate() - (d.getDay() + 1) % 7);
-    return d.toISOString().slice(0, 10);
-  };
   function Entry({ doc, item, studentId, tags, showName, onUpdate, convert }) {
     const [menu, setMenu] = useState(false), [edit, setEdit] = useState(null), name = doc.students.find((s) => s.id === studentId)?.name || "";
     useEffect(() => {
@@ -54131,7 +54130,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     const data = observations(doc.cp?.observations), tags = data.settings.tags, nameOf2 = (id) => doc.students.find((s) => s.id === id)?.name || "";
     const targetIds = mode === "class" ? doc.students.map((s) => s.id) : mode === "several" ? doc.students.filter((s) => selected[s.id]).map((s) => s.id) : studentId ? [studentId] : [];
     const who = targetIds.length === 1 ? nameOf2(targetIds[0]) : countText(targetIds.length, "obs.students"), needle = query.trim().toLocaleLowerCase(), shown2 = doc.students.filter((s) => !needle || String(s.name || "").toLocaleLowerCase().includes(needle));
-    const week = weekStart(todayISO()), weekCount = (id) => (data.byStudent[id] || []).filter((o) => o.date >= week).length;
+    const week = weekStartOf(todayISO(), doc.settings), weekCount = (id) => (data.byStudent[id] || []).filter((o) => o.date >= week).length;
     const single = mode === "one" && studentId ? studentId : null, timeline = single ? [...data.byStudent[single] || []].sort((a, b) => b.date.localeCompare(a.date) || b.createdAt - a.createdAt) : [];
     const today = todayISO(), recent = Object.entries(data.byStudent).filter(([id]) => doc.students.some((s) => s.id === id)).flatMap(([id, list2]) => list2.filter((o) => new Date(o.createdAt).toISOString().slice(0, 10) === today || o.date === today).map((o) => ({ id, o }))).sort((a, b) => b.o.createdAt - a.o.createdAt).slice(0, 12);
     const termCounts = (kind) => timeline.filter((o) => o.tagIds.some((id) => tags.find((tag) => tag.id === id)?.kind === kind)).length;
@@ -55407,17 +55406,17 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     if (filter === "needs") return !isReviewed(summary) && notePrompts(summary).some((prompt2) => prompt2.id !== "praise");
     return true;
   }
-  function putWeek(doc, weekStart2, patch) {
-    const store4 = weekly(doc.cp?.weekly), old = store4.weeks[weekStart2] || { work: [], notes: {} };
-    return { ...doc, cp: { ...doc.cp, weekly: { ...store4, weeks: { ...store4.weeks, [weekStart2]: { ...old, ...patch } } } } };
+  function putWeek(doc, weekStart, patch) {
+    const store4 = weekly(doc.cp?.weekly), old = store4.weeks[weekStart] || { work: [], notes: {} };
+    return { ...doc, cp: { ...doc.cp, weekly: { ...store4, weeks: { ...store4.weeks, [weekStart]: { ...old, ...patch } } } } };
   }
-  function putNote(doc, weekStart2, studentId, note) {
-    const old = weekly(doc.cp?.weekly).weeks[weekStart2] || { work: [], notes: {} };
-    return putWeek(doc, weekStart2, { notes: { ...old.notes || {}, [studentId]: { text: "", strengths: "", next: "", noNote: false, ...(old.notes || {})[studentId], ...note } } });
+  function putNote(doc, weekStart, studentId, note) {
+    const old = weekly(doc.cp?.weekly).weeks[weekStart] || { work: [], notes: {} };
+    return putWeek(doc, weekStart, { notes: { ...old.notes || {}, [studentId]: { text: "", strengths: "", next: "", noNote: false, ...(old.notes || {})[studentId], ...note } } });
   }
-  function snapshotWeek(doc, weekStart2, preparedAt = (/* @__PURE__ */ new Date()).toISOString()) {
+  function snapshotWeek(doc, weekStart, preparedAt = (/* @__PURE__ */ new Date()).toISOString()) {
     const grades = liveGrades(doc);
-    return putWeek(doc, weekStart2, { grades, classAverage: average(Object.values(grades)), preparedAt });
+    return putWeek(doc, weekStart, { grades, classAverage: average(Object.values(grades)), preparedAt });
   }
   var REPORT_PARTS = ["sections", "progress", "behaviour", "participation", "stars", "strengths", "home", "attendance", "details"];
   var defaultParts = { sections: true, progress: true, behaviour: true, participation: true, stars: true, attendance: false, strengths: true, home: true, details: false };
