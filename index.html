@@ -2454,6 +2454,9 @@ td[data-cp-att],th[data-cp-att]{background:var(--cp-att-bg)!important;box-shadow
 .cp-ws-tool-body .cp-ux-panel>p{color:var(--cp-muted);font-size:var(--cp-fs-caption)}
 /* Plan P1 follow-up: keep Today on a day with no school within the six font sizes (M64 conformance). */
 .cp-lesson-card[data-preview=true] .cp-lesson-state{font-size:var(--cp-fs-body)}
+/* Plan P4 (owner "yes", 15 Nov 2026): a new student note waits for a student. */
+.cp-notes-context select[data-empty=true]{outline:2px solid var(--cp-gold);outline-offset:1px;color:var(--cp-muted)}
+.cp-kfield textarea:disabled{background:color-mix(in srgb,var(--cp-text) 3%,transparent);cursor:not-allowed}
 /* M56 design foundations (owner-supplied Master Implementation Brief, M56; design report §7–§8).
    One set of tokens for the frame and the new modules. Protected Gradebook views (Marks, Groups, Behaviour,
    Adjustments, Analysis, the original wheel, the Settings drawer and the class manager) do not use them. */
@@ -8905,7 +8908,9 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.workspace.tools.compareLine": "Tick classes in the table to compare them",
     "ux.workspace.tools.compareReady": "Ready to compare the ticked classes",
     "ux.workspace.tools.backupLine": "Restore a backup ZIP, or tick classes to back them up",
-    "ux.workspace.tools.backupReady": "Ready to back up the ticked classes \xB7 or restore a backup ZIP"
+    "ux.workspace.tools.backupReady": "Ready to back up the ticked classes \xB7 or restore a backup ZIP",
+    "ux.notes.pickStudent": "Choose a student\u2026",
+    "ux.notes.pickFirst": "Choose a student to start a note."
   };
 
   // src/i18n/plain-copy.js
@@ -14729,7 +14734,9 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.workspace.tools.compareLine": "\u062D\u062F\u0651\u062F \u0635\u0641\u0648\u0641\u064B\u0627 \u0641\u064A \u0627\u0644\u062C\u062F\u0648\u0644 \u0644\u0645\u0642\u0627\u0631\u0646\u062A\u0647\u0627",
     "ux.workspace.tools.compareReady": "\u062C\u0627\u0647\u0632 \u0644\u0645\u0642\u0627\u0631\u0646\u0629 \u0627\u0644\u0635\u0641\u0648\u0641 \u0627\u0644\u0645\u062D\u062F\u062F\u0629",
     "ux.workspace.tools.backupLine": "\u0627\u0633\u062A\u0639\u062F \u0645\u0644\u0641 \u0646\u0633\u062E\u0629 \u0627\u062D\u062A\u064A\u0627\u0637\u064A\u0629\u060C \u0623\u0648 \u062D\u062F\u0651\u062F \u0635\u0641\u0648\u0641\u064B\u0627 \u0644\u0646\u0633\u062E\u0647\u0627 \u0627\u062D\u062A\u064A\u0627\u0637\u064A\u064B\u0627",
-    "ux.workspace.tools.backupReady": "\u062C\u0627\u0647\u0632 \u0644\u0646\u0633\u062E \u0627\u0644\u0635\u0641\u0648\u0641 \u0627\u0644\u0645\u062D\u062F\u062F\u0629 \u0627\u062D\u062A\u064A\u0627\u0637\u064A\u064B\u0627 \xB7 \u0623\u0648 \u0627\u0633\u062A\u0639\u0627\u062F\u0629 \u0646\u0633\u062E\u0629 \u0627\u062D\u062A\u064A\u0627\u0637\u064A\u0629"
+    "ux.workspace.tools.backupReady": "\u062C\u0627\u0647\u0632 \u0644\u0646\u0633\u062E \u0627\u0644\u0635\u0641\u0648\u0641 \u0627\u0644\u0645\u062D\u062F\u062F\u0629 \u0627\u062D\u062A\u064A\u0627\u0637\u064A\u064B\u0627 \xB7 \u0623\u0648 \u0627\u0633\u062A\u0639\u0627\u062F\u0629 \u0646\u0633\u062E\u0629 \u0627\u062D\u062A\u064A\u0627\u0637\u064A\u0629",
+    "ux.notes.pickStudent": "\u0627\u062E\u062A\u0631 \u0637\u0627\u0644\u0628\u064B\u0627\u2026",
+    "ux.notes.pickFirst": "\u0627\u062E\u062A\u0631 \u0637\u0627\u0644\u0628\u064B\u0627 \u0644\u062A\u0628\u062F\u0623 \u0627\u0644\u0645\u0644\u0627\u062D\u0638\u0629."
   };
 
   // src/core/actions.js
@@ -38813,6 +38820,9 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     };
     return [current4.value, set, accept, current4.dirty];
   }
+  function hasDraft(key4) {
+    return !!(entries.get(key4)?.dirty || load(key4));
+  }
   function clearDraft(key4) {
     entries.delete(key4);
     store2(key4, { dirty: false });
@@ -43022,7 +43032,9 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "workspace.tools.compareLine": ["Tick classes in the table to compare them", "\u062D\u062F\u0651\u062F \u0635\u0641\u0648\u0641\u064B\u0627 \u0641\u064A \u0627\u0644\u062C\u062F\u0648\u0644 \u0644\u0645\u0642\u0627\u0631\u0646\u062A\u0647\u0627"],
     "workspace.tools.compareReady": ["Ready to compare the ticked classes", "\u062C\u0627\u0647\u0632 \u0644\u0645\u0642\u0627\u0631\u0646\u0629 \u0627\u0644\u0635\u0641\u0648\u0641 \u0627\u0644\u0645\u062D\u062F\u062F\u0629"],
     "workspace.tools.backupLine": ["Restore a backup ZIP, or tick classes to back them up", "\u0627\u0633\u062A\u0639\u062F \u0645\u0644\u0641 \u0646\u0633\u062E\u0629 \u0627\u062D\u062A\u064A\u0627\u0637\u064A\u0629\u060C \u0623\u0648 \u062D\u062F\u0651\u062F \u0635\u0641\u0648\u0641\u064B\u0627 \u0644\u0646\u0633\u062E\u0647\u0627 \u0627\u062D\u062A\u064A\u0627\u0637\u064A\u064B\u0627"],
-    "workspace.tools.backupReady": ["Ready to back up the ticked classes \xB7 or restore a backup ZIP", "\u062C\u0627\u0647\u0632 \u0644\u0646\u0633\u062E \u0627\u0644\u0635\u0641\u0648\u0641 \u0627\u0644\u0645\u062D\u062F\u062F\u0629 \u0627\u062D\u062A\u064A\u0627\u0637\u064A\u064B\u0627 \xB7 \u0623\u0648 \u0627\u0633\u062A\u0639\u0627\u062F\u0629 \u0646\u0633\u062E\u0629 \u0627\u062D\u062A\u064A\u0627\u0637\u064A\u0629"]
+    "workspace.tools.backupReady": ["Ready to back up the ticked classes \xB7 or restore a backup ZIP", "\u062C\u0627\u0647\u0632 \u0644\u0646\u0633\u062E \u0627\u0644\u0635\u0641\u0648\u0641 \u0627\u0644\u0645\u062D\u062F\u062F\u0629 \u0627\u062D\u062A\u064A\u0627\u0637\u064A\u064B\u0627 \xB7 \u0623\u0648 \u0627\u0633\u062A\u0639\u0627\u062F\u0629 \u0646\u0633\u062E\u0629 \u0627\u062D\u062A\u064A\u0627\u0637\u064A\u0629"],
+    "notes.pickStudent": ["Choose a student\u2026", "\u0627\u062E\u062A\u0631 \u0637\u0627\u0644\u0628\u064B\u0627\u2026"],
+    "notes.pickFirst": ["Choose a student to start a note.", "\u0627\u062E\u062A\u0631 \u0637\u0627\u0644\u0628\u064B\u0627 \u0644\u062A\u0628\u062F\u0623 \u0627\u0644\u0645\u0644\u0627\u062D\u0638\u0629."]
   };
   var uxEn = Object.fromEntries(Object.entries(pairs).map(([key4, value]) => ["ux." + key4, value[0]]));
   var uxAr = Object.fromEntries(Object.entries(pairs).map(([key4, value]) => ["ux." + key4, value[1]]));
@@ -46002,7 +46014,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
   function NotesView({ doc, onUpdate, studentId: requestedId, setView }) {
     useLanguage();
     const classId = doc.cp.classId, known = (id) => doc.students.some((s) => s.id === id), newest = (id) => searchNotes(doc, "", id)[0]?.id;
-    const [studentId, setStudentId] = useRetainedState("notes-student:" + classId, () => known(requestedId) ? requestedId : doc.students[0]?.id || ""), [date5, setDate] = useState(todayISO), [query, setQuery] = useState(""), [pendingOnly, setPendingOnly] = useState(false), [filter, setFilter] = useState(known(requestedId) ? requestedId : "");
+    const [studentId, setStudentId] = useRetainedState("notes-student:" + classId, () => known(requestedId) ? requestedId : doc.students.find((s) => hasDraft("note:" + classId + ":" + s.id) || hasDraft("note-reminder:" + classId + ":" + s.id))?.id || ""), [date5, setDate] = useState(todayISO), [query, setQuery] = useState(""), [pendingOnly, setPendingOnly] = useState(false), [filter, setFilter] = useState(known(requestedId) ? requestedId : "");
     const [open, setOpen] = useState(() => known(requestedId) && newest(requestedId) || "new"), [saved, flash] = useSavedFlash();
     useEffect(() => {
       if (requestedId && known(requestedId)) {
@@ -46012,7 +46024,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       }
     }, [requestedId]);
     useEffect(() => {
-      if (!known(studentId)) setStudentId(doc.students[0]?.id || "");
+      if (studentId && !known(studentId)) setStudentId("");
     }, [doc.students, studentId]);
     useEffect(() => {
       if (filter && known(filter)) setStudentId(filter);
@@ -46044,7 +46056,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       const late = n.followUpDate && !n.completed && n.followUpDate <= today;
       return /* @__PURE__ */ cpJsx("li", { key: n.id, "data-note-id": n.id }, /* @__PURE__ */ cpJsx("button", { type: "button", className: "cp-row-button", ...actionProps("ux.notes.select", () => setOpen(n.id), n.id), "aria-current": open === n.id }, /* @__PURE__ */ cpJsx("span", { className: "cp-notes-rowhead" }, n.pinned && /* @__PURE__ */ cpJsx("span", { className: "cp-notes-pin", title: ux("notes.pinned") }, PIN, /* @__PURE__ */ cpJsx("span", { className: "cp-visually-hidden" }, ux("notes.pinned"))), /* @__PURE__ */ cpJsx("b", null, /* @__PURE__ */ cpJsx("bdi", null, cpRaw(studentById.get(n.studentId).name))), /* @__PURE__ */ cpJsx("small", null, cpRaw(displayDate(n.date, { year: false }))), n.followUpDate && /* @__PURE__ */ cpJsx("span", { className: "cp-notes-badge", "data-state": n.completed ? "done" : late ? "due" : "later" }, n.completed ? ux("notes.done") : cpRaw(ux("notes.followUp").replace("{date}", displayDate(n.followUpDate, { year: false }))))), /* @__PURE__ */ cpJsx("span", { className: "cp-row-text" }, /* @__PURE__ */ cpJsx("bdi", null, cpRaw(n.text.split("\n")[0])))));
     })) : filtered ? /* @__PURE__ */ cpJsx(EmptyState, { kind: "filtered", title: ux("notes.filteredTitle") }, /* @__PURE__ */ cpJsx(Button, { action: "ux.notes.clearFilters", onClick: clearFilters })) : /* @__PURE__ */ cpJsx(EmptyState, { kind: "nothing", title: ux("notes.emptyTitle") }), entries2.length > 0 && /* @__PURE__ */ cpJsx("small", { className: "cp-meta" }, cpRaw(countText(entries2.length, "notes.count")), filter && entries2.length > 0 && /* @__PURE__ */ cpJsx(React.Fragment, null, cpRaw(" \xB7 "), /* @__PURE__ */ cpJsx("button", { type: "button", className: "cp-notes-link", ...actionProps("ux.notes.clearFilters", clearFilters, "inline") }, ux("notes.allStudents"))))));
-    const editor = note ? /* @__PURE__ */ cpJsx(OpenNote, { doc, note, onUpdate, setOpen, setView }) : /* @__PURE__ */ cpJsx(Inspector, { title: studentById.get(studentId)?.name || ux("notes.new"), status: dirty ? /* @__PURE__ */ cpJsx(DraftStatus, { dirty: true, label: ux("notes.draft"), context: "note", onDiscard: discard }) : /* @__PURE__ */ cpJsx("span", { className: "cp-notes-draft" }, ux("notes.draft")), footer: /* @__PURE__ */ cpJsx(React.Fragment, null, saved && /* @__PURE__ */ cpJsx(SaveStatus, { state: "saved" }), /* @__PURE__ */ cpJsx(Button, { action: "m3.notes.add", role: "primary", disabled: !date5 || !text8.trim(), onClick: add })) }, /* @__PURE__ */ cpJsx("div", { className: "cp-notes-context" }, /* @__PURE__ */ cpJsx(Field, { action: "m3.notes.student", label: "module.chooseStudent", as: "select", value: studentId, onChange: (e) => setStudentId(e.target.value) }, doc.students.map((s) => /* @__PURE__ */ cpJsx("option", { key: s.id, value: s.id }, cpRaw(s.name)))), /* @__PURE__ */ cpJsx(Field, { action: "m3.notes.date", label: "notes.date", type: "date", value: date5, onChange: (e) => setDate(e.target.value) })), /* @__PURE__ */ cpJsx(Field, { action: "m3.notes.text", label: "notes.text", as: "textarea", rows: 6, value: text8, onChange: (e) => setText(e.target.value) }), /* @__PURE__ */ cpJsx(NoteReminder, { context: "new", date: reminder, allowCompletion: false, onChange: (patch) => setReminder(patch.followUpDate) }));
+    const editor = note ? /* @__PURE__ */ cpJsx(OpenNote, { doc, note, onUpdate, setOpen, setView }) : /* @__PURE__ */ cpJsx(Inspector, { title: studentById.get(studentId)?.name || ux("notes.new"), status: dirty ? /* @__PURE__ */ cpJsx(DraftStatus, { dirty: true, label: ux("notes.draft"), context: "note", onDiscard: discard }) : studentId ? /* @__PURE__ */ cpJsx("span", { className: "cp-notes-draft" }, ux("notes.draft")) : null, footer: /* @__PURE__ */ cpJsx(React.Fragment, null, saved && /* @__PURE__ */ cpJsx(SaveStatus, { state: "saved" }), /* @__PURE__ */ cpJsx(Button, { action: "m3.notes.add", role: "primary", disabled: !studentId || !date5 || !text8.trim(), onClick: add })) }, /* @__PURE__ */ cpJsx("div", { className: "cp-notes-context" }, /* @__PURE__ */ cpJsx(Field, { action: "m3.notes.student", label: "module.chooseStudent", as: "select", value: studentId, "data-empty": studentId ? void 0 : "true", onChange: (e) => setStudentId(e.target.value) }, /* @__PURE__ */ cpJsx("option", { value: "", disabled: true }, ux("notes.pickStudent")), doc.students.map((s) => /* @__PURE__ */ cpJsx("option", { key: s.id, value: s.id }, cpRaw(s.name)))), /* @__PURE__ */ cpJsx(Field, { action: "m3.notes.date", label: "notes.date", type: "date", value: date5, onChange: (e) => setDate(e.target.value) })), /* @__PURE__ */ cpJsx(Field, { action: "m3.notes.text", label: "notes.text", as: "textarea", rows: 6, value: text8, disabled: !studentId, placeholder: studentId ? void 0 : ux("notes.pickFirst"), onChange: (e) => setText(e.target.value) }), /* @__PURE__ */ cpJsx(NoteReminder, { context: "new", date: reminder, allowCompletion: false, onChange: (patch) => setReminder(patch.followUpDate) }));
     return /* @__PURE__ */ cpJsx(PageTemplate, { className: "cp-notes-page", kind: "B", titleKey: "shell.notes", icon: "notes", lead: "ux.lead.notes", info: /* @__PURE__ */ cpJsx(React.Fragment, null, t("notes.separate"), " ", t("improve.draftNotice")), actions: doc.students.length ? /* @__PURE__ */ cpJsx(Button, { action: "ux.notes.new", role: "secondary", onClick: () => {
       if (filter) setStudentId(filter);
       setOpen("new");
