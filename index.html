@@ -2457,6 +2457,8 @@ td[data-cp-att],th[data-cp-att]{background:var(--cp-att-bg)!important;box-shadow
 /* Plan P4 (owner "yes", 15 Nov 2026): a new student note waits for a student. */
 .cp-notes-context select[data-empty=true]{outline:2px solid var(--cp-gold);outline-offset:1px;color:var(--cp-muted)}
 .cp-kfield textarea:disabled{background:color-mix(in srgb,var(--cp-text) 3%,transparent);cursor:not-allowed}
+/* Plan P5 (owner "yes, go ahead with P5", 16 Nov 2026): the sound notice carries a speaker-off icon. */
+.cp-ctx-audio-icon{flex:none;vertical-align:-3px;margin-inline-end:6px}
 /* M56 design foundations (owner-supplied Master Implementation Brief, M56; design report §7–§8).
    One set of tokens for the frame and the new modules. Protected Gradebook views (Marks, Groups, Behaviour,
    Adjustments, Analysis, the original wheel, the Settings drawer and the class manager) do not use them. */
@@ -6087,7 +6089,7 @@ var ClassPilot = (() => {
     "bell.scheduled": "Scheduled time",
     "bell.limits": "Keep ClassPilot open. Background tabs and sleeping computers can delay sound. On resume, bells under 60 seconds late ring; older bells are logged as missed.",
     "bell.workerError": "The bell worker could not start. Automatic bell timing is unavailable in this browser session.",
-    "audio.enable": "Click to enable sound",
+    "audio.enable": "Turn on sound for bells and the timer",
     "audio.ready": "Sound enabled for this session",
     "audio.blocked": "Sound is blocked. Click to enable it again.",
     "audio.unsupported": "This browser does not provide Web Audio.",
@@ -8910,7 +8912,13 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.workspace.tools.backupLine": "Restore a backup ZIP, or tick classes to back them up",
     "ux.workspace.tools.backupReady": "Ready to back up the ticked classes \xB7 or restore a backup ZIP",
     "ux.notes.pickStudent": "Choose a student\u2026",
-    "ux.notes.pickFirst": "Choose a student to start a note."
+    "ux.notes.pickFirst": "Choose a student to start a note.",
+    "ux.timer.help.countdown": "counts down from a time you set. Click the time to type it.",
+    "ux.timer.help.stopwatch": "counts up from zero.",
+    "ux.timer.help.segments": "a row of timed parts, one after another.",
+    "ux.timer.help.quiz": "a countdown that shows a checklist near the end.",
+    "ux.timer.help.fullscreen": "Full screen is the students' view.",
+    "ux.timer.help.line": "{mode}: {text}"
   };
 
   // src/i18n/plain-copy.js
@@ -11966,7 +11974,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "bell.scheduled": "\u0627\u0644\u0648\u0642\u062A \u0627\u0644\u0645\u062C\u062F\u0648\u0644",
     "bell.limits": "\u0623\u0628\u0642\u0650 ClassPilot \u0645\u0641\u062A\u0648\u062D\u064B\u0627. \u0642\u062F \u062A\u0624\u062E\u0631 \u0639\u0644\u0627\u0645\u0627\u062A \u0627\u0644\u062A\u0628\u0648\u064A\u0628 \u0627\u0644\u062E\u0644\u0641\u064A\u0629 \u0648\u0648\u0636\u0639 \u0627\u0644\u0633\u0643\u0648\u0646 \u0627\u0644\u0635\u0648\u062A. \u0639\u0646\u062F \u0627\u0644\u0639\u0648\u062F\u0629\u060C \u062A\u0635\u062F\u0631 \u0627\u0644\u0623\u062C\u0631\u0627\u0633 \u0627\u0644\u0645\u062A\u0623\u062E\u0631\u0629 \u0623\u0642\u0644 \u0645\u0646 60 \u062B\u0627\u0646\u064A\u0629\u060C \u0648\u062A\u064F\u0633\u062C\u0651\u0644 \u0627\u0644\u0623\u062C\u0631\u0627\u0633 \u0627\u0644\u0623\u0642\u062F\u0645 \u0639\u0644\u0649 \u0623\u0646\u0647\u0627 \u0641\u0627\u0626\u062A\u0629.",
     "bell.workerError": "\u062A\u0639\u0630\u0651\u0631 \u062A\u0634\u063A\u064A\u0644 \u0639\u0627\u0645\u0644 \u062A\u0648\u0642\u064A\u062A \u0627\u0644\u062C\u0631\u0633. \u062A\u0648\u0642\u064A\u062A \u0627\u0644\u0623\u062C\u0631\u0627\u0633 \u0627\u0644\u062A\u0644\u0642\u0627\u0626\u064A \u063A\u064A\u0631 \u0645\u062A\u0627\u062D \u0641\u064A \u062C\u0644\u0633\u0629 \u0627\u0644\u0645\u062A\u0635\u0641\u062D \u0647\u0630\u0647.",
-    "audio.enable": "\u0627\u0646\u0642\u0631 \u0644\u062A\u0641\u0639\u064A\u0644 \u0627\u0644\u0635\u0648\u062A",
+    "audio.enable": "\u0634\u063A\u0651\u0644 \u0627\u0644\u0635\u0648\u062A \u0644\u0644\u062C\u0631\u0633 \u0648\u0627\u0644\u0645\u0624\u0642\u062A",
     "audio.ready": "\u0627\u0644\u0635\u0648\u062A \u0645\u0641\u0639\u0651\u0644 \u0644\u0647\u0630\u0647 \u0627\u0644\u062C\u0644\u0633\u0629",
     "audio.blocked": "\u0627\u0644\u0635\u0648\u062A \u0645\u062D\u0638\u0648\u0631. \u0627\u0646\u0642\u0631 \u0644\u062A\u0641\u0639\u064A\u0644\u0647 \u0645\u062C\u062F\u062F\u064B\u0627.",
     "audio.unsupported": "\u0647\u0630\u0627 \u0627\u0644\u0645\u062A\u0635\u0641\u062D \u0644\u0627 \u064A\u062F\u0639\u0645 \u0627\u0644\u0635\u0648\u062A \u0639\u0628\u0631 \u0627\u0644\u0648\u064A\u0628.",
@@ -14736,7 +14744,13 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.workspace.tools.backupLine": "\u0627\u0633\u062A\u0639\u062F \u0645\u0644\u0641 \u0646\u0633\u062E\u0629 \u0627\u062D\u062A\u064A\u0627\u0637\u064A\u0629\u060C \u0623\u0648 \u062D\u062F\u0651\u062F \u0635\u0641\u0648\u0641\u064B\u0627 \u0644\u0646\u0633\u062E\u0647\u0627 \u0627\u062D\u062A\u064A\u0627\u0637\u064A\u064B\u0627",
     "ux.workspace.tools.backupReady": "\u062C\u0627\u0647\u0632 \u0644\u0646\u0633\u062E \u0627\u0644\u0635\u0641\u0648\u0641 \u0627\u0644\u0645\u062D\u062F\u062F\u0629 \u0627\u062D\u062A\u064A\u0627\u0637\u064A\u064B\u0627 \xB7 \u0623\u0648 \u0627\u0633\u062A\u0639\u0627\u062F\u0629 \u0646\u0633\u062E\u0629 \u0627\u062D\u062A\u064A\u0627\u0637\u064A\u0629",
     "ux.notes.pickStudent": "\u0627\u062E\u062A\u0631 \u0637\u0627\u0644\u0628\u064B\u0627\u2026",
-    "ux.notes.pickFirst": "\u0627\u062E\u062A\u0631 \u0637\u0627\u0644\u0628\u064B\u0627 \u0644\u062A\u0628\u062F\u0623 \u0627\u0644\u0645\u0644\u0627\u062D\u0638\u0629."
+    "ux.notes.pickFirst": "\u0627\u062E\u062A\u0631 \u0637\u0627\u0644\u0628\u064B\u0627 \u0644\u062A\u0628\u062F\u0623 \u0627\u0644\u0645\u0644\u0627\u062D\u0638\u0629.",
+    "ux.timer.help.countdown": "\u064A\u0639\u062F\u0651 \u062A\u0646\u0627\u0632\u0644\u064A\u064B\u0627 \u0645\u0646 \u0648\u0642\u062A \u062A\u062D\u062F\u062F\u0647. \u0627\u0646\u0642\u0631 \u0627\u0644\u0648\u0642\u062A \u0644\u062A\u0643\u062A\u0628\u0647.",
+    "ux.timer.help.stopwatch": "\u062A\u0639\u062F\u0651 \u062A\u0635\u0627\u0639\u062F\u064A\u064B\u0627 \u0645\u0646 \u0627\u0644\u0635\u0641\u0631.",
+    "ux.timer.help.segments": "\u0623\u062C\u0632\u0627\u0621 \u0645\u0624\u0642\u062A\u0629 \u0645\u062A\u062A\u0627\u0644\u064A\u0629\u060C \u062C\u0632\u0621 \u0628\u0639\u062F \u062C\u0632\u0621.",
+    "ux.timer.help.quiz": "\u0639\u062F\u0651 \u062A\u0646\u0627\u0632\u0644\u064A \u064A\u0639\u0631\u0636 \u0642\u0627\u0626\u0645\u0629 \u062A\u0630\u0643\u064A\u0631 \u0642\u0631\u0628 \u0627\u0644\u0646\u0647\u0627\u064A\u0629.",
+    "ux.timer.help.fullscreen": "\u0645\u0644\u0621 \u0627\u0644\u0634\u0627\u0634\u0629 \u0647\u0648 \u0645\u0627 \u064A\u0631\u0627\u0647 \u0627\u0644\u0637\u0644\u0627\u0628.",
+    "ux.timer.help.line": "{mode}: {text}"
   };
 
   // src/core/actions.js
@@ -43034,7 +43048,13 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "workspace.tools.backupLine": ["Restore a backup ZIP, or tick classes to back them up", "\u0627\u0633\u062A\u0639\u062F \u0645\u0644\u0641 \u0646\u0633\u062E\u0629 \u0627\u062D\u062A\u064A\u0627\u0637\u064A\u0629\u060C \u0623\u0648 \u062D\u062F\u0651\u062F \u0635\u0641\u0648\u0641\u064B\u0627 \u0644\u0646\u0633\u062E\u0647\u0627 \u0627\u062D\u062A\u064A\u0627\u0637\u064A\u064B\u0627"],
     "workspace.tools.backupReady": ["Ready to back up the ticked classes \xB7 or restore a backup ZIP", "\u062C\u0627\u0647\u0632 \u0644\u0646\u0633\u062E \u0627\u0644\u0635\u0641\u0648\u0641 \u0627\u0644\u0645\u062D\u062F\u062F\u0629 \u0627\u062D\u062A\u064A\u0627\u0637\u064A\u064B\u0627 \xB7 \u0623\u0648 \u0627\u0633\u062A\u0639\u0627\u062F\u0629 \u0646\u0633\u062E\u0629 \u0627\u062D\u062A\u064A\u0627\u0637\u064A\u0629"],
     "notes.pickStudent": ["Choose a student\u2026", "\u0627\u062E\u062A\u0631 \u0637\u0627\u0644\u0628\u064B\u0627\u2026"],
-    "notes.pickFirst": ["Choose a student to start a note.", "\u0627\u062E\u062A\u0631 \u0637\u0627\u0644\u0628\u064B\u0627 \u0644\u062A\u0628\u062F\u0623 \u0627\u0644\u0645\u0644\u0627\u062D\u0638\u0629."]
+    "notes.pickFirst": ["Choose a student to start a note.", "\u0627\u062E\u062A\u0631 \u0637\u0627\u0644\u0628\u064B\u0627 \u0644\u062A\u0628\u062F\u0623 \u0627\u0644\u0645\u0644\u0627\u062D\u0638\u0629."],
+    "timer.help.countdown": ["counts down from a time you set. Click the time to type it.", "\u064A\u0639\u062F\u0651 \u062A\u0646\u0627\u0632\u0644\u064A\u064B\u0627 \u0645\u0646 \u0648\u0642\u062A \u062A\u062D\u062F\u062F\u0647. \u0627\u0646\u0642\u0631 \u0627\u0644\u0648\u0642\u062A \u0644\u062A\u0643\u062A\u0628\u0647."],
+    "timer.help.stopwatch": ["counts up from zero.", "\u062A\u0639\u062F\u0651 \u062A\u0635\u0627\u0639\u062F\u064A\u064B\u0627 \u0645\u0646 \u0627\u0644\u0635\u0641\u0631."],
+    "timer.help.segments": ["a row of timed parts, one after another.", "\u0623\u062C\u0632\u0627\u0621 \u0645\u0624\u0642\u062A\u0629 \u0645\u062A\u062A\u0627\u0644\u064A\u0629\u060C \u062C\u0632\u0621 \u0628\u0639\u062F \u062C\u0632\u0621."],
+    "timer.help.quiz": ["a countdown that shows a checklist near the end.", "\u0639\u062F\u0651 \u062A\u0646\u0627\u0632\u0644\u064A \u064A\u0639\u0631\u0636 \u0642\u0627\u0626\u0645\u0629 \u062A\u0630\u0643\u064A\u0631 \u0642\u0631\u0628 \u0627\u0644\u0646\u0647\u0627\u064A\u0629."],
+    "timer.help.fullscreen": ["Full screen is the students' view.", "\u0645\u0644\u0621 \u0627\u0644\u0634\u0627\u0634\u0629 \u0647\u0648 \u0645\u0627 \u064A\u0631\u0627\u0647 \u0627\u0644\u0637\u0644\u0627\u0628."],
+    "timer.help.line": ["{mode}: {text}", "{mode}: {text}"]
   };
   var uxEn = Object.fromEntries(Object.entries(pairs).map(([key4, value]) => ["ux." + key4, value[0]]));
   var uxAr = Object.fromEntries(Object.entries(pairs).map(([key4, value]) => ["ux." + key4, value[1]]));
@@ -51696,7 +51716,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "bell.scheduled": ["Scheduled time", "\u0627\u0644\u0648\u0642\u062A \u0627\u0644\u0645\u062C\u062F\u0648\u0644"],
     "bell.limits": ["Keep ClassPilot open. Background tabs and sleeping computers can delay sound. On resume, bells under 60 seconds late ring; older bells are logged as missed.", "\u0623\u0628\u0642\u0650 ClassPilot \u0645\u0641\u062A\u0648\u062D\u064B\u0627. \u0642\u062F \u062A\u0624\u062E\u0631 \u0639\u0644\u0627\u0645\u0627\u062A \u0627\u0644\u062A\u0628\u0648\u064A\u0628 \u0627\u0644\u062E\u0644\u0641\u064A\u0629 \u0648\u0648\u0636\u0639 \u0627\u0644\u0633\u0643\u0648\u0646 \u0627\u0644\u0635\u0648\u062A. \u0639\u0646\u062F \u0627\u0644\u0639\u0648\u062F\u0629\u060C \u062A\u0635\u062F\u0631 \u0627\u0644\u0623\u062C\u0631\u0627\u0633 \u0627\u0644\u0645\u062A\u0623\u062E\u0631\u0629 \u0623\u0642\u0644 \u0645\u0646 60 \u062B\u0627\u0646\u064A\u0629\u060C \u0648\u062A\u064F\u0633\u062C\u0651\u0644 \u0627\u0644\u0623\u062C\u0631\u0627\u0633 \u0627\u0644\u0623\u0642\u062F\u0645 \u0639\u0644\u0649 \u0623\u0646\u0647\u0627 \u0641\u0627\u0626\u062A\u0629."],
     "bell.workerError": ["The bell worker could not start. Automatic bell timing is unavailable in this browser session.", "\u062A\u0639\u0630\u0651\u0631 \u062A\u0634\u063A\u064A\u0644 \u0639\u0627\u0645\u0644 \u062A\u0648\u0642\u064A\u062A \u0627\u0644\u062C\u0631\u0633. \u062A\u0648\u0642\u064A\u062A \u0627\u0644\u0623\u062C\u0631\u0627\u0633 \u0627\u0644\u062A\u0644\u0642\u0627\u0626\u064A \u063A\u064A\u0631 \u0645\u062A\u0627\u062D \u0641\u064A \u062C\u0644\u0633\u0629 \u0627\u0644\u0645\u062A\u0635\u0641\u062D \u0647\u0630\u0647."],
-    "audio.enable": ["Click to enable sound", "\u0627\u0646\u0642\u0631 \u0644\u062A\u0641\u0639\u064A\u0644 \u0627\u0644\u0635\u0648\u062A"],
+    "audio.enable": ["Turn on sound for bells and the timer", "\u0634\u063A\u0651\u0644 \u0627\u0644\u0635\u0648\u062A \u0644\u0644\u062C\u0631\u0633 \u0648\u0627\u0644\u0645\u0624\u0642\u062A"],
     "audio.ready": ["Sound enabled for this session", "\u0627\u0644\u0635\u0648\u062A \u0645\u0641\u0639\u0651\u0644 \u0644\u0647\u0630\u0647 \u0627\u0644\u062C\u0644\u0633\u0629"],
     "audio.blocked": ["Sound is blocked. Click to enable it again.", "\u0627\u0644\u0635\u0648\u062A \u0645\u062D\u0638\u0648\u0631. \u0627\u0646\u0642\u0631 \u0644\u062A\u0641\u0639\u064A\u0644\u0647 \u0645\u062C\u062F\u062F\u064B\u0627."],
     "audio.unsupported": ["This browser does not provide Web Audio.", "\u0647\u0630\u0627 \u0627\u0644\u0645\u062A\u0635\u0641\u062D \u0644\u0627 \u064A\u062F\u0639\u0645 \u0627\u0644\u0635\u0648\u062A \u0639\u0628\u0631 \u0627\u0644\u0648\u064A\u0628."],
@@ -51960,7 +51980,8 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     }), onKeyDown: enter((value) => {
       saveTips([...tipsNow, value.trim().slice(0, 200)]);
     }) })))), error2 && /* @__PURE__ */ cpJsx("p", { role: "alert" }, error2), /* @__PURE__ */ cpJsx("p", { className: "cp-timer-autosave" }, uxText("timer.autoSave"))));
-    return /* @__PURE__ */ cpJsx(ToolFrame, { id: "timer", compact }, /* @__PURE__ */ cpJsx("div", { className: "cp-timer-top" }, /* @__PURE__ */ cpJsx("div", { className: "cp-timer-modes", role: "group", "aria-label": t("shell.timer") }, MODES.map(([id, ns, key4]) => {
+    const help = /* @__PURE__ */ cpJsx(React.Fragment, null, ["countdown", "stopwatch", "segments", "quiz"].map((mode2) => /* @__PURE__ */ cpJsx("p", { key: mode2 }, /* @__PURE__ */ cpJsx("span", null, (([before, after]) => /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx("b", null, mode2 === "quiz" ? uxText("timer.quiz") : t("timer." + mode2)), cpRaw(before), cpRaw(after.replace("{text}", uxText("timer.help." + mode2)))))(uxText("timer.help.line").split("{mode}"))))), /* @__PURE__ */ cpJsx("p", null, uxText("timer.help.fullscreen")));
+    return /* @__PURE__ */ cpJsx(ToolFrame, { id: "timer", compact, info: help }, /* @__PURE__ */ cpJsx("div", { className: "cp-timer-top" }, /* @__PURE__ */ cpJsx("div", { className: "cp-timer-modes", role: "group", "aria-label": t("shell.timer") }, MODES.map(([id, ns, key4]) => {
       const Button3 = ns === "ux" ? UxButton : ToolButton;
       const label = ns === "ux" ? uxText(key4) : t(key4);
       return /* @__PURE__ */ cpJsx(Button3, { key: id, id: key4, active: mode === id, "aria-pressed": mode === id, "aria-label": label, title: label, onClick: () => chooseMode(id) }, icon2(ICONS2[id]), /* @__PURE__ */ cpJsx("span", { className: "cp-timer-mode-word" }, label));
@@ -52155,7 +52176,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       } catch (e) {
         setError(t(e.message));
       }
-    } }, t("audio.enable")) } : null);
+    } }, /* @__PURE__ */ cpJsx("svg", { className: "cp-ctx-audio-icon", "aria-hidden": "true", width: "15", height: "15", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "1.9", strokeLinecap: "round", strokeLinejoin: "round" }, /* @__PURE__ */ cpJsx("path", { d: "M11 5 6 9H3v6h3l5 4z" }), /* @__PURE__ */ cpJsx("path", { d: "m22 9-6 6M16 9l6 6" })), t("audio.enable")) } : null);
     useContextItem("bell-error", error2 ? { kind: "notice", order: 2, className: "cp-ctx-bell-error", node: /* @__PURE__ */ cpJsx("span", { role: "alert", style: { color: "var(--cp-danger)" } }, t(error2)) } : null);
     useContextItem("mini-timer", state2.phase !== "idle" && view !== "module:timer" ? { kind: "timer", className: flash ? "cp-timer-flash" : "", node: /* @__PURE__ */ cpJsx("div", { "data-mini-timer": true, className: "cp-timer-mini" }, /* @__PURE__ */ cpJsx(ToolButton, { id: "timer.open", className: "cp-timer-mini-btn", "aria-label": t("timer.open"), title: t("timer.open"), onClick: () => setView("module:timer") }, icon2(ICONS2.full)), /* @__PURE__ */ cpJsx("output", { style: { fontWeight: 700, fontVariantNumeric: "tabular-nums", color: "var(--cp-text)" } }, formatDuration(timer2.displayMs).replace(/^0(?=\d:)/, "")), timer2.finished && /* @__PURE__ */ cpJsx("strong", { role: "status" }, t("timer.finished")), /* @__PURE__ */ cpJsx(TimerControls, { state: state2, context: "mini" })) } : null);
     return null;
