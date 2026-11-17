@@ -2484,6 +2484,36 @@ td[data-cp-att],th[data-cp-att]{background:var(--cp-att-bg)!important;box-shadow
 .cp-projecting-auto input:checked{background:var(--cp-gold,#c8961e)}
 .cp-projecting-auto input:checked::after{inset-inline-start:16px}
 .cp-projecting-auto input:focus-visible{outline:2px solid var(--cp-focus,var(--ux-primary));outline-offset:2px}
+/* Owner (16 Nov 2026, approved mock-up): side-menu button beside the ClassPilot name; at the far start of the top bar while
+   the side menu is hidden (the rest of the top bar keeps its place). Replaces the View menu. */
+.cp-sidebar .cp-sidebar-brand>.cp-side-toggle,.cp-main>.cp-side-toggle{display:inline-grid!important;place-items:center;width:30px!important;min-width:30px!important;height:30px!important;min-height:30px!important;padding:0!important;margin:0;border:0!important;border-radius:7px!important;background:transparent!important;color:var(--cp-muted)!important;box-shadow:none!important;cursor:pointer;flex:none}
+.cp-sidebar .cp-sidebar-brand>.cp-side-toggle{margin-inline-start:auto!important}
+.cp-sidebar .cp-sidebar-brand>.cp-side-toggle:hover,.cp-main>.cp-side-toggle:hover{background:color-mix(in srgb,var(--cp-muted) 16%,transparent)!important;color:var(--cp-text)!important}
+.cp-side-toggle:focus-visible{outline:2px solid var(--cp-focus,#2563eb)!important;outline-offset:2px}
+[dir=rtl] .cp-side-toggle svg{transform:scaleX(-1)}
+.cp-main{position:relative}
+.cp-main>.cp-side-toggle{position:absolute;inset-block-start:6px;inset-inline-start:8px;z-index:60}
+.cp-workspace[data-collapsed=true] .cp-app-toolbar{padding-inline-start:46px!important}
+@media print{.cp-side-toggle{display:none!important}}
+/* With the View menu gone, File and Class keep their place at the far end of the top bar. */
+.cp-app-toolbar>div:has(>[data-cp-action="gb.chrome.6544"]){margin-inline-start:auto!important}
+/* Owner (16 Nov 2026, approved mock-up): certificate suggestions show their rule; one Settings window for the rules. */
+.cp-cert-suggest-head{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.cp-cert-suggest-head h2{margin:0;font-size:var(--cp-fs-body)}
+.cp-cert-criteria-open{display:inline-flex;align-items:center;gap:6px;min-height:28px;padding:0 10px;border:1px solid var(--cp-border);border-radius:8px;background:transparent;color:var(--cp-text);font:inherit;font-size:var(--cp-fs-caption);cursor:pointer}
+.cp-cert-criteria-open:hover{background:color-mix(in srgb,var(--cp-muted) 12%,transparent)}
+.cp-cert-suggest li+li{border-block-start:1px solid var(--cp-border);padding-block-start:8px}
+.cp-cert-suggest .cp-cert-rule{display:block;font-size:var(--cp-fs-caption);color:var(--cp-muted)}
+.cp-cert-suggest li[data-off=true] .cp-cert-members-toggle b{color:var(--cp-muted)}
+.cp-cert-criteria-lead,.cp-cert-criteria-note{margin:0 0 10px;color:var(--cp-muted);font-size:var(--cp-fs-caption)}
+.cp-cert-criteria{display:grid;margin-block-end:8px}
+.cp-cert-criteria-row{display:grid;grid-template-columns:24px minmax(110px,150px) minmax(0,1fr) 72px 56px;gap:8px;align-items:center;padding:7px 0;border-block-start:1px solid var(--cp-border)}
+.cp-cert-criteria-row:first-child{border-block-start:0}
+.cp-cert-criteria-row input[type=number]{width:68px;min-height:30px;padding:0 6px;border:1px solid var(--cp-border);border-radius:6px;background:var(--cp-surface);color:var(--cp-text);font:inherit;text-align:end;font-variant-numeric:tabular-nums}
+.cp-cert-criteria-row[data-off=true]>:not(input[type=checkbox]){opacity:.55}
+.cp-cert-criteria-dates{display:flex;flex-wrap:wrap;gap:10px;align-items:end;margin:6px 0 0;padding:12px 0 0;border:0;border-block-start:1px solid var(--cp-border)}
+.cp-cert-criteria-dates legend{padding:0;margin-block-end:6px;font-weight:600}
+@media(max-width:640px){.cp-cert-criteria-row{grid-template-columns:24px minmax(0,1fr) 72px 48px}.cp-cert-criteria-row>span:nth-of-type(1){grid-column:2/-1}}
 /* M56 design foundations (owner-supplied Master Implementation Brief, M56; design report §7–§8).
    One set of tokens for the frame and the new modules. Protected Gradebook views (Marks, Groups, Behaviour,
    Adjustments, Analysis, the original wheel, the Settings drawer and the class manager) do not use them. */
@@ -7039,7 +7069,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.cert.feminine": "Feminine wording",
     "ux.cert.bordered": "Double frame",
     "ux.cert.ribbon": "Ribbon",
-    "ux.cert.reason": "Recognition reason preset",
+    "ux.cert.reason": "Reason on the certificate",
     "ux.cert.chooseReason": "Choose a recognition reason",
     "ux.cert.reason.effort": "Sustained effort",
     "ux.cert.reason.progress": "Learning progress",
@@ -8500,10 +8530,10 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.cert.issueTo.many": "Issue to {n} students\u2026",
     "ux.cert.issueTo.other": "Issue to {n} students\u2026",
     "ux.cert.issueNone": "Issue certificates\u2026",
-    "ux.cert.why.top": "Highest letter band",
-    "ux.cert.why.improved": "Greatest improvement since last term",
-    "ux.cert.why.participation": "Most participation",
-    "ux.cert.why.attendance": "Perfect attendance in the chosen dates",
+    "ux.cert.why.top": "High achievement",
+    "ux.cert.why.improved": "Improvement",
+    "ux.cert.why.participation": "Participation",
+    "ux.cert.why.attendance": "Attendance",
     "ux.cert.noneFound": "No student yet.",
     "ux.cert.use": "Use",
     "ux.cert.rangeTitle": "Attendance dates for the suggestions",
@@ -9114,7 +9144,58 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.rules.pts.few": "{n} marks",
     "ux.rules.pts.many": "{n} marks",
     "ux.rules.pts.other": "{n} marks",
-    "ux.rules.s.strikes0": "the student has no behaviour strikes"
+    "ux.rules.s.strikes0": "the student has no behaviour strikes",
+    "ux.cert.why.behaviour": "Good behaviour",
+    "ux.cert.why.homework": "Homework done",
+    "ux.cert.rule.top": "Grade {n}% or more",
+    "ux.cert.rule.behaviour": "Behaviour {n}% or more, no strikes",
+    "ux.cert.rule.behaviourStrikes": "Behaviour {n}% or more, {s} strikes at most",
+    "ux.cert.rule.participation": "Participation {n}% or more",
+    "ux.cert.rule.homework": "No missing-homework flag",
+    "ux.cert.rule.attendance": "Attendance {n}% or more, {range}",
+    "ux.cert.rule.improved": "Up {n} points or more since last term",
+    "ux.cert.rule.off": "Turned off in Settings",
+    "ux.cert.criteria": "Settings",
+    "ux.cert.criteria.title": "Certificate suggestions",
+    "ux.cert.criteria.lead": "Choose who each suggestion lists. Saved for all your classes.",
+    "ux.cert.criteriaDone": "Done",
+    "ux.cert.criteriaOn": "Show this suggestion",
+    "ux.cert.criteriaMin": "Percentage",
+    "ux.cert.criteriaStrikes": "Behaviour strikes at most",
+    "ux.cert.set.top": "Grade at least",
+    "ux.cert.set.behaviour": "Behaviour mark at least",
+    "ux.cert.set.strikes": "and behaviour strikes at most",
+    "ux.cert.set.participation": "Participation mark at least",
+    "ux.cert.set.homework": "Students without the missing-homework flag",
+    "ux.cert.set.attendance": "Attendance at least",
+    "ux.cert.set.improved": "Higher than last term by at least",
+    "ux.cert.set.points": "points",
+    "ux.cert.set.percentNote": "Percentages are of each mark's maximum.",
+    "ux.cert.datesTitle": "Dates for attendance and strikes",
+    "ux.cert.thisTerm": "This term",
+    "ux.cert.suggest.behaviour": "Use",
+    "ux.cert.suggest.homework": "Use",
+    "ux.cert.award.behaviour": "Good behaviour",
+    "ux.cert.award.homework": "Homework champion",
+    "ux.cert.reason.top": "High achievement",
+    "ux.cert.reason.behaviour": "Good behaviour",
+    "ux.cert.reason.participation": "Active participation",
+    "ux.cert.reason.homework": "Homework always done",
+    "ux.cert.reason.attendance": "Excellent attendance",
+    "ux.cert.reason.improvement": "Great improvement",
+    "ux.cert.reason.top.en": "For outstanding achievement and excellent results in mathematics.",
+    "ux.cert.reason.top.ar": "\u062A\u0642\u062F\u064A\u0631\u064B\u0627 \u0644\u0644\u062A\u0641\u0648\u0642 \u0648\u0627\u0644\u062A\u0645\u064A\u0651\u0632 \u0641\u064A \u0627\u0644\u0631\u064A\u0627\u0636\u064A\u0627\u062A.",
+    "ux.cert.reason.behaviour.en": "For excellent behaviour and being a positive example in class.",
+    "ux.cert.reason.behaviour.ar": "\u062A\u0642\u062F\u064A\u0631\u064B\u0627 \u0644\u0644\u0633\u0644\u0648\u0643 \u0627\u0644\u0645\u062A\u0645\u064A\u0651\u0632 \u0648\u0627\u0644\u0642\u062F\u0648\u0629 \u0627\u0644\u062D\u0633\u0646\u0629 \u0641\u064A \u0627\u0644\u0635\u0641.",
+    "ux.cert.reason.participation.en": "For active and thoughtful participation in class.",
+    "ux.cert.reason.participation.ar": "\u062A\u0642\u062F\u064A\u0631\u064B\u0627 \u0644\u0644\u0645\u0634\u0627\u0631\u0643\u0629 \u0627\u0644\u0641\u0627\u0639\u0644\u0629 \u0648\u0627\u0644\u0645\u062A\u0645\u064A\u0651\u0632\u0629 \u0641\u064A \u0627\u0644\u0635\u0641.",
+    "ux.cert.reason.homework.en": "For completing every homework with care and on time.",
+    "ux.cert.reason.homework.ar": "\u062A\u0642\u062F\u064A\u0631\u064B\u0627 \u0644\u0644\u0627\u0644\u062A\u0632\u0627\u0645 \u0628\u0623\u062F\u0627\u0621 \u0627\u0644\u0648\u0627\u062C\u0628\u0627\u062A \u0627\u0644\u0645\u0646\u0632\u0644\u064A\u0629 \u0643\u0627\u0645\u0644\u0629 \u0648\u0641\u064A \u0648\u0642\u062A\u0647\u0627.",
+    "ux.cert.reason.attendance.en": "For excellent attendance and punctuality.",
+    "ux.cert.reason.attendance.ar": "\u062A\u0642\u062F\u064A\u0631\u064B\u0627 \u0644\u0644\u0645\u0648\u0627\u0638\u0628\u0629 \u0639\u0644\u0649 \u0627\u0644\u062D\u0636\u0648\u0631 \u0648\u0627\u0644\u0627\u0646\u0636\u0628\u0627\u0637 \u0641\u064A \u0627\u0644\u0645\u0648\u0627\u0639\u064A\u062F.",
+    "ux.cert.reason.improvement.en": "For remarkable improvement this term.",
+    "ux.cert.reason.improvement.ar": "\u062A\u0642\u062F\u064A\u0631\u064B\u0627 \u0644\u0644\u062A\u062D\u0633\u0651\u0646 \u0627\u0644\u0645\u0644\u062D\u0648\u0638 \u0641\u064A \u0647\u0630\u0627 \u0627\u0644\u0641\u0635\u0644.",
+    "ux.cert.criteriaName": "Suggestion settings"
   };
 
   // src/i18n/plain-copy.js
@@ -13042,7 +13123,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.cert.feminine": "\u0635\u064A\u0627\u063A\u0629 \u0644\u0644\u0645\u0624\u0646\u062B",
     "ux.cert.bordered": "\u0625\u0637\u0627\u0631 \u0645\u0632\u062F\u0648\u062C",
     "ux.cert.ribbon": "\u0634\u0631\u064A\u0637 \u062A\u0643\u0631\u064A\u0645",
-    "ux.cert.reason": "\u0646\u0645\u0648\u0630\u062C \u0633\u0628\u0628 \u0627\u0644\u062A\u0643\u0631\u064A\u0645",
+    "ux.cert.reason": "\u0633\u0628\u0628 \u0627\u0644\u062A\u0643\u0631\u064A\u0645 \u0641\u064A \u0627\u0644\u0634\u0647\u0627\u062F\u0629",
     "ux.cert.chooseReason": "\u0627\u062E\u062A\u0631 \u0633\u0628\u0628 \u0627\u0644\u062A\u0643\u0631\u064A\u0645",
     "ux.cert.reason.effort": "\u062C\u0647\u062F \u0645\u062A\u0648\u0627\u0635\u0644",
     "ux.cert.reason.progress": "\u062A\u0642\u062F\u0645 \u0641\u064A \u0627\u0644\u062A\u0639\u0644\u0645",
@@ -14503,10 +14584,10 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.cert.issueTo.many": "\u0625\u0635\u062F\u0627\u0631 \u0644\u0640 {n} \u0637\u0627\u0644\u0628\u064B\u0627\u2026",
     "ux.cert.issueTo.other": "\u0625\u0635\u062F\u0627\u0631 \u0644\u0640 {n} \u0637\u0627\u0644\u0628\u2026",
     "ux.cert.issueNone": "\u0625\u0635\u062F\u0627\u0631 \u0627\u0644\u0634\u0647\u0627\u062F\u0627\u062A\u2026",
-    "ux.cert.why.top": "\u0623\u0639\u0644\u0649 \u0641\u0626\u0629 \u062A\u0642\u062F\u064A\u0631",
-    "ux.cert.why.improved": "\u0623\u0643\u0628\u0631 \u062A\u062D\u0633\u0651\u0646 \u0645\u0646\u0630 \u0627\u0644\u0641\u0635\u0644 \u0627\u0644\u0633\u0627\u0628\u0642",
-    "ux.cert.why.participation": "\u0623\u0639\u0644\u0649 \u0645\u0634\u0627\u0631\u0643\u0629",
-    "ux.cert.why.attendance": "\u062D\u0636\u0648\u0631 \u0643\u0627\u0645\u0644 \u0641\u064A \u0627\u0644\u0641\u062A\u0631\u0629 \u0627\u0644\u0645\u062E\u062A\u0627\u0631\u0629",
+    "ux.cert.why.top": "\u0627\u0644\u062A\u0641\u0648\u0642 \u0627\u0644\u062F\u0631\u0627\u0633\u064A",
+    "ux.cert.why.improved": "\u0627\u0644\u062A\u062D\u0633\u0651\u0646",
+    "ux.cert.why.participation": "\u0627\u0644\u0645\u0634\u0627\u0631\u0643\u0629",
+    "ux.cert.why.attendance": "\u0627\u0644\u062D\u0636\u0648\u0631",
     "ux.cert.noneFound": "\u0644\u0627 \u0623\u062D\u062F \u0628\u0639\u062F.",
     "ux.cert.use": "\u0627\u062E\u062A\u0631",
     "ux.cert.rangeTitle": "\u0641\u062A\u0631\u0629 \u0627\u0644\u062D\u0636\u0648\u0631 \u0644\u0644\u0645\u0642\u062A\u0631\u062D\u0627\u062A",
@@ -15117,7 +15198,58 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.rules.pts.few": "{n} \u062F\u0631\u062C\u0627\u062A",
     "ux.rules.pts.many": "{n} \u062F\u0631\u062C\u0629",
     "ux.rules.pts.other": "{n} \u062F\u0631\u062C\u0629",
-    "ux.rules.s.strikes0": "\u0644\u0645 \u062A\u064F\u0633\u062C\u064E\u0651\u0644 \u0639\u0644\u0649 \u0627\u0644\u0637\u0627\u0644\u0628 \u0623\u064A \u0645\u062E\u0627\u0644\u0641\u0629 \u0633\u0644\u0648\u0643"
+    "ux.rules.s.strikes0": "\u0644\u0645 \u062A\u064F\u0633\u062C\u064E\u0651\u0644 \u0639\u0644\u0649 \u0627\u0644\u0637\u0627\u0644\u0628 \u0623\u064A \u0645\u062E\u0627\u0644\u0641\u0629 \u0633\u0644\u0648\u0643",
+    "ux.cert.why.behaviour": "\u0627\u0644\u0633\u0644\u0648\u0643 \u0627\u0644\u0645\u062A\u0645\u064A\u0651\u0632",
+    "ux.cert.why.homework": "\u0625\u0646\u062C\u0627\u0632 \u0627\u0644\u0648\u0627\u062C\u0628\u0627\u062A",
+    "ux.cert.rule.top": "\u0627\u0644\u062F\u0631\u062C\u0629 {n}% \u0641\u0623\u0643\u062B\u0631",
+    "ux.cert.rule.behaviour": "\u0627\u0644\u0633\u0644\u0648\u0643 {n}% \u0641\u0623\u0643\u062B\u0631\u060C \u062F\u0648\u0646 \u0645\u062E\u0627\u0644\u0641\u0627\u062A",
+    "ux.cert.rule.behaviourStrikes": "\u0627\u0644\u0633\u0644\u0648\u0643 {n}% \u0641\u0623\u0643\u062B\u0631\u060C {s} \u0645\u062E\u0627\u0644\u0641\u0627\u062A \u0639\u0644\u0649 \u0627\u0644\u0623\u0643\u062B\u0631",
+    "ux.cert.rule.participation": "\u0627\u0644\u0645\u0634\u0627\u0631\u0643\u0629 {n}% \u0641\u0623\u0643\u062B\u0631",
+    "ux.cert.rule.homework": "\u062F\u0648\u0646 \u0639\u0644\u0627\u0645\u0629 \u0627\u0644\u0648\u0627\u062C\u0628\u0627\u062A \u0627\u0644\u0646\u0627\u0642\u0635\u0629",
+    "ux.cert.rule.attendance": "\u0627\u0644\u062D\u0636\u0648\u0631 {n}% \u0641\u0623\u0643\u062B\u0631\u060C {range}",
+    "ux.cert.rule.improved": "\u0627\u0631\u062A\u0641\u0627\u0639 {n} \u0646\u0642\u0627\u0637 \u0641\u0623\u0643\u062B\u0631 \u0639\u0646 \u0627\u0644\u0641\u0635\u0644 \u0627\u0644\u0633\u0627\u0628\u0642",
+    "ux.cert.rule.off": "\u0645\u062A\u0648\u0642\u0641 \u0641\u064A \u0627\u0644\u0625\u0639\u062F\u0627\u062F\u0627\u062A",
+    "ux.cert.criteria": "\u0627\u0644\u0625\u0639\u062F\u0627\u062F\u0627\u062A",
+    "ux.cert.criteria.title": "\u0627\u0642\u062A\u0631\u0627\u062D\u0627\u062A \u0627\u0644\u0634\u0647\u0627\u062F\u0627\u062A",
+    "ux.cert.criteria.lead": "\u062D\u062F\u0651\u062F \u0645\u0646 \u062A\u0634\u0645\u0644\u0647 \u0643\u0644 \u0642\u0627\u0626\u0645\u0629. \u062A\u064F\u062D\u0641\u0638 \u0644\u062C\u0645\u064A\u0639 \u0635\u0641\u0648\u0641\u0643.",
+    "ux.cert.criteriaDone": "\u062A\u0645",
+    "ux.cert.criteriaOn": "\u0625\u0638\u0647\u0627\u0631 \u0647\u0630\u0627 \u0627\u0644\u0627\u0642\u062A\u0631\u0627\u062D",
+    "ux.cert.criteriaMin": "\u0627\u0644\u0646\u0633\u0628\u0629 \u0627\u0644\u0645\u0626\u0648\u064A\u0629",
+    "ux.cert.criteriaStrikes": "\u0645\u062E\u0627\u0644\u0641\u0627\u062A \u0627\u0644\u0633\u0644\u0648\u0643 \u0639\u0644\u0649 \u0627\u0644\u0623\u0643\u062B\u0631",
+    "ux.cert.set.top": "\u0627\u0644\u062F\u0631\u062C\u0629 \u0644\u0627 \u062A\u0642\u0644 \u0639\u0646",
+    "ux.cert.set.behaviour": "\u062F\u0631\u062C\u0629 \u0627\u0644\u0633\u0644\u0648\u0643 \u0644\u0627 \u062A\u0642\u0644 \u0639\u0646",
+    "ux.cert.set.strikes": "\u0648\u0645\u062E\u0627\u0644\u0641\u0627\u062A \u0627\u0644\u0633\u0644\u0648\u0643 \u0644\u0627 \u062A\u0632\u064A\u062F \u0639\u0644\u0649",
+    "ux.cert.set.participation": "\u062F\u0631\u062C\u0629 \u0627\u0644\u0645\u0634\u0627\u0631\u0643\u0629 \u0644\u0627 \u062A\u0642\u0644 \u0639\u0646",
+    "ux.cert.set.homework": "\u0627\u0644\u0637\u0644\u0627\u0628 \u0627\u0644\u0630\u064A\u0646 \u0644\u064A\u0633\u062A \u0644\u062F\u064A\u0647\u0645 \u0639\u0644\u0627\u0645\u0629 \u0627\u0644\u0648\u0627\u062C\u0628\u0627\u062A \u0627\u0644\u0646\u0627\u0642\u0635\u0629",
+    "ux.cert.set.attendance": "\u0646\u0633\u0628\u0629 \u0627\u0644\u062D\u0636\u0648\u0631 \u0644\u0627 \u062A\u0642\u0644 \u0639\u0646",
+    "ux.cert.set.improved": "\u0623\u0639\u0644\u0649 \u0645\u0646 \u0627\u0644\u0641\u0635\u0644 \u0627\u0644\u0633\u0627\u0628\u0642 \u0628\u0645\u0627 \u0644\u0627 \u064A\u0642\u0644 \u0639\u0646",
+    "ux.cert.set.points": "\u0646\u0642\u0627\u0637",
+    "ux.cert.set.percentNote": "\u0627\u0644\u0646\u0633\u0628 \u0627\u0644\u0645\u0626\u0648\u064A\u0629 \u0645\u0646 \u0627\u0644\u062F\u0631\u062C\u0629 \u0627\u0644\u0642\u0635\u0648\u0649 \u0644\u0643\u0644 \u0639\u0646\u0635\u0631.",
+    "ux.cert.datesTitle": "\u062A\u0648\u0627\u0631\u064A\u062E \u0627\u0644\u062D\u0636\u0648\u0631 \u0648\u0627\u0644\u0645\u062E\u0627\u0644\u0641\u0627\u062A",
+    "ux.cert.thisTerm": "\u0647\u0630\u0627 \u0627\u0644\u0641\u0635\u0644",
+    "ux.cert.suggest.behaviour": "\u0627\u062E\u062A\u0631",
+    "ux.cert.suggest.homework": "\u0627\u062E\u062A\u0631",
+    "ux.cert.award.behaviour": "\u0633\u0644\u0648\u0643 \u0645\u062A\u0645\u064A\u0651\u0632",
+    "ux.cert.award.homework": "\u0627\u0644\u062A\u0632\u0627\u0645 \u0628\u0627\u0644\u0648\u0627\u062C\u0628\u0627\u062A",
+    "ux.cert.reason.top": "\u0627\u0644\u062A\u0641\u0648\u0642 \u0627\u0644\u062F\u0631\u0627\u0633\u064A",
+    "ux.cert.reason.behaviour": "\u0627\u0644\u0633\u0644\u0648\u0643 \u0627\u0644\u0645\u062A\u0645\u064A\u0651\u0632",
+    "ux.cert.reason.participation": "\u0627\u0644\u0645\u0634\u0627\u0631\u0643\u0629 \u0627\u0644\u0641\u0627\u0639\u0644\u0629",
+    "ux.cert.reason.homework": "\u0625\u0646\u062C\u0627\u0632 \u0627\u0644\u0648\u0627\u062C\u0628\u0627\u062A \u062F\u0627\u0626\u0645\u064B\u0627",
+    "ux.cert.reason.attendance": "\u0627\u0644\u0645\u0648\u0627\u0638\u0628\u0629 \u0639\u0644\u0649 \u0627\u0644\u062D\u0636\u0648\u0631",
+    "ux.cert.reason.improvement": "\u0627\u0644\u062A\u062D\u0633\u0651\u0646 \u0627\u0644\u0645\u0644\u062D\u0648\u0638",
+    "ux.cert.reason.top.en": "For outstanding achievement and excellent results in mathematics.",
+    "ux.cert.reason.top.ar": "\u062A\u0642\u062F\u064A\u0631\u064B\u0627 \u0644\u0644\u062A\u0641\u0648\u0642 \u0648\u0627\u0644\u062A\u0645\u064A\u0651\u0632 \u0641\u064A \u0627\u0644\u0631\u064A\u0627\u0636\u064A\u0627\u062A.",
+    "ux.cert.reason.behaviour.en": "For excellent behaviour and being a positive example in class.",
+    "ux.cert.reason.behaviour.ar": "\u062A\u0642\u062F\u064A\u0631\u064B\u0627 \u0644\u0644\u0633\u0644\u0648\u0643 \u0627\u0644\u0645\u062A\u0645\u064A\u0651\u0632 \u0648\u0627\u0644\u0642\u062F\u0648\u0629 \u0627\u0644\u062D\u0633\u0646\u0629 \u0641\u064A \u0627\u0644\u0635\u0641.",
+    "ux.cert.reason.participation.en": "For active and thoughtful participation in class.",
+    "ux.cert.reason.participation.ar": "\u062A\u0642\u062F\u064A\u0631\u064B\u0627 \u0644\u0644\u0645\u0634\u0627\u0631\u0643\u0629 \u0627\u0644\u0641\u0627\u0639\u0644\u0629 \u0648\u0627\u0644\u0645\u062A\u0645\u064A\u0651\u0632\u0629 \u0641\u064A \u0627\u0644\u0635\u0641.",
+    "ux.cert.reason.homework.en": "For completing every homework with care and on time.",
+    "ux.cert.reason.homework.ar": "\u062A\u0642\u062F\u064A\u0631\u064B\u0627 \u0644\u0644\u0627\u0644\u062A\u0632\u0627\u0645 \u0628\u0623\u062F\u0627\u0621 \u0627\u0644\u0648\u0627\u062C\u0628\u0627\u062A \u0627\u0644\u0645\u0646\u0632\u0644\u064A\u0629 \u0643\u0627\u0645\u0644\u0629 \u0648\u0641\u064A \u0648\u0642\u062A\u0647\u0627.",
+    "ux.cert.reason.attendance.en": "For excellent attendance and punctuality.",
+    "ux.cert.reason.attendance.ar": "\u062A\u0642\u062F\u064A\u0631\u064B\u0627 \u0644\u0644\u0645\u0648\u0627\u0638\u0628\u0629 \u0639\u0644\u0649 \u0627\u0644\u062D\u0636\u0648\u0631 \u0648\u0627\u0644\u0627\u0646\u0636\u0628\u0627\u0637 \u0641\u064A \u0627\u0644\u0645\u0648\u0627\u0639\u064A\u062F.",
+    "ux.cert.reason.improvement.en": "For remarkable improvement this term.",
+    "ux.cert.reason.improvement.ar": "\u062A\u0642\u062F\u064A\u0631\u064B\u0627 \u0644\u0644\u062A\u062D\u0633\u0651\u0646 \u0627\u0644\u0645\u0644\u062D\u0648\u0638 \u0641\u064A \u0647\u0630\u0627 \u0627\u0644\u0641\u0635\u0644.",
+    "ux.cert.criteriaName": "\u0625\u0639\u062F\u0627\u062F\u0627\u062A \u0627\u0644\u0627\u0642\u062A\u0631\u0627\u062D\u0627\u062A"
   };
 
   // src/core/actions.js
@@ -26920,9 +27052,9 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       "id": "improve.toggleNavigation",
       "labelKey": "improve.navigation",
       "icon": null,
-      "shortcut": null,
+      "shortcut": "Ctrl+B",
       "availability": "rendered-and-not-disabled",
-      "canonicalHome": "ShellBar:menu",
+      "canonicalHome": "Workspace:sidebar",
       "events": [
         "onClick"
       ],
@@ -27396,19 +27528,6 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       ],
       "source": "src/core",
       "meaning": "improve.closePreferences"
-    },
-    {
-      "id": "improve.viewMenu",
-      "labelKey": "improve.viewMenu",
-      "icon": null,
-      "shortcut": null,
-      "availability": "rendered-and-not-disabled",
-      "canonicalHome": "ShellBar:toolbar",
-      "events": [
-        "onClick"
-      ],
-      "source": "src/core",
-      "meaning": "improve.viewMenu"
     },
     {
       "id": "improve.settingsJump",
@@ -32094,6 +32213,71 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       "meaning": "ux.rules.showStudents"
     },
     {
+      "id": "ux.cert.criteria",
+      "labelKey": "ux.cert.criteria",
+      "icon": null,
+      "shortcut": null,
+      "availability": "rendered-and-not-disabled",
+      "canonicalHome": "cert:context",
+      "events": [
+        "onClick"
+      ],
+      "source": "src/modules",
+      "meaning": "ux.cert.criteria"
+    },
+    {
+      "id": "ux.cert.criteriaDone",
+      "labelKey": "ux.cert.criteriaDone",
+      "icon": null,
+      "shortcut": null,
+      "availability": "rendered-and-not-disabled",
+      "canonicalHome": "cert:context",
+      "events": [
+        "onClick"
+      ],
+      "source": "src/modules",
+      "meaning": "ux.cert.criteriaDone"
+    },
+    {
+      "id": "ux.cert.thisTerm",
+      "labelKey": "ux.cert.thisTerm",
+      "icon": null,
+      "shortcut": null,
+      "availability": "rendered-and-not-disabled",
+      "canonicalHome": "cert:context",
+      "events": [
+        "onClick"
+      ],
+      "source": "src/modules",
+      "meaning": "ux.cert.thisTerm"
+    },
+    {
+      "id": "ux.cert.suggest.behaviour",
+      "labelKey": "ux.cert.suggest.behaviour",
+      "icon": null,
+      "shortcut": null,
+      "availability": "rendered-and-not-disabled",
+      "canonicalHome": "cert:context",
+      "events": [
+        "onClick"
+      ],
+      "source": "src/modules",
+      "meaning": "ux.cert.suggest.behaviour"
+    },
+    {
+      "id": "ux.cert.suggest.homework",
+      "labelKey": "ux.cert.suggest.homework",
+      "icon": null,
+      "shortcut": null,
+      "availability": "rendered-and-not-disabled",
+      "canonicalHome": "cert:context",
+      "events": [
+        "onClick"
+      ],
+      "source": "src/modules",
+      "meaning": "ux.cert.suggest.homework"
+    },
+    {
       "id": "ux.report.sort",
       "labelKey": "ux.report.sort",
       "icon": null,
@@ -35030,6 +35214,45 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       ],
       "source": "src/modules",
       "meaning": "ux.rules.beforeCol"
+    },
+    {
+      "id": "ux.cert.criteriaOn",
+      "labelKey": "ux.cert.criteriaOn",
+      "icon": null,
+      "shortcut": null,
+      "availability": "rendered-and-not-disabled",
+      "canonicalHome": "cert:context",
+      "events": [
+        "onChange"
+      ],
+      "source": "src/modules",
+      "meaning": "ux.cert.criteriaOn"
+    },
+    {
+      "id": "ux.cert.criteriaMin",
+      "labelKey": "ux.cert.criteriaMin",
+      "icon": null,
+      "shortcut": null,
+      "availability": "rendered-and-not-disabled",
+      "canonicalHome": "cert:context",
+      "events": [
+        "onChange"
+      ],
+      "source": "src/modules",
+      "meaning": "ux.cert.criteriaMin"
+    },
+    {
+      "id": "ux.cert.criteriaStrikes",
+      "labelKey": "ux.cert.criteriaStrikes",
+      "icon": null,
+      "shortcut": null,
+      "availability": "rendered-and-not-disabled",
+      "canonicalHome": "cert:context",
+      "events": [
+        "onChange"
+      ],
+      "source": "src/modules",
+      "meaning": "ux.cert.criteriaStrikes"
     }
   ];
 
@@ -35292,6 +35515,15 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     if (profile3.bellAdvanceMinutes !== void 0 && (!Number.isInteger(profile3.bellAdvanceMinutes) || profile3.bellAdvanceMinutes < 1 || profile3.bellAdvanceMinutes > 60)) invalid();
     const n = profile3.noiseMeter || {};
     if (n.sessionMinutes !== void 0 && (!Number.isFinite(n.sessionMinutes) || n.sessionMinutes < 0 || n.sessionMinutes > 240) || n.quietGoal !== void 0 && (!Number.isFinite(n.quietGoal) || n.quietGoal < 0 || n.quietGoal > 100) || n.activity !== void 0 && !["quiet", "pairs", "discussion"].includes(n.activity) || n.visual !== void 0 && !["meter", "circles", "halo", "wave", "jar"].includes(n.visual)) invalid();
+    if (profile3.certificateCriteria !== void 0) {
+      const c = profile3.certificateCriteria;
+      if (!object(c)) invalid();
+      for (const kind of ["top", "behaviour", "participation", "homework", "attendance", "improved"]) {
+        const r = c[kind];
+        if (r === void 0) continue;
+        if (!object(r) || r.on !== void 0 && typeof r.on !== "boolean" || r.min !== void 0 && !(Number.isFinite(r.min) && r.min >= 0 && r.min <= 100) || r.strikes !== void 0 && !(Number.isInteger(r.strikes) && r.strikes >= 0)) invalid();
+      }
+    }
     if (profile3.certificateDefaults !== void 0) {
       const value = profile3.certificateDefaults;
       if (!object(value) || !["formal", "modern", "playful", "bordered", "ribbon", "royal", "ivory", "emerald", "bold", "bright", "math", "star"].includes(value.template) || !["portrait", "landscape"].includes(value.orientation) || !["en", "ar", "bilingual"].includes(value.language) || !["neutral", "masculine", "feminine"].includes(value.gender)) invalid();
@@ -35564,8 +35796,9 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     titleKey: "ux.nav.aiReports",
     icon: "aireports",
     home: "reporting",
-    beforeModuleId: "certificates",
+    afterModuleId: "certificates",
     context: "nav",
+    /* owner (16 Nov 2026): Certificates comes before AI reports */
     canonicalHome: "ShellBar:tabs.reporting",
     additionalHomes: ["TB:menu.file"]
   });
@@ -35842,7 +36075,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
           for (const field2 of CERT_FIELDS) if (typeof record[field2] !== "string") invalid();
           for (const field2 of ["subject", "subjectAr"]) if (record[field2] !== void 0 && typeof record[field2] !== "string") invalid();
           if (record.gender !== void 0 && !["neutral", "masculine", "feminine"].includes(record.gender)) invalid();
-          if (record.award !== void 0 && !["achievement", "improvement", "participation", "attendance", "top"].includes(record.award) || record.inkSaver !== void 0 && typeof record.inkSaver !== "boolean" || record.starLayout !== void 0 && !["one", "two"].includes(record.starLayout)) invalid();
+          if (record.award !== void 0 && !["achievement", "improvement", "participation", "attendance", "top", "behaviour", "homework"].includes(record.award) || record.inkSaver !== void 0 && typeof record.inkSaver !== "boolean" || record.starLayout !== void 0 && !["one", "two"].includes(record.starLayout)) invalid();
           if (record.logo !== null) {
             if (typeof record.logo !== "string" || record.logo.length > 150 * 1024 || !/^data:image\/(png|jpeg|webp);base64,[A-Za-z0-9+/]+={0,2}$/.test(record.logo)) invalid();
           }
@@ -37376,15 +37609,15 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
   function pearsonR(xs, ys) {
     var n = Math.min(xs.length, ys.length);
     if (n < 3) return null;
-    var mx = avg(xs), my = avg(ys), num4 = 0, dx = 0, dy = 0;
+    var mx = avg(xs), my = avg(ys), num5 = 0, dx = 0, dy = 0;
     for (var i = 0; i < n; i++) {
       var a = xs[i] - mx, b = ys[i] - my;
-      num4 += a * b;
+      num5 += a * b;
       dx += a * a;
       dy += b * b;
     }
     if (dx <= 0 || dy <= 0) return null;
-    return num4 / Math.sqrt(dx * dy);
+    return num5 / Math.sqrt(dx * dy);
   }
   function skewness(a) {
     var n = a.length;
@@ -37408,13 +37641,13 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
   function linreg(xs, ys) {
     var n = Math.min(xs.length, ys.length);
     if (n < 2) return null;
-    var mx = avg(xs), my = avg(ys), num4 = 0, den = 0;
+    var mx = avg(xs), my = avg(ys), num5 = 0, den = 0;
     for (var i = 0; i < n; i++) {
-      num4 += (xs[i] - mx) * (ys[i] - my);
+      num5 += (xs[i] - mx) * (ys[i] - my);
       den += (xs[i] - mx) * (xs[i] - mx);
     }
     if (den <= 0) return null;
-    var slope = num4 / den;
+    var slope = num5 / den;
     var r = pearsonR(xs, ys);
     return { slope, intercept: my - slope * mx, r2: r == null ? 0 : r * r };
   }
@@ -38270,10 +38503,10 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     return { severity: improved && severity == null ? en_default["gb.770e607624d68926"] : severity, sentence: parts.join(en_default["gb.0a2d3f8f9b727cf7"]), types };
   }
   function archiveAndAdvance(doc, yearWeight, examWeight, examScores) {
-    var num4 = doc.settings.activeTerm || (doc.archivedTerms || []).length + 1;
-    var yw = yearWeight != null ? +yearWeight : (doc.settings.yearWeights || {})[num4];
-    var ew = examWeight != null ? +examWeight : (doc.settings.examWeights || {})[num4] || 0;
-    var snap = buildTermSnapshot(doc, num4, en_default["gb.ee2743be5742770c"] + num4, yw, ew, examScores);
+    var num5 = doc.settings.activeTerm || (doc.archivedTerms || []).length + 1;
+    var yw = yearWeight != null ? +yearWeight : (doc.settings.yearWeights || {})[num5];
+    var ew = examWeight != null ? +examWeight : (doc.settings.examWeights || {})[num5] || 0;
+    var snap = buildTermSnapshot(doc, num5, en_default["gb.ee2743be5742770c"] + num5, yw, ew, examScores);
     var bMax = getBhvMax(doc.sections);
     var resetStudents = doc.students.map(function(s) {
       return {
@@ -38292,15 +38525,15 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       };
     });
     var nextYW = { ...doc.settings.yearWeights || {} };
-    if (yw != null) nextYW[num4] = yw;
+    if (yw != null) nextYW[num5] = yw;
     var nextEW = { ...doc.settings.examWeights || {} };
-    if (ew != null) nextEW[num4] = ew;
+    if (ew != null) nextEW[num5] = ew;
     return {
       ...doc,
       archivedTerms: [...doc.archivedTerms || [], snap],
       students: resetStudents,
       homework: [],
-      settings: { ...doc.settings, activeTerm: num4 + 1, yearWeights: nextYW, examWeights: nextEW }
+      settings: { ...doc.settings, activeTerm: num5 + 1, yearWeights: nextYW, examWeights: nextEW }
     };
   }
   function buildSyntheticTerm(doc, number2, label, yearWeight, componentWeights, rows) {
@@ -38342,7 +38575,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     };
   }
   function yearFinalFor(terms, sid, studentId, name) {
-    var num4 = 0, den = 0, inc = [];
+    var num5 = 0, den = 0, inc = [];
     terms.forEach(function(t2) {
       if (t2.yearWeight == null || !(t2.yearWeight > 0)) return;
       var w2 = t2.yearWeight;
@@ -38350,12 +38583,12 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       if (w2 <= 0) return;
       var r = findInTerm(t2, sid, studentId, name);
       if (!r || r.final == null) return;
-      num4 += r.final * w2;
+      num5 += r.final * w2;
       den += w2;
       inc.push(t2.number);
     });
     if (den <= 0) return { value: null, weightSum: 0, includedTerms: [] };
-    return { value: Math.round(num4 / den * 10) / 10, weightSum: den, includedTerms: inc };
+    return { value: Math.round(num5 / den * 10) / 10, weightSum: den, includedTerms: inc };
   }
   function projectedAnnual(terms, sid, studentId, name, liveTeacher, liveExam) {
     var contrib = 0, breakdown = [];
@@ -40089,6 +40322,8 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
   Object.assign(uxChange, { "projecting.auto": "projecting.auto" });
   Object.assign(uxClick, { "rules.add": "rules.add", "rules.remove": "rules.remove", "rules.up": "rules.up", "rules.down": "rules.down", "rules.addCondition": "rules.addCondition", "rules.addUnless": "rules.addUnless", "rules.removeCondition": "rules.removeCondition", "rules.condChip": "rules.condChip", "rules.fromChip": "rules.fromChip", "rules.targetChip": "rules.targetChip", "rules.selectScorable": "rules.selectScorable", "rules.clear": "rules.clear", "rules.showStudents": "rules.showStudents" });
   Object.assign(uxChange, { "rules.name": "rules.name", "rules.enabled": "rules.enabled", "rules.join": "rules.join", "rules.condType": "rules.condType", "rules.column": "rules.column", "rules.op": "rules.op", "rules.value": "rules.value", "rules.value2": "rules.value2", "rules.countMode": "rules.countMode", "rules.n": "rules.n", "rules.from": "rules.from", "rules.to": "rules.to", "rules.by": "rules.by", "rules.action": "rules.action", "rules.actValue": "rules.actValue", "rules.points": "rules.points", "rules.targetKind": "rules.targetKind", "rules.rank": "rules.rank", "rules.targetCol": "rules.targetCol", "rules.beforeCol": "rules.beforeCol" });
+  Object.assign(uxClick, { "cert.criteria": "cert.criteria", "cert.criteriaDone": "cert.criteriaDone", "cert.thisTerm": "cert.thisTerm", "cert.suggest.behaviour": "cert.suggest.behaviour", "cert.suggest.homework": "cert.suggest.homework" });
+  Object.assign(uxChange, { "cert.criteriaOn": "cert.criteriaOn", "cert.criteriaMin": "cert.criteriaMin", "cert.criteriaStrikes": "cert.criteriaStrikes" });
   var uxActions = [...Object.entries(uxClick).map(([id, key4]) => [id, key4, "onClick"]), ...Object.entries(uxChange).map(([id, key4]) => [id, key4, "onChange"])].map(([id, key4, event]) => ({ id: "ux." + id, labelKey: "ux." + key4, icon: null, shortcut: null, availability: "rendered-and-not-disabled", canonicalHome: navigationHome("ux." + id) || certificateActionHome("ux." + id) || (id.startsWith("nav.") ? "Workspace:sidebar" : id.startsWith("appearance.") ? "Workspace:context" : id.split(".")[0] + ":context"), events: id === "plans.section" || id === "support.section" || id === "tt.editSection" ? [event, "onKeyDown"] : [event], source: "src/modules", meaning: "ux." + id }));
 
   // src/i18n/ux-copy.js
@@ -41364,8 +41599,8 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       "\u0634\u0631\u064A\u0637 \u062A\u0643\u0631\u064A\u0645"
     ],
     "cert.reason": [
-      "Recognition reason preset",
-      "\u0646\u0645\u0648\u0630\u062C \u0633\u0628\u0628 \u0627\u0644\u062A\u0643\u0631\u064A\u0645"
+      "Reason on the certificate",
+      "\u0633\u0628\u0628 \u0627\u0644\u062A\u0643\u0631\u064A\u0645 \u0641\u064A \u0627\u0644\u0634\u0647\u0627\u062F\u0629"
     ],
     "cert.chooseReason": [
       "Choose a recognition reason",
@@ -43673,10 +43908,10 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "cert.issueTo.many": ["Issue to {n} students\u2026", "\u0625\u0635\u062F\u0627\u0631 \u0644\u0640 {n} \u0637\u0627\u0644\u0628\u064B\u0627\u2026"],
     "cert.issueTo.other": ["Issue to {n} students\u2026", "\u0625\u0635\u062F\u0627\u0631 \u0644\u0640 {n} \u0637\u0627\u0644\u0628\u2026"],
     "cert.issueNone": ["Issue certificates\u2026", "\u0625\u0635\u062F\u0627\u0631 \u0627\u0644\u0634\u0647\u0627\u062F\u0627\u062A\u2026"],
-    "cert.why.top": ["Highest letter band", "\u0623\u0639\u0644\u0649 \u0641\u0626\u0629 \u062A\u0642\u062F\u064A\u0631"],
-    "cert.why.improved": ["Greatest improvement since last term", "\u0623\u0643\u0628\u0631 \u062A\u062D\u0633\u0651\u0646 \u0645\u0646\u0630 \u0627\u0644\u0641\u0635\u0644 \u0627\u0644\u0633\u0627\u0628\u0642"],
-    "cert.why.participation": ["Most participation", "\u0623\u0639\u0644\u0649 \u0645\u0634\u0627\u0631\u0643\u0629"],
-    "cert.why.attendance": ["Perfect attendance in the chosen dates", "\u062D\u0636\u0648\u0631 \u0643\u0627\u0645\u0644 \u0641\u064A \u0627\u0644\u0641\u062A\u0631\u0629 \u0627\u0644\u0645\u062E\u062A\u0627\u0631\u0629"],
+    "cert.why.top": ["High achievement", "\u0627\u0644\u062A\u0641\u0648\u0642 \u0627\u0644\u062F\u0631\u0627\u0633\u064A"],
+    "cert.why.improved": ["Improvement", "\u0627\u0644\u062A\u062D\u0633\u0651\u0646"],
+    "cert.why.participation": ["Participation", "\u0627\u0644\u0645\u0634\u0627\u0631\u0643\u0629"],
+    "cert.why.attendance": ["Attendance", "\u0627\u0644\u062D\u0636\u0648\u0631"],
     "cert.noneFound": ["No student yet.", "\u0644\u0627 \u0623\u062D\u062F \u0628\u0639\u062F."],
     "cert.use": ["Use", "\u0627\u062E\u062A\u0631"],
     "cert.rangeTitle": ["Attendance dates for the suggestions", "\u0641\u062A\u0631\u0629 \u0627\u0644\u062D\u0636\u0648\u0631 \u0644\u0644\u0645\u0642\u062A\u0631\u062D\u0627\u062A"],
@@ -44287,7 +44522,58 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "rules.pts.few": ["{n} marks", "{n} \u062F\u0631\u062C\u0627\u062A"],
     "rules.pts.many": ["{n} marks", "{n} \u062F\u0631\u062C\u0629"],
     "rules.pts.other": ["{n} marks", "{n} \u062F\u0631\u062C\u0629"],
-    "rules.s.strikes0": ["the student has no behaviour strikes", "\u0644\u0645 \u062A\u064F\u0633\u062C\u064E\u0651\u0644 \u0639\u0644\u0649 \u0627\u0644\u0637\u0627\u0644\u0628 \u0623\u064A \u0645\u062E\u0627\u0644\u0641\u0629 \u0633\u0644\u0648\u0643"]
+    "rules.s.strikes0": ["the student has no behaviour strikes", "\u0644\u0645 \u062A\u064F\u0633\u062C\u064E\u0651\u0644 \u0639\u0644\u0649 \u0627\u0644\u0637\u0627\u0644\u0628 \u0623\u064A \u0645\u062E\u0627\u0644\u0641\u0629 \u0633\u0644\u0648\u0643"],
+    "cert.why.behaviour": ["Good behaviour", "\u0627\u0644\u0633\u0644\u0648\u0643 \u0627\u0644\u0645\u062A\u0645\u064A\u0651\u0632"],
+    "cert.why.homework": ["Homework done", "\u0625\u0646\u062C\u0627\u0632 \u0627\u0644\u0648\u0627\u062C\u0628\u0627\u062A"],
+    "cert.rule.top": ["Grade {n}% or more", "\u0627\u0644\u062F\u0631\u062C\u0629 {n}% \u0641\u0623\u0643\u062B\u0631"],
+    "cert.rule.behaviour": ["Behaviour {n}% or more, no strikes", "\u0627\u0644\u0633\u0644\u0648\u0643 {n}% \u0641\u0623\u0643\u062B\u0631\u060C \u062F\u0648\u0646 \u0645\u062E\u0627\u0644\u0641\u0627\u062A"],
+    "cert.rule.behaviourStrikes": ["Behaviour {n}% or more, {s} strikes at most", "\u0627\u0644\u0633\u0644\u0648\u0643 {n}% \u0641\u0623\u0643\u062B\u0631\u060C {s} \u0645\u062E\u0627\u0644\u0641\u0627\u062A \u0639\u0644\u0649 \u0627\u0644\u0623\u0643\u062B\u0631"],
+    "cert.rule.participation": ["Participation {n}% or more", "\u0627\u0644\u0645\u0634\u0627\u0631\u0643\u0629 {n}% \u0641\u0623\u0643\u062B\u0631"],
+    "cert.rule.homework": ["No missing-homework flag", "\u062F\u0648\u0646 \u0639\u0644\u0627\u0645\u0629 \u0627\u0644\u0648\u0627\u062C\u0628\u0627\u062A \u0627\u0644\u0646\u0627\u0642\u0635\u0629"],
+    "cert.rule.attendance": ["Attendance {n}% or more, {range}", "\u0627\u0644\u062D\u0636\u0648\u0631 {n}% \u0641\u0623\u0643\u062B\u0631\u060C {range}"],
+    "cert.rule.improved": ["Up {n} points or more since last term", "\u0627\u0631\u062A\u0641\u0627\u0639 {n} \u0646\u0642\u0627\u0637 \u0641\u0623\u0643\u062B\u0631 \u0639\u0646 \u0627\u0644\u0641\u0635\u0644 \u0627\u0644\u0633\u0627\u0628\u0642"],
+    "cert.rule.off": ["Turned off in Settings", "\u0645\u062A\u0648\u0642\u0641 \u0641\u064A \u0627\u0644\u0625\u0639\u062F\u0627\u062F\u0627\u062A"],
+    "cert.criteria": ["Settings", "\u0627\u0644\u0625\u0639\u062F\u0627\u062F\u0627\u062A"],
+    "cert.criteria.title": ["Certificate suggestions", "\u0627\u0642\u062A\u0631\u0627\u062D\u0627\u062A \u0627\u0644\u0634\u0647\u0627\u062F\u0627\u062A"],
+    "cert.criteria.lead": ["Choose who each suggestion lists. Saved for all your classes.", "\u062D\u062F\u0651\u062F \u0645\u0646 \u062A\u0634\u0645\u0644\u0647 \u0643\u0644 \u0642\u0627\u0626\u0645\u0629. \u062A\u064F\u062D\u0641\u0638 \u0644\u062C\u0645\u064A\u0639 \u0635\u0641\u0648\u0641\u0643."],
+    "cert.criteriaDone": ["Done", "\u062A\u0645"],
+    "cert.criteriaOn": ["Show this suggestion", "\u0625\u0638\u0647\u0627\u0631 \u0647\u0630\u0627 \u0627\u0644\u0627\u0642\u062A\u0631\u0627\u062D"],
+    "cert.criteriaMin": ["Percentage", "\u0627\u0644\u0646\u0633\u0628\u0629 \u0627\u0644\u0645\u0626\u0648\u064A\u0629"],
+    "cert.criteriaStrikes": ["Behaviour strikes at most", "\u0645\u062E\u0627\u0644\u0641\u0627\u062A \u0627\u0644\u0633\u0644\u0648\u0643 \u0639\u0644\u0649 \u0627\u0644\u0623\u0643\u062B\u0631"],
+    "cert.set.top": ["Grade at least", "\u0627\u0644\u062F\u0631\u062C\u0629 \u0644\u0627 \u062A\u0642\u0644 \u0639\u0646"],
+    "cert.set.behaviour": ["Behaviour mark at least", "\u062F\u0631\u062C\u0629 \u0627\u0644\u0633\u0644\u0648\u0643 \u0644\u0627 \u062A\u0642\u0644 \u0639\u0646"],
+    "cert.set.strikes": ["and behaviour strikes at most", "\u0648\u0645\u062E\u0627\u0644\u0641\u0627\u062A \u0627\u0644\u0633\u0644\u0648\u0643 \u0644\u0627 \u062A\u0632\u064A\u062F \u0639\u0644\u0649"],
+    "cert.set.participation": ["Participation mark at least", "\u062F\u0631\u062C\u0629 \u0627\u0644\u0645\u0634\u0627\u0631\u0643\u0629 \u0644\u0627 \u062A\u0642\u0644 \u0639\u0646"],
+    "cert.set.homework": ["Students without the missing-homework flag", "\u0627\u0644\u0637\u0644\u0627\u0628 \u0627\u0644\u0630\u064A\u0646 \u0644\u064A\u0633\u062A \u0644\u062F\u064A\u0647\u0645 \u0639\u0644\u0627\u0645\u0629 \u0627\u0644\u0648\u0627\u062C\u0628\u0627\u062A \u0627\u0644\u0646\u0627\u0642\u0635\u0629"],
+    "cert.set.attendance": ["Attendance at least", "\u0646\u0633\u0628\u0629 \u0627\u0644\u062D\u0636\u0648\u0631 \u0644\u0627 \u062A\u0642\u0644 \u0639\u0646"],
+    "cert.set.improved": ["Higher than last term by at least", "\u0623\u0639\u0644\u0649 \u0645\u0646 \u0627\u0644\u0641\u0635\u0644 \u0627\u0644\u0633\u0627\u0628\u0642 \u0628\u0645\u0627 \u0644\u0627 \u064A\u0642\u0644 \u0639\u0646"],
+    "cert.set.points": ["points", "\u0646\u0642\u0627\u0637"],
+    "cert.set.percentNote": ["Percentages are of each mark's maximum.", "\u0627\u0644\u0646\u0633\u0628 \u0627\u0644\u0645\u0626\u0648\u064A\u0629 \u0645\u0646 \u0627\u0644\u062F\u0631\u062C\u0629 \u0627\u0644\u0642\u0635\u0648\u0649 \u0644\u0643\u0644 \u0639\u0646\u0635\u0631."],
+    "cert.datesTitle": ["Dates for attendance and strikes", "\u062A\u0648\u0627\u0631\u064A\u062E \u0627\u0644\u062D\u0636\u0648\u0631 \u0648\u0627\u0644\u0645\u062E\u0627\u0644\u0641\u0627\u062A"],
+    "cert.thisTerm": ["This term", "\u0647\u0630\u0627 \u0627\u0644\u0641\u0635\u0644"],
+    "cert.suggest.behaviour": ["Use", "\u0627\u062E\u062A\u0631"],
+    "cert.suggest.homework": ["Use", "\u0627\u062E\u062A\u0631"],
+    "cert.award.behaviour": ["Good behaviour", "\u0633\u0644\u0648\u0643 \u0645\u062A\u0645\u064A\u0651\u0632"],
+    "cert.award.homework": ["Homework champion", "\u0627\u0644\u062A\u0632\u0627\u0645 \u0628\u0627\u0644\u0648\u0627\u062C\u0628\u0627\u062A"],
+    "cert.reason.top": ["High achievement", "\u0627\u0644\u062A\u0641\u0648\u0642 \u0627\u0644\u062F\u0631\u0627\u0633\u064A"],
+    "cert.reason.behaviour": ["Good behaviour", "\u0627\u0644\u0633\u0644\u0648\u0643 \u0627\u0644\u0645\u062A\u0645\u064A\u0651\u0632"],
+    "cert.reason.participation": ["Active participation", "\u0627\u0644\u0645\u0634\u0627\u0631\u0643\u0629 \u0627\u0644\u0641\u0627\u0639\u0644\u0629"],
+    "cert.reason.homework": ["Homework always done", "\u0625\u0646\u062C\u0627\u0632 \u0627\u0644\u0648\u0627\u062C\u0628\u0627\u062A \u062F\u0627\u0626\u0645\u064B\u0627"],
+    "cert.reason.attendance": ["Excellent attendance", "\u0627\u0644\u0645\u0648\u0627\u0638\u0628\u0629 \u0639\u0644\u0649 \u0627\u0644\u062D\u0636\u0648\u0631"],
+    "cert.reason.improvement": ["Great improvement", "\u0627\u0644\u062A\u062D\u0633\u0651\u0646 \u0627\u0644\u0645\u0644\u062D\u0648\u0638"],
+    "cert.reason.top.en": ["For outstanding achievement and excellent results in mathematics.", "For outstanding achievement and excellent results in mathematics."],
+    "cert.reason.top.ar": ["\u062A\u0642\u062F\u064A\u0631\u064B\u0627 \u0644\u0644\u062A\u0641\u0648\u0642 \u0648\u0627\u0644\u062A\u0645\u064A\u0651\u0632 \u0641\u064A \u0627\u0644\u0631\u064A\u0627\u0636\u064A\u0627\u062A.", "\u062A\u0642\u062F\u064A\u0631\u064B\u0627 \u0644\u0644\u062A\u0641\u0648\u0642 \u0648\u0627\u0644\u062A\u0645\u064A\u0651\u0632 \u0641\u064A \u0627\u0644\u0631\u064A\u0627\u0636\u064A\u0627\u062A."],
+    "cert.reason.behaviour.en": ["For excellent behaviour and being a positive example in class.", "For excellent behaviour and being a positive example in class."],
+    "cert.reason.behaviour.ar": ["\u062A\u0642\u062F\u064A\u0631\u064B\u0627 \u0644\u0644\u0633\u0644\u0648\u0643 \u0627\u0644\u0645\u062A\u0645\u064A\u0651\u0632 \u0648\u0627\u0644\u0642\u062F\u0648\u0629 \u0627\u0644\u062D\u0633\u0646\u0629 \u0641\u064A \u0627\u0644\u0635\u0641.", "\u062A\u0642\u062F\u064A\u0631\u064B\u0627 \u0644\u0644\u0633\u0644\u0648\u0643 \u0627\u0644\u0645\u062A\u0645\u064A\u0651\u0632 \u0648\u0627\u0644\u0642\u062F\u0648\u0629 \u0627\u0644\u062D\u0633\u0646\u0629 \u0641\u064A \u0627\u0644\u0635\u0641."],
+    "cert.reason.participation.en": ["For active and thoughtful participation in class.", "For active and thoughtful participation in class."],
+    "cert.reason.participation.ar": ["\u062A\u0642\u062F\u064A\u0631\u064B\u0627 \u0644\u0644\u0645\u0634\u0627\u0631\u0643\u0629 \u0627\u0644\u0641\u0627\u0639\u0644\u0629 \u0648\u0627\u0644\u0645\u062A\u0645\u064A\u0651\u0632\u0629 \u0641\u064A \u0627\u0644\u0635\u0641.", "\u062A\u0642\u062F\u064A\u0631\u064B\u0627 \u0644\u0644\u0645\u0634\u0627\u0631\u0643\u0629 \u0627\u0644\u0641\u0627\u0639\u0644\u0629 \u0648\u0627\u0644\u0645\u062A\u0645\u064A\u0651\u0632\u0629 \u0641\u064A \u0627\u0644\u0635\u0641."],
+    "cert.reason.homework.en": ["For completing every homework with care and on time.", "For completing every homework with care and on time."],
+    "cert.reason.homework.ar": ["\u062A\u0642\u062F\u064A\u0631\u064B\u0627 \u0644\u0644\u0627\u0644\u062A\u0632\u0627\u0645 \u0628\u0623\u062F\u0627\u0621 \u0627\u0644\u0648\u0627\u062C\u0628\u0627\u062A \u0627\u0644\u0645\u0646\u0632\u0644\u064A\u0629 \u0643\u0627\u0645\u0644\u0629 \u0648\u0641\u064A \u0648\u0642\u062A\u0647\u0627.", "\u062A\u0642\u062F\u064A\u0631\u064B\u0627 \u0644\u0644\u0627\u0644\u062A\u0632\u0627\u0645 \u0628\u0623\u062F\u0627\u0621 \u0627\u0644\u0648\u0627\u062C\u0628\u0627\u062A \u0627\u0644\u0645\u0646\u0632\u0644\u064A\u0629 \u0643\u0627\u0645\u0644\u0629 \u0648\u0641\u064A \u0648\u0642\u062A\u0647\u0627."],
+    "cert.reason.attendance.en": ["For excellent attendance and punctuality.", "For excellent attendance and punctuality."],
+    "cert.reason.attendance.ar": ["\u062A\u0642\u062F\u064A\u0631\u064B\u0627 \u0644\u0644\u0645\u0648\u0627\u0638\u0628\u0629 \u0639\u0644\u0649 \u0627\u0644\u062D\u0636\u0648\u0631 \u0648\u0627\u0644\u0627\u0646\u0636\u0628\u0627\u0637 \u0641\u064A \u0627\u0644\u0645\u0648\u0627\u0639\u064A\u062F.", "\u062A\u0642\u062F\u064A\u0631\u064B\u0627 \u0644\u0644\u0645\u0648\u0627\u0638\u0628\u0629 \u0639\u0644\u0649 \u0627\u0644\u062D\u0636\u0648\u0631 \u0648\u0627\u0644\u0627\u0646\u0636\u0628\u0627\u0637 \u0641\u064A \u0627\u0644\u0645\u0648\u0627\u0639\u064A\u062F."],
+    "cert.reason.improvement.en": ["For remarkable improvement this term.", "For remarkable improvement this term."],
+    "cert.reason.improvement.ar": ["\u062A\u0642\u062F\u064A\u0631\u064B\u0627 \u0644\u0644\u062A\u062D\u0633\u0651\u0646 \u0627\u0644\u0645\u0644\u062D\u0648\u0638 \u0641\u064A \u0647\u0630\u0627 \u0627\u0644\u0641\u0635\u0644.", "\u062A\u0642\u062F\u064A\u0631\u064B\u0627 \u0644\u0644\u062A\u062D\u0633\u0651\u0646 \u0627\u0644\u0645\u0644\u062D\u0648\u0638 \u0641\u064A \u0647\u0630\u0627 \u0627\u0644\u0641\u0635\u0644."],
+    "cert.criteriaName": ["Suggestion settings", "\u0625\u0639\u062F\u0627\u062F\u0627\u062A \u0627\u0644\u0627\u0642\u062A\u0631\u0627\u062D\u0627\u062A"]
   };
   var uxEn = Object.fromEntries(Object.entries(pairs).map(([key4, value]) => ["ux." + key4, value[0]]));
   var uxAr = Object.fromEntries(Object.entries(pairs).map(([key4, value]) => ["ux." + key4, value[1]]));
@@ -45728,6 +46014,17 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     return /* @__PURE__ */ cpJsx("div", { className: "cp-fr-overlay" }, /* @__PURE__ */ cpJsx("div", { className: "cp-fr-card", role: "dialog", "aria-modal": "true", "aria-labelledby": "cp-fr-title" }, /* @__PURE__ */ cpJsx("div", { className: "cp-fr-kicker" }, uxText("firstRun.kicker")), /* @__PURE__ */ cpJsx("h2", { id: "cp-fr-title" }, uxText("firstRun.title")), /* @__PURE__ */ cpJsx(Choice, { kind: "create", primary: true, props: actionProps("gb.chrome.1019", onCreate) }), /* @__PURE__ */ cpJsx(Choice, { kind: "open", props: actionProps("gb.chrome.1323", onLink) }), /* @__PURE__ */ cpJsx(Choice, { kind: "demo", props: actionProps("ux.demo.start", () => window.dispatchEvent(new Event("cp:start-demo")), "first-run") }), /* @__PURE__ */ cpJsx("p", { className: "cp-fr-stays" }, icon("lock", 14), uxText("firstRun.stays"))));
   }
 
+  // src/core/side-toggle.jsx
+  function SideToggle({ collapsed, onToggle, place }) {
+    const label = t(collapsed ? "improve.showSidebar" : "improve.hideSidebar");
+    return /* @__PURE__ */ cpJsx("button", { type: "button", className: "cp-side-toggle cp-side-toggle-" + place, ...actionProps("improve.toggleNavigation", onToggle, place), "aria-expanded": !collapsed, "aria-controls": "cp-sidebar", "aria-label": label, title: label + " (Ctrl+B)" }, /* @__PURE__ */ cpJsx("svg", { width: "18", height: "18", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "1.8", strokeLinecap: "round", strokeLinejoin: "round", "aria-hidden": "true" }, /* @__PURE__ */ cpJsx("rect", { x: "3", y: "4.5", width: "18", height: "15", rx: "2.5" }), /* @__PURE__ */ cpJsx("path", { d: "M9 4.5v15" })));
+  }
+  function isSideToggleKey(e) {
+    if (!(e.ctrlKey || e.metaKey) || e.shiftKey || e.altKey || e.key?.toLowerCase() !== "b") return false;
+    const el = e.target;
+    return !(el && (el.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(el.tagName)));
+  }
+
   // src/core/workspace.jsx
   var WorkspaceContext = React.createContext(null);
   function SidebarPortal({ target, children }) {
@@ -45751,13 +46048,28 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     const [appearance, setAppearance] = useState(() => ({ ...getAppearance(), ...Object.fromEntries(Object.entries(getProfile().ui).filter(([key4]) => ["theme", "density", "textSize", "accent", "look", "fontEn", "fontAr"].includes(key4))) }));
     const callbacks = useMemo(() => Object.fromEntries(["today", "hubs", "teaching", "gradebook", "year", "planning", "reporting", "tools", "manage", "footer", "preferences", "toolbarContext", "toolbarTools"].map((key4) => [key4, (node) => setSlots((old) => old[key4] === node ? old : { ...old, [key4]: node })])), []);
     useLayoutEffect(() => applyAppearance(appearance), [appearance]);
+    useEffect(() => {
+      const key4 = (e) => {
+        if (isSideToggleKey(e)) {
+          e.preventDefault();
+          setCollapsed((c) => !c);
+        }
+      };
+      window.addEventListener("keydown", key4);
+      return () => window.removeEventListener("keydown", key4);
+    }, []);
+    const sideToggle = (next) => {
+      const keyboard = !!document.activeElement?.matches?.(":focus-visible");
+      setCollapsed(next);
+      if (keyboard) requestAnimationFrame(() => document.querySelector(".cp-side-toggle")?.focus());
+    };
     useEffect(() => subscribeProfile((profile3) => setAppearance((old) => ({ ...old, ...Object.fromEntries(Object.entries(profile3.ui).filter(([key4]) => ["theme", "density", "textSize", "accent", "look", "fontEn", "fontAr"].includes(key4))) }))), []);
     const setAppearanceKey = useCallback((key4, value2) => {
       setAppearance((old) => ({ ...old, [key4]: value2 }));
       updateProfile((p) => ({ ...p, ui: { ...p.ui, [key4]: value2 } }));
     }, []);
     const value = useMemo(() => ({ slots, slotRefs: callbacks, setDirection, collapsed, setCollapsed, teaching, setTeaching, appearance, setAppearanceKey }), [slots, callbacks, collapsed, teaching, appearance, setAppearanceKey]);
-    return /* @__PURE__ */ cpJsx(WorkspaceContext.Provider, { value }, /* @__PURE__ */ cpJsx("div", { className: "cp-workspace", dir: direction, "data-collapsed": collapsed, "data-teaching": teaching }, /* @__PURE__ */ cpJsx(SkipLink, null), /* @__PURE__ */ cpJsx("aside", { className: "cp-sidebar", "aria-label": t("improve.navigation") }, /* @__PURE__ */ cpJsx("div", { className: "cp-sidebar-brand" }, /* @__PURE__ */ cpJsx("span", { "aria-hidden": "true", "data-mark": "star" }), /* @__PURE__ */ cpJsx("strong", null, t("improve.appName"))), /* @__PURE__ */ cpJsx("nav", { className: "cp-hubs" }, /* @__PURE__ */ cpJsx("div", { ref: callbacks.today, className: "cp-hub-slot" }), /* @__PURE__ */ cpJsx("div", { ref: callbacks.hubs, className: "cp-hub-slot" })), /* @__PURE__ */ cpJsx("div", { className: "cp-appearance-controls cp-sidebar-footer" }, /* @__PURE__ */ cpJsx("div", { ref: callbacks.footer, className: "cp-sidebar-footer-slot" }))), /* @__PURE__ */ cpJsx("div", { className: "cp-main", id: "cp-content", tabIndex: -1 }, children), /* @__PURE__ */ cpJsx(DialogHost, null), /* @__PURE__ */ cpJsx(ToastHost, null)));
+    return /* @__PURE__ */ cpJsx(WorkspaceContext.Provider, { value }, /* @__PURE__ */ cpJsx("div", { className: "cp-workspace", dir: direction, "data-collapsed": collapsed, "data-teaching": teaching }, /* @__PURE__ */ cpJsx(SkipLink, null), /* @__PURE__ */ cpJsx("aside", { className: "cp-sidebar", id: "cp-sidebar", "aria-label": t("improve.navigation") }, /* @__PURE__ */ cpJsx("div", { className: "cp-sidebar-brand" }, /* @__PURE__ */ cpJsx("span", { "aria-hidden": "true", "data-mark": "star" }), /* @__PURE__ */ cpJsx("strong", null, t("improve.appName")), !collapsed && /* @__PURE__ */ cpJsx(SideToggle, { collapsed: false, onToggle: () => sideToggle(true), place: "sidebar" })), /* @__PURE__ */ cpJsx("nav", { className: "cp-hubs" }, /* @__PURE__ */ cpJsx("div", { ref: callbacks.today, className: "cp-hub-slot" }), /* @__PURE__ */ cpJsx("div", { ref: callbacks.hubs, className: "cp-hub-slot" })), /* @__PURE__ */ cpJsx("div", { className: "cp-appearance-controls cp-sidebar-footer" }, /* @__PURE__ */ cpJsx("div", { ref: callbacks.footer, className: "cp-sidebar-footer-slot" }))), /* @__PURE__ */ cpJsx("div", { className: "cp-main", id: "cp-content", tabIndex: -1 }, collapsed && /* @__PURE__ */ cpJsx(SideToggle, { collapsed: true, onToggle: () => sideToggle(false), place: "toolbar" }), children), /* @__PURE__ */ cpJsx(DialogHost, null), /* @__PURE__ */ cpJsx(ToastHost, null)));
   }
 
   // src/core/save-time.js
@@ -47437,20 +47749,20 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
               var col = findCol(d.sections, cid);
               var kind = col ? col.kind : en_default["gb.d15690f08a575024"];
               var mx = col ? col.maxMark != null ? col.maxMark : 10 : 10;
-              var num4 = Math.max(0, Math.min(mx, +v || 0));
+              var num5 = Math.max(0, Math.min(mx, +v || 0));
               if (kind === en_default["gb.aafe609f4f899a24"]) {
                 var bm = getBhvMax(d.sections);
-                s = { ...s, behaviour: Math.min(bm, num4) };
+                s = { ...s, behaviour: Math.min(bm, num5) };
               } else if (kind === en_default["gb.3ea38fc3209511ad"]) {
                 var pm = getPartMax(d.sections);
-                s = { ...s, participation: Math.min(pm, num4) };
+                s = { ...s, participation: Math.min(pm, num5) };
               } else if (kind === en_default["gb.b01e26d3f5a5130b"]) {
-                s = { ...s, tallies: { ...s.tallies || {}, [cid]: [{ date: today, delta: num4, comment: en_default["gb.a2c183d5a12aea35"] }] } };
+                s = { ...s, tallies: { ...s.tallies || {}, [cid]: [{ date: today, delta: num5, comment: en_default["gb.a2c183d5a12aea35"] }] } };
               } else if (kind === en_default["gb.c3211e4cc78da431"]) {
-                s = { ...s, adjustments: { ...s.adjustments || {}, [cid]: Math.abs(num4 - mx) > 1e-9 ? [{ date: today, delta: +(num4 - mx).toFixed(4), comment: en_default["gb.a2c183d5a12aea35"] }] : [] } };
+                s = { ...s, adjustments: { ...s.adjustments || {}, [cid]: Math.abs(num5 - mx) > 1e-9 ? [{ date: today, delta: +(num5 - mx).toFixed(4), comment: en_default["gb.a2c183d5a12aea35"] }] : [] } };
               } else {
                 var hist = (s.markHistory || {})[cid] || [];
-                s = { ...s, marks: { ...s.marks || {}, [cid]: num4 }, markHistory: { ...s.markHistory || {}, [cid]: [...hist, { date: today, value: num4 }] } };
+                s = { ...s, marks: { ...s.marks || {}, [cid]: num5 }, markHistory: { ...s.markHistory || {}, [cid]: [...hist, { date: today, value: num5 }] } };
               }
             });
             sts[si2] = s;
@@ -47583,15 +47895,15 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       return function(val) {
         if (!ed) return;
         var { sid: sid2, cid, kind, mm } = ed;
-        var num4 = Math.max(0, Math.min(mm != null ? mm : 10, +val || 0));
+        var num5 = Math.max(0, Math.min(mm != null ? mm : 10, +val || 0));
         var today = todayISO();
         onUpdate2(function(d) {
           return { ...d, students: d.students.map(function(s) {
             if (s.id !== sid2) return s;
-            if (kind === en_default["gb.aafe609f4f899a24"]) return { ...s, behaviour: num4 };
-            if (kind === en_default["gb.3ea38fc3209511ad"]) return { ...s, participation: num4 };
+            if (kind === en_default["gb.aafe609f4f899a24"]) return { ...s, behaviour: num5 };
+            if (kind === en_default["gb.3ea38fc3209511ad"]) return { ...s, participation: num5 };
             var hist = (s.markHistory || {})[cid] || [];
-            return { ...s, marks: { ...s.marks || {}, [cid]: num4 }, markHistory: { ...s.markHistory || {}, [cid]: [...hist, { date: today, value: num4 }] } };
+            return { ...s, marks: { ...s.marks || {}, [cid]: num5 }, markHistory: { ...s.markHistory || {}, [cid]: [...hist, { date: today, value: num5 }] } };
           }) };
         });
         sEd(null);
@@ -48161,7 +48473,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       var mx = col.maxMark != null ? col.maxMark : 10;
       var raw = gMarks[g.id];
       if (raw == null || raw === en_default["gb.e3b0c44298fc1c14"]) return toast(en_default["gb.1f930458faca976a"]);
-      var num4 = Math.max(0, Math.min(mx, +raw || 0));
+      var num5 = Math.max(0, Math.min(mx, +raw || 0));
       if (!list2.length) return toast(g.name + en_default["gb.a0a158d95bcadfd7"]);
       var ids = {};
       list2.forEach(function(x2) {
@@ -48172,10 +48484,10 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
         return { ...d, students: d.students.map(function(x2) {
           if (!ids[x2.id]) return x2;
           var hist = (x2.markHistory || {})[col.id] || [];
-          return { ...x2, marks: { ...x2.marks || {}, [col.id]: num4 }, markHistory: { ...x2.markHistory || {}, [col.id]: [...hist, { date: today, value: num4, comment: en_default["gb.14beb7a531fb17cb"] + g.name }] } };
+          return { ...x2, marks: { ...x2.marks || {}, [col.id]: num5 }, markHistory: { ...x2.markHistory || {}, [col.id]: [...hist, { date: today, value: num5, comment: en_default["gb.14beb7a531fb17cb"] + g.name }] } };
         }) };
       });
-      toast(col.name + en_default["gb.7bacf9de79aa5b6a"] + num4 + en_default["gb.8a5edab282632443"] + mx + en_default["gb.592f6fd0750e870c"] + g.name + en_default["gb.4f5a2ada1166172a"] + list2.length + en_default["gb.6d4de3929c312d29"] + (list2.length === 1 ? en_default["gb.e3b0c44298fc1c14"] : en_default["gb.043a718774c572bd"]) + en_default["gb.ba5ec51d07a4ac0e"]);
+      toast(col.name + en_default["gb.7bacf9de79aa5b6a"] + num5 + en_default["gb.8a5edab282632443"] + mx + en_default["gb.592f6fd0750e870c"] + g.name + en_default["gb.4f5a2ada1166172a"] + list2.length + en_default["gb.6d4de3929c312d29"] + (list2.length === 1 ? en_default["gb.e3b0c44298fc1c14"] : en_default["gb.043a718774c572bd"]) + en_default["gb.ba5ec51d07a4ac0e"]);
     };
     var grouped = {};
     groups.forEach(function(g) {
@@ -48496,10 +48808,10 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     useGradebookEscape(true, function() {
       onClose();
     });
-    var num4 = doc.settings.activeTerm || (doc.archivedTerms || []).length + 1;
+    var num5 = doc.settings.activeTerm || (doc.archivedTerms || []).length + 1;
     var n = doc.students.length;
-    var [yearW, sYearW] = useState((doc.settings.yearWeights || {})[num4] || 0);
-    var [examW, sExamW] = useState((doc.settings.examWeights || {})[num4] || 0);
+    var [yearW, sYearW] = useState((doc.settings.yearWeights || {})[num5] || 0);
+    var [examW, sExamW] = useState((doc.settings.examWeights || {})[num5] || 0);
     var teacherW = Math.max(0, yearW - examW);
     var [examScores, sExamScores] = useState(function() {
       var init = {};
@@ -48556,7 +48868,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     var canConfirm = yearW > 0 && examW <= yearW && allFilled;
     return /* @__PURE__ */ cpJsx("div", { onClick: bindAction("gb.11-yov.2501", "singleton", "onClick", onClose), style: { position: en_default["gb.992a93455c71fedd"], inset: 0, background: en_default["gb.bd1505556c253e06"], display: en_default["gb.222f930b87524636"], alignItems: en_default["gb.f179a509d32bd92c"], justifyContent: en_default["gb.f179a509d32bd92c"], zIndex: 200 }, "data-cp-scope": _cpOrigin, "data-cp-action": "gb.11-yov.2501", "data-cp-context": "singleton" }, /* @__PURE__ */ cpJsx("div", { role: "dialog", "aria-modal": "true", "aria-labelledby": "cp-dialog-archivemodal", onClick: bindAction("gb.11-yov.2661", "singleton", "onClick", (function(e) {
       e.stopPropagation();
-    })), className: en_default["gb.e16a9d4d1cf9ead8"], style: { background: en_default["gb.e08de713877c54e8"], borderRadius: 14, padding: 24, width: 740, maxHeight: en_default["gb.fa63e23e638e10e7"], overflowY: en_default["gb.929260ad9b9ea9fe"], boxShadow: en_default["gb.c1b535a42b6940f2"], fontFamily: en_default["gb.035300f3afee55ae"] }, "data-cp-action": "gb.11-yov.2661", "data-cp-context": "singleton" }, /* @__PURE__ */ cpJsx("h3", { id: "cp-dialog-archivemodal", style: { margin: en_default["gb.04789cee1729cb8c"], fontSize: 16, fontWeight: 600 } }, en_default["gb.92ab721a36f330d4"], num4, en_default["gb.0e3736e28e7b0f9b"], num4 + 1), /* @__PURE__ */ cpJsx("p", { style: { fontSize: 12.5, color: en_default["gb.6b3d6d843dfe8b50"], lineHeight: 1.6, margin: en_default["gb.825bb706ba69b9e7"] } }, en_default["gb.318ed00d45f2a68c"], num4, en_default["gb.0341523d87554626"]), /* @__PURE__ */ cpJsx("div", { style: { background: en_default["gb.46461f86fde154d9"], border: en_default["gb.d6ab3ca69906c920"], borderRadius: 8, padding: en_default["gb.c4749cd1b6c8cfd3"], marginBottom: 14 } }, /* @__PURE__ */ cpJsx("div", { style: { display: en_default["gb.222f930b87524636"], alignItems: en_default["gb.f179a509d32bd92c"], gap: 14, flexWrap: en_default["gb.f0a289923ed634ac"] } }, /* @__PURE__ */ cpJsx("div", null, /* @__PURE__ */ cpJsx("div", { style: { fontSize: 10.5, color: en_default["gb.6b3d6d843dfe8b50"], marginBottom: 4, fontWeight: 600 } }, en_default["gb.50bdde147d19c492"]), /* @__PURE__ */ cpJsx("div", { style: { display: en_default["gb.222f930b87524636"], alignItems: en_default["gb.f179a509d32bd92c"], gap: 4 } }, /* @__PURE__ */ cpJsx("input", { type: en_default["gb.12886f9d00055adf"], min: 0, max: 100, step: 0.1, value: yearW, onChange: bindAction("gb.11-yov.3614", "singleton", "onChange", (function(e) {
+    })), className: en_default["gb.e16a9d4d1cf9ead8"], style: { background: en_default["gb.e08de713877c54e8"], borderRadius: 14, padding: 24, width: 740, maxHeight: en_default["gb.fa63e23e638e10e7"], overflowY: en_default["gb.929260ad9b9ea9fe"], boxShadow: en_default["gb.c1b535a42b6940f2"], fontFamily: en_default["gb.035300f3afee55ae"] }, "data-cp-action": "gb.11-yov.2661", "data-cp-context": "singleton" }, /* @__PURE__ */ cpJsx("h3", { id: "cp-dialog-archivemodal", style: { margin: en_default["gb.04789cee1729cb8c"], fontSize: 16, fontWeight: 600 } }, en_default["gb.92ab721a36f330d4"], num5, en_default["gb.0e3736e28e7b0f9b"], num5 + 1), /* @__PURE__ */ cpJsx("p", { style: { fontSize: 12.5, color: en_default["gb.6b3d6d843dfe8b50"], lineHeight: 1.6, margin: en_default["gb.825bb706ba69b9e7"] } }, en_default["gb.318ed00d45f2a68c"], num5, en_default["gb.0341523d87554626"]), /* @__PURE__ */ cpJsx("div", { style: { background: en_default["gb.46461f86fde154d9"], border: en_default["gb.d6ab3ca69906c920"], borderRadius: 8, padding: en_default["gb.c4749cd1b6c8cfd3"], marginBottom: 14 } }, /* @__PURE__ */ cpJsx("div", { style: { display: en_default["gb.222f930b87524636"], alignItems: en_default["gb.f179a509d32bd92c"], gap: 14, flexWrap: en_default["gb.f0a289923ed634ac"] } }, /* @__PURE__ */ cpJsx("div", null, /* @__PURE__ */ cpJsx("div", { style: { fontSize: 10.5, color: en_default["gb.6b3d6d843dfe8b50"], marginBottom: 4, fontWeight: 600 } }, en_default["gb.50bdde147d19c492"]), /* @__PURE__ */ cpJsx("div", { style: { display: en_default["gb.222f930b87524636"], alignItems: en_default["gb.f179a509d32bd92c"], gap: 4 } }, /* @__PURE__ */ cpJsx("input", { type: en_default["gb.12886f9d00055adf"], min: 0, max: 100, step: 0.1, value: yearW, onChange: bindAction("gb.11-yov.3614", "singleton", "onChange", (function(e) {
       sYearW(+e.target.value || 0);
     })), style: { ...I, width: 80 }, "data-cp-action": "gb.11-yov.3614", "data-cp-context": "singleton" }), /* @__PURE__ */ cpJsx("span", { style: { fontSize: 11, color: en_default["gb.b5e2bc59ff0f8c39"] } }, en_default["gb.bbf3f11cb5b43e70"]))), /* @__PURE__ */ cpJsx("div", null, /* @__PURE__ */ cpJsx("div", { style: { fontSize: 10.5, color: en_default["gb.6b3d6d843dfe8b50"], marginBottom: 4, fontWeight: 600 } }, en_default["gb.21982f427c4c7765"]), /* @__PURE__ */ cpJsx("div", { style: { display: en_default["gb.222f930b87524636"], alignItems: en_default["gb.f179a509d32bd92c"], gap: 4 } }, /* @__PURE__ */ cpJsx("input", { type: en_default["gb.12886f9d00055adf"], min: 0, max: 100, step: 0.1, value: examW, onChange: bindAction("gb.11-yov.3981", "singleton", "onChange", (function(e) {
       sExamW(+e.target.value || 0);
@@ -48572,7 +48884,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       return /* @__PURE__ */ cpJsx("tr", { key: s.id, style: { borderBottom: en_default["gb.70f02aab0627e198"], background: i % 2 === 0 ? en_default["gb.e08de713877c54e8"] : en_default["gb.920b4f4fa41d199e"] } }, /* @__PURE__ */ cpJsx("td", { style: { padding: en_default["gb.a5ae11e8c828bf31"], color: en_default["gb.b5e2bc59ff0f8c39"], fontSize: 11 } }, i + 1), /* @__PURE__ */ cpJsx("td", { style: { padding: en_default["gb.a5ae11e8c828bf31"], color: en_default["gb.655ca22f24e43fbb"] } }, cpRaw(s.name)), /* @__PURE__ */ cpJsx("td", { style: { padding: en_default["gb.a5ae11e8c828bf31"], textAlign: en_default["gb.f179a509d32bd92c"], fontWeight: 600, color: tBand ? bandColor(tBand) : en_default["gb.e2442d83b3a8e558"] } }, Math.round(tg)), /* @__PURE__ */ cpJsx("td", { style: { padding: en_default["gb.0efe45cf47937992"], textAlign: en_default["gb.f179a509d32bd92c"] } }, /* @__PURE__ */ cpJsx("input", { type: en_default["gb.12886f9d00055adf"], min: 0, max: 100, step: 0.5, value: examScores[s.id], onChange: bindAction("gb.11-yov.7381", JSON.stringify([s.id]), "onChange", (function(e) {
         setOne(s.id, e.target.value);
       })), placeholder: en_default["gb.bda050585a00f0f6"], style: { ...I, width: 64, textAlign: en_default["gb.27042f4e6eca7d0b"], height: 26 }, "data-cp-action": "gb.11-yov.7381", "data-cp-context": JSON.stringify([s.id]) })), /* @__PURE__ */ cpJsx("td", { style: { padding: en_default["gb.a5ae11e8c828bf31"], textAlign: en_default["gb.f179a509d32bd92c"], fontWeight: 600, fontSize: 13, color: b ? bandColor(b) : en_default["gb.e2442d83b3a8e558"], background: b ? bandBg(b) : en_default["gb.10e9f5602d2492b3"] } }, f == null ? en_default["gb.bda050585a00f0f6"] : f));
-    }))))), !allFilled && /* @__PURE__ */ cpJsx("div", { style: { fontSize: 11, color: en_default["gb.3871da342003cbdb"], marginTop: 8 } }, en_default["gb.96562cc825a55a29"])) : /* @__PURE__ */ cpJsx("div", { style: { background: en_default["gb.3727f8822afb596b"], border: en_default["gb.acda06ec8c04fab1"], borderRadius: 8, padding: en_default["gb.8193b8b5eb6be9a6"], fontSize: 12, color: en_default["gb.d12a7ec7cb742d67"], marginBottom: 14, lineHeight: 1.6 } }, en_default["gb.ee2743be5742770c"], num4, en_default["gb.4b0ddc252c22422e"], /* @__PURE__ */ cpJsx("strong", null, en_default["gb.73b9aef0abbb2773"]), en_default["gb.9d8f59f545246953"])), /* @__PURE__ */ cpJsx("div", { style: { display: en_default["gb.222f930b87524636"], gap: 8, marginBottom: 12, flexWrap: en_default["gb.f0a289923ed634ac"] } }, /* @__PURE__ */ cpJsx("div", { style: { flex: en_default["gb.912c40a14b302f00"], background: en_default["gb.1167f3d732a3168e"], border: en_default["gb.7483b37e65414b8a"], borderRadius: 8, padding: en_default["gb.7dfda810ecb9ba7d"], fontSize: 11.5, color: en_default["gb.7d4ff8ff7b944d00"] } }, /* @__PURE__ */ cpJsx("strong", null, en_default["gb.4139deb9c7c1a862"]), en_default["gb.6c179f21e6f62b62"], n, en_default["gb.9011c3ce820a3e3f"]), /* @__PURE__ */ cpJsx("div", { style: { flex: en_default["gb.912c40a14b302f00"], background: en_default["gb.bba72e078104546d"], border: en_default["gb.de0bb2996ca9300e"], borderRadius: 8, padding: en_default["gb.7dfda810ecb9ba7d"], fontSize: 11.5, color: en_default["gb.59dbd125956e62e1"] } }, /* @__PURE__ */ cpJsx("strong", null, en_default["gb.cc84a5d77cba32ec"]), en_default["gb.92183b2207a094bb"])), /* @__PURE__ */ cpJsx("div", { style: { fontSize: 11, color: en_default["gb.b5e2bc59ff0f8c39"], marginBottom: 14 } }, withGrades, en_default["gb.a4282e4b2298b90b"], n, en_default["gb.d857859545a0ea5d"]), /* @__PURE__ */ cpJsx("div", { style: { display: en_default["gb.222f930b87524636"], gap: 8, justifyContent: en_default["gb.20e03abaa7cf7d86"] } }, /* @__PURE__ */ cpJsx("button", { onClick: bindAction("gb.11-yov.9112", "singleton", "onClick", onClose), style: B({ background: en_default["gb.10e9f5602d2492b3"], border: en_default["gb.f35c8c1246856a29"], color: en_default["gb.833631aa325ef0ac"] }), "data-cp-action": "gb.11-yov.9112", "data-cp-context": "singleton" }, en_default["gb.19766ed6ccb2f4a3"]), /* @__PURE__ */ cpJsx("button", { onClick: bindAction("gb.11-yov.9241", "singleton", "onClick", (function() {
+    }))))), !allFilled && /* @__PURE__ */ cpJsx("div", { style: { fontSize: 11, color: en_default["gb.3871da342003cbdb"], marginTop: 8 } }, en_default["gb.96562cc825a55a29"])) : /* @__PURE__ */ cpJsx("div", { style: { background: en_default["gb.3727f8822afb596b"], border: en_default["gb.acda06ec8c04fab1"], borderRadius: 8, padding: en_default["gb.8193b8b5eb6be9a6"], fontSize: 12, color: en_default["gb.d12a7ec7cb742d67"], marginBottom: 14, lineHeight: 1.6 } }, en_default["gb.ee2743be5742770c"], num5, en_default["gb.4b0ddc252c22422e"], /* @__PURE__ */ cpJsx("strong", null, en_default["gb.73b9aef0abbb2773"]), en_default["gb.9d8f59f545246953"])), /* @__PURE__ */ cpJsx("div", { style: { display: en_default["gb.222f930b87524636"], gap: 8, marginBottom: 12, flexWrap: en_default["gb.f0a289923ed634ac"] } }, /* @__PURE__ */ cpJsx("div", { style: { flex: en_default["gb.912c40a14b302f00"], background: en_default["gb.1167f3d732a3168e"], border: en_default["gb.7483b37e65414b8a"], borderRadius: 8, padding: en_default["gb.7dfda810ecb9ba7d"], fontSize: 11.5, color: en_default["gb.7d4ff8ff7b944d00"] } }, /* @__PURE__ */ cpJsx("strong", null, en_default["gb.4139deb9c7c1a862"]), en_default["gb.6c179f21e6f62b62"], n, en_default["gb.9011c3ce820a3e3f"]), /* @__PURE__ */ cpJsx("div", { style: { flex: en_default["gb.912c40a14b302f00"], background: en_default["gb.bba72e078104546d"], border: en_default["gb.de0bb2996ca9300e"], borderRadius: 8, padding: en_default["gb.7dfda810ecb9ba7d"], fontSize: 11.5, color: en_default["gb.59dbd125956e62e1"] } }, /* @__PURE__ */ cpJsx("strong", null, en_default["gb.cc84a5d77cba32ec"]), en_default["gb.92183b2207a094bb"])), /* @__PURE__ */ cpJsx("div", { style: { fontSize: 11, color: en_default["gb.b5e2bc59ff0f8c39"], marginBottom: 14 } }, withGrades, en_default["gb.a4282e4b2298b90b"], n, en_default["gb.d857859545a0ea5d"]), /* @__PURE__ */ cpJsx("div", { style: { display: en_default["gb.222f930b87524636"], gap: 8, justifyContent: en_default["gb.20e03abaa7cf7d86"] } }, /* @__PURE__ */ cpJsx("button", { onClick: bindAction("gb.11-yov.9112", "singleton", "onClick", onClose), style: B({ background: en_default["gb.10e9f5602d2492b3"], border: en_default["gb.f35c8c1246856a29"], color: en_default["gb.833631aa325ef0ac"] }), "data-cp-action": "gb.11-yov.9112", "data-cp-context": "singleton" }, en_default["gb.19766ed6ccb2f4a3"]), /* @__PURE__ */ cpJsx("button", { onClick: bindAction("gb.11-yov.9241", "singleton", "onClick", (function() {
       onConfirm(yearW, examW, examScoresFinal());
     })), disabled: !canConfirm, style: B({ background: canConfirm ? en_default["gb.3c5c1ab6c5fd2f50"] : en_default["gb.b5e2bc59ff0f8c39"], color: en_default["gb.e08de713877c54e8"], fontWeight: 600, cursor: canConfirm ? en_default["gb.1cdf95bd12e993d5"] : en_default["gb.f59dedf54338de20"] }), "data-cp-action": "gb.11-yov.9241", "data-cp-context": "singleton" }, en_default["gb.ace952fea247fcd4"]))));
   }
@@ -48588,7 +48900,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       return Math.max(m, t2.number);
     }, 0) + 1;
     var [label, sLabel] = useState(en_default["gb.ee2743be5742770c"] + defaultNum);
-    var [num4, sNum] = useState(defaultNum);
+    var [num5, sNum] = useState(defaultNum);
     var [yearW, sYearW] = useState((doc.settings.yearWeights || {})[defaultNum] || 0);
     var [examW, sExamW] = useState(60);
     var [assessW, sAssessW] = useState(40);
@@ -48665,14 +48977,14 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     };
     var compWeights = c.mode === en_default["gb.7b12be43febc6e18"] ? { exam: +examW, assess: +assessW } : c.mode === en_default["gb.d34187c3b453cfa8"] ? { exam: 100 } : c.mode === en_default["gb.c1bb9c92c25f5460"] ? { assess: 100 } : null;
     var doBf = function() {
-      onBackfill(num4, label, +yearW || 0, compWeights, buildRows());
+      onBackfill(num5, label, +yearW || 0, compWeights, buildRows());
       onClose();
     };
     return /* @__PURE__ */ cpJsx("div", { onClick: bindAction("gb.11-yov.13119", "singleton", "onClick", onClose), style: { position: en_default["gb.992a93455c71fedd"], inset: 0, background: en_default["gb.437d005c3bf9217c"], display: en_default["gb.222f930b87524636"], alignItems: en_default["gb.f179a509d32bd92c"], justifyContent: en_default["gb.f179a509d32bd92c"], zIndex: 200 }, "data-cp-scope": _cpOrigin, "data-cp-action": "gb.11-yov.13119", "data-cp-context": "singleton" }, /* @__PURE__ */ cpJsx("div", { role: "dialog", "aria-modal": "true", "aria-labelledby": "cp-dialog-backfillmodal", onClick: bindAction("gb.11-yov.13278", "singleton", "onClick", (function(e) {
       e.stopPropagation();
     })), className: en_default["gb.e16a9d4d1cf9ead8"], style: { background: en_default["gb.e08de713877c54e8"], borderRadius: 14, padding: 24, width: 640, maxHeight: en_default["gb.58bca2bcdd9fa602"], overflowY: en_default["gb.929260ad9b9ea9fe"], boxShadow: en_default["gb.d656b903197ce646"], fontFamily: en_default["gb.035300f3afee55ae"] }, "data-cp-action": "gb.11-yov.13278", "data-cp-context": "singleton" }, /* @__PURE__ */ cpJsx("div", { style: { display: en_default["gb.222f930b87524636"], alignItems: en_default["gb.f179a509d32bd92c"], justifyContent: en_default["gb.8c72b36502d3b7a3"], marginBottom: 16 } }, /* @__PURE__ */ cpJsx("div", null, /* @__PURE__ */ cpJsx("h3", { id: "cp-dialog-backfillmodal", style: { margin: 0, fontSize: 15, fontWeight: 600 } }, en_default["gb.826a53e22810229f"]), /* @__PURE__ */ cpJsx("div", { style: { fontSize: 11, color: en_default["gb.b5e2bc59ff0f8c39"], marginTop: 2 } }, en_default["gb.62a090dfb1f64e89"])), /* @__PURE__ */ cpJsx("button", { onClick: bindAction("gb.11-yov.13863", "singleton", "onClick", onClose), style: { background: en_default["gb.10e9f5602d2492b3"], border: en_default["gb.140bedbf9c3f6d56"], fontSize: 20, cursor: en_default["gb.1cdf95bd12e993d5"], color: en_default["gb.6b3d6d843dfe8b50"] }, "data-cp-action": "gb.11-yov.13863", "data-cp-context": "singleton" }, en_default["gb.8db71ed28b0f2f14"])), /* @__PURE__ */ cpJsx("div", { style: { display: en_default["gb.222f930b87524636"], gap: 0, marginBottom: 20, fontSize: 11 } }, [en_default["gb.7307843871d0ba40"], en_default["gb.14c49696d2219b2e"], en_default["gb.74a4d317f722f0cd"]].map(function(s, i) {
       return /* @__PURE__ */ cpJsx("div", { key: i, style: { flex: 1, padding: en_default["gb.a5ae11e8c828bf31"], textAlign: en_default["gb.f179a509d32bd92c"], background: step === i + 1 ? en_default["gb.dbd729b0a3fbcb8b"] : step > i + 1 ? en_default["gb.64033be9a6abf5fe"] : en_default["gb.46461f86fde154d9"], color: step === i + 1 ? en_default["gb.e08de713877c54e8"] : step > i + 1 ? en_default["gb.e21c21ccc26757fa"] : en_default["gb.b5e2bc59ff0f8c39"], fontWeight: step === i + 1 ? 600 : 400, borderRight: i < 2 ? en_default["gb.d6ab3ca69906c920"] : en_default["gb.140bedbf9c3f6d56"] } }, s);
-    })), step === 1 && /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx("div", { style: { display: en_default["gb.222f930b87524636"], gap: 12, marginBottom: 14 } }, /* @__PURE__ */ cpJsx("div", null, /* @__PURE__ */ cpJsx("div", { style: { fontSize: 11, fontWeight: 600, color: en_default["gb.833631aa325ef0ac"], marginBottom: 4 } }, en_default["gb.996deec0acf8d1aa"]), /* @__PURE__ */ cpJsx("input", { type: en_default["gb.12886f9d00055adf"], min: 1, value: num4, onChange: bindAction("gb.11-yov.14596", "singleton", "onChange", (function(e) {
+    })), step === 1 && /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx("div", { style: { display: en_default["gb.222f930b87524636"], gap: 12, marginBottom: 14 } }, /* @__PURE__ */ cpJsx("div", null, /* @__PURE__ */ cpJsx("div", { style: { fontSize: 11, fontWeight: 600, color: en_default["gb.833631aa325ef0ac"], marginBottom: 4 } }, en_default["gb.996deec0acf8d1aa"]), /* @__PURE__ */ cpJsx("input", { type: en_default["gb.12886f9d00055adf"], min: 1, value: num5, onChange: bindAction("gb.11-yov.14596", "singleton", "onChange", (function(e) {
       var v = +e.target.value || 1;
       sNum(v);
       sLabel(en_default["gb.ee2743be5742770c"] + v);
@@ -48732,7 +49044,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     var terms = useMemo(function() {
       return allTermViews(doc, forceRaw);
     }, [doc, forceRaw]);
-    var num4 = doc.settings.activeTerm || (doc.archivedTerms || []).length + 1;
+    var num5 = doc.settings.activeTerm || (doc.archivedTerms || []).length + 1;
     var roster = useMemo(function() {
       var seen = {};
       var order = [];
@@ -48783,7 +49095,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     var fc = function(v) {
       return v == null || isNaN(v) ? en_default["gb.b5e2bc59ff0f8c39"] : pc(v);
     };
-    return /* @__PURE__ */ cpJsx("div", { style: { fontFamily: en_default["gb.035300f3afee55ae"], fontSize: 12, color: en_default["gb.655ca22f24e43fbb"] }, "data-cp-scope": _cpOrigin }, /* @__PURE__ */ cpJsx("div", { style: { padding: en_default["gb.1319878ebef56ba2"], background: en_default["gb.46461f86fde154d9"], borderBottom: en_default["gb.d6ab3ca69906c920"] } }, /* @__PURE__ */ cpJsx("div", { style: { display: en_default["gb.222f930b87524636"], alignItems: en_default["gb.f179a509d32bd92c"], gap: 12, flexWrap: en_default["gb.f0a289923ed634ac"] } }, /* @__PURE__ */ cpJsx("div", { style: { display: en_default["gb.222f930b87524636"], alignItems: en_default["gb.f179a509d32bd92c"], gap: 8 } }, /* @__PURE__ */ cpJsx("span", { style: { fontSize: 12, fontWeight: 600, color: en_default["gb.0e684e516035b04c"] } }, en_default["gb.663fcf00e2557b3c"], num4), /* @__PURE__ */ cpJsx("span", { style: { fontSize: 11, color: en_default["gb.b5e2bc59ff0f8c39"] } }, en_default["gb.6e01f78b9eb4142b"], (doc.archivedTerms || []).length, en_default["gb.00db8a6b3b4e8d41"])), (function() {
+    return /* @__PURE__ */ cpJsx("div", { style: { fontFamily: en_default["gb.035300f3afee55ae"], fontSize: 12, color: en_default["gb.655ca22f24e43fbb"] }, "data-cp-scope": _cpOrigin }, /* @__PURE__ */ cpJsx("div", { style: { padding: en_default["gb.1319878ebef56ba2"], background: en_default["gb.46461f86fde154d9"], borderBottom: en_default["gb.d6ab3ca69906c920"] } }, /* @__PURE__ */ cpJsx("div", { style: { display: en_default["gb.222f930b87524636"], alignItems: en_default["gb.f179a509d32bd92c"], gap: 12, flexWrap: en_default["gb.f0a289923ed634ac"] } }, /* @__PURE__ */ cpJsx("div", { style: { display: en_default["gb.222f930b87524636"], alignItems: en_default["gb.f179a509d32bd92c"], gap: 8 } }, /* @__PURE__ */ cpJsx("span", { style: { fontSize: 12, fontWeight: 600, color: en_default["gb.0e684e516035b04c"] } }, en_default["gb.663fcf00e2557b3c"], num5), /* @__PURE__ */ cpJsx("span", { style: { fontSize: 11, color: en_default["gb.b5e2bc59ff0f8c39"] } }, en_default["gb.6e01f78b9eb4142b"], (doc.archivedTerms || []).length, en_default["gb.00db8a6b3b4e8d41"])), (function() {
       var yw = doc.settings.yearWeights || {};
       var ew = doc.settings.examWeights || {};
       var keys = Object.keys(yw).map(Number).sort(function(a, b) {
@@ -48799,14 +49111,14 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       }), /* @__PURE__ */ cpJsx("span", { style: { fontSize: 10.5, color: Math.abs(sum - 100) < 0.01 ? en_default["gb.3c5c1ab6c5fd2f50"] : en_default["gb.d12a7ec7cb742d67"] } }, Math.abs(sum - 100) < 0.01 ? en_default["gb.eac3e7d61e12087e"] : en_default["gb.60941ca4538bf8b6"] + sum.toFixed(1)));
     })(), /* @__PURE__ */ cpJsx("button", { onClick: bindAction("gb.11-yov.24998", "singleton", "onClick", (function() {
       sEditW(!editW);
-    })), style: B({ background: editW ? en_default["gb.dbd729b0a3fbcb8b"] : en_default["gb.10e9f5602d2492b3"], color: editW ? en_default["gb.e08de713877c54e8"] : en_default["gb.833631aa325ef0ac"], border: en_default["gb.f35c8c1246856a29"], fontSize: 11 }), "data-cp-action": "gb.11-yov.24998", "data-cp-context": "singleton" }, editW ? en_default["gb.11a6767d5674c7e4"] : en_default["gb.03e6f589be0d36a8"]), /* @__PURE__ */ cpJsx("div", { style: { marginLeft: en_default["gb.929260ad9b9ea9fe"], display: en_default["gb.222f930b87524636"], gap: 8 } }, /* @__PURE__ */ cpJsx("button", { onClick: bindAction("gb.11-yov.25278", "singleton", "onClick", onBackfill), style: B({ background: en_default["gb.e08de713877c54e8"], border: en_default["gb.f35c8c1246856a29"], color: en_default["gb.833631aa325ef0ac"], fontSize: 11.5 }), "data-cp-action": "gb.11-yov.25278", "data-cp-context": "singleton" }, en_default["gb.1ebe2dea4db838c1"]), /* @__PURE__ */ cpJsx("button", { onClick: bindAction("gb.11-yov.25435", "singleton", "onClick", onArchive), style: B({ background: en_default["gb.3c5c1ab6c5fd2f50"], color: en_default["gb.e08de713877c54e8"], fontSize: 11.5, fontWeight: 600 }), "data-cp-action": "gb.11-yov.25435", "data-cp-context": "singleton" }, en_default["gb.92ab721a36f330d4"], num4, en_default["gb.14784a5483362a99"]))), editW && (function() {
+    })), style: B({ background: editW ? en_default["gb.dbd729b0a3fbcb8b"] : en_default["gb.10e9f5602d2492b3"], color: editW ? en_default["gb.e08de713877c54e8"] : en_default["gb.833631aa325ef0ac"], border: en_default["gb.f35c8c1246856a29"], fontSize: 11 }), "data-cp-action": "gb.11-yov.24998", "data-cp-context": "singleton" }, editW ? en_default["gb.11a6767d5674c7e4"] : en_default["gb.03e6f589be0d36a8"]), /* @__PURE__ */ cpJsx("div", { style: { marginLeft: en_default["gb.929260ad9b9ea9fe"], display: en_default["gb.222f930b87524636"], gap: 8 } }, /* @__PURE__ */ cpJsx("button", { onClick: bindAction("gb.11-yov.25278", "singleton", "onClick", onBackfill), style: B({ background: en_default["gb.e08de713877c54e8"], border: en_default["gb.f35c8c1246856a29"], color: en_default["gb.833631aa325ef0ac"], fontSize: 11.5 }), "data-cp-action": "gb.11-yov.25278", "data-cp-context": "singleton" }, en_default["gb.1ebe2dea4db838c1"]), /* @__PURE__ */ cpJsx("button", { onClick: bindAction("gb.11-yov.25435", "singleton", "onClick", onArchive), style: B({ background: en_default["gb.3c5c1ab6c5fd2f50"], color: en_default["gb.e08de713877c54e8"], fontSize: 11.5, fontWeight: 600 }), "data-cp-action": "gb.11-yov.25435", "data-cp-context": "singleton" }, en_default["gb.92ab721a36f330d4"], num5, en_default["gb.14784a5483362a99"]))), editW && (function() {
       var yw = doc.settings.yearWeights || {};
       var ew = doc.settings.examWeights || {};
       var allNums = {};
       (doc.archivedTerms || []).forEach(function(t2) {
         allNums[t2.number] = true;
       });
-      allNums[num4] = true;
+      allNums[num5] = true;
       Object.keys(yw).forEach(function(k) {
         allNums[+k] = true;
       });
@@ -48840,7 +49152,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       }, 0);
       return /* @__PURE__ */ cpJsx("div", { style: { marginTop: 10, padding: 12, background: en_default["gb.e08de713877c54e8"], border: en_default["gb.d6ab3ca69906c920"], borderRadius: 8 } }, /* @__PURE__ */ cpJsx("div", { style: { fontSize: 11, fontWeight: 600, color: en_default["gb.833631aa325ef0ac"], marginBottom: 2 } }, en_default["gb.8bf59ff4ee3e6bee"]), /* @__PURE__ */ cpJsx("div", { style: { fontSize: 10.5, color: en_default["gb.b5e2bc59ff0f8c39"], marginBottom: 10 } }, /* @__PURE__ */ cpJsx("strong", null, en_default["gb.faf4edce68a80f93"]), en_default["gb.632cb457e552d067"], /* @__PURE__ */ cpJsx("strong", null, en_default["gb.1b980dd2685e2641"]), en_default["gb.034f14f9bafce5d1"], /* @__PURE__ */ cpJsx("strong", null, en_default["gb.063233bb192ba0af"]), en_default["gb.3a80a96d31a4cf20"]), /* @__PURE__ */ cpJsx("div", { style: { display: en_default["gb.222f930b87524636"], flexDirection: en_default["gb.881d5fb60090f59a"], gap: 8 } }, nums.map(function(k) {
         var yv = +yw[k] || 0, ev = +ew[k] || 0, tv = Math.max(0, yv - ev);
-        return /* @__PURE__ */ cpJsx("div", { key: k, style: { display: en_default["gb.222f930b87524636"], alignItems: en_default["gb.f179a509d32bd92c"], gap: 10, padding: en_default["gb.5cae971ddb746d18"], borderRadius: 6, background: k === num4 ? en_default["gb.1167f3d732a3168e"] : en_default["gb.46461f86fde154d9"] } }, /* @__PURE__ */ cpJsx("span", { style: { flex: en_default["gb.638476056010ddea"], fontSize: 11, fontWeight: 600, color: en_default["gb.833631aa325ef0ac"] } }, en_default["gb.ee2743be5742770c"], k, k === num4 ? en_default["gb.c9c4770a7894f652"] : en_default["gb.e3b0c44298fc1c14"]), /* @__PURE__ */ cpJsx("span", { style: { fontSize: 10.5, color: en_default["gb.b5e2bc59ff0f8c39"] } }, en_default["gb.89f6832560dec0b7"]), /* @__PURE__ */ cpJsx("input", { type: en_default["gb.12886f9d00055adf"], min: 0, max: 100, step: 0.1, value: yw[k] || en_default["gb.e3b0c44298fc1c14"], onChange: bindAction("gb.11-yov.27630", JSON.stringify([k]), "onChange", (function(e) {
+        return /* @__PURE__ */ cpJsx("div", { key: k, style: { display: en_default["gb.222f930b87524636"], alignItems: en_default["gb.f179a509d32bd92c"], gap: 10, padding: en_default["gb.5cae971ddb746d18"], borderRadius: 6, background: k === num5 ? en_default["gb.1167f3d732a3168e"] : en_default["gb.46461f86fde154d9"] } }, /* @__PURE__ */ cpJsx("span", { style: { flex: en_default["gb.638476056010ddea"], fontSize: 11, fontWeight: 600, color: en_default["gb.833631aa325ef0ac"] } }, en_default["gb.ee2743be5742770c"], k, k === num5 ? en_default["gb.c9c4770a7894f652"] : en_default["gb.e3b0c44298fc1c14"]), /* @__PURE__ */ cpJsx("span", { style: { fontSize: 10.5, color: en_default["gb.b5e2bc59ff0f8c39"] } }, en_default["gb.89f6832560dec0b7"]), /* @__PURE__ */ cpJsx("input", { type: en_default["gb.12886f9d00055adf"], min: 0, max: 100, step: 0.1, value: yw[k] || en_default["gb.e3b0c44298fc1c14"], onChange: bindAction("gb.11-yov.27630", JSON.stringify([k]), "onChange", (function(e) {
           setYW(k, e.target.value);
         })), style: { ...I, width: 70 }, "data-cp-action": "gb.11-yov.27630", "data-cp-context": JSON.stringify([k]) }), /* @__PURE__ */ cpJsx("span", { style: { fontSize: 11, color: en_default["gb.b5e2bc59ff0f8c39"] } }, en_default["gb.bbf3f11cb5b43e70"]), /* @__PURE__ */ cpJsx("span", { style: { fontSize: 10.5, color: en_default["gb.b5e2bc59ff0f8c39"], marginLeft: 8 } }, en_default["gb.02044af3237c651d"]), /* @__PURE__ */ cpJsx("input", { type: en_default["gb.12886f9d00055adf"], min: 0, max: 100, step: 0.1, value: ew[k] || en_default["gb.e3b0c44298fc1c14"], onChange: bindAction("gb.11-yov.27907", JSON.stringify([k]), "onChange", (function(e) {
           setEW(k, e.target.value);
@@ -50054,10 +50366,10 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
         return /* @__PURE__ */ cpJsx("g", { key: en_default["gb.b5039c325d7107d6"] + i }, /* @__PURE__ */ cpJsx("circle", { cx: tx(i), cy: ty(p.cm), r: 3, fill: en_default["gb.b5e2bc59ff0f8c39"] }), /* @__PURE__ */ cpJsx("title", null, en_default["gb.db6407da5e1797d9"] + p.label + en_default["gb.365d7473fa6d0ec4"] + p.cm.toFixed(1) + en_default["gb.bbf3f11cb5b43e70"]));
       }), cpRaw(traj.map(function(p, i) {
         var diff = p.sp - p.cm;
-        var fill3 = p.dropped ? en_default["gb.e2442d83b3a8e558"] : pc(p.sp);
+        var fill4 = p.dropped ? en_default["gb.e2442d83b3a8e558"] : pc(p.sp);
         var stroke = p.boosted ? en_default["gb.4a08e4d0db13be9b"] : en_default["gb.e08de713877c54e8"];
         var sw = p.boosted ? 2 : 1.5;
-        return /* @__PURE__ */ cpJsx("g", { key: en_default["gb.be18b85f77fc024d"] + i }, /* @__PURE__ */ cpJsx("circle", { cx: tx(i), cy: ty(p.sp), r: p.boosted ? 6 : 5, fill: fill3, stroke, strokeWidth: sw, opacity: p.dropped ? 0.6 : 1 }), p.boosted && /* @__PURE__ */ cpJsx("text", { x: tx(i), y: ty(p.sp) - 9, textAnchor: en_default["gb.a4888af4e46c129c"], fontSize: 10, fill: en_default["gb.4a08e4d0db13be9b"], fontWeight: 700 }, en_default["gb.26c57b0854989f62"]), p.dropped && /* @__PURE__ */ cpJsx("text", { x: tx(i), y: ty(p.sp) + 3, textAnchor: en_default["gb.a4888af4e46c129c"], fontSize: 9, fill: en_default["gb.6b3d6d843dfe8b50"], fontWeight: 700 }, en_default["gb.5b7583afd8543263"]), /* @__PURE__ */ cpJsx("title", null, cpRaw(stu.name + en_default["gb.c4ebc7684be8c9fd"] + p.label + en_default["gb.365d7473fa6d0ec4"] + p.sp.toFixed(1) + en_default["gb.bbf3f11cb5b43e70"] + (p.boosted ? en_default["gb.a53888c546b77c39"] + p.rawSp.toFixed(1) + en_default["gb.61c5caba2f046b2c"] : en_default["gb.e3b0c44298fc1c14"]) + (p.dropped ? en_default["gb.5742c73540a1fa94"] : en_default["gb.e3b0c44298fc1c14"]) + en_default["gb.4f5a2ada1166172a"] + (diff >= 0 ? en_default["gb.a318c24216defe20"] : en_default["gb.e3b0c44298fc1c14"]) + diff.toFixed(1) + en_default["gb.045dcaffeefc3953"])));
+        return /* @__PURE__ */ cpJsx("g", { key: en_default["gb.be18b85f77fc024d"] + i }, /* @__PURE__ */ cpJsx("circle", { cx: tx(i), cy: ty(p.sp), r: p.boosted ? 6 : 5, fill: fill4, stroke, strokeWidth: sw, opacity: p.dropped ? 0.6 : 1 }), p.boosted && /* @__PURE__ */ cpJsx("text", { x: tx(i), y: ty(p.sp) - 9, textAnchor: en_default["gb.a4888af4e46c129c"], fontSize: 10, fill: en_default["gb.4a08e4d0db13be9b"], fontWeight: 700 }, en_default["gb.26c57b0854989f62"]), p.dropped && /* @__PURE__ */ cpJsx("text", { x: tx(i), y: ty(p.sp) + 3, textAnchor: en_default["gb.a4888af4e46c129c"], fontSize: 9, fill: en_default["gb.6b3d6d843dfe8b50"], fontWeight: 700 }, en_default["gb.5b7583afd8543263"]), /* @__PURE__ */ cpJsx("title", null, cpRaw(stu.name + en_default["gb.c4ebc7684be8c9fd"] + p.label + en_default["gb.365d7473fa6d0ec4"] + p.sp.toFixed(1) + en_default["gb.bbf3f11cb5b43e70"] + (p.boosted ? en_default["gb.a53888c546b77c39"] + p.rawSp.toFixed(1) + en_default["gb.61c5caba2f046b2c"] : en_default["gb.e3b0c44298fc1c14"]) + (p.dropped ? en_default["gb.5742c73540a1fa94"] : en_default["gb.e3b0c44298fc1c14"]) + en_default["gb.4f5a2ada1166172a"] + (diff >= 0 ? en_default["gb.a318c24216defe20"] : en_default["gb.e3b0c44298fc1c14"]) + diff.toFixed(1) + en_default["gb.045dcaffeefc3953"])));
       })), traj.map(function(p, i) {
         var lbl = p.label.length > 10 ? p.label.slice(0, 9) + en_default["gb.b4935894c8ce16bd"] : p.label;
         return /* @__PURE__ */ cpJsx("text", { key: en_default["gb.2d711642b726b044"] + i, x: tx(i), y: TH - 12, textAnchor: en_default["gb.a4888af4e46c129c"], fontSize: 9, fill: en_default["gb.833631aa325ef0ac"] }, lbl);
@@ -54381,11 +54693,11 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
 
   // src/core/improvements-actions.js
   var improvementActions = [["profileRetry", "improve.retry"]].map(([id, labelKey]) => ({ id: "improve." + id, labelKey, icon: null, shortcut: null, availability: "rendered-and-not-disabled", canonicalHome: "ProfileSaveNotice:context", events: ["onClick"], source: "src/core", meaning: "improve." + id }));
-  improvementActions.push(...[["toggleNavigation", "improve.navigation", "onClick"], ["theme", "improve.theme", "onChange"], ["density", "improve.spacing", "onChange"]].map(([id, labelKey, event]) => ({ id: "improve." + id, labelKey, icon: null, shortcut: null, availability: "rendered-and-not-disabled", canonicalHome: id === "toggleNavigation" ? "ShellBar:menu" : "Workspace:sidebar", events: [event], source: "src/core", meaning: "improve." + id })));
+  improvementActions.push(...[["toggleNavigation", "improve.navigation", "onClick"], ["theme", "improve.theme", "onChange"], ["density", "improve.spacing", "onChange"]].map(([id, labelKey, event]) => ({ id: "improve." + id, labelKey, icon: null, shortcut: id === "toggleNavigation" ? "Ctrl+B" : null, availability: "rendered-and-not-disabled", canonicalHome: "Workspace:sidebar", events: [event], source: "src/core", meaning: "improve." + id })));
   improvementActions.push(...[["nav.home", "improve.today", "onClick"], ["weekPreset", "improve.weekPreset", "onClick"], ["applyWeek", "improve.applyWeek", "onClick"], ["cancelWeek", "improve.cancelWeek", "onClick"], ["help", "improve.help", "onClick"], ["openAttendance", "improve.openAttendance", "onClick"], ["openMarks", "improve.openMarks", "onClick"], ["openPlan", "improve.openPlan", "onClick"], ["override", "improve.override", "onClick"], ["saveOverride", "improve.saveOverride", "onClick"], ["resetOverride", "improve.resetOverride", "onClick"], ["cancelOverride", "improve.cancelOverride", "onClick"], ["copyRegister", "improve.copyRegister", "onClick"], ["clearLesson", "improve.clearLesson", "onClick"], ["lessonDate", "improve.lessonDate", "onChange"], ["mapClass", "tt.class", "onChange"], ["confirmWeek", "improve.replaceWeek", "onChange"], ["overrideStart", "tt.start", "onChange"], ["overrideEnd", "tt.end", "onChange"], ["overrideClass", "tt.class", "onChange"], ["overrideCancelled", "improve.cancelLesson", "onChange"], ["overrideAck", "improve.overrideAck", "onChange"], ["followUpDate", "improve.followUpDate", "onChange"], ["completed", "improve.completed", "onChange"]].map(([id, labelKey, event]) => ({ id: "improve." + id, labelKey, icon: null, shortcut: null, availability: "rendered-and-not-disabled", canonicalHome: id === "nav.home" ? "Workspace:sidebar" : "TeachingWorkspace:context", events: [event], source: "src/modules", meaning: "improve." + id })));
   improvementActions.push(...[["confirmRestore", "onClick"], ["cancelRestore", "onClick"], ["reportParent", "onClick"], ["reportClass", "onClick"], ["reportAttendance", "onClick"], ["searchSettings", "onChange"], ["pendingFollowups", "onChange"]].map(([id, event]) => ({ id: "improve." + id, labelKey: "improve." + id, icon: null, shortcut: null, availability: "rendered-and-not-disabled", canonicalHome: "Workspace:context", events: [event], source: "src/core", meaning: "improve." + id })));
   improvementActions.push({ id: "improve.selectRegister", labelKey: "improve.register", icon: null, shortcut: null, availability: "rendered-and-not-disabled", canonicalHome: "Attendance:context", events: ["onChange"], source: "src/modules/attendance", meaning: "improve.selectRegister" });
-  improvementActions.push(...[["preferences", "Workspace:sidebar"], ["closePreferences", "Workspace:sidebar"], ["viewMenu", "ShellBar:toolbar"], ["settingsJump", "Workspace:context"], ...["gradebook", "teaching", "planning", "reporting", "tools", "manage"].map((hub) => ["hub." + hub, "Workspace:sidebar"])].map(([id, canonicalHome]) => ({ id: "improve." + id, labelKey: "improve." + id, icon: null, shortcut: null, availability: "rendered-and-not-disabled", canonicalHome, events: ["onClick"], source: "src/core", meaning: "improve." + id })));
+  improvementActions.push(...[["preferences", "Workspace:sidebar"], ["closePreferences", "Workspace:sidebar"], ["settingsJump", "Workspace:context"], ...["gradebook", "teaching", "planning", "reporting", "tools", "manage"].map((hub) => ["hub." + hub, "Workspace:sidebar"])].map(([id, canonicalHome]) => ({ id: "improve." + id, labelKey: "improve." + id, icon: null, shortcut: null, availability: "rendered-and-not-disabled", canonicalHome, events: ["onClick"], source: "src/core", meaning: "improve." + id })));
   for (const action2 of improvementActions) {
     const home = navigationHome(action2.id);
     if (home) action2.canonicalHome = home;
@@ -55738,10 +56050,10 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     if (!student) return null;
     const { terms, selected } = termContext(doc, options), record = termRecord(selected, student), attendance2 = reportAttendance(doc, id, options), sessions = reportSessions(doc, options).filter(([key4]) => options.attendanceMode !== "single" || key4 === options.sessionKey), events = [];
     if (options.eventComments) {
-      const inRange = (date5) => date5 >= options.from && date5 <= options.through;
-      for (const item of options.include.behaviour ? student.deductions || [] : []) if (inRange(item.date) && item.comment) events.push({ date: item.date, kind: "report.deductions", text: item.comment, value: item.delta });
-      for (const list2 of options.include.grades ? Object.values(student.markHistory || {}) : []) for (const item of list2) if (inRange(item.date) && item.comment) events.push({ date: item.date, kind: "report.markChanges", text: item.comment, value: item.value });
-      for (const item of doc.cp?.observations?.byStudent?.[id] || []) if (inRange(item.date) && item.note) events.push({ date: item.date, kind: "report.observations", text: item.note });
+      const inRange2 = (date5) => date5 >= options.from && date5 <= options.through;
+      for (const item of options.include.behaviour ? student.deductions || [] : []) if (inRange2(item.date) && item.comment) events.push({ date: item.date, kind: "report.deductions", text: item.comment, value: item.delta });
+      for (const list2 of options.include.grades ? Object.values(student.markHistory || {}) : []) for (const item of list2) if (inRange2(item.date) && item.comment) events.push({ date: item.date, kind: "report.markChanges", text: item.comment, value: item.value });
+      for (const item of doc.cp?.observations?.byStudent?.[id] || []) if (inRange2(item.date) && item.note) events.push({ date: item.date, kind: "report.observations", text: item.note });
       for (const [key4, s] of options.include.attendance ? sessions : []) if (s.records[id]?.note) events.push({ date: s.date, period: s.period, kind: "report.attendanceEvent", text: s.records[id].note, key: key4 });
     }
     return { student, record, attendance: attendance2, focus: focusTags(student).filter((id2) => (options.focusTagIds || []).includes(id2)), assessments: assessmentDetail(doc, student, selected, record, options), sections: reportSections(doc, selected, student, record), terms: terms.map((term) => ({ label: term.label, value: termRecord(term, student)?.final ?? null })), ledger: sessions.map(([key4, s]) => ({ key: key4, date: s.date, period: s.period, time: s.lesson ? s.lesson.start + "\u2013" + s.lesson.end : "", status: s.records[id]?.status || "unmarked", note: options.eventComments ? s.records[id]?.note || "" : "" })), events: events.sort((a, b) => b.date.localeCompare(a.date)), prose: options.approvedText ? approvedProse(doc, id, options.language) : null, source: selected?.label || "", deductions: (student.deductions || []).filter((x2) => x2.date >= options.from && x2.date <= options.through).length };
@@ -56724,8 +57036,8 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     return /* @__PURE__ */ cpJsx("svg", { className: "cp-noise-halo", viewBox: "0 0 240 240", role: "img", "aria-label": uxText("noise.halo") }, [3, 2, 1].map((k) => /* @__PURE__ */ cpJsx("circle", { key: k, cx: "120", cy: "120", r: 46 + l * 70 * k / 3, fill: colour, opacity: active3 ? 0.1 + 0.06 * (3 - k) : 0.06 })), /* @__PURE__ */ cpJsx("circle", { cx: "120", cy: "120", r: 44 + l * 22, fill: colour, opacity: active3 ? 1 : 0.35 }), /* @__PURE__ */ cpJsx("text", { x: "120", y: "128", textAnchor: "middle", fontSize: "30", fontWeight: "700", fill: "#fff" }, label));
   }
   function NoiseJar({ points, goal, colour }) {
-    const share = points.length ? points.filter((p) => p.state === "quiet").length / points.length : 0, h = 150, fill3 = h * share, goalY = 40 + h - h * goal / 100;
-    return /* @__PURE__ */ cpJsx("svg", { className: "cp-noise-jar", viewBox: "0 0 240 230", role: "img", "aria-label": uxText("noise.jar") }, /* @__PURE__ */ cpJsx("rect", { x: "78", y: "22", width: "84", height: "12", rx: "3", fill: "#cbd5e1" }), /* @__PURE__ */ cpJsx("path", { d: "M70 40h100v130a20 20 0 0 1-20 20H90a20 20 0 0 1-20-20z", fill: "none", stroke: colour, strokeWidth: "5" }), /* @__PURE__ */ cpJsx("clipPath", { id: "cp-jar-clip" }, /* @__PURE__ */ cpJsx("path", { d: "M73 43h94v127a17 17 0 0 1-17 17H90a17 17 0 0 1-17-17z" })), /* @__PURE__ */ cpJsx("rect", { x: "70", y: 40 + h - fill3, width: "100", height: fill3 + 10, fill: "#16a34a", opacity: "0.85", clipPath: "url(#cp-jar-clip)" }), /* @__PURE__ */ cpJsx("line", { x1: "60", x2: "180", y1: goalY, y2: goalY, stroke: "#b45309", strokeDasharray: "5 5" }), /* @__PURE__ */ cpJsx("text", { x: "120", y: "222", textAnchor: "middle", fontSize: "18", fontWeight: "700", fill: "currentColor" }, Math.round(share * 100) + "% \xB7 " + uxText("noise.goalShort") + " " + goal + "%"));
+    const share = points.length ? points.filter((p) => p.state === "quiet").length / points.length : 0, h = 150, fill4 = h * share, goalY = 40 + h - h * goal / 100;
+    return /* @__PURE__ */ cpJsx("svg", { className: "cp-noise-jar", viewBox: "0 0 240 230", role: "img", "aria-label": uxText("noise.jar") }, /* @__PURE__ */ cpJsx("rect", { x: "78", y: "22", width: "84", height: "12", rx: "3", fill: "#cbd5e1" }), /* @__PURE__ */ cpJsx("path", { d: "M70 40h100v130a20 20 0 0 1-20 20H90a20 20 0 0 1-20-20z", fill: "none", stroke: colour, strokeWidth: "5" }), /* @__PURE__ */ cpJsx("clipPath", { id: "cp-jar-clip" }, /* @__PURE__ */ cpJsx("path", { d: "M73 43h94v127a17 17 0 0 1-17 17H90a17 17 0 0 1-17-17z" })), /* @__PURE__ */ cpJsx("rect", { x: "70", y: 40 + h - fill4, width: "100", height: fill4 + 10, fill: "#16a34a", opacity: "0.85", clipPath: "url(#cp-jar-clip)" }), /* @__PURE__ */ cpJsx("line", { x1: "60", x2: "180", y1: goalY, y2: goalY, stroke: "#b45309", strokeDasharray: "5 5" }), /* @__PURE__ */ cpJsx("text", { x: "120", y: "222", textAnchor: "middle", fontSize: "18", fontWeight: "700", fill: "currentColor" }, Math.round(share * 100) + "% \xB7 " + uxText("noise.goalShort") + " " + goal + "%"));
   }
   var micIcon = (on) => /* @__PURE__ */ cpJsx("svg", { "aria-hidden": "true", width: "18", height: "18", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "1.8", strokeLinecap: "round", strokeLinejoin: "round" }, /* @__PURE__ */ cpJsx("path", { d: "M12 3a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V6a3 3 0 0 0-3-3zM5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21" }), !on && /* @__PURE__ */ cpJsx("path", { d: "M4 4l16 16" }));
   function NoiseView({ doc, onUpdate, compact = false, mini = false }) {
@@ -56991,12 +57303,79 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     );
   }
 
+  // src/modules/certificates/criteria.js
+  var SUGGESTION_KINDS = ["top", "behaviour", "participation", "homework", "attendance", "improved"];
+  var DEFAULT_CRITERIA = Object.freeze({
+    top: { on: true, min: 90 },
+    behaviour: { on: true, min: 100, strikes: 0 },
+    participation: { on: true, min: 80 },
+    homework: { on: true },
+    attendance: { on: true, min: 95 },
+    improved: { on: true, min: 5 }
+  });
+  var num3 = (v, lo, hi, fallback) => {
+    const n = +v;
+    return Number.isFinite(n) ? Math.min(hi, Math.max(lo, n)) : fallback;
+  };
+  function criteriaOf(saved) {
+    const out = {};
+    for (const kind of SUGGESTION_KINDS) {
+      const d = DEFAULT_CRITERIA[kind], s = saved && typeof saved[kind] === "object" ? saved[kind] : {};
+      out[kind] = { on: typeof s.on === "boolean" ? s.on : d.on };
+      if ("min" in d) out[kind].min = num3(s.min, 0, 100, d.min);
+      if ("strikes" in d) out[kind].strikes = Math.round(num3(s.strikes, 0, 99, d.strikes));
+    }
+    return out;
+  }
+  var inRange = (date5, from, through) => !date5 || (!from || date5 >= from) && (!through || date5 <= through);
+  function attendancePercent(doc, id, from, through) {
+    if (!from || !through || from > through) return null;
+    let counted = 0, present = 0;
+    for (let d = parseISO(from), end = parseISO(through); d <= end; d = addDays(d, 1)) {
+      const date5 = isoOf(d);
+      if (!isSchoolDay(date5, doc.settings)) continue;
+      const status = recordsForDate(doc, date5)[id]?.status;
+      if (status === "present" || status === "late") {
+        counted++;
+        present++;
+      } else if (status === "absent") counted++;
+    }
+    return counted ? 100 * present / counted : null;
+  }
+  function suggestByCriteria(doc, { from, through }, saved) {
+    const rules2 = criteriaOf(saved), views = allTermViews(doc), current4 = views.find((v) => v.live), previous = views.filter((v) => v.archived && current4 && v.number < current4.number).at(-1);
+    const partCol = findParticipationCol(doc.sections), partMax = partCol ? partCol.maxMark != null ? partCol.maxMark : 10 : getPartMax(doc.sections), bhvMax = getBhvMax(doc.sections) || 10;
+    const out = Object.fromEntries(SUGGESTION_KINDS.map((kind) => [kind, []]));
+    for (const student of doc.students) {
+      const rec = current4?.students.find((r) => r.id === student.id), prev = previous?.students.find((r) => r.id === student.id), id = student.id;
+      if (rules2.top.on && rec?.final != null && rec.final >= rules2.top.min) out.top.push(id);
+      if (rules2.improved.on && rec?.final != null && prev?.final != null && rec.final - prev.final >= rules2.improved.min) out.improved.push(id);
+      const behaviour = student.behaviour != null ? student.behaviour : 10, strikes = (student.strikes || []).filter((s) => inRange(s?.date, from, through)).length;
+      if (rules2.behaviour.on && 100 * behaviour / bhvMax >= rules2.behaviour.min && strikes <= rules2.behaviour.strikes) out.behaviour.push(id);
+      const participation = partCol ? getCV(student, partCol, doc.homework) : student.participation || 0;
+      if (rules2.participation.on && partMax > 0 && participation > 0 && 100 * participation / partMax >= rules2.participation.min) out.participation.push(id);
+      if (rules2.homework.on && !(Array.isArray(student.focus?.tags) && student.focus.tags.includes("homework"))) out.homework.push(id);
+      const rate = rules2.attendance.on ? attendancePercent(doc, id, from, through) : null;
+      if (rate != null && rate >= rules2.attendance.min) out.attendance.push(id);
+    }
+    return out;
+  }
+
   // src/modules/certificates/suggestions.jsx
-  function CertificateSuggestions({ students, suggestions: suggestions2, onChoose }) {
+  var ORIGINAL = ["top", "improved", "participation", "attendance"];
+  var fill2 = (text8, values) => Object.entries(values).reduce((out, [k, v]) => out.split("{" + k + "}").join(v), text8);
+  function ruleText(kind, rule, range) {
+    if (!rule.on) return uxText("cert.rule.off");
+    if (kind === "behaviour") return fill2(uxText(rule.strikes > 0 ? "cert.rule.behaviourStrikes" : "cert.rule.behaviour"), { n: rule.min, s: rule.strikes });
+    if (kind === "homework") return uxText("cert.rule.homework");
+    return fill2(uxText("cert.rule." + kind), { n: rule.min, range });
+  }
+  function CertificateSuggestions({ students, suggestions: suggestions2, rules: rules2, range, onChoose, onSettings }) {
     const [expanded, setExpanded] = useState({});
-    return /* @__PURE__ */ cpJsx("ul", null, ["top", "improved", "participation", "attendance"].map((kind) => {
-      const ids = suggestions2[kind], open = !!expanded[kind], membersId = "cp-cert-members-" + kind;
-      return /* @__PURE__ */ cpJsx("li", { key: kind, "data-kind": kind }, /* @__PURE__ */ cpJsx("div", null, /* @__PURE__ */ cpJsx(
+    return /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx("div", { className: "cp-cert-suggest-head" }, /* @__PURE__ */ cpJsx("h2", null, t("cert.suggestions")), /* @__PURE__ */ cpJsx("button", { type: "button", className: "cp-cert-criteria-open", "aria-label": uxText("cert.criteriaName"), title: uxText("cert.criteriaName"), ...actionProps("ux.cert.criteria", onSettings) }, /* @__PURE__ */ cpJsx("svg", { "aria-hidden": "true", width: "15", height: "15", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "1.8", strokeLinecap: "round", strokeLinejoin: "round" }, /* @__PURE__ */ cpJsx("circle", { cx: "12", cy: "12", r: "3" }), /* @__PURE__ */ cpJsx("path", { d: "M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M5.3 18.7l2.1-2.1M16.6 7.4l2.1-2.1" })), /* @__PURE__ */ cpJsx("span", null, uxText("cert.criteria")))), /* @__PURE__ */ cpJsx("ul", null, SUGGESTION_KINDS.map((kind) => {
+      const ids = suggestions2[kind] || [], open = !!expanded[kind], membersId = "cp-cert-members-" + kind, rule = rules2[kind], label = uxText("cert.why." + kind);
+      const use = { disabled: !ids.length, "aria-label": uxText("cert.use") + " \xB7 " + label, title: uxText("cert.use") + " \xB7 " + label, onClick: () => onChoose(ids, kind) };
+      return /* @__PURE__ */ cpJsx("li", { key: kind, "data-kind": kind, "data-off": rule.on ? void 0 : "true" }, /* @__PURE__ */ cpJsx("div", null, /* @__PURE__ */ cpJsx(
         "button",
         {
           type: "button",
@@ -57005,20 +57384,23 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
           "aria-expanded": open,
           "aria-controls": membersId
         },
-        /* @__PURE__ */ cpJsx("b", null, uxText("cert.why." + kind)),
+        /* @__PURE__ */ cpJsx("b", null, label),
         /* @__PURE__ */ cpJsx("span", { className: "cp-cert-count" }, cpRaw(String(ids.length)))
-      ), /* @__PURE__ */ cpJsx("div", { id: membersId, className: "cp-cert-members", hidden: !open }, ids.length ? ids.map((id) => /* @__PURE__ */ cpJsx("bdi", { key: id, dir: "auto" }, cpRaw(students.find((student) => student.id === id)?.name || ""))) : uxText("cert.noneFound"))), /* @__PURE__ */ cpJsx(
-        M5Button,
-        {
-          id: "cert." + kind,
-          disabled: !ids.length,
-          "aria-label": t("cert." + kind),
-          title: t("cert." + kind),
-          onClick: () => onChoose(ids, kind)
-        },
-        uxText("cert.use")
-      ));
-    }));
+      ), /* @__PURE__ */ cpJsx("small", { className: "cp-cert-rule" }, cpRaw(ruleText(kind, rule, range))), /* @__PURE__ */ cpJsx("div", { id: membersId, className: "cp-cert-members", hidden: !open }, ids.length ? ids.map((id) => /* @__PURE__ */ cpJsx("bdi", { key: id, dir: "auto" }, cpRaw(students.find((student) => student.id === id)?.name || ""))) : uxText("cert.noneFound"))), ORIGINAL.includes(kind) ? /* @__PURE__ */ cpJsx(M5Button, { id: "cert." + kind, ...use }, uxText("cert.use")) : /* @__PURE__ */ cpJsx(UxButton, { id: "cert.suggest." + kind, ...use }, uxText("cert.use")));
+    })));
+  }
+  var ROWS = [["top", "min", "%"], ["behaviour", "min", "%"], ["behaviour", "strikes", ""], ["participation", "min", "%"], ["homework", null, ""], ["attendance", "min", "%"], ["improved", "min", "points"]];
+  function CriteriaDialog({ rules: rules2, onRule, from, through, onFrom, onThrough, onThisTerm, onClose }) {
+    return /* @__PURE__ */ cpJsx(PanelDialog, { title: uxText("cert.criteria.title"), closeAction: "ux.cert.criteriaDone", onClose }, /* @__PURE__ */ cpJsx("p", { className: "cp-cert-criteria-lead" }, uxText("cert.criteria.lead")), /* @__PURE__ */ cpJsx("div", { className: "cp-cert-criteria", role: "group", "aria-label": uxText("cert.criteria.title") }, ROWS.map(([kind, field2, unit]) => {
+      const rule = rules2[kind], first = field2 !== "strikes", label = field2 === "strikes" ? uxText("cert.set.strikes") : uxText("cert.set." + kind);
+      return /* @__PURE__ */ cpJsx("div", { key: kind + field2, className: "cp-cert-criteria-row", "data-off": rule.on ? void 0 : "true" }, first ? /* @__PURE__ */ cpJsx("input", { type: "checkbox", checked: rule.on, "aria-label": uxText("cert.criteriaOn") + " \xB7 " + uxText("cert.why." + kind), ...controlProps("ux.cert.criteriaOn", (e) => onRule(kind, { on: e.target.checked }), kind) }) : /* @__PURE__ */ cpJsx("span", null), /* @__PURE__ */ cpJsx("b", null, first ? uxText("cert.why." + kind) : ""), /* @__PURE__ */ cpJsx("span", null, label), field2 ? /* @__PURE__ */ cpJsx("input", { type: "number", min: "0", max: field2 === "strikes" ? 99 : 100, step: "1", disabled: !rule.on, value: rule[field2], "aria-label": label, ...controlProps(field2 === "strikes" ? "ux.cert.criteriaStrikes" : "ux.cert.criteriaMin", (e) => {
+        const v = e.target.value;
+        if (v !== "") {
+          const n = Math.max(0, Math.min(field2 === "strikes" ? 99 : 100, +v));
+          if (Number.isFinite(n)) onRule(kind, { [field2]: field2 === "strikes" ? Math.round(n) : n });
+        }
+      }, kind) }) : /* @__PURE__ */ cpJsx("span", null), /* @__PURE__ */ cpJsx("span", null, unit === "points" ? uxText("cert.set.points") : cpRaw(unit)));
+    })), /* @__PURE__ */ cpJsx("p", { className: "cp-cert-criteria-note" }, uxText("cert.set.percentNote")), /* @__PURE__ */ cpJsx("fieldset", { className: "cp-cert-criteria-dates" }, /* @__PURE__ */ cpJsx("legend", null, uxText("cert.datesTitle")), /* @__PURE__ */ cpJsx(M5Field, { id: "cert.from", type: "date", value: from, max: through, onChange: (e) => onFrom(e.target.value) }), /* @__PURE__ */ cpJsx(M5Field, { id: "cert.through", type: "date", value: through, min: from, onChange: (e) => onThrough(e.target.value) }), /* @__PURE__ */ cpJsx(UxButton, { id: "cert.thisTerm", disabled: !onThisTerm, onClick: onThisTerm || void 0 })));
   }
 
   // src/modules/certificates/enhancements.js
@@ -57047,11 +57429,11 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
 
   // src/modules/certificates/designs.jsx
   var STUDIO = ["bold", "bright", "math", "star"];
-  var AWARDS = ["achievement", "improvement", "participation", "attendance", "top"];
+  var AWARDS = ["achievement", "improvement", "participation", "attendance", "top", "behaviour", "homework"];
   var awardOf = (record) => AWARDS.includes(record.award) ? record.award : "achievement";
   var text3 = (key4, language2) => (language2 === "ar" ? uxAr : uxEn)["ux." + key4] || key4;
   var serif = "'Thmanyah Serif Display','Times New Roman',serif", display = "'Lexend','Thmanyah Sans','IBM Plex Sans Arabic',Arial,Tahoma,sans-serif", sans = "'IBM Plex Sans','IBM Plex Sans Arabic',Arial,Tahoma,sans-serif";
-  var NAVY = "#14213d", ACCENT = { achievement: "#f5a524", improvement: "#22c55e", participation: "#38bdf8", attendance: "#a78bfa", top: "#f5a524" };
+  var NAVY = "#14213d", ACCENT = { achievement: "#f5a524", improvement: "#22c55e", participation: "#38bdf8", attendance: "#a78bfa", top: "#f5a524", behaviour: "#f472b6", homework: "#2dd4bf" };
   var starPath = (cx, cy, r, ri = r * 0.42, n = 5) => {
     let p = "";
     for (let i = 0; i < n * 2; i++) {
@@ -57064,6 +57446,8 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     if (award === "improvement") return /* @__PURE__ */ cpJsx("g", { fill: color }, /* @__PURE__ */ cpJsx("rect", { x: "-34", y: "10", width: "14", height: "22", rx: "3" }), /* @__PURE__ */ cpJsx("rect", { x: "-12", y: "-4", width: "14", height: "36", rx: "3" }), /* @__PURE__ */ cpJsx("rect", { x: "10", y: "-20", width: "14", height: "52", rx: "3" }), /* @__PURE__ */ cpJsx("path", { d: "M-36 -8L-6 -30L4 -22L30 -42", fill: "none", stroke: color, strokeWidth: "6", strokeLinecap: "round", strokeLinejoin: "round" }), /* @__PURE__ */ cpJsx("path", { d: "M18 -44L34 -46L32 -30Z" }));
     if (award === "participation") return /* @__PURE__ */ cpJsx("g", { fill: color }, /* @__PURE__ */ cpJsx("path", { d: "M-36 -30h50a10 10 0 0 1 10 10v24a10 10 0 0 1 -10 10h-26l-16 14v-14h-8a10 10 0 0 1 -10 -10v-24a10 10 0 0 1 10 -10z" }), /* @__PURE__ */ cpJsx("path", { d: "M34 -4a8 8 0 0 1 6 8v18a8 8 0 0 1 -8 8h-2v10l-12 -10h-14a8 8 0 0 1 -6 -3h22a14 14 0 0 0 14 -14z", opacity: ".65" }));
     if (award === "attendance") return /* @__PURE__ */ cpJsx("g", { fill: "none", stroke: color, strokeLinecap: "round", strokeLinejoin: "round" }, /* @__PURE__ */ cpJsx("rect", { x: "-34", y: "-28", width: "68", height: "62", rx: "9", strokeWidth: "7" }), /* @__PURE__ */ cpJsx("path", { d: "M-34 -10h68M-18 -38v14M18 -38v14", strokeWidth: "7" }), /* @__PURE__ */ cpJsx("path", { d: "M-16 10l10 10l22 -22", strokeWidth: "8" }));
+    if (award === "behaviour") return /* @__PURE__ */ cpJsx("g", { fill: "none", stroke: color, strokeLinecap: "round", strokeLinejoin: "round" }, /* @__PURE__ */ cpJsx("path", { d: "M0 -40L32 -28V-2C32 18 17 31 0 38C-17 31 -32 18 -32 -2V-28Z", strokeWidth: "7" }), /* @__PURE__ */ cpJsx("path", { d: "M-14 0L-4 10L15 -11", strokeWidth: "8" }));
+    if (award === "homework") return /* @__PURE__ */ cpJsx("g", { fill: "none", stroke: color, strokeLinecap: "round", strokeLinejoin: "round" }, /* @__PURE__ */ cpJsx("path", { d: "M0 -22C-10 -32 -26 -32 -38 -26V28C-26 22 -10 22 0 32C10 22 26 22 38 28V-26C26 -32 10 -32 0 -22Z", strokeWidth: "7" }), /* @__PURE__ */ cpJsx("path", { d: "M0 -22V32", strokeWidth: "6" }), /* @__PURE__ */ cpJsx("path", { d: "M10 -2L16 4L28 -10", strokeWidth: "6" }));
     if (award === "top") return /* @__PURE__ */ cpJsx("g", { fill: color }, /* @__PURE__ */ cpJsx("path", { d: "M-22 -38h44v22a22 22 0 0 1 -44 0z" }), /* @__PURE__ */ cpJsx("path", { d: "M-22 -30h-14v8a16 16 0 0 0 16 16M22 -30h14v8a16 16 0 0 1 -16 16", fill: "none", stroke: color, strokeWidth: "6" }), /* @__PURE__ */ cpJsx("rect", { x: "-5", y: "4", width: "10", height: "16" }), /* @__PURE__ */ cpJsx("rect", { x: "-22", y: "20", width: "44", height: "12", rx: "4" }));
     return /* @__PURE__ */ cpJsx("path", { d: starPath(0, 0, 40), fill: color });
   }
@@ -57276,11 +57660,13 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
 
   // src/modules/certificates/index.jsx
   var PAPER = { landscape: [1123, 794], portrait: [794, 1123] };
-  var CARDS = [["classic", "royal"], ["bold", "bold"], ["bright", "bright"], ["math", "math"], ["star", "star"]], SUGGESTED_AWARD = { top: "top", improved: "improvement", participation: "participation", attendance: "attendance" }, AWARD_INK = { achievement: "#b8862a", improvement: "#16a34a", participation: "#0284c7", attendance: "#7c3aed", top: "#b8862a" };
+  var CARDS = [["classic", "royal"], ["bold", "bold"], ["bright", "bright"], ["math", "math"], ["star", "star"]], AWARD_INK = { achievement: "#b8862a", improvement: "#16a34a", participation: "#0284c7", attendance: "#7c3aed", top: "#b8862a", behaviour: "#be185d", homework: "#0f766e" };
+  var REASONS = ["top", "behaviour", "participation", "homework", "attendance", "improvement", "effort", "progress", "teamwork"], REASON_AWARD = { top: "top", behaviour: "behaviour", participation: "participation", homework: "homework", attendance: "attendance", improvement: "improvement", effort: "achievement", progress: "improvement", teamwork: "participation" }, SUGGESTED_REASON = { top: "top", behaviour: "behaviour", participation: "participation", homework: "homework", attendance: "attendance", improved: "improvement" };
+  var reasonPatch = (reason) => ({ achievement: uxText("cert.reason." + reason + ".en"), achievementAr: uxText("cert.reason." + reason + ".ar"), award: REASON_AWARD[reason] });
   function CertificatesView({ doc, onUpdate }) {
     useLanguage();
     const profile3 = useProfile(), [draft, setDraft, acceptDraft, draftDirty] = useRetainedState("certificate:" + doc.cp.classId, () => certificateDefaults(profile3, getLanguage()), { warn: true }), [error2, setError] = useState(""), [preview, setPreview] = useState(null);
-    const [proposal] = useState(takeCertificateProposal), suggestions2 = useMemo(() => certificateSuggestions(doc, draft), [doc, draft.from, draft.through]), ready = certificateReady(draft), knownIds = new Set(doc.students.map((s) => s.id));
+    const [proposal] = useState(takeCertificateProposal), rules2 = criteriaOf(profile3.certificateCriteria), [criteriaOpen, setCriteriaOpen] = useState(false), suggestions2 = useMemo(() => suggestByCriteria(doc, draft, profile3.certificateCriteria), [doc, draft.from, draft.through, profile3.certificateCriteria]), ready = certificateReady(draft), knownIds = new Set(doc.students.map((s) => s.id));
     const change2 = (key4, value) => setDraft((p) => ({ ...p, [key4]: value }));
     useEffect(() => {
       if (proposal && suggestions2[proposal]?.length) change2("studentIds", suggestions2[proposal]);
@@ -57351,21 +57737,22 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       /* @__PURE__ */ cpJsx(UxField, { key: "subject", id: lang === "ar" ? "cert.subjectAr" : "cert.subject", value: draft[lang === "ar" ? "subjectAr" : "subject"] || "", dir: lang === "ar" ? "rtl" : "ltr", onChange: (e) => change2(lang === "ar" ? "subjectAr" : "subject", e.target.value) })
     ];
     const otherDone = !!draft[other === "ar" ? "titleAr" : "title"].trim() && !!draft[other === "ar" ? "achievementAr" : "achievement"].trim();
-    return /* @__PURE__ */ cpJsx(ModuleFrame, { titleKey: "shell.certificates", icon: "certificates", lead: "ux.lead.certificates", info: /* @__PURE__ */ cpJsx(React.Fragment, null, t("cert.previewHint"), " ", t("improve.certificateContentHint"), " ", uxText("documents.wordHint")), actions: /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx(M5Button, { id: "cert.preview", disabled: !ready, onClick: () => setPreview({ ...draft }) }, uxText("cert.previewPrint")), /* @__PURE__ */ cpJsx(M5Button, { id: "cert.issue", className: "cp-ux-primary", disabled: !ready, onClick: issue }, recipients.length ? cpRaw(countText(recipients.length, "cert.issueTo")) : uxText("cert.issueNone"))), more: /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx(UxButton, { id: "cert.image", disabled: !ready || !recipients.length || imaging, onClick: downloadImage }, recipients.length > 1 ? countText(recipients.length, "cert.images") : uxText("cert.image")), /* @__PURE__ */ cpJsx(UxButton, { id: "cert.word", disabled: !ready, onClick: () => downloadWord({ title: draft.language === "ar" ? draft.titleAr : draft.title, language: draft.language === "ar" ? "ar" : "en", blocks: certificateWordBlocks(doc, draft), landscape: draft.orientation === "landscape" }, "ClassPilot_certificates.docx") }), /* @__PURE__ */ cpJsx(UxButton, { id: "cert.defaults", disabled: !isProfileLinked(), onClick: () => updateProfile((p) => saveCertificateDefaults(p, draft)) })) }, !doc.students.length ? /* @__PURE__ */ cpJsx(EmptyRoster, null) : /* @__PURE__ */ cpJsx("div", { className: "cp-cert-studio", dir: doc.settings.dir || "ltr" }, /* @__PURE__ */ cpJsx("nav", { className: "cp-cert-recipients", "aria-label": t("cert.recipient") }, /* @__PURE__ */ cpJsx("section", { className: "cp-cert-suggest" }, /* @__PURE__ */ cpJsx("h2", null, t("cert.suggestions")), proposal && suggestions2[proposal]?.length > 0 && /* @__PURE__ */ cpJsx("p", { className: "cp-proposal", role: "status" }, uxText("cert.proposed").replace("{n}", String(suggestions2[proposal].length))), /* @__PURE__ */ cpJsx(CertificateSuggestions, { students: doc.students, suggestions: suggestions2, onChoose: (ids, kind) => {
-      setDraft((p) => ({ ...p, studentIds: ids, award: SUGGESTED_AWARD[kind] || p.award }));
+    return /* @__PURE__ */ cpJsx(ModuleFrame, { titleKey: "shell.certificates", icon: "certificates", lead: "ux.lead.certificates", info: /* @__PURE__ */ cpJsx(React.Fragment, null, t("cert.previewHint"), " ", t("improve.certificateContentHint"), " ", uxText("documents.wordHint")), actions: /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx(M5Button, { id: "cert.preview", disabled: !ready, onClick: () => setPreview({ ...draft }) }, uxText("cert.previewPrint")), /* @__PURE__ */ cpJsx(M5Button, { id: "cert.issue", className: "cp-ux-primary", disabled: !ready, onClick: issue }, recipients.length ? cpRaw(countText(recipients.length, "cert.issueTo")) : uxText("cert.issueNone"))), more: /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx(UxButton, { id: "cert.image", disabled: !ready || !recipients.length || imaging, onClick: downloadImage }, recipients.length > 1 ? countText(recipients.length, "cert.images") : uxText("cert.image")), /* @__PURE__ */ cpJsx(UxButton, { id: "cert.word", disabled: !ready, onClick: () => downloadWord({ title: draft.language === "ar" ? draft.titleAr : draft.title, language: draft.language === "ar" ? "ar" : "en", blocks: certificateWordBlocks(doc, draft), landscape: draft.orientation === "landscape" }, "ClassPilot_certificates.docx") }), /* @__PURE__ */ cpJsx(UxButton, { id: "cert.defaults", disabled: !isProfileLinked(), onClick: () => updateProfile((p) => saveCertificateDefaults(p, draft)) })) }, !doc.students.length ? /* @__PURE__ */ cpJsx(EmptyRoster, null) : /* @__PURE__ */ cpJsx("div", { className: "cp-cert-studio", dir: doc.settings.dir || "ltr" }, /* @__PURE__ */ cpJsx("nav", { className: "cp-cert-recipients", "aria-label": t("cert.recipient") }, /* @__PURE__ */ cpJsx("section", { className: "cp-cert-suggest" }, proposal && suggestions2[proposal]?.length > 0 && /* @__PURE__ */ cpJsx("p", { className: "cp-proposal", role: "status" }, uxText("cert.proposed").replace("{n}", String(suggestions2[proposal].length))), /* @__PURE__ */ cpJsx(CertificateSuggestions, { students: doc.students, suggestions: suggestions2, rules: rules2, range: displayDate(draft.from) + " \u2013 " + displayDate(draft.through), onSettings: () => setCriteriaOpen(true), onChoose: (ids, kind) => {
+      setDraft((p) => ({ ...p, studentIds: ids, ...SUGGESTED_REASON[kind] ? reasonPatch(SUGGESTED_REASON[kind]) : {} }));
       setShown(0);
-    } }), /* @__PURE__ */ cpJsx("details", { className: "cp-cert-range" }, /* @__PURE__ */ cpJsx("summary", null, uxText("cert.rangeTitle")), /* @__PURE__ */ cpJsx("div", { className: "cp-cert-dates" }, /* @__PURE__ */ cpJsx(M5Field, { id: "cert.from", type: "date", value: draft.from, max: draft.through, onChange: (e) => change2("from", e.target.value) }), /* @__PURE__ */ cpJsx(M5Field, { id: "cert.through", type: "date", value: draft.through, min: draft.from, onChange: (e) => change2("through", e.target.value) })), /* @__PURE__ */ cpJsx("p", null, t("cert.criteria")))), /* @__PURE__ */ cpJsx(StudentPicker, { students: doc.students, mode: "several", value: draft.studentIds, onChange: (ids) => {
+    } }), criteriaOpen && /* @__PURE__ */ cpJsx(CriteriaDialog, { rules: rules2, onRule: (kind, patch) => updateProfile((p) => ({ ...p, certificateCriteria: { ...p.certificateCriteria || {}, [kind]: { ...rules2[kind], ...p.certificateCriteria?.[kind] || {}, ...patch } } })), from: draft.from, through: draft.through, onFrom: (value) => change2("from", value), onThrough: (value) => change2("through", value), onThisTerm: termStartFor(profile3, todayISO()) ? () => {
+      const today = todayISO();
+      setDraft((p) => ({ ...p, from: termStartFor(profile3, today), through: today }));
+    } : null, onClose: () => setCriteriaOpen(false) })), /* @__PURE__ */ cpJsx(StudentPicker, { students: doc.students, mode: "several", value: draft.studentIds, onChange: (ids) => {
       change2("studentIds", ids);
       setShown(0);
     }, context: "certificates", label: t("cert.recipient"), itemAction: "m5.cert.select" })), /* @__PURE__ */ cpJsx("div", { className: "cp-cert-centre" }, /* @__PURE__ */ cpJsx("div", { className: "cp-cert-toolbar" }, /* @__PURE__ */ cpJsx("div", { className: "cp-cert-preview-tools" }, /* @__PURE__ */ cpJsx("span", { className: "cp-seg", role: "group", "aria-label": uxText("cert.zoom") }, ["fit", "actual"].map((value) => /* @__PURE__ */ cpJsx(UxButton, { key: value, id: "cert.zoom", context: value, active: zoom2 === value, "aria-pressed": zoom2 === value, onClick: () => setZoom(value) }, uxText("cert.zoom." + value)))), /* @__PURE__ */ cpJsx(UxButton, { id: "cert.designOpen", "aria-haspopup": "dialog", "aria-expanded": designOpen, title: !ready ? t("cert.required") : uxText("cert.design"), onClick: () => setDesignOpen(true) }), /* @__PURE__ */ cpJsx(DraftStatus, { dirty: draftDirty, label: uxText("cert.draft"), context: "certificate", onDiscard: () => acceptDraft(certificateDefaults(profile3, getLanguage())) })), recipients.length > 1 && /* @__PURE__ */ cpJsx("span", { className: "cp-cert-which" }, /* @__PURE__ */ cpJsx(UxButton, { id: "cert.prevRecipient", disabled: at === 0, onClick: () => setShown(at - 1) }), /* @__PURE__ */ cpJsx("span", null, cpRaw(uxText("cert.showing").replace("{n}", String(at + 1)).replace("{total}", String(recipients.length)))), /* @__PURE__ */ cpJsx(UxButton, { id: "cert.nextRecipient", disabled: at === recipients.length - 1, onClick: () => setShown(at + 1) }))), /* @__PURE__ */ cpJsx("div", { className: "cp-cert-stage cp-certificate-live", ref: stage, "data-zoom": zoom2 }, recipients.length ? /* @__PURE__ */ cpJsx("div", { className: "cp-cert-sheet", "data-cp-document": "", style: { inlineSize: paperWidth + "px", blockSize: paperHeight + "px", zoom: zoom2 === "fit" ? fit : 1 } }, /* @__PURE__ */ cpJsx(CertificatePaper, { screen: true, record: draft, student: recipients[at] })) : /* @__PURE__ */ cpJsx(EmptyState, { kind: "nothing", title: uxText("cert.chooseToPreview") })))), /* @__PURE__ */ cpJsx(CertificateDesignDialog, { direction: doc.settings.dir || "ltr", open: designOpen, onClose: () => setDesignOpen(false) }, !ready && /* @__PURE__ */ cpJsx("p", { role: "status", className: "cp-cert-required" }, t("cert.required")), error2 && /* @__PURE__ */ cpJsx("p", { role: "alert", style: { color: "#b91c1c" } }, error2), /* @__PURE__ */ cpJsx("fieldset", { className: "cp-cert-gallery" }, /* @__PURE__ */ cpJsx("legend", null, uxText("cert.pick")), CARDS.map(([card, first]) => {
       const value = card === "classic" ? classicShown : first, on = draft.template === value;
       return /* @__PURE__ */ cpJsx("div", { key: card, className: "cp-cert-card", "data-on": on ? "true" : void 0, "data-design": card }, /* @__PURE__ */ cpJsx("label", null, /* @__PURE__ */ cpJsx("input", { type: "radio", name: "cp-cert-template", value, checked: on, "aria-label": uxText("cert." + card), ...controlProps("m5.cert.template", (e) => pickDesign(e.target.value), value) }), /* @__PURE__ */ cpJsx("span", { className: "cp-cert-thumb", "aria-hidden": "true" }, sample && /* @__PURE__ */ cpJsx("span", { className: "cp-cert-thumb-sheet", style: { inlineSize: paperWidth + "px", blockSize: paperHeight + "px", zoom: Math.min(150 / paperWidth, 106 / paperHeight) } }, /* @__PURE__ */ cpJsx(CertificatePaper, { screen: true, record: { ...draft, template: value }, student: sample }))), /* @__PURE__ */ cpJsx("b", null, uxText("cert." + card)), /* @__PURE__ */ cpJsx("small", null, uxText("cert.for." + card))), card === "classic" && /* @__PURE__ */ cpJsx("span", { className: "cp-cert-swatches" }, PRESTIGE.map((colour) => colour === classicShown ? /* @__PURE__ */ cpJsx("i", { key: colour, "data-colour": colour, "data-on": "true", title: uxText("cert.colour." + colour), "aria-hidden": "true" }) : /* @__PURE__ */ cpJsx("label", { key: colour, title: uxText("cert.colour." + colour) }, /* @__PURE__ */ cpJsx("input", { type: "radio", name: "cp-cert-template", value: colour, checked: false, "aria-label": uxText("cert.classic") + " \xB7 " + uxText("cert.colour." + colour), ...controlProps("m5.cert.template", (e) => pickDesign(e.target.value), colour) }), /* @__PURE__ */ cpJsx("i", { "data-colour": colour })))));
     }), legacy && /* @__PURE__ */ cpJsx("p", { className: "cp-cert-legacy", role: "status" }, uxText("cert.legacy"), cpRaw(": "), ["bordered", "ribbon"].includes(draft.template) ? uxText("cert." + draft.template) : t("cert." + draft.template))), STUDIO.includes(draft.template) && draft.template !== "star" && /* @__PURE__ */ cpJsx("fieldset", { className: "cp-cert-awards" }, /* @__PURE__ */ cpJsx("legend", null, uxText("cert.award")), AWARDS.map((award) => /* @__PURE__ */ cpJsx("label", { key: award, "data-on": awardOf(draft) === award ? "true" : void 0 }, /* @__PURE__ */ cpJsx("input", { type: "radio", name: "cp-cert-award", value: award, checked: awardOf(draft) === award, ...controlProps("ux.cert.award", (e) => change2("award", e.target.value), award) }), /* @__PURE__ */ cpJsx("svg", { "aria-hidden": "true", viewBox: "-50 -50 100 100" }, /* @__PURE__ */ cpJsx(AwardIcon, { award, color: AWARD_INK[award] })), /* @__PURE__ */ cpJsx("span", null, uxText("cert.award." + award))))), draft.template === "bold" && /* @__PURE__ */ cpJsx(UxCheck, { id: "cert.inkSaver", checked: !!draft.inkSaver, onChange: (e) => change2("inkSaver", e.target.checked) }), /* @__PURE__ */ cpJsx("div", { className: "cp-cert-grid" }, draft.template === "star" && /* @__PURE__ */ cpJsx(UxSelect, { id: "cert.starLayout", value: draft.starLayout || "one", onChange: (e) => change2("starLayout", e.target.value) }, ["one", "two"].map((n) => /* @__PURE__ */ cpJsx("option", { key: n, value: n }, uxText("cert.starLayout." + n)))), /* @__PURE__ */ cpJsx(M5Select, { id: "cert.orientation", value: draft.orientation, onChange: (e) => change2("orientation", e.target.value) }, ["landscape", "portrait"].map((id) => /* @__PURE__ */ cpJsx("option", { key: id, value: id }, t("cert." + id)))), /* @__PURE__ */ cpJsx(DocumentLanguage, { id: "cert.language", value: draft.language, onChange: (e) => change2("language", e.target.value) }), /* @__PURE__ */ cpJsx(M5Field, { id: "cert.date", type: "date", value: draft.date, onChange: (e) => change2("date", e.target.value) }), /* @__PURE__ */ cpJsx(UxSelect, { id: "cert.gender", value: draft.gender || "neutral", onChange: (e) => change2("gender", e.target.value) }, ["neutral", "masculine", "feminine"].map((gender) => /* @__PURE__ */ cpJsx("option", { key: gender, value: gender }, uxText("cert." + gender))))), /* @__PURE__ */ cpJsx(UxSelect, { id: "cert.reason", value: "", onChange: (e) => {
-      if (e.target.value) {
-        change2("achievement", uxText("cert.reason." + e.target.value + ".en"));
-        change2("achievementAr", uxText("cert.reason." + e.target.value + ".ar"));
-      }
-    } }, /* @__PURE__ */ cpJsx("option", { value: "" }, uxText("cert.chooseReason")), ["effort", "progress", "teamwork"].map((reason) => /* @__PURE__ */ cpJsx("option", { key: reason, value: reason }, uxText("cert.reason." + reason)))), /* @__PURE__ */ cpJsx("fieldset", { className: "cp-cert-text", "data-language": primary2 }, /* @__PURE__ */ cpJsx("legend", null, t(primary2 === "ar" ? "improve.arabicContent" : "improve.englishContent")), textFields(primary2)), /* @__PURE__ */ cpJsx("details", { className: "cp-cert-other", "data-language": other, open: otherOpen || draft.language === "bilingual", onToggle: (e) => setOtherOpen(e.currentTarget.open) }, /* @__PURE__ */ cpJsx("summary", null, uxText("cert.otherText." + other), otherDone && /* @__PURE__ */ cpJsx("b", { className: "cp-cert-done", "aria-label": uxText("cert.filled"), title: uxText("cert.filled") }, cpRaw(" \u2713"))), /* @__PURE__ */ cpJsx("div", { className: "cp-cert-text" }, textFields(other))), /* @__PURE__ */ cpJsx("div", { className: "cp-cert-logo" }, /* @__PURE__ */ cpJsx("label", null, /* @__PURE__ */ cpJsx("span", null, t("cert.logo")), /* @__PURE__ */ cpJsx("input", { type: "file", accept: "image/png,image/jpeg,image/webp", "aria-label": t("cert.logo"), ...controlProps("m5.cert.logo", async (e) => {
+      const reason = e.target.value;
+      if (reason) setDraft((p) => ({ ...p, ...reasonPatch(reason) }));
+    } }, /* @__PURE__ */ cpJsx("option", { value: "" }, uxText("cert.chooseReason")), REASONS.map((reason) => /* @__PURE__ */ cpJsx("option", { key: reason, value: reason }, uxText("cert.reason." + reason)))), /* @__PURE__ */ cpJsx("fieldset", { className: "cp-cert-text", "data-language": primary2 }, /* @__PURE__ */ cpJsx("legend", null, t(primary2 === "ar" ? "improve.arabicContent" : "improve.englishContent")), textFields(primary2)), /* @__PURE__ */ cpJsx("details", { className: "cp-cert-other", "data-language": other, open: otherOpen || draft.language === "bilingual", onToggle: (e) => setOtherOpen(e.currentTarget.open) }, /* @__PURE__ */ cpJsx("summary", null, uxText("cert.otherText." + other), otherDone && /* @__PURE__ */ cpJsx("b", { className: "cp-cert-done", "aria-label": uxText("cert.filled"), title: uxText("cert.filled") }, cpRaw(" \u2713"))), /* @__PURE__ */ cpJsx("div", { className: "cp-cert-text" }, textFields(other))), /* @__PURE__ */ cpJsx("div", { className: "cp-cert-logo" }, /* @__PURE__ */ cpJsx("label", null, /* @__PURE__ */ cpJsx("span", null, t("cert.logo")), /* @__PURE__ */ cpJsx("input", { type: "file", accept: "image/png,image/jpeg,image/webp", "aria-label": t("cert.logo"), ...controlProps("m5.cert.logo", async (e) => {
       try {
         const data = await readLogo(e.target.files?.[0]);
         change2("logo", data);
@@ -57831,9 +58218,9 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
   var esc = (value) => String(value ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
   var text5 = (key4, language2, values = {}) => uxText2("weekly." + key4, language2).replace(/\{(\w+)\}/g, (_, name) => values[name] ?? "");
   var locale3 = (language2) => language2 === "ar" ? "ar-AE-u-nu-latn" : "en-GB";
-  var num3 = (value) => value == null ? "\u2013" : String(Math.round(value * 10) / 10);
+  var num4 = (value) => value == null ? "\u2013" : String(Math.round(value * 10) / 10);
   var ltr = (value) => '<bdi dir="ltr">' + value + "</bdi>";
-  var fill2 = (key4, language2, values) => esc(uxText2("weekly." + key4, language2)).replace(/\{(\w+)\}/g, (_, name) => values[name] ?? "");
+  var fill3 = (key4, language2, values) => esc(uxText2("weekly." + key4, language2)).replace(/\{(\w+)\}/g, (_, name) => values[name] ?? "");
   var clamp = (value) => Math.max(0, Math.min(100, value));
   function weekLabel(week, language2) {
     const format2 = new Intl.DateTimeFormat(locale3(language2), { day: "numeric", month: "short", timeZone: "UTC" }), year = week.days[0]?.slice(0, 4) || week.start.slice(0, 4), first = week.days[0] || week.start, last = week.days.at(-1) || week.end, utc = (iso) => /* @__PURE__ */ new Date(iso + "T00:00:00Z");
@@ -57842,7 +58229,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
   var dayName = (iso, language2) => new Intl.DateTimeFormat(locale3(language2), { weekday: "short" }).format(parseISO(iso));
   function summarySentence(summary, language2, withAttendance = summary.days.some((day) => day.status)) {
     const tone = weekTone(summary), parts = [];
-    if (summary.change != null && summary.change !== 0) parts.push(text5(summary.change > 0 ? "r.d.up" : "r.d.down", language2, { n: num3(Math.abs(summary.change)) }));
+    if (summary.change != null && summary.change !== 0) parts.push(text5(summary.change > 0 ? "r.d.up" : "r.d.down", language2, { n: num4(Math.abs(summary.change)) }));
     if (summary.deductions) parts.push(text5("r.d.deductions", language2, { n: summary.deductions }));
     if (withAttendance && summary.absences) parts.push(text5("r.d.absences", language2, { n: summary.absences }));
     if (summary.missing) parts.push(text5("r.d.missing", language2, { n: summary.missing }));
@@ -57879,12 +58266,12 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     if (value == null) return '<p class="cpw-muted">' + esc(text5("r.noGrade", language2)) + "</p>";
     const w2 = 700, x2 = (v) => 20 + (w2 - 40) * Math.max(0, Math.min(100, v)) / 100, state2 = standing(value, classAverage, pass);
     const ticks = [0, 25, 50, 75, 100].filter((v) => classAverage == null || Math.abs(v - classAverage) > 7).map((v) => '<text x="' + x2(v) + '" y="55" class="cpw-axis" text-anchor="middle">' + v + "</text>").join("");
-    return '<svg xmlns="http://www.w3.org/2000/svg" class="cpw-scale" viewBox="0 0 ' + w2 + ' 60" role="img" direction="ltr" aria-label="' + esc(text5("r.where", language2)) + '"><rect x="20" y="20" width="' + (x2(pass) - 20) + '" height="10" rx="5" class="cpw-zone-low"/><rect x="' + x2(pass) + '" y="20" width="' + (w2 - 20 - x2(pass)) + '" height="10" rx="5" class="cpw-zone"/><line x1="' + x2(pass) + '" x2="' + x2(pass) + '" y1="14" y2="36" class="cpw-pass"/>' + (classAverage != null ? '<path d="M' + (x2(classAverage) - 6) + " 42 L" + (x2(classAverage) + 6) + " 42 L" + x2(classAverage) + ' 34 Z" class="cpw-avgmark"/><text x="' + x2(classAverage) + '" y="55" class="cpw-avglabel" text-anchor="middle">' + esc(text5("r.classShort", language2)) + " " + num3(classAverage) + "</text>" : "") + '<circle cx="' + x2(value) + '" cy="25" r="8" class="cpw-me" data-state="' + state2 + '"/><text x="' + x2(value) + '" y="11" class="cpw-melabel" text-anchor="middle">' + num3(value) + "</text>" + ticks + "</svg>";
+    return '<svg xmlns="http://www.w3.org/2000/svg" class="cpw-scale" viewBox="0 0 ' + w2 + ' 60" role="img" direction="ltr" aria-label="' + esc(text5("r.where", language2)) + '"><rect x="20" y="20" width="' + (x2(pass) - 20) + '" height="10" rx="5" class="cpw-zone-low"/><rect x="' + x2(pass) + '" y="20" width="' + (w2 - 20 - x2(pass)) + '" height="10" rx="5" class="cpw-zone"/><line x1="' + x2(pass) + '" x2="' + x2(pass) + '" y1="14" y2="36" class="cpw-pass"/>' + (classAverage != null ? '<path d="M' + (x2(classAverage) - 6) + " 42 L" + (x2(classAverage) + 6) + " 42 L" + x2(classAverage) + ' 34 Z" class="cpw-avgmark"/><text x="' + x2(classAverage) + '" y="55" class="cpw-avglabel" text-anchor="middle">' + esc(text5("r.classShort", language2)) + " " + num4(classAverage) + "</text>" : "") + '<circle cx="' + x2(value) + '" cy="25" r="8" class="cpw-me" data-state="' + state2 + '"/><text x="' + x2(value) + '" y="11" class="cpw-melabel" text-anchor="middle">' + num4(value) + "</text>" + ticks + "</svg>";
   }
   function progress(summary, insights, language2, half = false) {
     const groups = (insights.sheet || []).map((section) => ({ name: section.name, points: section.columns.filter((column) => column.kind === "direct" && !column.hidden && column.pct != null) })).filter((group) => group.points.length);
     const points = groups.flatMap((group, index) => group.points.map((point) => ({ ...point, group: index })));
-    const past = insights.history.filter((point) => !point.live).map((point) => esc(termName(point.label, language2)) + " " + ltr(num3(point.grade)) + (point.classAverage != null ? " <small>(" + esc(text5("r.classShort", language2)) + " " + ltr(num3(point.classAverage)) + ")</small>" : "")).join(" \xB7 ");
+    const past = insights.history.filter((point) => !point.live).map((point) => esc(termName(point.label, language2)) + " " + ltr(num4(point.grade)) + (point.classAverage != null ? " <small>(" + esc(text5("r.classShort", language2)) + " " + ltr(num4(point.classAverage)) + ")</small>" : "")).join(" \xB7 ");
     const pastLine = past ? '<p class="cpw-past"><b>' + esc(text5("r.pastTerms", language2)) + "</b> " + past + "</p>" : "";
     if (points.length < 2) return '<p class="cpw-muted">' + esc(text5("r.fewMarks", language2)) + "</p>" + pastLine;
     const w2 = half ? 360 : 700, h = half ? 172 : 176, left = 30, right = w2 - 12, top = 30, bottom = h - 24, step = (right - left) / (points.length - 1);
@@ -57900,14 +58287,14 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     const grid = [0, 25, 50, 75, 100].map((v) => '<line x1="' + left + '" x2="' + right + '" y1="' + y2(v) + '" y2="' + y2(v) + '" class="cpw-grid"/><text x="' + (left - 6) + '" y="' + (y2(v) + 3) + '" class="cpw-axis" text-anchor="end">' + v + "</text>").join("");
     const dots = points.map((p, i) => '<circle cx="' + x2(i) + '" cy="' + y2(p.pct) + '" r="4" class="cpw-dot" data-state="' + standing(p.pct, p.classAverage, summary.pass) + '"/>').join("");
     const labels = points.map((p, i) => '<text x="' + x2(i) + '" y="' + (h - 8) + '" class="cpw-axis" text-anchor="' + (i === 0 ? "start" : i === points.length - 1 ? "end" : "middle") + '">' + esc(String(p.name).slice(0, Math.max(6, Math.floor(step / 6)))) + "</text>").join("");
-    return '<svg xmlns="http://www.w3.org/2000/svg" class="cpw-chart" viewBox="0 0 ' + w2 + " " + h + '" role="img" direction="ltr" aria-label="' + esc(text5("r.overTime", language2)) + '">' + bands + grid + '<line x1="' + left + '" x2="' + right + '" y1="' + y2(summary.pass) + '" y2="' + y2(summary.pass) + '" class="cpw-pass"/><path d="' + line("classAverage") + '" class="cpw-avg"/><path d="' + line("pct") + '" class="cpw-line"/>' + dots + labels + '</svg><p class="cpw-legend"><span class="cpw-key cpw-key-line"></span>' + esc(text5("r.yourChild", language2)) + '<span class="cpw-key cpw-key-avg"></span>' + esc(text5("r.classAverage", language2)) + '<span class="cpw-key cpw-key-pass"></span>' + esc(text5("r.passMark", language2)) + " " + num3(summary.pass) + "</p>" + pastLine;
+    return '<svg xmlns="http://www.w3.org/2000/svg" class="cpw-chart" viewBox="0 0 ' + w2 + " " + h + '" role="img" direction="ltr" aria-label="' + esc(text5("r.overTime", language2)) + '">' + bands + grid + '<line x1="' + left + '" x2="' + right + '" y1="' + y2(summary.pass) + '" y2="' + y2(summary.pass) + '" class="cpw-pass"/><path d="' + line("classAverage") + '" class="cpw-avg"/><path d="' + line("pct") + '" class="cpw-line"/>' + dots + labels + '</svg><p class="cpw-legend"><span class="cpw-key cpw-key-line"></span>' + esc(text5("r.yourChild", language2)) + '<span class="cpw-key cpw-key-avg"></span>' + esc(text5("r.classAverage", language2)) + '<span class="cpw-key cpw-key-pass"></span>' + esc(text5("r.passMark", language2)) + " " + num4(summary.pass) + "</p>" + pastLine;
   }
-  var markText = (column, language2 = "en") => ltr(num3(column.mark) + "/" + num3(column.max)) + (column.bonus ? ' <small class="cpw-bonus">' + ltr("+" + num3(column.bonus)) + " " + esc(text5("r.bonus", language2)) + "</small>" : "");
+  var markText = (column, language2 = "en") => ltr(num4(column.mark) + "/" + num4(column.max)) + (column.bonus ? ' <small class="cpw-bonus">' + ltr("+" + num4(column.bonus)) + " " + esc(text5("r.bonus", language2)) + "</small>" : "");
   function sectionCards(sheet, pass, language2, fresh = /* @__PURE__ */ new Set()) {
     return '<div class="cpw-secs">' + sheet.map((section) => {
       const state2 = section.pct == null ? "none" : standing(section.pct, section.classAverage, pass);
-      const rows = section.columns.filter((column) => !column.hidden).map((column) => '<li data-state="' + (column.pct == null ? "none" : standing(column.pct, column.classAverage, pass)) + '"' + (fresh.has(column.id) ? ' data-new="yes"' : "") + '><span dir="auto">' + esc(column.name) + (fresh.has(column.id) ? ' <em class="cpw-new">' + esc(text5("r.new", language2)) + "</em>" : "") + '</span><i class="cpw-mini"><i style="width:' + (column.pct == null ? 0 : clamp(column.pct)) + '%"></i>' + (column.classAverage != null ? '<i class="cpw-mini-tick" style="inset-inline-start:' + clamp(column.classAverage) + '%"></i>' : "") + "</i><b>" + (column.mark == null ? esc(text5("r.noMark", language2)) : ltr(num3(column.mark) + "/" + num3(column.max))) + "</b>" + (column.mark != null && column.bonus ? '<small class="cpw-bonus">' + ltr("+" + num3(column.bonus)) + " " + esc(text5("r.bonus", language2)) + "</small>" : "<span></span>") + "</li>").join("");
-      return '<div class="cpw-sec" data-state="' + state2 + '"><div class="cpw-sec-head"><span dir="auto">' + esc(section.name) + "</span><b>" + (section.pct == null ? "\u2013" : ltr(num3(section.pct) + "%")) + "</b></div><small>" + (section.pct == null ? esc(text5("r.notYet", language2)) : fill2("r.points", language2, { n: ltr(num3(section.points)), w: ltr(num3(section.weight)) }) + (section.bonus ? ' <span class="cpw-bonus">' + fill2("r.inclBonus", language2, { n: ltr("+" + num3(section.bonus)) }) + "</span>" : "") + " \xB7 " + esc(text5("r.classShort", language2)) + " " + ltr(num3(section.classAverage) + "%")) + "</small>" + (section.pct == null ? "" : "<ul>" + rows + "</ul>") + "</div>";
+      const rows = section.columns.filter((column) => !column.hidden).map((column) => '<li data-state="' + (column.pct == null ? "none" : standing(column.pct, column.classAverage, pass)) + '"' + (fresh.has(column.id) ? ' data-new="yes"' : "") + '><span dir="auto">' + esc(column.name) + (fresh.has(column.id) ? ' <em class="cpw-new">' + esc(text5("r.new", language2)) + "</em>" : "") + '</span><i class="cpw-mini"><i style="width:' + (column.pct == null ? 0 : clamp(column.pct)) + '%"></i>' + (column.classAverage != null ? '<i class="cpw-mini-tick" style="inset-inline-start:' + clamp(column.classAverage) + '%"></i>' : "") + "</i><b>" + (column.mark == null ? esc(text5("r.noMark", language2)) : ltr(num4(column.mark) + "/" + num4(column.max))) + "</b>" + (column.mark != null && column.bonus ? '<small class="cpw-bonus">' + ltr("+" + num4(column.bonus)) + " " + esc(text5("r.bonus", language2)) + "</small>" : "<span></span>") + "</li>").join("");
+      return '<div class="cpw-sec" data-state="' + state2 + '"><div class="cpw-sec-head"><span dir="auto">' + esc(section.name) + "</span><b>" + (section.pct == null ? "\u2013" : ltr(num4(section.pct) + "%")) + "</b></div><small>" + (section.pct == null ? esc(text5("r.notYet", language2)) : fill3("r.points", language2, { n: ltr(num4(section.points)), w: ltr(num4(section.weight)) }) + (section.bonus ? ' <span class="cpw-bonus">' + fill3("r.inclBonus", language2, { n: ltr("+" + num4(section.bonus)) }) + "</span>" : "") + " \xB7 " + esc(text5("r.classShort", language2)) + " " + ltr(num4(section.classAverage) + "%")) + "</small>" + (section.pct == null ? "" : "<ul>" + rows + "</ul>") + "</div>";
     }).join("") + "</div>";
   }
   function behaviourBlock(summary, insights, language2, half = false) {
@@ -57924,9 +58311,9 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     }).join("");
     const chart = time3.hasData || weeks.some((week) => week.holiday) ? '<svg xmlns="http://www.w3.org/2000/svg" class="cpw-bchart" viewBox="0 0 ' + w2 + " " + h + '" role="img" direction="ltr" aria-label="' + esc(text5("r.bhvTitle", language2)) + '"><line x1="6" x2="' + (w2 - 6) + '" y1="' + mid + '" y2="' + mid + '" class="cpw-mid"/>' + bars + '</svg><p class="cpw-small">' + esc(text5(time3.cooldown ? "r.bt.legendPoints" : "r.bt.legendLost", language2)) + "</p>" : "";
     const notes2 = chips("positive") + chips("concern");
-    const back = time3.pending > 0 ? " \xB7 " + fill2("r.earnedBack", language2, { n: ltr("+" + num3(time3.pending)) }) : "";
-    const mark = '<span class="cpw-bmark">' + esc(text5("r.behaviour", language2)) + " " + ltr(num3(insights.behaviour.value) + "/" + num3(insights.behaviour.max)) + back + " \xB7 " + esc(summary.deductions ? text5("r.deductions", language2) + ": " + summary.deductions : text5("r.noDeductions", language2)) + "</span>";
-    return '<section class="cpw-bhv" data-half="' + (half ? "yes" : "no") + '"><h2>' + esc(text5("r.bhvTitle", language2)) + "</h2>" + mark + '<p class="cpw-btrend" data-trend="' + time3.trend + '">' + fill2("r.bt." + time3.trend, language2, { now: ltr(time3.now), before: ltr(time3.before) }) + "</p>" + chart + "<h3>" + esc(text5("r.teacherNoted", language2)) + "</h3>" + (notes2 ? '<p class="cpw-obs">' + notes2 + "</p>" : '<p class="cpw-muted">' + esc(text5("r.noNotes", language2)) + "</p>") + "</section>";
+    const back = time3.pending > 0 ? " \xB7 " + fill3("r.earnedBack", language2, { n: ltr("+" + num4(time3.pending)) }) : "";
+    const mark = '<span class="cpw-bmark">' + esc(text5("r.behaviour", language2)) + " " + ltr(num4(insights.behaviour.value) + "/" + num4(insights.behaviour.max)) + back + " \xB7 " + esc(summary.deductions ? text5("r.deductions", language2) + ": " + summary.deductions : text5("r.noDeductions", language2)) + "</span>";
+    return '<section class="cpw-bhv" data-half="' + (half ? "yes" : "no") + '"><h2>' + esc(text5("r.bhvTitle", language2)) + "</h2>" + mark + '<p class="cpw-btrend" data-trend="' + time3.trend + '">' + fill3("r.bt." + time3.trend, language2, { now: ltr(time3.now), before: ltr(time3.before) }) + "</p>" + chart + "<h3>" + esc(text5("r.teacherNoted", language2)) + "</h3>" + (notes2 ? '<p class="cpw-obs">' + notes2 + "</p>" : '<p class="cpw-muted">' + esc(text5("r.noNotes", language2)) + "</p>") + "</section>";
   }
   var duo = (a, b) => a && b ? '<div class="cpw-duo">' + a + b + "</div>" : a + b;
   function starsBlock(list2, language2) {
@@ -57938,9 +58325,9 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
   }
   function highlightLine(item, language2, strength) {
     const classShort = esc(text5("r.classShort", language2));
-    if (item.kind === "section") return '<li><b dir="auto">' + esc(item.name) + "</b><span>" + ltr(num3(item.pct) + "%") + " \xB7 " + classShort + " " + ltr(num3(item.classAverage) + "%") + "</span>" + (item.detail ? "<small>" + fill2(strength ? "r.best" : "r.weakest", language2, { name: '<span dir="auto">' + esc(item.detail.name) + "</span> " + markText(item.detail, language2) }) + "</small>" : "") + "</li>";
-    if (item.kind === "adjustment") return '<li><b dir="auto">' + esc(item.name) + ' <small dir="auto">' + esc(item.section) + "</small></b><span>" + fill2("r.lostPoints", language2, { n: ltr(num3(item.lost)) }) + "</span>" + (item.reasons.length ? '<small dir="auto">' + esc(item.reasons.join(language2 === "ar" ? "\u060C " : ", ")) + "</small>" : "") + "</li>";
-    return '<li><b dir="auto">' + esc(item.name) + ' <small dir="auto">' + esc(item.section) + "</small></b><span>" + markText(item, language2) + " \xB7 " + (item.perfect ? esc(text5("r.star.perfect", language2)) : classShort + " " + ltr(num3(item.classAverage) + "%")) + "</span></li>";
+    if (item.kind === "section") return '<li><b dir="auto">' + esc(item.name) + "</b><span>" + ltr(num4(item.pct) + "%") + " \xB7 " + classShort + " " + ltr(num4(item.classAverage) + "%") + "</span>" + (item.detail ? "<small>" + fill3(strength ? "r.best" : "r.weakest", language2, { name: '<span dir="auto">' + esc(item.detail.name) + "</span> " + markText(item.detail, language2) }) + "</small>" : "") + "</li>";
+    if (item.kind === "adjustment") return '<li><b dir="auto">' + esc(item.name) + ' <small dir="auto">' + esc(item.section) + "</small></b><span>" + fill3("r.lostPoints", language2, { n: ltr(num4(item.lost)) }) + "</span>" + (item.reasons.length ? '<small dir="auto">' + esc(item.reasons.join(language2 === "ar" ? "\u060C " : ", ")) + "</small>" : "") + "</li>";
+    return '<li><b dir="auto">' + esc(item.name) + ' <small dir="auto">' + esc(item.section) + "</small></b><span>" + markText(item, language2) + " \xB7 " + (item.perfect ? esc(text5("r.star.perfect", language2)) : classShort + " " + ltr(num4(item.classAverage) + "%")) + "</span></li>";
   }
   function homeTip(insights, language2) {
     const focus = insights.highlights.focus;
@@ -57959,7 +58346,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     return text5("r.homeKeep", language2);
   }
   function sheetTable(sheet, pass, language2) {
-    return sheet.map((section) => '<div class="cpw-sheet"><div class="cpw-sheet-head"><b dir="auto">' + esc(section.name) + "</b><span>" + (section.pct == null ? esc(text5("r.notYet", language2)) : fill2("r.points", language2, { n: ltr(num3(section.points)), w: ltr(num3(section.weight)) }) + " \xB7 " + ltr(num3(section.pct) + "%") + " \xB7 " + esc(text5("r.classShort", language2)) + " " + ltr(num3(section.classAverage) + "%")) + "</span></div>" + (section.pct == null ? "" : '<div class="cpw-rows">' + section.columns.filter((column) => !column.hidden).map((column) => compareRow({ ...column, section: "" }, pass, language2, column.mark == null ? "" : " \xB7 " + markText(column, language2))).join("") + "</div>") + "</div>").join("");
+    return sheet.map((section) => '<div class="cpw-sheet"><div class="cpw-sheet-head"><b dir="auto">' + esc(section.name) + "</b><span>" + (section.pct == null ? esc(text5("r.notYet", language2)) : fill3("r.points", language2, { n: ltr(num4(section.points)), w: ltr(num4(section.weight)) }) + " \xB7 " + ltr(num4(section.pct) + "%") + " \xB7 " + esc(text5("r.classShort", language2)) + " " + ltr(num4(section.classAverage) + "%")) + "</span></div>" + (section.pct == null ? "" : '<div class="cpw-rows">' + section.columns.filter((column) => !column.hidden).map((column) => compareRow({ ...column, section: "" }, pass, language2, column.mark == null ? "" : " \xB7 " + markText(column, language2))).join("") + "</div>") + "</div>").join("");
   }
   function noteLog(events, language2) {
     const date5 = (iso) => new Intl.DateTimeFormat(locale3(language2), { day: "numeric", month: "short", timeZone: "UTC" }).format(/* @__PURE__ */ new Date(iso + "T00:00:00Z"));
@@ -57967,14 +58354,14 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
   }
   function compareRow(item, pass, language2, extra = "") {
     const state2 = standing(item.pct, item.classAverage, pass), pct2 = item.pct == null ? 0 : Math.max(0, Math.min(100, item.pct));
-    return '<div class="cpw-row" data-state="' + state2 + '"><span class="cpw-row-name"><span dir="auto">' + esc(item.name) + "</span>" + (item.section ? '<small dir="auto">' + esc(item.section) + "</small>" : "") + '</span><span class="cpw-track"><span class="cpw-fill" style="width:' + pct2 + '%"></span>' + (item.classAverage != null ? '<span class="cpw-tick" style="inset-inline-start:' + Math.max(0, Math.min(100, item.classAverage)) + '%"></span>' : "") + '</span><span class="cpw-row-value"><b>' + (item.pct == null ? esc(text5("r.noMark", language2)) : ltr(num3(Math.min(100, item.pct)) + "%") + extra) + "</b><small>" + esc(text5("r.classShort", language2)) + " " + ltr(num3(item.classAverage) + "%") + "</small></span></div>";
+    return '<div class="cpw-row" data-state="' + state2 + '"><span class="cpw-row-name"><span dir="auto">' + esc(item.name) + "</span>" + (item.section ? '<small dir="auto">' + esc(item.section) + "</small>" : "") + '</span><span class="cpw-track"><span class="cpw-fill" style="width:' + pct2 + '%"></span>' + (item.classAverage != null ? '<span class="cpw-tick" style="inset-inline-start:' + Math.max(0, Math.min(100, item.classAverage)) + '%"></span>' : "") + '</span><span class="cpw-row-value"><b>' + (item.pct == null ? esc(text5("r.noMark", language2)) : ltr(num4(Math.min(100, item.pct)) + "%") + extra) + "</b><small>" + esc(text5("r.classShort", language2)) + " " + ltr(num4(item.classAverage) + "%") + "</small></span></div>";
   }
   function tile(label, value, detail, state2) {
     return '<div class="cpw-tile" data-state="' + (state2 || "none") + '"><span>' + label + "</span><b>" + value + "</b><small>" + detail + "</small></div>";
   }
   function headline(summary, insights, language2, period, withAttendance) {
     const state2 = standing(summary.grade, insights.classAverage, summary.pass), gap = summary.grade != null && insights.classAverage != null ? Math.abs(summary.grade - insights.classAverage) : null;
-    const place = state2 === "low" ? text5("r.st.low", language2) : state2 === "above" ? text5("r.st.above", language2, { n: num3(gap) }) : state2 === "below" ? text5("r.st.below", language2, { n: num3(gap) }) : state2 === "near" ? text5("r.st.near", language2) : "";
+    const place = state2 === "low" ? text5("r.st.low", language2) : state2 === "above" ? text5("r.st.above", language2, { n: num4(gap) }) : state2 === "below" ? text5("r.st.below", language2, { n: num4(gap) }) : state2 === "near" ? text5("r.st.near", language2) : "";
     return [place, summarySentence(summary, language2, withAttendance)].filter(Boolean).join(" ");
   }
   function reportTone(summary, insights) {
@@ -57985,7 +58372,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
   function reportPages(summary, { language: language2 = "en", week, period = "week", parts = {}, className = "", term = "", school = "", teacher = "", preparedOn = "" }) {
     const insights = summary.insights, tone = reportTone(summary, insights), dir = language2 === "ar" ? "rtl" : "ltr", t2 = (key4) => esc(text5(key4, language2)), note = summary.note && !summary.note.noNote ? summary.note : null, pass = summary.pass, show = (key4) => parts[key4] !== false && (parts[key4] || !["attendance", "details"].includes(key4));
     const recorded2 = summary.days.filter((day) => day.status).length, marks2 = { present: "\u2713", absent: "\u2715", late: text5("r.lateMark", language2), excused: text5("r.excusedMark", language2) }, long = summary.days.length > 7;
-    const change2 = summary.change == null ? "" : summary.change === 0 ? text5("r.noChange", language2) : (summary.change > 0 ? "\u25B2 " : "\u25BC ") + num3(Math.abs(summary.change)) + " " + text5("r.vsLast", language2);
+    const change2 = summary.change == null ? "" : summary.change === 0 ? text5("r.noChange", language2) : (summary.change > 0 ? "\u25B2 " : "\u25BC ") + num4(Math.abs(summary.change)) + " " + text5("r.vsLast", language2);
     const chosen = new Set(summary.work.map((item) => item.id)), work = chosen.size ? insights.assessments.filter((item) => chosen.has(item.id)) : long ? insights.assessments : [], missing = work.filter((item) => item.mark == null).length, handed = work.length - missing;
     const period_label = (period === "term" ? esc(termName("Term " + term, language2)) + " \xB7 " : "") + esc(weekLabel(week, language2));
     const open = (page3) => '<article class="cpw-report" lang="' + language2 + '" dir="' + dir + '" data-tone="' + tone + '" data-page="' + page3 + '">';
@@ -57995,12 +58382,12 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     const tiles = [];
     const behaviourBlockShown = show("behaviour");
     const sheetShown = show("sections") && insights.sheet.length > 0;
-    if (show("behaviour") && !sheetShown) tiles.push(tile(t2("r.behaviour"), ltr(num3(insights.behaviour.value) + "/" + num3(insights.behaviour.max)), (summary.deductions ? t2("r.deductions") + ": " + summary.deductions : t2("r.noDeductions")) + (summary.deductions && reasons.length && !behaviourBlockShown ? '<em dir="auto">' + esc(reasons.join(language2 === "ar" ? "\u060C " : ", ")) + "</em>" : ""), summary.deductions ? "low" : "above"));
-    if (show("participation") && !sheetShown) tiles.push(tile(t2("r.participation"), ltr(num3(insights.participation.value) + "/" + num3(insights.participation.max)), insights.participation.classAverage == null ? "" : t2("r.classShort") + " " + ltr(num3(insights.participation.classAverage)), standing(insights.participation.value, insights.participation.classAverage, null)));
-    if (show("attendance")) tiles.push(recorded2 ? tile(t2("r.attendance"), ltr(summary.present + "/" + recorded2), t2("r.absences") + ": " + summary.absences + (insights.attendance.value != null ? " \xB7 " + ltr(num3(insights.attendance.value) + "%") + " " + t2("r.termPct") : ""), summary.absences ? "low" : "above") : tile(t2("r.attendance"), insights.attendance.value == null ? "\u2013" : ltr(num3(insights.attendance.value) + "%"), insights.attendance.classAverage == null ? "" : t2("r.classShort") + " " + ltr(num3(insights.attendance.classAverage) + "%"), insights.attendance.value == null ? "none" : standing(insights.attendance.value, insights.attendance.classAverage, 90)));
+    if (show("behaviour") && !sheetShown) tiles.push(tile(t2("r.behaviour"), ltr(num4(insights.behaviour.value) + "/" + num4(insights.behaviour.max)), (summary.deductions ? t2("r.deductions") + ": " + summary.deductions : t2("r.noDeductions")) + (summary.deductions && reasons.length && !behaviourBlockShown ? '<em dir="auto">' + esc(reasons.join(language2 === "ar" ? "\u060C " : ", ")) + "</em>" : ""), summary.deductions ? "low" : "above"));
+    if (show("participation") && !sheetShown) tiles.push(tile(t2("r.participation"), ltr(num4(insights.participation.value) + "/" + num4(insights.participation.max)), insights.participation.classAverage == null ? "" : t2("r.classShort") + " " + ltr(num4(insights.participation.classAverage)), standing(insights.participation.value, insights.participation.classAverage, null)));
+    if (show("attendance")) tiles.push(recorded2 ? tile(t2("r.attendance"), ltr(summary.present + "/" + recorded2), t2("r.absences") + ": " + summary.absences + (insights.attendance.value != null ? " \xB7 " + ltr(num4(insights.attendance.value) + "%") + " " + t2("r.termPct") : ""), summary.absences ? "low" : "above") : tile(t2("r.attendance"), insights.attendance.value == null ? "\u2013" : ltr(num4(insights.attendance.value) + "%"), insights.attendance.classAverage == null ? "" : t2("r.classShort") + " " + ltr(num4(insights.attendance.classAverage) + "%"), insights.attendance.value == null ? "none" : standing(insights.attendance.value, insights.attendance.classAverage, 90)));
     if (work.length && !sheetShown) tiles.push(tile(t2("r.work"), ltr(handed + "/" + work.length), missing ? t2("r.missing") + ": " + missing : t2("r.allMarked"), missing ? "low" : "above"));
     const autoHome = homeTip(insights, language2), earned = show("stars") ? achievements(summary, insights) : [];
-    const page1 = open(1) + header2 + '<section class="cpw-glance"><span class="cpw-tone">' + t2("r.tone." + tone) + "</span><p>" + esc(headline(summary, insights, language2, period, show("attendance") && recorded2 > 0)) + " " + trendWord + '</p><div class="cpw-grade"><span>' + t2("r.grade") + "</span><b>" + (summary.grade == null ? "\u2013" : ltr(num3(summary.grade))) + "</b><small>" + (summary.letter ? esc(summary.letter) : "") + (change2 ? " \xB7 " + esc(change2) : "") + '</small></div><div class="cpw-where"><span>' + t2("r.where") + "</span>" + scale(summary.grade, insights.classAverage, pass, language2) + "</div></section>" + starsBlock(earned, language2) + (tiles.length ? '<section class="cpw-tiles" style="grid-template-columns:repeat(' + tiles.length + ',1fr)">' + tiles.join("") + "</section>" : "") + (show("sections") && insights.sheet.length ? "<section><h2>" + t2("r.sectionsTitle") + "</h2>" + (chosen.size ? '<p class="cpw-newline"><b>' + esc(text5("r.newWork", language2, { period: periodPhrase(summary, language2) })) + "</b> " + insights.assessments.filter((item) => chosen.has(item.id)).map((item) => '<span dir="auto">' + esc(item.name) + "</span> " + (item.mark == null ? esc(text5("r.noMark", language2)) : ltr(num3(item.mark) + "/" + num3(item.max)))).join(" \xB7 ") + "</p>" : "") + sectionCards(insights.sheet, pass, language2, chosen) + "</section>" : "") + duo(show("progress") ? "<section><h2>" + t2("r.overTime") + "</h2>" + progress(summary, insights, language2, behaviourBlockShown) + "</section>" : "", behaviourBlockShown ? behaviourBlock(summary, insights, language2, show("progress")) : "") + (show("strengths") ? '<section class="cpw-pair"><div class="cpw-strengths"><h2>' + t2("r.doingWell") + "</h2>" + (insights.highlights.strengths.length ? '<ul class="cpw-list">' + insights.highlights.strengths.map((item) => highlightLine(item, language2, true)).join("") + "</ul>" : '<p class="cpw-muted">' + t2("r.noStrengths") + "</p>") + (note?.strengths ? '<p dir="auto" class="cpw-teacher">' + esc(note.strengths) + "</p>" : "") + '</div><div class="cpw-next"><h2>' + t2("r.toWorkOn") + "</h2>" + (insights.highlights.focus.length ? '<ul class="cpw-list">' + insights.highlights.focus.map((item) => highlightLine(item, language2, false)).join("") + "</ul>" : '<p class="cpw-muted">' + t2("r.noFocus") + "</p>") + "</div></section>" : "") + (note && note.text ? '<section class="cpw-note"><h2>' + t2("r.note") + '</h2><p dir="auto">' + esc(note.text) + "</p></section>" : "") + (show("home") ? '<section class="cpw-home"><h2>' + t2("r.atHome") + '</h2><p dir="auto">' + esc(note?.next || autoHome) + "</p></section>" : "") + '<footer class="cpw-foot"><span>' + t2("r.legendShort") + "</span><span>" + (preparedOn ? t2("r.prepared") + " " + esc(new Intl.DateTimeFormat(locale3(language2), { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" }).format(/* @__PURE__ */ new Date(preparedOn + "T00:00:00Z"))) : "") + "</span></footer></article>";
+    const page1 = open(1) + header2 + '<section class="cpw-glance"><span class="cpw-tone">' + t2("r.tone." + tone) + "</span><p>" + esc(headline(summary, insights, language2, period, show("attendance") && recorded2 > 0)) + " " + trendWord + '</p><div class="cpw-grade"><span>' + t2("r.grade") + "</span><b>" + (summary.grade == null ? "\u2013" : ltr(num4(summary.grade))) + "</b><small>" + (summary.letter ? esc(summary.letter) : "") + (change2 ? " \xB7 " + esc(change2) : "") + '</small></div><div class="cpw-where"><span>' + t2("r.where") + "</span>" + scale(summary.grade, insights.classAverage, pass, language2) + "</div></section>" + starsBlock(earned, language2) + (tiles.length ? '<section class="cpw-tiles" style="grid-template-columns:repeat(' + tiles.length + ',1fr)">' + tiles.join("") + "</section>" : "") + (show("sections") && insights.sheet.length ? "<section><h2>" + t2("r.sectionsTitle") + "</h2>" + (chosen.size ? '<p class="cpw-newline"><b>' + esc(text5("r.newWork", language2, { period: periodPhrase(summary, language2) })) + "</b> " + insights.assessments.filter((item) => chosen.has(item.id)).map((item) => '<span dir="auto">' + esc(item.name) + "</span> " + (item.mark == null ? esc(text5("r.noMark", language2)) : ltr(num4(item.mark) + "/" + num4(item.max)))).join(" \xB7 ") + "</p>" : "") + sectionCards(insights.sheet, pass, language2, chosen) + "</section>" : "") + duo(show("progress") ? "<section><h2>" + t2("r.overTime") + "</h2>" + progress(summary, insights, language2, behaviourBlockShown) + "</section>" : "", behaviourBlockShown ? behaviourBlock(summary, insights, language2, show("progress")) : "") + (show("strengths") ? '<section class="cpw-pair"><div class="cpw-strengths"><h2>' + t2("r.doingWell") + "</h2>" + (insights.highlights.strengths.length ? '<ul class="cpw-list">' + insights.highlights.strengths.map((item) => highlightLine(item, language2, true)).join("") + "</ul>" : '<p class="cpw-muted">' + t2("r.noStrengths") + "</p>") + (note?.strengths ? '<p dir="auto" class="cpw-teacher">' + esc(note.strengths) + "</p>" : "") + '</div><div class="cpw-next"><h2>' + t2("r.toWorkOn") + "</h2>" + (insights.highlights.focus.length ? '<ul class="cpw-list">' + insights.highlights.focus.map((item) => highlightLine(item, language2, false)).join("") + "</ul>" : '<p class="cpw-muted">' + t2("r.noFocus") + "</p>") + "</div></section>" : "") + (note && note.text ? '<section class="cpw-note"><h2>' + t2("r.note") + '</h2><p dir="auto">' + esc(note.text) + "</p></section>" : "") + (show("home") ? '<section class="cpw-home"><h2>' + t2("r.atHome") + '</h2><p dir="auto">' + esc(note?.next || autoHome) + "</p></section>" : "") + '<footer class="cpw-foot"><span>' + t2("r.legendShort") + "</span><span>" + (preparedOn ? t2("r.prepared") + " " + esc(new Intl.DateTimeFormat(locale3(language2), { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" }).format(/* @__PURE__ */ new Date(preparedOn + "T00:00:00Z"))) : "") + "</span></footer></article>";
     if (!show("details")) return [page1];
     const page2 = open(2) + '<header class="cpw-head cpw-head-small"><div><span class="cpw-kicker">' + t2("r.details") + '</span><h1 dir="auto">' + esc(summary.student.name) + "</h1></div></header>" + (insights.sheet.length ? "<section><h2>" + t2("r.sheet") + "</h2>" + sheetTable(insights.sheet, pass, language2) + "</section>" : "") + (insights.events.length ? "<section><h2>" + t2("r.log") + "</h2>" + noteLog(insights.events, language2) + "</section>" : "") + (show("attendance") && summary.days.length && !long ? "<section><h2>" + t2("r.attWeek") + '</h2><ol class="cpw-days">' + summary.days.map((day) => '<li data-status="' + (day.status || "unmarked") + '"><b>' + esc(marks2[day.status] || "\u2013") + "</b><span>" + esc(dayName(day.date, language2)) + "</span><small>" + t2("r." + (day.status || "unmarked")) + "</small></li>").join("") + "</ol></section>" : "") + (show("attendance") && long && recorded2 ? "<section><h2>" + t2("r.attPeriod") + '</h2><ol class="cpw-counts">' + ["present", "late", "absent", "excused"].map((status) => '<li data-status="' + status + '"><b>' + summary.days.filter((day) => day.status === status).length + "</b><span>" + t2("r." + status) + "</span></li>").join("") + "</ol></section>" : "") + (summary.observedPositive?.length || summary.observedSupport?.length ? "<section><h2>" + t2("r.observed") + '</h2><p class="cpw-obs">' + (summary.observedPositive || []).map((tag) => '<span data-kind="positive">' + esc(tagName2(tag, language2)) + " \xD7" + tag.count + "</span>").join("") + (summary.observedSupport || []).map((tag) => '<span data-kind="support">' + esc(tagName2(tag, language2)) + " \xD7" + tag.count + "</span>").join("") + "</p></section>" : "") + '<section class="cpw-read"><h2>' + t2("r.howToRead") + "</h2><p>" + t2("r.legend") + '</p></section><footer class="cpw-foot"><span>' + t2("r.footer") + "</span><span></span></footer></article>";
     return [page1, page2];
@@ -58008,7 +58395,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
   var reportHTML = (summary, header2) => reportPages(summary, header2).join("");
   function parentMessage(summary, { language: language2 = "en", week }) {
     const recorded2 = summary.days.filter((day) => day.status).length, attendance2 = recorded2 ? summary.present + "/" + recorded2 : text5("r.unmarked", language2), behaviour = summary.deductions ? summary.deductions + " " + text5("r.deductions", language2) : text5("r.noDeductions", language2);
-    const lead = text5("r.message", language2, { name: summary.student.name, week: weekLabel(week, language2), grade: summary.grade == null ? text5("r.noGrade", language2) : num3(summary.grade) + (summary.letter ? " (" + summary.letter + ")" : ""), attendance: attendance2, behaviour });
+    const lead = text5("r.message", language2, { name: summary.student.name, week: weekLabel(week, language2), grade: summary.grade == null ? text5("r.noGrade", language2) : num4(summary.grade) + (summary.letter ? " (" + summary.letter + ")" : ""), attendance: attendance2, behaviour });
     const note = summary.note && !summary.note.noNote && summary.note.text ? " " + summary.note.text : "";
     return lead + note;
   }
@@ -59527,27 +59914,6 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
 
   // src/core/shell.jsx
   setNewClassNameAsker(() => askText({ title: t("ux.newClass.title"), body: t("ux.newClass.body"), label: t("ux.newClass.label"), confirm: t("ux.newClass.confirm"), context: "new-class" }));
-  function ViewMenu({ workspace }) {
-    const [open, setOpen] = useState(false), ref = useRef(null);
-    useEffect(() => {
-      if (!open) return;
-      const outside = (e) => {
-        if (ref.current && !ref.current.contains(e.target)) setOpen(false);
-      }, key4 = (e) => {
-        if (e.key === "Escape") setOpen(false);
-      };
-      document.addEventListener("mousedown", outside);
-      document.addEventListener("keydown", key4);
-      return () => {
-        document.removeEventListener("mousedown", outside);
-        document.removeEventListener("keydown", key4);
-      };
-    }, [open]);
-    return /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx(ProjectingButton, null), /* @__PURE__ */ cpJsx("div", { className: "cp-view-menu", ref }, /* @__PURE__ */ cpJsx("button", { ...actionProps("improve.viewMenu", () => setOpen(!open)), "aria-expanded": open, "aria-haspopup": "true" }, t("improve.viewMenu")), open && /* @__PURE__ */ cpJsx("div", { className: "cp-view-menu-list" }, /* @__PURE__ */ cpJsx("button", { ...actionProps("improve.toggleNavigation", () => {
-      workspace?.setCollapsed(!workspace.collapsed);
-      setOpen(false);
-    }), "aria-expanded": !workspace?.collapsed }, t(workspace?.collapsed ? "improve.showSidebar" : "improve.hideSidebar")))));
-  }
   function ShellBar({ doc, onDirection, view, setView, onProfile, canOpen, onWheel, onUpdate, wheelKey, onAI, onSettings }) {
     const [profile3, setProfile] = useState(getProfile);
     useEffect(() => subscribeProfile(setProfile), []);
@@ -59622,8 +59988,8 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     };
     return /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx(SidebarPortal, { target: "hubs" }, hubs.filter((target) => target !== "manage").map(hubButton)), /* @__PURE__ */ cpJsx("nav", { className: "cp-subnav", "aria-label": t("improve.hub." + hub), hidden: hub === "today" }, hubs.map((target) => /* @__PURE__ */ cpJsx("div", { key: target, className: "cp-subnav-group", "data-hub": target, hidden: target !== hub }, /* @__PURE__ */ cpJsx("div", { ref: workspace?.slotRefs[target], className: "cp-subnav-slot" }), target === "gradebook" && /* @__PURE__ */ cpJsx("div", { ref: workspace?.slotRefs.year, className: "cp-subnav-slot" })))), ["today", ...hubs].map((target) => /* @__PURE__ */ cpJsx(SidebarPortal, { key: target, target }, modules.filter((candidate) => home(candidate.moduleId) === target).sort((x2, y2) => x2.navigation.order - y2.navigation.order).flatMap((candidate) => {
       const button = /* @__PURE__ */ cpJsx("button", { key: candidate.id, ...actionProps(candidate.navigationAction, () => setView(candidate.id)), "aria-pressed": view === candidate.id }, /* @__PURE__ */ cpJsx(NavIcon, { type: candidate.moduleId }), /* @__PURE__ */ cpJsx("span", null, t(candidate.navigation.titleKey)));
-      return candidate.moduleId === aiReportsNavigation.beforeModuleId && onAI ? [/* @__PURE__ */ cpJsx("button", { key: "ai-reports", ...actionProps(aiReportsNavigation.actionId, onAI, aiReportsNavigation.context) }, /* @__PURE__ */ cpJsx(NavIcon, { type: aiReportsNavigation.icon }), /* @__PURE__ */ cpJsx("span", null, t(aiReportsNavigation.titleKey))), button] : [button];
-    }))), /* @__PURE__ */ cpJsx(SidebarPortal, { target: "toolbarContext" }, /* @__PURE__ */ cpJsx(ContextLine, { doc, profile: profile3 })), /* @__PURE__ */ cpJsx(ParentReasonWatcher, { doc, onUpdate }), /* @__PURE__ */ cpJsx(ParentContactsBridge, { doc, onUpdate }), /* @__PURE__ */ cpJsx(ConductBridge, { doc }), /* @__PURE__ */ cpJsx(FileSync, { doc, onUpdate }), /* @__PURE__ */ cpJsx(SidebarPortal, { target: "toolbarTools" }, /* @__PURE__ */ cpJsx(ClassroomTools, { view, doc, onUpdate, setView, wheelKey, openWheel: onWheel }), /* @__PURE__ */ cpJsx(ViewMenu, { workspace })), /* @__PURE__ */ cpJsx(SettingsHome, { workspace, language: language2, onLanguage: changeLanguage, direction: doc.settings.dir || "ltr", onDirection, onOpenCalendar: () => {
+      return candidate.moduleId === aiReportsNavigation.afterModuleId && onAI ? [button, /* @__PURE__ */ cpJsx("button", { key: "ai-reports", ...actionProps(aiReportsNavigation.actionId, onAI, aiReportsNavigation.context) }, /* @__PURE__ */ cpJsx(NavIcon, { type: aiReportsNavigation.icon }), /* @__PURE__ */ cpJsx("span", null, t(aiReportsNavigation.titleKey)))] : [button];
+    }))), /* @__PURE__ */ cpJsx(SidebarPortal, { target: "toolbarContext" }, /* @__PURE__ */ cpJsx(ContextLine, { doc, profile: profile3 })), /* @__PURE__ */ cpJsx(ParentReasonWatcher, { doc, onUpdate }), /* @__PURE__ */ cpJsx(ParentContactsBridge, { doc, onUpdate }), /* @__PURE__ */ cpJsx(ConductBridge, { doc }), /* @__PURE__ */ cpJsx(FileSync, { doc, onUpdate }), /* @__PURE__ */ cpJsx(SidebarPortal, { target: "toolbarTools" }, /* @__PURE__ */ cpJsx(ClassroomTools, { view, doc, onUpdate, setView, wheelKey, openWheel: onWheel }), /* @__PURE__ */ cpJsx(ProjectingButton, null)), /* @__PURE__ */ cpJsx(SettingsHome, { workspace, language: language2, onLanguage: changeLanguage, direction: doc.settings.dir || "ltr", onDirection, onOpenCalendar: () => {
       try {
         localStorage.setItem("cp:timetable:tab", "year");
       } catch {
@@ -61045,18 +61411,18 @@ Reply with JSON only, exactly in the shape of "response_schema", one report per 
               if (v === en_default["gb.e3b0c44298fc1c14"]) {
                 return;
               }
-              var num4 = Math.max(0, Math.min(cmx, +v || 0));
+              var num5 = Math.max(0, Math.min(cmx, +v || 0));
               if (col.kind === en_default["gb.aafe609f4f899a24"]) {
-                s = { ...s, behaviour: num4 };
+                s = { ...s, behaviour: num5 };
               } else if (col.kind === en_default["gb.3ea38fc3209511ad"]) {
-                s = { ...s, participation: num4 };
+                s = { ...s, participation: num5 };
               } else if (col.kind === en_default["gb.b01e26d3f5a5130b"]) {
-                s = { ...s, tallies: { ...s.tallies || {}, [cid]: [{ date: today, delta: num4, comment: en_default["gb.d942f64886578d87"] }] } };
+                s = { ...s, tallies: { ...s.tallies || {}, [cid]: [{ date: today, delta: num5, comment: en_default["gb.d942f64886578d87"] }] } };
               } else if (col.kind === en_default["gb.c3211e4cc78da431"]) {
-                s = { ...s, adjustments: { ...s.adjustments || {}, [cid]: Math.abs(num4 - cmx) > 1e-9 ? [{ date: today, delta: +(num4 - cmx).toFixed(4), comment: en_default["gb.d942f64886578d87"] }] : [] } };
+                s = { ...s, adjustments: { ...s.adjustments || {}, [cid]: Math.abs(num5 - cmx) > 1e-9 ? [{ date: today, delta: +(num5 - cmx).toFixed(4), comment: en_default["gb.d942f64886578d87"] }] : [] } };
               } else {
                 var hist = (s.markHistory || {})[cid] || [];
-                s = { ...s, marks: { ...s.marks || {}, [cid]: num4 }, markHistory: { ...s.markHistory || {}, [cid]: [...hist, { date: today, value: num4 }] } };
+                s = { ...s, marks: { ...s.marks || {}, [cid]: num5 }, markHistory: { ...s.markHistory || {}, [cid]: [...hist, { date: today, value: num5 }] } };
               }
             }
           });
