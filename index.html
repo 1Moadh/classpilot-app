@@ -2545,6 +2545,14 @@ td[data-cp-att],th[data-cp-att]{background:var(--cp-att-bg)!important;box-shadow
 .cp-home-star .cp-star-signals span[data-met=false]{background:var(--cp-bg,#f8fafc);color:var(--cp-muted);text-decoration:line-through}
 .cp-home-star footer{display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;align-items:center;padding:4px 18px 16px;font-size:var(--cp-fs-caption);color:var(--cp-muted)}
 .cp-home-star>p{margin:0;padding:12px 18px;color:var(--cp-muted)}
+/* Owner (17 November 2026, approved mock-up): the running minutes sit inside their tool button (no badge over the edge). */
+.cp-tool-dock .cp-dock-btn:has(.cp-dock-badge){width:auto;display:inline-flex;align-items:center;gap:5px;padding:0 8px 0 6px}
+.cp-tool-dock .cp-dock-badge{position:static;min-width:0;padding:0;border-radius:0;background:none;color:inherit;font-size:var(--cp-fs-label,13px);font-weight:700;line-height:1}
+/* Owner (17 November 2026, approved mock-up): a section tab being dragged lifts; the others make room. */
+.cp-subnav-dragging,.cp-subnav-dragging *{user-select:none;cursor:grabbing!important}
+.cp-workspace .cp-subnav button.cp-tab-dragging.cp-tab-dragging{position:relative;z-index:5;transform:translateY(-3px)!important;box-shadow:0 6px 18px rgba(15,23,42,.28),0 0 0 1px rgba(15,23,42,.12)!important;background:var(--cp-surface)!important;border-radius:8px!important;color:var(--cp-text)!important}
+.cp-settings-taborder button{min-block-size:30px;padding:0 12px;border:1px solid var(--cp-border);border-radius:6px;background:var(--cp-surface);color:var(--cp-text);font:inherit;cursor:pointer;justify-self:start}
+.cp-settings-taborder button:disabled{opacity:.5;cursor:default}
 /* M56 design foundations (owner-supplied Master Implementation Brief, M56; design report §7–§8).
    One set of tokens for the frame and the new modules. Protected Gradebook views (Marks, Groups, Behaviour,
    Adjustments, Analysis, the original wheel, the Settings drawer and the class manager) do not use them. */
@@ -9330,7 +9338,9 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.home.star.none": "No student has enough signals this week yet.",
     "ux.home.star.note": "Nothing is issued until you choose to.",
     "ux.home.starMake": "Make certificates",
-    "ux.cert.proposedStar": "Proposed from Today: this week's Star of the week students are ticked. Check them, then issue."
+    "ux.cert.proposedStar": "Proposed from Today: this week's Star of the week students are ticked. Check them, then issue.",
+    "ux.tabs.order": "Section tabs order",
+    "ux.tabs.reset": "Reset tab order"
   };
 
   // src/i18n/plain-copy.js
@@ -15488,7 +15498,9 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.home.star.none": "\u0644\u0645 \u064A\u062D\u0642\u0642 \u0623\u064A \u0637\u0627\u0644\u0628 \u0627\u0644\u0645\u0624\u0634\u0631\u0627\u062A \u0627\u0644\u0643\u0627\u0641\u064A\u0629 \u0647\u0630\u0627 \u0627\u0644\u0623\u0633\u0628\u0648\u0639 \u0628\u0639\u062F.",
     "ux.home.star.note": "\u0644\u0627 \u064A\u064F\u0635\u062F\u064E\u0631 \u0634\u064A\u0621 \u0625\u0644\u0627 \u0639\u0646\u062F\u0645\u0627 \u062A\u062E\u062A\u0627\u0631 \u0630\u0644\u0643.",
     "ux.home.starMake": "\u0625\u0639\u062F\u0627\u062F \u0627\u0644\u0634\u0647\u0627\u062F\u0627\u062A",
-    "ux.cert.proposedStar": "\u0645\u0642\u062A\u0631\u062D \u0645\u0646 \xAB\u0627\u0644\u064A\u0648\u0645\xBB: \u062D\u064F\u062F\u0651\u062F \u0637\u0644\u0627\u0628 \xAB\u0646\u062C\u0645 \u0627\u0644\u0623\u0633\u0628\u0648\u0639\xBB \u0644\u0647\u0630\u0627 \u0627\u0644\u0623\u0633\u0628\u0648\u0639. \u0631\u0627\u062C\u0639\u0647\u0645 \u062B\u0645 \u0623\u0635\u062F\u0631 \u0627\u0644\u0634\u0647\u0627\u062F\u0627\u062A."
+    "ux.cert.proposedStar": "\u0645\u0642\u062A\u0631\u062D \u0645\u0646 \xAB\u0627\u0644\u064A\u0648\u0645\xBB: \u062D\u064F\u062F\u0651\u062F \u0637\u0644\u0627\u0628 \xAB\u0646\u062C\u0645 \u0627\u0644\u0623\u0633\u0628\u0648\u0639\xBB \u0644\u0647\u0630\u0627 \u0627\u0644\u0623\u0633\u0628\u0648\u0639. \u0631\u0627\u062C\u0639\u0647\u0645 \u062B\u0645 \u0623\u0635\u062F\u0631 \u0627\u0644\u0634\u0647\u0627\u062F\u0627\u062A.",
+    "ux.tabs.order": "\u062A\u0631\u062A\u064A\u0628 \u062A\u0628\u0648\u064A\u0628\u0627\u062A \u0627\u0644\u0623\u0642\u0633\u0627\u0645",
+    "ux.tabs.reset": "\u0627\u0633\u062A\u0639\u0627\u062F\u0629 \u0627\u0644\u062A\u0631\u062A\u064A\u0628 \u0627\u0644\u0627\u0641\u062A\u0631\u0627\u0636\u064A"
   };
 
   // src/core/actions.js
@@ -32608,6 +32620,19 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       "meaning": "ux.home.starMake"
     },
     {
+      "id": "ux.tabs.reset",
+      "labelKey": "ux.tabs.reset",
+      "icon": null,
+      "shortcut": null,
+      "availability": "rendered-and-not-disabled",
+      "canonicalHome": "tabs:context",
+      "events": [
+        "onClick"
+      ],
+      "source": "src/modules",
+      "meaning": "ux.tabs.reset"
+    },
+    {
       "id": "ux.report.sort",
       "labelKey": "ux.report.sort",
       "icon": null,
@@ -35918,6 +35943,11 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
         if (r === void 0) continue;
         if (!object(r) || r.on !== void 0 && typeof r.on !== "boolean" || r.min !== void 0 && !(Number.isFinite(r.min) && r.min >= 0 && r.min <= 100) || r.strikes !== void 0 && !(Number.isInteger(r.strikes) && r.strikes >= 0)) invalid();
       }
+    }
+    if (profile3.tabOrder !== void 0) {
+      const o = profile3.tabOrder;
+      if (!object(o)) invalid();
+      for (const keys of Object.values(o)) if (!Array.isArray(keys) || keys.length > 100 || keys.some((k) => typeof k !== "string" || k.length > 200)) invalid();
     }
     if (profile3.certificateAwards !== void 0) {
       const c = profile3.certificateAwards;
@@ -40728,6 +40758,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
   Object.assign(uxClick, { "cert.criteria": "cert.criteria", "cert.criteriaDone": "cert.criteriaDone", "cert.thisTerm": "cert.thisTerm", "cert.suggest.behaviour": "cert.suggest.behaviour", "cert.suggest.homework": "cert.suggest.homework" });
   Object.assign(uxChange, { "cert.criteriaOn": "cert.criteriaOn", "cert.criteriaMin": "cert.criteriaMin", "cert.criteriaStrikes": "cert.criteriaStrikes" });
   Object.assign(uxClick, { "cert.period": "cert.period", "cert.suggest.star": "cert.suggest.star", "cert.suggest.mostImproved": "cert.suggest.mostImproved", "cert.suggest.perfect": "cert.suggest.perfect", "cert.suggest.kindness": "cert.suggest.kindness", "cert.pkgReset": "cert.pkgReset", "home.starMake": "home.starMake" });
+  Object.assign(uxClick, { "tabs.reset": "tabs.reset" });
   Object.assign(uxChange, { "cert.pkgDesign": "cert.pkgDesign", "cert.pkgTitle": "cert.pkgTitle", "cert.pkgTitleAr": "cert.pkgTitleAr", "cert.pkgReason": "cert.pkgReason", "cert.pkgReasonAr": "cert.pkgReasonAr" });
   var uxActions = [...Object.entries(uxClick).map(([id, key4]) => [id, key4, "onClick"]), ...Object.entries(uxChange).map(([id, key4]) => [id, key4, "onChange"])].map(([id, key4, event]) => ({ id: "ux." + id, labelKey: "ux." + key4, icon: null, shortcut: null, availability: "rendered-and-not-disabled", canonicalHome: navigationHome("ux." + id) || certificateActionHome("ux." + id) || (id.startsWith("nav.") ? "Workspace:sidebar" : id.startsWith("appearance.") ? "Workspace:context" : id.split(".")[0] + ":context"), events: id === "plans.section" || id === "support.section" || id === "tt.editSection" ? [event, "onKeyDown"] : [event], source: "src/modules", meaning: "ux." + id }));
 
@@ -45082,7 +45113,9 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "home.star.none": ["No student has enough signals this week yet.", "\u0644\u0645 \u064A\u062D\u0642\u0642 \u0623\u064A \u0637\u0627\u0644\u0628 \u0627\u0644\u0645\u0624\u0634\u0631\u0627\u062A \u0627\u0644\u0643\u0627\u0641\u064A\u0629 \u0647\u0630\u0627 \u0627\u0644\u0623\u0633\u0628\u0648\u0639 \u0628\u0639\u062F."],
     "home.star.note": ["Nothing is issued until you choose to.", "\u0644\u0627 \u064A\u064F\u0635\u062F\u064E\u0631 \u0634\u064A\u0621 \u0625\u0644\u0627 \u0639\u0646\u062F\u0645\u0627 \u062A\u062E\u062A\u0627\u0631 \u0630\u0644\u0643."],
     "home.starMake": ["Make certificates", "\u0625\u0639\u062F\u0627\u062F \u0627\u0644\u0634\u0647\u0627\u062F\u0627\u062A"],
-    "cert.proposedStar": ["Proposed from Today: this week's Star of the week students are ticked. Check them, then issue.", "\u0645\u0642\u062A\u0631\u062D \u0645\u0646 \xAB\u0627\u0644\u064A\u0648\u0645\xBB: \u062D\u064F\u062F\u0651\u062F \u0637\u0644\u0627\u0628 \xAB\u0646\u062C\u0645 \u0627\u0644\u0623\u0633\u0628\u0648\u0639\xBB \u0644\u0647\u0630\u0627 \u0627\u0644\u0623\u0633\u0628\u0648\u0639. \u0631\u0627\u062C\u0639\u0647\u0645 \u062B\u0645 \u0623\u0635\u062F\u0631 \u0627\u0644\u0634\u0647\u0627\u062F\u0627\u062A."]
+    "cert.proposedStar": ["Proposed from Today: this week's Star of the week students are ticked. Check them, then issue.", "\u0645\u0642\u062A\u0631\u062D \u0645\u0646 \xAB\u0627\u0644\u064A\u0648\u0645\xBB: \u062D\u064F\u062F\u0651\u062F \u0637\u0644\u0627\u0628 \xAB\u0646\u062C\u0645 \u0627\u0644\u0623\u0633\u0628\u0648\u0639\xBB \u0644\u0647\u0630\u0627 \u0627\u0644\u0623\u0633\u0628\u0648\u0639. \u0631\u0627\u062C\u0639\u0647\u0645 \u062B\u0645 \u0623\u0635\u062F\u0631 \u0627\u0644\u0634\u0647\u0627\u062F\u0627\u062A."],
+    "tabs.order": ["Section tabs order", "\u062A\u0631\u062A\u064A\u0628 \u062A\u0628\u0648\u064A\u0628\u0627\u062A \u0627\u0644\u0623\u0642\u0633\u0627\u0645"],
+    "tabs.reset": ["Reset tab order", "\u0627\u0633\u062A\u0639\u0627\u062F\u0629 \u0627\u0644\u062A\u0631\u062A\u064A\u0628 \u0627\u0644\u0627\u0641\u062A\u0631\u0627\u0636\u064A"]
   };
   var uxEn = Object.fromEntries(Object.entries(pairs).map(([key4, value]) => ["ux." + key4, value[0]]));
   var uxAr = Object.fromEntries(Object.entries(pairs).map(([key4, value]) => ["ux." + key4, value[1]]));
@@ -45977,7 +46010,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
         }) : [...a, id];
       });
     };
-    var save = function() {
+    var save2 = function() {
       onSave({ tags, note: note.trim(), updatedAt: (/* @__PURE__ */ new Date()).toISOString() });
       onClose();
     };
@@ -45995,7 +46028,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     })), placeholder: en_default["gb.618faad39c9208e4"], style: { width: en_default["gb.32e48995f98ce3b7"], minHeight: 64, resize: en_default["gb.34da56029403e6f7"], padding: 8, border: en_default["gb.f35c8c1246856a29"], borderRadius: 6, fontFamily: en_default["gb.035300f3afee55ae"], fontSize: 11.5 }, "data-cp-action": "gb.05-popovers.2999", "data-cp-context": "singleton" }), /* @__PURE__ */ cpJsx(ParentContactsEditor, { student })), /* @__PURE__ */ cpJsx("div", { style: { display: en_default["gb.222f930b87524636"], justifyContent: en_default["gb.8c72b36502d3b7a3"], alignItems: en_default["gb.f179a509d32bd92c"], marginTop: 12 } }, /* @__PURE__ */ cpJsx("button", { onClick: bindAction("gb.05-popovers.3379", "singleton", "onClick", (function() {
       sTags([]);
       sNote(en_default["gb.e3b0c44298fc1c14"]);
-    })), style: B({ background: en_default["gb.e08de713877c54e8"], border: en_default["gb.de0bb2996ca9300e"], color: en_default["gb.3871da342003cbdb"] }), "data-cp-action": "gb.05-popovers.3379", "data-cp-context": "singleton" }, en_default["gb.63208fd6b841cfae"]), /* @__PURE__ */ cpJsx("div", { style: { display: en_default["gb.222f930b87524636"], gap: 6 } }, /* @__PURE__ */ cpJsx("button", { onClick: bindAction("gb.05-popovers.3560", "singleton", "onClick", onClose), style: B({ background: en_default["gb.e08de713877c54e8"], border: en_default["gb.f35c8c1246856a29"], color: en_default["gb.833631aa325ef0ac"] }), "data-cp-action": "gb.05-popovers.3560", "data-cp-context": "singleton" }, en_default["gb.19766ed6ccb2f4a3"]), /* @__PURE__ */ cpJsx("button", { onClick: bindAction("gb.05-popovers.3675", "singleton", "onClick", save), style: B({ background: en_default["gb.dbd729b0a3fbcb8b"], color: en_default["gb.e08de713877c54e8"] }), "data-cp-action": "gb.05-popovers.3675", "data-cp-context": "singleton" }, en_default["gb.7339d1b9533126ed"]))))), document.body);
+    })), style: B({ background: en_default["gb.e08de713877c54e8"], border: en_default["gb.de0bb2996ca9300e"], color: en_default["gb.3871da342003cbdb"] }), "data-cp-action": "gb.05-popovers.3379", "data-cp-context": "singleton" }, en_default["gb.63208fd6b841cfae"]), /* @__PURE__ */ cpJsx("div", { style: { display: en_default["gb.222f930b87524636"], gap: 6 } }, /* @__PURE__ */ cpJsx("button", { onClick: bindAction("gb.05-popovers.3560", "singleton", "onClick", onClose), style: B({ background: en_default["gb.e08de713877c54e8"], border: en_default["gb.f35c8c1246856a29"], color: en_default["gb.833631aa325ef0ac"] }), "data-cp-action": "gb.05-popovers.3560", "data-cp-context": "singleton" }, en_default["gb.19766ed6ccb2f4a3"]), /* @__PURE__ */ cpJsx("button", { onClick: bindAction("gb.05-popovers.3675", "singleton", "onClick", save2), style: B({ background: en_default["gb.dbd729b0a3fbcb8b"], color: en_default["gb.e08de713877c54e8"] }), "data-cp-action": "gb.05-popovers.3675", "data-cp-context": "singleton" }, en_default["gb.7339d1b9533126ed"]))))), document.body);
   }
   function ASM({ onAdd, onClose, _cpOrigin }) {
     useGradebookEscape(true, function() {
@@ -48072,12 +48105,12 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     useEffect(() => setDraft({ date: note.date, followUpDate: note.followUpDate || "", completed: !!note.completed, text: note.text }), [note.id, note.updatedAt]);
     const changed = draft.date !== note.date || draft.followUpDate !== (note.followUpDate || "") || draft.completed !== !!note.completed || draft.text !== note.text, student = doc.students.find((s) => s.id === note.studentId);
     const obs = observations(doc.cp?.observations), recent = [...obs.byStudent[note.studentId] || []].sort((a, b) => b.date.localeCompare(a.date) || b.createdAt - a.createdAt).slice(0, 3);
-    const save = () => onUpdate((d) => editNote(d, note.studentId, note.id, { date: draft.date, followUpDate: draft.followUpDate, completed: draft.followUpDate ? draft.completed : false, text: draft.text }));
+    const save2 = () => onUpdate((d) => editNote(d, note.studentId, note.id, { date: draft.date, followUpDate: draft.followUpDate, completed: draft.followUpDate ? draft.completed : false, text: draft.text }));
     return /* @__PURE__ */ cpJsx(Inspector, { title: student?.name || "", footer: /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx(Button, { action: note.pinned ? "m3.notes.unpin" : "m3.notes.pin", context: note.id, onClick: () => onUpdate((d) => editNote(d, note.studentId, note.id, { pinned: !note.pinned })) }), /* @__PURE__ */ cpJsx(Button, { action: "m3.notes.remove", role: "danger", context: note.id, onClick: () => {
       onUpdate((d) => removeNote(d, note.studentId, note.id));
       setOpen("new");
       notify(ux("notes.removed"), { undo: true });
-    } }), /* @__PURE__ */ cpJsx("span", { className: "cp-notes-gap" }), /* @__PURE__ */ cpJsx(Button, { action: "ux.notes.close", role: "tertiary", onClick: () => setOpen("new") }), changed && /* @__PURE__ */ cpJsx(Button, { action: "ux.notes.cancelEdit", context: note.id, onClick: () => setDraft({ date: note.date, followUpDate: note.followUpDate || "", completed: !!note.completed, text: note.text }) }), /* @__PURE__ */ cpJsx(Button, { action: "ux.notes.save", role: "primary", context: note.id, disabled: !changed || !draft.date || !draft.text.trim(), onClick: save })) }, /* @__PURE__ */ cpJsx(Field, { action: "m3.notes.editDate", context: note.id, label: "notes.date", type: "date", value: draft.date, onChange: (e) => setDraft({ ...draft, date: e.target.value }) }), /* @__PURE__ */ cpJsx(Field, { action: "m3.notes.editText", context: note.id, label: "notes.text", as: "textarea", rows: 7, value: draft.text, onChange: (e) => setDraft({ ...draft, text: e.target.value }) }), /* @__PURE__ */ cpJsx(NoteReminder, { context: note.id, date: draft.followUpDate, completed: draft.completed, onChange: (patch) => setDraft({ ...draft, ...patch }) }), /* @__PURE__ */ cpJsx("div", { className: "cp-notes-obs" }, /* @__PURE__ */ cpJsx("span", null, ux("notes.recentObs")), recent.length ? recent.map((o) => {
+    } }), /* @__PURE__ */ cpJsx("span", { className: "cp-notes-gap" }), /* @__PURE__ */ cpJsx(Button, { action: "ux.notes.close", role: "tertiary", onClick: () => setOpen("new") }), changed && /* @__PURE__ */ cpJsx(Button, { action: "ux.notes.cancelEdit", context: note.id, onClick: () => setDraft({ date: note.date, followUpDate: note.followUpDate || "", completed: !!note.completed, text: note.text }) }), /* @__PURE__ */ cpJsx(Button, { action: "ux.notes.save", role: "primary", context: note.id, disabled: !changed || !draft.date || !draft.text.trim(), onClick: save2 })) }, /* @__PURE__ */ cpJsx(Field, { action: "m3.notes.editDate", context: note.id, label: "notes.date", type: "date", value: draft.date, onChange: (e) => setDraft({ ...draft, date: e.target.value }) }), /* @__PURE__ */ cpJsx(Field, { action: "m3.notes.editText", context: note.id, label: "notes.text", as: "textarea", rows: 7, value: draft.text, onChange: (e) => setDraft({ ...draft, text: e.target.value }) }), /* @__PURE__ */ cpJsx(NoteReminder, { context: note.id, date: draft.followUpDate, completed: draft.completed, onChange: (patch) => setDraft({ ...draft, ...patch }) }), /* @__PURE__ */ cpJsx("div", { className: "cp-notes-obs" }, /* @__PURE__ */ cpJsx("span", null, ux("notes.recentObs")), recent.length ? recent.map((o) => {
       const tag = obs.settings.tags.find((t2) => t2.id === o.tagIds[0]);
       return /* @__PURE__ */ cpJsx("span", { key: o.id, className: "cp-obs-tt", "data-kind": tag?.kind || "note" }, cpRaw((tag ? tag.label || t(tag.labelKey) : ux("notes.noteOnly")) + " \xB7 " + displayDate(o.date, { weekday: true, year: false })));
     }) : /* @__PURE__ */ cpJsx("em", null, ux("notes.noObs")), setView && /* @__PURE__ */ cpJsx("button", { type: "button", className: "cp-notes-link", ...actionProps("ux.notes.openTimeline", () => window.dispatchEvent(new CustomEvent("cp:student-module", { detail: { studentId: note.studentId, view: "module:observations" } })), note.studentId) }, ux("notes.openTimeline"))));
@@ -49257,7 +49290,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     if (!asking) return null;
     const student = doc.students.find((item) => item.id === asking);
     if (!student) return null;
-    const save = () => {
+    const save2 = () => {
       const text9 = reason.trim();
       if (!text9) return;
       onUpdate((d) => writeReason(d, asking, text9, todayISO()));
@@ -49266,9 +49299,9 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     return ReactDOM.createPortal(/* @__PURE__ */ cpJsx("div", { className: "cp-contact-backdrop", onMouseDown: (e) => {
       if (e.target === e.currentTarget) setAsking(null);
     } }, /* @__PURE__ */ cpJsx("section", { className: "cp-contact-dialog", role: "dialog", "aria-modal": "true", "aria-labelledby": "cp-contact-title" }, /* @__PURE__ */ cpJsx("h2", { id: "cp-contact-title" }, uxText("contact.askTitle")), /* @__PURE__ */ cpJsx("p", null, cpRaw(student.name)), /* @__PURE__ */ cpJsx("label", { className: "cp-ux-field" }, /* @__PURE__ */ cpJsx("span", null, uxText("contact.reason")), /* @__PURE__ */ cpJsx("textarea", { rows: 3, maxLength: 2e3, autoFocus: true, value: reason, dir: "auto", placeholder: uxText("contact.reasonHint"), ...controlProps("ux.contact.reason", (e) => setReason(e.target.value), "prompt"), onKeyDown: (e) => {
-      if (e.key === "Enter" && (e.ctrlKey || e.metaKey)) save();
+      if (e.key === "Enter" && (e.ctrlKey || e.metaKey)) save2();
       if (e.key === "Escape") setAsking(null);
-    } })), /* @__PURE__ */ cpJsx("div", { className: "cp-ux-actions" }, /* @__PURE__ */ cpJsx("button", { type: "button", className: "cp-ux-button cp-ux-primary", disabled: !reason.trim(), ...actionProps("ux.contact.save", save, "prompt") }, uxText("contact.save")), /* @__PURE__ */ cpJsx("button", { type: "button", className: "cp-ux-button", ...actionProps("ux.contact.later", () => setAsking(null), "prompt") }, uxText("contact.later"))))), document.body);
+    } })), /* @__PURE__ */ cpJsx("div", { className: "cp-ux-actions" }, /* @__PURE__ */ cpJsx("button", { type: "button", className: "cp-ux-button cp-ux-primary", disabled: !reason.trim(), ...actionProps("ux.contact.save", save2, "prompt") }, uxText("contact.save")), /* @__PURE__ */ cpJsx("button", { type: "button", className: "cp-ux-button", ...actionProps("ux.contact.later", () => setAsking(null), "prompt") }, uxText("contact.later"))))), document.body);
   }
   function ContactTickets({ doc, onUpdate, setView }) {
     const today = todayISO(), tickets = contactTickets(doc, today), [open, setOpen] = useState(null), [draft, setDraft] = useState({ method: "call", outcome: "", reason: "" });
@@ -50116,7 +50149,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       sMethod(m);
       sVal(en_default["gb.e3b0c44298fc1c14"]);
     };
-    var save = function() {
+    var save2 = function() {
       if (lockedCfg) {
         toast(en_default["gb.c13034e6d88c22be"]);
         return;
@@ -50185,12 +50218,12 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     })), onKeyDown: bindAction("gb.11-yov.74158", "singleton", "onKeyDown", (function(e) {
       if (e.key === en_default["gb.dc8659db6d416dc3"]) {
         e.preventDefault();
-        save();
+        save2();
       }
       if (e.key === en_default["gb.037c968467aa3fd7"]) sEditing(false);
     })), placeholder: method === en_default["gb.34a04005bcaf206e"] ? en_default["gb.00923b9741ce84ae"] : en_default["gb.412b6f9885c81e2d"], style: { ...I, width: 90, textAlign: en_default["gb.27042f4e6eca7d0b"], fontWeight: 600, borderColor: en_default["gb.532018356b5f72c8"] }, "data-cp-action": "gb.11-yov.74158", "data-cp-context": "singleton" }), method === en_default["gb.34a04005bcaf206e"] && val !== en_default["gb.e3b0c44298fc1c14"] && !isNaN(parseFloat(val)) && /* @__PURE__ */ cpJsx("span", { style: { fontSize: 10.5, color: en_default["gb.c206d78b7eea6b44"] } }, en_default["gb.a571aa6b24ceee16"], /* @__PURE__ */ cpJsx("strong", null, (parseFloat(val) - base >= 0 ? en_default["gb.a318c24216defe20"] : en_default["gb.e3b0c44298fc1c14"]) + (parseFloat(val) - base).toFixed(2))), /* @__PURE__ */ cpJsx("input", { type: en_default["gb.982d9e3eb996f559"], value: note, onChange: bindAction("gb.11-yov.74797", "singleton", "onChange", (function(e) {
       sNote(e.target.value);
-    })), placeholder: needReason ? en_default["gb.8f1e98ab898250cd"] : en_default["gb.34ffdad7645a73d7"], style: { ...I, flex: en_default["gb.9483299ddc5b9175"], fontSize: 11.5, borderColor: needReason && !note.trim() ? en_default["gb.42705fa9a635b690"] : void 0 }, "data-cp-action": "gb.11-yov.74797", "data-cp-context": "singleton" }), /* @__PURE__ */ cpJsx("button", { onClick: bindAction("gb.11-yov.75052", "singleton", "onClick", save), style: B({ fontSize: 11, padding: en_default["gb.e446a109b0452f0f"], background: en_default["gb.fa48ddcd46aa1207"], border: en_default["gb.140bedbf9c3f6d56"], color: en_default["gb.e08de713877c54e8"], fontWeight: 600 }), "data-cp-action": "gb.11-yov.75052", "data-cp-context": "singleton" }, en_default["gb.1509f561f2416598"]), /* @__PURE__ */ cpJsx("button", { onClick: bindAction("gb.11-yov.75202", "singleton", "onClick", (function() {
+    })), placeholder: needReason ? en_default["gb.8f1e98ab898250cd"] : en_default["gb.34ffdad7645a73d7"], style: { ...I, flex: en_default["gb.9483299ddc5b9175"], fontSize: 11.5, borderColor: needReason && !note.trim() ? en_default["gb.42705fa9a635b690"] : void 0 }, "data-cp-action": "gb.11-yov.74797", "data-cp-context": "singleton" }), /* @__PURE__ */ cpJsx("button", { onClick: bindAction("gb.11-yov.75052", "singleton", "onClick", save2), style: B({ fontSize: 11, padding: en_default["gb.e446a109b0452f0f"], background: en_default["gb.fa48ddcd46aa1207"], border: en_default["gb.140bedbf9c3f6d56"], color: en_default["gb.e08de713877c54e8"], fontWeight: 600 }), "data-cp-action": "gb.11-yov.75052", "data-cp-context": "singleton" }, en_default["gb.1509f561f2416598"]), /* @__PURE__ */ cpJsx("button", { onClick: bindAction("gb.11-yov.75202", "singleton", "onClick", (function() {
       sEditing(false);
     })), style: B({ fontSize: 11, padding: en_default["gb.0efe45cf47937992"], background: en_default["gb.10e9f5602d2492b3"], border: en_default["gb.f35c8c1246856a29"], color: en_default["gb.6b3d6d843dfe8b50"] }), "data-cp-action": "gb.11-yov.75202", "data-cp-context": "singleton" }, en_default["gb.19766ed6ccb2f4a3"]), /* @__PURE__ */ cpJsx("div", { style: { flexBasis: en_default["gb.32e48995f98ce3b7"], fontSize: 10, color: en_default["gb.c206d78b7eea6b44"] } }, en_default["gb.f02a533e6c357255"]))));
   }
@@ -56766,7 +56799,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
   var statusName = (s) => s.label || t(s.labelKey);
   function AttendanceSettings({ doc, onUpdate }) {
     const [draft, setDraft] = useState(() => attendance(doc.cp?.attendance).settings), [error2, setError] = useState("");
-    function save() {
+    function save2() {
       const labels = draft.statuses.map((s) => statusName(s).trim());
       if (labels.some((l) => !l) || new Set(labels).size !== 4 || draft.statuses.some((s) => !s.icon.trim())) {
         setError(t("attendance.invalidSettings"));
@@ -56775,7 +56808,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       onUpdate((d) => setAttendanceSettings(d, draft));
       setError("");
     }
-    return /* @__PURE__ */ cpJsx("div", { style: panel }, /* @__PURE__ */ cpJsx("div", { style: { ...row, alignItems: "start" } }, draft.statuses.map((status, index) => /* @__PURE__ */ cpJsx("div", { key: status.id, style: { ...panel, minWidth: 210 } }, /* @__PURE__ */ cpJsx(Field2, { id: "attendance.statusLabel", context: status.id, label: "attendance.statusLabel", value: statusName(status), onChange: (e) => setDraft({ ...draft, statuses: draft.statuses.map((s, i) => i === index ? { ...s, label: e.target.value } : s) }) }), /* @__PURE__ */ cpJsx("div", { style: { ...row, marginBlockStart: 8 } }, /* @__PURE__ */ cpJsx(Field2, { id: "attendance.statusIcon", context: status.id, label: "attendance.statusIcon", maxLength: 4, value: status.icon, style: { width: 60 }, onChange: (e) => setDraft({ ...draft, statuses: draft.statuses.map((s, i) => i === index ? { ...s, icon: e.target.value } : s) }) }), /* @__PURE__ */ cpJsx(Field2, { id: "attendance.statusColor", context: status.id, label: "attendance.statusColor", type: "color", value: status.color, style: { width: 60 }, onChange: (e) => setDraft({ ...draft, statuses: draft.statuses.map((s, i) => i === index ? { ...s, color: e.target.value } : s) }) }))))), /* @__PURE__ */ cpJsx("div", { style: { ...row, marginBlock: 12 } }, ["totalThreshold", "consecutiveThreshold"].map((key4) => /* @__PURE__ */ cpJsx(Field2, { key: key4, id: "attendance." + key4, label: "attendance." + key4, type: "number", min: "0", step: "1", value: draft[key4], onChange: (e) => setDraft({ ...draft, [key4]: Math.max(0, Math.floor(+e.target.value || 0)) }) })), /* @__PURE__ */ cpJsx("label", null, /* @__PURE__ */ cpJsx("input", { type: "checkbox", checked: draft.lateCountsPresent, ...controlProps("m3.attendance.lateCounts", (e) => setDraft({ ...draft, lateCountsPresent: e.target.checked })) }), t("attendance.lateCounts"))), /* @__PURE__ */ cpJsx(Command, { id: "attendance.saveSettings", onClick: save }, t("attendance.saveSettings")), error2 && /* @__PURE__ */ cpJsx("p", { role: "alert" }, error2));
+    return /* @__PURE__ */ cpJsx("div", { style: panel }, /* @__PURE__ */ cpJsx("div", { style: { ...row, alignItems: "start" } }, draft.statuses.map((status, index) => /* @__PURE__ */ cpJsx("div", { key: status.id, style: { ...panel, minWidth: 210 } }, /* @__PURE__ */ cpJsx(Field2, { id: "attendance.statusLabel", context: status.id, label: "attendance.statusLabel", value: statusName(status), onChange: (e) => setDraft({ ...draft, statuses: draft.statuses.map((s, i) => i === index ? { ...s, label: e.target.value } : s) }) }), /* @__PURE__ */ cpJsx("div", { style: { ...row, marginBlockStart: 8 } }, /* @__PURE__ */ cpJsx(Field2, { id: "attendance.statusIcon", context: status.id, label: "attendance.statusIcon", maxLength: 4, value: status.icon, style: { width: 60 }, onChange: (e) => setDraft({ ...draft, statuses: draft.statuses.map((s, i) => i === index ? { ...s, icon: e.target.value } : s) }) }), /* @__PURE__ */ cpJsx(Field2, { id: "attendance.statusColor", context: status.id, label: "attendance.statusColor", type: "color", value: status.color, style: { width: 60 }, onChange: (e) => setDraft({ ...draft, statuses: draft.statuses.map((s, i) => i === index ? { ...s, color: e.target.value } : s) }) }))))), /* @__PURE__ */ cpJsx("div", { style: { ...row, marginBlock: 12 } }, ["totalThreshold", "consecutiveThreshold"].map((key4) => /* @__PURE__ */ cpJsx(Field2, { key: key4, id: "attendance." + key4, label: "attendance." + key4, type: "number", min: "0", step: "1", value: draft[key4], onChange: (e) => setDraft({ ...draft, [key4]: Math.max(0, Math.floor(+e.target.value || 0)) }) })), /* @__PURE__ */ cpJsx("label", null, /* @__PURE__ */ cpJsx("input", { type: "checkbox", checked: draft.lateCountsPresent, ...controlProps("m3.attendance.lateCounts", (e) => setDraft({ ...draft, lateCountsPresent: e.target.checked })) }), t("attendance.lateCounts"))), /* @__PURE__ */ cpJsx(Command, { id: "attendance.saveSettings", onClick: save2 }, t("attendance.saveSettings")), error2 && /* @__PURE__ */ cpJsx("p", { role: "alert" }, error2));
   }
   function StatusBar({ statuses, count, total }) {
     const parts = [...statuses.map((status) => ({ key: status.id, status, label: statusName(status), icon: status.icon, color: status.color, value: count(status.id) })), { key: "unmarked", label: t("attendance.unmarked"), icon: "", color: "var(--cp-border)", value: count("unmarked") }];
@@ -57127,7 +57160,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
   }
   function TimetableTools({ profile: profile3, periods, day, date: date5, children }) {
     const [start, setStart] = useState(periods[0]?.start || "07:25"), [duration2, setDuration] = useState(45), [gap, setGap] = useState(3), [preview, setPreview] = useState(null), [error2, setError] = useState(""), [name, setName] = useState(""), [preset, setPreset] = useState(""), [event, setEvent] = useState({ periodId: "", kind: "reminder", text: "", recurrence: "dated" });
-    const save = (change2) => {
+    const save2 = (change2) => {
       downloadBackup(getProfile());
       updateProfile(change2);
     };
@@ -57146,7 +57179,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       const p = profile3.schedulePresets?.find((p2) => p2.id === e.target.value);
       setPreview(p ? { ...p, kind: "preset" } : null);
     } }, /* @__PURE__ */ cpJsx("option", { value: "" }, uxText("planner.choose")), (profile3.schedulePresets || []).map((p) => /* @__PURE__ */ cpJsx("option", { key: p.id, value: p.id }, cpRaw(p.name))))), preview && /* @__PURE__ */ cpJsx("section", { className: "cp-ux-preview" }, /* @__PURE__ */ cpJsx("h3", null, uxText("planner.review")), /* @__PURE__ */ cpJsx("p", null, uxText("planner.scope")), /* @__PURE__ */ cpJsx("table", { className: "cp-ux-table" }, /* @__PURE__ */ cpJsx("thead", null, /* @__PURE__ */ cpJsx("tr", null, /* @__PURE__ */ cpJsx("th", null, t("tt.period")), /* @__PURE__ */ cpJsx("th", null, uxText("planner.before")), /* @__PURE__ */ cpJsx("th", null, uxText("planner.after")), /* @__PURE__ */ cpJsx("th", null, t("tt.applies")))), /* @__PURE__ */ cpJsx("tbody", null, preview.periods.map((p) => /* @__PURE__ */ cpJsx("tr", { key: p.id }, /* @__PURE__ */ cpJsx("td", null, cpRaw(p.label)), /* @__PURE__ */ cpJsx("td", null, profile3.periods.find((v) => v.id === p.id)?.start, "\u2013", profile3.periods.find((v) => v.id === p.id)?.end), /* @__PURE__ */ cpJsx("td", null, p.start, "\u2013", p.end), /* @__PURE__ */ cpJsx("td", null, (p.weekdays || profile3.calendar.schoolDays).map((d) => t("calendar.day" + d)).join(", ")))))), /* @__PURE__ */ cpJsx(UxButton, { id: "planner.apply", primary: true, onClick: () => {
-      save((p) => preview.kind === "chain" ? applyChain(p, preview.periods) : { ...p, periods: preview.periods, timetable: preview.timetable });
+      save2((p) => preview.kind === "chain" ? applyChain(p, preview.periods) : { ...p, periods: preview.periods, timetable: preview.timetable });
       setPreview(null);
     } }), /* @__PURE__ */ cpJsx(UxButton, { id: "planner.cancel", onClick: () => setPreview(null) }))), /* @__PURE__ */ cpJsx("section", null, /* @__PURE__ */ cpJsx("h4", null, uxText("planner.annotations")), /* @__PURE__ */ cpJsx("p", null, uxText("planner.annotationDate"), ": ", date5), /* @__PURE__ */ cpJsx("div", { className: "cp-ux-form" }, /* @__PURE__ */ cpJsx(UxSelect, { id: "planner.period", value: event.periodId, onChange: (e) => setEvent({ ...event, periodId: e.target.value }) }, /* @__PURE__ */ cpJsx("option", { value: "" }, uxText("planner.choosePeriod")), periods.map((p) => /* @__PURE__ */ cpJsx("option", { key: p.id, value: p.id }, cpRaw(p.label)))), /* @__PURE__ */ cpJsx(UxSelect, { id: "planner.kind", value: event.kind, onChange: (e) => setEvent({ ...event, kind: e.target.value }) }, ["homework", "assessment", "resource", "reminder"].map((kind) => /* @__PURE__ */ cpJsx("option", { key: kind, value: kind }, uxText("planner." + kind)))), /* @__PURE__ */ cpJsx(UxSelect, { id: "planner.recurrence", value: event.recurrence, onChange: (e) => setEvent({ ...event, recurrence: e.target.value }) }, /* @__PURE__ */ cpJsx("option", { value: "dated" }, uxText("planner.dated")), /* @__PURE__ */ cpJsx("option", { value: "weekly", disabled: day === null }, uxText("planner.weekly"))), /* @__PURE__ */ cpJsx(UxField, { id: "planner.text", value: event.text, maxLength: 2e3, onChange: (e) => setEvent({ ...event, text: e.target.value }) }), /* @__PURE__ */ cpJsx(UxButton, { id: "planner.add", disabled: !event.periodId || !event.text.trim() || event.recurrence === "weekly" && day === null, onClick: () => {
       updateProfile((p) => addAnnotation(p, { periodId: event.periodId, kind: event.kind, text: event.text, ...event.recurrence === "dated" ? { date: date5 } : { weekday: day } }));
@@ -57183,7 +57216,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
   };
   function PeriodRow({ period, conflict, schoolDays, list: list2, visible }) {
     const [draft, setDraft] = useState(period), [error2, setError] = useState(""), [daysOpen, setDaysOpen] = useState(false), dirty = JSON.stringify(draft) !== JSON.stringify(period);
-    function save() {
+    function save2() {
       if (!draft.label.trim() || timeMinutes(draft.start) == null || timeMinutes(draft.end) == null || timeMinutes(draft.end) <= timeMinutes(draft.start)) {
         setError(t("tt.invalid"));
         return;
@@ -57196,10 +57229,10 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       setError("");
     }
     const keys = (e) => {
-      if (e.key === "Enter" && dirty) save();
+      if (e.key === "Enter" && dirty) save2();
     };
     return /* @__PURE__ */ cpJsx("div", { className: "cp-tt-bell" + (conflict ? " is-conflict" : "") + (draft.break ? " is-break" : ""), "data-cp-period": period.id, onKeyDown: keys, onBlur: (e) => {
-      if (dirty && !e.currentTarget.contains(e.relatedTarget)) save();
+      if (dirty && !e.currentTarget.contains(e.relatedTarget)) save2();
     } }, /* @__PURE__ */ cpJsx(DragGrip, { id: period.id, visible, list: list2, onMove: (next) => updateProfile((p) => ({ ...p, periods: next })), action: "ux.tt.dragPeriod", label: "tt.dragPeriod", rowAttr: "data-cp-period" }), /* @__PURE__ */ cpJsx(ToolField, { id: "tt.label", context: period.id, label: "tt.label", value: draft.label, onChange: (e) => setDraft({ ...draft, label: e.target.value }) }), /* @__PURE__ */ cpJsx(ToolField, { id: "tt.start", context: period.id, label: "tt.start", type: "time", value: draft.start, onChange: (e) => setDraft({ ...draft, start: e.target.value }) }), /* @__PURE__ */ cpJsx(ToolField, { id: "tt.end", context: period.id, label: "tt.end", type: "time", value: draft.end, onChange: (e) => setDraft({ ...draft, end: e.target.value }) }), /* @__PURE__ */ cpJsx("label", { className: "cp-tt-break" }, /* @__PURE__ */ cpJsx("input", { type: "checkbox", checked: draft.break, ...controlProps("m4.tt.break", (e) => setDraft({ ...draft, break: e.target.checked }), period.id) }), /* @__PURE__ */ cpJsx("span", null, t("tt.break"))), /* @__PURE__ */ cpJsx(UxButton, { id: "tt.periodDays", context: period.id, className: "cp-tt-days", "aria-expanded": daysOpen, "aria-label": t("tt.applies") + ": " + (draft.weekdays === void 0 ? t("tt.everySchoolDay") : dayRange2(draft.weekdays)), onClick: () => setDaysOpen(!daysOpen) }, cpRaw(draft.weekdays === void 0 ? t("tt.everySchoolDay") : dayRange2(draft.weekdays) || "\u2013")), /* @__PURE__ */ cpJsx("span", { className: "cp-tt-row-actions" }, /* @__PURE__ */ cpJsx(ToolButton, { id: "tt.deletePeriod", context: period.id, className: "cp-tt-delete", "aria-label": t("tt.deletePeriod") + ": " + period.label, title: t("tt.deletePeriod"), onClick: () => updateProfile((p) => removePeriod(p, period.id)) }, cpRaw("\u2715"))), daysOpen && /* @__PURE__ */ cpJsx("fieldset", { className: "cp-tt-dayset" }, /* @__PURE__ */ cpJsx("legend", null, t("tt.applies")), /* @__PURE__ */ cpJsx("label", null, /* @__PURE__ */ cpJsx("input", { type: "checkbox", checked: draft.weekdays === void 0, ...controlProps("m4.tt.everySchoolDay", (e) => setDraft({ ...draft, weekdays: e.target.checked ? void 0 : [...schoolDays] }), period.id) }), t("tt.everySchoolDay")), draft.weekdays && [0, 1, 2, 3, 4, 5, 6].map((day) => /* @__PURE__ */ cpJsx("label", { key: day }, /* @__PURE__ */ cpJsx("input", { type: "checkbox", checked: draft.weekdays.includes(day), ...controlProps("m4.tt.periodDay", (e) => setDraft({ ...draft, weekdays: e.target.checked ? [...draft.weekdays, day].sort((a, b) => a - b) : draft.weekdays.filter((d) => d !== day) }), period.id + ":" + day) }), t("calendar.day" + day)))), error2 && /* @__PURE__ */ cpJsx("p", { role: "alert", className: "cp-tt-error" }, error2));
   }
   function CellEditor({ profile: profile3, selection, onClose }) {
@@ -57877,7 +57910,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     useEffect(() => {
       setEditorSection("learning");
     }, [record?.id]);
-    const edit = (p) => setEditing({ id: p.id, isNew: false }), save = (p) => {
+    const edit = (p) => setEditing({ id: p.id, isNew: false }), save2 = (p) => {
       onUpdate((d) => putPlan(d, p));
       edit(p);
     }, copy6 = (p) => {
@@ -57893,7 +57926,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       if (editing?.id === p.id) setEditing(null);
       notify(t("ux.plans.deleted"), { undo: true });
     } }, t("plans.delete")))));
-    return /* @__PURE__ */ cpJsx(ModuleFrame, { className: record ? "cp-editor-mode" : "", titleKey: "shell.plans", icon: "plans", lead: "ux.lead.plans", info: /* @__PURE__ */ cpJsx(React.Fragment, null, t("plans.draftHint"), " ", t("improve.draftNotice")), actions: record ? null : /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx(Segmented, { label: t("shell.plans") }, ["list", "week", "templates"].map((id) => /* @__PURE__ */ cpJsx(M5Button, { key: id, id: "plans." + id, active: tab === id, "aria-pressed": tab === id, onClick: () => setTab(id) }, t("plans." + id)))), /* @__PURE__ */ cpJsx(M5Button, { id: "plans.new", className: "cp-ux-primary", style: primary, onClick: create }, t("plans.new"))) }, record ? /* @__PURE__ */ cpJsx(PlanEditor, { key: record.id + JSON.stringify(record), record, doc, profile: profile3, section: editorSection, onSection: setEditorSection, onSave: save, onCopy: copy6, onClose: () => setEditing(null), onPreview: (plan, language2) => setPreview({ plan, language: language2 }) }) : /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx("div", { className: "cp-filter-bar cp-plan-filters" }, /* @__PURE__ */ cpJsx(M5Field, { id: "plans.search", type: "search", value: query, onChange: (e) => setQuery(e.target.value) }), /* @__PURE__ */ cpJsx(M5Field, { id: "plans.weekDate", type: "date", value: week, onChange: (e) => e.target.value && setWeek(e.target.value) })), /* @__PURE__ */ cpJsx("div", { className: "cp-plan-collection" }, tab === "week" ? /* @__PURE__ */ cpJsx("div", { style: { overflow: "auto" } }, /* @__PURE__ */ cpJsx("div", { style: { display: "grid", gridTemplateColumns: "repeat(7,minmax(150px,1fr))", gap: 8 } }, planWeek(week, profile3.calendar.schoolDays[0] ?? 1).map((date5) => /* @__PURE__ */ cpJsx("section", { key: date5, style: { padding: 8, background: isSchoolDay(date5, doc.settings) ? "var(--cp-surface)" : "var(--cp-background)", border: "1px solid var(--cp-border)", borderRadius: 8 } }, /* @__PURE__ */ cpJsx("h2", { style: { fontSize: "var(--cp-fs-body)" } }, date5), cards(visible.filter((p) => p.date === date5)))))) : visible.length ? /* @__PURE__ */ cpJsx("div", { className: "cp-plan-cards" }, cards(visible)) : /* @__PURE__ */ cpJsx(EmptyState, { kind: query.trim() ? "filtered" : "nothing", title: t(tab === "templates" ? "plans.emptyTemplates" : "plans.empty"), text: t(tab === "templates" ? "ux.plans.emptyTemplatesHint" : "ux.plans.emptyHint") }))), preview && /* @__PURE__ */ cpJsx(PlanPrint, { ...preview, doc, profile: profile3, onClose: () => setPreview(null) }));
+    return /* @__PURE__ */ cpJsx(ModuleFrame, { className: record ? "cp-editor-mode" : "", titleKey: "shell.plans", icon: "plans", lead: "ux.lead.plans", info: /* @__PURE__ */ cpJsx(React.Fragment, null, t("plans.draftHint"), " ", t("improve.draftNotice")), actions: record ? null : /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx(Segmented, { label: t("shell.plans") }, ["list", "week", "templates"].map((id) => /* @__PURE__ */ cpJsx(M5Button, { key: id, id: "plans." + id, active: tab === id, "aria-pressed": tab === id, onClick: () => setTab(id) }, t("plans." + id)))), /* @__PURE__ */ cpJsx(M5Button, { id: "plans.new", className: "cp-ux-primary", style: primary, onClick: create }, t("plans.new"))) }, record ? /* @__PURE__ */ cpJsx(PlanEditor, { key: record.id + JSON.stringify(record), record, doc, profile: profile3, section: editorSection, onSection: setEditorSection, onSave: save2, onCopy: copy6, onClose: () => setEditing(null), onPreview: (plan, language2) => setPreview({ plan, language: language2 }) }) : /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx("div", { className: "cp-filter-bar cp-plan-filters" }, /* @__PURE__ */ cpJsx(M5Field, { id: "plans.search", type: "search", value: query, onChange: (e) => setQuery(e.target.value) }), /* @__PURE__ */ cpJsx(M5Field, { id: "plans.weekDate", type: "date", value: week, onChange: (e) => e.target.value && setWeek(e.target.value) })), /* @__PURE__ */ cpJsx("div", { className: "cp-plan-collection" }, tab === "week" ? /* @__PURE__ */ cpJsx("div", { style: { overflow: "auto" } }, /* @__PURE__ */ cpJsx("div", { style: { display: "grid", gridTemplateColumns: "repeat(7,minmax(150px,1fr))", gap: 8 } }, planWeek(week, profile3.calendar.schoolDays[0] ?? 1).map((date5) => /* @__PURE__ */ cpJsx("section", { key: date5, style: { padding: 8, background: isSchoolDay(date5, doc.settings) ? "var(--cp-surface)" : "var(--cp-background)", border: "1px solid var(--cp-border)", borderRadius: 8 } }, /* @__PURE__ */ cpJsx("h2", { style: { fontSize: "var(--cp-fs-body)" } }, date5), cards(visible.filter((p) => p.date === date5)))))) : visible.length ? /* @__PURE__ */ cpJsx("div", { className: "cp-plan-cards" }, cards(visible)) : /* @__PURE__ */ cpJsx(EmptyState, { kind: query.trim() ? "filtered" : "nothing", title: t(tab === "templates" ? "plans.emptyTemplates" : "plans.empty"), text: t(tab === "templates" ? "ux.plans.emptyTemplatesHint" : "ux.plans.emptyHint") }))), preview && /* @__PURE__ */ cpJsx(PlanPrint, { ...preview, doc, profile: profile3, onClose: () => setPreview(null) }));
   }
   var plans_default = m5Manifest("plans", { defaults: [], migrate: (value) => value || [] }, PlansView);
 
@@ -60031,6 +60064,143 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     rememberOpened(handle3, doc);
   }
 
+  // src/core/tab-order.jsx
+  var keyOf2 = (button) => button.dataset.cpAction + (button.dataset.cpContext ? "|" + button.dataset.cpContext : "");
+  var selectorOf = (key4) => {
+    const [action2, context] = key4.split("|");
+    return '[data-cp-action="' + CSS.escape(action2) + '"]' + (context ? '[data-cp-context="' + CSS.escape(context) + '"]' : ":not([data-cp-context])");
+  };
+  var tabsOf = (group) => [...group.querySelectorAll("button[data-cp-action]")];
+  function orderedKeys(natural, saved) {
+    const known = (saved || []).filter((key4) => natural.includes(key4));
+    return [...known, ...natural.filter((key4) => !known.includes(key4))];
+  }
+  function moveKey(keys, key4, index) {
+    const rest = keys.filter((k) => k !== key4), at = Math.max(0, Math.min(rest.length, index));
+    return [...rest.slice(0, at), key4, ...rest.slice(at)];
+  }
+  var save = (hub, keys) => updateProfile((p) => ({ ...p, tabOrder: { ...p.tabOrder || {}, [hub]: keys } }));
+  var sameOrder = (x2, y2) => JSON.stringify(x2 || null) === JSON.stringify(y2 || null);
+  function resetTabOrder() {
+    updateProfile((p) => {
+      const next = { ...p };
+      delete next.tabOrder;
+      return next;
+    });
+  }
+  function TabOrder() {
+    const [profile3, setProfile] = useState(getProfile), [natural, setNatural] = useState({}), [preview, setPreview] = useState(null), [saved, setSaved] = useState(null), drag = useRef(null), previewRef = useRef(null);
+    useEffect(() => subscribeProfile(setProfile), []);
+    useEffect(() => {
+      if (saved && sameOrder(profile3.tabOrder?.[saved.hub], saved.keys)) setSaved(null);
+    }, [profile3, saved]);
+    const keep = (hub, keys) => {
+      setSaved({ hub, keys });
+      save(hub, keys);
+    };
+    useLayoutEffect(() => {
+      const nav = document.querySelector(".cp-subnav");
+      if (!nav) return;
+      const read = () => {
+        const next = {};
+        for (const group of nav.querySelectorAll(".cp-subnav-group[data-hub]")) next[group.dataset.hub] = tabsOf(group).map(keyOf2);
+        setNatural((old) => JSON.stringify(old) === JSON.stringify(next) ? old : next);
+      };
+      read();
+      const watch = new MutationObserver(read);
+      watch.observe(nav, { childList: true, subtree: true });
+      return () => watch.disconnect();
+    }, []);
+    const order = (hub) => preview?.hub === hub ? preview.keys : saved?.hub === hub ? saved.keys : orderedKeys(natural[hub] || [], profile3.tabOrder?.[hub]);
+    useEffect(() => {
+      const nav = document.querySelector(".cp-subnav");
+      if (!nav) return;
+      const groupOf = (button) => button.closest(".cp-subnav-group[data-hub]"), rtl = () => getComputedStyle(nav).direction === "rtl";
+      const indexAt = (group, key5, x2) => {
+        const others = order(group.dataset.hub).filter((k) => k !== key5).map((k) => group.querySelector(selectorOf(k))).filter(Boolean);
+        return others.filter((b) => {
+          const r = b.getBoundingClientRect(), centre = r.left + r.width / 2;
+          return rtl() ? centre > x2 : centre < x2;
+        }).length;
+      };
+      const down = (e) => {
+        previewRef.current = null;
+        const button = e.target.closest?.("button[data-cp-action]");
+        if (!button || e.button !== 0 || !nav.contains(button)) return;
+        const group = groupOf(button);
+        if (!group) return;
+        drag.current = { button, group, key: keyOf2(button), x: e.clientX, y: e.clientY, moving: false, pointer: e.pointerId };
+      };
+      const move = (e) => {
+        const d = drag.current;
+        if (!d) return;
+        if (!d.moving) {
+          if (Math.hypot(e.clientX - d.x, e.clientY - d.y) < 6) return;
+          d.moving = true;
+          d.button.classList.add("cp-tab-dragging");
+          nav.classList.add("cp-subnav-dragging");
+          try {
+            nav.setPointerCapture(d.pointer);
+          } catch {
+          }
+        }
+        e.preventDefault();
+        const hub = d.group.dataset.hub;
+        const next = { hub, keys: moveKey(order(hub), d.key, indexAt(d.group, d.key, e.clientX)) };
+        previewRef.current = next;
+        setPreview(next);
+      };
+      const up = () => {
+        const d = drag.current;
+        drag.current = null;
+        if (!d?.moving) return;
+        d.button.classList.remove("cp-tab-dragging");
+        nav.classList.remove("cp-subnav-dragging");
+        const swallow = (event) => {
+          event.preventDefault();
+          event.stopPropagation();
+        };
+        nav.addEventListener("click", swallow, { capture: true, once: true });
+        setTimeout(() => nav.removeEventListener("click", swallow, { capture: true }), 0);
+        const current4 = previewRef.current;
+        if (current4) keep(current4.hub, current4.keys);
+        setPreview(null);
+      };
+      const cancel = () => {
+        const d = drag.current;
+        drag.current = null;
+        if (d?.moving) {
+          d.button.classList.remove("cp-tab-dragging");
+          nav.classList.remove("cp-subnav-dragging");
+        }
+        previewRef.current = null;
+        setPreview(null);
+      };
+      const key4 = (e) => {
+        if (!e.altKey || e.ctrlKey || e.metaKey || !["ArrowLeft", "ArrowRight"].includes(e.key)) return;
+        const button = e.target.closest?.("button[data-cp-action]"), group = button && groupOf(button);
+        if (!group) return;
+        e.preventDefault();
+        const hub = group.dataset.hub, keys = order(hub), k = keyOf2(button), at = keys.indexOf(k), later = e.key === "ArrowRight" !== rtl();
+        keep(hub, moveKey(keys, k, at + (later ? 1 : -1)));
+      };
+      nav.addEventListener("pointerdown", down);
+      nav.addEventListener("pointermove", move);
+      nav.addEventListener("pointerup", up);
+      nav.addEventListener("pointercancel", cancel);
+      nav.addEventListener("keydown", key4);
+      return () => {
+        nav.removeEventListener("pointerdown", down);
+        nav.removeEventListener("pointermove", move);
+        nav.removeEventListener("pointerup", up);
+        nav.removeEventListener("pointercancel", cancel);
+        nav.removeEventListener("keydown", key4);
+      };
+    });
+    const css = Object.keys(natural).map((hub) => order(hub).map((key4, i) => '.cp-subnav-group[data-hub="' + CSS.escape(hub) + '"] ' + selectorOf(key4) + "{order:" + i + "}").join("")).join("");
+    return /* @__PURE__ */ cpJsx("style", { "data-cp-tab-order": "" }, css);
+  }
+
   // src/core/projecting.js
   var KEY = "cp:projectingAuto", listeners11 = /* @__PURE__ */ new Set();
   var auto = true, manual = null, inLesson = false, lessonKey = "", profile2 = null, timer2 = null;
@@ -60274,7 +60444,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
   }
   function FloatingWindow({ id, title, icon: icon5, max, onMax, onShrink, onClose, onPop, sound, children, fallback }) {
     const ref = useRef(null), [position, setPosition] = useState(() => readPosition(id, fallback || { x: 40, y: 90 }));
-    const save = (next) => {
+    const save2 = (next) => {
       try {
         localStorage.setItem(key2(id), JSON.stringify(next));
       } catch {
@@ -60297,7 +60467,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
         handle3.removeEventListener("pointerup", up);
         handle3.removeEventListener("pointercancel", up);
         setPosition((p) => {
-          save(p);
+          save2(p);
           return p;
         });
       };
@@ -60311,7 +60481,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       event.preventDefault();
       setPosition((p) => {
         const next = clamp2({ x: p.x + delta[0], y: p.y + delta[1] }, ref.current);
-        save(next);
+        save2(next);
         return next;
       });
     }
@@ -60334,7 +60504,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
   }
   function TrayPill({ id, label, onOpen, onPop, popLabel, children }) {
     const ref = useRef(null), moved = useRef(false), [place, setPlace] = useState(() => readPlace(id));
-    const save = (next) => {
+    const save2 = (next) => {
       try {
         localStorage.setItem(key3(id), JSON.stringify(next));
       } catch {
@@ -60368,7 +60538,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
         handle3.removeEventListener("pointermove", move);
         handle3.removeEventListener("pointerup", up);
         handle3.removeEventListener("pointercancel", up);
-        if (last) save(last);
+        if (last) save2(last);
       };
       handle3.addEventListener("pointermove", move);
       handle3.addEventListener("pointerup", up);
@@ -60380,7 +60550,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       event.preventDefault();
       const from = place || here(), next = clamp3({ x: from.x + delta[0], y: from.y + delta[1] }, ref.current);
       setPlace(next);
-      save(next);
+      save2(next);
     }
     return /* @__PURE__ */ cpJsx("span", { ref, className: "cp-pill", "data-pill": id, "data-placed": place ? "true" : "false", style: place ? { insetInlineStart: place.x, top: place.y } : void 0 }, /* @__PURE__ */ cpJsx("button", { ...actionProps("ux.float.restore", () => {
       if (moved.current) {
@@ -60748,7 +60918,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       setConfirm("");
       setIdle(String(idleMinutes(profile3)));
     }, [profile3.lockHash, profile3.lockSettings]);
-    async function save(remove = false) {
+    async function save2(remove = false) {
       setMessage("");
       if (busy || !isProfileLinked()) return;
       if (!remove && (!Number.isInteger(Number(idle)) || Number(idle) < 0 || Number(idle) > 240 || idle.trim() === "")) {
@@ -60799,7 +60969,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       }
     }
     const field2 = (id, value, onChange) => /* @__PURE__ */ cpJsx("label", { style: { display: "flex", gap: 8, alignItems: "center", marginBlock: 8, fontSize: "var(--cp-fs-body)" } }, /* @__PURE__ */ cpJsx("span", { style: { flex: 1 } }, t("lock." + id)), /* @__PURE__ */ cpJsx("input", { type: id === "idle" ? "number" : "password", inputMode: "numeric", autoComplete: "off", min: id === "idle" ? 0 : void 0, max: id === "idle" ? 240 : void 0, maxLength: id === "idle" ? void 0 : 8, "aria-label": t("lock." + id), style: { ...I, width: 145 }, value, disabled: !isProfileLinked() || busy, ...controlProps("m8." + id, (e) => onChange(e.target.value)) }));
-    return /* @__PURE__ */ cpJsx("section", { "aria-label": t("lock.title") }, /* @__PURE__ */ cpJsx("h3", { style: { fontSize: "var(--cp-fs-label)" } }, t("lock.title")), /* @__PURE__ */ cpJsx("p", { style: { fontSize: "var(--cp-fs-body)" } }, t(profile3.lockHash ? "lock.on" : "lock.off")), /* @__PURE__ */ cpJsx("p", { style: { fontSize: "var(--cp-fs-body)" } }, t("lock.privacy")), !isProfileLinked() && /* @__PURE__ */ cpJsx("p", null, t("lock.link")), profile3.lockHash && field2("current", current4, setCurrent), field2("new", pin, setPin), field2("confirm", confirm2, setConfirm), field2("idle", idle, setIdle), /* @__PURE__ */ cpJsx("div", { style: { display: "flex", gap: 8 } }, /* @__PURE__ */ cpJsx("button", { ...actionProps("m8.save", () => save()), disabled: !isProfileLinked() || busy, style: B() }, t("lock.save")), profile3.lockHash && /* @__PURE__ */ cpJsx("button", { ...actionProps("m8.remove", () => save(true)), disabled: busy, style: B() }, t("lock.remove"))), message && /* @__PURE__ */ cpJsx("p", { role: "status", style: { fontSize: "var(--cp-fs-body)" } }, t(message)), /* @__PURE__ */ cpJsx("p", { style: { fontSize: "var(--cp-fs-caption)" } }, t("lock.recovery")));
+    return /* @__PURE__ */ cpJsx("section", { "aria-label": t("lock.title") }, /* @__PURE__ */ cpJsx("h3", { style: { fontSize: "var(--cp-fs-label)" } }, t("lock.title")), /* @__PURE__ */ cpJsx("p", { style: { fontSize: "var(--cp-fs-body)" } }, t(profile3.lockHash ? "lock.on" : "lock.off")), /* @__PURE__ */ cpJsx("p", { style: { fontSize: "var(--cp-fs-body)" } }, t("lock.privacy")), !isProfileLinked() && /* @__PURE__ */ cpJsx("p", null, t("lock.link")), profile3.lockHash && field2("current", current4, setCurrent), field2("new", pin, setPin), field2("confirm", confirm2, setConfirm), field2("idle", idle, setIdle), /* @__PURE__ */ cpJsx("div", { style: { display: "flex", gap: 8 } }, /* @__PURE__ */ cpJsx("button", { ...actionProps("m8.save", () => save2()), disabled: !isProfileLinked() || busy, style: B() }, t("lock.save")), profile3.lockHash && /* @__PURE__ */ cpJsx("button", { ...actionProps("m8.remove", () => save2(true)), disabled: busy, style: B() }, t("lock.remove"))), message && /* @__PURE__ */ cpJsx("p", { role: "status", style: { fontSize: "var(--cp-fs-body)" } }, t(message)), /* @__PURE__ */ cpJsx("p", { style: { fontSize: "var(--cp-fs-caption)" } }, t("lock.recovery")));
   }
 
   // src/core/settings-home.jsx
@@ -60838,7 +61008,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     return /* @__PURE__ */ cpJsx("div", { className: "cp-settings-fields" }, select("cp.language", "settings.language", language2, [/* @__PURE__ */ cpJsx("option", { key: "en", value: "en" }, t("settings.en")), /* @__PURE__ */ cpJsx("option", { key: "ar", value: "ar" }, t("settings.ar"))], (e) => onLanguage(e.target.value)), select("cp.direction", "settings.direction", direction, [/* @__PURE__ */ cpJsx("option", { key: "ltr", value: "ltr" }, t("settings.ltr")), /* @__PURE__ */ cpJsx("option", { key: "rtl", value: "rtl" }, t("settings.rtl"))], (e) => onDirection(e.target.value)), /* @__PURE__ */ cpJsx("label", { className: "cp-settings-check" }, /* @__PURE__ */ cpJsx("input", { type: "checkbox", checked: !!profile3.ui?.arabicIndicDigits, ...controlProps("cp.digits", (e) => {
       setDisplayDigits(e.target.checked);
       updateProfile((p) => ({ ...p, ui: { ...p.ui, arabicIndicDigits: e.target.checked } }));
-    }) }), /* @__PURE__ */ cpJsx("span", null, t("settings.digits"))), select("improve.theme", "improve.theme", appearance.theme || "light", [["light", "improve.light"], ["dark", "improve.dark"], ["contrast", "ux.appearance.contrast"]].map(([value, key4]) => /* @__PURE__ */ cpJsx("option", { key: value, value }, t(key4))), (e) => set?.("theme", e.target.value)), select("improve.density", "improve.spacing", appearance.density || "comfortable", [["comfortable", "improve.comfortable"], ["compact", "improve.compact"]].map(([value, key4]) => /* @__PURE__ */ cpJsx("option", { key: value, value }, t(key4))), (e) => set?.("density", e.target.value)), [["look", ["gold", "aurora", "meadow", "cloud", "oasis", "classic"]], ["fontEn", ["plex", "figtree", "lexend", "system"]], ["fontAr", ["thmanyah", "plexArabic", "system"]], ["textSize", ["standard", "large", "extraLarge"]], ["accent", ["blue", "teal", "violet"]]].filter(([key4]) => key4 !== "accent" || (appearance.look || "gold") === "classic").map(([key4, values]) => /* @__PURE__ */ cpJsx("span", { key: key4 }, select("ux.appearance." + key4, "ux.appearance." + key4, appearance[key4] || values[0], values.map((value) => /* @__PURE__ */ cpJsx("option", { key: value, value }, t("ux.appearance." + value))), (e) => set?.(key4, e.target.value)))));
+    }) }), /* @__PURE__ */ cpJsx("span", null, t("settings.digits"))), select("improve.theme", "improve.theme", appearance.theme || "light", [["light", "improve.light"], ["dark", "improve.dark"], ["contrast", "ux.appearance.contrast"]].map(([value, key4]) => /* @__PURE__ */ cpJsx("option", { key: value, value }, t(key4))), (e) => set?.("theme", e.target.value)), select("improve.density", "improve.spacing", appearance.density || "comfortable", [["comfortable", "improve.comfortable"], ["compact", "improve.compact"]].map(([value, key4]) => /* @__PURE__ */ cpJsx("option", { key: value, value }, t(key4))), (e) => set?.("density", e.target.value)), [["look", ["gold", "aurora", "meadow", "cloud", "oasis", "classic"]], ["fontEn", ["plex", "figtree", "lexend", "system"]], ["fontAr", ["thmanyah", "plexArabic", "system"]], ["textSize", ["standard", "large", "extraLarge"]], ["accent", ["blue", "teal", "violet"]]].filter(([key4]) => key4 !== "accent" || (appearance.look || "gold") === "classic").map(([key4, values]) => /* @__PURE__ */ cpJsx("span", { key: key4 }, select("ux.appearance." + key4, "ux.appearance." + key4, appearance[key4] || values[0], values.map((value) => /* @__PURE__ */ cpJsx("option", { key: value, value }, t("ux.appearance." + value))), (e) => set?.(key4, e.target.value)))), /* @__PURE__ */ cpJsx("div", { className: "cp-settings-field cp-settings-taborder" }, /* @__PURE__ */ cpJsx("span", null, t("ux.tabs.order")), /* @__PURE__ */ cpJsx("button", { type: "button", disabled: !profile3.tabOrder, ...actionProps("ux.tabs.reset", resetTabOrder) }, t("ux.tabs.reset"))));
   }
   function SettingsHome({ workspace, language: language2, onLanguage, direction, onDirection, onOpenCalendar }) {
     useLanguage();
@@ -60960,7 +61130,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       const entry2 = navigationHubs.find((item) => item.id === target);
       return /* @__PURE__ */ cpJsx("button", { key: target, ...actionProps(entry2.actionId, () => openHub(target)), "aria-pressed": hub === target, title: t(entry2.titleKey) }, /* @__PURE__ */ cpJsx(NavIcon, { type: entry2.icon }), /* @__PURE__ */ cpJsx("span", null, t(entry2.titleKey)));
     };
-    return /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx(SidebarPortal, { target: "hubs" }, hubs.filter((target) => target !== "manage").map(hubButton)), /* @__PURE__ */ cpJsx("nav", { className: "cp-subnav", "aria-label": t("improve.hub." + hub), hidden: hub === "today" }, hubs.map((target) => /* @__PURE__ */ cpJsx("div", { key: target, className: "cp-subnav-group", "data-hub": target, hidden: target !== hub }, /* @__PURE__ */ cpJsx("div", { ref: workspace?.slotRefs[target], className: "cp-subnav-slot" }), target === "gradebook" && /* @__PURE__ */ cpJsx("div", { ref: workspace?.slotRefs.year, className: "cp-subnav-slot" })))), ["today", ...hubs].map((target) => /* @__PURE__ */ cpJsx(SidebarPortal, { key: target, target }, modules.filter((candidate) => home(candidate.moduleId) === target).sort((x2, y2) => x2.navigation.order - y2.navigation.order).flatMap((candidate) => {
+    return /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx(SidebarPortal, { target: "hubs" }, hubs.filter((target) => target !== "manage").map(hubButton)), /* @__PURE__ */ cpJsx(TabOrder, null), /* @__PURE__ */ cpJsx("nav", { className: "cp-subnav", "aria-label": t("improve.hub." + hub), hidden: hub === "today" }, hubs.map((target) => /* @__PURE__ */ cpJsx("div", { key: target, className: "cp-subnav-group", "data-hub": target, hidden: target !== hub }, /* @__PURE__ */ cpJsx("div", { ref: workspace?.slotRefs[target], className: "cp-subnav-slot" }), target === "gradebook" && /* @__PURE__ */ cpJsx("div", { ref: workspace?.slotRefs.year, className: "cp-subnav-slot" })))), ["today", ...hubs].map((target) => /* @__PURE__ */ cpJsx(SidebarPortal, { key: target, target }, modules.filter((candidate) => home(candidate.moduleId) === target).sort((x2, y2) => x2.navigation.order - y2.navigation.order).flatMap((candidate) => {
       const button = /* @__PURE__ */ cpJsx("button", { key: candidate.id, ...actionProps(candidate.navigationAction, () => setView(candidate.id)), "aria-pressed": view === candidate.id }, /* @__PURE__ */ cpJsx(NavIcon, { type: candidate.moduleId }), /* @__PURE__ */ cpJsx("span", null, t(candidate.navigation.titleKey)));
       return candidate.moduleId === aiReportsNavigation.afterModuleId && onAI ? [button, /* @__PURE__ */ cpJsx("button", { key: "ai-reports", ...actionProps(aiReportsNavigation.actionId, onAI, aiReportsNavigation.context) }, /* @__PURE__ */ cpJsx(NavIcon, { type: aiReportsNavigation.icon }), /* @__PURE__ */ cpJsx("span", null, t(aiReportsNavigation.titleKey)))] : [button];
     }))), /* @__PURE__ */ cpJsx(SidebarPortal, { target: "toolbarContext" }, /* @__PURE__ */ cpJsx(ContextLine, { doc, profile: profile3 })), /* @__PURE__ */ cpJsx(ParentReasonWatcher, { doc, onUpdate }), /* @__PURE__ */ cpJsx(ParentContactsBridge, { doc, onUpdate }), /* @__PURE__ */ cpJsx(ConductBridge, { doc }), /* @__PURE__ */ cpJsx(FileSync, { doc, onUpdate }), /* @__PURE__ */ cpJsx(SidebarPortal, { target: "toolbarTools" }, /* @__PURE__ */ cpJsx(ClassroomTools, { view, doc, onUpdate, setView, wheelKey, openWheel: onWheel }), /* @__PURE__ */ cpJsx(ProjectingButton, null)), /* @__PURE__ */ cpJsx(SettingsHome, { workspace, language: language2, onLanguage: changeLanguage, direction: doc.settings.dir || "ltr", onDirection, onOpenCalendar: () => {
@@ -60975,14 +61145,14 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     useLanguage();
     const [error2, setError] = useState(null);
     useEffect(() => {
-      const save = (e) => {
+      const save2 = (e) => {
         const code = e.detail?.code;
         setError(typeof code === "string" && /^(file|profile)\./.test(code) ? code : "file.writeFailed");
       }, saved = () => setError(null);
-      window.addEventListener("cp:save-error", save);
+      window.addEventListener("cp:save-error", save2);
       window.addEventListener("gb:saved", saved);
       return () => {
-        window.removeEventListener("cp:save-error", save);
+        window.removeEventListener("cp:save-error", save2);
         window.removeEventListener("gb:saved", saved);
       };
     }, []);
@@ -61559,7 +61729,7 @@ Reply with JSON only, exactly in the shape of "response_schema", one report per 
         setError(e.message === "ai3.error.identity" ? "ai3.change.cannotKeep" : "ai3.error.build");
       }
     }
-    function save() {
+    function save2() {
       setAsked(false);
       const name = progressFileName(built);
       onUpdate((d) => addProgressExport(d, built));
@@ -61580,7 +61750,7 @@ Reply with JSON only, exactly in the shape of "response_schema", one report per 
     } }, /* @__PURE__ */ cpJsx("option", { value: "all" }, uxText("ai3.all").replace("{n}", String(doc.students.length))), /* @__PURE__ */ cpJsx("option", { value: "some" }, uxText("ai3.some"))), scope === "some" && /* @__PURE__ */ cpJsx("div", { className: "cp-ai3-students" }, doc.students.map((s) => /* @__PURE__ */ cpJsx(UxCheck, { key: s.id, id: "ai3.student", context: s.id, text: s.name, checked: chosen.includes(s.id), onChange: (e) => {
       setChosen((old) => e.target.checked ? [...old, s.id] : old.filter((id) => id !== s.id));
       setBuilt(null);
-    } })))), /* @__PURE__ */ cpJsx("fieldset", { className: "cp-ai3-group" }, /* @__PURE__ */ cpJsx("legend", null, uxText("ai3.notes")), /* @__PURE__ */ cpJsx("div", { className: "cp-ai3-checks" }, NOTE_SOURCES.map((key4) => /* @__PURE__ */ cpJsx(UxCheck, { key: key4, id: "ai3.source." + key4, checked: !!opts.sources[key4], onChange: (e) => source(key4, e.target.checked) })))), /* @__PURE__ */ cpJsx("fieldset", { className: "cp-ai3-group" }, /* @__PURE__ */ cpJsx("legend", null, uxText("ai3.data")), /* @__PURE__ */ cpJsx("div", { className: "cp-ai3-checks" }, DATA.map((key4) => /* @__PURE__ */ cpJsx(UxCheck, { key: key4, id: "ai3.data." + key4, checked: !!opts[key4], onChange: (e) => set(key4, e.target.checked) })))), /* @__PURE__ */ cpJsx("fieldset", { className: "cp-ai3-group" }, /* @__PURE__ */ cpJsx("legend", null, uxText("ai3.writing")), /* @__PURE__ */ cpJsx("div", { className: "cp-ai3-row" }, /* @__PURE__ */ cpJsx(UxSelect, { id: "ai3.language", value: opts.report_language, onChange: (e) => set("report_language", e.target.value) }, /* @__PURE__ */ cpJsx("option", { value: "en" }, t("settings.en")), /* @__PURE__ */ cpJsx("option", { value: "ar" }, t("settings.ar"))), /* @__PURE__ */ cpJsx(UxSelect, { id: "ai3.tone", value: opts.tone, onChange: (e) => set("tone", e.target.value) }, /* @__PURE__ */ cpJsx("option", { value: "warm" }, uxText("ai3.warm")), /* @__PURE__ */ cpJsx("option", { value: "formal" }, uxText("ai3.formal")))), /* @__PURE__ */ cpJsx("label", { className: "cp-ai3-instructions" }, /* @__PURE__ */ cpJsx("span", null, uxText("ai3.instructions")), /* @__PURE__ */ cpJsx("textarea", { ...controlProps("ux.ai3.instructions", (e) => set("teacher_instructions", e.target.value)), value: opts.teacher_instructions, maxLength: 8e3, "aria-label": uxText("ai3.instructions") }))), /* @__PURE__ */ cpJsx("div", { className: "cp-ai3-row" }, /* @__PURE__ */ cpJsx(UxButton, { id: "ai3.review", primary: true, disabled: !ids.length, onClick: review }))), built && /* @__PURE__ */ cpJsx("div", { className: "cp-ai3-review" }, /* @__PURE__ */ cpJsx("h3", null, uxText("ai3.reviewTitle")), /* @__PURE__ */ cpJsx("p", { className: "cp-ai3-summary" }, uxText("ai3.summary").replace("{students}", built.summary.students).replace("{assessments}", built.summary.assessments).replace("{notes}", built.summary.notes).replace("{previous}", built.summary.previous).replace("{from}", built.payload.period.from).replace("{to}", built.payload.period.to).replace("{kb}", String(Math.max(1, Math.round(built.summary.bytes / 1024))))), /* @__PURE__ */ cpJsx("div", { className: "cp-ai3-split" }, /* @__PURE__ */ cpJsx("div", null, /* @__PURE__ */ cpJsx("h4", null, uxText("ai3.shared")), /* @__PURE__ */ cpJsx("ul", null, ["codes", "period", ...built.options.earlier ? ["earlier"] : [], "assessments", ...built.options.status ? ["status"] : [], ...built.options.attendance ? ["attendance"] : [], ...NOTE_SOURCES.filter((key4) => built.options.sources[key4]).map((key4) => "source." + key4), ...built.options.previous ? ["previous"] : [], "instructions"].map((key4) => /* @__PURE__ */ cpJsx("li", { key: key4 }, uxText("ai3.share." + key4))))), /* @__PURE__ */ cpJsx("div", null, /* @__PURE__ */ cpJsx("h4", null, uxText("ai3.never")), /* @__PURE__ */ cpJsx("ul", null, ["names", "numbers", "ids", "table", "contacts"].map((key4) => /* @__PURE__ */ cpJsx("li", { key: key4 }, uxText("ai3.never." + key4)))))), /* @__PURE__ */ cpJsx("h4", null, uxText("ai3.replacements").replace("{n}", String(built.findings.length))), /* @__PURE__ */ cpJsx("p", { className: "cp-ai3-hint" }, uxText("ai3.change.lead")), built.changes.length ? /* @__PURE__ */ cpJsx("ol", { className: "cp-ai3-changes" }, built.changes.map((change2) => /* @__PURE__ */ cpJsx("li", { key: change2.key, className: "cp-ai3-change", "data-change": change2.key }, /* @__PURE__ */ cpJsx("div", { className: "cp-ai3-change-head" }, /* @__PURE__ */ cpJsx("b", null, cpRaw(change2.studentId ? nameOf3(change2.studentId) : uxText("ai3.general"))), /* @__PURE__ */ cpJsx("span", null, uxText("ai3.where." + change2.source))), /* @__PURE__ */ cpJsx("p", { className: "cp-ai3-before", dir: "auto" }, /* @__PURE__ */ cpJsx("span", { className: "cp-ai3-change-label" }, uxText("ai3.change.before")), " ", pieces(change2, toggle)), /* @__PURE__ */ cpJsx("p", { className: "cp-ai3-after", dir: "auto" }, /* @__PURE__ */ cpJsx("span", { className: "cp-ai3-change-label" }, uxText("ai3.change.after")), " ", /* @__PURE__ */ cpJsx("bdi", null, cpRaw(change2.after)))))) : /* @__PURE__ */ cpJsx("p", null, uxText("ai3.noReplacements")), /* @__PURE__ */ cpJsx("details", { className: "cp-ai3-file" }, /* @__PURE__ */ cpJsx("summary", null, uxText("ai3.showFile")), /* @__PURE__ */ cpJsx("pre", { dir: "ltr" }, cpRaw(JSON.stringify(built.payload, null, 2)))), /* @__PURE__ */ cpJsx("div", { className: "cp-ai3-row" }, /* @__PURE__ */ cpJsx(UxButton, { id: "ai3.save", primary: true, onClick: save }), /* @__PURE__ */ cpJsx(UxButton, { id: "ai3.back", onClick: () => setBuilt(null) }))), history.length > 0 && /* @__PURE__ */ cpJsx("details", { className: "cp-ai3-history" }, /* @__PURE__ */ cpJsx("summary", null, uxText("ai3.history").replace("{n}", String(history.length))), /* @__PURE__ */ cpJsx("ul", null, [...history].reverse().map((entry2) => /* @__PURE__ */ cpJsx("li", { key: entry2.id }, /* @__PURE__ */ cpJsx("bdi", { dir: "ltr" }, cpRaw(isoOf(new Date(entry2.createdAt)))), " \xB7 ", uxText("ai3.historyLine").replace("{from}", entry2.period.from).replace("{to}", entry2.period.to).replace("{n}", String(entry2.studentIds.length)), " \xB7 ", /* @__PURE__ */ cpJsx("bdi", { dir: "ltr" }, cpRaw(entry2.id)))))));
+    } })))), /* @__PURE__ */ cpJsx("fieldset", { className: "cp-ai3-group" }, /* @__PURE__ */ cpJsx("legend", null, uxText("ai3.notes")), /* @__PURE__ */ cpJsx("div", { className: "cp-ai3-checks" }, NOTE_SOURCES.map((key4) => /* @__PURE__ */ cpJsx(UxCheck, { key: key4, id: "ai3.source." + key4, checked: !!opts.sources[key4], onChange: (e) => source(key4, e.target.checked) })))), /* @__PURE__ */ cpJsx("fieldset", { className: "cp-ai3-group" }, /* @__PURE__ */ cpJsx("legend", null, uxText("ai3.data")), /* @__PURE__ */ cpJsx("div", { className: "cp-ai3-checks" }, DATA.map((key4) => /* @__PURE__ */ cpJsx(UxCheck, { key: key4, id: "ai3.data." + key4, checked: !!opts[key4], onChange: (e) => set(key4, e.target.checked) })))), /* @__PURE__ */ cpJsx("fieldset", { className: "cp-ai3-group" }, /* @__PURE__ */ cpJsx("legend", null, uxText("ai3.writing")), /* @__PURE__ */ cpJsx("div", { className: "cp-ai3-row" }, /* @__PURE__ */ cpJsx(UxSelect, { id: "ai3.language", value: opts.report_language, onChange: (e) => set("report_language", e.target.value) }, /* @__PURE__ */ cpJsx("option", { value: "en" }, t("settings.en")), /* @__PURE__ */ cpJsx("option", { value: "ar" }, t("settings.ar"))), /* @__PURE__ */ cpJsx(UxSelect, { id: "ai3.tone", value: opts.tone, onChange: (e) => set("tone", e.target.value) }, /* @__PURE__ */ cpJsx("option", { value: "warm" }, uxText("ai3.warm")), /* @__PURE__ */ cpJsx("option", { value: "formal" }, uxText("ai3.formal")))), /* @__PURE__ */ cpJsx("label", { className: "cp-ai3-instructions" }, /* @__PURE__ */ cpJsx("span", null, uxText("ai3.instructions")), /* @__PURE__ */ cpJsx("textarea", { ...controlProps("ux.ai3.instructions", (e) => set("teacher_instructions", e.target.value)), value: opts.teacher_instructions, maxLength: 8e3, "aria-label": uxText("ai3.instructions") }))), /* @__PURE__ */ cpJsx("div", { className: "cp-ai3-row" }, /* @__PURE__ */ cpJsx(UxButton, { id: "ai3.review", primary: true, disabled: !ids.length, onClick: review }))), built && /* @__PURE__ */ cpJsx("div", { className: "cp-ai3-review" }, /* @__PURE__ */ cpJsx("h3", null, uxText("ai3.reviewTitle")), /* @__PURE__ */ cpJsx("p", { className: "cp-ai3-summary" }, uxText("ai3.summary").replace("{students}", built.summary.students).replace("{assessments}", built.summary.assessments).replace("{notes}", built.summary.notes).replace("{previous}", built.summary.previous).replace("{from}", built.payload.period.from).replace("{to}", built.payload.period.to).replace("{kb}", String(Math.max(1, Math.round(built.summary.bytes / 1024))))), /* @__PURE__ */ cpJsx("div", { className: "cp-ai3-split" }, /* @__PURE__ */ cpJsx("div", null, /* @__PURE__ */ cpJsx("h4", null, uxText("ai3.shared")), /* @__PURE__ */ cpJsx("ul", null, ["codes", "period", ...built.options.earlier ? ["earlier"] : [], "assessments", ...built.options.status ? ["status"] : [], ...built.options.attendance ? ["attendance"] : [], ...NOTE_SOURCES.filter((key4) => built.options.sources[key4]).map((key4) => "source." + key4), ...built.options.previous ? ["previous"] : [], "instructions"].map((key4) => /* @__PURE__ */ cpJsx("li", { key: key4 }, uxText("ai3.share." + key4))))), /* @__PURE__ */ cpJsx("div", null, /* @__PURE__ */ cpJsx("h4", null, uxText("ai3.never")), /* @__PURE__ */ cpJsx("ul", null, ["names", "numbers", "ids", "table", "contacts"].map((key4) => /* @__PURE__ */ cpJsx("li", { key: key4 }, uxText("ai3.never." + key4)))))), /* @__PURE__ */ cpJsx("h4", null, uxText("ai3.replacements").replace("{n}", String(built.findings.length))), /* @__PURE__ */ cpJsx("p", { className: "cp-ai3-hint" }, uxText("ai3.change.lead")), built.changes.length ? /* @__PURE__ */ cpJsx("ol", { className: "cp-ai3-changes" }, built.changes.map((change2) => /* @__PURE__ */ cpJsx("li", { key: change2.key, className: "cp-ai3-change", "data-change": change2.key }, /* @__PURE__ */ cpJsx("div", { className: "cp-ai3-change-head" }, /* @__PURE__ */ cpJsx("b", null, cpRaw(change2.studentId ? nameOf3(change2.studentId) : uxText("ai3.general"))), /* @__PURE__ */ cpJsx("span", null, uxText("ai3.where." + change2.source))), /* @__PURE__ */ cpJsx("p", { className: "cp-ai3-before", dir: "auto" }, /* @__PURE__ */ cpJsx("span", { className: "cp-ai3-change-label" }, uxText("ai3.change.before")), " ", pieces(change2, toggle)), /* @__PURE__ */ cpJsx("p", { className: "cp-ai3-after", dir: "auto" }, /* @__PURE__ */ cpJsx("span", { className: "cp-ai3-change-label" }, uxText("ai3.change.after")), " ", /* @__PURE__ */ cpJsx("bdi", null, cpRaw(change2.after)))))) : /* @__PURE__ */ cpJsx("p", null, uxText("ai3.noReplacements")), /* @__PURE__ */ cpJsx("details", { className: "cp-ai3-file" }, /* @__PURE__ */ cpJsx("summary", null, uxText("ai3.showFile")), /* @__PURE__ */ cpJsx("pre", { dir: "ltr" }, cpRaw(JSON.stringify(built.payload, null, 2)))), /* @__PURE__ */ cpJsx("div", { className: "cp-ai3-row" }, /* @__PURE__ */ cpJsx(UxButton, { id: "ai3.save", primary: true, onClick: save2 }), /* @__PURE__ */ cpJsx(UxButton, { id: "ai3.back", onClick: () => setBuilt(null) }))), history.length > 0 && /* @__PURE__ */ cpJsx("details", { className: "cp-ai3-history" }, /* @__PURE__ */ cpJsx("summary", null, uxText("ai3.history").replace("{n}", String(history.length))), /* @__PURE__ */ cpJsx("ul", null, [...history].reverse().map((entry2) => /* @__PURE__ */ cpJsx("li", { key: entry2.id }, /* @__PURE__ */ cpJsx("bdi", { dir: "ltr" }, cpRaw(isoOf(new Date(entry2.createdAt)))), " \xB7 ", uxText("ai3.historyLine").replace("{from}", entry2.period.from).replace("{to}", entry2.period.to).replace("{n}", String(entry2.studentIds.length)), " \xB7 ", /* @__PURE__ */ cpJsx("bdi", { dir: "ltr" }, cpRaw(entry2.id)))))));
   }
 
   // src/modules/aireports/progress-import-view.jsx
@@ -61651,7 +61821,7 @@ Reply with JSON only, exactly in the shape of "response_schema", one report per 
     const students = doc.students.filter((s) => analysesFor(doc, s.id).length), [selected, setSelected] = useAIDraft(doc, "historyStudent", students[0]?.id || ""), [editing, setEditing] = useAIDraft(doc, "historyEditing", null), [draft, setDraft] = useAIDraft(doc, "historyDraft", null), [error2, setError] = useState("");
     const student = doc.students.find((s) => s.id === selected), list2 = student ? [...analysesFor(doc, student.id)].reverse() : [];
     const evidence = (entry2) => evidenceOf(doc, entry2, student.id);
-    const save = (entry2, edited, approved) => {
+    const save2 = (entry2, edited, approved) => {
       try {
         onUpdate((d) => editAnalysis(d, student.id, entry2.exportId, edited, approved));
         setError("");
@@ -61669,14 +61839,14 @@ Reply with JSON only, exactly in the shape of "response_schema", one report per 
     }), "aria-label": uxText("ai3.col.student") }, students.map((s) => /* @__PURE__ */ cpJsx("option", { key: s.id, value: s.id }, cpRaw(s.name), " (", analysesFor(doc, s.id).length, ")")))), error2 && /* @__PURE__ */ cpJsx("p", { role: "alert" }, error2), /* @__PURE__ */ cpJsx("ol", { className: "cp-ai3-timeline" }, list2.map((entry2) => {
       const r = editing === entry2.exportId ? draft : entry2.edited, name = (text9) => withName(text9, student);
       return /* @__PURE__ */ cpJsx("li", { key: entry2.exportId, className: "cp-ai3-entry", "data-ready": entry2.approved ? "true" : "false" }, /* @__PURE__ */ cpJsx("header", null, /* @__PURE__ */ cpJsx("b", null, /* @__PURE__ */ cpJsx("bdi", { dir: "ltr" }, cpRaw(entry2.period.from + " \u2013 " + entry2.period.to))), /* @__PURE__ */ cpJsx("span", null, uxText("ai3.importedOn").replace("{date}", isoOf(new Date(entry2.importedAt)))), entry2.approved && /* @__PURE__ */ cpJsx("span", { className: "cp-ai3-ready" }, uxText("ai3.ready"))), r.progress_since_last.summary && /* @__PURE__ */ cpJsx("p", { className: "cp-ai3-progress" }, cpRaw(name(r.progress_since_last.summary))), editing === entry2.exportId ? /* @__PURE__ */ cpJsx("div", { className: "cp-ai3-edit" }, FIELDS3.map((field2) => /* @__PURE__ */ cpJsx("label", { key: field2, className: "cp-ai3-instructions" }, /* @__PURE__ */ cpJsx("span", null, uxText("ai3.field." + field2)), /* @__PURE__ */ cpJsx("textarea", { ...controlProps("ux.ai3.editField", (e) => setDraft((old) => ({ ...old, [field2]: e.target.value })), field2), value: draft[field2], dir: entry2.language === "ar" ? "rtl" : "ltr" }))), /* @__PURE__ */ cpJsx("div", { className: "cp-ai3-row" }, /* @__PURE__ */ cpJsx(UxButton, { id: "ai3.saveEdit", primary: true, onClick: () => {
-        if (save(entry2, draft, entry2.approved)) {
+        if (save2(entry2, draft, entry2.approved)) {
           setEditing(null);
           setDraft(null);
         }
       } }), /* @__PURE__ */ cpJsx(UxButton, { id: "ai3.cancelEdit", onClick: () => {
         setEditing(null);
         setDraft(null);
-      } }))) : /* @__PURE__ */ cpJsx("dl", { className: "cp-ai3-fields" }, FIELDS3.map((field2) => r[field2] && /* @__PURE__ */ cpJsx("div", { key: field2 }, /* @__PURE__ */ cpJsx("dt", null, uxText("ai3.field." + field2)), /* @__PURE__ */ cpJsx("dd", { dir: entry2.language === "ar" ? "rtl" : "ltr" }, cpRaw(name(r[field2]))))), [["strengths", r.strengths], ["concerns", r.concerns], ["targeted_observations", r.targeted_observations]].map(([key4, items2]) => items2.length > 0 && /* @__PURE__ */ cpJsx("div", { key: key4 }, /* @__PURE__ */ cpJsx("dt", null, uxText("ai3.field." + key4)), /* @__PURE__ */ cpJsx("dd", null, /* @__PURE__ */ cpJsx("ul", null, items2.map((item, i) => /* @__PURE__ */ cpJsx("li", { key: i }, cpRaw(name(item.text)), /* @__PURE__ */ cpJsx(Evidence, { keys: item.evidence, map: evidence(entry2), student }))))))), r.recommendations.length > 0 && /* @__PURE__ */ cpJsx("div", null, /* @__PURE__ */ cpJsx("dt", null, uxText("ai3.field.recommendations")), /* @__PURE__ */ cpJsx("dd", null, /* @__PURE__ */ cpJsx("ul", null, r.recommendations.map((step, i) => /* @__PURE__ */ cpJsx("li", { key: i }, cpRaw(name(step.action)), " ", /* @__PURE__ */ cpJsx("small", null, "(", uxText("ai3.who." + step.who), " \xB7 ", uxText("ai3.when." + step.when.replace(" ", "_")), ")"))))))), editing !== entry2.exportId && /* @__PURE__ */ cpJsx("div", { className: "cp-ai3-row" }, /* @__PURE__ */ cpJsx(UxCheck, { id: "ai3.ready", context: entry2.exportId, checked: entry2.approved, onChange: (e) => save(entry2, entry2.edited, e.target.checked) }), /* @__PURE__ */ cpJsx(UxButton, { id: "ai3.edit", context: entry2.exportId, onClick: () => {
+      } }))) : /* @__PURE__ */ cpJsx("dl", { className: "cp-ai3-fields" }, FIELDS3.map((field2) => r[field2] && /* @__PURE__ */ cpJsx("div", { key: field2 }, /* @__PURE__ */ cpJsx("dt", null, uxText("ai3.field." + field2)), /* @__PURE__ */ cpJsx("dd", { dir: entry2.language === "ar" ? "rtl" : "ltr" }, cpRaw(name(r[field2]))))), [["strengths", r.strengths], ["concerns", r.concerns], ["targeted_observations", r.targeted_observations]].map(([key4, items2]) => items2.length > 0 && /* @__PURE__ */ cpJsx("div", { key: key4 }, /* @__PURE__ */ cpJsx("dt", null, uxText("ai3.field." + key4)), /* @__PURE__ */ cpJsx("dd", null, /* @__PURE__ */ cpJsx("ul", null, items2.map((item, i) => /* @__PURE__ */ cpJsx("li", { key: i }, cpRaw(name(item.text)), /* @__PURE__ */ cpJsx(Evidence, { keys: item.evidence, map: evidence(entry2), student }))))))), r.recommendations.length > 0 && /* @__PURE__ */ cpJsx("div", null, /* @__PURE__ */ cpJsx("dt", null, uxText("ai3.field.recommendations")), /* @__PURE__ */ cpJsx("dd", null, /* @__PURE__ */ cpJsx("ul", null, r.recommendations.map((step, i) => /* @__PURE__ */ cpJsx("li", { key: i }, cpRaw(name(step.action)), " ", /* @__PURE__ */ cpJsx("small", null, "(", uxText("ai3.who." + step.who), " \xB7 ", uxText("ai3.when." + step.when.replace(" ", "_")), ")"))))))), editing !== entry2.exportId && /* @__PURE__ */ cpJsx("div", { className: "cp-ai3-row" }, /* @__PURE__ */ cpJsx(UxCheck, { id: "ai3.ready", context: entry2.exportId, checked: entry2.approved, onChange: (e) => save2(entry2, entry2.edited, e.target.checked) }), /* @__PURE__ */ cpJsx(UxButton, { id: "ai3.edit", context: entry2.exportId, onClick: () => {
         setDraft(JSON.parse(JSON.stringify(entry2.edited)));
         setEditing(entry2.exportId);
       } })));
