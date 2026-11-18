@@ -2751,6 +2751,13 @@ td[data-cp-att],th[data-cp-att]{background:var(--cp-att-bg)!important;box-shadow
 .cp-seat-ghost{position:absolute;z-index:1;box-sizing:border-box;display:grid;place-items:center;border:3px dashed #8a8a96;border-radius:14px;opacity:.6;color:#6b6b76;font-weight:700;font-size:12px;background:repeating-linear-gradient(45deg,transparent 0 6px,rgba(138,138,150,.14) 6px 12px);pointer-events:none}
 .cp-seat-pickbar>span{max-inline-size:min(480px,52vw)}
 .cp-seat-ghost{padding:4px 8px;overflow:hidden;text-align:center;line-height:1.2}
+/* Seating talkers from behaviour (owner, 18 November 2026, approved mock-up). */
+.cp-seat-auto{display:inline-flex;align-items:center;margin-inline-start:4px;padding:0 6px;height:18px;border-radius:9px;background:#26262e;color:#ffd166;font:800 10px/18px system-ui,sans-serif;white-space:nowrap}
+.cp-seat-autoline{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:12px;font-weight:600;color:var(--cp-muted)}
+.cp-seat-talkers>span{display:grid;gap:2px}
+.cp-seat-below{display:inline-flex;align-items:center;gap:8px;margin-top:4px;font-size:13px;font-weight:600;color:var(--cp-text)}
+.cp-seat-below input{inline-size:64px;box-sizing:border-box;padding:3px 6px;border:2.5px solid var(--cp-text);border-radius:8px;background:var(--cp-surface);color:var(--cp-text);font:inherit;font-weight:800;text-align:center}
+.cp-seat-below input:disabled{opacity:.5}
 /* M56 design foundations (owner-supplied Master Implementation Brief, M56; design report §7–§8).
    One set of tokens for the frame and the new modules. Protected Gradebook views (Marks, Groups, Behaviour,
    Adjustments, Analysis, the original wheel, the Settings drawer and the class manager) do not use them. */
@@ -9550,7 +9557,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.seat.close": "Close",
     "ux.seat.deskName": "Name on desk",
     "ux.seat.tags": "Seating tags",
-    "ux.seat.tag.separate": "Keep separate",
+    "ux.seat.tag.separate": "Talker",
     "ux.seat.tag.front": "Front row",
     "ux.seat.tag.teacher": "Near teacher",
     "ux.seat.tag.door": "Near door",
@@ -9627,8 +9634,8 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.seat.lockedRule": "{a} keeps this desk \xB7 locked",
     "ux.seat.unlock": "Unlock",
     "ux.seat.prefs": "Shuffle preferences",
-    "ux.seat.pref.spread": "Spread separated students",
-    "ux.seat.pref.spread.hint": "\u201CKeep separate\u201D students don't sit side by side",
+    "ux.seat.pref.spread": "Spread talkers",
+    "ux.seat.pref.spread.hint": "Talkers don't sit side by side",
     "ux.seat.pref.recent": "Avoid recent neighbours",
     "ux.seat.pref.recent.hint": "Looks back at the last 3 charts",
     "ux.seat.pref.move": "Everyone moves",
@@ -9818,7 +9825,16 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.seat.pickLabel.move": "Swap",
     "ux.seat.pickLabel.here": "Move here",
     "ux.seat.removeEmptyN": "Remove {n} empty desks",
-    "ux.seat.removedEmpty": "Removed {n} empty desks. Undo brings them back."
+    "ux.seat.removedEmpty": "Removed {n} empty desks. Undo brings them back.",
+    "ux.seat.talkerAuto": "\u26A1 auto",
+    "ux.seat.talkerAutoShort": "\u26A1",
+    "ux.seat.talkerFrom": "\u26A1 Talker from behaviour \xB7 {m}/{max}",
+    "ux.seat.notTalker": "Not a talker",
+    "ux.seat.talkers": "Talkers from behaviour",
+    "ux.seat.talkers.hint": "A student whose behaviour mark falls below this line is tagged Talker. The tag stays until you remove it.",
+    "ux.seat.talkers.noColumn": "Add a behaviour column in the Gradebook to use this.",
+    "ux.seat.talkersBelow": "Below",
+    "ux.seat.talkersOutOf": "out of {max}"
   };
 
   // src/i18n/plain-copy.js
@@ -15990,7 +16006,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.seat.close": "\u0625\u063A\u0644\u0627\u0642",
     "ux.seat.deskName": "\u0627\u0644\u0627\u0633\u0645 \u0639\u0644\u0649 \u0627\u0644\u0645\u0642\u0639\u062F",
     "ux.seat.tags": "\u0648\u0633\u0648\u0645 \u0627\u0644\u062C\u0644\u0648\u0633",
-    "ux.seat.tag.separate": "\u064A\u064F\u0641\u0635\u0644 \u0639\u0646 \u063A\u064A\u0631\u0647",
+    "ux.seat.tag.separate": "\u0643\u062B\u064A\u0631 \u0627\u0644\u0643\u0644\u0627\u0645",
     "ux.seat.tag.front": "\u0627\u0644\u0635\u0641 \u0627\u0644\u0623\u0645\u0627\u0645\u064A",
     "ux.seat.tag.teacher": "\u0642\u0631\u0628 \u0627\u0644\u0645\u0639\u0644\u0645",
     "ux.seat.tag.door": "\u0642\u0631\u0628 \u0627\u0644\u0628\u0627\u0628",
@@ -16067,8 +16083,8 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.seat.lockedRule": "{a} \u064A\u0628\u0642\u0649 \u0641\u064A \u0645\u0642\u0639\u062F\u0647 \xB7 \u0645\u062B\u0628\u062A",
     "ux.seat.unlock": "\u0625\u0644\u063A\u0627\u0621 \u0627\u0644\u062A\u062B\u0628\u064A\u062A",
     "ux.seat.prefs": "\u062A\u0641\u0636\u064A\u0644\u0627\u062A \u0627\u0644\u062E\u0644\u0637",
-    "ux.seat.pref.spread": "\u062A\u0648\u0632\u064A\u0639 \u0627\u0644\u0637\u0644\u0627\u0628 \u0627\u0644\u0645\u0641\u0635\u0648\u0644\u064A\u0646",
-    "ux.seat.pref.spread.hint": "\u0637\u0644\u0627\u0628 \xAB\u064A\u064F\u0641\u0635\u0644 \u0639\u0646 \u063A\u064A\u0631\u0647\xBB \u0644\u0627 \u064A\u062C\u0644\u0633\u0648\u0646 \u0645\u062A\u062C\u0627\u0648\u0631\u064A\u0646",
+    "ux.seat.pref.spread": "\u062A\u0648\u0632\u064A\u0639 \u0643\u062B\u064A\u0631\u064A \u0627\u0644\u0643\u0644\u0627\u0645",
+    "ux.seat.pref.spread.hint": "\u0644\u0627 \u064A\u062C\u0644\u0633 \u0643\u062B\u064A\u0631\u0648 \u0627\u0644\u0643\u0644\u0627\u0645 \u0645\u062A\u062C\u0627\u0648\u0631\u064A\u0646",
     "ux.seat.pref.recent": "\u062A\u062C\u0646\u0651\u0628 \u0627\u0644\u062C\u064A\u0631\u0627\u0646 \u0627\u0644\u0623\u062E\u064A\u0631\u064A\u0646",
     "ux.seat.pref.recent.hint": "\u064A\u0646\u0638\u0631 \u0625\u0644\u0649 \u0622\u062E\u0631 3 \u0645\u062E\u0637\u0637\u0627\u062A",
     "ux.seat.pref.move": "\u0627\u0644\u062C\u0645\u064A\u0639 \u064A\u062A\u062D\u0631\u0643",
@@ -16258,7 +16274,16 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.seat.pickLabel.move": "\u062A\u0628\u062F\u064A\u0644",
     "ux.seat.pickLabel.here": "\u0627\u0646\u0642\u0644 \u0647\u0646\u0627",
     "ux.seat.removeEmptyN": "\u0625\u0632\u0627\u0644\u0629 {n} \u0645\u0646 \u0627\u0644\u0645\u0642\u0627\u0639\u062F \u0627\u0644\u0641\u0627\u0631\u063A\u0629",
-    "ux.seat.removedEmpty": "\u0623\u064F\u0632\u064A\u0644\u062A {n} \u0645\u0646 \u0627\u0644\u0645\u0642\u0627\u0639\u062F \u0627\u0644\u0641\u0627\u0631\u063A\u0629. \u0627\u0644\u062A\u0631\u0627\u062C\u0639 \u064A\u0639\u064A\u062F\u0647\u0627."
+    "ux.seat.removedEmpty": "\u0623\u064F\u0632\u064A\u0644\u062A {n} \u0645\u0646 \u0627\u0644\u0645\u0642\u0627\u0639\u062F \u0627\u0644\u0641\u0627\u0631\u063A\u0629. \u0627\u0644\u062A\u0631\u0627\u062C\u0639 \u064A\u0639\u064A\u062F\u0647\u0627.",
+    "ux.seat.talkerAuto": "\u26A1 \u062A\u0644\u0642\u0627\u0626\u064A",
+    "ux.seat.talkerAutoShort": "\u26A1",
+    "ux.seat.talkerFrom": "\u26A1 \u0643\u062B\u064A\u0631 \u0627\u0644\u0643\u0644\u0627\u0645 \u0645\u0646 \u0627\u0644\u0633\u0644\u0648\u0643 \xB7 {m}/{max}",
+    "ux.seat.notTalker": "\u0644\u064A\u0633 \u0643\u062B\u064A\u0631 \u0627\u0644\u0643\u0644\u0627\u0645",
+    "ux.seat.talkers": "\u0643\u062B\u064A\u0631\u0648 \u0627\u0644\u0643\u0644\u0627\u0645 \u0645\u0646 \u0627\u0644\u0633\u0644\u0648\u0643",
+    "ux.seat.talkers.hint": "\u0625\u0630\u0627 \u0642\u0644\u0651\u062A \u062F\u0631\u062C\u0629 \u0633\u0644\u0648\u0643 \u0627\u0644\u0637\u0627\u0644\u0628 \u0639\u0646 \u0647\u0630\u0627 \u0627\u0644\u062D\u062F \u064A\u064F\u0648\u0633\u064E\u0645 \xAB\u0643\u062B\u064A\u0631 \u0627\u0644\u0643\u0644\u0627\u0645\xBB\u060C \u0648\u064A\u0628\u0642\u0649 \u0627\u0644\u0648\u0633\u0645 \u062D\u062A\u0649 \u062A\u0632\u064A\u0644\u0647 \u0628\u0646\u0641\u0633\u0643.",
+    "ux.seat.talkers.noColumn": "\u0623\u0636\u0641 \u0639\u0645\u0648\u062F \u0627\u0644\u0633\u0644\u0648\u0643 \u0641\u064A \u0633\u062C\u0644 \u0627\u0644\u062F\u0631\u062C\u0627\u062A \u0644\u0627\u0633\u062A\u062E\u062F\u0627\u0645 \u0647\u0630\u0647 \u0627\u0644\u0645\u064A\u0632\u0629.",
+    "ux.seat.talkersBelow": "\u0623\u0642\u0644 \u0645\u0646",
+    "ux.seat.talkersOutOf": "\u0645\u0646 {max}"
   };
 
   // src/core/actions.js
@@ -33781,6 +33806,19 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       "meaning": "ux.seat.tagRemove"
     },
     {
+      "id": "ux.seat.notTalker",
+      "labelKey": "ux.seat.notTalker",
+      "icon": null,
+      "shortcut": null,
+      "availability": "rendered-and-not-disabled",
+      "canonicalHome": "seat:context",
+      "events": [
+        "onClick"
+      ],
+      "source": "src/modules",
+      "meaning": "ux.seat.notTalker"
+    },
+    {
       "id": "ux.seat.pick",
       "labelKey": "ux.seat.pairs",
       "icon": null,
@@ -37016,6 +37054,32 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       ],
       "source": "src/modules",
       "meaning": "ux.cert.criteriaStrikes"
+    },
+    {
+      "id": "ux.seat.talkers",
+      "labelKey": "ux.seat.talkers",
+      "icon": null,
+      "shortcut": null,
+      "availability": "rendered-and-not-disabled",
+      "canonicalHome": "seat:context",
+      "events": [
+        "onChange"
+      ],
+      "source": "src/modules",
+      "meaning": "ux.seat.talkers"
+    },
+    {
+      "id": "ux.seat.talkerBelow",
+      "labelKey": "ux.seat.talkersBelow",
+      "icon": null,
+      "shortcut": null,
+      "availability": "rendered-and-not-disabled",
+      "canonicalHome": "seat:context",
+      "events": [
+        "onChange"
+      ],
+      "source": "src/modules",
+      "meaning": "ux.seat.talkerBelow"
     },
     {
       "id": "ux.seat.tagLabel",
@@ -42327,8 +42391,8 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
   Object.assign(uxClick, { "cert.period": "cert.period", "cert.suggest.star": "cert.suggest.star", "cert.suggest.mostImproved": "cert.suggest.mostImproved", "cert.suggest.perfect": "cert.suggest.perfect", "cert.suggest.kindness": "cert.suggest.kindness", "cert.pkgReset": "cert.pkgReset", "home.starMake": "home.starMake" });
   Object.assign(uxClick, { "tabs.reset": "tabs.reset" });
   Object.assign(uxClick, { "nav.seating": "seat.title", "seat.student": "seat.openCard", "seat.close": "seat.close", "seat.tag": "seat.tags", "seat.newTag": "seat.newTag", "seat.attendance": "seat.openAttendance", "seat.participation": "seat.participation", "seat.observation": "seat.observation", "seat.strike": "seat.strike", "seat.marks": "seat.marks", "seat.mode": "seat.view", "seat.shuffle": "seat.shuffle", "seat.arrange": "seat.arrange", "seat.present": "seat.present", "seat.print": "seat.print", "seat.done": "seat.done", "seat.preset": "seat.startFrom", "seat.savedRoom": "seat.savedRoomLabel", "seat.addDesk": "seat.addDesk", "seat.addTable": "seat.addTable", "seat.removeEmpty": "seat.removeEmpty", "seat.board": "seat.boardOn", "seat.frontRows": "seat.frontRows", "seat.saveRoom": "seat.saveRoom", "seat.flip": "seat.studentView", "seat.exitPresent": "seat.exit", "seat.open": "seat.openCard", "seat.ruleRemove": "seat.removeRule", "seat.unlock": "seat.unlock", "seat.tagRemove": "seat.removeTag" });
-  Object.assign(uxClick, { "seat.pick": "seat.pairs", "seat.pickDesk": "seat.pickLabel.here", "seat.pickCancel": "seat.pickCancel", "seat.fix": "seat.fix", "seat.show": "seat.show", "seat.object": "seat.arrangeHint", "seat.addWindow": "seat.addWindow", "seat.removeWindow": "seat.removeWindow", "seat.tagDoes": "seat.tagDoes", "seat.tagColor": "seat.tagColor", "seat.tagCreate": "seat.tagCreate", "seat.tagCancel": "seat.tagCancel", "seat.tagEdit": "seat.editTag" });
-  Object.assign(uxChange, { "seat.tagLabel": "seat.tagLabel", "seat.tagMark": "seat.onDesk", "seat.tagTeacherOnly": "seat.teacherOnly" });
+  Object.assign(uxClick, { "seat.notTalker": "seat.notTalker", "seat.pick": "seat.pairs", "seat.pickDesk": "seat.pickLabel.here", "seat.pickCancel": "seat.pickCancel", "seat.fix": "seat.fix", "seat.show": "seat.show", "seat.object": "seat.arrangeHint", "seat.addWindow": "seat.addWindow", "seat.removeWindow": "seat.removeWindow", "seat.tagDoes": "seat.tagDoes", "seat.tagColor": "seat.tagColor", "seat.tagCreate": "seat.tagCreate", "seat.tagCancel": "seat.tagCancel", "seat.tagEdit": "seat.editTag" });
+  Object.assign(uxChange, { "seat.talkers": "seat.talkers", "seat.talkerBelow": "seat.talkersBelow", "seat.tagLabel": "seat.tagLabel", "seat.tagMark": "seat.onDesk", "seat.tagTeacherOnly": "seat.teacherOnly" });
   Object.assign(uxChange, { "seat.deskName": "seat.deskName", "seat.lock": "seat.lock", "seat.pref": "seat.prefs" });
   Object.assign(uxChange, { "cert.pkgDesign": "cert.pkgDesign", "cert.pkgTitle": "cert.pkgTitle", "cert.pkgTitleAr": "cert.pkgTitleAr", "cert.pkgReason": "cert.pkgReason", "cert.pkgReasonAr": "cert.pkgReasonAr" });
   Object.assign(uxClick, { "nav.compare": "cmp.title", "cmp.period": "cmp.period", "cmp.mode": "cmp.marks", "cmp.sort": "cmp.sortLabel", "cmp.removeFile": "cmp.removeFileLabel", "cmp.reread": "cmp.reread" });
@@ -46702,7 +46766,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "seat.close": ["Close", "\u0625\u063A\u0644\u0627\u0642"],
     "seat.deskName": ["Name on desk", "\u0627\u0644\u0627\u0633\u0645 \u0639\u0644\u0649 \u0627\u0644\u0645\u0642\u0639\u062F"],
     "seat.tags": ["Seating tags", "\u0648\u0633\u0648\u0645 \u0627\u0644\u062C\u0644\u0648\u0633"],
-    "seat.tag.separate": ["Keep separate", "\u064A\u064F\u0641\u0635\u0644 \u0639\u0646 \u063A\u064A\u0631\u0647"],
+    "seat.tag.separate": ["Talker", "\u0643\u062B\u064A\u0631 \u0627\u0644\u0643\u0644\u0627\u0645"],
     "seat.tag.front": ["Front row", "\u0627\u0644\u0635\u0641 \u0627\u0644\u0623\u0645\u0627\u0645\u064A"],
     "seat.tag.teacher": ["Near teacher", "\u0642\u0631\u0628 \u0627\u0644\u0645\u0639\u0644\u0645"],
     "seat.tag.door": ["Near door", "\u0642\u0631\u0628 \u0627\u0644\u0628\u0627\u0628"],
@@ -46779,8 +46843,8 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "seat.lockedRule": ["{a} keeps this desk \xB7 locked", "{a} \u064A\u0628\u0642\u0649 \u0641\u064A \u0645\u0642\u0639\u062F\u0647 \xB7 \u0645\u062B\u0628\u062A"],
     "seat.unlock": ["Unlock", "\u0625\u0644\u063A\u0627\u0621 \u0627\u0644\u062A\u062B\u0628\u064A\u062A"],
     "seat.prefs": ["Shuffle preferences", "\u062A\u0641\u0636\u064A\u0644\u0627\u062A \u0627\u0644\u062E\u0644\u0637"],
-    "seat.pref.spread": ["Spread separated students", "\u062A\u0648\u0632\u064A\u0639 \u0627\u0644\u0637\u0644\u0627\u0628 \u0627\u0644\u0645\u0641\u0635\u0648\u0644\u064A\u0646"],
-    "seat.pref.spread.hint": ["\u201CKeep separate\u201D students don't sit side by side", "\u0637\u0644\u0627\u0628 \xAB\u064A\u064F\u0641\u0635\u0644 \u0639\u0646 \u063A\u064A\u0631\u0647\xBB \u0644\u0627 \u064A\u062C\u0644\u0633\u0648\u0646 \u0645\u062A\u062C\u0627\u0648\u0631\u064A\u0646"],
+    "seat.pref.spread": ["Spread talkers", "\u062A\u0648\u0632\u064A\u0639 \u0643\u062B\u064A\u0631\u064A \u0627\u0644\u0643\u0644\u0627\u0645"],
+    "seat.pref.spread.hint": ["Talkers don't sit side by side", "\u0644\u0627 \u064A\u062C\u0644\u0633 \u0643\u062B\u064A\u0631\u0648 \u0627\u0644\u0643\u0644\u0627\u0645 \u0645\u062A\u062C\u0627\u0648\u0631\u064A\u0646"],
     "seat.pref.recent": ["Avoid recent neighbours", "\u062A\u062C\u0646\u0651\u0628 \u0627\u0644\u062C\u064A\u0631\u0627\u0646 \u0627\u0644\u0623\u062E\u064A\u0631\u064A\u0646"],
     "seat.pref.recent.hint": ["Looks back at the last 3 charts", "\u064A\u0646\u0638\u0631 \u0625\u0644\u0649 \u0622\u062E\u0631 3 \u0645\u062E\u0637\u0637\u0627\u062A"],
     "seat.pref.move": ["Everyone moves", "\u0627\u0644\u062C\u0645\u064A\u0639 \u064A\u062A\u062D\u0631\u0643"],
@@ -46970,7 +47034,16 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "seat.pickLabel.move": ["Swap", "\u062A\u0628\u062F\u064A\u0644"],
     "seat.pickLabel.here": ["Move here", "\u0627\u0646\u0642\u0644 \u0647\u0646\u0627"],
     "seat.removeEmptyN": ["Remove {n} empty desks", "\u0625\u0632\u0627\u0644\u0629 {n} \u0645\u0646 \u0627\u0644\u0645\u0642\u0627\u0639\u062F \u0627\u0644\u0641\u0627\u0631\u063A\u0629"],
-    "seat.removedEmpty": ["Removed {n} empty desks. Undo brings them back.", "\u0623\u064F\u0632\u064A\u0644\u062A {n} \u0645\u0646 \u0627\u0644\u0645\u0642\u0627\u0639\u062F \u0627\u0644\u0641\u0627\u0631\u063A\u0629. \u0627\u0644\u062A\u0631\u0627\u062C\u0639 \u064A\u0639\u064A\u062F\u0647\u0627."]
+    "seat.removedEmpty": ["Removed {n} empty desks. Undo brings them back.", "\u0623\u064F\u0632\u064A\u0644\u062A {n} \u0645\u0646 \u0627\u0644\u0645\u0642\u0627\u0639\u062F \u0627\u0644\u0641\u0627\u0631\u063A\u0629. \u0627\u0644\u062A\u0631\u0627\u062C\u0639 \u064A\u0639\u064A\u062F\u0647\u0627."],
+    "seat.talkerAuto": ["\u26A1 auto", "\u26A1 \u062A\u0644\u0642\u0627\u0626\u064A"],
+    "seat.talkerAutoShort": ["\u26A1", "\u26A1"],
+    "seat.talkerFrom": ["\u26A1 Talker from behaviour \xB7 {m}/{max}", "\u26A1 \u0643\u062B\u064A\u0631 \u0627\u0644\u0643\u0644\u0627\u0645 \u0645\u0646 \u0627\u0644\u0633\u0644\u0648\u0643 \xB7 {m}/{max}"],
+    "seat.notTalker": ["Not a talker", "\u0644\u064A\u0633 \u0643\u062B\u064A\u0631 \u0627\u0644\u0643\u0644\u0627\u0645"],
+    "seat.talkers": ["Talkers from behaviour", "\u0643\u062B\u064A\u0631\u0648 \u0627\u0644\u0643\u0644\u0627\u0645 \u0645\u0646 \u0627\u0644\u0633\u0644\u0648\u0643"],
+    "seat.talkers.hint": ["A student whose behaviour mark falls below this line is tagged Talker. The tag stays until you remove it.", "\u0625\u0630\u0627 \u0642\u0644\u0651\u062A \u062F\u0631\u062C\u0629 \u0633\u0644\u0648\u0643 \u0627\u0644\u0637\u0627\u0644\u0628 \u0639\u0646 \u0647\u0630\u0627 \u0627\u0644\u062D\u062F \u064A\u064F\u0648\u0633\u064E\u0645 \xAB\u0643\u062B\u064A\u0631 \u0627\u0644\u0643\u0644\u0627\u0645\xBB\u060C \u0648\u064A\u0628\u0642\u0649 \u0627\u0644\u0648\u0633\u0645 \u062D\u062A\u0649 \u062A\u0632\u064A\u0644\u0647 \u0628\u0646\u0641\u0633\u0643."],
+    "seat.talkers.noColumn": ["Add a behaviour column in the Gradebook to use this.", "\u0623\u0636\u0641 \u0639\u0645\u0648\u062F \u0627\u0644\u0633\u0644\u0648\u0643 \u0641\u064A \u0633\u062C\u0644 \u0627\u0644\u062F\u0631\u062C\u0627\u062A \u0644\u0627\u0633\u062A\u062E\u062F\u0627\u0645 \u0647\u0630\u0647 \u0627\u0644\u0645\u064A\u0632\u0629."],
+    "seat.talkersBelow": ["Below", "\u0623\u0642\u0644 \u0645\u0646"],
+    "seat.talkersOutOf": ["out of {max}", "\u0645\u0646 {max}"]
   };
   var uxEn = Object.fromEntries(Object.entries(pairs).map(([key4, value]) => ["ux." + key4, value[0]]));
   var uxAr = Object.fromEntries(Object.entries(pairs).map(([key4, value]) => ["ux." + key4, value[1]]));
@@ -59365,6 +59438,34 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
   }
   var observations_default = manifest("observations", { defaults: observations(), migrate: observations }, [{ id: "module:observations", labelKey: navigationFor("observations").titleKey, Component: ObservationsView }], [{ id: "observations.tags", Component: TagSettings }]);
 
+  // src/core/talkers.js
+  var TALKER = "separate";
+  var hasBehaviour = (doc) => (doc?.sections || []).some((s) => (s.columns || []).some((c) => c.kind === "behaviour"));
+  var behaviourMark = (student) => student?.behaviour != null ? student.behaviour : 10;
+  function talkerLine(doc) {
+    const t2 = doc?.cp?.seating?.talkers, max = getBhvMax(doc?.sections || []);
+    return { on: t2?.on !== false, below: Number.isFinite(t2?.below) ? t2.below : Math.round(max * 7) / 10, max, configured: !!t2 };
+  }
+  function belowLine(doc) {
+    if (!hasBehaviour(doc)) return /* @__PURE__ */ new Set();
+    const line = talkerLine(doc);
+    if (!line.on) return /* @__PURE__ */ new Set();
+    return new Set((doc.students || []).filter((s) => behaviourMark(s) < line.below).map((s) => s.id));
+  }
+  function autoTalkers(prev, next) {
+    if (!next || next === prev || !hasBehaviour(next)) return next;
+    const room = next.cp?.seating || { schemaVersion: 1, desks: [], seats: {}, tags: {} }, line = talkerLine(next), now = belowLine(next);
+    const before = line.configured ? belowLine(prev) : /* @__PURE__ */ new Set(), tags = room.tags || {};
+    const add = [...now].filter((id2) => !before.has(id2) && !(tags[id2] || []).includes(TALKER));
+    if (!add.length && (line.configured || !next.cp?.seating)) return next;
+    const seatingNext = { ...room, talkers: { on: line.on, below: line.below } };
+    if (add.length) {
+      seatingNext.tags = { ...tags, ...Object.fromEntries(add.map((id2) => [id2, [...tags[id2] || [], TALKER]])) };
+      seatingNext.talkerAuto = { ...room.talkerAuto || {}, ...Object.fromEntries(add.map((id2) => [id2, true])) };
+    }
+    return { ...next, cp: { ...next.cp || {}, seating: seatingNext } };
+  }
+
   // src/modules/seating/model.js
   var BUILTIN_TAGS = ["separate", "front", "teacher", "door"];
   var PRESETS = ["rows", "pairs", "groups4", "groups6", "horseshoe", "exam", "gradebook"];
@@ -59395,7 +59496,10 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       door: wallSpot(v.door),
       windows: Array.isArray(v.windows) ? v.windows.map((w2) => w2 && typeof w2.id === "string" && wallSpot(w2) ? { id: w2.id, ...wallSpot(w2) } : null).filter(Boolean) : [],
       show: SHOW.includes(v.show) ? v.show : "names",
-      ...Object.fromEntries(Object.entries(v).filter(([k]) => !["schemaVersion", "desks", "board", "frontRows", "seats", "locked", "tags", "customTags", "pairs", "prefs", "recent", "names", "teacher", "boardAt", "door", "windows", "show"].includes(k)))
+      // Talkers from behaviour (src/core/talkers.js): the line and which Talker tags were added from behaviour.
+      ...v.talkers && typeof v.talkers === "object" ? { talkers: { on: v.talkers.on !== false, ...Number.isFinite(v.talkers.below) ? { below: v.talkers.below } : {} } } : {},
+      talkerAuto: v.talkerAuto && typeof v.talkerAuto === "object" ? v.talkerAuto : {},
+      ...Object.fromEntries(Object.entries(v).filter(([k]) => !["schemaVersion", "desks", "board", "frontRows", "seats", "locked", "tags", "customTags", "pairs", "prefs", "recent", "names", "teacher", "boardAt", "door", "windows", "show", "talkers", "talkerAuto"].includes(k)))
     };
   }
   function wallSpot(w2) {
@@ -59566,6 +59670,11 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     if (!table) return { ...room, desks: [...room.desks, desk(0, y2)] };
     const c = "t" + id().slice(0, 6);
     return { ...room, desks: [...room.desks, ...[0, 1, 2, 3].map((k) => desk(k % 2 * 1.05, y2 + Math.floor(k / 2) * 0.8, c))] };
+  }
+  function toggleTag(room, sid, tag) {
+    const tags = room.tags[sid] || [], on = !tags.includes(tag), auto2 = { ...room.talkerAuto || {} };
+    if (!on && tag === "separate") delete auto2[sid];
+    return { ...room, tags: { ...room.tags, [sid]: on ? [...tags, tag] : tags.filter((x2) => x2 !== tag) }, talkerAuto: auto2 };
   }
   function addPair(room, a, b, type) {
     if (!a || !b || a === b) return room;
@@ -59758,7 +59867,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
   var open = (studentId, view) => window.dispatchEvent(new CustomEvent("cp:student-module", { detail: { studentId, view } }));
   var OPP = { top: "bottom", bottom: "top", left: "right", right: "left" };
   var TAG_BG = { yellow: "#ffd166", lilac: "#d7c4ff", mint: "#9ee6b8", sky: "#a9d8ff", rose: "#ffb3c1", peach: "#ffc9a3" };
-  var STICKER = { separate: { bg: "#ffd166", teacherOnly: true }, front: { bg: "#ff5a1f", teacherOnly: false }, teacher: { bg: "#a9d8ff", teacherOnly: true }, door: { bg: "#ffc9a3", teacherOnly: true }, plan: { bg: "#d7c4ff", teacherOnly: true } };
+  var STICKER = { separate: { bg: "#ffd166", teacherOnly: false }, front: { bg: "#ff5a1f", teacherOnly: false }, teacher: { bg: "#a9d8ff", teacherOnly: true }, door: { bg: "#ffc9a3", teacherOnly: true }, plan: { bg: "#d7c4ff", teacherOnly: true } };
   var INK2 = "#26262e";
   var STICKER_ICON = {
     separate: /* @__PURE__ */ cpJsx("path", { d: "M4.5 5.5h15a1.5 1.5 0 0 1 1.5 1.5v8a1.5 1.5 0 0 1-1.5 1.5H10l-4.5 4v-4H4.5A1.5 1.5 0 0 1 3 15V7a1.5 1.5 0 0 1 1.5-1.5z", fill: "#fff", stroke: INK2, strokeWidth: "2.4", strokeLinejoin: "round" }),
@@ -60001,7 +60110,8 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     const student = doc.students.find((s) => s.id === sid);
     if (!student) return null;
     const tags = room.tags[sid] || [], pairs2 = room.pairs.filter((p) => p.a === sid || p.b === sid), others = doc.students.filter((s) => s.id !== sid), d = deskOf(room, sid), n = d ? room.desks.findIndex((x2) => x2.id === d) + 1 : 0, partCol = findParticipationCol(doc.sections || []);
-    const toggle = (tag) => commit((r) => ({ ...r, tags: { ...r.tags, [sid]: tags.includes(tag) ? tags.filter((x2) => x2 !== tag) : [...tags, tag] } }));
+    const toggle = (tag) => commit((r) => toggleTag(r, sid, tag));
+    const line = talkerLine(doc), autoTalker = tags.includes("separate") && !!room.talkerAuto?.[sid];
     const [adding, setAdding] = useState(false);
     const newTag = (tag) => {
       const tid = "c-" + crypto.randomUUID().slice(0, 8);
@@ -60034,7 +60144,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
         else delete next[sid];
         return { ...r, names: next };
       });
-    }) })), /* @__PURE__ */ cpJsx("div", { className: "cp-seat-tags", role: "group", "aria-label": uxText("seat.tags") }, [...BUILTIN_TAGS, ...room.customTags.map((c) => c.id)].map((tag) => /* @__PURE__ */ cpJsx("button", { type: "button", key: tag, "aria-pressed": tags.includes(tag), "data-tag": BUILTIN_TAGS.includes(tag) ? tag : "custom", style: BUILTIN_TAGS.includes(tag) ? void 0 : { "--tag": TAG_BG[room.customTags.find((c) => c.id === tag)?.color] || TAG_BG.yellow }, ...actionProps("ux.seat.tag", () => toggle(tag), sid + ":" + tag) }, /* @__PURE__ */ cpJsx(Icon, { name: BUILTIN_TAGS.includes(tag) ? tag : "custom", size: 12 }), cpRaw(tagLabel(tag, room)))), !adding && /* @__PURE__ */ cpJsx("button", { type: "button", className: "cp-seat-addtag", ...actionProps("ux.seat.newTag", () => setAdding(true), sid) }, uxText("seat.newTagShort"))), adding && /* @__PURE__ */ cpJsx(TagForm, { context: sid, onSave: newTag, onCancel: () => setAdding(false) }), /* @__PURE__ */ cpJsx("hr", null), /* @__PURE__ */ cpJsx("label", { className: "cp-seat-switch" }, /* @__PURE__ */ cpJsx("span", null, uxText("seat.lock")), /* @__PURE__ */ cpJsx("input", { type: "checkbox", role: "switch", checked: !!room.locked[sid], ...controlProps("ux.seat.lock", (e) => commit((r) => {
+    }) })), /* @__PURE__ */ cpJsx("div", { className: "cp-seat-tags", role: "group", "aria-label": uxText("seat.tags") }, [...BUILTIN_TAGS, ...room.customTags.map((c) => c.id)].map((tag) => /* @__PURE__ */ cpJsx("button", { type: "button", key: tag, "aria-pressed": tags.includes(tag), "data-tag": BUILTIN_TAGS.includes(tag) ? tag : "custom", style: BUILTIN_TAGS.includes(tag) ? void 0 : { "--tag": TAG_BG[room.customTags.find((c) => c.id === tag)?.color] || TAG_BG.yellow }, ...actionProps("ux.seat.tag", () => toggle(tag), sid + ":" + tag) }, /* @__PURE__ */ cpJsx(Icon, { name: BUILTIN_TAGS.includes(tag) ? tag : "custom", size: 12 }), cpRaw(tagLabel(tag, room)), tag === "separate" && autoTalker && /* @__PURE__ */ cpJsx("span", { className: "cp-seat-auto" }, uxText("seat.talkerAuto")))), !adding && /* @__PURE__ */ cpJsx("button", { type: "button", className: "cp-seat-addtag", ...actionProps("ux.seat.newTag", () => setAdding(true), sid) }, uxText("seat.newTagShort"))), autoTalker && /* @__PURE__ */ cpJsx("div", { className: "cp-seat-autoline" }, /* @__PURE__ */ cpJsx("span", null, cpRaw(uxText("seat.talkerFrom").replace("{m}", String(behaviourMark(student))).replace("{max}", String(line.max)))), /* @__PURE__ */ cpJsx("button", { type: "button", className: "cp-seat-btn cp-seat-small", ...actionProps("ux.seat.notTalker", () => toggle("separate"), sid) }, uxText("seat.notTalker"))), adding && /* @__PURE__ */ cpJsx(TagForm, { context: sid, onSave: newTag, onCancel: () => setAdding(false) }), /* @__PURE__ */ cpJsx("hr", null), /* @__PURE__ */ cpJsx("label", { className: "cp-seat-switch" }, /* @__PURE__ */ cpJsx("span", null, uxText("seat.lock")), /* @__PURE__ */ cpJsx("input", { type: "checkbox", role: "switch", checked: !!room.locked[sid], ...controlProps("ux.seat.lock", (e) => commit((r) => {
       const next = { ...r.locked };
       if (e.target.checked) next[sid] = true;
       else delete next[sid];
@@ -60047,8 +60157,12 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
   function SeatingView({ doc, onUpdate }) {
     useLanguage();
     const profile3 = useProfile(), [mode, setMode] = useState("room"), [arranging, setArranging] = useState(false), [selected, setSelected] = useState(null), [presenting, setPresenting] = useState(false), [flip, setFlip] = useState(false), [printing, setPrinting] = useState(false), [width, setWidth] = useState(1e3), [objSel, setObjSel] = useState(null), [pick2, setPick] = useState(null);
-    const room = useMemo(() => ensureRoom(doc), [doc.cp?.seating, doc.students]), names = useMemo(() => deskNames(doc.students, room.names), [doc.students, room.names]), absent = useMemo(() => absentToday(doc), [doc.cp?.attendance]), plans2 = useMemo(() => supportPlans(doc), [doc.cp?.support]);
-    const commit = (fn) => onUpdate((d) => ({ ...d, cp: { ...d.cp, seating: fn(ensureRoom(d)) } }));
+    const withTalkers = (d) => {
+      const seeded = { ...d, cp: { ...d.cp, seating: ensureRoom(d) } };
+      return seating(autoTalkers(d, seeded).cp.seating);
+    };
+    const room = useMemo(() => withTalkers(doc), [doc.cp?.seating, doc.students, doc.sections]), names = useMemo(() => deskNames(doc.students, room.names), [doc.students, room.names]), absent = useMemo(() => absentToday(doc), [doc.cp?.attendance]), plans2 = useMemo(() => supportPlans(doc), [doc.cp?.support]);
+    const commit = (fn) => onUpdate((d) => ({ ...d, cp: { ...d.cp, seating: fn(withTalkers(d)) } }));
     const summary2 = ruleSummary(room, doc.students), broken = summary2.rules.filter((r) => !r.kept).length, rtl = (doc.settings.dir || "ltr") === "rtl", b = bounds(room.desks);
     const u3 = Math.max(52, Math.min(150, (width - 12) / (b.w + 2.1)));
     const groups = (doc.groups || []).map((g) => ({ id: g.id, ids: doc.students.filter((s) => s.group === g.id).map((s) => s.id) })).filter((g) => g.ids.length);
@@ -60193,10 +60307,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     return /* @__PURE__ */ cpJsx("div", { ref: box2, className: "cp-seat-present", role: "dialog", "aria-label": uxText("seat.present") }, /* @__PURE__ */ cpJsx("div", { className: "cp-seat-present-bar" }, /* @__PURE__ */ cpJsx("button", { type: "button", className: "cp-seat-btn", "aria-pressed": flip, ...actionProps("ux.seat.flip", onFlip) }, uxText("seat.studentView")), /* @__PURE__ */ cpJsx("button", { type: "button", className: "cp-seat-btn", ...actionProps("ux.seat.exitPresent", onExit) }, uxText("seat.exit"))), /* @__PURE__ */ cpJsx(Room, { ...roomProps, u: u3, flip, plain: true }));
   }
   function SeatingList({ doc, room, names, plans: plans2, summary: summary2, commit, onPick }) {
-    const toggle = (sid, tag) => commit((r) => {
-      const tags = r.tags[sid] || [];
-      return { ...r, tags: { ...r.tags, [sid]: tags.includes(tag) ? tags.filter((x2) => x2 !== tag) : [...tags, tag] } };
-    });
+    const toggle = (sid, tag) => commit((r) => toggleTag(r, sid, tag));
     const ruleText2 = (r) => r.kind === "apart" ? uxText("seat.rule.apart").replace("{a}", names[r.a]).replace("{b}", names[r.b]) : r.kind === "next" ? uxText("seat.rule.next").replace("{a}", names[r.a]).replace("{b}", names[r.b]) : uxText("seat.rule." + r.kind).replace("{a}", names[r.a]);
     const removeRule = (r) => commit((x2) => r.kind === "apart" || r.kind === "next" ? { ...x2, pairs: x2.pairs.filter((p) => p.id !== r.id) } : { ...x2, tags: { ...x2.tags, [r.a]: (x2.tags[r.a] || []).filter((t2) => t2 !== (r.tag || r.kind)) } });
     const [editing, setEditing] = useState(null);
@@ -60205,11 +60316,17 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       setEditing(null);
     };
     const absentCount = absentToday(doc).size;
-    return /* @__PURE__ */ cpJsx("div", { className: "cp-seat-cols" }, /* @__PURE__ */ cpJsx("section", { className: "cp-seat-panel" }, /* @__PURE__ */ cpJsx("h3", null, uxText("seat.students")), /* @__PURE__ */ cpJsx("p", { className: "cp-seat-muted" }, cpRaw(uxText("seat.fromRoster").replace("{s}", String(doc.students.length)).replace("{d}", String(room.desks.length)).replace("{a}", String(absentCount)))), doc.students.map((s, i) => /* @__PURE__ */ cpJsx("div", { key: s.id, className: "cp-seat-st" }, /* @__PURE__ */ cpJsx("span", { className: "cp-seat-num" }, cpRaw(String(i + 1))), /* @__PURE__ */ cpJsx("button", { type: "button", className: "cp-seat-stname", ...actionProps("ux.seat.open", () => onPick(s.id), s.id) }, /* @__PURE__ */ cpJsx("b", null, cpRaw(names[s.id])), /* @__PURE__ */ cpJsx("small", null, /* @__PURE__ */ cpJsx("bdi", { dir: "auto" }, cpRaw(s.name)))), /* @__PURE__ */ cpJsx("span", { className: "cp-seat-tags" }, [...BUILTIN_TAGS, ...room.customTags.map((c) => c.id)].map((tag) => /* @__PURE__ */ cpJsx("button", { type: "button", key: tag, "aria-pressed": (room.tags[s.id] || []).includes(tag), "data-tag": BUILTIN_TAGS.includes(tag) ? tag : "custom", style: BUILTIN_TAGS.includes(tag) ? void 0 : { "--tag": TAG_BG[room.customTags.find((c) => c.id === tag)?.color] || TAG_BG.yellow }, ...actionProps("ux.seat.tag", () => toggle(s.id, tag), "list:" + s.id + ":" + tag) }, cpRaw(tagLabel(tag, room)))), plans2.has(s.id) && /* @__PURE__ */ cpJsx("span", { className: "cp-seat-plan", "data-cp-private": "" }, /* @__PURE__ */ cpJsx(Icon, { name: "star", size: 11 }), uxText("seat.plan")))))), /* @__PURE__ */ cpJsx("section", { className: "cp-seat-panel" }, /* @__PURE__ */ cpJsx("h3", null, uxText("seat.rules")), /* @__PURE__ */ cpJsx("p", { className: "cp-seat-muted" }, uxText("seat.rulesLead")), !summary2.rules.length && /* @__PURE__ */ cpJsx("p", { className: "cp-seat-muted" }, uxText("seat.noRules")), summary2.rules.map((r) => /* @__PURE__ */ cpJsx("div", { key: r.id, className: "cp-seat-rule" }, /* @__PURE__ */ cpJsx("span", null, cpRaw(ruleText2(r))), /* @__PURE__ */ cpJsx("span", { className: "cp-seat-ruleend" }, /* @__PURE__ */ cpJsx("span", { className: "cp-seat-kept" + (r.kept ? "" : " cp-seat-warn") }, uxText(r.kept ? "seat.keptOne" : "seat.notKept")), /* @__PURE__ */ cpJsx("button", { type: "button", className: "cp-seat-x", "aria-label": uxText("seat.removeRule"), title: uxText("seat.removeRule"), ...actionProps("ux.seat.ruleRemove", () => removeRule(r), r.id) }, "\xD7")))), Object.keys(room.locked).filter((sid) => room.locked[sid] && names[sid]).map((sid) => /* @__PURE__ */ cpJsx("div", { key: sid, className: "cp-seat-rule" }, /* @__PURE__ */ cpJsx("span", null, cpRaw(uxText("seat.lockedRule").replace("{a}", names[sid]))), /* @__PURE__ */ cpJsx("button", { type: "button", className: "cp-seat-btn cp-seat-small", ...actionProps("ux.seat.unlock", () => commit((r) => {
+    return /* @__PURE__ */ cpJsx("div", { className: "cp-seat-cols" }, /* @__PURE__ */ cpJsx("section", { className: "cp-seat-panel" }, /* @__PURE__ */ cpJsx("h3", null, uxText("seat.students")), /* @__PURE__ */ cpJsx("p", { className: "cp-seat-muted" }, cpRaw(uxText("seat.fromRoster").replace("{s}", String(doc.students.length)).replace("{d}", String(room.desks.length)).replace("{a}", String(absentCount)))), doc.students.map((s, i) => /* @__PURE__ */ cpJsx("div", { key: s.id, className: "cp-seat-st" }, /* @__PURE__ */ cpJsx("span", { className: "cp-seat-num" }, cpRaw(String(i + 1))), /* @__PURE__ */ cpJsx("button", { type: "button", className: "cp-seat-stname", ...actionProps("ux.seat.open", () => onPick(s.id), s.id) }, /* @__PURE__ */ cpJsx("b", null, cpRaw(names[s.id])), /* @__PURE__ */ cpJsx("small", null, /* @__PURE__ */ cpJsx("bdi", { dir: "auto" }, cpRaw(s.name)))), /* @__PURE__ */ cpJsx("span", { className: "cp-seat-tags" }, [...BUILTIN_TAGS, ...room.customTags.map((c) => c.id)].map((tag) => /* @__PURE__ */ cpJsx("button", { type: "button", key: tag, "aria-pressed": (room.tags[s.id] || []).includes(tag), "data-tag": BUILTIN_TAGS.includes(tag) ? tag : "custom", style: BUILTIN_TAGS.includes(tag) ? void 0 : { "--tag": TAG_BG[room.customTags.find((c) => c.id === tag)?.color] || TAG_BG.yellow }, ...actionProps("ux.seat.tag", () => toggle(s.id, tag), "list:" + s.id + ":" + tag) }, cpRaw(tagLabel(tag, room)), tag === "separate" && (room.tags[s.id] || []).includes(tag) && room.talkerAuto?.[s.id] && /* @__PURE__ */ cpJsx("span", { className: "cp-seat-auto", "aria-hidden": "true" }, uxText("seat.talkerAutoShort")))), plans2.has(s.id) && /* @__PURE__ */ cpJsx("span", { className: "cp-seat-plan", "data-cp-private": "" }, /* @__PURE__ */ cpJsx(Icon, { name: "star", size: 11 }), uxText("seat.plan")))))), /* @__PURE__ */ cpJsx("section", { className: "cp-seat-panel" }, /* @__PURE__ */ cpJsx("h3", null, uxText("seat.rules")), /* @__PURE__ */ cpJsx("p", { className: "cp-seat-muted" }, uxText("seat.rulesLead")), !summary2.rules.length && /* @__PURE__ */ cpJsx("p", { className: "cp-seat-muted" }, uxText("seat.noRules")), summary2.rules.map((r) => /* @__PURE__ */ cpJsx("div", { key: r.id, className: "cp-seat-rule" }, /* @__PURE__ */ cpJsx("span", null, cpRaw(ruleText2(r))), /* @__PURE__ */ cpJsx("span", { className: "cp-seat-ruleend" }, /* @__PURE__ */ cpJsx("span", { className: "cp-seat-kept" + (r.kept ? "" : " cp-seat-warn") }, uxText(r.kept ? "seat.keptOne" : "seat.notKept")), /* @__PURE__ */ cpJsx("button", { type: "button", className: "cp-seat-x", "aria-label": uxText("seat.removeRule"), title: uxText("seat.removeRule"), ...actionProps("ux.seat.ruleRemove", () => removeRule(r), r.id) }, "\xD7")))), Object.keys(room.locked).filter((sid) => room.locked[sid] && names[sid]).map((sid) => /* @__PURE__ */ cpJsx("div", { key: sid, className: "cp-seat-rule" }, /* @__PURE__ */ cpJsx("span", null, cpRaw(uxText("seat.lockedRule").replace("{a}", names[sid]))), /* @__PURE__ */ cpJsx("button", { type: "button", className: "cp-seat-btn cp-seat-small", ...actionProps("ux.seat.unlock", () => commit((r) => {
       const next = { ...r.locked };
       delete next[sid];
       return { ...r, locked: next };
-    }), sid) }, uxText("seat.unlock")))), /* @__PURE__ */ cpJsx("b", { className: "cp-seat-lbl" }, uxText("seat.prefs")), ["spread", "recent", "move", "groups"].map((k) => /* @__PURE__ */ cpJsx("label", { key: k, className: "cp-seat-switch cp-seat-pref" }, /* @__PURE__ */ cpJsx("span", null, uxText("seat.pref." + k), /* @__PURE__ */ cpJsx("small", null, uxText("seat.pref." + k + ".hint"))), /* @__PURE__ */ cpJsx("input", { type: "checkbox", role: "switch", checked: !!room.prefs[k], ...controlProps("ux.seat.pref", (e) => commit((r) => ({ ...r, prefs: { ...r.prefs, [k]: e.target.checked } })), k) }))), /* @__PURE__ */ cpJsx("b", { className: "cp-seat-lbl" }, uxText("seat.classTags")), /* @__PURE__ */ cpJsx("div", { className: "cp-seat-tags" }, room.customTags.map((c) => editing === c.id ? /* @__PURE__ */ cpJsx(TagForm, { key: c.id, initial: c, context: c.id, onSave: (tag) => saveTag(c.id, tag), onCancel: () => setEditing(null) }) : /* @__PURE__ */ cpJsx("span", { key: c.id, className: "cp-seat-owntag" }, /* @__PURE__ */ cpJsx("i", { className: "cp-seat-tile" + ([...tagMark(c)].length > 1 ? " cp-seat-wide" : ""), style: { background: TAG_BG[c.color] || TAG_BG.yellow } }, /* @__PURE__ */ cpJsx("b", null, cpRaw(tagMark(c)))), cpRaw(c.label), /* @__PURE__ */ cpJsx("small", { className: "cp-seat-muted" }, uxText("seat.does." + tagDoes(c.id, room)), c.teacherOnly ? " \xB7 " + uxText("seat.teacherOnly") : ""), /* @__PURE__ */ cpJsx("button", { type: "button", className: "cp-seat-btn cp-seat-small", ...actionProps("ux.seat.tagEdit", () => setEditing(c.id), c.id) }, uxText("seat.editTag")), /* @__PURE__ */ cpJsx("button", { type: "button", className: "cp-seat-x", "aria-label": uxText("seat.removeTag") + " \xB7 " + c.label, title: uxText("seat.removeTag"), ...actionProps("ux.seat.tagRemove", () => commit((r) => ({ ...r, customTags: r.customTags.filter((x2) => x2.id !== c.id), tags: Object.fromEntries(Object.entries(r.tags).map(([k, v]) => [k, v.filter((t2) => t2 !== c.id)])) })), c.id) }, "\xD7"))), !room.customTags.length && /* @__PURE__ */ cpJsx("span", { className: "cp-seat-muted" }, uxText("seat.noOwnTags")))));
+    }), sid) }, uxText("seat.unlock")))), /* @__PURE__ */ cpJsx("b", { className: "cp-seat-lbl" }, uxText("seat.prefs")), (() => {
+      const line = talkerLine(doc), has = (doc.sections || []).some((sec) => sec.columns.some((c) => c.kind === "behaviour")), set = (patch) => commit((r) => ({ ...r, talkers: { on: line.on, below: line.below, ...patch } }));
+      return /* @__PURE__ */ cpJsx("div", { className: "cp-seat-switch cp-seat-pref cp-seat-talkers" }, /* @__PURE__ */ cpJsx("span", null, uxText("seat.talkers"), /* @__PURE__ */ cpJsx("small", null, uxText(has ? "seat.talkers.hint" : "seat.talkers.noColumn")), has && /* @__PURE__ */ cpJsx("span", { className: "cp-seat-below" }, uxText("seat.talkersBelow"), /* @__PURE__ */ cpJsx("input", { type: "number", min: "0", max: line.max, step: "0.5", value: line.below, disabled: !line.on, "aria-label": uxText("seat.talkersBelow"), ...controlProps("ux.seat.talkerBelow", (e) => {
+        const v = parseFloat(e.target.value);
+        if (Number.isFinite(v) && v >= 0 && v <= line.max) set({ below: v });
+      }) }), cpRaw(uxText("seat.talkersOutOf").replace("{max}", String(line.max))))), /* @__PURE__ */ cpJsx("input", { type: "checkbox", role: "switch", disabled: !has, checked: has && line.on, "aria-label": uxText("seat.talkers"), ...controlProps("ux.seat.talkers", (e) => set({ on: e.target.checked })) }));
+    })(), ["spread", "recent", "move", "groups"].map((k) => /* @__PURE__ */ cpJsx("label", { key: k, className: "cp-seat-switch cp-seat-pref" }, /* @__PURE__ */ cpJsx("span", null, uxText("seat.pref." + k), /* @__PURE__ */ cpJsx("small", null, uxText("seat.pref." + k + ".hint"))), /* @__PURE__ */ cpJsx("input", { type: "checkbox", role: "switch", checked: !!room.prefs[k], ...controlProps("ux.seat.pref", (e) => commit((r) => ({ ...r, prefs: { ...r.prefs, [k]: e.target.checked } })), k) }))), /* @__PURE__ */ cpJsx("b", { className: "cp-seat-lbl" }, uxText("seat.classTags")), /* @__PURE__ */ cpJsx("div", { className: "cp-seat-tags" }, room.customTags.map((c) => editing === c.id ? /* @__PURE__ */ cpJsx(TagForm, { key: c.id, initial: c, context: c.id, onSave: (tag) => saveTag(c.id, tag), onCancel: () => setEditing(null) }) : /* @__PURE__ */ cpJsx("span", { key: c.id, className: "cp-seat-owntag" }, /* @__PURE__ */ cpJsx("i", { className: "cp-seat-tile" + ([...tagMark(c)].length > 1 ? " cp-seat-wide" : ""), style: { background: TAG_BG[c.color] || TAG_BG.yellow } }, /* @__PURE__ */ cpJsx("b", null, cpRaw(tagMark(c)))), cpRaw(c.label), /* @__PURE__ */ cpJsx("small", { className: "cp-seat-muted" }, uxText("seat.does." + tagDoes(c.id, room)), c.teacherOnly ? " \xB7 " + uxText("seat.teacherOnly") : ""), /* @__PURE__ */ cpJsx("button", { type: "button", className: "cp-seat-btn cp-seat-small", ...actionProps("ux.seat.tagEdit", () => setEditing(c.id), c.id) }, uxText("seat.editTag")), /* @__PURE__ */ cpJsx("button", { type: "button", className: "cp-seat-x", "aria-label": uxText("seat.removeTag") + " \xB7 " + c.label, title: uxText("seat.removeTag"), ...actionProps("ux.seat.tagRemove", () => commit((r) => ({ ...r, customTags: r.customTags.filter((x2) => x2.id !== c.id), tags: Object.fromEntries(Object.entries(r.tags).map(([k, v]) => [k, v.filter((t2) => t2 !== c.id)])) })), c.id) }, "\xD7"))), !room.customTags.length && /* @__PURE__ */ cpJsx("span", { className: "cp-seat-muted" }, uxText("seat.noOwnTags")))));
   }
   var seating_default = { id: "seating", navigation: navigationFor("seating"), schema: { defaults: seating(), migrate: (value) => value === void 0 ? void 0 : seating(value) }, views: [{ id: "module:seating", labelKey: navigationFor("seating").titleKey, Component: SeatingView }], actions: uxActions.filter((a) => a.id.startsWith("ux.seat.") || a.id === "ux.nav.seating"), settingsSections: [], exports: [], i18n: { en: uxEn, ar: uxAr } };
 
@@ -65123,7 +65240,7 @@ Reply with JSON only, exactly in the shape of "response_schema", one report per 
     useEffect(() => {
       commitProfile(state2.profile);
     }, [state2.profile]);
-    const setClass = (next) => setState((s) => shareConduct(s, typeof next === "function" ? next(s.classDoc) : next, isProfileLinked()));
+    const setClass = (next) => setState((s) => shareConduct(s, autoTalkers(s.classDoc, typeof next === "function" ? next(s.classDoc) : next), isProfileLinked()));
     const setDirection = (value) => setState((s) => ({ ...s, classDoc: { ...s.classDoc, settings: { ...s.classDoc.settings, dir: value } }, profile: { ...s.profile, ui: { ...s.profile.ui, direction: value } } }));
     return [state2.classDoc, setClass, { ...history, setDirection, reset: (classDoc) => {
       const next = adoptSharedConduct({ classDoc, profile: current4.current.profile }, isProfileLinked(), { previous: current4.current.classDoc });
