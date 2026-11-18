@@ -42157,9 +42157,9 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       return false;
     }
   }
-  function entry(key4, initial2) {
+  function entry(key4, initial) {
     if (!entries.has(key4)) {
-      const value = initialValue(initial2);
+      const value = initialValue(initial);
       entries.set(key4, load(key4) || { value, baseline: value, dirty: false });
     }
     return entries.get(key4);
@@ -42168,20 +42168,20 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     return [...entries.values()].some((value) => value.dirty);
   }
   var unstored = () => [...entries.values()].some((value) => value.dirty && !value.stored);
-  function useRetainedState(key4, initial2, { warn = false } = {}) {
-    const [, render] = useState(0), current4 = entry(key4, initial2);
+  function useRetainedState(key4, initial, { warn = false } = {}) {
+    const [, render] = useState(0), current4 = entry(key4, initial);
     useEffect(() => {
       const listener = () => render((n) => n + 1);
       listeners5.add(listener);
       return () => listeners5.delete(listener);
     }, [key4]);
     const set = (change2) => {
-      const previous = entry(key4, initial2), value = typeof change2 === "function" ? change2(previous.value) : change2, next = { ...previous, value, dirty: warn && !same2(value, previous.baseline) };
+      const previous = entry(key4, initial), value = typeof change2 === "function" ? change2(previous.value) : change2, next = { ...previous, value, dirty: warn && !same2(value, previous.baseline) };
       next.stored = store2(key4, next);
       entries.set(key4, next);
       notify3();
     };
-    const accept = (value = initialValue(initial2)) => {
+    const accept = (value = initialValue(initial)) => {
       const next = { value, baseline: value, dirty: false };
       store2(key4, next);
       entries.set(key4, next);
@@ -47919,8 +47919,8 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
 
   // src/gradebook/05-popovers.jsx
   function FocusPop({ student, onSave, onClose, _cpOrigin }) {
-    var initial2 = focusTags(student);
-    var [tags, sTags] = useState(initial2);
+    var initial = focusTags(student);
+    var [tags, sTags] = useState(initial);
     var [note, sNote] = useState(student.focus && student.focus.note || en_default["gb.e3b0c44298fc1c14"]);
     useEffect(function() {
       var k = function(e) {
@@ -59189,7 +59189,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
   }
   function AttendanceView({ doc, onUpdate, onOpenClass, setView }) {
     useLanguage();
-    const [initial2] = useState(() => initialAttendanceScope(doc, getProfile())), [tab, setTab] = useState("day"), [date5, setDate] = useState(initial2.date), [period, setPeriod] = useState(initial2.period), [selected, setSelected] = useState(() => getRequestedStudent() || doc.students[0]?.id || ""), [override, setOverride] = useState(false), [month, setMonth] = useState(todayISO().slice(0, 7)), [through, setThrough] = useState(todayISO), [print, setPrint] = useState(false);
+    const [initial] = useState(() => initialAttendanceScope(doc, getProfile())), [tab, setTab] = useState("day"), [date5, setDate] = useState(initial.date), [period, setPeriod] = useState(initial.period), [selected, setSelected] = useState(() => getRequestedStudent() || doc.students[0]?.id || ""), [override, setOverride] = useState(false), [month, setMonth] = useState(todayISO().slice(0, 7)), [through, setThrough] = useState(todayISO), [print, setPrint] = useState(false);
     const sheet = useRef(null);
     const [lessonReport, setLessonReport] = useState(null), [opening2, setOpening] = useState(false), [openError, setOpenError] = useState(false);
     useEffect(() => subscribeLesson(() => {
@@ -59201,7 +59201,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       }
     }), [doc.cp.classId]);
     useEffect(() => {
-      if (!hasPendingLesson(doc)) selectRegisterContext(doc, initial2.date, initial2.period);
+      if (!hasPendingLesson(doc)) selectRegisterContext(doc, initial.date, initial.period);
     }, [doc.cp.classId]);
     function selectScope(nextDate, nextPeriod) {
       setDate(nextDate);
@@ -59518,39 +59518,42 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     }
     return parts;
   }
-  var initial = (word) => {
-    const ch = [...word.replace(/^(ال|al-)/i, "")][0] || [...word][0] || "";
-    return /[؀-ۿ]/.test(ch) ? ch + "." : ch.toLocaleUpperCase() + ".";
-  };
   function deskNames(students, overrides = {}) {
-    const parts = new Map(students.map((s) => [s.id, nameParts(s.name)])), out = {};
-    const level = new Map(students.map((s) => [s.id, 0]));
-    const label = (sid, l) => {
-      const p = parts.get(sid);
-      if (!p.length) return "";
-      if (l === 0 || p.length < 2) return p[0];
-      const extra = Math.floor((l - 1) / 2) + 1, full = (l - 1) % 2 === 1;
-      const rest = p.slice(1, 1 + extra);
-      return [p[0], ...rest.slice(0, -1), full ? rest.at(-1) : initial(rest.at(-1))].join(" ");
-    };
+    const parts = new Map(students.map((s) => [s.id, nameParts(s.name)])), label = /* @__PURE__ */ new Map(), out = {};
+    for (const s of students) {
+      const p = parts.get(s.id);
+      label.set(s.id, p[0] || "");
+    }
+    const key4 = (x2) => x2.toLocaleLowerCase();
     for (let round6 = 0; round6 < 8; round6++) {
       const groups = /* @__PURE__ */ new Map();
       for (const s of students) {
         if (overrides[s.id]) continue;
-        const key4 = label(s.id, level.get(s.id)).toLocaleLowerCase();
-        groups.set(key4, [...groups.get(key4) || [], s.id]);
+        const k = key4(label.get(s.id));
+        groups.set(k, [...groups.get(k) || [], s.id]);
       }
       let changed = false;
-      for (const ids of groups.values()) if (ids.length > 1) for (const sid of ids) {
-        const max = 2 * (parts.get(sid).length - 1);
-        if (level.get(sid) < max) {
-          level.set(sid, level.get(sid) + 1);
-          changed = true;
+      for (const ids of groups.values()) {
+        if (ids.length < 2) continue;
+        for (const sid of ids) {
+          const p = parts.get(sid);
+          if (p.length < 2) continue;
+          const others = ids.filter((o) => o !== sid).map((o) => parts.get(o));
+          let next = null;
+          for (let k = 1; k < p.length && !next; k++) if (others.every((o) => key4(o[k] || "") !== key4(p[k]))) next = p[0] + " " + p[k];
+          if (!next) {
+            const now = label.get(sid).split(" ").length;
+            next = p.slice(0, Math.min(p.length, Math.max(2, now + 1))).join(" ");
+          }
+          if (next !== label.get(sid)) {
+            label.set(sid, next);
+            changed = true;
+          }
         }
       }
       if (!changed) break;
     }
-    for (const s of students) out[s.id] = String(overrides[s.id] || "").trim() || label(s.id, level.get(s.id)) || s.name;
+    for (const s of students) out[s.id] = String(overrides[s.id] || "").trim() || label.get(s.id) || s.name;
     return out;
   }
   var desk = (x2, y2, c) => ({ id: id(), x: +x2.toFixed(2), y: +y2.toFixed(2), ...c ? { c } : {} });
@@ -60082,8 +60085,8 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       return dk ? /* @__PURE__ */ cpJsx("span", { className: "cp-seat-ghost", "aria-hidden": "true", style: { left: X(dk.x), top: Y(dk.y), width: u3, height: H * u3 } }, cpRaw(names[drag.key] || "")) : null;
     })(), dragHint && drag?.kind === "student" && drag.over && /* @__PURE__ */ cpJsx("span", { className: "cp-seat-hint" }, cpRaw(dragHint(drag.key, drag.over)))));
   }
-  function TagForm({ initial: initial2, context: context2, onSave, onCancel }) {
-    const [tag, setTag] = useState(() => ({ label: "", does: "label", color: "yellow", teacherOnly: false, mark: "", ...initial2 || {} })), [markEdited, setMarkEdited] = useState(!!initial2?.mark);
+  function TagForm({ initial, context: context2, onSave, onCancel }) {
+    const [tag, setTag] = useState(() => ({ label: "", does: "label", color: "yellow", teacherOnly: false, mark: "", ...initial || {} })), [markEdited, setMarkEdited] = useState(!!initial?.mark);
     const set = (patch) => setTag((t2) => ({ ...t2, ...patch }));
     const mark = markEdited ? tag.mark : tagMark({ ...tag, mark: "" });
     const save2 = () => {
@@ -60091,7 +60094,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       if (!label) return;
       onSave({ ...tag, label, mark: markEdited ? String(tag.mark || "").trim().slice(0, 4) : "" });
     };
-    return /* @__PURE__ */ cpJsx("div", { className: "cp-seat-tagform", role: "group", "aria-label": uxText(initial2 ? "seat.editTag" : "seat.newTag"), onKeyDown: (e) => {
+    return /* @__PURE__ */ cpJsx("div", { className: "cp-seat-tagform", role: "group", "aria-label": uxText(initial ? "seat.editTag" : "seat.newTag"), onKeyDown: (e) => {
       if (e.key === "Escape") {
         e.stopPropagation();
         onCancel();
@@ -60104,7 +60107,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     } })), /* @__PURE__ */ cpJsx("span", { className: "cp-seat-tf" }, /* @__PURE__ */ cpJsx("span", null, uxText("seat.tagDoes"))), /* @__PURE__ */ cpJsx("div", { className: "cp-seat-does", role: "group", "aria-label": uxText("seat.tagDoes") }, TAG_DOES.map((k) => /* @__PURE__ */ cpJsx("button", { type: "button", key: k, "aria-pressed": tag.does === k, ...actionProps("ux.seat.tagDoes", () => set({ does: k }), context2 + ":" + k) }, uxText("seat.does." + k)))), /* @__PURE__ */ cpJsx("small", { className: "cp-seat-muted" }, uxText("seat.does." + tag.does + ".hint")), /* @__PURE__ */ cpJsx("span", { className: "cp-seat-tf" }, /* @__PURE__ */ cpJsx("span", null, uxText("seat.tagColor"))), /* @__PURE__ */ cpJsx("div", { className: "cp-seat-colors", role: "group", "aria-label": uxText("seat.tagColor") }, TAG_COLORS.map((c) => /* @__PURE__ */ cpJsx("button", { type: "button", key: c, "aria-pressed": tag.color === c, "aria-label": uxText("seat.color." + c), title: uxText("seat.color." + c), style: { background: TAG_BG[c] }, ...actionProps("ux.seat.tagColor", () => set({ color: c }), context2 + ":" + c) }))), /* @__PURE__ */ cpJsx("label", { className: "cp-seat-switch" }, /* @__PURE__ */ cpJsx("span", null, uxText("seat.teacherOnly"), /* @__PURE__ */ cpJsx("small", null, uxText("seat.teacherOnlyHint"))), /* @__PURE__ */ cpJsx("input", { type: "checkbox", role: "switch", checked: !!tag.teacherOnly, ...controlProps("ux.seat.tagTeacherOnly", (e) => set({ teacherOnly: e.target.checked }), context2) })), /* @__PURE__ */ cpJsx("label", { className: "cp-seat-tf" }, /* @__PURE__ */ cpJsx("span", null, uxText("seat.onDesk")), /* @__PURE__ */ cpJsx("span", { className: "cp-seat-markrow" }, /* @__PURE__ */ cpJsx("input", { dir: "auto", className: "cp-seat-mark", maxLength: 4, value: mark, ...controlProps("ux.seat.tagMark", (e) => {
       setMarkEdited(true);
       set({ mark: e.target.value });
-    }, context2) }), /* @__PURE__ */ cpJsx("i", { className: "cp-seat-tile cp-seat-wide", style: { background: TAG_BG[tag.color] } }, /* @__PURE__ */ cpJsx("b", null, cpRaw(mark || "\xB7"))))), /* @__PURE__ */ cpJsx("div", { className: "cp-seat-tfactions" }, /* @__PURE__ */ cpJsx("button", { type: "button", className: "cp-seat-btn", ...actionProps("ux.seat.tagCancel", onCancel, context2) }, uxText("seat.tagCancel")), /* @__PURE__ */ cpJsx("button", { type: "button", className: "cp-seat-btn cp-seat-primary", disabled: !tag.label.trim(), ...actionProps("ux.seat.tagCreate", save2, context2) }, uxText(initial2 ? "seat.tagSave" : "seat.tagCreate"))));
+    }, context2) }), /* @__PURE__ */ cpJsx("i", { className: "cp-seat-tile cp-seat-wide", style: { background: TAG_BG[tag.color] } }, /* @__PURE__ */ cpJsx("b", null, cpRaw(mark || "\xB7"))))), /* @__PURE__ */ cpJsx("div", { className: "cp-seat-tfactions" }, /* @__PURE__ */ cpJsx("button", { type: "button", className: "cp-seat-btn", ...actionProps("ux.seat.tagCancel", onCancel, context2) }, uxText("seat.tagCancel")), /* @__PURE__ */ cpJsx("button", { type: "button", className: "cp-seat-btn cp-seat-primary", disabled: !tag.label.trim(), ...actionProps("ux.seat.tagCreate", save2, context2) }, uxText(initial ? "seat.tagSave" : "seat.tagCreate"))));
   }
   function StudentCard({ doc, room, sid, names, absent, commit, onUpdate, onClose, style, onStartPick }) {
     const student = doc.students.find((s) => s.id === sid);
@@ -64399,9 +64402,9 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
   function clearAIDrafts(doc, fields2) {
     for (const field2 of fields2) drafts.delete(draftKey(doc, field2));
   }
-  function useAIDraft(doc, field2, initial2) {
+  function useAIDraft(doc, field2, initial) {
     const key4 = draftKey(doc, field2);
-    const [value, setValue] = useState(() => drafts.has(key4) ? drafts.get(key4) : typeof initial2 === "function" ? initial2() : initial2);
+    const [value, setValue] = useState(() => drafts.has(key4) ? drafts.get(key4) : typeof initial === "function" ? initial() : initial);
     const set = (change2) => setValue((previous) => {
       const next = typeof change2 === "function" ? change2(previous) : change2;
       drafts.set(key4, next);
@@ -65896,10 +65899,10 @@ Reply with JSON only, exactly in the shape of "response_schema", one report per 
     return { ...migrate({ ...value, settings: { ...value.settings, className: uxText("demo.class"), schoolDays: [1, 2, 3, 4, 5] }, sections: [{ id: "demo-section", name: uxText("demo.section"), ci: 0, columns: [{ id: "demo-assessment", name: uxText("demo.assessment"), kind: "direct", weight: 80, maxMark: 100, released: true }, { id: "demo-behaviour", name: uxText("demo.behaviour"), kind: "behaviour", weight: 10, maxMark: 10, released: true }, { id: "demo-participation", name: uxText("demo.participation"), kind: "participation", weight: 10, maxMark: 10, step: 1, released: true }] }], students, groups: [0, 1].map((i) => ({ id: "demo-group-" + i, name: uxText("demo.group") + " " + (i + 1) })) }), format: "classpilot-class", schemaVersion: 1, cp: { classId: crypto.randomUUID(), attendance: {}, notes: {}, observations: {}, aiMeta: {}, plans: [], certificates: [] } };
   }
   function DemoWorkspace({ onExit }) {
-    const [initial2] = useState(demoDocument), [doc, setDoc, history] = useUndo(initial2), [view, setView] = useState("Marks"), [wheel, setWheel] = useState(false), [adding, setAdding] = useState(false), [archive, setArchive] = useState(false), [backfill, setBackfill] = useState(false);
+    const [initial] = useState(demoDocument), [doc, setDoc, history] = useUndo(initial), [view, setView] = useState("Marks"), [wheel, setWheel] = useState(false), [adding, setAdding] = useState(false), [archive, setArchive] = useState(false), [backfill, setBackfill] = useState(false);
     GRADING_CYCLE = +(doc.settings.gradingCycle || 1);
     React.useEffect(() => () => {
-      clearClassDrafts(initial2.cp.classId);
+      clearClassDrafts(initial.cp.classId);
       delete window._wheelMem?.["disposable-demo"];
     }, []);
     React.useEffect(() => {
