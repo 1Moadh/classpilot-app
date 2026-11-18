@@ -2762,6 +2762,22 @@ td[data-cp-att],th[data-cp-att]{background:var(--cp-att-bg)!important;box-shadow
 .cp-seat .cp-seat-plate:has(.cp-seat-chips) .cp-seat-name{padding-bottom:16px;box-sizing:border-box}
 .cp-seat .cp-seat-chips{bottom:-16px}
 .cp-seat-lines line[data-kind=next]{stroke:#1f6fd1;stroke-dasharray:12 6;stroke-width:3.5}
+/* Seating exam seating (owner, 18 November 2026, approved mock-up): the panel in Arrange, A/B paper badges, level bars. */
+.cp-seat-exam{display:grid;gap:8px;max-inline-size:620px;padding:14px 16px;border:3px solid var(--seat-ink);border-radius:16px;background:var(--cp-surface);box-shadow:0 4px 0 var(--seat-ink)}
+.cp-seat-exam h3{display:flex;align-items:center;gap:8px;margin:0;font-size:16px}
+.cp-seat-exam .cp-seat-pref{padding-top:6px;border-top:1px dashed var(--cp-border)}
+.cp-seat-exam>.cp-seat-btn{justify-self:start}
+.cp-seat-ab{position:absolute;inset-block-start:-9px;inset-inline-start:-9px;z-index:4;inline-size:24px;block-size:24px;box-sizing:border-box;border:2.5px solid var(--seat-ink);border-radius:50%;font:900 12px/19px system-ui,sans-serif;text-align:center;background:#fff;color:#26262e}
+.cp-seat-ab[data-paper=B]{background:#26262e;color:#fff}
+.cp-seat-plate:has(.cp-seat-ab) .cp-seat-numb{inset-inline-start:auto;inset-inline-end:-8px}
+.cp-seat-level{position:absolute;inset-block-end:8px;inset-inline-end:10px;z-index:4;display:inline-flex;gap:2px;align-items:flex-end}
+.cp-seat-level i{inline-size:5px;border-radius:2px;background:#d4d0c4}
+.cp-seat-level i:nth-child(1){block-size:6px}.cp-seat-level i:nth-child(2){block-size:10px}.cp-seat-level i:nth-child(3){block-size:14px}
+.cp-seat-level[data-level=T] i{background:#1f8a4f}.cp-seat-level[data-level=M] i:nth-child(-n+2){background:#d08a00}.cp-seat-level[data-level=L] i:nth-child(1){background:#c8460d}
+.cp-seat-levels{display:inline-flex;flex-wrap:wrap;align-items:center;gap:6px 14px;font-size:12px;font-weight:600}
+.cp-seat-levels .cp-seat-switch{gap:8px}
+.cp-seat-legend{display:inline-flex;align-items:center;gap:6px}.cp-seat-legend .cp-seat-level{position:static}
+.cp-seat-name{overflow-wrap:break-word;word-break:normal}
 /* M56 design foundations (owner-supplied Master Implementation Brief, M56; design report §7–§8).
    One set of tokens for the frame and the new modules. Protected Gradebook views (Marks, Groups, Behaviour,
    Adjustments, Analysis, the original wheel, the Settings drawer and the class manager) do not use them. */
@@ -9838,7 +9854,24 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.seat.talkers.hint": "A student whose behaviour mark falls below this line is tagged Talker. The tag stays until you remove it.",
     "ux.seat.talkers.noColumn": "Add a behaviour column in the Gradebook to use this.",
     "ux.seat.talkersBelow": "Below",
-    "ux.seat.talkersOutOf": "out of {max}"
+    "ux.seat.talkersOutOf": "out of {max}",
+    "ux.seat.tag.watch": "Watch in exams",
+    "ux.seat.exam.title": "Exam seating",
+    "ux.seat.exam.lead": "Uses each student's term grade, Talkers and the Watch in exams tag. Grades are never shown on the desks.",
+    "ux.seat.exam.leadNoGrades": "No term grades yet, so every student counts as the middle level. Talkers and Watch in exams still work.",
+    "ux.seat.exam.near": "Watch in exams and the lower third sit near your desk",
+    "ux.seat.exam.topBack": "The top third sits at the back",
+    "ux.seat.exam.similar": "Neighbours are at a similar level",
+    "ux.seat.exam.apart": "Talkers and Watch in exams never side by side",
+    "ux.seat.exam.ab": "Papers A and B in a checkerboard",
+    "ux.seat.exam.go": "Arrange for the exam",
+    "ux.seat.exam.done": "Arranged for the exam. Undo brings the old chart back.",
+    "ux.seat.exam.levels": "Show levels (only you)",
+    "ux.seat.exam.legend": "Levels from the term grade \xB7 only you see this",
+    "ux.seat.exam.noGrades": "No term grades yet",
+    "ux.seat.level.T": "Top",
+    "ux.seat.level.M": "Middle",
+    "ux.seat.level.L": "Lower"
   };
 
   // src/i18n/plain-copy.js
@@ -16287,7 +16320,24 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.seat.talkers.hint": "\u0625\u0630\u0627 \u0642\u0644\u0651\u062A \u062F\u0631\u062C\u0629 \u0633\u0644\u0648\u0643 \u0627\u0644\u0637\u0627\u0644\u0628 \u0639\u0646 \u0647\u0630\u0627 \u0627\u0644\u062D\u062F \u064A\u064F\u0648\u0633\u064E\u0645 \xAB\u0643\u062B\u064A\u0631 \u0627\u0644\u0643\u0644\u0627\u0645\xBB\u060C \u0648\u064A\u0628\u0642\u0649 \u0627\u0644\u0648\u0633\u0645 \u062D\u062A\u0649 \u062A\u0632\u064A\u0644\u0647 \u0628\u0646\u0641\u0633\u0643.",
     "ux.seat.talkers.noColumn": "\u0623\u0636\u0641 \u0639\u0645\u0648\u062F \u0627\u0644\u0633\u0644\u0648\u0643 \u0641\u064A \u0633\u062C\u0644 \u0627\u0644\u062F\u0631\u062C\u0627\u062A \u0644\u0627\u0633\u062A\u062E\u062F\u0627\u0645 \u0647\u0630\u0647 \u0627\u0644\u0645\u064A\u0632\u0629.",
     "ux.seat.talkersBelow": "\u0623\u0642\u0644 \u0645\u0646",
-    "ux.seat.talkersOutOf": "\u0645\u0646 {max}"
+    "ux.seat.talkersOutOf": "\u0645\u0646 {max}",
+    "ux.seat.tag.watch": "\u0645\u0631\u0627\u0642\u0628\u0629 \u0641\u064A \u0627\u0644\u0627\u062E\u062A\u0628\u0627\u0631",
+    "ux.seat.exam.title": "\u062A\u0631\u062A\u064A\u0628 \u0627\u0644\u0627\u062E\u062A\u0628\u0627\u0631",
+    "ux.seat.exam.lead": "\u064A\u0639\u062A\u0645\u062F \u0639\u0644\u0649 \u062F\u0631\u062C\u0629 \u0627\u0644\u0641\u0635\u0644 \u0644\u0643\u0644 \u0637\u0627\u0644\u0628 \u0648\u0648\u0633\u0645 \xAB\u0643\u062B\u064A\u0631 \u0627\u0644\u0643\u0644\u0627\u0645\xBB \u0648\u0648\u0633\u0645 \xAB\u0645\u0631\u0627\u0642\u0628\u0629 \u0641\u064A \u0627\u0644\u0627\u062E\u062A\u0628\u0627\u0631\xBB. \u0644\u0627 \u062A\u0638\u0647\u0631 \u0627\u0644\u062F\u0631\u062C\u0627\u062A \u0639\u0644\u0649 \u0627\u0644\u0645\u0642\u0627\u0639\u062F.",
+    "ux.seat.exam.leadNoGrades": "\u0644\u0627 \u062A\u0648\u062C\u062F \u062F\u0631\u062C\u0627\u062A \u0644\u0644\u0641\u0635\u0644 \u0628\u0639\u062F\u060C \u0641\u064A\u064F\u0639\u062F\u0651 \u0643\u0644 \u0627\u0644\u0637\u0644\u0627\u0628 \u0641\u064A \u0627\u0644\u0645\u0633\u062A\u0648\u0649 \u0627\u0644\u0645\u062A\u0648\u0633\u0637. \u0648\u064A\u0628\u0642\u0649 \u0639\u0645\u0644 \xAB\u0643\u062B\u064A\u0631 \u0627\u0644\u0643\u0644\u0627\u0645\xBB \u0648\xAB\u0645\u0631\u0627\u0642\u0628\u0629 \u0641\u064A \u0627\u0644\u0627\u062E\u062A\u0628\u0627\u0631\xBB.",
+    "ux.seat.exam.near": "\u0637\u0644\u0627\u0628 \xAB\u0645\u0631\u0627\u0642\u0628\u0629 \u0641\u064A \u0627\u0644\u0627\u062E\u062A\u0628\u0627\u0631\xBB \u0648\u0627\u0644\u062B\u0644\u062B \u0627\u0644\u0623\u062F\u0646\u0649 \u0642\u0631\u0628 \u0645\u0643\u062A\u0628\u0643",
+    "ux.seat.exam.topBack": "\u0627\u0644\u062B\u0644\u062B \u0627\u0644\u0623\u0639\u0644\u0649 \u0641\u064A \u0627\u0644\u062E\u0644\u0641",
+    "ux.seat.exam.similar": "\u0627\u0644\u062C\u064A\u0631\u0627\u0646 \u0641\u064A \u0645\u0633\u062A\u0648\u0649 \u0645\u062A\u0642\u0627\u0631\u0628",
+    "ux.seat.exam.apart": "\u0644\u0627 \u064A\u062A\u062C\u0627\u0648\u0631 \u0643\u062B\u064A\u0631\u0648 \u0627\u0644\u0643\u0644\u0627\u0645 \u0648\u0644\u0627 \u0637\u0644\u0627\u0628 \u0627\u0644\u0645\u0631\u0627\u0642\u0628\u0629",
+    "ux.seat.exam.ab": "\u0646\u0645\u0648\u0630\u062C\u0627 A \u0648 B \u0628\u0627\u0644\u062A\u0646\u0627\u0648\u0628",
+    "ux.seat.exam.go": "\u0631\u062A\u0651\u0628 \u0644\u0644\u0627\u062E\u062A\u0628\u0627\u0631",
+    "ux.seat.exam.done": "\u062A\u0645 \u0627\u0644\u062A\u0631\u062A\u064A\u0628 \u0644\u0644\u0627\u062E\u062A\u0628\u0627\u0631. \u0627\u0644\u062A\u0631\u0627\u062C\u0639 \u064A\u0639\u064A\u062F \u0627\u0644\u0645\u062E\u0637\u0637 \u0627\u0644\u0633\u0627\u0628\u0642.",
+    "ux.seat.exam.levels": "\u0625\u0638\u0647\u0627\u0631 \u0627\u0644\u0645\u0633\u062A\u0648\u064A\u0627\u062A (\u0644\u0643 \u0641\u0642\u0637)",
+    "ux.seat.exam.legend": "\u0627\u0644\u0645\u0633\u062A\u0648\u064A\u0627\u062A \u0645\u0646 \u062F\u0631\u062C\u0629 \u0627\u0644\u0641\u0635\u0644 \xB7 \u062A\u0638\u0647\u0631 \u0644\u0643 \u0641\u0642\u0637",
+    "ux.seat.exam.noGrades": "\u0644\u0627 \u062A\u0648\u062C\u062F \u062F\u0631\u062C\u0627\u062A \u0644\u0644\u0641\u0635\u0644 \u0628\u0639\u062F",
+    "ux.seat.level.T": "\u0623\u0639\u0644\u0649",
+    "ux.seat.level.M": "\u0645\u062A\u0648\u0633\u0637",
+    "ux.seat.level.L": "\u0623\u062F\u0646\u0649"
   };
 
   // src/core/actions.js
@@ -33810,6 +33860,19 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       "meaning": "ux.seat.tagRemove"
     },
     {
+      "id": "ux.seat.examGo",
+      "labelKey": "ux.seat.exam.go",
+      "icon": null,
+      "shortcut": null,
+      "availability": "rendered-and-not-disabled",
+      "canonicalHome": "seat:context",
+      "events": [
+        "onClick"
+      ],
+      "source": "src/modules",
+      "meaning": "ux.seat.examGo"
+    },
+    {
       "id": "ux.seat.notTalker",
       "labelKey": "ux.seat.notTalker",
       "icon": null,
@@ -37058,6 +37121,32 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       ],
       "source": "src/modules",
       "meaning": "ux.cert.criteriaStrikes"
+    },
+    {
+      "id": "ux.seat.examRule",
+      "labelKey": "ux.seat.exam.title",
+      "icon": null,
+      "shortcut": null,
+      "availability": "rendered-and-not-disabled",
+      "canonicalHome": "seat:context",
+      "events": [
+        "onChange"
+      ],
+      "source": "src/modules",
+      "meaning": "ux.seat.examRule"
+    },
+    {
+      "id": "ux.seat.levels",
+      "labelKey": "ux.seat.exam.levels",
+      "icon": null,
+      "shortcut": null,
+      "availability": "rendered-and-not-disabled",
+      "canonicalHome": "seat:context",
+      "events": [
+        "onChange"
+      ],
+      "source": "src/modules",
+      "meaning": "ux.seat.levels"
     },
     {
       "id": "ux.seat.talkers",
@@ -42395,8 +42484,8 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
   Object.assign(uxClick, { "cert.period": "cert.period", "cert.suggest.star": "cert.suggest.star", "cert.suggest.mostImproved": "cert.suggest.mostImproved", "cert.suggest.perfect": "cert.suggest.perfect", "cert.suggest.kindness": "cert.suggest.kindness", "cert.pkgReset": "cert.pkgReset", "home.starMake": "home.starMake" });
   Object.assign(uxClick, { "tabs.reset": "tabs.reset" });
   Object.assign(uxClick, { "nav.seating": "seat.title", "seat.student": "seat.openCard", "seat.close": "seat.close", "seat.tag": "seat.tags", "seat.newTag": "seat.newTag", "seat.attendance": "seat.openAttendance", "seat.participation": "seat.participation", "seat.observation": "seat.observation", "seat.strike": "seat.strike", "seat.marks": "seat.marks", "seat.mode": "seat.view", "seat.shuffle": "seat.shuffle", "seat.arrange": "seat.arrange", "seat.present": "seat.present", "seat.print": "seat.print", "seat.done": "seat.done", "seat.preset": "seat.startFrom", "seat.savedRoom": "seat.savedRoomLabel", "seat.addDesk": "seat.addDesk", "seat.addTable": "seat.addTable", "seat.removeEmpty": "seat.removeEmpty", "seat.board": "seat.boardOn", "seat.frontRows": "seat.frontRows", "seat.saveRoom": "seat.saveRoom", "seat.flip": "seat.studentView", "seat.exitPresent": "seat.exit", "seat.open": "seat.openCard", "seat.ruleRemove": "seat.removeRule", "seat.unlock": "seat.unlock", "seat.tagRemove": "seat.removeTag" });
-  Object.assign(uxClick, { "seat.notTalker": "seat.notTalker", "seat.pick": "seat.pairs", "seat.pickDesk": "seat.pickLabel.here", "seat.pickCancel": "seat.pickCancel", "seat.fix": "seat.fix", "seat.show": "seat.show", "seat.object": "seat.arrangeHint", "seat.addWindow": "seat.addWindow", "seat.removeWindow": "seat.removeWindow", "seat.tagDoes": "seat.tagDoes", "seat.tagColor": "seat.tagColor", "seat.tagCreate": "seat.tagCreate", "seat.tagCancel": "seat.tagCancel", "seat.tagEdit": "seat.editTag" });
-  Object.assign(uxChange, { "seat.talkers": "seat.talkers", "seat.talkerBelow": "seat.talkersBelow", "seat.tagLabel": "seat.tagLabel", "seat.tagMark": "seat.onDesk", "seat.tagTeacherOnly": "seat.teacherOnly" });
+  Object.assign(uxClick, { "seat.examGo": "seat.exam.go", "seat.notTalker": "seat.notTalker", "seat.pick": "seat.pairs", "seat.pickDesk": "seat.pickLabel.here", "seat.pickCancel": "seat.pickCancel", "seat.fix": "seat.fix", "seat.show": "seat.show", "seat.object": "seat.arrangeHint", "seat.addWindow": "seat.addWindow", "seat.removeWindow": "seat.removeWindow", "seat.tagDoes": "seat.tagDoes", "seat.tagColor": "seat.tagColor", "seat.tagCreate": "seat.tagCreate", "seat.tagCancel": "seat.tagCancel", "seat.tagEdit": "seat.editTag" });
+  Object.assign(uxChange, { "seat.examRule": "seat.exam.title", "seat.levels": "seat.exam.levels", "seat.talkers": "seat.talkers", "seat.talkerBelow": "seat.talkersBelow", "seat.tagLabel": "seat.tagLabel", "seat.tagMark": "seat.onDesk", "seat.tagTeacherOnly": "seat.teacherOnly" });
   Object.assign(uxChange, { "seat.deskName": "seat.deskName", "seat.lock": "seat.lock", "seat.pref": "seat.prefs" });
   Object.assign(uxChange, { "cert.pkgDesign": "cert.pkgDesign", "cert.pkgTitle": "cert.pkgTitle", "cert.pkgTitleAr": "cert.pkgTitleAr", "cert.pkgReason": "cert.pkgReason", "cert.pkgReasonAr": "cert.pkgReasonAr" });
   Object.assign(uxClick, { "nav.compare": "cmp.title", "cmp.period": "cmp.period", "cmp.mode": "cmp.marks", "cmp.sort": "cmp.sortLabel", "cmp.removeFile": "cmp.removeFileLabel", "cmp.reread": "cmp.reread" });
@@ -47047,7 +47136,24 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "seat.talkers.hint": ["A student whose behaviour mark falls below this line is tagged Talker. The tag stays until you remove it.", "\u0625\u0630\u0627 \u0642\u0644\u0651\u062A \u062F\u0631\u062C\u0629 \u0633\u0644\u0648\u0643 \u0627\u0644\u0637\u0627\u0644\u0628 \u0639\u0646 \u0647\u0630\u0627 \u0627\u0644\u062D\u062F \u064A\u064F\u0648\u0633\u064E\u0645 \xAB\u0643\u062B\u064A\u0631 \u0627\u0644\u0643\u0644\u0627\u0645\xBB\u060C \u0648\u064A\u0628\u0642\u0649 \u0627\u0644\u0648\u0633\u0645 \u062D\u062A\u0649 \u062A\u0632\u064A\u0644\u0647 \u0628\u0646\u0641\u0633\u0643."],
     "seat.talkers.noColumn": ["Add a behaviour column in the Gradebook to use this.", "\u0623\u0636\u0641 \u0639\u0645\u0648\u062F \u0627\u0644\u0633\u0644\u0648\u0643 \u0641\u064A \u0633\u062C\u0644 \u0627\u0644\u062F\u0631\u062C\u0627\u062A \u0644\u0627\u0633\u062A\u062E\u062F\u0627\u0645 \u0647\u0630\u0647 \u0627\u0644\u0645\u064A\u0632\u0629."],
     "seat.talkersBelow": ["Below", "\u0623\u0642\u0644 \u0645\u0646"],
-    "seat.talkersOutOf": ["out of {max}", "\u0645\u0646 {max}"]
+    "seat.talkersOutOf": ["out of {max}", "\u0645\u0646 {max}"],
+    "seat.tag.watch": ["Watch in exams", "\u0645\u0631\u0627\u0642\u0628\u0629 \u0641\u064A \u0627\u0644\u0627\u062E\u062A\u0628\u0627\u0631"],
+    "seat.exam.title": ["Exam seating", "\u062A\u0631\u062A\u064A\u0628 \u0627\u0644\u0627\u062E\u062A\u0628\u0627\u0631"],
+    "seat.exam.lead": ["Uses each student's term grade, Talkers and the Watch in exams tag. Grades are never shown on the desks.", "\u064A\u0639\u062A\u0645\u062F \u0639\u0644\u0649 \u062F\u0631\u062C\u0629 \u0627\u0644\u0641\u0635\u0644 \u0644\u0643\u0644 \u0637\u0627\u0644\u0628 \u0648\u0648\u0633\u0645 \xAB\u0643\u062B\u064A\u0631 \u0627\u0644\u0643\u0644\u0627\u0645\xBB \u0648\u0648\u0633\u0645 \xAB\u0645\u0631\u0627\u0642\u0628\u0629 \u0641\u064A \u0627\u0644\u0627\u062E\u062A\u0628\u0627\u0631\xBB. \u0644\u0627 \u062A\u0638\u0647\u0631 \u0627\u0644\u062F\u0631\u062C\u0627\u062A \u0639\u0644\u0649 \u0627\u0644\u0645\u0642\u0627\u0639\u062F."],
+    "seat.exam.leadNoGrades": ["No term grades yet, so every student counts as the middle level. Talkers and Watch in exams still work.", "\u0644\u0627 \u062A\u0648\u062C\u062F \u062F\u0631\u062C\u0627\u062A \u0644\u0644\u0641\u0635\u0644 \u0628\u0639\u062F\u060C \u0641\u064A\u064F\u0639\u062F\u0651 \u0643\u0644 \u0627\u0644\u0637\u0644\u0627\u0628 \u0641\u064A \u0627\u0644\u0645\u0633\u062A\u0648\u0649 \u0627\u0644\u0645\u062A\u0648\u0633\u0637. \u0648\u064A\u0628\u0642\u0649 \u0639\u0645\u0644 \xAB\u0643\u062B\u064A\u0631 \u0627\u0644\u0643\u0644\u0627\u0645\xBB \u0648\xAB\u0645\u0631\u0627\u0642\u0628\u0629 \u0641\u064A \u0627\u0644\u0627\u062E\u062A\u0628\u0627\u0631\xBB."],
+    "seat.exam.near": ["Watch in exams and the lower third sit near your desk", "\u0637\u0644\u0627\u0628 \xAB\u0645\u0631\u0627\u0642\u0628\u0629 \u0641\u064A \u0627\u0644\u0627\u062E\u062A\u0628\u0627\u0631\xBB \u0648\u0627\u0644\u062B\u0644\u062B \u0627\u0644\u0623\u062F\u0646\u0649 \u0642\u0631\u0628 \u0645\u0643\u062A\u0628\u0643"],
+    "seat.exam.topBack": ["The top third sits at the back", "\u0627\u0644\u062B\u0644\u062B \u0627\u0644\u0623\u0639\u0644\u0649 \u0641\u064A \u0627\u0644\u062E\u0644\u0641"],
+    "seat.exam.similar": ["Neighbours are at a similar level", "\u0627\u0644\u062C\u064A\u0631\u0627\u0646 \u0641\u064A \u0645\u0633\u062A\u0648\u0649 \u0645\u062A\u0642\u0627\u0631\u0628"],
+    "seat.exam.apart": ["Talkers and Watch in exams never side by side", "\u0644\u0627 \u064A\u062A\u062C\u0627\u0648\u0631 \u0643\u062B\u064A\u0631\u0648 \u0627\u0644\u0643\u0644\u0627\u0645 \u0648\u0644\u0627 \u0637\u0644\u0627\u0628 \u0627\u0644\u0645\u0631\u0627\u0642\u0628\u0629"],
+    "seat.exam.ab": ["Papers A and B in a checkerboard", "\u0646\u0645\u0648\u0630\u062C\u0627 A \u0648 B \u0628\u0627\u0644\u062A\u0646\u0627\u0648\u0628"],
+    "seat.exam.go": ["Arrange for the exam", "\u0631\u062A\u0651\u0628 \u0644\u0644\u0627\u062E\u062A\u0628\u0627\u0631"],
+    "seat.exam.done": ["Arranged for the exam. Undo brings the old chart back.", "\u062A\u0645 \u0627\u0644\u062A\u0631\u062A\u064A\u0628 \u0644\u0644\u0627\u062E\u062A\u0628\u0627\u0631. \u0627\u0644\u062A\u0631\u0627\u062C\u0639 \u064A\u0639\u064A\u062F \u0627\u0644\u0645\u062E\u0637\u0637 \u0627\u0644\u0633\u0627\u0628\u0642."],
+    "seat.exam.levels": ["Show levels (only you)", "\u0625\u0638\u0647\u0627\u0631 \u0627\u0644\u0645\u0633\u062A\u0648\u064A\u0627\u062A (\u0644\u0643 \u0641\u0642\u0637)"],
+    "seat.exam.legend": ["Levels from the term grade \xB7 only you see this", "\u0627\u0644\u0645\u0633\u062A\u0648\u064A\u0627\u062A \u0645\u0646 \u062F\u0631\u062C\u0629 \u0627\u0644\u0641\u0635\u0644 \xB7 \u062A\u0638\u0647\u0631 \u0644\u0643 \u0641\u0642\u0637"],
+    "seat.exam.noGrades": ["No term grades yet", "\u0644\u0627 \u062A\u0648\u062C\u062F \u062F\u0631\u062C\u0627\u062A \u0644\u0644\u0641\u0635\u0644 \u0628\u0639\u062F"],
+    "seat.level.T": ["Top", "\u0623\u0639\u0644\u0649"],
+    "seat.level.M": ["Middle", "\u0645\u062A\u0648\u0633\u0637"],
+    "seat.level.L": ["Lower", "\u0623\u062F\u0646\u0649"]
   };
   var uxEn = Object.fromEntries(Object.entries(pairs).map(([key4, value]) => ["ux." + key4, value[0]]));
   var uxAr = Object.fromEntries(Object.entries(pairs).map(([key4, value]) => ["ux." + key4, value[1]]));
@@ -59471,8 +59577,10 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
   }
 
   // src/modules/seating/model.js
-  var BUILTIN_TAGS = ["separate", "front", "teacher", "door"];
+  var BUILTIN_TAGS = ["separate", "watch", "front", "teacher", "door"];
   var PRESETS = ["rows", "pairs", "groups4", "groups6", "horseshoe", "exam", "gradebook"];
+  var EXAM_DEFAULTS = { on: false, near: true, topBack: true, similar: true, apart: true, ab: true };
+  var EXAM_RULES = ["near", "topBack", "similar", "apart", "ab"];
   var SIDES = ["top", "right", "bottom", "left"];
   var SHOW = ["names", "numbers", "both"];
   var TAG_COLORS = ["yellow", "lilac", "mint", "sky", "rose", "peach"];
@@ -59500,10 +59608,13 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       door: wallSpot(v.door),
       windows: Array.isArray(v.windows) ? v.windows.map((w2) => w2 && typeof w2.id === "string" && wallSpot(w2) ? { id: w2.id, ...wallSpot(w2) } : null).filter(Boolean) : [],
       show: SHOW.includes(v.show) ? v.show : "names",
+      // Exam seating (owner, 18 Nov 2026): the switches, whether the chart was arranged for an exam, and the last layout used.
+      exam: { ...EXAM_DEFAULTS, ...v.exam && typeof v.exam === "object" ? Object.fromEntries(Object.entries(v.exam).filter(([k, x2]) => k in EXAM_DEFAULTS && typeof x2 === "boolean")) : {} },
+      layout: PRESETS.includes(v.layout) ? v.layout : null,
       // Talkers from behaviour (src/core/talkers.js): the line and which Talker tags were added from behaviour.
       ...v.talkers && typeof v.talkers === "object" ? { talkers: { on: v.talkers.on !== false, ...Number.isFinite(v.talkers.below) ? { below: v.talkers.below } : {} } } : {},
       talkerAuto: v.talkerAuto && typeof v.talkerAuto === "object" ? v.talkerAuto : {},
-      ...Object.fromEntries(Object.entries(v).filter(([k]) => !["schemaVersion", "desks", "board", "frontRows", "seats", "locked", "tags", "customTags", "pairs", "prefs", "recent", "names", "teacher", "boardAt", "door", "windows", "show", "talkers", "talkerAuto"].includes(k)))
+      ...Object.fromEntries(Object.entries(v).filter(([k]) => !["schemaVersion", "desks", "board", "frontRows", "seats", "locked", "tags", "customTags", "pairs", "prefs", "recent", "names", "teacher", "boardAt", "door", "windows", "show", "talkers", "talkerAuto", "exam", "layout"].includes(k)))
     };
   }
   function wallSpot(w2) {
@@ -59679,7 +59790,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     order.forEach((sid, i) => {
       if (desks[i]) seats[desks[i].id] = sid;
     });
-    return { ...room, desks, seats };
+    return { ...room, desks, seats, layout: preset, exam: { ...room.exam, on: false } };
   }
   function addDesk(room, table = false) {
     const b = bounds(room.desks), y2 = room.desks.length ? b.h + 0.6 : 0;
@@ -59854,9 +59965,89 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     }
     return { room: cur, moved: moved.size, broken };
   }
+  function examLevels(students, finals) {
+    const known = students.filter((s) => Number.isFinite(finals[s.id])).sort((a, b) => finals[a.id] - finals[b.id]), out = {}, n = known.length;
+    known.forEach((s, i) => {
+      out[s.id] = i < n / 3 ? "L" : i >= 2 * n / 3 ? "T" : "M";
+    });
+    for (const s of students) if (!out[s.id]) out[s.id] = "M";
+    return out;
+  }
+  function examRows(room) {
+    const { desks, board } = room, key4 = (d) => board === "top" ? d.y : board === "bottom" ? -d.y : board === "left" ? d.x : -d.x, side = (d) => board === "top" || board === "bottom" ? d.x : d.y;
+    const levels = [...new Set(desks.map((d) => Math.round(key4(d) * 4) / 4))].sort((a, b) => a - b);
+    const rows = levels.map((l) => desks.filter((d) => Math.round(key4(d) * 4) / 4 === l).sort((a, b) => side(a) - side(b)));
+    const place = /* @__PURE__ */ new Map();
+    rows.forEach((r, ri) => r.forEach((d, ci) => place.set(d.id, { row: ri, col: ci })));
+    return { rows, place };
+  }
+  function paperOf(room, deskId) {
+    const p = examRows(room).place.get(deskId);
+    return p ? (p.row + p.col) % 2 ? "B" : "A" : null;
+  }
+  var RANK = { W: 0, L: 1, M: 2, T: 3 };
+  function examArrange(room, students, levels, { random = Math.random } = {}) {
+    const opts = room.exam, ids = students.map((s) => s.id), ctx = { nb: neighbours(room.desks), zones: zones(room) }, rules2 = rulesOf2(room, students);
+    const { rows } = examRows(room), teacher = ctx.zones.teacher, rowOf = new Map(rows.flatMap((r, ri) => r.map((d) => [d.id, ri])));
+    const lockedSeats = Object.fromEntries(Object.entries(room.seats).filter(([d, s]) => room.locked[s] && ids.includes(s) && room.desks.some((x2) => x2.id === d)));
+    const movers = ids.filter((sid) => !Object.values(lockedSeats).includes(sid));
+    const watch = (sid) => (room.tags[sid] || []).includes("watch"), talk = (sid) => (room.tags[sid] || []).some((t2) => tagDoes(t2, room) === "apart");
+    const tier = (sid) => opts.near && watch(sid) ? "W" : levels[sid] || "M", ordered = opts.topBack || opts.near;
+    const open2 = rows.flatMap((r) => [...r].sort((a, b) => (teacher.has(b.id) ? 1 : 0) - (teacher.has(a.id) ? 1 : 0))).map((d) => d.id).filter((d) => !lockedSeats[d]);
+    const score = (seats, target) => {
+      const c = { ...ctx, deskOf: new Map(Object.entries(seats).map(([d, s]) => [s, d])) };
+      let p = 0;
+      for (const r of rules2) if (!ruleKept(r, { ...room, seats }, c)) p += 1e3;
+      for (const [d, s] of Object.entries(seats)) {
+        if (ordered && target.has(s)) p += (tier(s) === "W" ? 60 : 4) * Math.abs(rowOf.get(d) - target.get(s));
+        for (const n of ctx.nb.get(d) || []) {
+          const o = seats[n];
+          if (!o || o < s) continue;
+          if (opts.apart && (watch(s) || talk(s)) && (watch(o) || talk(o))) p += 50;
+          if (opts.similar && Math.abs(RANK[levels[s] || "M"] - RANK[levels[o] || "M"]) >= 2) p += 10;
+        }
+      }
+      return p;
+    };
+    let best = null, bestScore = Infinity;
+    for (let attempt = 0; attempt < 12 && bestScore > 0; attempt++) {
+      const keyOf3 = (sid) => ordered ? RANK[tier(sid)] : 0;
+      const queue = [...movers].sort((a, b) => keyOf3(a) - keyOf3(b) || random() - 0.5);
+      const seats = { ...lockedSeats };
+      queue.forEach((sid, i) => {
+        if (open2[i]) seats[open2[i]] = sid;
+      });
+      const target = new Map(Object.entries(seats).filter(([d]) => !lockedSeats[d]).map(([d, sid]) => [sid, tier(sid) === "W" ? 0 : rowOf.get(d)]));
+      let current4 = score(seats, target);
+      for (let k = 0; k < 900 && current4 > 0; k++) {
+        const a = open2[Math.floor(random() * open2.length)], b = open2[Math.floor(random() * open2.length)];
+        if (a === b || !seats[a] && !seats[b]) continue;
+        const sa = seats[a], sb = seats[b];
+        if (sb) seats[a] = sb;
+        else delete seats[a];
+        if (sa) seats[b] = sa;
+        else delete seats[b];
+        const next = score(seats, target);
+        if (next <= current4) current4 = next;
+        else {
+          if (sa) seats[a] = sa;
+          else delete seats[a];
+          if (sb) seats[b] = sb;
+          else delete seats[b];
+        }
+      }
+      if (current4 < bestScore) {
+        bestScore = current4;
+        best = { ...seats };
+      }
+    }
+    return { ...room, seats: best || room.seats, recent: [...room.recent, room.seats].slice(-3), exam: { ...opts, on: true } };
+  }
 
   // src/modules/seating/index.jsx
   var ICON4 = {
+    watch: /* @__PURE__ */ cpJsx("g", { fill: "none", stroke: "currentColor", strokeWidth: "1.6" }, /* @__PURE__ */ cpJsx("path", { d: "M1.5 8S4 3.5 8 3.5 14.5 8 14.5 8 12 12.5 8 12.5 1.5 8 1.5 8z" }), /* @__PURE__ */ cpJsx("circle", { cx: "8", cy: "8", r: "2", fill: "currentColor" })),
+    exam: /* @__PURE__ */ cpJsx("g", { fill: "none", stroke: "currentColor", strokeWidth: "1.6", strokeLinejoin: "round" }, /* @__PURE__ */ cpJsx("path", { d: "M4 1.5h6l3 3v10H4z" }), /* @__PURE__ */ cpJsx("path", { d: "M6.5 8l1.5 1.5L11 6.5" })),
     separate: /* @__PURE__ */ cpJsx("path", { d: "M3 3h10a1.5 1.5 0 0 1 1.5 1.5v5A1.5 1.5 0 0 1 13 11H8l-3 2.5V11H3a1.5 1.5 0 0 1-1.5-1.5v-5A1.5 1.5 0 0 1 3 3z", fill: "none", stroke: "currentColor", strokeWidth: "1.7", strokeLinejoin: "round" }),
     front: /* @__PURE__ */ cpJsx("path", { d: "M8 13V3M4 7l4-4 4 4", fill: "none", stroke: "currentColor", strokeWidth: "2.2", strokeLinecap: "round", strokeLinejoin: "round" }),
     teacher: /* @__PURE__ */ cpJsx("g", { fill: "none", stroke: "currentColor", strokeWidth: "1.7", strokeLinecap: "round" }, /* @__PURE__ */ cpJsx("circle", { cx: "8", cy: "5", r: "2.6" }), /* @__PURE__ */ cpJsx("path", { d: "M3 14c.6-2.8 2.6-4.3 5-4.3s4.4 1.5 5 4.3" })),
@@ -59883,9 +60074,10 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
   var open = (studentId, view) => window.dispatchEvent(new CustomEvent("cp:student-module", { detail: { studentId, view } }));
   var OPP = { top: "bottom", bottom: "top", left: "right", right: "left" };
   var TAG_BG = { yellow: "#ffd166", lilac: "#d7c4ff", mint: "#9ee6b8", sky: "#a9d8ff", rose: "#ffb3c1", peach: "#ffc9a3" };
-  var STICKER = { separate: { bg: "#ffd166", teacherOnly: false }, front: { bg: "#ff5a1f", teacherOnly: false }, teacher: { bg: "#a9d8ff", teacherOnly: true }, door: { bg: "#ffc9a3", teacherOnly: true }, plan: { bg: "#d7c4ff", teacherOnly: true } };
+  var STICKER = { separate: { bg: "#ffd166", teacherOnly: false }, watch: { bg: "#d7c4ff", teacherOnly: true }, front: { bg: "#ff5a1f", teacherOnly: false }, teacher: { bg: "#a9d8ff", teacherOnly: true }, door: { bg: "#ffc9a3", teacherOnly: true }, plan: { bg: "#d7c4ff", teacherOnly: true } };
   var INK2 = "#26262e";
   var STICKER_ICON = {
+    watch: /* @__PURE__ */ cpJsx("g", null, /* @__PURE__ */ cpJsx("path", { d: "M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12z", fill: "#fff", stroke: INK2, strokeWidth: "2.4", strokeLinejoin: "round" }), /* @__PURE__ */ cpJsx("circle", { cx: "12", cy: "12", r: "3.2", fill: INK2 })),
     separate: /* @__PURE__ */ cpJsx("path", { d: "M4.5 5.5h15a1.5 1.5 0 0 1 1.5 1.5v8a1.5 1.5 0 0 1-1.5 1.5H10l-4.5 4v-4H4.5A1.5 1.5 0 0 1 3 15V7a1.5 1.5 0 0 1 1.5-1.5z", fill: "#fff", stroke: INK2, strokeWidth: "2.4", strokeLinejoin: "round" }),
     front: /* @__PURE__ */ cpJsx("path", { d: "M12 20V5M5.5 11.5 12 5l6.5 6.5", fill: "none", stroke: "#fff", strokeWidth: "3.6", strokeLinecap: "round", strokeLinejoin: "round" }),
     teacher: /* @__PURE__ */ cpJsx("g", { fill: "#fff", stroke: INK2, strokeWidth: "2.2", strokeLinejoin: "round" }, /* @__PURE__ */ cpJsx("circle", { cx: "12", cy: "8", r: "3.6" }), /* @__PURE__ */ cpJsx("path", { d: "M5 20c.8-4 3.6-6 7-6s6.2 2 7 6z" })),
@@ -59909,7 +60101,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
   function defaultDoor(board) {
     return board === "top" ? { wall: "bottom", at: 0.93 } : board === "bottom" ? { wall: "top", at: 0.93 } : board === "left" ? { wall: "right", at: 0.07 } : { wall: "left", at: 0.07 };
   }
-  function Room({ room, doc, names, absent, plans: plans2, u: u3, rtl, flip = false, plain = false, arranging = false, selected, onPick, onSwap, onPlace, onWidth, dragHint, conflicts, numbers, objSel, onSelectObject, onObject, picking, onPickDesk }) {
+  function Room({ room, doc, names, absent, plans: plans2, u: u3, rtl, flip = false, plain = false, arranging = false, selected, onPick, onSwap, onPlace, onWidth, dragHint, conflicts, numbers, objSel, onSelectObject, onObject, picking, onPickDesk, levels }) {
     const box2 = useRef(null), roomRef = useRef(null), [drag, setDrag] = useState(null), dragRef = useRef(null);
     useLayoutEffect(() => {
       if (!onWidth || !box2.current || typeof ResizeObserver !== "function") return;
@@ -60058,7 +60250,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     }), Object.entries(studentAt).map(([deskId, sid]) => {
       const d = room.desks.find((x2) => x2.id === deskId), student = doc.students.find((s) => s.id === sid), name = names[sid] || student.name, abs = absent.has(sid), tags = room.tags[sid] || [], lifted = drag?.kind === "student" && drag.key === sid, moving = drag?.kind === "desk" && drag.key === deskId, show = room.show || "names", num5 = numbers?.[sid];
       const shown2 = show === "numbers" && num5 ? String(num5) : name;
-      const style = { left: X(d.x), top: Y(d.y), width: u3, height: H * u3, fontSize: show === "numbers" ? Math.max(14, u3 * 0.26) + "px" : Math.max(11, Math.min(u3 * 0.17, u3 * 1.6 / Math.max(6, [...name].length))) + "px", ...lifted || moving ? { transform: `translate(${drag.dx}px,${drag.dy}px)${lifted ? " rotate(-3deg)" : ""}` } : null };
+      const style = { left: X(d.x), top: Y(d.y), width: u3, height: H * u3, fontSize: show === "numbers" ? Math.max(14, u3 * 0.26) + "px" : Math.max(10, Math.min(u3 * 0.17, u3 * 1.6 / Math.max(6, [...name].length), u3 * 1.3 / Math.max(4, ...name.split(/\s+/).map((w2) => [...w2].length)))) + "px", ...lifted || moving ? { transform: `translate(${drag.dx}px,${drag.dy}px)${lifted ? " rotate(-3deg)" : ""}` } : null };
       const stickers = [...tags.filter((tag) => stickerShown(tag, room, plain)), ...plans2.has(sid) && !plain ? ["plan"] : []].slice(0, 3);
       const bad = !plain && conflicts?.bad?.has(sid);
       const label = student.name + (abs ? " \xB7 " + uxText("seat.absent") : "") + " \xB7 " + uxText("seat.deskN").replace("{n}", String(room.desks.indexOf(d) + 1)) + (bad ? " \xB7 " + uxText("seat.broken.one") : "");
@@ -60088,6 +60280,8 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
         },
         /* @__PURE__ */ cpJsx("span", { className: "cp-seat-name" }, cpRaw(shown2)),
         abs && /* @__PURE__ */ cpJsx("small", null, uxText("seat.absent")),
+        room.exam?.on && room.exam.ab && /* @__PURE__ */ cpJsx("span", { className: "cp-seat-ab", "data-paper": paperOf(room, deskId), "aria-hidden": "true" }, cpRaw(paperOf(room, deskId) || "")),
+        levels && !plain && levels[sid] && /* @__PURE__ */ cpJsx("span", { className: "cp-seat-level", "data-level": levels[sid], "data-cp-private": "", "aria-hidden": "true" }, /* @__PURE__ */ cpJsx("i", null), /* @__PURE__ */ cpJsx("i", null), /* @__PURE__ */ cpJsx("i", null)),
         show === "both" && num5 && /* @__PURE__ */ cpJsx("span", { className: "cp-seat-numb" }, cpRaw(String(num5))),
         stickers.length > 0 && /* @__PURE__ */ cpJsx("span", { className: "cp-seat-chips", "data-cp-private": "" }, stickers.map((tag) => /* @__PURE__ */ cpJsx(Sticker, { key: tag, tag, room }))),
         !plain && room.locked[sid] && /* @__PURE__ */ cpJsx("span", { className: "cp-seat-lock", "data-cp-private": "" }, /* @__PURE__ */ cpJsx(Icon, { name: "lock", size: 12 })),
@@ -60172,7 +60366,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
   }
   function SeatingView({ doc, onUpdate }) {
     useLanguage();
-    const profile3 = useProfile(), [mode, setMode] = useState("room"), [arranging, setArranging] = useState(false), [selected, setSelected] = useState(null), [presenting, setPresenting] = useState(false), [flip, setFlip] = useState(false), [printing, setPrinting] = useState(false), [width, setWidth] = useState(1e3), [objSel, setObjSel] = useState(null), [pick2, setPick] = useState(null);
+    const profile3 = useProfile(), [mode, setMode] = useState("room"), [arranging, setArranging] = useState(false), [selected, setSelected] = useState(null), [presenting, setPresenting] = useState(false), [flip, setFlip] = useState(false), [printing, setPrinting] = useState(false), [width, setWidth] = useState(1e3), [objSel, setObjSel] = useState(null), [pick2, setPick] = useState(null), [showLevels, setShowLevels] = useState(false);
     const withTalkers = (d) => {
       const seeded = { ...d, cp: { ...d.cp, seating: ensureRoom(d) } };
       return seating(autoTalkers(d, seeded).cp.seating);
@@ -60191,7 +60385,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       return () => window.removeEventListener("keydown", close);
     }, [selected]);
     const doShuffle = () => {
-      commit((r) => shuffle(r, doc.students, { groupOf: (sid) => doc.students.find((s) => s.id === sid)?.group || null }));
+      commit((r) => r.exam?.on ? examArrange(r, doc.students, levels) : shuffle(r, doc.students, { groupOf: (sid) => doc.students.find((s) => s.id === sid)?.group || null }));
       setSelected(null);
     };
     const numbers = useMemo(() => Object.fromEntries(doc.students.map((st, i) => [st.id, i + 1])), [doc.students]);
@@ -60251,6 +60445,19 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       notify(uxText("seat.removedEmpty").replace("{n}", String(n)));
     };
     const pickBar = pick2 && /* @__PURE__ */ cpJsx("span", { className: "cp-seat-pickbar", role: "status" }, /* @__PURE__ */ cpJsx("span", null, cpRaw(uxText("seat.pick." + pick2.kind).replace("{a}", names[pick2.sid] || "")), /* @__PURE__ */ cpJsx("small", null, uxText(pick2.kind === "move" ? "seat.pickTapDesk" : "seat.pickTapOther"))), /* @__PURE__ */ cpJsx("kbd", null, uxText("seat.escKey")), /* @__PURE__ */ cpJsx("button", { type: "button", ...actionProps("ux.seat.pickCancel", () => setPick(null)) }, uxText("seat.pickCancel")));
+    const finals = useMemo(() => {
+      try {
+        const live = allTermViews(doc).find((v) => v.live);
+        return Object.fromEntries((live?.students || []).filter((r) => r.final != null).map((r) => [r.id, r.final]));
+      } catch {
+        return {};
+      }
+    }, [doc.students, doc.sections, doc.settings]);
+    const levels = useMemo(() => examLevels(doc.students, finals), [doc.students, finals]), hasGrades = Object.keys(finals).length > 0;
+    const arrangeExam = () => {
+      commit((r) => examArrange(r, doc.students, levels));
+      notify(uxText("seat.exam.done"));
+    };
     const status = /* @__PURE__ */ cpJsx("span", { className: "cp-seat-status" + (broken ? " cp-seat-warn" : ""), role: "status", title: broken ? conflictText(brokenList[0]) : void 0 }, broken ? cpRaw(conflictText(brokenList[0]) + (broken > 1 ? uxText("seat.conflictMore").replace("{n}", String(broken - 1)) : "")) : !summary2.rules.length && !summary2.locked ? uxText("seat.noRulesShort") : cpRaw(uxText("seat.kept").replace("{n}", String(summary2.rules.length)).replace("{l}", String(summary2.locked))));
     const selectedDesk = selected && deskOf(room, selected), deskInfo = selectedDesk && room.desks.find((x2) => x2.id === selectedDesk);
     const cardStyle = deskInfo ? (() => {
@@ -60263,6 +60470,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       return other ? uxText("seat.swapHint").replace("{a}", names[sid]).replace("{b}", names[other]) : uxText("seat.moveHint").replace("{a}", names[sid]);
     };
     const roomProps = { room, doc, names, absent, plans: plans2, u: u3, rtl, numbers };
+    const roomLevels = showLevels && room.exam?.on ? levels : null;
     return /* @__PURE__ */ cpJsx(ModuleFrame, { titleKey: "ux.seat.title", icon: "seating", info: uxText("seat.hint") }, /* @__PURE__ */ cpJsx("div", { className: "cp-seat", dir: rtl ? "rtl" : "ltr" }, !arranging && /* @__PURE__ */ cpJsx("div", { className: "cp-seat-bar" }, /* @__PURE__ */ cpJsx("span", { className: "cp-seat-seg", role: "group", "aria-label": uxText("seat.view") }, ["room", "list"].map((m) => /* @__PURE__ */ cpJsx("button", { key: m, type: "button", "aria-pressed": mode === m, ...actionProps("ux.seat.mode", () => {
       setMode(m);
       setSelected(null);
@@ -60276,7 +60484,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     }) }, /* @__PURE__ */ cpJsx(Icon, { name: "present" }), uxText("seat.present")), /* @__PURE__ */ cpJsx("button", { type: "button", className: "cp-seat-btn", ...actionProps("ux.seat.print", () => setPrinting(true)) }, /* @__PURE__ */ cpJsx(Icon, { name: "print" }), uxText("seat.print"))), arranging && /* @__PURE__ */ cpJsx("div", { className: "cp-seat-bar" }, /* @__PURE__ */ cpJsx("b", null, uxText("seat.arrange")), /* @__PURE__ */ cpJsx("span", { className: "cp-seat-muted" }, cpRaw(uxText("seat.counts").replace("{d}", String(room.desks.length)).replace("{s}", String(doc.students.length)))), /* @__PURE__ */ cpJsx("span", { className: "cp-seat-grow" }), /* @__PURE__ */ cpJsx("button", { type: "button", className: "cp-seat-btn cp-seat-primary", ...actionProps("ux.seat.done", () => {
       setArranging(false);
       setObjSel(null);
-    }) }, uxText("seat.done"))), mode === "room" && /* @__PURE__ */ cpJsx("div", { className: "cp-seat-stage" }, /* @__PURE__ */ cpJsx(Room, { ...roomProps, arranging, selected, conflicts: arranging ? null : conflicts, objSel, onSelectObject: setObjSel, onObject, picking: pick2, onPickDesk: chooseDesk, onWidth: setWidth, onPick: (sid) => pick2 ? choose(sid) : setSelected((s) => s === sid ? null : sid), onSwap: (sid, deskId) => commit((r) => moveStudent(r, sid, deskId)), onPlace: (deskId, x2, y2) => commit((r) => placeDesk(r, deskId, x2, y2)), dragHint: swapHint }), selected && !arranging && /* @__PURE__ */ cpJsx(StudentCard, { doc, room, sid: selected, names, absent, commit, onUpdate, onClose: () => setSelected(null), style: cardStyle, onStartPick: (kind) => startPick(selected, kind) })), mode === "room" && !arranging && /* @__PURE__ */ cpJsx("div", { className: "cp-seat-under" }, /* @__PURE__ */ cpJsx("span", { className: "cp-seat-muted" }, uxText("seat.show")), /* @__PURE__ */ cpJsx("span", { className: "cp-seat-seg", role: "group", "aria-label": uxText("seat.show") }, SHOW.map((v) => /* @__PURE__ */ cpJsx("button", { key: v, type: "button", "aria-pressed": (room.show || "names") === v, ...actionProps("ux.seat.show", () => commit((r) => ({ ...r, show: v })), v) }, uxText("seat.show." + v))))), arranging && /* @__PURE__ */ cpJsx("div", { className: "cp-seat-arrange" }, /* @__PURE__ */ cpJsx("div", { className: "cp-seat-row cp-seat-objtip", role: "status" }, objSel ? /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx("b", null, uxText("seat.obj." + objSel.kind)), /* @__PURE__ */ cpJsx("span", { className: "cp-seat-muted" }, uxText("seat.objHint." + objSel.kind)), objSel.kind === "window" && /* @__PURE__ */ cpJsx("button", { type: "button", className: "cp-seat-btn", ...actionProps("ux.seat.removeWindow", () => removeWindow(objSel.key), objSel.key) }, uxText("seat.removeWindow"))) : /* @__PURE__ */ cpJsx("span", { className: "cp-seat-muted" }, uxText("seat.arrangeHint"))), /* @__PURE__ */ cpJsx("div", { className: "cp-seat-row" }, /* @__PURE__ */ cpJsx("span", { className: "cp-seat-muted" }, uxText("seat.startFrom")), PRESETS.map((p) => /* @__PURE__ */ cpJsx("button", { key: p, type: "button", className: "cp-seat-btn", disabled: p === "gradebook" && !groups.length, ...actionProps("ux.seat.preset", () => commit((r) => applyPreset(r, p, doc.students, groups)), p) }, uxText("seat.preset." + p))), (profile3.seatingRooms || []).map((saved) => /* @__PURE__ */ cpJsx("button", { key: saved.id, type: "button", className: "cp-seat-btn cp-seat-saved", ...actionProps("ux.seat.savedRoom", () => commit((r) => {
+    }) }, uxText("seat.done"))), mode === "room" && /* @__PURE__ */ cpJsx("div", { className: "cp-seat-stage" }, /* @__PURE__ */ cpJsx(Room, { ...roomProps, levels: roomLevels, arranging, selected, conflicts: arranging ? null : conflicts, objSel, onSelectObject: setObjSel, onObject, picking: pick2, onPickDesk: chooseDesk, onWidth: setWidth, onPick: (sid) => pick2 ? choose(sid) : setSelected((s) => s === sid ? null : sid), onSwap: (sid, deskId) => commit((r) => moveStudent(r, sid, deskId)), onPlace: (deskId, x2, y2) => commit((r) => placeDesk(r, deskId, x2, y2)), dragHint: swapHint }), selected && !arranging && /* @__PURE__ */ cpJsx(StudentCard, { doc, room, sid: selected, names, absent, commit, onUpdate, onClose: () => setSelected(null), style: cardStyle, onStartPick: (kind) => startPick(selected, kind) })), mode === "room" && !arranging && /* @__PURE__ */ cpJsx("div", { className: "cp-seat-under" }, room.exam?.on && /* @__PURE__ */ cpJsx("span", { className: "cp-seat-levels" }, /* @__PURE__ */ cpJsx("label", { className: "cp-seat-switch" }, /* @__PURE__ */ cpJsx("input", { type: "checkbox", role: "switch", checked: showLevels, ...controlProps("ux.seat.levels", (e) => setShowLevels(e.target.checked)) }), /* @__PURE__ */ cpJsx("span", null, uxText("seat.exam.levels"))), showLevels && ["T", "M", "L"].map((l) => /* @__PURE__ */ cpJsx("span", { key: l, className: "cp-seat-legend" }, /* @__PURE__ */ cpJsx("span", { className: "cp-seat-level", "data-level": l }, /* @__PURE__ */ cpJsx("i", null), /* @__PURE__ */ cpJsx("i", null), /* @__PURE__ */ cpJsx("i", null)), uxText("seat.level." + l))), showLevels && /* @__PURE__ */ cpJsx("small", { className: "cp-seat-muted" }, uxText(hasGrades ? "seat.exam.legend" : "seat.exam.noGrades"))), /* @__PURE__ */ cpJsx("span", { className: "cp-seat-grow" }), /* @__PURE__ */ cpJsx("span", { className: "cp-seat-muted" }, uxText("seat.show")), /* @__PURE__ */ cpJsx("span", { className: "cp-seat-seg", role: "group", "aria-label": uxText("seat.show") }, SHOW.map((v) => /* @__PURE__ */ cpJsx("button", { key: v, type: "button", "aria-pressed": (room.show || "names") === v, ...actionProps("ux.seat.show", () => commit((r) => ({ ...r, show: v })), v) }, uxText("seat.show." + v))))), arranging && /* @__PURE__ */ cpJsx("div", { className: "cp-seat-arrange" }, /* @__PURE__ */ cpJsx("div", { className: "cp-seat-row cp-seat-objtip", role: "status" }, objSel ? /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx("b", null, uxText("seat.obj." + objSel.kind)), /* @__PURE__ */ cpJsx("span", { className: "cp-seat-muted" }, uxText("seat.objHint." + objSel.kind)), objSel.kind === "window" && /* @__PURE__ */ cpJsx("button", { type: "button", className: "cp-seat-btn", ...actionProps("ux.seat.removeWindow", () => removeWindow(objSel.key), objSel.key) }, uxText("seat.removeWindow"))) : /* @__PURE__ */ cpJsx("span", { className: "cp-seat-muted" }, uxText("seat.arrangeHint"))), /* @__PURE__ */ cpJsx("div", { className: "cp-seat-row" }, /* @__PURE__ */ cpJsx("span", { className: "cp-seat-muted" }, uxText("seat.startFrom")), PRESETS.map((p) => /* @__PURE__ */ cpJsx("button", { key: p, type: "button", className: "cp-seat-btn", disabled: p === "gradebook" && !groups.length, ...actionProps("ux.seat.preset", () => commit((r) => applyPreset(r, p, doc.students, groups)), p) }, uxText("seat.preset." + p))), (profile3.seatingRooms || []).map((saved) => /* @__PURE__ */ cpJsx("button", { key: saved.id, type: "button", className: "cp-seat-btn cp-seat-saved", ...actionProps("ux.seat.savedRoom", () => commit((r) => {
       const desks = saved.desks.map((dk) => ({ ...dk, id: crypto.randomUUID() })), order = r.desks.map((dk) => r.seats[dk.id]).filter(Boolean), seats = {};
       order.forEach((sid, i) => {
         if (desks[i]) seats[desks[i].id] = sid;
@@ -60287,7 +60495,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       if (!name) return;
       updateProfile((p) => ({ ...p, seatingRooms: [...(p.seatingRooms || []).filter((r) => r.name !== name), { id: crypto.randomUUID(), name, desks: room.desks.map(({ id: id2, ...rest }) => rest), board: room.board, frontRows: room.frontRows }].slice(-12) }));
       notify(uxText("seat.roomSaved").replace("{name}", name));
-    }) }, uxText("seat.saveRoom")))), mode === "list" && /* @__PURE__ */ cpJsx(SeatingList, { doc, room, names, plans: plans2, summary: summary2, commit, onPick: setSelected }), mode === "list" && selected && /* @__PURE__ */ cpJsx(StudentCard, { doc, room, sid: selected, names, absent, commit, onUpdate, onClose: () => setSelected(null), style: { position: "fixed", top: 110, insetInlineEnd: 24, zIndex: 60 }, onStartPick: (kind) => {
+    }) }, uxText("seat.saveRoom"))), room.layout === "exam" && /* @__PURE__ */ cpJsx("section", { className: "cp-seat-exam", "aria-label": uxText("seat.exam.title") }, /* @__PURE__ */ cpJsx("h3", null, /* @__PURE__ */ cpJsx(Icon, { name: "exam" }), uxText("seat.exam.title")), /* @__PURE__ */ cpJsx("p", { className: "cp-seat-muted" }, uxText(hasGrades ? "seat.exam.lead" : "seat.exam.leadNoGrades")), EXAM_RULES.map((k) => /* @__PURE__ */ cpJsx("label", { key: k, className: "cp-seat-switch cp-seat-pref" }, /* @__PURE__ */ cpJsx("span", null, uxText("seat.exam." + k)), /* @__PURE__ */ cpJsx("input", { type: "checkbox", role: "switch", checked: !!room.exam[k], ...controlProps("ux.seat.examRule", (e) => commit((r) => ({ ...r, exam: { ...r.exam, [k]: e.target.checked } })), k) }))), /* @__PURE__ */ cpJsx("button", { type: "button", className: "cp-seat-btn cp-seat-primary", ...actionProps("ux.seat.examGo", arrangeExam) }, uxText("seat.exam.go")))), mode === "list" && /* @__PURE__ */ cpJsx(SeatingList, { doc, room, names, plans: plans2, summary: summary2, commit, onPick: setSelected }), mode === "list" && selected && /* @__PURE__ */ cpJsx(StudentCard, { doc, room, sid: selected, names, absent, commit, onUpdate, onClose: () => setSelected(null), style: { position: "fixed", top: 110, insetInlineEnd: 24, zIndex: 60 }, onStartPick: (kind) => {
       setMode("room");
       startPick(selected, kind);
     } }), presenting && /* @__PURE__ */ cpJsx(Present, { ...roomProps, flip, onFlip: () => setFlip((f2) => !f2), onExit: () => {
