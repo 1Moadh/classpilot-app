@@ -2830,7 +2830,7 @@ td[data-cp-att],th[data-cp-att]{background:var(--cp-att-bg)!important;box-shadow
 .cp-pip-tool[data-size=small]>header>strong{display:block;flex:1;min-width:0;font-weight:600;overflow-wrap:anywhere;line-height:1.25}
 .cp-pip-tool[data-size=small]>header>svg{width:18px;height:18px;flex:none}
 .cp-pip-tool[data-size=small]>header .cp-timer-mini-controls{display:flex}
-.cp-pip-tool[data-size=small]>header .cp-timer-mini-btn,.cp-noise-mini .cp-noise-mic{width:34px!important;height:34px!important;min-width:34px!important;padding:0!important;border:0!important;border-radius:50%!important;background:var(--pip-gold)!important;color:#1a150d!important;display:grid!important;place-items:center;box-shadow:0 4px 10px -4px rgba(242,193,78,.7)}
+.cp-pip-tool[data-size=small]>header .cp-timer-mini-btn,.cp-noise-mini .cp-noise-mic{display:grid!important;place-items:center;box-shadow:0 4px 10px -4px rgba(242,193,78,.7)}
 .cp-pip-tool[data-size=small]>header .cp-timer-mini-btn svg{color:#1a150d}
 .cp-pip-tool[data-size=small]>header .cp-float-btn[data-icon=mini]{width:30px;height:30px;border-radius:8px;background:var(--pip-line);color:var(--pip-gold)}
 .cp-pip-tool[data-size=small] .cp-pip-content{display:block;order:0;padding:0;overflow:visible;min-width:0}
@@ -2877,7 +2877,7 @@ td[data-cp-att],th[data-cp-att]{background:var(--cp-att-bg)!important;box-shadow
 @container (max-width:300px){.cp-pip-ctl .cp-timer-mini-controls .cp-timer-mini-btn[data-cp-action$="Minute"]{display:none!important}}
 .cp-pip-ctl .cp-float-btn:hover{background:var(--pip-line)}
 .cp-pip-ctl>.cp-timer-mini-controls{display:flex;gap:2px;margin-inline-end:auto}
-.cp-pip-ctl .cp-timer-mini-btn{height:26px!important;min-width:30px!important;padding:0 6px!important;border:0!important;border-radius:8px!important;background:transparent!important;color:var(--pip-txt)!important;font-size:12px!important}
+.cp-pip-ctl .cp-timer-mini-btn{font-size:12px!important}
 .cp-pip-tool[data-size=large] .cp-pip-ctl{position:absolute;top:4px;inset-inline-end:6px;display:flex;gap:2px}
 .cp-pip-tool[data-size=large]>header{padding-inline-end:160px}
 .cp-pip-tool[data-float=wheel][data-size=small]>header{display:none}
@@ -2907,12 +2907,11 @@ td[data-cp-att],th[data-cp-att]{background:var(--cp-att-bg)!important;box-shadow
    the bottom edge. The hover bar sits beside the main button. */
 .cp-pip{padding:6px;gap:6px}
 .cp-pip-tools{gap:6px}
-.cp-pip-tool[data-size=small]{display:grid;grid-template-columns:auto auto minmax(0,1fr) auto;grid-template-areas:"icon read label act" "icon read detail act";align-items:center;column-gap:10px;row-gap:1px;min-height:54px;padding:6px 8px 9px 12px;border-radius:13px;overflow:hidden}
+.cp-pip-tool[data-size=small]{display:grid;grid-template-columns:auto auto minmax(0,1fr) var(--pip-btn,28px);grid-template-areas:"icon read label act" "icon read detail act";align-items:center;column-gap:10px;row-gap:1px;min-height:54px;padding:6px 8px 9px 12px;border-radius:13px;overflow:hidden}
 .cp-pip-tool[data-size=small]>header,.cp-pip-tool[data-size=small] .cp-pip-content,.cp-pip-tool[data-size=small] .cp-noise-mini{display:contents}
 .cp-pip-tool[data-size=small]>header>svg{grid-area:icon;width:18px;height:18px}
 .cp-pip-tool[data-size=small]>header>strong{grid-area:label;align-self:end;font-size:10.5px;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .cp-pip-tool[data-size=small]>header .cp-timer-mini-controls,.cp-pip-tool[data-size=small]>header .cp-float-btn[data-icon=mini],.cp-pip-tool[data-size=small] .cp-noise-mini .cp-noise-mic{grid-area:act;position:static}
-.cp-pip-tool[data-size=small]>header .cp-timer-mini-btn,.cp-noise-mini .cp-noise-mic{width:30px!important;height:30px!important;min-width:30px!important;box-shadow:none}
 .cp-pip-tool[data-size=small]>header .cp-float-btn[data-icon=mini]{width:28px;height:28px}
 .cp-pip-tool[data-size=small] .cp-pip-read,.cp-noise-mini [role=status].cp-pip-read{grid-area:read;margin:0;font-size:30px;line-height:1}
 .cp-pip-tool[data-size=small] .cp-pip-read small{font-size:12px;margin-inline-start:3px}
@@ -2933,25 +2932,23 @@ td[data-cp-att],th[data-cp-att]{background:var(--cp-att-bg)!important;box-shadow
 .cp-pip-add{gap:6px}.cp-pip-add button{height:26px;font-size:12px}
 /* The hover bar takes the label's place (never the number's): the label and detail hide while the bar shows. */
 .cp-pip-tool[data-size=small] .cp-pip-ctl{position:static;grid-column:3;grid-row:1/3;justify-self:end;align-self:center;inset:auto;transform:none;height:auto;padding:0;border:0;background:none;gap:0;min-width:0;overflow:hidden}
-.cp-pip-tool[data-size=small] .cp-pip-ctl .cp-float-btn,.cp-pip-tool[data-size=small] .cp-pip-ctl .cp-timer-mini-btn{width:24px!important;min-width:24px!important;height:26px!important;padding:0!important}
 .cp-pip-tool[data-size=small]:is(:hover,:focus-visible,:has(:focus-visible))>header>strong,.cp-pip-tool[data-size=small]:is(:hover,:focus-visible,:has(:focus-visible)) :is(.cp-pip-note,.cp-noise-lights){visibility:hidden}
 /* Owner (19 Nov 2026): "I want to be able to shrink them more horizontally". A narrow row drops the label first, then
    the icon; the number shrinks a little but stays whole; the hover buttons then sit over the number. */
 .cp-pip-tool[data-size=small] .cp-pip-read{font-size:clamp(22px,13cqi,30px);white-space:nowrap}
 @container (max-width:250px){
- .cp-pip-tool[data-size=small]{grid-template-columns:auto minmax(0,1fr) 0 auto;column-gap:8px}
+ .cp-pip-tool[data-size=small]{grid-template-columns:auto minmax(0,1fr) 0 var(--pip-btn,28px);column-gap:8px}
  .cp-pip-tool[data-size=small]>header>strong,.cp-pip-tool[data-size=small] :is(.cp-pip-note,.cp-noise-lights){display:none}
- .cp-pip-tool[data-size=small] .cp-pip-ctl{grid-column:2/4;justify-self:stretch;justify-content:flex-end;background:var(--pip-tile);border-radius:8px}
+ .cp-pip-tool[data-size=small] .cp-pip-ctl{grid-column:2/4;justify-self:end;justify-content:flex-end}
 }
 @container (max-width:180px){
- .cp-pip-tool[data-size=small]{grid-template-columns:0 minmax(0,1fr) 0 auto;column-gap:6px;padding-inline:10px 6px}
+ .cp-pip-tool[data-size=small]{grid-template-columns:0 minmax(0,1fr) 0 var(--pip-btn,28px);column-gap:6px;padding-inline:10px 6px}
  .cp-pip-tool[data-size=small]>header>svg{display:none}
  .cp-pip-tool[data-size=small] .cp-pip-read small{font-size:11px}
 }
 .cp-pip-add{min-width:0}.cp-pip-add button{max-width:100%;overflow:hidden}
 .cp-pip-short{display:none}
 @container (max-width:230px){.cp-pip-tool[data-size=small] .cp-pip-long{display:none}.cp-pip-tool[data-size=small] .cp-pip-short{display:inline}}
-@container (max-width:200px){.cp-pip-tool[data-size=small] .cp-pip-ctl .cp-float-btn,.cp-pip-tool[data-size=small] .cp-pip-ctl .cp-timer-mini-btn{width:20px!important;min-width:20px!important}.cp-pip-tool[data-size=small] .cp-pip-ctl .cp-float-btn::before{width:14px;height:14px;-webkit-mask-size:14px;mask-size:14px}}
 /* Owner (19 Nov 2026): the name picker keeps its own reel-and-lever layout (not the slim meter row), a little shorter;
    the add buttons show only their icon (the full name is their tooltip and accessible name). */
 .cp-pip-tool[data-float=wheel][data-size=small]{display:flex;flex-direction:row;align-items:stretch;padding:6px;min-height:0;overflow:visible}
@@ -2967,7 +2964,6 @@ td[data-cp-att],th[data-cp-att]{background:var(--cp-att-bg)!important;box-shadow
 .cp-pip-tool[data-float=wheel][data-size=small] .cp-pip-ctl{position:absolute;grid-column:auto;grid-row:auto;inset:auto;left:50%;right:auto;top:auto;bottom:-13px;transform:translateX(-50%);justify-self:auto;align-self:auto;display:flex;gap:1px;width:max-content;max-width:calc(100% - 8px);height:26px;padding:1px 4px;border:1px solid var(--pip-gold);border-radius:999px;background:var(--pip-tile2);box-shadow:0 4px 10px -4px rgba(0,0,0,.7);z-index:3}
 .cp-pip-tool[data-float=wheel][data-size=small] .cp-pip-ctl{bottom:6px}
 .cp-pip-tool[data-size=small]:is(:hover,:focus-visible,:has(:focus-visible)){z-index:2}
-.cp-pip-tool[data-float=wheel][data-size=small] .cp-pip-ctl .cp-float-btn{width:24px!important;min-width:24px!important;height:22px!important;border-radius:999px!important}
 /* Owner (19 Nov 2026): Mini for the whole window: every open tool is one tiny row (icon, number, thin line); its
    buttons show on hover; the add row holds the Mini / Full size switch. */
 .cp-pip[data-mini]{padding:0;gap:0}
@@ -2977,7 +2973,6 @@ td[data-cp-att],th[data-cp-att]{background:var(--cp-att-bg)!important;box-shadow
 .cp-pip-mini .cp-pip-read small{font-size:12px}
 .cp-pip-mini .cp-pip-ctl{inset-inline-end:4px;background:var(--pip-tile);border-radius:8px;padding:1px}
 .cp-pip-mini .cp-pip-ctl .cp-timer-mini-controls{display:flex;gap:1px}
-.cp-pip-mini .cp-pip-ctl .cp-timer-mini-btn{width:24px!important;min-width:24px!important;height:20px!important;padding:0!important;border:0!important;border-radius:6px!important;background:var(--pip-line)!important;color:var(--pip-txt)!important}
 .cp-pip-mini .cp-pip-ctl .cp-timer-mini-btn[data-cp-action$="Minute"]{display:none!important}
 .cp-pip-mini[data-phase=last] .cp-pip-read{color:#ffb547}.cp-pip-mini[data-phase=last] .cp-pip-thin i{background:var(--pip-amber)}
 .cp-pip-mini[data-phase=up] .cp-pip-read{color:var(--pip-red)}
@@ -2985,7 +2980,7 @@ td[data-cp-att],th[data-cp-att]{background:var(--cp-att-bg)!important;box-shadow
 .cp-noise-tiny[data-state=off] .cp-pip-read{color:#7d7059}.cp-noise-tiny[data-state=acceptable] .cp-pip-read{color:var(--pip-amber)}.cp-noise-tiny[data-state=loud] .cp-pip-read{color:var(--pip-red)}
 .cp-noise-tiny[data-state=acceptable] .cp-pip-thin i{background:var(--pip-amber)}.cp-noise-tiny[data-state=loud] .cp-pip-thin i{background:var(--pip-red)}
 .cp-noise-tiny .cp-pip-thin i{background:var(--pip-green)}
-.cp-noise-tiny .cp-noise-mic{position:absolute;top:50%;inset-inline-end:64px;transform:translateY(-55%);width:24px!important;height:22px!important;min-width:24px!important;padding:0!important;border:0!important;border-radius:6px!important;background:var(--pip-gold)!important;color:#1a150d!important;visibility:hidden;z-index:2}
+.cp-noise-tiny .cp-noise-mic{position:absolute;top:50%;inset-inline-end:64px;transform:translateY(-55%);visibility:hidden;z-index:2}
 .cp-noise-tiny .cp-noise-mic-text{display:none}
 .cp-pip-mini:is(:hover,:focus-visible,:has(:focus-visible)) .cp-noise-mic{visibility:visible}
 .cp-pip-mode{width:30px;height:28px;border:1px solid #5a4a2d;border-radius:999px;background:var(--pip-line);color:var(--pip-gold);display:inline-grid;place-items:center;cursor:pointer}
@@ -2995,7 +2990,6 @@ td[data-cp-att],th[data-cp-att]{background:var(--cp-att-bg)!important;box-shadow
 .cp-pip[data-mini] .cp-pip-add button{height:22px;padding:0 6px}
 .cp-pip[data-mini] .cp-pip-add .cp-pip-mode{width:26px}
 .cp-pip{--cp-icon-mini:url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%2016%2016%27%20fill%3D%27none%27%20stroke%3D%27black%27%20stroke-width%3D%271.4%27%20stroke-linecap%3D%27round%27%20stroke-linejoin%3D%27round%27%3E%3Cpath%20d%3D%27M9.5%202.5v4h4M6.5%2013.5v-4h-4M9.5%206.5l4-4M6.5%209.5l-4%204%27%2F%3E%3C%2Fsvg%3E");--cp-icon-full:url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%2016%2016%27%20fill%3D%27none%27%20stroke%3D%27black%27%20stroke-width%3D%271.4%27%20stroke-linecap%3D%27round%27%20stroke-linejoin%3D%27round%27%3E%3Cpath%20d%3D%27M9.5%202.5h4v4M6.5%2013.5h-4v-4M13.5%202.5%209%207M2.5%2013.5%207%209%27%2F%3E%3C%2Fsvg%3E")}
-.cp-pip-mini .cp-pip-ctl .cp-timer-mini-btn:hover,.cp-pip-mini .cp-pip-ctl .cp-float-btn:hover{background:var(--pip-gold)!important;color:#1a150d!important}
 .cp-pip-mini .cp-pip-ctl .cp-timer-mini-btn svg{color:inherit}
 
 /* Owner (19 Nov 2026, "fix all of them" after the design review of the floating window). */
@@ -3027,8 +3021,6 @@ td[data-cp-att],th[data-cp-att]{background:var(--cp-att-bg)!important;box-shadow
 .cp-pip-mini .cp-pip-ctl{inset-inline:30px auto;inset-inline-end:auto;top:auto;bottom:3px;transform:none;background:none;padding:0;gap:3px}
 .cp-pip-mini .cp-pip-thin{bottom:6px}
 .cp-pip-mini:is(:hover,:focus-visible,:has(:focus-visible)) .cp-pip-thin{visibility:hidden}
-.cp-pip-mini .cp-pip-ctl .cp-timer-mini-btn,.cp-pip-mini .cp-float-btn{width:24px!important;min-width:24px!important;height:18px!important}
-.cp-noise-tiny .cp-noise-mic{inset-inline-end:auto;inset-inline-start:30px;top:auto;bottom:3px;transform:none;height:18px!important}
 .cp-pip-mini[data-float=noise] .cp-pip-ctl{inset-inline-start:58px}
 .cp-pip-mini .cp-pip-read.cp-pip-off{margin-top:7px}
 .cp-pip-add .cp-pip-mode{width:30px;padding:0;border:0;border-radius:999px;background:var(--pip-gold);color:#1a150d}
@@ -3038,8 +3030,73 @@ td[data-cp-att],th[data-cp-att]{background:var(--cp-att-bg)!important;box-shadow
 .cp-pip-read.cp-pip-off{white-space:normal!important;line-height:1.2!important;overflow-wrap:anywhere}
 /* Owner (19 Nov 2026): microphone off shows only its icon (the button); the words stay for screen readers. */
 .cp-pip-read.cp-pip-off{position:absolute!important;width:1px!important;height:1px!important;overflow:hidden!important;clip:rect(0 0 0 0);white-space:nowrap!important;margin:0!important}
-.cp-noise-tiny[data-state=off] .cp-noise-mic{position:static;visibility:visible;width:30px!important;height:26px!important;margin-top:2px}
+.cp-noise-tiny[data-state=off] .cp-noise-mic{position:static;visibility:visible}
 .cp-noise-tiny[data-state=off]~.cp-pip-ctl,.cp-pip-mini[data-float=noise] .cp-noise-tiny[data-state=off]+.cp-pip-ctl{inset-inline-start:30px}
+/* Owner (19 Nov 2026, approved mock-up): tight Mini rows; the hover buttons sit at the end of the row, so Close never moves;
+   on hover the timer's time makes room for its buttons. Icons are warm white in the tray style (pip-icons.js); gold only
+   for the main button and the numbers. Every button is the same 26 px square. The name picker has no Mini look. */
+.cp-pip{--pip-ink:#ece3cf}
+.cp-pip .cp-pip-ic{color:var(--pip-ink);flex:none}
+.cp-pip-mini{min-height:40px;padding:2px 10px 10px;align-items:center}
+.cp-pip-mini>svg{margin-top:0;width:18px;height:18px}
+.cp-pip-mini .cp-pip-read.cp-pip-off{margin-top:0}
+.cp-pip-mini .cp-pip-ctl{inset-inline-start:auto;inset-inline-end:6px;top:50%;bottom:auto;transform:translateY(-55%);background:var(--pip-tile);border-radius:8px;padding:2px;gap:2px}
+.cp-pip-mini[data-float=timer]:is(:hover,:focus-visible,:has(:focus-visible)) .cp-pip-read{visibility:hidden}
+.cp-pip-mini:is(:hover,:focus-visible,:has(:focus-visible)) .cp-pip-thin{visibility:visible}
+.cp-pip .cp-pip-ctl :is(.cp-timer-mini-btn,.cp-float-btn),.cp-pip-mini .cp-noise-mic{display:grid!important;place-items:center;box-shadow:none!important}
+.cp-noise-tiny .cp-noise-mic{position:absolute;inset-inline-start:auto;inset-inline-end:66px;top:50%;bottom:auto;transform:translateY(-55%)}
+.cp-noise-tiny[data-state=off] .cp-noise-mic{position:static;transform:none;margin:0;visibility:visible}
+.cp-noise-tiny[data-state=off]~.cp-pip-ctl,.cp-pip-mini[data-float=noise] .cp-noise-tiny[data-state=off]+.cp-pip-ctl,.cp-pip-mini[data-float=noise] .cp-pip-ctl{inset-inline-start:auto}
+.cp-pip-add{padding-inline:8px 10px}
+.cp-pip-add .cp-pip-mode,.cp-pip[data-mini] .cp-pip-add .cp-pip-mode{width:30px;height:28px;padding:0;border:0;border-radius:7px;display:inline-grid;place-items:center}
+.cp-pip-mode::before{width:18px;height:18px;-webkit-mask:var(--cp-icon) center/18px no-repeat;mask:var(--cp-icon) center/18px no-repeat}
+.cp-pip-add button:not(.cp-pip-mode){border:0;background:rgba(255,255,255,.05);color:var(--pip-ink);border-radius:6px}
+/* Owner (19 Nov 2026): "be obsessed": one button system in the floating window. Every button is a 28 px square with a
+   7 px corner and a 16 px icon, 4 px apart; the main action (start/pause, the microphone in a tile, Mini/back) is gold,
+   everything else warm white with a soft hover tint. No boxes behind the Mini hover buttons;
+   the main action keeps one slot at the end of every tile (empty for the bell), so Close sits in the same place on each. */
+.cp-pip{--pip-btn:28px;--pip-btn-r:7px}
+.cp-pip :where(.cp-pip-ctl button,.cp-pip-tool>header .cp-timer-mini-btn,.cp-noise-mic,.cp-pip-add button){width:var(--pip-btn)!important;min-width:var(--pip-btn)!important;height:var(--pip-btn)!important;min-height:0!important;padding:0!important;border:0!important;border-radius:var(--pip-btn-r)!important;display:inline-grid!important;place-items:center;box-shadow:none!important;background:transparent!important;color:var(--pip-ink)!important;flex:none}
+.cp-pip :where(.cp-pip-ctl button,.cp-noise-mic,.cp-pip-add button):hover{background:rgba(255,255,255,.08)!important}
+.cp-pip.cp-pip :is([data-cp-action="m4.timer.start"],[data-cp-action="m4.timer.resume"],[data-cp-action="m4.timer.pause"]),.cp-pip.cp-pip .cp-pip-tool:not(.cp-pip-mini) .cp-noise-mic,.cp-pip.cp-pip .cp-pip-add .cp-pip-mode{background:var(--pip-gold)!important;color:#1a150d!important}
+.cp-pip.cp-pip :is([data-cp-action="m4.timer.start"],[data-cp-action="m4.timer.resume"],[data-cp-action="m4.timer.pause"]):hover,.cp-pip.cp-pip .cp-pip-tool:not(.cp-pip-mini) .cp-noise-mic:hover,.cp-pip.cp-pip .cp-pip-add .cp-pip-mode:hover{background:#f6cf6c!important}
+.cp-pip :is(.cp-pip-ctl button,.cp-timer-mini-btn,.cp-noise-mic,.cp-pip-mode)::before{width:16px!important;height:16px!important;-webkit-mask-size:16px!important;mask-size:16px!important}
+.cp-pip .cp-noise-mic>svg{display:none}
+.cp-pip .cp-pip-ctl,.cp-pip .cp-timer-mini-controls{gap:4px!important}
+.cp-pip-mini .cp-pip-ctl{background:transparent;padding:0;inset-inline-end:6px}
+.cp-pip-tool[data-float=wheel] .cp-pip-ctl{border-radius:calc(var(--pip-btn-r) + 2px)!important;padding:2px!important}
+.cp-pip-add{gap:4px!important;align-items:center}
+.cp-pip-add button:not(.cp-pip-mode){width:auto!important;padding-inline:6px 7px!important;gap:3px;display:inline-flex!important;align-items:center;background:rgba(255,255,255,.05)!important}
+.cp-pip-add button:not(.cp-pip-mode) b{color:var(--pip-mut);font-weight:600;font-size:13px;line-height:1}
+.cp-pip-add button:not(.cp-pip-mode) svg{width:16px;height:16px}
+.cp-pip-tool[data-float=bell][data-size=small]>header>strong{grid-column:3/5}
+/* Nothing may cross anything (owner, 19 Nov 2026): the Mini buttons sit in the row above its line; in a narrow tile the
+   hover buttons take the timer's place (as in Mini) and the bell's unit; the name picker's buttons centre under its reel. */
+.cp-pip .cp-pip-mini .cp-pip-ctl{top:auto;bottom:10px;transform:none}
+.cp-noise-tiny .cp-noise-mic{top:auto;bottom:10px;transform:none}
+@container (max-width:250px){
+ .cp-pip-tool[data-float=timer][data-size=small]:is(:hover,:focus-visible,:has(:focus-visible)) .cp-pip-read{visibility:hidden}
+ .cp-pip-tool[data-float=bell][data-size=small]:is(:hover,:focus-visible,:has(:focus-visible)) .cp-pip-read small{display:none}
+}
+.cp-pip-tool[data-float=wheel][data-size=small] .cp-pip-ctl{left:auto;inset-inline-start:calc((100% - 62px) / 2);transform:translateX(-50%)}
+.cp-pip[dir=rtl] .cp-pip-tool[data-float=wheel][data-size=small] .cp-pip-ctl{transform:translateX(50%)}
+/* The app's general command hover (cream) does not belong in the dark floating window: its own soft tint for the quiet
+   buttons and a lighter gold for the main ones. */
+.cp-pip{--cp-active:rgba(255,255,255,.08)}
+.cp-pip .cp-pip-tool .cp-cmd:is([data-cp-action="m4.timer.start"],[data-cp-action="m4.timer.resume"],[data-cp-action="m4.timer.pause"]):not([data-active=true]):not(:disabled):hover,.cp-pip .cp-pip-tool:not(.cp-pip-mini) .cp-cmd.cp-noise-mic:not([data-active=true]):not(:disabled):hover{background:#f6cf6c!important}
+/* pip-icons:start (generated by scripts/pip-icon-css.mjs from src/core/pip-icons.js) */
+.cp-pip :is([data-cp-action="m4.timer.start"],[data-cp-action="m4.timer.resume"],[data-cp-action="m4.timer.pause"],[data-cp-action="m4.timer.reset"],[data-cp-action="m4.noise.start"],[data-cp-action="m4.noise.stop"])>svg{display:none}
+.cp-pip :is([data-cp-action="m4.timer.start"],[data-cp-action="m4.timer.resume"],[data-cp-action="m4.timer.pause"],[data-cp-action="m4.timer.reset"],[data-cp-action="m4.noise.start"],[data-cp-action="m4.noise.stop"])::before{content:"";flex:none;width:16px;height:16px;background:currentColor;-webkit-mask:var(--pip-ic) center/16px no-repeat;mask:var(--pip-ic) center/16px no-repeat}
+.cp-pip [data-cp-action="m4.timer.start"],.cp-pip [data-cp-action="m4.timer.resume"]{--pip-ic:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2020%2020%22%3E%3Cpath%20d%3D%22M6.5%204.6v10.8a.8.8%200%200%200%201.2.7l8.6-5.4a.8.8%200%200%200%200-1.4L7.7%203.9a.8.8%200%200%200-1.2.7z%22%20fill%3D%22%23000%22%2F%3E%3C%2Fsvg%3E")}
+.cp-pip [data-cp-action="m4.timer.pause"]{--pip-ic:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2020%2020%22%3E%3Crect%20x%3D%225.5%22%20y%3D%224%22%20width%3D%223%22%20height%3D%2212%22%20rx%3D%221%22%20fill%3D%22%23000%22%2F%3E%3Crect%20x%3D%2211.5%22%20y%3D%224%22%20width%3D%223%22%20height%3D%2212%22%20rx%3D%221%22%20fill%3D%22%23000%22%2F%3E%3C%2Fsvg%3E")}
+.cp-pip [data-cp-action="m4.timer.reset"]{--pip-ic:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2020%2020%22%3E%3Cpath%20d%3D%22M4.5%2010a5.5%205.5%200%201%200%201.8-4.1M5.6%202.8v3.6h3.6%22%20stroke%3D%22%23000%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20fill%3D%22none%22%20stroke-width%3D%221.5%22%2F%3E%3C%2Fsvg%3E")}
+.cp-pip [data-cp-action="m4.noise.start"]{--pip-ic:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2020%2020%22%3E%3Cpath%20d%3D%22M12.75%208.6V5.5a2.75%202.75%200%200%200-5.3-1M7.25%207.75v1.25a2.75%202.75%200%200%200%204.2%202.35M4.75%209.5a5.25%205.25%200%200%200%208.4%204.2M15.1%2010.6c.1-.35.15-.7.15-1.1M10%2014.75v2.5M3.5%203.5l13%2013%22%20stroke%3D%22%23000%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20fill%3D%22none%22%20stroke-width%3D%221.5%22%2F%3E%3C%2Fsvg%3E")}
+.cp-pip [data-cp-action="m4.noise.stop"]{--pip-ic:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2020%2020%22%3E%3Crect%20x%3D%227.25%22%20y%3D%222.75%22%20width%3D%225.5%22%20height%3D%229%22%20rx%3D%222.75%22%20fill%3D%22%23000%22%20fill-opacity%3D%22.14%22%20stroke%3D%22%23000%22%20stroke-width%3D%221.5%22%2F%3E%3Cpath%20d%3D%22M4.75%209.5a5.25%205.25%200%200%200%2010.5%200M10%2014.75v2.5%22%20stroke%3D%22%23000%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20fill%3D%22none%22%20stroke-width%3D%221.5%22%2F%3E%3C%2Fsvg%3E")}
+.cp-pip .cp-float-btn[data-icon=close]{--cp-icon:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2020%2020%22%3E%3Cpath%20d%3D%22M5.5%205.5l9%209M14.5%205.5l-9%209%22%20stroke%3D%22%23000%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20fill%3D%22none%22%20stroke-width%3D%221.5%22%2F%3E%3C%2Fsvg%3E")}
+.cp-pip .cp-float-btn[data-icon=sound]{--cp-icon:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2020%2020%22%3E%3Cpath%20d%3D%22M3.5%207.75h2.5L9.6%204.6a.6.6%200%200%201%201%20.45v9.9a.6.6%200%200%201-1%20.45L6%2012.25H3.5a.75.75%200%200%201-.75-.75v-3a.75.75%200%200%201%20.75-.75z%22%20fill%3D%22%23000%22%20fill-opacity%3D%22.14%22%20stroke%3D%22%23000%22%20stroke-width%3D%221.4%22%20stroke-linejoin%3D%22round%22%2F%3E%3Cpath%20d%3D%22M13%207.5a3.5%203.5%200%200%201%200%205M15.25%205.25a6.6%206.6%200%200%201%200%209.5%22%20stroke%3D%22%23000%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20fill%3D%22none%22%20stroke-width%3D%221.4%22%2F%3E%3C%2Fsvg%3E")}
+.cp-pip .cp-float-btn[data-icon=mute]{--cp-icon:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2020%2020%22%3E%3Cpath%20d%3D%22M3.5%207.75h2.5L9.6%204.6a.6.6%200%200%201%201%20.45v9.9a.6.6%200%200%201-1%20.45L6%2012.25H3.5a.75.75%200%200%201-.75-.75v-3a.75.75%200%200%201%20.75-.75z%22%20fill%3D%22%23000%22%20fill-opacity%3D%22.14%22%20stroke%3D%22%23000%22%20stroke-width%3D%221.4%22%20stroke-linejoin%3D%22round%22%2F%3E%3Cpath%20d%3D%22M13.5%208l4%204M17.5%208l-4%204%22%20stroke%3D%22%23000%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20fill%3D%22none%22%20stroke-width%3D%221.4%22%2F%3E%3C%2Fsvg%3E")}
+.cp-pip{--cp-icon-mini:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2020%2020%22%3E%3Crect%20x%3D%223%22%20y%3D%224%22%20width%3D%2214%22%20height%3D%223%22%20rx%3D%221.5%22%20fill%3D%22%23000%22%2F%3E%3Crect%20x%3D%223%22%20y%3D%228.5%22%20width%3D%2214%22%20height%3D%223%22%20rx%3D%221.5%22%20fill%3D%22%23000%22%20opacity%3D%22.7%22%2F%3E%3Crect%20x%3D%223%22%20y%3D%2213%22%20width%3D%2214%22%20height%3D%223%22%20rx%3D%221.5%22%20fill%3D%22%23000%22%20opacity%3D%22.45%22%2F%3E%3C%2Fsvg%3E");--cp-icon-full:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2020%2020%22%3E%3Crect%20x%3D%223%22%20y%3D%223%22%20width%3D%2214%22%20height%3D%226%22%20rx%3D%222%22%20fill%3D%22%23000%22%2F%3E%3Crect%20x%3D%223%22%20y%3D%2211%22%20width%3D%2214%22%20height%3D%226%22%20rx%3D%222%22%20fill%3D%22%23000%22%20opacity%3D%22.6%22%2F%3E%3C%2Fsvg%3E")}
+/* pip-icons:end */
 /* M56 design foundations (owner-supplied Master Implementation Brief, M56; design report §7–§8).
    One set of tokens for the frame and the new modules. Protected Gradebook views (Marks, Groups, Behaviour,
    Adjustments, Analysis, the original wheel, the Settings drawer and the class manager) do not use them. */
@@ -10134,7 +10191,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.seat.level.T": "Top",
     "ux.seat.level.M": "Middle",
     "ux.seat.level.L": "Lower",
-    "ux.float.mini": "Mini: all tools small (the name picker closes)",
+    "ux.float.mini": "Mini: all tools small",
     "ux.float.full": "Back to full size",
     "ux.pip.minLeft": "min left",
     "ux.pip.break": "Break",
@@ -16607,7 +16664,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.seat.level.T": "\u0623\u0639\u0644\u0649",
     "ux.seat.level.M": "\u0645\u062A\u0648\u0633\u0637",
     "ux.seat.level.L": "\u0623\u062F\u0646\u0649",
-    "ux.float.mini": "\u0645\u0635\u063A\u0651\u0631: \u0643\u0644 \u0627\u0644\u0623\u062F\u0648\u0627\u062A \u0635\u063A\u064A\u0631\u0629 (\u0648\u064A\u064F\u063A\u0644\u0642 \u0645\u0646\u062A\u0642\u064A \u0627\u0644\u0623\u0633\u0645\u0627\u0621)",
+    "ux.float.mini": "\u0645\u0635\u063A\u0651\u0631: \u0643\u0644 \u0627\u0644\u0623\u062F\u0648\u0627\u062A \u0635\u063A\u064A\u0631\u0629",
     "ux.float.full": "\u0627\u0644\u0639\u0648\u062F\u0629 \u0625\u0644\u0649 \u0627\u0644\u062D\u062C\u0645 \u0627\u0644\u0643\u0627\u0645\u0644",
     "ux.pip.minLeft": "\u062F\u0642\u064A\u0642\u0629 \u0645\u062A\u0628\u0642\u064A\u0629",
     "ux.pip.break": "\u0627\u0633\u062A\u0631\u0627\u062D\u0629",
@@ -39293,12 +39350,12 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
   }
   function downloadBackup(doc) {
     validate(doc);
-    const url = URL.createObjectURL(new Blob([JSON.stringify(doc, null, 2)], { type: "application/json" }));
+    const url2 = URL.createObjectURL(new Blob([JSON.stringify(doc, null, 2)], { type: "application/json" }));
     const anchor = document.createElement("a");
-    anchor.href = url;
+    anchor.href = url2;
     anchor.download = timestampedBackupName();
     anchor.click();
-    setTimeout(() => URL.revokeObjectURL(url), 1e3);
+    setTimeout(() => URL.revokeObjectURL(url2), 1e3);
   }
 
   // src/gradebook/00-file-io.js
@@ -47457,7 +47514,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "seat.level.T": ["Top", "\u0623\u0639\u0644\u0649"],
     "seat.level.M": ["Middle", "\u0645\u062A\u0648\u0633\u0637"],
     "seat.level.L": ["Lower", "\u0623\u062F\u0646\u0649"],
-    "float.mini": ["Mini: all tools small (the name picker closes)", "\u0645\u0635\u063A\u0651\u0631: \u0643\u0644 \u0627\u0644\u0623\u062F\u0648\u0627\u062A \u0635\u063A\u064A\u0631\u0629 (\u0648\u064A\u064F\u063A\u0644\u0642 \u0645\u0646\u062A\u0642\u064A \u0627\u0644\u0623\u0633\u0645\u0627\u0621)"],
+    "float.mini": ["Mini: all tools small", "\u0645\u0635\u063A\u0651\u0631: \u0643\u0644 \u0627\u0644\u0623\u062F\u0648\u0627\u062A \u0635\u063A\u064A\u0631\u0629"],
     "float.full": ["Back to full size", "\u0627\u0644\u0639\u0648\u062F\u0629 \u0625\u0644\u0649 \u0627\u0644\u062D\u062C\u0645 \u0627\u0644\u0643\u0627\u0645\u0644"],
     "pip.minLeft": ["min left", "\u062F\u0642\u064A\u0642\u0629 \u0645\u062A\u0628\u0642\u064A\u0629"],
     "pip.break": ["Break", "\u0627\u0633\u062A\u0631\u0627\u062D\u0629"],
@@ -47696,11 +47753,11 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     return parts.map((part) => String(part ?? "").replace(/[\\/:*?"<>|\u0000-\u001f]+/g, "-").replace(/\s+/g, " ").trim()).filter(Boolean).join(" - ").slice(0, 150).trim() || "ClassPilot";
   }
   function downloadBytes(data, name, type = "application/octet-stream") {
-    const url = URL.createObjectURL(new Blob([data], { type })), link = document.createElement("a");
-    link.href = url;
+    const url2 = URL.createObjectURL(new Blob([data], { type })), link = document.createElement("a");
+    link.href = url2;
     link.download = name;
     link.click();
-    setTimeout(() => URL.revokeObjectURL(url), 3e4);
+    setTimeout(() => URL.revokeObjectURL(url2), 3e4);
   }
   function csvText(rows) {
     return "\uFEFF" + rows.map((row3) => row3.map((value) => {
@@ -48943,6 +49000,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "wheel": ["L", '<circle cx="12" cy="12" r="8"/><path d="M12 4v16M4 12h16M6.3 6.3l11.4 11.4M17.7 6.3 6.3 17.7"/><circle cx="12" cy="12" r="1.8" class="accf"/>'],
     "projecting": ["L", '<rect x="3.5" y="4.5" width="17" height="11" rx="2"/><path d="M12 15.5V20M8 20h8"/><path d="M8 10h8" class="acc"/>'],
     "popout": ["I", '<rect x="2.8" y="7" width="13.5" height="13.5" rx="2.5" fill="#fff" stroke="#26262e" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/><rect x="9.5" y="2.8" width="11.5" height="11.5" rx="2.5" fill="#d7c4ff" stroke="#26262e" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/><path d="M13 10.5l4-4M14 6.5h3v3" fill="none" stroke="#26262e" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/>'],
+    // Owner (19 Nov 2026): the floating window shows every tool as a gold line icon.
     "recovery": ["L", '<path d="M4.5 12a7.5 7.5 0 1 0 2.2-5.3L4.5 9"/><path d="M4.5 4.5V9H9"/><path d="M12 8.5V12l2.5 1.5" class="acc"/>']
   };
   var ELEMENT = /<(path|circle|rect)\b([^>]*?)\/>/g;
@@ -56233,9 +56291,9 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     if (worker) return () => {
     };
     try {
-      const url = URL.createObjectURL(new Blob([worker_default], { type: "text/javascript" }));
-      worker = new Worker(url);
-      URL.revokeObjectURL(url);
+      const url2 = URL.createObjectURL(new Blob([worker_default], { type: "text/javascript" }));
+      worker = new Worker(url2);
+      URL.revokeObjectURL(url2);
       worker.onmessage = (e) => {
         if (e.data.type === "events" && e.data.generation === generation) recordEvents(e.data.events);
       };
@@ -62380,13 +62438,13 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     return new Promise((resolve, reject) => canvas.toBlob((blob) => blob ? resolve(blob) : reject(new Error("cert.imageFailed")), "image/png"));
   }
   function saveBlob(blob, name) {
-    const url = URL.createObjectURL(blob), link = document.createElement("a");
-    link.href = url;
+    const url2 = URL.createObjectURL(blob), link = document.createElement("a");
+    link.href = url2;
     link.download = name;
     document.body.append(link);
     link.click();
     link.remove();
-    setTimeout(() => URL.revokeObjectURL(url), 1e3);
+    setTimeout(() => URL.revokeObjectURL(url2), 1e3);
   }
 
   // src/modules/certificates/prestige.jsx
@@ -64539,7 +64597,48 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     };
   }
 
+  // src/core/pip-icons.js
+  var S = 'stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none"', SOFT = 'fill="currentColor" fill-opacity=".14"';
+  var speaker = `<path d="M3.5 7.75h2.5L9.6 4.6a.6.6 0 0 1 1 .45v9.9a.6.6 0 0 1-1 .45L6 12.25H3.5a.75.75 0 0 1-.75-.75v-3a.75.75 0 0 1 .75-.75z" ${SOFT} stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>`;
+  var PIP_ICONS = {
+    timer: `<circle cx="10" cy="11" r="6.25" ${SOFT} stroke="currentColor" stroke-width="1.5"/><path d="M8 2.75h4M10 2.75v2M10 11V8M15.2 5.3l1.1-1.1" ${S} stroke-width="1.5"/>`,
+    bell: `<path d="M5 13.5V9a5 5 0 0 1 10 0v4.5l1.25 1.75H3.75z" ${SOFT} stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M8.2 17.25a2 2 0 0 0 3.6 0" ${S} stroke-width="1.5"/>`,
+    noise: `<path d="M3 9v2M6 6.5v7M9 4v12M12 6v8M15 8v4M18 9.25v1.5" ${S} stroke-width="1.6"/>`,
+    wheel: `<circle cx="10" cy="10" r="7" ${SOFT} stroke="currentColor" stroke-width="1.5"/><path d="M10 3v14M3 10h14M5.05 5.05l9.9 9.9M14.95 5.05l-9.9 9.9" ${S} stroke-width="1" opacity=".7"/><circle cx="10" cy="10" r="2" fill="currentColor"/>`,
+    play: '<path d="M6.5 4.6v10.8a.8.8 0 0 0 1.2.7l8.6-5.4a.8.8 0 0 0 0-1.4L7.7 3.9a.8.8 0 0 0-1.2.7z" fill="currentColor"/>',
+    pause: '<rect x="5.5" y="4" width="3" height="12" rx="1" fill="currentColor"/><rect x="11.5" y="4" width="3" height="12" rx="1" fill="currentColor"/>',
+    reset: `<path d="M4.5 10a5.5 5.5 0 1 0 1.8-4.1M5.6 2.8v3.6h3.6" ${S} stroke-width="1.5"/>`,
+    close: `<path d="M5.5 5.5l9 9M14.5 5.5l-9 9" ${S} stroke-width="1.5"/>`,
+    sound: speaker + `<path d="M13 7.5a3.5 3.5 0 0 1 0 5M15.25 5.25a6.6 6.6 0 0 1 0 9.5" ${S} stroke-width="1.4"/>`,
+    mute: speaker + `<path d="M13.5 8l4 4M17.5 8l-4 4" ${S} stroke-width="1.4"/>`,
+    mic: `<rect x="7.25" y="2.75" width="5.5" height="9" rx="2.75" ${SOFT} stroke="currentColor" stroke-width="1.5"/><path d="M4.75 9.5a5.25 5.25 0 0 0 10.5 0M10 14.75v2.5" ${S} stroke-width="1.5"/>`,
+    micOff: `<path d="M12.75 8.6V5.5a2.75 2.75 0 0 0-5.3-1M7.25 7.75v1.25a2.75 2.75 0 0 0 4.2 2.35M4.75 9.5a5.25 5.25 0 0 0 8.4 4.2M15.1 10.6c.1-.35.15-.7.15-1.1M10 14.75v2.5M3.5 3.5l13 13" ${S} stroke-width="1.5"/>`,
+    mini: '<rect x="3" y="4" width="14" height="3" rx="1.5" fill="currentColor"/><rect x="3" y="8.5" width="14" height="3" rx="1.5" fill="currentColor" opacity=".7"/><rect x="3" y="13" width="14" height="3" rx="1.5" fill="currentColor" opacity=".45"/>',
+    full: '<rect x="3" y="3" width="14" height="6" rx="2" fill="currentColor"/><rect x="3" y="11" width="14" height="6" rx="2" fill="currentColor" opacity=".6"/>'
+  };
+  var url = (name) => 'url("data:image/svg+xml,' + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">${PIP_ICONS[name].replaceAll("currentColor", "#000")}</svg>`).replace(/'/g, "%27").replace(/\(/g, "%28").replace(/\)/g, "%29") + '")';
+  var BUTTONS = [
+    ['.cp-pip [data-cp-action="m4.timer.start"],.cp-pip [data-cp-action="m4.timer.resume"]', "play"],
+    ['.cp-pip [data-cp-action="m4.timer.pause"]', "pause"],
+    ['.cp-pip [data-cp-action="m4.timer.reset"]', "reset"],
+    ['.cp-pip [data-cp-action="m4.noise.start"]', "micOff"],
+    ['.cp-pip [data-cp-action="m4.noise.stop"]', "mic"],
+    [".cp-pip .cp-float-btn[data-icon=close]", "close"],
+    [".cp-pip .cp-float-btn[data-icon=sound]", "sound"],
+    [".cp-pip .cp-float-btn[data-icon=mute]", "mute"]
+  ];
+  function pipIconCss() {
+    const lines = ["/* pip-icons:start (generated by scripts/pip-icon-css.mjs from src/core/pip-icons.js) */"];
+    lines.push('.cp-pip :is([data-cp-action="m4.timer.start"],[data-cp-action="m4.timer.resume"],[data-cp-action="m4.timer.pause"],[data-cp-action="m4.timer.reset"],[data-cp-action="m4.noise.start"],[data-cp-action="m4.noise.stop"])>svg{display:none}');
+    lines.push('.cp-pip :is([data-cp-action="m4.timer.start"],[data-cp-action="m4.timer.resume"],[data-cp-action="m4.timer.pause"],[data-cp-action="m4.timer.reset"],[data-cp-action="m4.noise.start"],[data-cp-action="m4.noise.stop"])::before{content:"";flex:none;width:16px;height:16px;background:currentColor;-webkit-mask:var(--pip-ic) center/16px no-repeat;mask:var(--pip-ic) center/16px no-repeat}');
+    for (const [selector, name] of BUTTONS) lines.push(selector.startsWith(".cp-pip .cp-float-btn") ? `${selector}{--cp-icon:${url(name)}}` : `${selector}{--pip-ic:${url(name)}}`);
+    lines.push(`.cp-pip{--cp-icon-mini:${url("mini")};--cp-icon-full:${url("full")}}`);
+    lines.push("/* pip-icons:end */");
+    return lines.join("\n");
+  }
+
   // src/core/pip-tiles.jsx
+  var PipIcon = ({ name }) => /* @__PURE__ */ cpJsx("svg", { className: "cp-pip-ic", "aria-hidden": "true", width: "18", height: "18", viewBox: "0 0 20 20", dangerouslySetInnerHTML: { __html: PIP_ICONS[name] } });
   var pct3 = (value) => (Math.max(0, Math.min(1, value)) * 100).toFixed(1) + "%";
   var toMin = (hhmm2) => {
     const [h, m] = String(hhmm2 || "0:0").split(":").map(Number);
@@ -64670,11 +64769,10 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     const [miniPref, setMiniPref] = useState(() => {
       const saved = readLayout();
       return !!(saved.mini ?? saved.bellMini);
-    }), miniOn = !!pip2 && miniPref && inPip.length > 0 && !inPip.includes("wheel");
+    }), miniOn = !!pip2 && miniPref && inPip.length > 0;
     const miniOnNow = () => {
       setMiniPref(true);
       writeLayout(() => ({ mini: true }));
-      if (state2.wheel === "pip") set("wheel", void 0);
     };
     const miniOff = () => {
       setMiniPref(false);
@@ -64698,10 +64796,6 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     const float = (tool, origin = "open") => floatTools([tool], origin === "tray" ? "small" : "large", origin);
     const floatAll = () => {
       const saved = readLayout(), list2 = (saved.tools || []).filter((tool) => floating.includes(tool));
-      if (!list2.length || list2.includes("wheel")) {
-        setMiniPref(false);
-        writeLayout(() => ({ mini: false }));
-      }
       composed.current = true;
       floatTools(list2.length ? list2 : floating, (tool) => saved.sizes?.[tool] || "small", void 0);
     };
@@ -64732,7 +64826,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
           try {
             const box2 = pip2.document.querySelector(".cp-pip");
             if (!box2) return;
-            const saved = readLayout().windows?.[fitKey], width = miniOn ? MINI_WIDTH : saved ? saved.w : Math.max(...inPip.map((tool) => size(tool) === "small" ? SMALL.width : LARGE[tool].width)), height = fitsContent ? Math.ceil(box2.getBoundingClientRect().height) : saved ? saved.h : Math.min(box2.scrollHeight, Math.round(screen.availHeight * 0.85));
+            const saved = readLayout().windows?.[fitKey], width = miniOn ? inPip.includes("wheel") ? size("wheel") === "small" ? SMALL.width : LARGE.wheel.width : MINI_WIDTH : saved ? saved.w : Math.max(...inPip.map((tool) => size(tool) === "small" ? SMALL.width : LARGE[tool].width)), height = fitsContent ? Math.ceil(box2.getBoundingClientRect().height) : saved ? saved.h : Math.min(box2.scrollHeight, Math.round(screen.availHeight * 0.85));
             if ((!first && !miniOn || Math.abs(pip2.innerWidth - width) < 2) && Math.abs(pip2.innerHeight - height) < 2) return;
             ignoreResize.current = Date.now() + 900;
             pip2.resizeTo((miniOn || first ? width : pip2.innerWidth) + (pip2.outerWidth - pip2.innerWidth), height + (pip2.outerHeight - pip2.innerHeight));
@@ -64789,6 +64883,10 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       set("bell", void 0);
       setView?.("module:bell");
     } }) : view === "module:" + tool ? /* @__PURE__ */ cpJsx("p", null, uxText("tools.alreadyOpen")) : tool === "timer" ? /* @__PURE__ */ cpJsx(TimerView, { compact: true }) : /* @__PURE__ */ cpJsx(NoiseView, { compact: true, mini: small, doc, onUpdate });
+    const tileSection = (tool) => {
+      const small = size(tool) === "small", tile2 = small && tool === "timer" ? timerTile(profile3, now) : small && tool === "bell" ? bellTile(profile3, now) : null;
+      return /* @__PURE__ */ cpJsx("section", { key: tool, className: "cp-pip-tool", "data-float": tool, "data-size": size(tool), "data-phase": tile2?.phase || void 0, tabIndex: small ? 0 : void 0, "aria-label": t("ux.dock." + tool) }, /* @__PURE__ */ cpJsx("header", null, /* @__PURE__ */ cpJsx(PipIcon, { name: tool }), /* @__PURE__ */ cpJsx("strong", null, tile2 ? cpRaw(tile2.label) : t("ux.dock." + tool)), tile2?.primary), /* @__PURE__ */ cpJsx("div", { className: "cp-pip-content", ref: tool === "wheel" ? wheelScope : void 0 }, tool === "wheel" && size(tool) === "small" && /* @__PURE__ */ cpJsx(NameReel, { scope: wheelScope }), tool === "wheel" ? /* @__PURE__ */ cpJsx("div", { className: "cp-wheel-host", inert: size(tool) === "small" ? "" : void 0 }, /* @__PURE__ */ cpJsx(WheelModal, { key: wheelKey, doc, onUpdate, memKey: wheelKey, onClose: () => set("wheel", void 0) })) : tile2 ? tile2.body : body(tool, size(tool) === "small")), /* @__PURE__ */ cpJsx("div", { className: "cp-pip-ctl" }, tile2?.extra, SOUND[tool] && /* @__PURE__ */ cpJsx("button", { ...actionProps("ux.float.sound", () => toggleSound(tool), "pip:" + tool), "aria-pressed": SOUND[tool](profile3), "aria-label": t(SOUND[tool](profile3) ? "ux.float.soundOff" : "ux.float.soundOn") + ": " + t("ux.dock." + tool), title: t(SOUND[tool](profile3) ? "ux.float.soundOff" : "ux.float.soundOn"), className: "cp-float-btn", "data-icon": SOUND[tool](profile3) ? "sound" : "mute" }), !small && /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx("button", { ...actionProps("ux.float.size", () => resize(tool, size(tool) === "small" ? "large" : "small"), "pip:" + tool), "aria-label": t(size(tool) === "small" ? "ux.float.bigger" : "ux.float.smaller"), title: t(size(tool) === "small" ? "ux.float.bigger" : "ux.float.smaller"), "aria-pressed": size(tool) === "large", className: "cp-float-btn", "data-icon": size(tool) === "small" ? "max" : "min" }), /* @__PURE__ */ cpJsx("button", { ...actionProps("ux.float.back", () => back(tool), tool), "aria-label": t("ux.float.back"), title: t("ux.float.back"), className: "cp-float-btn", "data-icon": "back" })), /* @__PURE__ */ cpJsx("button", { ...actionProps("ux.float.close", () => set(tool, void 0), "pip:" + tool), "aria-label": t("ux.float.close"), title: t("ux.float.close"), className: "cp-float-btn", "data-icon": "close" })));
+    };
     return /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx("span", { className: "cp-tool-dock", role: "group", "aria-label": t("improve.tools") }, tools.map((tool) => /* @__PURE__ */ cpJsx("button", { key: tool, ...actionProps("ux.dock." + tool, () => set(tool, state2[tool] ? void 0 : "open"), tool), "aria-pressed": !!state2[tool], "aria-label": label(tool), title: label(tool), className: "cp-dock-btn" }, /* @__PURE__ */ cpJsx(NavIcon, { type: tool }), /* @__PURE__ */ cpJsx("span", { className: "cp-tb-label" }, t("ux.dock." + tool)), badge[tool] && /* @__PURE__ */ cpJsx("span", { className: "cp-dock-badge", "aria-hidden": "true" }, cpRaw(badge[tool])))), floatSupported() && /* @__PURE__ */ cpJsx("button", { ...actionProps("ux.float.all", floatAll), "aria-pressed": inPip.length === floating.length, "aria-label": t("ux.float.all"), title: t("ux.float.allHint"), className: "cp-dock-btn cp-dock-float", "data-icon": "pop" }, /* @__PURE__ */ cpJsx(AppIcon, { name: "popout", size: 19 }))), tools.filter((tool) => state2[tool] === "open").map((tool) => /* @__PURE__ */ cpJsx(FloatingWindow, { key: tool, id: tool, title: t("ux.dock." + tool), icon: /* @__PURE__ */ cpJsx(NavIcon, { type: tool }), fallback: { timer: { x: 240, y: 70 }, bell: { x: 700, y: 70 }, noise: { x: 700, y: 330 } }[tool], max: max === tool, onMax: () => setMax(max === tool ? null : tool), onShrink: () => {
       set(tool, "tray");
       if (max === tool) setMax(null);
@@ -64796,16 +64894,13 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       set(tool, void 0);
       if (max === tool) setMax(null);
     }, onPop: floatSupported() ? () => float(tool) : void 0, sound: SOUND[tool] ? { on: SOUND[tool](profile3), toggle: () => toggleSound(tool) } : null }, body(tool))), pip2 && inPip.length > 0 && ReactDOM.createPortal(/* @__PURE__ */ cpJsx(FloatHost.Provider, { value: { win: pip2, doc: pip2.document } }, /* @__PURE__ */ cpJsx("div", { className: "cp-pip", "data-mini": miniOn ? "true" : void 0, dir: document.querySelector(".cp-workspace")?.dir || "ltr" }, miniOn ? /* @__PURE__ */ cpJsx("div", { className: "cp-pip-tools" }, inPip.map((tool) => {
+      if (tool === "wheel") return tileSection(tool);
       const m = tool === "timer" ? timerMini(profile3, now) : tool === "bell" ? bellMini(profile3, now) : null;
-      return /* @__PURE__ */ cpJsx("section", { key: tool, className: "cp-pip-tool cp-pip-mini", "data-float": tool, "data-size": "mini", "data-phase": m?.phase || void 0, tabIndex: 0, "aria-label": t("ux.dock." + tool) }, /* @__PURE__ */ cpJsx(NavIcon, { type: tool }), tool === "noise" ? /* @__PURE__ */ cpJsx(NoiseView, { compact: true, tiny: true, doc, onUpdate }) : m.body, /* @__PURE__ */ cpJsx("div", { className: "cp-pip-ctl" }, m?.primary, m?.extra, tool !== "timer" && SOUND[tool] && /* @__PURE__ */ cpJsx("button", { ...actionProps("ux.float.sound", () => toggleSound(tool), "pip:" + tool), "aria-pressed": SOUND[tool](profile3), "aria-label": t(SOUND[tool](profile3) ? "ux.float.soundOff" : "ux.float.soundOn") + ": " + t("ux.dock." + tool), title: t(SOUND[tool](profile3) ? "ux.float.soundOff" : "ux.float.soundOn"), className: "cp-float-btn", "data-icon": SOUND[tool](profile3) ? "sound" : "mute" }), /* @__PURE__ */ cpJsx("button", { ...actionProps("ux.float.close", () => set(tool, void 0), "pip:" + tool), "aria-label": t("ux.float.close"), title: t("ux.float.close"), className: "cp-float-btn", "data-icon": "close" })));
-    })) : /* @__PURE__ */ cpJsx("div", { className: "cp-pip-tools" }, inPip.map((tool) => {
-      const small = size(tool) === "small", tile2 = small && tool === "timer" ? timerTile(profile3, now) : small && tool === "bell" ? bellTile(profile3, now) : null;
-      return /* @__PURE__ */ cpJsx("section", { key: tool, className: "cp-pip-tool", "data-float": tool, "data-size": size(tool), "data-phase": tile2?.phase || void 0, tabIndex: small ? 0 : void 0, "aria-label": t("ux.dock." + tool) }, /* @__PURE__ */ cpJsx("header", null, /* @__PURE__ */ cpJsx(NavIcon, { type: tool }), /* @__PURE__ */ cpJsx("strong", null, tile2 ? cpRaw(tile2.label) : t("ux.dock." + tool)), tile2?.primary), /* @__PURE__ */ cpJsx("div", { className: "cp-pip-content", ref: tool === "wheel" ? wheelScope : void 0 }, tool === "wheel" && size(tool) === "small" && /* @__PURE__ */ cpJsx(NameReel, { scope: wheelScope }), tool === "wheel" ? /* @__PURE__ */ cpJsx("div", { className: "cp-wheel-host", inert: size(tool) === "small" ? "" : void 0 }, /* @__PURE__ */ cpJsx(WheelModal, { key: wheelKey, doc, onUpdate, memKey: wheelKey, onClose: () => set("wheel", void 0) })) : tile2 ? tile2.body : body(tool, size(tool) === "small")), /* @__PURE__ */ cpJsx("div", { className: "cp-pip-ctl" }, tile2?.extra, SOUND[tool] && /* @__PURE__ */ cpJsx("button", { ...actionProps("ux.float.sound", () => toggleSound(tool), "pip:" + tool), "aria-pressed": SOUND[tool](profile3), "aria-label": t(SOUND[tool](profile3) ? "ux.float.soundOff" : "ux.float.soundOn") + ": " + t("ux.dock." + tool), title: t(SOUND[tool](profile3) ? "ux.float.soundOff" : "ux.float.soundOn"), className: "cp-float-btn", "data-icon": SOUND[tool](profile3) ? "sound" : "mute" }), !small && /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx("button", { ...actionProps("ux.float.size", () => resize(tool, size(tool) === "small" ? "large" : "small"), "pip:" + tool), "aria-label": t(size(tool) === "small" ? "ux.float.bigger" : "ux.float.smaller"), title: t(size(tool) === "small" ? "ux.float.bigger" : "ux.float.smaller"), "aria-pressed": size(tool) === "large", className: "cp-float-btn", "data-icon": size(tool) === "small" ? "max" : "min" }), /* @__PURE__ */ cpJsx("button", { ...actionProps("ux.float.back", () => back(tool), tool), "aria-label": t("ux.float.back"), title: t("ux.float.back"), className: "cp-float-btn", "data-icon": "back" })), /* @__PURE__ */ cpJsx("button", { ...actionProps("ux.float.close", () => set(tool, void 0), "pip:" + tool), "aria-label": t("ux.float.close"), title: t("ux.float.close"), className: "cp-float-btn", "data-icon": "close" })));
-    })), /* @__PURE__ */ cpJsx("div", { className: "cp-pip-add", role: "group", "aria-label": t("ux.float.add") }, miniOn ? /* @__PURE__ */ cpJsx("button", { ...actionProps("ux.float.full", miniOff, "pip"), "aria-label": uxText("float.full"), title: uxText("float.full"), className: "cp-pip-mode", "data-icon": "full" }) : inPip.some((tool) => tool !== "wheel") && /* @__PURE__ */ cpJsx("button", { ...actionProps("ux.float.mini", miniOnNow, "pip"), "aria-label": uxText("float.mini"), title: uxText("float.mini"), className: "cp-pip-mode", "data-icon": "mini" }), floating.filter((tool) => !inPip.includes(tool) && (tool !== "wheel" || !isDemoActive())).map((tool) => /* @__PURE__ */ cpJsx("button", { key: tool, ...actionProps("ux.float.add", () => {
+      return /* @__PURE__ */ cpJsx("section", { key: tool, className: "cp-pip-tool cp-pip-mini", "data-float": tool, "data-size": "mini", "data-phase": m?.phase || void 0, tabIndex: 0, "aria-label": t("ux.dock." + tool) }, /* @__PURE__ */ cpJsx(PipIcon, { name: tool }), tool === "noise" ? /* @__PURE__ */ cpJsx(NoiseView, { compact: true, tiny: true, doc, onUpdate }) : m.body, /* @__PURE__ */ cpJsx("div", { className: "cp-pip-ctl" }, m?.primary, m?.extra, tool !== "timer" && SOUND[tool] && /* @__PURE__ */ cpJsx("button", { ...actionProps("ux.float.sound", () => toggleSound(tool), "pip:" + tool), "aria-pressed": SOUND[tool](profile3), "aria-label": t(SOUND[tool](profile3) ? "ux.float.soundOff" : "ux.float.soundOn") + ": " + t("ux.dock." + tool), title: t(SOUND[tool](profile3) ? "ux.float.soundOff" : "ux.float.soundOn"), className: "cp-float-btn", "data-icon": SOUND[tool](profile3) ? "sound" : "mute" }), /* @__PURE__ */ cpJsx("button", { ...actionProps("ux.float.close", () => set(tool, void 0), "pip:" + tool), "aria-label": t("ux.float.close"), title: t("ux.float.close"), className: "cp-float-btn", "data-icon": "close" })));
+    })) : /* @__PURE__ */ cpJsx("div", { className: "cp-pip-tools" }, inPip.map(tileSection)), /* @__PURE__ */ cpJsx("div", { className: "cp-pip-add", role: "group", "aria-label": t("ux.float.add") }, miniOn ? /* @__PURE__ */ cpJsx("button", { ...actionProps("ux.float.full", miniOff, "pip"), "aria-label": uxText("float.full"), title: uxText("float.full"), className: "cp-pip-mode", "data-icon": "full" }) : inPip.some((tool) => tool !== "wheel") && /* @__PURE__ */ cpJsx("button", { ...actionProps("ux.float.mini", miniOnNow, "pip"), "aria-label": uxText("float.mini"), title: uxText("float.mini"), className: "cp-pip-mode", "data-icon": "mini" }), floating.filter((tool) => !inPip.includes(tool) && (tool !== "wheel" || !isDemoActive())).map((tool) => /* @__PURE__ */ cpJsx("button", { key: tool, ...actionProps("ux.float.add", () => {
       composed.current = true;
-      if (tool === "wheel") miniOff();
       floatTools([tool], readLayout().sizes?.[tool] || "small", void 0);
-    }, tool), "aria-label": t("ux.float.add") + ": " + t("ux.dock." + tool), title: t("ux.float.add") + ": " + t("ux.dock." + tool) }, /* @__PURE__ */ cpJsx(NavIcon, { type: tool }), /* @__PURE__ */ cpJsx("b", { "aria-hidden": "true" }, "+")))), inPip.includes("wheel") && /* @__PURE__ */ cpJsx(PipToast, null))), pip2.document.body), tools.some((tool) => state2[tool] === "tray") && /* @__PURE__ */ cpJsx("div", { className: "cp-float-tray", role: "group", "aria-label": t("ux.float.tray") }, tools.filter((tool) => state2[tool] === "tray").map((tool) => /* @__PURE__ */ cpJsx(TrayPill, { key: tool, id: tool, label: t("ux.float.restore") + ": " + t("ux.dock." + tool), onOpen: () => set(tool, "open"), onPop: floatSupported() ? () => float(tool, "tray") : void 0, popLabel: t("ux.float.pop") + ": " + t("ux.dock." + tool) }, /* @__PURE__ */ cpJsx(NavIcon, { type: tool }), /* @__PURE__ */ cpJsx("span", null, badge[tool] ? cpRaw(badge[tool]) : t("ux.dock." + tool))))));
+    }, tool), "aria-label": t("ux.float.add") + ": " + t("ux.dock." + tool), title: t("ux.float.add") + ": " + t("ux.dock." + tool) }, /* @__PURE__ */ cpJsx(PipIcon, { name: tool }), /* @__PURE__ */ cpJsx("b", { "aria-hidden": "true" }, "+")))), inPip.includes("wheel") && /* @__PURE__ */ cpJsx(PipToast, null))), pip2.document.body), tools.some((tool) => state2[tool] === "tray") && /* @__PURE__ */ cpJsx("div", { className: "cp-float-tray", role: "group", "aria-label": t("ux.float.tray") }, tools.filter((tool) => state2[tool] === "tray").map((tool) => /* @__PURE__ */ cpJsx(TrayPill, { key: tool, id: tool, label: t("ux.float.restore") + ": " + t("ux.dock." + tool), onOpen: () => set(tool, "open"), onPop: floatSupported() ? () => float(tool, "tray") : void 0, popLabel: t("ux.float.pop") + ": " + t("ux.dock." + tool) }, /* @__PURE__ */ cpJsx(NavIcon, { type: tool }), /* @__PURE__ */ cpJsx("span", null, badge[tool] ? cpRaw(badge[tool]) : t("ux.dock." + tool))))));
   }
 
   // src/modules/slots.js
