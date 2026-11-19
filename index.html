@@ -2814,6 +2814,93 @@ td[data-cp-att],th[data-cp-att]{background:var(--cp-att-bg)!important;box-shadow
 .cp-tb-wheel::before{--cp-icon:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23000%22%20stroke-width%3D%221.8%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%228%22%2F%3E%3Cpath%20d%3D%22M12%204v16M4%2012h16M6.3%206.3l11.4%2011.4M17.7%206.3%206.3%2017.7%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");background:currentColor!important;-webkit-mask:var(--cp-icon) center/19px no-repeat;mask:var(--cp-icon) center/19px no-repeat}
 .cp-tb-wheel::after{content:"";-webkit-mask:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23000%22%20stroke-width%3D%221.8%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%221.8%22%20fill%3D%22%23000%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") center/19px no-repeat;mask:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23000%22%20stroke-width%3D%221.8%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%221.8%22%20fill%3D%22%23000%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") center/19px no-repeat;background:var(--cp-gold,#c99a1e)}
 /* icon-art:end */
+
+/* Owner (19 Nov 2026, approved mock-ups): the floating window as a small classroom display. Small tools are tiles with a
+   big number and a bar the class can read; one main button each; the other buttons show on the tile under the mouse or
+   keyboard; wide windows put the tiles side by side; the bell can go mini on its own. */
+.cp-float-btn[data-icon=mini]{--cp-icon:url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%2016%2016%27%20fill%3D%27none%27%20stroke%3D%27black%27%20stroke-width%3D%271.4%27%20stroke-linecap%3D%27round%27%20stroke-linejoin%3D%27round%27%3E%3Cpath%20d%3D%27M9.5%202.5v4h4M6.5%2013.5v-4h-4M9.5%206.5l4-4M6.5%209.5l-4%204%27%2F%3E%3C%2Fsvg%3E")}
+.cp-float-btn[data-icon=full]{--cp-icon:url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%2016%2016%27%20fill%3D%27none%27%20stroke%3D%27black%27%20stroke-width%3D%271.4%27%20stroke-linecap%3D%27round%27%20stroke-linejoin%3D%27round%27%3E%3Cpath%20d%3D%27M9.5%202.5h4v4M6.5%2013.5h-4v-4M13.5%202.5%209%207M2.5%2013.5%207%209%27%2F%3E%3C%2Fsvg%3E")}
+.cp-pip-body:has(.cp-pip){background:#151109}
+.cp-pip{--pip-tile:#221b11;--pip-tile2:#2b2215;--pip-line:#3a2f1d;--pip-txt:#f3e7cc;--pip-mut:#b9a982;--pip-gold:#f2c14e;--pip-amber:#f59e2b;--pip-red:#ff6b6b;--pip-green:#3fbf7f;padding:10px;gap:10px;background:radial-gradient(120% 80% at 0 0,#2a2114,#151109);color:var(--pip-txt);container-type:inline-size}
+.cp-pip-tools{display:flex;flex-direction:column;gap:10px}
+@container (min-width:600px){.cp-pip-tools{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));align-items:stretch}}
+.cp-pip-tool[data-size]{position:relative}
+.cp-pip-tool[data-size=small]{container-type:inline-size;flex:none;flex-direction:column;align-items:stretch;gap:0;min-height:0;max-width:none;padding:12px 14px 18px;border:1px solid var(--pip-line);border-radius:16px;outline:0;background:linear-gradient(180deg,var(--pip-tile2),var(--pip-tile));color:var(--pip-txt);overflow:visible;box-shadow:inset 0 1px 0 rgba(255,255,255,.04)}
+.cp-pip-tool[data-size=small]>header{display:flex;align-items:center;gap:8px;min-height:34px;padding:0;border:0;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--pip-mut)}
+.cp-pip-tool[data-size=small]>header>strong{display:block;flex:1;min-width:0;font-weight:600;overflow-wrap:anywhere;line-height:1.25}
+.cp-pip-tool[data-size=small]>header>svg{width:18px;height:18px;flex:none}
+.cp-pip-tool[data-size=small]>header .cp-timer-mini-controls{display:flex}
+.cp-pip-tool[data-size=small]>header .cp-timer-mini-btn,.cp-noise-mini .cp-noise-mic{width:34px!important;height:34px!important;min-width:34px!important;padding:0!important;border:0!important;border-radius:50%!important;background:var(--pip-gold)!important;color:#1a150d!important;display:grid!important;place-items:center;box-shadow:0 4px 10px -4px rgba(242,193,78,.7)}
+.cp-pip-tool[data-size=small]>header .cp-timer-mini-btn svg{color:#1a150d}
+.cp-pip-tool[data-size=small]>header .cp-float-btn[data-icon=mini]{width:30px;height:30px;border-radius:8px;background:var(--pip-line);color:var(--pip-gold)}
+.cp-pip-tool[data-size=small] .cp-pip-content{display:block;order:0;padding:0;overflow:visible;min-width:0}
+.cp-pip-tool[data-size=small] .cp-pip-read{display:block;margin:4px 0 12px;font-size:clamp(28px,20cqi,52px);font-weight:800;line-height:1.05;letter-spacing:-.02em;color:var(--pip-gold);white-space:nowrap;font-variant-numeric:tabular-nums}
+.cp-pip-read small{margin-inline-start:6px;font-size:15px;font-weight:600;letter-spacing:0;color:var(--pip-mut)}
+.cp-pip-track{display:block;height:8px;border-radius:4px;background:var(--pip-line);overflow:hidden}
+.cp-pip-track i{display:block;height:100%;border-radius:4px;background:linear-gradient(90deg,var(--pip-green),var(--pip-gold))}
+[dir=rtl] .cp-pip-track i{background:linear-gradient(270deg,var(--pip-green),var(--pip-gold))}
+.cp-pip-tool[data-phase=last]{background:linear-gradient(180deg,#3d2a0e,#2a1c08);border-color:#7a5212}
+.cp-pip-tool[data-phase=last] .cp-pip-read{color:#ffb547}
+.cp-pip-tool[data-phase=last] .cp-pip-track i{background:var(--pip-amber);box-shadow:0 0 12px var(--pip-amber)}
+.cp-pip-tool[data-phase=up]{background:linear-gradient(180deg,#46171a,#2c0d0f);border-color:#8a2a2e}
+.cp-pip-tool[data-phase=up] .cp-pip-read{color:var(--pip-red)}
+.cp-pip-tool[data-phase=up]>header{color:#f0a9a9}
+.cp-pip-tool[data-phase=warn] .cp-pip-read{color:var(--pip-amber)}
+.cp-pip-tool[data-phase=break] .cp-pip-read{color:#9fd9b8}
+.cp-pip-line{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:600;color:var(--pip-mut);font-variant-numeric:tabular-nums;white-space:nowrap}
+.cp-pip-line>span{position:relative;flex:1;height:4px;border-radius:2px;background:var(--pip-line)}
+.cp-pip-line>span>i{display:block;height:100%;border-radius:2px;background:var(--pip-gold)}
+.cp-pip-line>span>em{position:absolute;top:50%;width:12px;height:12px;border-radius:50%;background:var(--pip-gold);transform:translate(-50%,-50%);box-shadow:0 0 0 4px rgba(242,193,78,.25)}
+[dir=rtl] .cp-pip-line>span>em{transform:translate(50%,-50%)}
+.cp-pip-tool[data-size=small] .cp-pip-note{display:block;margin:10px 0 0;font-size:13.5px;opacity:1;white-space:normal;overflow:visible;color:var(--pip-txt)}
+.cp-pip-tool[data-float=noise][data-size=small]>header{padding-inline-end:42px}
+.cp-noise-mini{display:block}
+.cp-noise-mini .cp-noise-mic{position:absolute;top:12px;inset-inline-end:14px}
+.cp-noise-mini[data-state=off] .cp-noise-mic{background:var(--pip-txt)!important}
+.cp-noise-mini .cp-noise-mic svg{color:#1a150d!important}
+.cp-noise-mini [role=status].cp-pip-read{font-size:clamp(26px,17cqi,52px);overflow:visible}
+.cp-noise-mini[data-state=acceptable] .cp-pip-read{color:var(--pip-amber)}
+.cp-noise-mini[data-state=loud] .cp-pip-read{color:var(--pip-red)}
+.cp-noise-mini[data-state=off] .cp-pip-read{color:#7d7059}
+.cp-noise-lights{position:relative;display:flex;gap:3px;height:16px}
+.cp-noise-lights i{flex:1;border-radius:3px;background:var(--pip-line)}
+.cp-noise-lights i[data-on][data-zone=quiet]{background:var(--pip-green)}
+.cp-noise-lights i[data-on][data-zone=acceptable]{background:var(--pip-amber)}
+.cp-noise-lights i[data-on][data-zone=loud]{background:var(--pip-red)}
+.cp-noise-lights u{position:absolute;top:-5px;bottom:-5px;width:2px;border-radius:1px;background:var(--pip-txt);transform:translateX(-50%)}
+[dir=rtl] .cp-noise-lights u{transform:translateX(50%)}
+.cp-pip-tool[data-size=small] .cp-pip-ctl{position:absolute;inset-inline:6px;bottom:4px;height:32px;box-sizing:border-box;display:flex;align-items:center;justify-content:flex-end;gap:2px;padding:3px;border:1px solid var(--pip-line);border-radius:12px;background:rgba(26,21,13,.96);visibility:hidden;opacity:0;transition:opacity .15s,visibility .15s}
+.cp-pip-tool[data-size=small]:is(:hover,:focus-visible,:has(:focus-visible)) .cp-pip-ctl{visibility:visible;opacity:1}
+.cp-pip-tool[data-size=small]:is(:hover,:focus-visible,:has(:focus-visible)){border-color:var(--pip-gold);box-shadow:0 0 0 1px var(--pip-gold)}
+.cp-pip-ctl .cp-float-btn{width:28px;height:26px;color:var(--pip-txt)}
+.cp-pip-ctl .cp-timer-mini-controls .cp-timer-mini-btn{display:inline-flex!important;align-items:center;justify-content:center}
+@container (max-width:300px){.cp-pip-ctl .cp-timer-mini-controls .cp-timer-mini-btn[data-cp-action$="Minute"]{display:none!important}}
+.cp-pip-ctl .cp-float-btn:hover{background:var(--pip-line)}
+.cp-pip-ctl>.cp-timer-mini-controls{display:flex;gap:2px;margin-inline-end:auto}
+.cp-pip-ctl .cp-timer-mini-btn{height:26px!important;min-width:30px!important;padding:0 6px!important;border:0!important;border-radius:8px!important;background:transparent!important;color:var(--pip-txt)!important;font-size:12px!important}
+.cp-pip-tool[data-size=large] .cp-pip-ctl{position:absolute;top:4px;inset-inline-end:6px;display:flex;gap:2px}
+.cp-pip-tool[data-size=large]>header{padding-inline-end:160px}
+.cp-pip-tool[data-float=wheel][data-size=small]>header{display:none}
+.cp-pip-tool[data-float=wheel][data-size=small]{padding:8px}
+.cp-pip-add{justify-content:flex-start;flex-wrap:wrap;gap:8px;padding:0}
+.cp-pip-add button{gap:7px;height:30px;padding:0 10px 0 9px;border:1px dashed #5a4a2d;color:#d9c9a5;font-weight:600}
+.cp-pip-add button:hover{background:var(--pip-line);color:var(--pip-txt)}
+.cp-pip-add button b{color:var(--pip-gold);font-weight:700}
+.cp-pip[data-mini]{padding:0;gap:0;background:#1d170e}
+.cp-pip-mini{position:relative;display:flex;flex-direction:row;align-items:center;gap:7px;min-height:52px;padding:6px 12px 12px;border:0;border-radius:0;background:transparent;color:var(--pip-txt);box-sizing:border-box}
+.cp-pip-mini>svg{width:16px;height:16px;flex:none}
+.cp-pip-mini .cp-pip-read{font-size:32px;font-weight:800;line-height:1;color:var(--pip-gold);white-space:nowrap;font-variant-numeric:tabular-nums}
+.cp-pip-mini .cp-pip-read small{font-size:13px}
+.cp-pip-mini .cp-pip-note{white-space:normal;color:var(--pip-mut)}
+.cp-pip-tag{margin-inline-start:auto;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--pip-mut)}
+.cp-pip-thin{position:absolute;inset-inline:12px;bottom:6px;height:3px;border-radius:2px;background:var(--pip-line)}
+.cp-pip-thin i{display:block;height:100%;border-radius:2px;background:var(--pip-gold)}
+.cp-pip-mini[data-phase=warn] .cp-pip-read{color:var(--pip-amber)}.cp-pip-mini[data-phase=warn] .cp-pip-thin i{background:var(--pip-amber)}
+.cp-pip-mini[data-phase=break] .cp-pip-read{color:#9fd9b8}.cp-pip-mini[data-phase=break] .cp-pip-thin i{background:#5fbf8f}
+.cp-pip-mini .cp-pip-ctl{position:absolute;inset-inline-end:6px;top:50%;transform:translateY(-55%);display:flex;gap:2px;visibility:hidden;opacity:0;transition:opacity .15s,visibility .15s}
+.cp-pip-mini:is(:hover,:focus-visible,:has(:focus-visible)) .cp-pip-ctl{visibility:visible;opacity:1}
+.cp-pip-mini .cp-float-btn{width:26px;height:26px;border-radius:7px;background:var(--pip-line);color:var(--pip-txt)}
+@media (prefers-reduced-motion:reduce){.cp-pip-ctl{transition:none!important}}
 /* M56 design foundations (owner-supplied Master Implementation Brief, M56; design report §7–§8).
    One set of tokens for the frame and the new modules. Protected Gradebook views (Marks, Groups, Behaviour,
    Adjustments, Analysis, the original wheel, the Settings drawer and the class manager) do not use them. */
@@ -9907,7 +9994,13 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.seat.exam.noGrades": "No term grades yet",
     "ux.seat.level.T": "Top",
     "ux.seat.level.M": "Middle",
-    "ux.seat.level.L": "Lower"
+    "ux.seat.level.L": "Lower",
+    "ux.float.mini": "Mini: only the bell, as small as possible",
+    "ux.float.full": "Back to full size",
+    "ux.pip.minLeft": "min left",
+    "ux.pip.break": "Break",
+    "ux.pip.lastMinute": "last minute",
+    "ux.pip.off": "Off"
   };
 
   // src/i18n/plain-copy.js
@@ -16373,7 +16466,13 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "ux.seat.exam.noGrades": "\u0644\u0627 \u062A\u0648\u062C\u062F \u062F\u0631\u062C\u0627\u062A \u0644\u0644\u0641\u0635\u0644 \u0628\u0639\u062F",
     "ux.seat.level.T": "\u0623\u0639\u0644\u0649",
     "ux.seat.level.M": "\u0645\u062A\u0648\u0633\u0637",
-    "ux.seat.level.L": "\u0623\u062F\u0646\u0649"
+    "ux.seat.level.L": "\u0623\u062F\u0646\u0649",
+    "ux.float.mini": "\u0645\u0635\u063A\u0651\u0631: \u0627\u0644\u062C\u0631\u0633 \u0648\u062D\u062F\u0647 \u0628\u0623\u0635\u063A\u0631 \u062D\u062C\u0645",
+    "ux.float.full": "\u0627\u0644\u0639\u0648\u062F\u0629 \u0625\u0644\u0649 \u0627\u0644\u062D\u062C\u0645 \u0627\u0644\u0643\u0627\u0645\u0644",
+    "ux.pip.minLeft": "\u062F\u0642\u064A\u0642\u0629 \u0645\u062A\u0628\u0642\u064A\u0629",
+    "ux.pip.break": "\u0627\u0633\u062A\u0631\u0627\u062D\u0629",
+    "ux.pip.lastMinute": "\u0627\u0644\u062F\u0642\u064A\u0642\u0629 \u0627\u0644\u0623\u062E\u064A\u0631\u0629",
+    "ux.pip.off": "\u0645\u062A\u0648\u0642\u0641"
   };
 
   // src/core/actions.js
@@ -34182,6 +34281,32 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       "meaning": "ux.pool.reset"
     },
     {
+      "id": "ux.float.mini",
+      "labelKey": "ux.float.mini",
+      "icon": null,
+      "shortcut": null,
+      "availability": "rendered-and-not-disabled",
+      "canonicalHome": "float:context",
+      "events": [
+        "onClick"
+      ],
+      "source": "src/modules",
+      "meaning": "ux.float.mini"
+    },
+    {
+      "id": "ux.float.full",
+      "labelKey": "ux.float.full",
+      "icon": null,
+      "shortcut": null,
+      "availability": "rendered-and-not-disabled",
+      "canonicalHome": "float:context",
+      "events": [
+        "onClick"
+      ],
+      "source": "src/modules",
+      "meaning": "ux.float.full"
+    },
+    {
       "id": "ux.report.sort",
       "labelKey": "ux.report.sort",
       "icon": null,
@@ -42527,6 +42652,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
   Object.assign(uxClick, { "nav.compare": "cmp.title", "cmp.period": "cmp.period", "cmp.mode": "cmp.marks", "cmp.sort": "cmp.sortLabel", "cmp.removeFile": "cmp.removeFileLabel", "cmp.reread": "cmp.reread" });
   Object.assign(uxChange, { "cmp.class": "cmp.classes", "cmp.addFile": "cmp.addFile" });
   Object.assign(uxClick, { "pool.reset": "pool.resetLabel" });
+  Object.assign(uxClick, { "float.mini": "float.mini", "float.full": "float.full" });
   Object.assign(uxChange, { "pool.weight": "pool.weight" });
   var uxActions = [...Object.entries(uxClick).map(([id2, key4]) => [id2, key4, "onClick"]), ...Object.entries(uxChange).map(([id2, key4]) => [id2, key4, "onChange"])].map(([id2, key4, event]) => ({ id: "ux." + id2, labelKey: "ux." + key4, icon: null, shortcut: null, availability: "rendered-and-not-disabled", canonicalHome: navigationHome("ux." + id2) || certificateActionHome("ux." + id2) || (id2.startsWith("nav.") ? "Workspace:sidebar" : id2.startsWith("appearance.") ? "Workspace:context" : id2.split(".")[0] + ":context"), events: id2 === "plans.section" || id2 === "support.section" || id2 === "tt.editSection" ? [event, "onKeyDown"] : [event], source: "src/modules", meaning: "ux." + id2 }));
 
@@ -47189,7 +47315,13 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     "seat.exam.noGrades": ["No term grades yet", "\u0644\u0627 \u062A\u0648\u062C\u062F \u062F\u0631\u062C\u0627\u062A \u0644\u0644\u0641\u0635\u0644 \u0628\u0639\u062F"],
     "seat.level.T": ["Top", "\u0623\u0639\u0644\u0649"],
     "seat.level.M": ["Middle", "\u0645\u062A\u0648\u0633\u0637"],
-    "seat.level.L": ["Lower", "\u0623\u062F\u0646\u0649"]
+    "seat.level.L": ["Lower", "\u0623\u062F\u0646\u0649"],
+    "float.mini": ["Mini: only the bell, as small as possible", "\u0645\u0635\u063A\u0651\u0631: \u0627\u0644\u062C\u0631\u0633 \u0648\u062D\u062F\u0647 \u0628\u0623\u0635\u063A\u0631 \u062D\u062C\u0645"],
+    "float.full": ["Back to full size", "\u0627\u0644\u0639\u0648\u062F\u0629 \u0625\u0644\u0649 \u0627\u0644\u062D\u062C\u0645 \u0627\u0644\u0643\u0627\u0645\u0644"],
+    "pip.minLeft": ["min left", "\u062F\u0642\u064A\u0642\u0629 \u0645\u062A\u0628\u0642\u064A\u0629"],
+    "pip.break": ["Break", "\u0627\u0633\u062A\u0631\u0627\u062D\u0629"],
+    "pip.lastMinute": ["last minute", "\u0627\u0644\u062F\u0642\u064A\u0642\u0629 \u0627\u0644\u0623\u062E\u064A\u0631\u0629"],
+    "pip.off": ["Off", "\u0645\u062A\u0648\u0642\u0641"]
   };
   var uxEn = Object.fromEntries(Object.entries(pairs).map(([key4, value]) => ["ux." + key4, value[0]]));
   var uxAr = Object.fromEntries(Object.entries(pairs).map(([key4, value]) => ["ux." + key4, value[1]]));
@@ -48166,9 +48298,9 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     }, [x2, y2]);
     var i11 = { ...I, height: 26, fontSize: 11.5 };
     var bv = student.behaviour != null ? student.behaviour : mx;
-    var pct3 = mx ? Math.round(bv / mx * 100) : 100;
+    var pct4 = mx ? Math.round(bv / mx * 100) : 100;
     var lowThresh = mx * 0.4;
-    return ReactDOM.createPortal(/* @__PURE__ */ cpJsx("div", { ref, style: { position: en_default["gb.992a93455c71fedd"], left: pos ? pos.left : -9999, top: pos ? pos.top : -9999, opacity: pos ? 1 : 0, width: 320, background: en_default["gb.e08de713877c54e8"], border: en_default["gb.f35c8c1246856a29"], borderRadius: 10, boxShadow: en_default["gb.8ff460c8bd516f23"], padding: 14, zIndex: 300, fontFamily: en_default["gb.035300f3afee55ae"], fontSize: 12, transition: pos ? en_default["gb.200c9ec8a5134ba9"] : en_default["gb.140bedbf9c3f6d56"] }, "data-cp-scope": _cpOrigin }, /* @__PURE__ */ cpJsx("div", { style: { display: en_default["gb.222f930b87524636"], alignItems: en_default["gb.f179a509d32bd92c"], justifyContent: en_default["gb.8c72b36502d3b7a3"], marginBottom: 12 } }, /* @__PURE__ */ cpJsx("div", null, /* @__PURE__ */ cpJsx("div", { style: { fontWeight: 600, fontSize: 14 } }, cpRaw(student.name)), /* @__PURE__ */ cpJsx("div", { style: { fontSize: 10.5, color: en_default["gb.b5e2bc59ff0f8c39"] } }, en_default["gb.12b98040fac50b16"])), /* @__PURE__ */ cpJsx("div", { style: { textAlign: en_default["gb.27042f4e6eca7d0b"] } }, /* @__PURE__ */ cpJsx("div", { style: { fontSize: 28, fontWeight: 600, color: bv <= lowThresh ? en_default["gb.3871da342003cbdb"] : en_default["gb.0e684e516035b04c"], lineHeight: 1 } }, bv), /* @__PURE__ */ cpJsx("div", { style: { fontSize: 11, color: en_default["gb.b5e2bc59ff0f8c39"] } }, en_default["gb.a70099f6c4a2abb1"], mx, en_default["gb.4f5a2ada1166172a"], pct3, en_default["gb.61c5caba2f046b2c"]))), /* @__PURE__ */ cpJsx("div", { style: { height: 6, background: en_default["gb.3b313dfb66a5b167"], borderRadius: 3, marginBottom: 14, overflow: en_default["gb.e564b4081d7a9ea4"] } }, /* @__PURE__ */ cpJsx("div", { style: { height: en_default["gb.32e48995f98ce3b7"], width: pct3 + en_default["gb.bbf3f11cb5b43e70"], background: bv <= lowThresh ? en_default["gb.3871da342003cbdb"] : pct3 >= 80 ? en_default["gb.3c5c1ab6c5fd2f50"] : en_default["gb.251a7b8506a725c5"], borderRadius: 3, transition: en_default["gb.e9562f81370a378f"] } })), /* @__PURE__ */ cpJsx("div", { style: { display: en_default["gb.222f930b87524636"], gap: 8, marginBottom: 12 } }, /* @__PURE__ */ cpJsx(
+    return ReactDOM.createPortal(/* @__PURE__ */ cpJsx("div", { ref, style: { position: en_default["gb.992a93455c71fedd"], left: pos ? pos.left : -9999, top: pos ? pos.top : -9999, opacity: pos ? 1 : 0, width: 320, background: en_default["gb.e08de713877c54e8"], border: en_default["gb.f35c8c1246856a29"], borderRadius: 10, boxShadow: en_default["gb.8ff460c8bd516f23"], padding: 14, zIndex: 300, fontFamily: en_default["gb.035300f3afee55ae"], fontSize: 12, transition: pos ? en_default["gb.200c9ec8a5134ba9"] : en_default["gb.140bedbf9c3f6d56"] }, "data-cp-scope": _cpOrigin }, /* @__PURE__ */ cpJsx("div", { style: { display: en_default["gb.222f930b87524636"], alignItems: en_default["gb.f179a509d32bd92c"], justifyContent: en_default["gb.8c72b36502d3b7a3"], marginBottom: 12 } }, /* @__PURE__ */ cpJsx("div", null, /* @__PURE__ */ cpJsx("div", { style: { fontWeight: 600, fontSize: 14 } }, cpRaw(student.name)), /* @__PURE__ */ cpJsx("div", { style: { fontSize: 10.5, color: en_default["gb.b5e2bc59ff0f8c39"] } }, en_default["gb.12b98040fac50b16"])), /* @__PURE__ */ cpJsx("div", { style: { textAlign: en_default["gb.27042f4e6eca7d0b"] } }, /* @__PURE__ */ cpJsx("div", { style: { fontSize: 28, fontWeight: 600, color: bv <= lowThresh ? en_default["gb.3871da342003cbdb"] : en_default["gb.0e684e516035b04c"], lineHeight: 1 } }, bv), /* @__PURE__ */ cpJsx("div", { style: { fontSize: 11, color: en_default["gb.b5e2bc59ff0f8c39"] } }, en_default["gb.a70099f6c4a2abb1"], mx, en_default["gb.4f5a2ada1166172a"], pct4, en_default["gb.61c5caba2f046b2c"]))), /* @__PURE__ */ cpJsx("div", { style: { height: 6, background: en_default["gb.3b313dfb66a5b167"], borderRadius: 3, marginBottom: 14, overflow: en_default["gb.e564b4081d7a9ea4"] } }, /* @__PURE__ */ cpJsx("div", { style: { height: en_default["gb.32e48995f98ce3b7"], width: pct4 + en_default["gb.bbf3f11cb5b43e70"], background: bv <= lowThresh ? en_default["gb.3871da342003cbdb"] : pct4 >= 80 ? en_default["gb.3c5c1ab6c5fd2f50"] : en_default["gb.251a7b8506a725c5"], borderRadius: 3, transition: en_default["gb.e9562f81370a378f"] } })), /* @__PURE__ */ cpJsx("div", { style: { display: en_default["gb.222f930b87524636"], gap: 8, marginBottom: 12 } }, /* @__PURE__ */ cpJsx(
       "button",
       {
         onClick: bindAction("gb.05-popovers.8245", "singleton", "onClick", (function() {
@@ -48244,7 +48376,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     var current4 = Math.min(mx, Math.max(0, entries2.reduce(function(a, e) {
       return a + (+e.delta || 0);
     }, 0)));
-    var pct3 = mx ? Math.round(current4 / mx * 100) : 0;
+    var pct4 = mx ? Math.round(current4 / mx * 100) : 0;
     var [dt, sDt] = useState(todayISO());
     var [cm, sCm] = useState(en_default["gb.e3b0c44298fc1c14"]);
     var [st, sSt] = useState(col.step != null ? col.step : 1);
@@ -48289,7 +48421,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       onAdd(dt, cm, st);
       sCm(en_default["gb.e3b0c44298fc1c14"]);
     };
-    return ReactDOM.createPortal(/* @__PURE__ */ cpJsx("div", { ref, style: { position: en_default["gb.992a93455c71fedd"], left: pos ? pos.left : -9999, top: pos ? pos.top : -9999, opacity: pos ? 1 : 0, width: 320, background: en_default["gb.e08de713877c54e8"], border: en_default["gb.f35c8c1246856a29"], borderRadius: 10, boxShadow: en_default["gb.8ff460c8bd516f23"], padding: 14, zIndex: 300, fontFamily: en_default["gb.035300f3afee55ae"], fontSize: 12, transition: pos ? en_default["gb.200c9ec8a5134ba9"] : en_default["gb.140bedbf9c3f6d56"] }, "data-cp-scope": _cpOrigin }, /* @__PURE__ */ cpJsx("div", { style: { display: en_default["gb.222f930b87524636"], alignItems: en_default["gb.f179a509d32bd92c"], justifyContent: en_default["gb.8c72b36502d3b7a3"], marginBottom: 12 } }, /* @__PURE__ */ cpJsx("div", null, /* @__PURE__ */ cpJsx("div", { style: { fontWeight: 600, fontSize: 14 } }, cpRaw(student.name)), /* @__PURE__ */ cpJsx("div", { style: { fontSize: 10.5, color: en_default["gb.b5e2bc59ff0f8c39"] } }, cpRaw(col.name))), /* @__PURE__ */ cpJsx("div", { style: { textAlign: en_default["gb.27042f4e6eca7d0b"] } }, /* @__PURE__ */ cpJsx("div", { style: { fontSize: 28, fontWeight: 600, color: en_default["gb.0e684e516035b04c"], lineHeight: 1 } }, current4), /* @__PURE__ */ cpJsx("div", { style: { fontSize: 11, color: en_default["gb.b5e2bc59ff0f8c39"] } }, en_default["gb.a70099f6c4a2abb1"], mx, en_default["gb.4f5a2ada1166172a"], pct3, en_default["gb.61c5caba2f046b2c"]))), /* @__PURE__ */ cpJsx("div", { style: { height: 6, background: en_default["gb.3b313dfb66a5b167"], borderRadius: 3, marginBottom: 14, overflow: en_default["gb.e564b4081d7a9ea4"] } }, /* @__PURE__ */ cpJsx("div", { style: { height: en_default["gb.32e48995f98ce3b7"], width: pct3 + en_default["gb.bbf3f11cb5b43e70"], background: pct3 >= 80 ? en_default["gb.3c5c1ab6c5fd2f50"] : en_default["gb.81e7d379580dfba1"], borderRadius: 3, transition: en_default["gb.e9562f81370a378f"] } })), /* @__PURE__ */ cpJsx("div", { style: { padding: 10, background: en_default["gb.1167f3d732a3168e"], border: en_default["gb.2df0619e05169626"], borderRadius: 8, marginBottom: 12 } }, /* @__PURE__ */ cpJsx("div", { style: { display: en_default["gb.222f930b87524636"], gap: 6, marginBottom: 6 } }, /* @__PURE__ */ cpJsx("input", { type: en_default["gb.0e87632cd46bd490"], value: dt, onChange: bindAction("gb.05-popovers.15170", "singleton", "onChange", (function(e) {
+    return ReactDOM.createPortal(/* @__PURE__ */ cpJsx("div", { ref, style: { position: en_default["gb.992a93455c71fedd"], left: pos ? pos.left : -9999, top: pos ? pos.top : -9999, opacity: pos ? 1 : 0, width: 320, background: en_default["gb.e08de713877c54e8"], border: en_default["gb.f35c8c1246856a29"], borderRadius: 10, boxShadow: en_default["gb.8ff460c8bd516f23"], padding: 14, zIndex: 300, fontFamily: en_default["gb.035300f3afee55ae"], fontSize: 12, transition: pos ? en_default["gb.200c9ec8a5134ba9"] : en_default["gb.140bedbf9c3f6d56"] }, "data-cp-scope": _cpOrigin }, /* @__PURE__ */ cpJsx("div", { style: { display: en_default["gb.222f930b87524636"], alignItems: en_default["gb.f179a509d32bd92c"], justifyContent: en_default["gb.8c72b36502d3b7a3"], marginBottom: 12 } }, /* @__PURE__ */ cpJsx("div", null, /* @__PURE__ */ cpJsx("div", { style: { fontWeight: 600, fontSize: 14 } }, cpRaw(student.name)), /* @__PURE__ */ cpJsx("div", { style: { fontSize: 10.5, color: en_default["gb.b5e2bc59ff0f8c39"] } }, cpRaw(col.name))), /* @__PURE__ */ cpJsx("div", { style: { textAlign: en_default["gb.27042f4e6eca7d0b"] } }, /* @__PURE__ */ cpJsx("div", { style: { fontSize: 28, fontWeight: 600, color: en_default["gb.0e684e516035b04c"], lineHeight: 1 } }, current4), /* @__PURE__ */ cpJsx("div", { style: { fontSize: 11, color: en_default["gb.b5e2bc59ff0f8c39"] } }, en_default["gb.a70099f6c4a2abb1"], mx, en_default["gb.4f5a2ada1166172a"], pct4, en_default["gb.61c5caba2f046b2c"]))), /* @__PURE__ */ cpJsx("div", { style: { height: 6, background: en_default["gb.3b313dfb66a5b167"], borderRadius: 3, marginBottom: 14, overflow: en_default["gb.e564b4081d7a9ea4"] } }, /* @__PURE__ */ cpJsx("div", { style: { height: en_default["gb.32e48995f98ce3b7"], width: pct4 + en_default["gb.bbf3f11cb5b43e70"], background: pct4 >= 80 ? en_default["gb.3c5c1ab6c5fd2f50"] : en_default["gb.81e7d379580dfba1"], borderRadius: 3, transition: en_default["gb.e9562f81370a378f"] } })), /* @__PURE__ */ cpJsx("div", { style: { padding: 10, background: en_default["gb.1167f3d732a3168e"], border: en_default["gb.2df0619e05169626"], borderRadius: 8, marginBottom: 12 } }, /* @__PURE__ */ cpJsx("div", { style: { display: en_default["gb.222f930b87524636"], gap: 6, marginBottom: 6 } }, /* @__PURE__ */ cpJsx("input", { type: en_default["gb.0e87632cd46bd490"], value: dt, onChange: bindAction("gb.05-popovers.15170", "singleton", "onChange", (function(e) {
       sDt(e.target.value);
     })), style: { ...i11, flex: en_default["gb.c65708e9b085a296"] }, "data-cp-action": "gb.05-popovers.15170", "data-cp-context": "singleton" }), /* @__PURE__ */ cpJsx("input", { value: cm, onChange: bindAction("gb.05-popovers.15289", "singleton", "onChange", (function(e) {
       sCm(e.target.value);
@@ -48317,7 +48449,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       return a + (+e.delta || 0);
     }, 0);
     var current4 = Math.min(mx, Math.max(0, raw));
-    var pct3 = mx ? Math.round(current4 / mx * 100) : 100;
+    var pct4 = mx ? Math.round(current4 / mx * 100) : 100;
     var [dt, sDt] = useState(todayISO());
     var [cm, sCm] = useState(en_default["gb.e3b0c44298fc1c14"]);
     var [st, sSt] = useState(col.step != null ? col.step : 1);
@@ -48366,7 +48498,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       onChange(dt, cm, sign * amt);
       sCm(en_default["gb.e3b0c44298fc1c14"]);
     };
-    return ReactDOM.createPortal(/* @__PURE__ */ cpJsx("div", { ref, style: { position: en_default["gb.992a93455c71fedd"], left: pos ? pos.left : -9999, top: pos ? pos.top : -9999, opacity: pos ? 1 : 0, width: 340, background: en_default["gb.e08de713877c54e8"], border: en_default["gb.f35c8c1246856a29"], borderRadius: 10, boxShadow: en_default["gb.8ff460c8bd516f23"], padding: 14, zIndex: 300, fontFamily: en_default["gb.035300f3afee55ae"], fontSize: 12 }, "data-cp-scope": _cpOrigin }, /* @__PURE__ */ cpJsx("div", { style: { display: en_default["gb.222f930b87524636"], alignItems: en_default["gb.f179a509d32bd92c"], justifyContent: en_default["gb.8c72b36502d3b7a3"], marginBottom: 12 } }, /* @__PURE__ */ cpJsx("div", null, /* @__PURE__ */ cpJsx("div", { style: { fontWeight: 600, fontSize: 14 } }, cpRaw(student.name)), /* @__PURE__ */ cpJsx("div", { style: { fontSize: 10.5, color: en_default["gb.b5e2bc59ff0f8c39"] } }, cpRaw(col.name), en_default["gb.97cc363ef6a0df5e"])), /* @__PURE__ */ cpJsx("div", { style: { textAlign: en_default["gb.27042f4e6eca7d0b"] } }, /* @__PURE__ */ cpJsx("div", { style: { fontSize: 28, fontWeight: 600, lineHeight: 1, color: pct3 < 60 ? en_default["gb.3871da342003cbdb"] : pct3 < 80 ? en_default["gb.4a08e4d0db13be9b"] : en_default["gb.e21c21ccc26757fa"] } }, current4), /* @__PURE__ */ cpJsx("div", { style: { fontSize: 11, color: en_default["gb.b5e2bc59ff0f8c39"] } }, en_default["gb.a70099f6c4a2abb1"], mx, en_default["gb.4f5a2ada1166172a"], pct3, en_default["gb.61c5caba2f046b2c"]))), /* @__PURE__ */ cpJsx("div", { style: { height: 6, background: en_default["gb.3b313dfb66a5b167"], borderRadius: 3, marginBottom: 12, overflow: en_default["gb.e564b4081d7a9ea4"] } }, /* @__PURE__ */ cpJsx("div", { style: { height: en_default["gb.32e48995f98ce3b7"], width: pct3 + en_default["gb.bbf3f11cb5b43e70"], background: pct3 < 60 ? en_default["gb.3871da342003cbdb"] : pct3 < 80 ? en_default["gb.251a7b8506a725c5"] : en_default["gb.3c5c1ab6c5fd2f50"], borderRadius: 3 } })), /* @__PURE__ */ cpJsx("div", { style: { fontSize: 10.5, color: en_default["gb.6b3d6d843dfe8b50"], background: en_default["gb.46461f86fde154d9"], border: en_default["gb.d6ab3ca69906c920"], borderRadius: 6, padding: en_default["gb.5cae971ddb746d18"], marginBottom: 10 } }, en_default["gb.eeae99a402aacc76"], /* @__PURE__ */ cpJsx("strong", null, en_default["gb.58627f59212b0676"], mx, en_default["gb.ba5ec51d07a4ac0e"]), en_default["gb.12e4b36ff81abc27"]), /* @__PURE__ */ cpJsx("div", { style: { display: en_default["gb.222f930b87524636"], gap: 6, marginBottom: 6 } }, /* @__PURE__ */ cpJsx("input", { type: en_default["gb.0e87632cd46bd490"], value: dt, onChange: bindAction("gb.05-popovers.20562", "singleton", "onChange", (function(e) {
+    return ReactDOM.createPortal(/* @__PURE__ */ cpJsx("div", { ref, style: { position: en_default["gb.992a93455c71fedd"], left: pos ? pos.left : -9999, top: pos ? pos.top : -9999, opacity: pos ? 1 : 0, width: 340, background: en_default["gb.e08de713877c54e8"], border: en_default["gb.f35c8c1246856a29"], borderRadius: 10, boxShadow: en_default["gb.8ff460c8bd516f23"], padding: 14, zIndex: 300, fontFamily: en_default["gb.035300f3afee55ae"], fontSize: 12 }, "data-cp-scope": _cpOrigin }, /* @__PURE__ */ cpJsx("div", { style: { display: en_default["gb.222f930b87524636"], alignItems: en_default["gb.f179a509d32bd92c"], justifyContent: en_default["gb.8c72b36502d3b7a3"], marginBottom: 12 } }, /* @__PURE__ */ cpJsx("div", null, /* @__PURE__ */ cpJsx("div", { style: { fontWeight: 600, fontSize: 14 } }, cpRaw(student.name)), /* @__PURE__ */ cpJsx("div", { style: { fontSize: 10.5, color: en_default["gb.b5e2bc59ff0f8c39"] } }, cpRaw(col.name), en_default["gb.97cc363ef6a0df5e"])), /* @__PURE__ */ cpJsx("div", { style: { textAlign: en_default["gb.27042f4e6eca7d0b"] } }, /* @__PURE__ */ cpJsx("div", { style: { fontSize: 28, fontWeight: 600, lineHeight: 1, color: pct4 < 60 ? en_default["gb.3871da342003cbdb"] : pct4 < 80 ? en_default["gb.4a08e4d0db13be9b"] : en_default["gb.e21c21ccc26757fa"] } }, current4), /* @__PURE__ */ cpJsx("div", { style: { fontSize: 11, color: en_default["gb.b5e2bc59ff0f8c39"] } }, en_default["gb.a70099f6c4a2abb1"], mx, en_default["gb.4f5a2ada1166172a"], pct4, en_default["gb.61c5caba2f046b2c"]))), /* @__PURE__ */ cpJsx("div", { style: { height: 6, background: en_default["gb.3b313dfb66a5b167"], borderRadius: 3, marginBottom: 12, overflow: en_default["gb.e564b4081d7a9ea4"] } }, /* @__PURE__ */ cpJsx("div", { style: { height: en_default["gb.32e48995f98ce3b7"], width: pct4 + en_default["gb.bbf3f11cb5b43e70"], background: pct4 < 60 ? en_default["gb.3871da342003cbdb"] : pct4 < 80 ? en_default["gb.251a7b8506a725c5"] : en_default["gb.3c5c1ab6c5fd2f50"], borderRadius: 3 } })), /* @__PURE__ */ cpJsx("div", { style: { fontSize: 10.5, color: en_default["gb.6b3d6d843dfe8b50"], background: en_default["gb.46461f86fde154d9"], border: en_default["gb.d6ab3ca69906c920"], borderRadius: 6, padding: en_default["gb.5cae971ddb746d18"], marginBottom: 10 } }, en_default["gb.eeae99a402aacc76"], /* @__PURE__ */ cpJsx("strong", null, en_default["gb.58627f59212b0676"], mx, en_default["gb.ba5ec51d07a4ac0e"]), en_default["gb.12e4b36ff81abc27"]), /* @__PURE__ */ cpJsx("div", { style: { display: en_default["gb.222f930b87524636"], gap: 6, marginBottom: 6 } }, /* @__PURE__ */ cpJsx("input", { type: en_default["gb.0e87632cd46bd490"], value: dt, onChange: bindAction("gb.05-popovers.20562", "singleton", "onChange", (function(e) {
       sDt(e.target.value);
     })), style: { ...i11, flex: en_default["gb.c65708e9b085a296"] }, "data-cp-action": "gb.05-popovers.20562", "data-cp-context": "singleton" }), /* @__PURE__ */ cpJsx("input", { value: cm, onChange: bindAction("gb.05-popovers.20672", "singleton", "onChange", (function(e) {
       sCm(e.target.value);
@@ -52899,17 +53031,17 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
         return /* @__PURE__ */ cpJsx("g", null, /* @__PURE__ */ cpJsx("line", { x1: x2, y1: MT - 2, x2, y2: MT + ph + 4, stroke: en_default["gb.3871da342003cbdb"], strokeWidth: 1.3, strokeDasharray: en_default["gb.7bd7df1a31049cd7"], opacity: 0.7 }), /* @__PURE__ */ cpJsx("text", { x: x2, y: H3 - MB + 24, textAnchor: en_default["gb.a4888af4e46c129c"], fontSize: 9, fill: en_default["gb.3871da342003cbdb"], fontWeight: 600 }, en_default["gb.d97d758fc2ef4da5"], pass, en_default["gb.bbf3f11cb5b43e70"]));
       })());
     })()), cpRaw((function() {
-      var pct3 = function(v) {
+      var pct4 = function(v) {
         return mxA ? v / mxA * 100 : 0;
       };
       var nHigh = vaStats.filter(function(v) {
-        return pct3(v) >= 90;
+        return pct4(v) >= 90;
       }).length;
       var nMod = vaStats.filter(function(v) {
-        return pct3(v) >= 70 && pct3(v) < 90;
+        return pct4(v) >= 70 && pct4(v) < 90;
       }).length;
       var nLow = vaStats.filter(function(v) {
-        return pct3(v) < 70;
+        return pct4(v) < 70;
       }).length;
       var tot = vaStats.length || 1;
       var sorted = [...vaStats].sort(function(a, b) {
@@ -53095,8 +53227,8 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
           return isDropped(stu, c);
         });
         var sw = secWeight(sec);
-        var pct3 = sw ? sc / sw * 100 : 0;
-        return /* @__PURE__ */ cpJsx("div", { key: sec.id, style: { marginBottom: 10 } }, /* @__PURE__ */ cpJsx("div", { style: { display: en_default["gb.222f930b87524636"], justifyContent: en_default["gb.8c72b36502d3b7a3"], fontSize: 11, marginBottom: 3 } }, /* @__PURE__ */ cpJsx("span", { style: { fontWeight: 500 } }, cpRaw(sec.name), en_default["gb.6c179f21e6f62b62"], hasBoost && /* @__PURE__ */ cpJsx("span", { title: en_default["gb.cbc5b90bcf05b077"], style: { color: en_default["gb.4a08e4d0db13be9b"], fontWeight: 600 } }, en_default["gb.26c57b0854989f62"]), en_default["gb.6c179f21e6f62b62"], hasDrop && /* @__PURE__ */ cpJsx("span", { title: en_default["gb.2e5490ebe10dd90b"], style: { color: en_default["gb.b5e2bc59ff0f8c39"], fontWeight: 600 } }, en_default["gb.bda050585a00f0f6"])), /* @__PURE__ */ cpJsx("span", { style: { fontWeight: 600, color: pct3 >= pass ? en_default["gb.3c5c1ab6c5fd2f50"] : en_default["gb.3871da342003cbdb"] } }, sc.toFixed(1), en_default["gb.8a5edab282632443"], sw, adj && Math.abs(sc - rawSc) > 0.01 && /* @__PURE__ */ cpJsx("span", { style: { color: en_default["gb.b5e2bc59ff0f8c39"], fontWeight: 400, fontSize: 10, marginLeft: 4 } }, en_default["gb.d70b3c4e079aeb61"], rawSc.toFixed(1), en_default["gb.ba5ec51d07a4ac0e"]))), /* @__PURE__ */ cpJsx("div", { style: { height: 8, background: en_default["gb.3b313dfb66a5b167"], borderRadius: 4, overflow: en_default["gb.e564b4081d7a9ea4"] } }, /* @__PURE__ */ cpJsx("div", { style: { height: en_default["gb.32e48995f98ce3b7"], width: Math.min(100, pct3) + en_default["gb.bbf3f11cb5b43e70"], background: SF[sec.ci % SF.length], borderRadius: 4 } })));
+        var pct4 = sw ? sc / sw * 100 : 0;
+        return /* @__PURE__ */ cpJsx("div", { key: sec.id, style: { marginBottom: 10 } }, /* @__PURE__ */ cpJsx("div", { style: { display: en_default["gb.222f930b87524636"], justifyContent: en_default["gb.8c72b36502d3b7a3"], fontSize: 11, marginBottom: 3 } }, /* @__PURE__ */ cpJsx("span", { style: { fontWeight: 500 } }, cpRaw(sec.name), en_default["gb.6c179f21e6f62b62"], hasBoost && /* @__PURE__ */ cpJsx("span", { title: en_default["gb.cbc5b90bcf05b077"], style: { color: en_default["gb.4a08e4d0db13be9b"], fontWeight: 600 } }, en_default["gb.26c57b0854989f62"]), en_default["gb.6c179f21e6f62b62"], hasDrop && /* @__PURE__ */ cpJsx("span", { title: en_default["gb.2e5490ebe10dd90b"], style: { color: en_default["gb.b5e2bc59ff0f8c39"], fontWeight: 600 } }, en_default["gb.bda050585a00f0f6"])), /* @__PURE__ */ cpJsx("span", { style: { fontWeight: 600, color: pct4 >= pass ? en_default["gb.3c5c1ab6c5fd2f50"] : en_default["gb.3871da342003cbdb"] } }, sc.toFixed(1), en_default["gb.8a5edab282632443"], sw, adj && Math.abs(sc - rawSc) > 0.01 && /* @__PURE__ */ cpJsx("span", { style: { color: en_default["gb.b5e2bc59ff0f8c39"], fontWeight: 400, fontSize: 10, marginLeft: 4 } }, en_default["gb.d70b3c4e079aeb61"], rawSc.toFixed(1), en_default["gb.ba5ec51d07a4ac0e"]))), /* @__PURE__ */ cpJsx("div", { style: { height: 8, background: en_default["gb.3b313dfb66a5b167"], borderRadius: 4, overflow: en_default["gb.e564b4081d7a9ea4"] } }, /* @__PURE__ */ cpJsx("div", { style: { height: en_default["gb.32e48995f98ce3b7"], width: Math.min(100, pct4) + en_default["gb.bbf3f11cb5b43e70"], background: SF[sec.ci % SF.length], borderRadius: 4 } })));
       }))))), cpRaw(traj.length > 0 && /* @__PURE__ */ cpJsx("div", { style: { background: en_default["gb.e08de713877c54e8"], border: en_default["gb.d6ab3ca69906c920"], borderRadius: 8, padding: 16, marginBottom: 16, overflowX: en_default["gb.929260ad9b9ea9fe"], position: en_default["gb.d2d9e1f13413d3e0"] }, className: en_default["gb.e16a9d4d1cf9ead8"] }, /* @__PURE__ */ cpJsx("div", { style: { fontSize: 12, fontWeight: 600, marginBottom: 6, color: en_default["gb.833631aa325ef0ac"], display: en_default["gb.222f930b87524636"], justifyContent: en_default["gb.8c72b36502d3b7a3"], alignItems: en_default["gb.f179a509d32bd92c"], flexWrap: en_default["gb.f0a289923ed634ac"], gap: 6 } }, /* @__PURE__ */ cpJsx("div", { style: { display: en_default["gb.222f930b87524636"], alignItems: en_default["gb.f179a509d32bd92c"], gap: 8 } }, /* @__PURE__ */ cpJsx("span", null, en_default["gb.8c380c5431576556"], cpRaw(stu.name), en_default["gb.777b786259111cc7"]), /* @__PURE__ */ cpJsx(TrajInfoBtn, { infoKey: en_default["gb.3af87d81906a15b2"], _cpOrigin: "09-av.jsx:51685" })), /* @__PURE__ */ cpJsx("span", { style: { fontSize: 10.5, color: en_default["gb.b5e2bc59ff0f8c39"], fontWeight: 400 } }, /* @__PURE__ */ cpJsx("span", { style: { display: en_default["gb.da8c9d276effceca"], width: 10, height: 2, background: en_default["gb.9f33eb09e7c4b4b7"], marginRight: 4, verticalAlign: en_default["gb.a4888af4e46c129c"] } }), en_default["gb.264c8c381bf16c98"], /* @__PURE__ */ cpJsx("span", { style: { display: en_default["gb.da8c9d276effceca"], width: 10, height: 2, background: en_default["gb.b5e2bc59ff0f8c39"], marginRight: 4, marginLeft: 10, verticalAlign: en_default["gb.a4888af4e46c129c"] } }), en_default["gb.bb6498f02c2afa8a"], adj && /* @__PURE__ */ cpJsx("span", { style: { marginLeft: 10 } }, /* @__PURE__ */ cpJsx("span", { style: { color: en_default["gb.4a08e4d0db13be9b"], fontWeight: 600 } }, en_default["gb.26c57b0854989f62"]), en_default["gb.98b34c07fe08b4ce"], /* @__PURE__ */ cpJsx("span", { style: { color: en_default["gb.b5e2bc59ff0f8c39"], fontWeight: 600 } }, en_default["gb.5b7583afd8543263"]), en_default["gb.2734ee3d50ed7074"]))), /* @__PURE__ */ cpJsx("svg", { width: TW2, height: TH2 }, [0, 25, 50, 75, 100].map(function(t2, i) {
         return /* @__PURE__ */ cpJsx("g", { key: i }, /* @__PURE__ */ cpJsx("line", { x1: TP, y1: ty(t2), x2: TW2 - TP, y2: ty(t2), stroke: en_default["gb.4702b16c05573854"], strokeWidth: 1 }), /* @__PURE__ */ cpJsx("text", { x: TP - 6, y: ty(t2) + 3, textAnchor: en_default["gb.361e48d0308f20e3"], fontSize: 9, fill: en_default["gb.b5e2bc59ff0f8c39"] }, t2));
       }), /* @__PURE__ */ cpJsx("line", { x1: TP, y1: ty(pass), x2: TW2 - TP, y2: ty(pass), stroke: en_default["gb.3871da342003cbdb"], strokeWidth: 1, strokeDasharray: en_default["gb.c33a915bed8c8aa8"], opacity: 0.5 }), /* @__PURE__ */ cpJsx("path", { d: cLine, fill: en_default["gb.140bedbf9c3f6d56"], stroke: en_default["gb.b5e2bc59ff0f8c39"], strokeWidth: 1.5, strokeDasharray: en_default["gb.cd0cf807835179d7"] }), /* @__PURE__ */ cpJsx("path", { d: sLine, fill: en_default["gb.140bedbf9c3f6d56"], stroke: en_default["gb.9f33eb09e7c4b4b7"], strokeWidth: 2.5 }), traj.map(function(p, i) {
@@ -53125,11 +53257,11 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
           var rawV = getCV(stu, col, homework);
           var v = cvA(stu, col);
           var mxc = col.maxMark != null ? col.maxMark : 10;
-          var pct3 = v / (mxc || 1) * 100;
+          var pct4 = v / (mxc || 1) * 100;
           var rel = isReleased(col);
           var boosted = isBoosted(stu, col);
           var dropped = isDropped(stu, col);
-          return /* @__PURE__ */ cpJsx("div", { key: col.id, style: { display: en_default["gb.222f930b87524636"], alignItems: en_default["gb.f179a509d32bd92c"], gap: 8, marginBottom: 6, fontSize: 11, opacity: rel ? dropped ? 0.6 : 1 : 0.55, background: boosted ? en_default["gb.58d2dedc5b3ba1f2"] : dropped ? en_default["gb.8fd9bd3dae8d7c01"] : en_default["gb.10e9f5602d2492b3"], padding: boosted || dropped ? en_default["gb.b94c7d873df38d3b"] : en_default["gb.5feceb66ffc86f38"], borderRadius: boosted || dropped ? 4 : 0 } }, /* @__PURE__ */ cpJsx("span", { style: { flex: 1, color: en_default["gb.833631aa325ef0ac"] } }, !rel && /* @__PURE__ */ cpJsx("span", { title: en_default["gb.79f4c529bf1b6092"], style: { display: en_default["gb.da8c9d276effceca"], width: 6, height: 6, borderRadius: 3, background: en_default["gb.e2442d83b3a8e558"], marginRight: 6, verticalAlign: en_default["gb.a4888af4e46c129c"] } }), boosted && /* @__PURE__ */ cpJsx("span", { title: en_default["gb.d0f5a8a6656b66c6"] + rawV.toFixed(1), style: { color: en_default["gb.4a08e4d0db13be9b"], fontWeight: 600, marginRight: 4 } }, en_default["gb.26c57b0854989f62"]), dropped && /* @__PURE__ */ cpJsx("span", { title: en_default["gb.1f9a435298f95772"], style: { color: en_default["gb.b5e2bc59ff0f8c39"], fontWeight: 600, marginRight: 4 } }, en_default["gb.bda050585a00f0f6"]), cpRaw(sec.name), en_default["gb.592f6fd0750e870c"], cpRaw(col.name)), /* @__PURE__ */ cpJsx("span", { style: { fontWeight: 600, color: dropped ? en_default["gb.b5e2bc59ff0f8c39"] : pct3 >= pass ? en_default["gb.3c5c1ab6c5fd2f50"] : en_default["gb.3871da342003cbdb"], minWidth: 80, textAlign: en_default["gb.27042f4e6eca7d0b"], textDecoration: dropped ? en_default["gb.1a967b068cfe50e5"] : en_default["gb.140bedbf9c3f6d56"] } }, v.toFixed(1), en_default["gb.8a5edab282632443"], mxc, boosted && /* @__PURE__ */ cpJsx("span", { style: { color: en_default["gb.b5e2bc59ff0f8c39"], fontWeight: 400, fontSize: 10, marginLeft: 4 } }, en_default["gb.d70b3c4e079aeb61"], rawV.toFixed(1), en_default["gb.ba5ec51d07a4ac0e"])), /* @__PURE__ */ cpJsx("div", { style: { width: 60, height: 5, background: en_default["gb.3b313dfb66a5b167"], borderRadius: 3 } }, /* @__PURE__ */ cpJsx("div", { style: { height: en_default["gb.32e48995f98ce3b7"], width: Math.min(100, pct3) + en_default["gb.bbf3f11cb5b43e70"], background: dropped ? en_default["gb.e2442d83b3a8e558"] : pct3 >= pass ? en_default["gb.3c5c1ab6c5fd2f50"] : en_default["gb.3871da342003cbdb"], borderRadius: 3, opacity: dropped ? 0.5 : 1 } })));
+          return /* @__PURE__ */ cpJsx("div", { key: col.id, style: { display: en_default["gb.222f930b87524636"], alignItems: en_default["gb.f179a509d32bd92c"], gap: 8, marginBottom: 6, fontSize: 11, opacity: rel ? dropped ? 0.6 : 1 : 0.55, background: boosted ? en_default["gb.58d2dedc5b3ba1f2"] : dropped ? en_default["gb.8fd9bd3dae8d7c01"] : en_default["gb.10e9f5602d2492b3"], padding: boosted || dropped ? en_default["gb.b94c7d873df38d3b"] : en_default["gb.5feceb66ffc86f38"], borderRadius: boosted || dropped ? 4 : 0 } }, /* @__PURE__ */ cpJsx("span", { style: { flex: 1, color: en_default["gb.833631aa325ef0ac"] } }, !rel && /* @__PURE__ */ cpJsx("span", { title: en_default["gb.79f4c529bf1b6092"], style: { display: en_default["gb.da8c9d276effceca"], width: 6, height: 6, borderRadius: 3, background: en_default["gb.e2442d83b3a8e558"], marginRight: 6, verticalAlign: en_default["gb.a4888af4e46c129c"] } }), boosted && /* @__PURE__ */ cpJsx("span", { title: en_default["gb.d0f5a8a6656b66c6"] + rawV.toFixed(1), style: { color: en_default["gb.4a08e4d0db13be9b"], fontWeight: 600, marginRight: 4 } }, en_default["gb.26c57b0854989f62"]), dropped && /* @__PURE__ */ cpJsx("span", { title: en_default["gb.1f9a435298f95772"], style: { color: en_default["gb.b5e2bc59ff0f8c39"], fontWeight: 600, marginRight: 4 } }, en_default["gb.bda050585a00f0f6"]), cpRaw(sec.name), en_default["gb.592f6fd0750e870c"], cpRaw(col.name)), /* @__PURE__ */ cpJsx("span", { style: { fontWeight: 600, color: dropped ? en_default["gb.b5e2bc59ff0f8c39"] : pct4 >= pass ? en_default["gb.3c5c1ab6c5fd2f50"] : en_default["gb.3871da342003cbdb"], minWidth: 80, textAlign: en_default["gb.27042f4e6eca7d0b"], textDecoration: dropped ? en_default["gb.1a967b068cfe50e5"] : en_default["gb.140bedbf9c3f6d56"] } }, v.toFixed(1), en_default["gb.8a5edab282632443"], mxc, boosted && /* @__PURE__ */ cpJsx("span", { style: { color: en_default["gb.b5e2bc59ff0f8c39"], fontWeight: 400, fontSize: 10, marginLeft: 4 } }, en_default["gb.d70b3c4e079aeb61"], rawV.toFixed(1), en_default["gb.ba5ec51d07a4ac0e"])), /* @__PURE__ */ cpJsx("div", { style: { width: 60, height: 5, background: en_default["gb.3b313dfb66a5b167"], borderRadius: 3 } }, /* @__PURE__ */ cpJsx("div", { style: { height: en_default["gb.32e48995f98ce3b7"], width: Math.min(100, pct4) + en_default["gb.bbf3f11cb5b43e70"], background: dropped ? en_default["gb.e2442d83b3a8e558"] : pct4 >= pass ? en_default["gb.3c5c1ab6c5fd2f50"] : en_default["gb.3871da342003cbdb"], borderRadius: 3, opacity: dropped ? 0.5 : 1 } })));
         });
       }))));
     })()), cpRaw(tab === en_default["gb.2934fb49d6b38ade"] && (function() {
@@ -54489,9 +54621,9 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     }, [meta]);
     var partRelative = function(m) {
       var mx = Math.max(1e-4, +m.participationMax || 10);
-      var pct3 = Math.max(0, Math.min(1, (+m.participation || 0) / mx));
-      var z = partStats.sd > 1e-4 ? (pct3 - partStats.mean) / partStats.sd : 0;
-      return { pct: pct3, z };
+      var pct4 = Math.max(0, Math.min(1, (+m.participation || 0) / mx));
+      var z = partStats.sd > 1e-4 ? (pct4 - partStats.mean) / partStats.sd : 0;
+      return { pct: pct4, z };
     };
     var fairTier = function(m) {
       if ((+m.participation || 0) <= 0) return 0;
@@ -56361,10 +56493,10 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
 
   // src/modules/timer/index.jsx
   var writeTimer = (change2) => updateProfile((p) => ({ ...p, timerState: typeof change2 === "function" ? change2(p.timerState || idleTimer()) : change2 }));
-  function TimerControls({ state: state2, context: context2 = "main" }) {
+  function TimerControls({ state: state2, context: context2 = "main", only }) {
     const snapshot = timerSnapshot(state2), running = state2.phase === "running" && !snapshot.finished, primary2 = running ? "timer.pause" : state2.phase === "paused" ? "timer.resume" : "timer.start";
     const named = (key4) => ({ "aria-label": t(key4), title: t(key4), className: "cp-timer-mini-btn" });
-    return /* @__PURE__ */ cpJsx("div", { className: "cp-timer-mini-controls" }, /* @__PURE__ */ cpJsx(ToolButton, { id: primary2, context: context2, ...named(primary2), onClick: async () => {
+    const buttons = [/* @__PURE__ */ cpJsx(ToolButton, { key: "p", id: primary2, context: context2, ...named(primary2), onClick: async () => {
       if (running) writeTimer((s) => pauseTimer(s));
       else {
         try {
@@ -56373,7 +56505,8 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
         }
         writeTimer((s) => startTimer(s));
       }
-    } }, icon2(ICONS2[running ? "pause" : "play"])), /* @__PURE__ */ cpJsx(ToolButton, { id: "timer.reset", context: context2, ...named("timer.reset"), onClick: () => writeTimer((s) => ({ ...idleTimer(s.mode, s.durationMs), segmentsMs: s.segmentsMs || [] })) }, icon2(ICONS2.reset)), /* @__PURE__ */ cpJsx(ToolButton, { id: "timer.subtractMinute", context: context2, ...named("timer.subtractMinute"), onClick: () => writeTimer((s) => adjustTimer(s, -6e4)) }, /* @__PURE__ */ cpJsx("bdi", { dir: "ltr" }, cpRaw("\u22121:00"))), /* @__PURE__ */ cpJsx(ToolButton, { id: "timer.addMinute", context: context2, ...named("timer.addMinute"), onClick: () => writeTimer((s) => adjustTimer(s, 6e4)) }, /* @__PURE__ */ cpJsx("bdi", { dir: "ltr" }, cpRaw("+1:00"))));
+    } }, icon2(ICONS2[running ? "pause" : "play"])), /* @__PURE__ */ cpJsx(ToolButton, { key: "r", id: "timer.reset", context: context2, ...named("timer.reset"), onClick: () => writeTimer((s) => ({ ...idleTimer(s.mode, s.durationMs), segmentsMs: s.segmentsMs || [] })) }, icon2(ICONS2.reset)), /* @__PURE__ */ cpJsx(ToolButton, { key: "s", id: "timer.subtractMinute", context: context2, ...named("timer.subtractMinute"), onClick: () => writeTimer((s) => adjustTimer(s, -6e4)) }, /* @__PURE__ */ cpJsx("bdi", { dir: "ltr" }, cpRaw("\u22121:00"))), /* @__PURE__ */ cpJsx(ToolButton, { key: "a", id: "timer.addMinute", context: context2, ...named("timer.addMinute"), onClick: () => writeTimer((s) => adjustTimer(s, 6e4)) }, /* @__PURE__ */ cpJsx("bdi", { dir: "ltr" }, cpRaw("+1:00")))];
+    return /* @__PURE__ */ cpJsx("div", { className: "cp-timer-mini-controls" }, only === "primary" ? buttons[0] : only === "rest" ? buttons.slice(1) : buttons);
   }
   var icon2 = (d) => /* @__PURE__ */ cpJsx("svg", { "aria-hidden": "true", width: "18", height: "18", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "1.8", strokeLinecap: "round", strokeLinejoin: "round" }, /* @__PURE__ */ cpJsx("path", { d }));
   var ICONS2 = { gear: "M4 7h9M17 7h3M4 17h3M11 17h9M15 5a2 2 0 1 0 0 4 2 2 0 0 0 0-4zM9 15a2 2 0 1 0 0 4 2 2 0 0 0 0-4z", back: "M14.5 6l-6 6 6 6", close: "M7 7l10 10M17 7L7 17", check: "M5 12l5 5 9-10", countdown: "M6.5 3h11M6.5 21h11M8 3v2.5c0 2.6 4 3.9 4 6.5s-4 3.9-4 6.5V21M16 3v2.5c0 2.6-4 3.9-4 6.5s4 3.9 4 6.5V21M10 19.6h4L12 17.4z", stopwatch: "M12 21a8 8 0 1 0 0-16 8 8 0 0 0 0 16z M12 9v4l2.5 2 M10 2h4 M12 2v3 M19 6l1.5-1.5", segments: "M12 3.5a8.5 8.5 0 1 0 0 17 8.5 8.5 0 0 0 0-17z M12 12V3.5M12 12l7.4 4.2M12 12l-7.4 4.2", quiz: "M7.2 4h9.6a2.2 2.2 0 0 1 2.2 2.2v12.6a2.2 2.2 0 0 1-2.2 2.2H7.2A2.2 2.2 0 0 1 5 18.8V6.2A2.2 2.2 0 0 1 7.2 4z M9 4V2.8h6V4 M8.5 10h7M8.5 13.5h7M8.5 17h4", play: "M8 5.5v13l10-6.5z", pause: "M8.5 5.5v13M15.5 5.5v13", reset: "M4.5 12a7.5 7.5 0 1 0 2.2-5.3M4.5 4v4h4", plus: "M12 5v14M5 12h14", minus: "M5 12h14", full: "M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5", exitFull: "M9 4v5H4M15 4v5h5M9 20v-5H4M15 20v-5h5" };
@@ -57813,8 +57946,8 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     if (p.state === "afterYear") return null;
     if (p.state === "noTerms" || p.state === "noLessons") return /* @__PURE__ */ cpJsx("section", { className: "cp-pace", "data-state": p.state, "aria-labelledby": "cp-pace-title" }, /* @__PURE__ */ cpJsx("header", null, /* @__PURE__ */ cpJsx("div", null, /* @__PURE__ */ cpJsx("span", { className: "cp-home-kicker" }, uxText("pace.kicker"), cpRaw(name ? " \xB7 " + name : "")), /* @__PURE__ */ cpJsx("h2", { id: "cp-pace-title" }, uxText("pace.setupTitle")))), /* @__PURE__ */ cpJsx("p", { className: "cp-ai3-hint" }, uxText(p.state === "noTerms" ? "pace.needTerms" : "pace.needLessons")), p.state === "noTerms" ? /* @__PURE__ */ cpJsx(UxButton, { id: "pace.openYear", onClick: () => toYear(setView) }) : /* @__PURE__ */ cpJsx(UxButton, { id: "pace.openLessons", onClick: () => setView("module:assessments") }));
     const tick = (lesson) => onUpdate((d) => setDone(d, lesson.id, !p.done[lesson.id], date5)), item = (lesson, check2 = true) => /* @__PURE__ */ cpJsx("li", { key: lesson.id, "data-done": p.done[lesson.id] ? "true" : "false" }, check2 ? /* @__PURE__ */ cpJsx(UxCheck, { id: "pace.done", context: lesson.id, text: lessonLabel(lesson), checked: !!p.done[lesson.id], onChange: () => tick(lesson) }) : /* @__PURE__ */ cpJsx("span", null, cpRaw(lessonLabel(lesson))));
-    const pct3 = (n) => p.total ? Math.round(n / p.total * 100) : 0, title = uxText("pace.term." + p.term.id) + " \xB7 " + uxText("pace.weekOf").replace("{n}", String(p.weekNo)).replace("{total}", String(p.weekCount));
-    return /* @__PURE__ */ cpJsx("section", { className: "cp-pace", "data-state": p.state, "data-status": p.status, "aria-labelledby": "cp-pace-title" }, /* @__PURE__ */ cpJsx("header", null, /* @__PURE__ */ cpJsx("div", null, /* @__PURE__ */ cpJsx("span", { className: "cp-home-kicker" }, uxText("pace.kicker"), cpRaw(name ? " \xB7 " + name : "")), /* @__PURE__ */ cpJsx("h2", { id: "cp-pace-title" }, cpRaw(title)), p.week && /* @__PURE__ */ cpJsx("span", { className: "cp-home-sub" }, /* @__PURE__ */ cpJsx("bdi", null, cpRaw(dayMonth(p.week.first) + " \u2013 " + dayMonth(p.week.last))), p.holiday && cpRaw(" \xB7 "), p.holiday && uxText(p.off === "exams" ? "pace.examsNow" : p.off === "other" ? "pace.otherNow" : "pace.holidayNow"), p.state === "beforeTerm" && cpRaw(" \xB7 "), p.state === "beforeTerm" && uxText("pace.comingUp"))), /* @__PURE__ */ cpJsx("span", { className: "cp-pace-status", "data-status": p.status }, p.status === "behind" ? uxText("pace.behind").replace("{n}", String(p.behind.length)) : p.status === "ahead" ? uxText("pace.ahead").replace("{n}", String(p.ahead.length)) : uxText("pace.onTrack"))), /* @__PURE__ */ cpJsx("div", { className: "cp-pace-bar", role: "img", "aria-label": uxText("pace.progress").replace("{done}", String(p.finished)).replace("{total}", String(p.total)).replace("{expected}", String(p.expected)) }, /* @__PURE__ */ cpJsx("i", { style: { inlineSize: pct3(p.finished) + "%" } }), p.state === "term" && /* @__PURE__ */ cpJsx("b", { style: { insetInlineStart: pct3(p.expected) + "%" } })), /* @__PURE__ */ cpJsx("p", { className: "cp-pace-count" }, uxText("pace.progress").replace("{done}", String(p.finished)).replace("{total}", String(p.total)).replace("{expected}", String(p.expected))), /* @__PURE__ */ cpJsx("div", { className: "cp-pace-cols" }, p.behind.length > 0 && /* @__PURE__ */ cpJsx("div", { className: "cp-pace-behind" }, /* @__PURE__ */ cpJsx("h3", null, uxText("pace.catchUp")), /* @__PURE__ */ cpJsx("ul", null, p.behind.map((l) => item(l)))), /* @__PURE__ */ cpJsx("div", { className: "cp-pace-this" }, /* @__PURE__ */ cpJsx("h3", null, uxText(p.state === "beforeTerm" ? "pace.firstWeek" : "pace.thisWeek")), p.thisWeek.length ? /* @__PURE__ */ cpJsx("ul", null, p.thisWeek.map((l) => item(l))) : /* @__PURE__ */ cpJsx("p", { className: "cp-ai3-hint" }, uxText("pace.nothingThisWeek"))), p.next.length > 0 && /* @__PURE__ */ cpJsx("div", { className: "cp-pace-next" }, /* @__PURE__ */ cpJsx("h3", null, uxText("pace.nextWeek")), /* @__PURE__ */ cpJsx("ul", null, p.next.map((l) => item(l))))), /* @__PURE__ */ cpJsx("div", { className: "cp-ai3-row" }, /* @__PURE__ */ cpJsx(UxButton, { id: "pace.allLessons", onClick: () => {
+    const pct4 = (n) => p.total ? Math.round(n / p.total * 100) : 0, title = uxText("pace.term." + p.term.id) + " \xB7 " + uxText("pace.weekOf").replace("{n}", String(p.weekNo)).replace("{total}", String(p.weekCount));
+    return /* @__PURE__ */ cpJsx("section", { className: "cp-pace", "data-state": p.state, "data-status": p.status, "aria-labelledby": "cp-pace-title" }, /* @__PURE__ */ cpJsx("header", null, /* @__PURE__ */ cpJsx("div", null, /* @__PURE__ */ cpJsx("span", { className: "cp-home-kicker" }, uxText("pace.kicker"), cpRaw(name ? " \xB7 " + name : "")), /* @__PURE__ */ cpJsx("h2", { id: "cp-pace-title" }, cpRaw(title)), p.week && /* @__PURE__ */ cpJsx("span", { className: "cp-home-sub" }, /* @__PURE__ */ cpJsx("bdi", null, cpRaw(dayMonth(p.week.first) + " \u2013 " + dayMonth(p.week.last))), p.holiday && cpRaw(" \xB7 "), p.holiday && uxText(p.off === "exams" ? "pace.examsNow" : p.off === "other" ? "pace.otherNow" : "pace.holidayNow"), p.state === "beforeTerm" && cpRaw(" \xB7 "), p.state === "beforeTerm" && uxText("pace.comingUp"))), /* @__PURE__ */ cpJsx("span", { className: "cp-pace-status", "data-status": p.status }, p.status === "behind" ? uxText("pace.behind").replace("{n}", String(p.behind.length)) : p.status === "ahead" ? uxText("pace.ahead").replace("{n}", String(p.ahead.length)) : uxText("pace.onTrack"))), /* @__PURE__ */ cpJsx("div", { className: "cp-pace-bar", role: "img", "aria-label": uxText("pace.progress").replace("{done}", String(p.finished)).replace("{total}", String(p.total)).replace("{expected}", String(p.expected)) }, /* @__PURE__ */ cpJsx("i", { style: { inlineSize: pct4(p.finished) + "%" } }), p.state === "term" && /* @__PURE__ */ cpJsx("b", { style: { insetInlineStart: pct4(p.expected) + "%" } })), /* @__PURE__ */ cpJsx("p", { className: "cp-pace-count" }, uxText("pace.progress").replace("{done}", String(p.finished)).replace("{total}", String(p.total)).replace("{expected}", String(p.expected))), /* @__PURE__ */ cpJsx("div", { className: "cp-pace-cols" }, p.behind.length > 0 && /* @__PURE__ */ cpJsx("div", { className: "cp-pace-behind" }, /* @__PURE__ */ cpJsx("h3", null, uxText("pace.catchUp")), /* @__PURE__ */ cpJsx("ul", null, p.behind.map((l) => item(l)))), /* @__PURE__ */ cpJsx("div", { className: "cp-pace-this" }, /* @__PURE__ */ cpJsx("h3", null, uxText(p.state === "beforeTerm" ? "pace.firstWeek" : "pace.thisWeek")), p.thisWeek.length ? /* @__PURE__ */ cpJsx("ul", null, p.thisWeek.map((l) => item(l))) : /* @__PURE__ */ cpJsx("p", { className: "cp-ai3-hint" }, uxText("pace.nothingThisWeek"))), p.next.length > 0 && /* @__PURE__ */ cpJsx("div", { className: "cp-pace-next" }, /* @__PURE__ */ cpJsx("h3", null, uxText("pace.nextWeek")), /* @__PURE__ */ cpJsx("ul", null, p.next.map((l) => item(l))))), /* @__PURE__ */ cpJsx("div", { className: "cp-ai3-row" }, /* @__PURE__ */ cpJsx(UxButton, { id: "pace.allLessons", onClick: () => {
       try {
         localStorage.setItem("cp:assess:view", "week");
       } catch {
@@ -61339,7 +61472,10 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
         setError(t(e.name === "NotAllowedError" || e.name === "SecurityError" ? "noise.denied" : e.name === "NotFoundError" ? "noise.noDevice" : e.message === "noise.unsupported" ? "noise.unsupported" : "noise.unavailable"));
       }
     }, className: "cp-noise-mic", active: data.active, "data-on": data.active ? "true" : "false", "aria-pressed": data.active, "aria-label": t(data.active ? "noise.stop" : "noise.start"), title: t(data.active ? "noise.stop" : "noise.start") }, micIcon(data.active), /* @__PURE__ */ cpJsx("span", { className: "cp-noise-mic-text" }, t(data.active ? "noise.stop" : "noise.start")));
-    if (mini) return /* @__PURE__ */ cpJsx("div", { className: "cp-noise-mini" }, mic, /* @__PURE__ */ cpJsx("span", { role: "status" }, data.active ? t("noise." + state2) : t("noise.noSamples")));
+    if (mini) {
+      const level = data.active ? Math.max(0, data.last?.relativeDb || 0) : 0, top = Math.max(1, (settings.loudMin || 1) * 1.5), lit = Math.round(Math.min(1, level / top) * 16), mark = Math.min(1, Math.max(0, settings.quietMax / top)), loudAt = Math.min(1, settings.loudMin / top);
+      return /* @__PURE__ */ cpJsx("div", { className: "cp-noise-mini", "data-state": data.active ? state2 : "off" }, mic, /* @__PURE__ */ cpJsx("output", { className: "cp-pip-read", role: "status" }, data.active ? t("noise." + state2) : uxText("pip.off")), /* @__PURE__ */ cpJsx("span", { className: "cp-noise-lights", "aria-hidden": "true" }, Array.from({ length: 16 }, (_, k) => /* @__PURE__ */ cpJsx("i", { key: k, "data-on": k < lit ? "true" : void 0, "data-zone": (k + 0.5) / 16 < mark ? "quiet" : (k + 0.5) / 16 < loudAt ? "acceptable" : "loud" })), /* @__PURE__ */ cpJsx("u", { style: { insetInlineStart: (mark * 100).toFixed(1) + "%" } })));
+    }
     if (!compact) {
       const pctQuiet = data.summary?.samples ? Math.round(data.summary.quiet / data.summary.samples * 100) : 0, goal = settings.quietGoal ?? 80;
       const lock = /* @__PURE__ */ cpJsx("svg", { "aria-hidden": "true", width: "14", height: "14", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "1.8", strokeLinecap: "round", strokeLinejoin: "round" }, /* @__PURE__ */ cpJsx("rect", { x: "5", y: "11", width: "14", height: "10", rx: "2" }), /* @__PURE__ */ cpJsx("path", { d: "M8 11V7a4 4 0 018 0v4" }));
@@ -62586,7 +62722,7 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       const pass = +(doc.settings.passThreshold || 50), marked = columns2.filter((column) => !column.hidden && column.pct != null && column.classAverage != null);
       const pick2 = (list2, fn) => list2.length ? [...list2].sort(fn)[0] : null;
       const by = (fn) => fn === bestOrder ? pick2(marked.filter((column) => column.pct >= column.classAverage + 3 || column.pct >= 100), fn) : pick2(marked.filter((column) => column.pct < pass || column.pct <= column.classAverage - 3), fn);
-      const pct3 = section.given ? section.sectionPct(student) : null;
+      const pct4 = section.given ? section.sectionPct(student) : null;
       return {
         id: section.id,
         name: section.name,
@@ -62594,8 +62730,8 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
         weight: round3(section.weight),
         given: section.given,
         bonus: round3(columns2.reduce((n, column) => n + (column.entered ? column.bonus : 0), 0)) || 0,
-        points: pct3 == null ? null : round3(secReleasedScore(student, doc.sections[section.index], doc.homework)),
-        pct: pct3,
+        points: pct4 == null ? null : round3(secReleasedScore(student, doc.sections[section.index], doc.homework)),
+        pct: pct4,
         classAverage: section.classAverage,
         columns: columns2,
         best: by(bestOrder),
@@ -62943,8 +63079,8 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     return '<ol class="cpw-log">' + events.slice(-14).reverse().map((event) => '<li data-kind="' + event.kind + '"><time>' + esc2(date5(event.date)) + "</time><b>" + (event.kind === "positive" ? "+" : "\u2212") + '</b><span dir="auto">' + esc2(noteLabel(event, language2)) + "</span></li>").join("") + "</ol>";
   }
   function compareRow(item, pass, language2, extra = "") {
-    const state2 = standing(item.pct, item.classAverage, pass), pct3 = item.pct == null ? 0 : Math.max(0, Math.min(100, item.pct));
-    return '<div class="cpw-row" data-state="' + state2 + '"><span class="cpw-row-name"><span dir="auto">' + esc2(item.name) + "</span>" + (item.section ? '<small dir="auto">' + esc2(item.section) + "</small>" : "") + '</span><span class="cpw-track"><span class="cpw-fill" style="width:' + pct3 + '%"></span>' + (item.classAverage != null ? '<span class="cpw-tick" style="inset-inline-start:' + Math.max(0, Math.min(100, item.classAverage)) + '%"></span>' : "") + '</span><span class="cpw-row-value"><b>' + (item.pct == null ? esc2(text6("r.noMark", language2)) : ltr(num4(Math.min(100, item.pct)) + "%") + extra) + "</b><small>" + esc2(text6("r.classShort", language2)) + " " + ltr(num4(item.classAverage) + "%") + "</small></span></div>";
+    const state2 = standing(item.pct, item.classAverage, pass), pct4 = item.pct == null ? 0 : Math.max(0, Math.min(100, item.pct));
+    return '<div class="cpw-row" data-state="' + state2 + '"><span class="cpw-row-name"><span dir="auto">' + esc2(item.name) + "</span>" + (item.section ? '<small dir="auto">' + esc2(item.section) + "</small>" : "") + '</span><span class="cpw-track"><span class="cpw-fill" style="width:' + pct4 + '%"></span>' + (item.classAverage != null ? '<span class="cpw-tick" style="inset-inline-start:' + Math.max(0, Math.min(100, item.classAverage)) + '%"></span>' : "") + '</span><span class="cpw-row-value"><b>' + (item.pct == null ? esc2(text6("r.noMark", language2)) : ltr(num4(Math.min(100, item.pct)) + "%") + extra) + "</b><small>" + esc2(text6("r.classShort", language2)) + " " + ltr(num4(item.classAverage) + "%") + "</small></span></div>";
   }
   function tile(label, value, detail, state2) {
     return '<div class="cpw-tile" data-state="' + (state2 || "none") + '"><span>' + label + "</span><b>" + value + "</b><small>" + detail + "</small></div>";
@@ -64257,9 +64393,52 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     };
   }
 
+  // src/core/pip-tiles.jsx
+  var pct3 = (value) => (Math.max(0, Math.min(1, value)) * 100).toFixed(1) + "%";
+  var toMin = (hhmm2) => {
+    const [h, m] = String(hhmm2 || "0:0").split(":").map(Number);
+    return h * 60 + m;
+  };
+  function timerTile(profile3, now) {
+    const state2 = profile3.timerState || idleTimer(), snap = timerSnapshot(state2, now), settings = profile3.timerSettings || {};
+    const quiz = !!settings.quizMode && state2.mode === "countdown", name = quiz ? uxText("timer.quiz") : t("timer." + state2.mode);
+    const total = state2.mode === "segments" ? state2.segmentsMs?.[snap.segmentIndex] || 1 : snap.totalMs || state2.durationMs || 1;
+    const phase = snap.finished ? "up" : state2.mode !== "stopwatch" && state2.phase !== "idle" && snap.displayMs <= 6e4 ? "last" : "";
+    const label = phase === "up" ? name + " \xB7 " + uxText("timer.timeUp") : phase === "last" ? name + " \xB7 " + uxText("pip.lastMinute") : name;
+    return {
+      phase,
+      label,
+      primary: /* @__PURE__ */ cpJsx(TimerControls, { state: state2, context: "pip", only: "primary" }),
+      extra: /* @__PURE__ */ cpJsx(TimerControls, { state: state2, context: "pip", only: "rest" }),
+      body: /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx("output", { className: "cp-pip-read" }, cpRaw(timerReadout(snap, settings))), state2.mode !== "stopwatch" && /* @__PURE__ */ cpJsx("span", { className: "cp-pip-track", "aria-hidden": "true" }, /* @__PURE__ */ cpJsx("i", { style: { width: pct3(snap.displayMs / total) } })))
+    };
+  }
+  function bellInfo(profile3, now) {
+    const schedule = nowNext(profile3, now), d = new Date(now), minute = d.getHours() * 60 + d.getMinutes() + d.getSeconds() / 60;
+    if (schedule.now) {
+      const p = schedule.now.period, start = toMin(p.start), end = toMin(p.end);
+      return { left: Math.max(0, Math.ceil(end - minute)), label: p.label || t("tt.now"), start: p.start, end: p.end, frac: (minute - start) / Math.max(1, end - start), next: schedule.next?.period.label || "", phase: end - minute <= 5 ? "warn" : "" };
+    }
+    if (schedule.next) {
+      const p = schedule.next.period, prev = lessonsOn(profile3, schedule.date).filter((l) => toMin(l.period.end) <= minute).at(-1), from = prev ? toMin(prev.period.end) : null, to = toMin(p.start);
+      return { left: Math.max(0, Math.ceil(to - minute)), label: uxText("pip.break"), start: prev?.period.end || null, end: p.start, frac: from === null ? null : (minute - from) / Math.max(1, to - from), next: p.label || "", phase: "break" };
+    }
+    return null;
+  }
+  function bellTile(profile3, now) {
+    const info = bellInfo(profile3, now);
+    if (!info) return { phase: "", label: t("ux.dock.bell"), body: /* @__PURE__ */ cpJsx("p", { className: "cp-pip-note" }, t("ux.dock.noBells")) };
+    return { phase: info.phase, label: info.label, body: /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx("output", { className: "cp-pip-read" }, cpRaw(String(info.left)), /* @__PURE__ */ cpJsx("small", null, uxText("pip.minLeft"))), info.start && /* @__PURE__ */ cpJsx("span", { className: "cp-pip-line", "aria-hidden": "true" }, /* @__PURE__ */ cpJsx("b", null, cpRaw(displayTime(info.start))), /* @__PURE__ */ cpJsx("span", null, /* @__PURE__ */ cpJsx("i", { style: { width: pct3(info.frac) } }), /* @__PURE__ */ cpJsx("em", { style: { insetInlineStart: pct3(info.frac) } })), /* @__PURE__ */ cpJsx("b", null, cpRaw(displayTime(info.end)))), info.next && /* @__PURE__ */ cpJsx("p", { className: "cp-pip-note" }, t("tt.next"), " \xB7 ", cpRaw(info.next))) };
+  }
+  function bellMini(profile3, now) {
+    const info = bellInfo(profile3, now);
+    if (!info) return { phase: "", body: /* @__PURE__ */ cpJsx("p", { className: "cp-pip-note" }, t("ux.dock.noBells")) };
+    return { phase: info.phase, body: /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx("output", { className: "cp-pip-read" }, cpRaw(String(info.left)), /* @__PURE__ */ cpJsx("small", null, uxText("timer.min"))), info.phase === "break" && /* @__PURE__ */ cpJsx("span", { className: "cp-pip-tag" }, info.label), /* @__PURE__ */ cpJsx("span", { className: "cp-pip-thin", "aria-hidden": "true" }, /* @__PURE__ */ cpJsx("i", { style: { width: pct3(info.frac ?? 0) } }))) };
+  }
+
   // src/core/classroom-tools.jsx
   var tools = ["timer", "bell", "noise"];
-  var floating = ["timer", "bell", "noise", "wheel"], SMALL = { width: 340, row: 62, wheel: 150 }, LARGE = { timer: { width: 340, height: 460 }, bell: { width: 320, height: 380 }, noise: { width: 380, height: 500 }, wheel: { width: 780, height: 640 } };
+  var MINI_WIDTH = 180, floating = ["timer", "bell", "noise", "wheel"], SMALL = { width: 340, row: 62, wheel: 150 }, LARGE = { timer: { width: 340, height: 460 }, bell: { width: 320, height: 380 }, noise: { width: 380, height: 500 }, wheel: { width: 780, height: 640 } };
   var LAYOUT = "cp:float:layout";
   var readLayout = () => {
     try {
@@ -64298,22 +64477,14 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
   };
   function BellSummary({ profile: profile3, now, onOpen }) {
     const periods = [...periodsOn(profile3, new Date(now).getDay())].filter((p) => p.start && p.end).sort((a, b) => a.start.localeCompare(b.start)), minute = new Date(now).getHours() * 60 + new Date(now).getMinutes();
-    const toMin = (v) => {
+    const toMin2 = (v) => {
       const [h, m] = v.split(":").map(Number);
       return h * 60 + m;
     };
     return /* @__PURE__ */ cpJsx("div", { className: "cp-bell-summary" }, periods.length ? /* @__PURE__ */ cpJsx("ol", null, periods.map((p) => {
-      const state2 = minute >= toMin(p.end) ? "past" : minute >= toMin(p.start) ? "now" : "later";
-      return /* @__PURE__ */ cpJsx("li", { key: p.id, "data-state": state2 }, /* @__PURE__ */ cpJsx("span", null, cpRaw(p.label || "")), /* @__PURE__ */ cpJsx("span", { className: "cp-bell-bar" }, /* @__PURE__ */ cpJsx("b", { style: { width: state2 === "past" ? "100%" : state2 === "now" ? Math.round((minute - toMin(p.start)) / Math.max(1, toMin(p.end) - toMin(p.start)) * 100) + "%" : "0%" } })), /* @__PURE__ */ cpJsx("time", null, cpRaw(displayRange(p.start, p.end))));
+      const state2 = minute >= toMin2(p.end) ? "past" : minute >= toMin2(p.start) ? "now" : "later";
+      return /* @__PURE__ */ cpJsx("li", { key: p.id, "data-state": state2 }, /* @__PURE__ */ cpJsx("span", null, cpRaw(p.label || "")), /* @__PURE__ */ cpJsx("span", { className: "cp-bell-bar" }, /* @__PURE__ */ cpJsx("b", { style: { width: state2 === "past" ? "100%" : state2 === "now" ? Math.round((minute - toMin2(p.start)) / Math.max(1, toMin2(p.end) - toMin2(p.start)) * 100) + "%" : "0%" } })), /* @__PURE__ */ cpJsx("time", null, cpRaw(displayRange(p.start, p.end))));
     })) : /* @__PURE__ */ cpJsx("p", null, t("ux.dock.noBells")), /* @__PURE__ */ cpJsx("button", { ...actionProps("ux.dock.openBell", onOpen), className: "cp-ux-button" }, t("ux.dock.openBell")));
-  }
-  function MiniTimer({ profile: profile3, now }) {
-    const state2 = profile3.timerState || idleTimer(), snapshot = timerSnapshot(state2, now);
-    return /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx("output", { className: "cp-pip-read" }, cpRaw(timerReadout(snapshot, profile3.timerSettings || {}))), /* @__PURE__ */ cpJsx(TimerControls, { state: state2, context: "pip" }));
-  }
-  function MiniBell({ schedule, minutes: minutes2 }) {
-    const period = schedule.now?.period || schedule.next?.period;
-    return period ? /* @__PURE__ */ cpJsx(React.Fragment, null, /* @__PURE__ */ cpJsx("output", { className: "cp-pip-read" }, cpRaw(minutes2 + "\u2032")), /* @__PURE__ */ cpJsx("span", { className: "cp-pip-note" }, t(schedule.now ? "tt.now" : "tt.next"), ": ", cpRaw(period.label || ""))) : /* @__PURE__ */ cpJsx("span", { className: "cp-pip-note" }, t("ux.dock.noBells"));
   }
   function ClassroomTools({ view, doc, onUpdate, setView, wheelKey, openWheel }) {
     const [state2, setState] = useState({}), [max, setMax] = useState(null), [pip2, setPip] = useState(floatWindow), [sizes, setSizes] = useState(() => readLayout().sizes || {}), from = useRef({}), wheelScope = useRef(null), composed = useRef(false), ignoreResize = useRef(0), profile3 = useProfile(), now = useClock(1e3);
@@ -64335,6 +64506,16 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     }, [pip2, state2]);
     const set = (tool, value) => setState((old) => ({ ...old, [tool]: value }));
     const size = (tool) => sizes[tool] || "large", inPip = floating.filter((tool) => state2[tool] === "pip");
+    const [miniPref, setMiniPref] = useState(() => !!readLayout().bellMini), miniOn = !!pip2 && miniPref && inPip.length === 1 && inPip[0] === "bell";
+    const miniOnNow = () => {
+      setMiniPref(true);
+      writeLayout(() => ({ bellMini: true }));
+      setState((old) => Object.fromEntries(Object.entries(old).map(([tool, value]) => [tool, tool !== "bell" && value === "pip" ? void 0 : value])));
+    };
+    const miniOff = () => {
+      setMiniPref(false);
+      writeLayout(() => ({ bellMini: false }));
+    };
     const floatTools = (list2, chosen, origin) => {
       const next = list2.filter((tool) => state2[tool] !== "pip" && (tool !== "wheel" || !isDemoActive()));
       if (!next.length) return;
@@ -64373,21 +64554,37 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
       window.addEventListener("cp:float-tool", ask);
       return () => window.removeEventListener("cp:float-tool", ask);
     });
-    const fitKey = inPip.map((tool) => tool + ":" + size(tool)).join(",");
+    const fitKey = miniOn ? "bell:mini" : inPip.map((tool) => tool + ":" + size(tool)).join(","), fitsContent = miniOn || inPip.every((tool) => size(tool) === "small");
     useEffect(() => {
       if (!pip2 || !fitKey) return;
-      const frame = pip2.requestAnimationFrame(() => {
-        try {
-          const box2 = pip2.document.querySelector(".cp-pip");
-          if (!box2) return;
-          const saved = readLayout().windows?.[fitKey], width = saved ? saved.w : Math.max(...inPip.map((tool) => size(tool) === "small" ? SMALL.width : LARGE[tool].width)), height = saved ? saved.h : Math.min(box2.scrollHeight, Math.round(screen.availHeight * 0.85));
-          if (Math.abs(pip2.innerWidth - width) < 2 && Math.abs(pip2.innerHeight - height) < 2) return;
-          ignoreResize.current = Date.now() + 900;
-          pip2.resizeTo(width + (pip2.outerWidth - pip2.innerWidth), height + (pip2.outerHeight - pip2.innerHeight));
-        } catch {
+      let frame = 0;
+      const fit = (first = false) => {
+        pip2.cancelAnimationFrame?.(frame);
+        frame = pip2.requestAnimationFrame(() => {
+          try {
+            const box2 = pip2.document.querySelector(".cp-pip");
+            if (!box2) return;
+            const saved = readLayout().windows?.[fitKey], width = miniOn ? MINI_WIDTH : saved ? saved.w : Math.max(...inPip.map((tool) => size(tool) === "small" ? SMALL.width : LARGE[tool].width)), height = fitsContent ? Math.ceil(box2.getBoundingClientRect().height) : saved ? saved.h : Math.min(box2.scrollHeight, Math.round(screen.availHeight * 0.85));
+            if ((!first && !miniOn || Math.abs(pip2.innerWidth - width) < 2) && Math.abs(pip2.innerHeight - height) < 2) return;
+            ignoreResize.current = Date.now() + 900;
+            pip2.resizeTo((miniOn || first ? width : pip2.innerWidth) + (pip2.outerWidth - pip2.innerWidth), height + (pip2.outerHeight - pip2.innerHeight));
+          } catch {
+          }
+        });
+      };
+      fit(true);
+      let watch = null;
+      if (fitsContent && pip2.ResizeObserver) {
+        const box2 = pip2.document.querySelector(".cp-pip");
+        if (box2) {
+          watch = new pip2.ResizeObserver(() => fit());
+          watch.observe(box2);
         }
-      });
-      return () => pip2.cancelAnimationFrame?.(frame);
+      }
+      return () => {
+        pip2.cancelAnimationFrame?.(frame);
+        watch?.disconnect();
+      };
     }, [pip2, fitKey]);
     const fitRef = useRef("");
     fitRef.current = fitKey;
@@ -64429,10 +64626,16 @@ Extra instructions from the teacher (lower priority than every rule above): {tea
     }, onClose: () => {
       set(tool, void 0);
       if (max === tool) setMax(null);
-    }, onPop: floatSupported() ? () => float(tool) : void 0, sound: SOUND[tool] ? { on: SOUND[tool](profile3), toggle: () => toggleSound(tool) } : null }, body(tool))), pip2 && inPip.length > 0 && ReactDOM.createPortal(/* @__PURE__ */ cpJsx(FloatHost.Provider, { value: { win: pip2, doc: pip2.document } }, /* @__PURE__ */ cpJsx("div", { className: "cp-pip", dir: document.querySelector(".cp-workspace")?.dir || "ltr" }, inPip.map((tool) => /* @__PURE__ */ cpJsx("section", { key: tool, className: "cp-pip-tool", "data-float": tool, "data-size": size(tool), "aria-label": t("ux.dock." + tool) }, /* @__PURE__ */ cpJsx("header", null, /* @__PURE__ */ cpJsx(NavIcon, { type: tool }), /* @__PURE__ */ cpJsx("strong", null, t("ux.dock." + tool)), SOUND[tool] && /* @__PURE__ */ cpJsx("button", { ...actionProps("ux.float.sound", () => toggleSound(tool), "pip:" + tool), "aria-pressed": SOUND[tool](profile3), "aria-label": t(SOUND[tool](profile3) ? "ux.float.soundOff" : "ux.float.soundOn") + ": " + t("ux.dock." + tool), title: t(SOUND[tool](profile3) ? "ux.float.soundOff" : "ux.float.soundOn"), className: "cp-float-btn", "data-icon": SOUND[tool](profile3) ? "sound" : "mute" }), /* @__PURE__ */ cpJsx("button", { ...actionProps("ux.float.size", () => resize(tool, size(tool) === "small" ? "large" : "small"), "pip:" + tool), "aria-label": t(size(tool) === "small" ? "ux.float.bigger" : "ux.float.smaller"), title: t(size(tool) === "small" ? "ux.float.bigger" : "ux.float.smaller"), "aria-pressed": size(tool) === "large", className: "cp-float-btn", "data-icon": size(tool) === "small" ? "max" : "min" }), /* @__PURE__ */ cpJsx("button", { ...actionProps("ux.float.back", () => back(tool), tool), "aria-label": t("ux.float.back"), title: t("ux.float.back"), className: "cp-float-btn", "data-icon": "back" }), /* @__PURE__ */ cpJsx("button", { ...actionProps("ux.float.close", () => set(tool, void 0), "pip:" + tool), "aria-label": t("ux.float.close"), title: t("ux.float.close"), className: "cp-float-btn", "data-icon": "close" })), /* @__PURE__ */ cpJsx("div", { className: "cp-pip-content", ref: tool === "wheel" ? wheelScope : void 0 }, tool === "wheel" && size(tool) === "small" && /* @__PURE__ */ cpJsx(NameReel, { scope: wheelScope }), tool === "wheel" ? /* @__PURE__ */ cpJsx("div", { className: "cp-wheel-host", inert: size(tool) === "small" ? "" : void 0 }, /* @__PURE__ */ cpJsx(WheelModal, { key: wheelKey, doc, onUpdate, memKey: wheelKey, onClose: () => set("wheel", void 0) })) : size(tool) === "small" && tool === "timer" ? /* @__PURE__ */ cpJsx(MiniTimer, { profile: profile3, now }) : size(tool) === "small" && tool === "bell" ? /* @__PURE__ */ cpJsx(MiniBell, { schedule, minutes: bellMinutes }) : body(tool, size(tool) === "small")))), inPip.length < floating.length && /* @__PURE__ */ cpJsx("div", { className: "cp-pip-add", role: "group", "aria-label": t("ux.float.add") }, floating.filter((tool) => !inPip.includes(tool) && (tool !== "wheel" || !isDemoActive())).map((tool) => /* @__PURE__ */ cpJsx("button", { key: tool, ...actionProps("ux.float.add", () => {
+    }, onPop: floatSupported() ? () => float(tool) : void 0, sound: SOUND[tool] ? { on: SOUND[tool](profile3), toggle: () => toggleSound(tool) } : null }, body(tool))), pip2 && inPip.length > 0 && ReactDOM.createPortal(/* @__PURE__ */ cpJsx(FloatHost.Provider, { value: { win: pip2, doc: pip2.document } }, /* @__PURE__ */ cpJsx("div", { className: "cp-pip", "data-mini": miniOn ? "true" : void 0, dir: document.querySelector(".cp-workspace")?.dir || "ltr" }, miniOn ? (() => {
+      const mini = bellMini(profile3, now);
+      return /* @__PURE__ */ cpJsx("section", { className: "cp-pip-tool cp-pip-mini", "data-float": "bell", "data-size": "mini", "data-phase": mini.phase || void 0, tabIndex: 0, "aria-label": t("ux.dock.bell") }, /* @__PURE__ */ cpJsx(NavIcon, { type: "bell" }), mini.body, /* @__PURE__ */ cpJsx("div", { className: "cp-pip-ctl" }, /* @__PURE__ */ cpJsx("button", { ...actionProps("ux.float.full", miniOff, "pip:bell"), "aria-label": uxText("float.full"), title: uxText("float.full"), className: "cp-float-btn", "data-icon": "full" }), /* @__PURE__ */ cpJsx("button", { ...actionProps("ux.float.close", () => set("bell", void 0), "pip:bell"), "aria-label": t("ux.float.close"), title: t("ux.float.close"), className: "cp-float-btn", "data-icon": "close" })));
+    })() : /* @__PURE__ */ cpJsx("div", { className: "cp-pip-tools" }, inPip.map((tool) => {
+      const small = size(tool) === "small", tile2 = small && tool === "timer" ? timerTile(profile3, now) : small && tool === "bell" ? bellTile(profile3, now) : null;
+      return /* @__PURE__ */ cpJsx("section", { key: tool, className: "cp-pip-tool", "data-float": tool, "data-size": size(tool), "data-phase": tile2?.phase || void 0, tabIndex: small ? 0 : void 0, "aria-label": t("ux.dock." + tool) }, /* @__PURE__ */ cpJsx("header", null, /* @__PURE__ */ cpJsx(NavIcon, { type: tool }), /* @__PURE__ */ cpJsx("strong", null, tile2 ? cpRaw(tile2.label) : t("ux.dock." + tool)), tile2?.primary, small && tool === "bell" && /* @__PURE__ */ cpJsx("button", { ...actionProps("ux.float.mini", miniOnNow, "pip:bell"), "aria-label": uxText("float.mini"), title: uxText("float.mini"), className: "cp-float-btn", "data-icon": "mini" })), /* @__PURE__ */ cpJsx("div", { className: "cp-pip-content", ref: tool === "wheel" ? wheelScope : void 0 }, tool === "wheel" && size(tool) === "small" && /* @__PURE__ */ cpJsx(NameReel, { scope: wheelScope }), tool === "wheel" ? /* @__PURE__ */ cpJsx("div", { className: "cp-wheel-host", inert: size(tool) === "small" ? "" : void 0 }, /* @__PURE__ */ cpJsx(WheelModal, { key: wheelKey, doc, onUpdate, memKey: wheelKey, onClose: () => set("wheel", void 0) })) : tile2 ? tile2.body : body(tool, size(tool) === "small")), /* @__PURE__ */ cpJsx("div", { className: "cp-pip-ctl" }, tile2?.extra, SOUND[tool] && /* @__PURE__ */ cpJsx("button", { ...actionProps("ux.float.sound", () => toggleSound(tool), "pip:" + tool), "aria-pressed": SOUND[tool](profile3), "aria-label": t(SOUND[tool](profile3) ? "ux.float.soundOff" : "ux.float.soundOn") + ": " + t("ux.dock." + tool), title: t(SOUND[tool](profile3) ? "ux.float.soundOff" : "ux.float.soundOn"), className: "cp-float-btn", "data-icon": SOUND[tool](profile3) ? "sound" : "mute" }), /* @__PURE__ */ cpJsx("button", { ...actionProps("ux.float.size", () => resize(tool, size(tool) === "small" ? "large" : "small"), "pip:" + tool), "aria-label": t(size(tool) === "small" ? "ux.float.bigger" : "ux.float.smaller"), title: t(size(tool) === "small" ? "ux.float.bigger" : "ux.float.smaller"), "aria-pressed": size(tool) === "large", className: "cp-float-btn", "data-icon": size(tool) === "small" ? "max" : "min" }), /* @__PURE__ */ cpJsx("button", { ...actionProps("ux.float.back", () => back(tool), tool), "aria-label": t("ux.float.back"), title: t("ux.float.back"), className: "cp-float-btn", "data-icon": "back" }), /* @__PURE__ */ cpJsx("button", { ...actionProps("ux.float.close", () => set(tool, void 0), "pip:" + tool), "aria-label": t("ux.float.close"), title: t("ux.float.close"), className: "cp-float-btn", "data-icon": "close" })));
+    })), !miniOn && inPip.length < floating.length && /* @__PURE__ */ cpJsx("div", { className: "cp-pip-add", role: "group", "aria-label": t("ux.float.add") }, floating.filter((tool) => !inPip.includes(tool) && (tool !== "wheel" || !isDemoActive())).map((tool) => /* @__PURE__ */ cpJsx("button", { key: tool, ...actionProps("ux.float.add", () => {
       composed.current = true;
       floatTools([tool], readLayout().sizes?.[tool] || "small", void 0);
-    }, tool), "aria-label": t("ux.float.add") + ": " + t("ux.dock." + tool), title: t("ux.float.add") + ": " + t("ux.dock." + tool) }, /* @__PURE__ */ cpJsx(NavIcon, { type: tool }), /* @__PURE__ */ cpJsx("span", { "aria-hidden": "true" }, "+")))), /* @__PURE__ */ cpJsx(PipToast, null))), pip2.document.body), tools.some((tool) => state2[tool] === "tray") && /* @__PURE__ */ cpJsx("div", { className: "cp-float-tray", role: "group", "aria-label": t("ux.float.tray") }, tools.filter((tool) => state2[tool] === "tray").map((tool) => /* @__PURE__ */ cpJsx(TrayPill, { key: tool, id: tool, label: t("ux.float.restore") + ": " + t("ux.dock." + tool), onOpen: () => set(tool, "open"), onPop: floatSupported() ? () => float(tool, "tray") : void 0, popLabel: t("ux.float.pop") + ": " + t("ux.dock." + tool) }, /* @__PURE__ */ cpJsx(NavIcon, { type: tool }), /* @__PURE__ */ cpJsx("span", null, badge[tool] ? cpRaw(badge[tool]) : t("ux.dock." + tool))))));
+    }, tool), "aria-label": t("ux.float.add") + ": " + t("ux.dock." + tool), title: t("ux.float.add") + ": " + t("ux.dock." + tool) }, /* @__PURE__ */ cpJsx(NavIcon, { type: tool }), /* @__PURE__ */ cpJsx("span", null, t("ux.dock." + tool)), /* @__PURE__ */ cpJsx("b", { "aria-hidden": "true" }, "+")))), /* @__PURE__ */ cpJsx(PipToast, null))), pip2.document.body), tools.some((tool) => state2[tool] === "tray") && /* @__PURE__ */ cpJsx("div", { className: "cp-float-tray", role: "group", "aria-label": t("ux.float.tray") }, tools.filter((tool) => state2[tool] === "tray").map((tool) => /* @__PURE__ */ cpJsx(TrayPill, { key: tool, id: tool, label: t("ux.float.restore") + ": " + t("ux.dock." + tool), onOpen: () => set(tool, "open"), onPop: floatSupported() ? () => float(tool, "tray") : void 0, popLabel: t("ux.float.pop") + ": " + t("ux.dock." + tool) }, /* @__PURE__ */ cpJsx(NavIcon, { type: tool }), /* @__PURE__ */ cpJsx("span", null, badge[tool] ? cpRaw(badge[tool]) : t("ux.dock." + tool))))));
   }
 
   // src/modules/slots.js
